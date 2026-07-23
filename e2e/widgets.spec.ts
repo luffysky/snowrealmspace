@@ -81,7 +81,9 @@ test.describe('Home 版面（格線，桌機／平板）', () => {
     const slot = page.locator('.sr-widget-slot').first()
     const before = await slot.evaluate((el) => getComputedStyle(el).gridColumnEnd)
 
-    await page.keyboard.press('Shift+ArrowRight')
+    // 用縮小（ArrowLeft）而非放大 —— 預設版面第一個 widget 已是最大寬度，
+    // 放大不會有變化。縮小一定能改（minSize 之前）。
+    await page.keyboard.press('Shift+ArrowLeft')
     await page.waitForTimeout(600)
 
     const after = await slot.evaluate((el) => getComputedStyle(el).gridColumnEnd)
@@ -226,8 +228,9 @@ test.describe('Home 版面（格線，桌機／平板）', () => {
     await signInThroughUi(page, invited)
     await page.getByRole('button', { name: '編輯版面' }).click()
 
-    // Q6：不做假按鈕 —— 沒實作的一定是停用狀態
-    await expect(page.getByRole('button', { name: '每日卡片' })).toBeDisabled()
+    // Q6：不做假按鈕 —— 沒實作的一定是停用狀態。
+    // 用「驚喜盒」當例子（daily_card 在 Milestone E 已實作，不再是好例子）。
+    await expect(page.getByRole('button', { name: '驚喜盒', exact: true })).toBeDisabled()
   })
 
   test('縮到手機寬度時改用單欄，不出現格線', async ({ page, invited }) => {
