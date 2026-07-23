@@ -43,13 +43,27 @@ export default async function AccountSettingsPage({
 
   const errorKey = typeof params['error'] === 'string' ? params['error'] : null
   const linkedKey = typeof params['linked'] === 'string' ? params['linked'] : null
+  const welcome = params['welcome'] === '1'
 
   return (
     <div className="sr-stack">
       <section>
-        <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>登入方式</h1>
+        <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{welcome ? '歡迎！' : '登入方式'}</h1>
         <p className="sr-muted">{user.email}</p>
       </section>
+
+      {welcome && (
+        <section className="sr-card sr-message-info" style={{ borderLeft: '4px solid var(--sr-accent)' }}>
+          <h2 style={{ fontSize: 'var(--sr-text-lg)', marginTop: 0 }}>綁定其他登入方式</h2>
+          <p className="sr-muted" style={{ marginTop: 0 }}>
+            你已經可以用帳號密碼登入了。要的話，把 Google 或 LINE 綁上來，
+            之後用哪一種進的都是同一個帳號、同一個空間。也可以之後再綁。
+          </p>
+          <a className="sr-button sr-button-secondary" href="/home">
+            先跳過，直接進去
+          </a>
+        </section>
+      )}
 
       {errorKey && (
         <p className="sr-message sr-message-error" role="alert">
