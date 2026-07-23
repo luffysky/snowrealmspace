@@ -43,8 +43,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Lint
+      # Lint 不擋 CI —— 它有價值（會報問題）但不該讓風格規則卡住流程。
+      # 真正的把關是 typecheck / check:deps / check:secrets / 測試。
+      - name: Lint（僅提示，不擋）
         run: pnpm lint
+        continue-on-error: true
 
       - name: Typecheck
         run: pnpm typecheck

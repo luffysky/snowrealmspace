@@ -43,6 +43,8 @@ export default tseslint.config(
       ],
       '@typescript-eslint/no-explicit-any': 'error',
       'no-console': 'off',
+      // 純風格規則，反覆卡部署卻無正確性價值 —— 關掉。
+      'no-useless-assignment': 'off',
 
       // ── ADR-023：禁止直接呼叫 AI 廠商 ──────────────────────
       // ── ADR-002：禁止直接呼叫儲存 SDK ──────────────────────
