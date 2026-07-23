@@ -146,9 +146,12 @@ jobs:
           grep -q 'maintenance.queue-health' /tmp/worker.log
           grep -q 'maintenance.storage-gc' /tmp/worker.log
 
-  # ── E2E + 無障礙 ──────────────────────────────────────
-  e2e:
-    name: E2E + 無障礙
+  # ── 閉環驗證（Milestone A 端到端）──────────────────────
+  # E2E 與無障礙已從 CI 移除（Luffy 指示：CI 一直 churn）。
+  # 把關改由 quality / unit / database（typecheck、單元、RLS、型別漂移）負責，
+  # 這個 job 只留「真的走一遍註冊→登入→看到 Space」的閉環冒煙測試。
+  verify:
+    name: 閉環驗證（Milestone A）
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -160,9 +163,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 安裝瀏覽器
-        run: pnpm exec playwright install --with-deps chromium
-
       - name: 啟動 Supabase
         run: pnpm exec supabase start -x studio,imgproxy,pooler,realtime,vector
 
@@ -170,9 +170,6 @@ jobs:
         run: |
           pnpm db:migrate
           pnpm db:seed
-
-      - name: 建立儲存 bucket
-        run: pnpm tsx scripts/ci-setup-bucket.ts
 
       - name: 寫入 apps/web 的公開環境變數
         # middleware 跑在 edge runtime，其變數是 build 時 inline 的，
@@ -207,44 +204,8 @@ jobs:
       - name: Build（正式產物）
         run: pnpm build
 
-      # ⚠️ worker 必須跑著，否則 asset.process 永遠不會執行：
-      # 沒有色票 → /api/themes/from-image 一直回 retryable → 主題生成的測試逾時。
-      # 本機開發時 worker 通常另開一個終端跑著，CI 沒有那個「順便」，
-      # 一定要明寫出來。
-      - name: 啟動 worker（背景）
-        run: |
-          pnpm --filter @snowrealm/worker start > /tmp/worker.log 2>&1 &
-          echo $! > /tmp/worker.pid
-          # 等 worker 真的接上佇列，而不是盲目 sleep
-          for i in $(seq 1 30); do
-            grep -q '就緒' /tmp/worker.log && break
-            sleep 2
-          done
-          tail -5 /tmp/worker.log
-
-      # Playwright 的 webServer 會自行 build 並啟動 :3100（獨立 distDir），
-      # 與 dev server 完全隔離。見 playwright.config.ts。
-      - name: E2E（桌機）
-        run: pnpm exec playwright test --project=chromium
-
-      - name: E2E（行動裝置）
-        run: pnpm exec playwright test --project=mobile
-
-      - name: Worker 日誌（失敗時用來判斷是不是 job 沒跑）
-        if: failure()
-        run: tail -100 /tmp/worker.log || true
-
-      - name: 閉環驗證
+      - name: 閉環驗證（帶站台閘門 cookie，見 scripts/verify-milestone-a.ts）
         run: |
           pnpm --filter @snowrealm/web start &
-          pnpm exec wait-on http://localhost:3000/login -t 60000
+          pnpm exec wait-on http://localhost:3000/gate -t 60000
           pnpm tsx scripts/verify-milestone-a.ts
-
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: playwright-report
-          path: |
-            playwright-report/
-            test-results/
-          retention-days: 7
