@@ -23,6 +23,8 @@
 
 ## 🅰 需 Luffy 本人操作 🔴
 
+- 🔴🔴 **Zeabur redeploy 抓最新 commit（最優先）** — 註冊 500 修復（R2 optional）、帳密體驗、
+      深淺色、E 全部新功能（Insight/通知/主動訊息/驚喜收藏）都要 redeploy 才會上線。
 - 🔴 **Resend 寄件人網域** — SMTP 已連上，但 `Error sending confirmation email` 是因寄件人在沙盒。
       把 auth 服務的 `GOTRUE_SMTP_ADMIN_EMAIL` 設成 `service@snowrealm.pet`（已驗證網域）→ 重啟 auth。
       設好後 magic link 登入才對外可用（**帳號密碼登入已可用、不受此影響**）。
@@ -44,13 +46,21 @@
 - [x] ~~帳號密碼註冊/登入（繞過 SMTP，馬上能進站）~~
 - [x] ~~帳號可用使用者名稱（不必 email，可先設好再交給對方）~~
 - [x] ~~註冊後引導綁定 Google/LINE~~
-- [x] ~~hosted Supabase：14 migration + seed + RLS 25 表~~
+- [x] ~~密碼強度判斷 + 強度條、顯示/隱藏眼睛（PasswordField）~~
+- [x] ~~忘記密碼 `/forgot` + `/reset-password`（真 email 才寄、防帳號枚舉）~~
+- [x] ~~登入後對「沒救援方式的帳號」跳綁定提醒橫幅（BindingReminder）~~
+- [x] ~~註冊 500 修復：R2 env 全改 optional（缺 R2 不再拖垮全站）~~
+- [x] ~~milestone-a 閉環腳本帶站台閘門 cookie（CI 修復，本地 24/24）~~
+- [x] ~~hosted Supabase：16 migration + seed + RLS 30 表~~
 - [x] ~~內容池 8324 則灌入 hosted content_items~~
 - [x] ~~首頁 `/` 500 防護、lint 與 build 解耦~~
+- [x] ~~RWD 稽核：nav 加鈴鐺/日夜鈕後不破版；通知面板手機改 fixed 貼齊視窗~~
 - [ ] Sentry / 監控（`queue-health` 目前只 log，沒告警管道）
 - [ ] `/api/health` 全綠（等 R2 + worker）
 - [ ] preview 與 production 用不同 Supabase / R2 bucket
 - [ ] lefthook git hooks
+- [ ] E2E/a11y 在 CI 一直 churn — Luffy 要求暫停跑；日後要重新穩定（gate 全域 setup、
+      環境對齊）再開。目前改靠 typecheck/單元/RLS/直連 DB 驗證。
 
 ---
 
@@ -141,3 +151,8 @@
 - [ ] `apps/web/lib` 部分邏輯無單元測試（靠 E2E）
 - [ ] `QuickNoteWidget` 存 localStorage（Milestone C 有 notes 表後遷移）
 - [ ] 測試 env 指向 hosted 會污染正式資料 — 已有 cleanup 腳本，但流程要小心
+- [ ] Insight 軟刪除後，下次 `generateInsights` 的 upsert 會更新到同一列但 `deleted_at` 仍在
+      → 被刪的回顧不會自動復活（可接受；若要「刪了就不再出現該週期」則需在 upsert 前濾掉）
+- [ ] 主動訊息目前「進 Home 時觸發」；完整方案要 cron 掃時區主動產生（同每日卡片）
+- [ ] `apps/web/lib/insights`、`lib/daily/proactive`、`lib/notifications` 尚無單元測試
+      （引擎邏輯已用 `scripts/verify-milestone-e.ts` 直連 DB 驗證，但缺純函式單測）

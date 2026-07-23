@@ -319,6 +319,18 @@ h3 {
     width: 100%;
     justify-content: space-between;
   }
+
+  /*
+   * 手機上鈴鐺會落在 nav-end 左側，若面板沿用「往左展開」會溢出畫面左緣。
+   * 改成貼齊視窗兩側（fixed + inset-inline），保證不破版。
+   */
+  .sr-notif-panel {
+    position: fixed;
+    inset-inline: var(--sr-space-3);
+    top: 60px;
+    width: auto;
+    max-height: 75vh;
+  }
 }
 
 /*

@@ -78,4 +78,27 @@ Luffy。Claude 值班。
 驚喜保底+收藏 → milestone-a 閘門修 → **R2 optional（修註冊 500）** →
 Insight/通知/主動訊息（E 收尾）+ 對接驗證 + 文件。
 
-閘門：typecheck / 522 單元 / check:rls(28 表) / check:secrets / check:deps 全綠。**E2E/a11y 本輪暫停（Luffy 指示）。**
+閘門：typecheck / 522 單元 / check:rls(30 表) / check:secrets / check:deps 全綠。**E2E/a11y 本輪暫停（Luffy 指示）。**
+
+---
+
+## 🧹 收尾（Luffy：待辦記全、API/DB/UI/RWD 接好不破版、寫日誌）
+
+### RWD 稽核（靜態，不跑 E2E）
+- **抓到一個真的會破版的**：nav 加了通知鈴鐺 + 日夜鈕後，手機上 `.sr-nav-end` 變全寬 `space-between`，
+  鈴鐺落在最左；通知面板原本 `position:absolute; inset-inline-end:0`（往左展開）→ **會溢出畫面左緣**。
+  修：手機 breakpoint（≤767px）把面板改 `position:fixed; inset-inline: space-3`（貼齊視窗兩側）。
+- 其餘全數複查通過：`/insights`、`/surprises` 網格都用 `minmax(min(100%, N), 1fr)`（欄寬永不超過容器）；
+  odds/insight-foot/binding/agent-settings 各 row 都 `flex-wrap`；`html,body { overflow-x:hidden }` 保底。
+- nav 本身 `flex-wrap`、手機 nav-end 全寬換行 —— header 不會被撐寬（CLAUDE.md 第 5 坑）。
+
+### 接線確認（本輪已驗證）
+- **API↔DB**：insights/notifications 欄位直連 SQL 驗證 + hosted supabase-js 全 CRUD ✓。
+- **UI↔後端**：前端 13 個 `fetch` ↔ route 一一對上，無斷線；server action 型 co-located + typecheck。
+- **RWD**：如上，修一處、其餘通過。
+
+### 待辦
+- `todo_list_0724.md` 全面更新：E 全打勾、深淺色打勾、帳密體驗/註冊修復/milestone-a 修/RWD 打勾；
+  🔴 區頂部加「Zeabur redeploy 最優先」；技術債補 3 條（insight 軟刪 upsert、cron 掃時區、新引擎缺單測）。
+
+閘門仍全綠。E2E/a11y 依指示不跑。
