@@ -51,7 +51,7 @@ export function PasswordAuth({ next }: { next: string }) {
             type="text"
             autoComplete="username"
             required
-            placeholder={mode === 'signup' ? 'email 或使用者名稱' : '帳號'}
+            placeholder={mode === 'signup' ? '取一個帳號' : '帳號'}
             disabled={pending}
           />
         </div>
@@ -86,7 +86,7 @@ export function PasswordAuth({ next }: { next: string }) {
 
       {mode === 'signup' && (
         <p className="sr-muted" style={{ marginTop: 'var(--sr-space-2)', marginBottom: 0 }}>
-          可以只用使用者名稱＋密碼註冊（不必 email）。註冊後會引導你綁定 Google 或 LINE。
+          帳號＋密碼就能註冊，不需要 email。註冊後可綁定 Google 或 LINE。
         </p>
       )}
     </div>
