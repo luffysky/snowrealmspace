@@ -171,40 +171,57 @@ export async function registerWithPassword(
 
   const admin = createAdminClient()
 
-  // 已存在就別重複建立 —— 引導去登入
+  // 帳號已存在？分兩種：
+  //  - 已佈建完成（有 space）→ 引導去登入，不重複建立。
+  //  - 「孤兒」（有帳號但沒 space，前一次佈建失敗殘留）→ 沿用這個帳號、補佈建，
+  //    並用這次輸入的密碼覆蓋，讓使用者不會被自己的失敗殘留卡死。
   const { data: users } = await admin.auth.admin.listUsers({ page: 1, perPage: 200 })
-  if (users?.users.some((u) => u.email?.toLowerCase() === email)) {
-    return {
-      status: 'error',
-      message: username ? '這個帳號已經有人用了，換一個。' : '這個 email 已經註冊過了，直接登入即可。',
-    }
-  }
+  const existing = users?.users.find((u) => u.email?.toLowerCase() === email)
 
-  const created = await admin.auth.admin.createUser({
-    email,
-    password,
-    email_confirm: true, // 跳過確認信（站台閘門已把關）
-    ...(username ? { user_metadata: { username } } : {}),
-  })
-  if (created.error || !created.data.user) {
-    return { status: 'error', message: '建立帳號失敗，請再試一次。' }
+  let userId: string
+  const isRecoveringOrphan = Boolean(existing)
+  if (existing) {
+    const { data: membership } = await admin
+      .from('space_members')
+      .select('space_id')
+      .eq('user_id', existing.id)
+      .limit(1)
+      .maybeSingle()
+    if (membership) {
+      return {
+        status: 'error',
+        message: username ? '這個帳號已經有人用了，換一個。' : '這個 email 已經註冊過了，直接登入即可。',
+      }
+    }
+    // 孤兒：重設密碼為這次輸入的值，沿用帳號補佈建
+    await admin.auth.admin
+      .updateUserById(existing.id, { password, ...(username ? { user_metadata: { username } } : {}) })
+      .catch(() => {})
+    userId = existing.id
+  } else {
+    const created = await admin.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true, // 跳過確認信（站台閘門已把關）
+      ...(username ? { user_metadata: { username } } : {}),
+    })
+    if (created.error || !created.data.user) {
+      return { status: 'error', message: '建立帳號失敗，請再試一次。' }
+    }
+    userId = created.data.user.id
   }
 
   try {
-    const provisioned = await provisionSpaceForUser({
-      userId: created.data.user.id,
-      email,
-      displayName: username,
-    })
+    const provisioned = await provisionSpaceForUser({ userId, email, displayName: username })
     if (provisioned.created) {
-      await emitEvent('space.created', provisioned.spaceId, created.data.user.id, {
+      await emitEvent('space.created', provisioned.spaceId, userId, {
         spaceName: email.split('@')[0] ?? 'space',
         viaInvite: false,
       }).catch(() => {})
     }
   } catch {
-    // 佈建失敗：把剛建的帳號刪掉，避免留下沒有 space 的孤兒
-    await admin.auth.admin.deleteUser(created.data.user.id).catch(() => {})
+    // 只在「這次才新建」的帳號才刪除；沿用的孤兒不刪（下次還能再補救）
+    if (!isRecoveringOrphan) await admin.auth.admin.deleteUser(userId).catch(() => {})
     return { status: 'error', message: '建立空間時發生問題，請再試一次。' }
   }
 
