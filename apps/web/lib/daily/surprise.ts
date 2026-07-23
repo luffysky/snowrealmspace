@@ -25,11 +25,17 @@ export type SurpriseView =
   | { state: 'empty' } // 池空了（沒 seed）
 
 /** 每日盒子的稀有度機率。special / anniversary 是條件觸發，不進每日隨機。 */
-const DAILY_WEIGHTS: Record<string, number> = {
+export const DAILY_WEIGHTS: Record<string, number> = {
   common: 64,
   uncommon: 26,
   rare: 10,
 }
+
+/**
+ * 稀有度保底：連續開了這麼多盒都沒出 rare（或更稀有），下一盒強制 rare。
+ * 期望值上 rare 約每 10 盒一次，保底把「衰到爆」的長尾砍掉，且對玩家公開。
+ */
+export const PITY_THRESHOLD = 15
 
 const RARITY_LABEL: Record<Rarity, string> = {
   common: '平凡',
@@ -94,17 +100,28 @@ export async function openSurprise(spaceId: string, timeZone: string): Promise<S
   const existing = await getSurpriseState(spaceId, timeZone)
   if (existing.state === 'opened') return existing
 
-  // 已開過的 content_id（避免重複）
+  // 已開過的：source_ref 用來避免重複、rarity 用來算保底
   const { data: opened } = await admin
     .from('surprises')
-    .select('source_ref')
+    .select('source_ref, rarity, unlocked_at')
     .eq('space_id', spaceId)
+    .not('unlocked_at', 'is', null)
+    .order('unlocked_at', { ascending: false })
   const usedIds = new Set(
     (opened ?? []).map((r) => r.source_ref).filter((x): x is string => Boolean(x)),
   )
 
   const seed = hashToUnit(`${spaceId}:surprise:${today}`)
-  const rarity = pickRarity(seed)
+  let rarity = pickRarity(seed)
+
+  // 保底：距離上一次 rare（或更稀有）已經連續多少盒沒出？
+  const RARE_OR_BETTER: Rarity[] = ['rare', 'special', 'anniversary']
+  let sinceRare = 0
+  for (const row of opened ?? []) {
+    if (RARE_OR_BETTER.includes(row.rarity as Rarity)) break
+    sinceRare++
+  }
+  if (sinceRare >= PITY_THRESHOLD) rarity = 'rare' // 觸發保底
 
   // 抽該稀有度、未開過、啟用中的一則
   const picked = await pickUnopened(admin, rarity, usedIds, seed)
@@ -134,6 +151,69 @@ export async function openSurprise(spaceId: string, timeZone: string): Promise<S
     text: picked.text,
     openedAt: new Date().toISOString(),
   }
+}
+
+export type ArchivedSurprise = {
+  id: string
+  rarity: Rarity
+  label: string
+  text: string
+  openedAt: string
+  favorited: boolean
+}
+
+/** 收藏頁：所有開過的驚喜，最新在前。 */
+export async function listOpenedSurprises(spaceId: string): Promise<ArchivedSurprise[]> {
+  const admin = createAdminClient()
+  const { data } = await admin
+    .from('surprises')
+    .select('id, rarity, title, body, unlocked_at, favorited')
+    .eq('space_id', spaceId)
+    .not('unlocked_at', 'is', null)
+    .order('unlocked_at', { ascending: false })
+
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    rarity: r.rarity as Rarity,
+    label: r.title,
+    text: r.body ?? '',
+    openedAt: r.unlocked_at as string,
+    favorited: Boolean(r.favorited),
+  }))
+}
+
+/** 收藏 / 取消收藏一則驚喜（限本 space）。 */
+export async function setSurpriseFavorite(
+  spaceId: string,
+  id: string,
+  favorited: boolean,
+): Promise<void> {
+  const admin = createAdminClient()
+  const { error } = await admin
+    .from('surprises')
+    .update({ favorited } as never)
+    .eq('space_id', spaceId)
+    .eq('id', id)
+  if (error) throw new Error(`更新收藏失敗：${error.message}`)
+}
+
+/** 目前距離上次 rare（含更稀有）連續幾盒沒出 —— 給機率公開頁顯示保底進度。 */
+export async function rareDrought(spaceId: string): Promise<number> {
+  const admin = createAdminClient()
+  const { data } = await admin
+    .from('surprises')
+    .select('rarity, unlocked_at')
+    .eq('space_id', spaceId)
+    .not('unlocked_at', 'is', null)
+    .order('unlocked_at', { ascending: false })
+
+  const rareOrBetter: Rarity[] = ['rare', 'special', 'anniversary']
+  let n = 0
+  for (const row of data ?? []) {
+    if (rareOrBetter.includes(row.rarity as Rarity)) break
+    n++
+  }
+  return n
 }
 
 function pickRarity(seed: number): Rarity {

@@ -110,6 +110,9 @@ export default function SurpriseBoxWidget(_props: WidgetProps) {
       </span>
       <p className="sr-surprise-label">{view.label}</p>
       <blockquote className="sr-surprise-text">{view.text}</blockquote>
+      <a href="/surprises" className="sr-surprise-archive-link">
+        看收藏 →
+      </a>
     </div>
   )
 }

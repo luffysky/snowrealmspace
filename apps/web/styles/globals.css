@@ -1491,6 +1491,105 @@ input[type='range'] {
   to { opacity: 0.16; transform: scale(1); }
 }
 
+.sr-surprise-archive-link {
+  margin-top: var(--sr-space-3);
+  align-self: flex-start;
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-secondary);
+  text-decoration: none;
+}
+.sr-surprise-archive-link:hover {
+  color: var(--sr-text-primary);
+}
+
+/* ── 驚喜收藏牆 ─────────────────────────────────────────── */
+.sr-odds-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-4);
+  margin-bottom: var(--sr-space-4);
+}
+.sr-odds-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+}
+.sr-odds-item[data-rarity='common'] { --sr-rarity: #8b93a7; }
+.sr-odds-item[data-rarity='uncommon'] { --sr-rarity: #3f9a72; }
+.sr-odds-item[data-rarity='rare'] { --sr-rarity: #4f7bd6; }
+.sr-odds-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--sr-rarity, var(--sr-accent));
+}
+.sr-odds-name { font-weight: 600; }
+.sr-odds-pct { color: var(--sr-text-secondary); }
+
+.sr-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--sr-space-4);
+}
+.sr-archive-card {
+  --sr-rarity: #8b93a7;
+  position: relative;
+  padding: var(--sr-space-4);
+  border-radius: var(--sr-radius-md);
+  background: var(--sr-surface);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-top: 3px solid var(--sr-rarity);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+  overflow: hidden;
+}
+.sr-archive-card[data-rarity='common'] { --sr-rarity: #8b93a7; }
+.sr-archive-card[data-rarity='uncommon'] { --sr-rarity: #3f9a72; }
+.sr-archive-card[data-rarity='rare'] { --sr-rarity: #4f7bd6; }
+.sr-archive-card[data-rarity='special'] { --sr-rarity: #c99a3f; }
+.sr-archive-card[data-rarity='anniversary'] { --sr-rarity: #c4536b; }
+.sr-archive-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 60% at 100% 0%, color-mix(in srgb, var(--sr-rarity) 12%, transparent), transparent 55%);
+  pointer-events: none;
+}
+.sr-archive-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sr-archive-card-title {
+  margin: 0;
+  font-size: var(--sr-text-base);
+  font-weight: 600;
+}
+.sr-archive-card-text {
+  margin: 0;
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+  line-height: 1.6;
+}
+.sr-archive-card-date {
+  font-size: var(--sr-text-sm);
+  margin-top: auto;
+}
+.sr-fav-star {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--sr-rarity, var(--sr-accent));
+  padding: 4px;
+  min-width: 32px;
+  min-height: 32px;
+}
+.sr-fav-star[aria-pressed='false'] { color: var(--sr-text-secondary); }
+.sr-fav-star:disabled { opacity: 0.5; cursor: default; }
+
 /* ── 生日鏈 ─────────────────────────────────────────────── */
 .sr-chain {
   position: relative;
