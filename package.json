@@ -34,7 +34,8 @@
     "fonts:download": "tsx scripts/download-fonts.ts",
     "fonts:build": "tsx scripts/build-fonts.ts",
     "fonts:upload": "dotenv -e .env.local -- tsx scripts/upload-fonts.ts",
-    "test:visual": "tsx scripts/free-ports.ts 3100 && cross-env VISUAL=1 playwright test --project=chromium --grep @visual"
+    "test:visual": "tsx scripts/free-ports.ts 3100 && cross-env VISUAL=1 playwright test --project=chromium --grep @visual",
+    "check:content": "tsx scripts/check-content.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
@@ -68,5 +69,8 @@
     "typescript-eslint": "^8.18.1",
     "vitest": "^2.1.8",
     "wait-on": "^9.1.0"
+  },
+  "dependencies": {
+    "yaml": "^2.9.0"
   }
 }
