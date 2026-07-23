@@ -9,6 +9,7 @@ import {
 } from '@snowrealm/widget-engine'
 import { WidgetGrid } from '@/components/widgets/WidgetGrid'
 import { WidgetRenderer, hasImplementation } from '@/components/widgets/registry'
+import { WidgetSettings } from './WidgetSettings'
 
 export type WidgetInstanceRow = {
   id: string
@@ -57,6 +58,8 @@ export function HomeGrid({
   const [breakpoint, setBreakpoint] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
   const [editing, setEditing] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
+  // 目前打開設定面板的 widget id
+  const [settingsFor, setSettingsFor] = useState<string | null>(null)
 
   // 依視窗寬度決定斷點
   useEffect(() => {
@@ -172,8 +175,27 @@ export function HomeGrid({
     try {
       await api(`/api/widgets/${id}`, { method: 'DELETE' })
       setWidgets((prev) => prev.filter((w) => w.id !== id))
+      if (settingsFor === id) setSettingsFor(null)
     } catch (err) {
       setNotice(err instanceof Error ? err.message : '無法移除。')
+    }
+  }
+
+  /**
+   * 更新單一 widget 的 config / hidden / locked。
+   *
+   * 樂觀更新：先改本地狀態讓 UI 立刻反應，失敗才回滾並說明。
+   * 位置調整走 bulk API，這裡走單一 widget 的 PATCH，兩者不同端點。
+   */
+  async function patchWidget(id: string, patch: Partial<Pick<WidgetInstanceRow, 'config' | 'hidden' | 'locked'>>) {
+    const before = widgets
+    setWidgets((prev) => prev.map((w) => (w.id === id ? { ...w, ...patch } : w)))
+    try {
+      await api(`/api/widgets/${id}`, { method: 'PATCH', body: JSON.stringify(patch) })
+      setNotice(null)
+    } catch (err) {
+      setWidgets(before)
+      setNotice(err instanceof Error ? err.message : '設定沒有存起來。')
     }
   }
 
@@ -267,21 +289,65 @@ export function HomeGrid({
         />
       )}
 
-      {editing && breakpoint !== 'mobile' && visible.length > 0 && (
+      {/*
+        設定區塊。列出**所有** widget（含已隱藏的）——
+        隱藏的 widget 不在格線上，若這裡也不列出，使用者就沒有任何
+        入口把它再打開，等於單向的黑洞。
+      */}
+      {editing && widgets.length > 0 && (
         <section className="sr-card">
-          <h2 className="sr-section-title">移除區塊</h2>
-          <div className="sr-row">
-            {visible.map((w) => (
-              <button
-                key={w.id}
-                type="button"
-                className="sr-asset-delete"
-                onClick={() => void removeWidget(w.id)}
-              >
-                移除「{available.find((a) => a.id === w.widget_definition_id)?.name ?? w.widget_definition_id}」
-              </button>
-            ))}
-          </div>
+          <h2 className="sr-section-title">區塊設定</h2>
+          <ul className="sr-widget-settings-list" role="list">
+            {widgets.map((w) => {
+              const name =
+                available.find((a) => a.id === w.widget_definition_id)?.name ??
+                w.widget_definition_id
+              const isOpen = settingsFor === w.id
+              return (
+                <li key={w.id}>
+                  <div className="sr-row" style={{ justifyContent: 'space-between' }}>
+                    <span>
+                      {name}
+                      {w.hidden && <span className="sr-muted">（已隱藏）</span>}
+                      {w.locked && <span className="sr-muted">（已鎖定）</span>}
+                    </span>
+                    <span className="sr-row">
+                      <button
+                        type="button"
+                        className="sr-button sr-button-secondary"
+                        aria-expanded={isOpen}
+                        onClick={() => setSettingsFor(isOpen ? null : w.id)}
+                      >
+                        {isOpen ? '收起' : '設定'}
+                      </button>
+                      <button
+                        type="button"
+                        className="sr-asset-delete"
+                        onClick={() => void removeWidget(w.id)}
+                        aria-label={`移除 ${name}`}
+                      >
+                        移除
+                      </button>
+                    </span>
+                  </div>
+
+                  {isOpen && (
+                    <WidgetSettings
+                      widgetName={name}
+                      definitionId={w.widget_definition_id}
+                      config={(w.config ?? {}) as Record<string, unknown>}
+                      hidden={w.hidden}
+                      locked={w.locked}
+                      onSave={(config) => void patchWidget(w.id, { config })}
+                      onToggleHidden={(hidden) => void patchWidget(w.id, { hidden })}
+                      onToggleLocked={(locked) => void patchWidget(w.id, { locked })}
+                      onClose={() => setSettingsFor(null)}
+                    />
+                  )}
+                </li>
+              )
+            })}
+          </ul>
         </section>
       )}
 

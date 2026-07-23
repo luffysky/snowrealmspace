@@ -261,7 +261,7 @@ export function WidgetGrid({
               minHeight: item.h * config.rowHeight + (item.h - 1) * config.gap,
             }}
           >
-            {editing && (
+            {editing && !item.locked && (
               <div
                 className="sr-widget-handle"
                 role="application"
@@ -293,7 +293,7 @@ export function WidgetGrid({
 
             {renderItem(item)}
 
-            {editing && (
+            {editing && !item.locked && (
               <button
                 type="button"
                 className="sr-widget-resize"

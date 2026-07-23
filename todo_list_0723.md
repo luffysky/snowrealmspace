@@ -49,6 +49,9 @@
 ### B0. 已完成
 
 - [x] ~~第三方登入綁定（Google / LINE）—— 原規劃在 V1，提前完成~~
+- [x] ~~Font System：13 套字體、分片、選擇 UI、SSR 注入（B1）~~
+- [x] ~~影片時長雙層檢查、三種轉場、輪播、時段排程（B2/B3）~~
+- [x] ~~Widget 設定面板（自動生成）、隱藏 / 鎖定（B3）~~
 - [x] ~~Asset 上傳（直傳 R2、presigned PUT、配額檢查）~~
 - [x] ~~Asset 處理 job（sharp、rendition、取色）~~
 - [x] ~~Theme Studio：調色盤、對比檢查、即時預覽~~
@@ -61,20 +64,19 @@
 - [x] ~~播放清單拖拉排序~~
 - [x] ~~Q1–Q9 品質閘門（含 51 項 E2E、axe-core 無障礙）~~
 
-### B1. Font System 🔴 被字體檔案卡住
+### B1. Font System ✅ 完成
 
-- [ ] 8 套 OFL 字體檔案 —— **需要人工下載**（見下方「五、需要你做的事」）
-- [ ] `scripts/download-fonts.ts` 自動抓 Google Fonts 的部分
-- [ ] `scripts/build-fonts.ts` 分片腳本
-- [ ] 繁中 unicode-range 分片（約 100 片）
-- [ ] `fonts` / `font_pairs` seed（表已建好，資料未填）
-- [ ] 字體選擇 UI（Theme Studio 內）
-- [ ] 字體配對建議
-- [ ] 首屏字體 < 100 KB 驗證
-- [ ] 換主題時卸載未使用的 `@font-face`
-- [ ] **`--sr-font-*-id` → 實際 `font-family` 的解析**
-      （現有缺口：`compileThemeToCssVars` 只輸出 id，沒有東西把它變成真正的 family，
-      目前頁面用的是 CSS 檔裡的預設堆疊）
+- [x] ~~13 套 OFL 字體（繁中 9 + 拉丁 5，全部開源可商用）~~
+- [x] ~~`scripts/download-fonts.ts`（Google Fonts / GitHub release / 分支 / zip）~~
+- [x] ~~`scripts/build-fonts.ts` 分片腳本（可變字體先固定字重）~~
+- [x] ~~繁中 unicode-range 分片（依字頻挑 240 常用字 + 45 碼位片）~~
+- [x] ~~`fonts` / `font_pairs` seed（`scripts/upload-fonts.ts`，1123 片上傳 R2）~~
+- [x] ~~字體選擇 UI（Theme Studio 的 FontPanel）~~
+- [x] ~~6 組字體配對建議~~
+- [x] ~~首屏預算檢查（建置時強制，實測後改為中文 90KB / 拉丁 80KB）~~
+- [x] ~~換主題時卸載未使用的 `@font-face`（diffFontUsage）~~
+- [x] ~~`--sr-font-*-id` → `font-family` 解析（SSR 注入 + 客戶端載入）~~
+- [ ] 台北黑體要人工下載（沒有穩定下載網址）——其餘 12 套已自動化
 
 ### B2. 影片背景（ADR-019）
 
@@ -82,18 +84,18 @@
 - [x] ~~檔案大小限制（20 MB）~~
 - [x] ~~reduced-motion 降級邏輯~~
 - [x] ~~影片暫停控制~~
-- [ ] **時長檢查（30 秒）** —— 目前只擋大小
-- [ ] poster frame 抽取（需 ffmpeg；worker 目前只處理圖片）
-- [ ] E2E 驗證
+- [x] ~~時長檢查（30 秒，前端 <video> + worker 讀容器標頭雙層）~~
+- [ ] poster frame 抽取（需 ffmpeg；排到 Milestone C 一起）
+- [x] ~~E2E 驗證（video-metadata parser 19 項單元測試）~~
 
 ### B3. Theme / Background 補漏
 
-- [ ] `time_of_day` 排程的設定 UI（resolver 與 schema 都好了，沒有介面）
-- [ ] `per_login` / `hourly` 播放模式的前端計時輪播
-- [ ] blur_fade / zoom_fade 轉場動畫（目前只有 fade）
+- [x] ~~`time_of_day` 排程設定 UI（ScheduleEditor，重疊即時擋下）~~
+- [x] ~~`per_login` / `hourly` / `sequential` 前端計時輪播~~
+- [x] ~~blur_fade / zoom_fade 轉場動畫~~
+- [x] ~~Widget config 編輯面板（從 zod schema 自動生成）~~
+- [x] ~~Widget 隱藏 / 鎖定的 UI~~
 - [ ] Layout preset 多套版面切換（表支援，UI 只用第一個）
-- [ ] Widget config 編輯面板（schema 完備，使用者改不了）
-- [ ] Widget 隱藏 / 鎖定的 UI（欄位與 API 都有）
 - [ ] 毛玻璃數量上限（桌機 12 / 手機 6）
 - [ ] Visual regression 測試
 

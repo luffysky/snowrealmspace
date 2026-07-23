@@ -1214,3 +1214,35 @@ input[type='range'] {
 .sr-schedule-hour .sr-input {
   width: auto;
 }
+
+/* ── Widget 設定面板 ─────────────────────────────────────── */
+.sr-widget-settings-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-3);
+}
+.sr-widget-settings {
+  margin-top: var(--sr-space-2);
+  background: var(--sr-surface-alt);
+}
+.sr-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sr-space-2);
+  margin-bottom: var(--sr-space-2);
+  cursor: pointer;
+}
+.sr-checkbox input {
+  margin-top: 4px;
+  min-width: 18px;
+  min-height: 18px;
+}
+.sr-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-1);
+  margin-bottom: var(--sr-space-3);
+}

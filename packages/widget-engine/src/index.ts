@@ -31,3 +31,10 @@ export {
   type WidgetPermission,
   type WidgetDefinition,
 } from './registry.js'
+
+export {
+  describeConfig,
+  editableConfigFields,
+  parseConfig,
+  type ConfigField,
+} from './config-fields.js'

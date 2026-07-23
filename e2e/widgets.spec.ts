@@ -125,8 +125,64 @@ test.describe('Home 版面（格線，桌機／平板）', () => {
 
     await expect(page.locator('.sr-widget-slot')).toHaveCount(initial + 1)
 
-    await page.getByRole('button', { name: /移除「隨手記」/ }).first().click()
+    await page.getByRole('button', { name: /移除 隨手記/ }).first().click()
     await expect(page.locator('.sr-widget-slot')).toHaveCount(initial)
+  })
+
+  test('可以調整區塊設定，重新載入後保留', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.getByRole('button', { name: '編輯版面' }).click()
+
+    // 打開第一個區塊的設定
+    await page.getByRole('button', { name: '設定', exact: true }).first().click()
+
+    // 設定面板是從 schema 自動生成的 —— 一定至少有一個控制項
+    const panel = page.locator('.sr-widget-settings').first()
+    await expect(panel).toBeVisible()
+
+    // 切換第一個 checkbox 設定並儲存
+    const firstToggle = panel.getByRole('checkbox').nth(2) // 前兩個是隱藏/鎖定
+    const wasChecked = await firstToggle.isChecked()
+    await firstToggle.setChecked(!wasChecked)
+    await page.getByRole('button', { name: '儲存設定' }).click()
+
+    await page.reload()
+    await page.getByRole('button', { name: '編輯版面' }).click()
+    await page.getByRole('button', { name: '設定', exact: true }).first().click()
+    const reloaded = page.locator('.sr-widget-settings').first().getByRole('checkbox').nth(2)
+    await expect(reloaded).toBeChecked({ checked: !wasChecked })
+  })
+
+  test('隱藏區塊會從格線移除，但仍能從設定重新開啟', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    const initial = await page.locator('.sr-widget-slot').count()
+    expect(initial).toBeGreaterThan(0)
+
+    await page.getByRole('button', { name: '編輯版面' }).click()
+    await page.getByRole('button', { name: '設定', exact: true }).first().click()
+
+    // 隱藏 → 格線少一個，但設定清單仍列出（否則沒有入口再打開）
+    await page.getByRole('checkbox', { name: /隱藏這個區塊/ }).check()
+    await expect(page.locator('.sr-widget-slot')).toHaveCount(initial - 1)
+    await expect(page.getByText('（已隱藏）')).toBeVisible()
+
+    // 取消隱藏 → 回到格線
+    await page.getByRole('checkbox', { name: /隱藏這個區塊/ }).uncheck()
+    await expect(page.locator('.sr-widget-slot')).toHaveCount(initial)
+  })
+
+  test('鎖定的區塊在設定清單標示，且不再顯示移動把手', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.getByRole('button', { name: '編輯版面' }).click()
+
+    const handlesBefore = await page.locator('.sr-widget-handle').count()
+
+    await page.getByRole('button', { name: '設定', exact: true }).first().click()
+    await page.getByRole('checkbox', { name: /鎖定位置/ }).check()
+
+    await expect(page.getByText('（已鎖定）')).toBeVisible()
+    // 鎖定的 widget 不該有可拖動的把手
+    await expect(page.locator('.sr-widget-handle')).toHaveCount(handlesBefore - 1)
   })
 
   test('未實作的區塊不可加入', async ({ page, invited }) => {
