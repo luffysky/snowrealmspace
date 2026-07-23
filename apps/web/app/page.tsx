@@ -1,17 +1,20 @@
 import { redirect } from 'next/navigation'
 import { getUser } from '@/lib/auth/session'
 
-export default async function RootPage() {
-  // getUser 失敗（auth 暫時連不上等）不該讓進站第一頁 500 ——
-  // 當成未登入，導去 /login。
-  //
-  // ⚠️ redirect() 必須在 try/catch **之外**：它靠拋出 NEXT_REDIRECT 運作，
-  // 放進 try 會被 catch 吞掉，反而永遠不跳轉。
-  let user: Awaited<ReturnType<typeof getUser>> = null
+/**
+ * getUser 失敗（auth 暫時連不上等）不該讓進站第一頁 500，當成未登入。
+ * 抽成 helper 避免在 RootPage 裡出現「先賦值再覆寫」的多餘賦值。
+ */
+async function currentUserOrNull(): Promise<Awaited<ReturnType<typeof getUser>>> {
   try {
-    user = await getUser()
+    return await getUser()
   } catch {
-    user = null
+    return null
   }
+}
+
+export default async function RootPage() {
+  const user = await currentUserOrNull()
+  // redirect() 靠拋出 NEXT_REDIRECT 運作，必須在 try/catch 之外，否則會被吞掉。
   redirect(user ? '/home' : '/login')
 }
