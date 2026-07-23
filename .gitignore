@@ -13,3 +13,7 @@ coverage/
 playwright-report/
 test-results/
 .next-e2e/
+
+# Supabase CLI 的暫存資料（每次 start/diff 都會變動）
+supabase/.temp/
+supabase/.branches/
