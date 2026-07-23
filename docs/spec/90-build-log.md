@@ -271,3 +271,23 @@ worker 一直在另一個終端跑著，CI 沒有那個「順便」。
 
 順帶把 `worker` job 併進 `database` job —— 兩者都要 `supabase start`
 （runner 上 2–4 分鐘），而 queue 往返本身只要幾秒。
+
+### 已知 bug：append-only rule 與「刪除使用者」衝突
+
+部署到 hosted 後從 auth log 發現：刪除有活動紀錄的使用者會失敗，
+`activity_events_actor_id_fkey ... gave unexpected result (SQLSTATE XX000)`。
+
+根因不是 FK（`actor_id` 是 `on delete set null`，正確），而是
+`activity_events` 的 **append-only RULE** 讓 update 變 no-op ——
+刪使用者時 FK 要把 actor_id 設 null（一個 update），被 rule 擋掉。
+
+影響：Milestone C/隱私的「刪除帳號」「刪除 space」會踩到。
+修法（待實作時決定）：讓 rule 放行 FK 觸發的 SET NULL（用 `WHERE` 條件
+排除系統觸發的 update），或改成刪除前先以 service role 匿名化 actor。
+**不是現在的阻塞**，先記錄。
+
+### 部署踩到的坑：測試 env 指向 hosted 會污染正式資料
+
+.env.local 指向 hosted 時跑 test:rls / E2E，會把 @rls-test.local /
+@e2e.local 的假使用者建到正式 Supabase。已寫 cleanup-test-users.ts 清理。
+教訓：跑測試前務必確認 .env.local 指向本機，或用獨立的測試專案。
