@@ -17,7 +17,7 @@
     "test:rls": "vitest run --config vitest.rls.config.ts",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:reset": "tsx scripts/migrate.ts --reset",
-    "db:seed": "tsx scripts/seed.ts",
+    "db:seed": "tsx scripts/seed.ts && tsx scripts/seed-content.ts",
     "invite:create": "tsx scripts/create-invite.ts",
     "check:rls": "tsx scripts/check-rls.ts",
     "check:secrets": "tsx scripts/check-secrets.ts",
@@ -35,7 +35,8 @@
     "fonts:build": "tsx scripts/build-fonts.ts",
     "fonts:upload": "dotenv -e .env.local -- tsx scripts/upload-fonts.ts",
     "test:visual": "tsx scripts/free-ports.ts 3100 && cross-env VISUAL=1 playwright test --project=chromium --grep @visual",
-    "check:content": "tsx scripts/check-content.ts"
+    "check:content": "tsx scripts/check-content.ts",
+    "seed:content": "tsx scripts/seed-content.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

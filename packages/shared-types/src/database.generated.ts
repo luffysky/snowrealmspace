@@ -474,6 +474,125 @@ export type Database = {
           },
         ]
       }
+      content_items: {
+        Row: {
+          available_from: string | null
+          chain_index: number | null
+          content_id: string
+          cooldown_days: number | null
+          created_at: string
+          enabled: boolean
+          estimated_minutes: number | null
+          greeting_slot: string | null
+          kind: string
+          label: string | null
+          min_days_since_signup: number | null
+          rarity: string | null
+          requires_background_changed: boolean
+          requires_tag: string | null
+          tags: string[]
+          text: string
+          weight: number
+        }
+        Insert: {
+          available_from?: string | null
+          chain_index?: number | null
+          content_id: string
+          cooldown_days?: number | null
+          created_at?: string
+          enabled?: boolean
+          estimated_minutes?: number | null
+          greeting_slot?: string | null
+          kind: string
+          label?: string | null
+          min_days_since_signup?: number | null
+          rarity?: string | null
+          requires_background_changed?: boolean
+          requires_tag?: string | null
+          tags?: string[]
+          text: string
+          weight?: number
+        }
+        Update: {
+          available_from?: string | null
+          chain_index?: number | null
+          content_id?: string
+          cooldown_days?: number | null
+          created_at?: string
+          enabled?: boolean
+          estimated_minutes?: number | null
+          greeting_slot?: string | null
+          kind?: string
+          label?: string | null
+          min_days_since_signup?: number | null
+          rarity?: string | null
+          requires_background_changed?: boolean
+          requires_tag?: string | null
+          tags?: string[]
+          text?: string
+          weight?: number
+        }
+        Relationships: []
+      }
+      daily_items: {
+        Row: {
+          archived_at: string | null
+          body: string
+          content_hash: string
+          created_at: string
+          delivered_at: string | null
+          id: string
+          kind: string
+          local_date: string
+          payload: Json
+          source: string
+          source_ref: string | null
+          space_id: string
+          status: string
+          title: string | null
+        }
+        Insert: {
+          archived_at?: string | null
+          body: string
+          content_hash: string
+          created_at?: string
+          delivered_at?: string | null
+          id?: string
+          kind: string
+          local_date: string
+          payload?: Json
+          source: string
+          source_ref?: string | null
+          space_id: string
+          status?: string
+          title?: string | null
+        }
+        Update: {
+          archived_at?: string | null
+          body?: string
+          content_hash?: string
+          created_at?: string
+          delivered_at?: string | null
+          id?: string
+          kind?: string
+          local_date?: string
+          payload?: Json
+          source?: string
+          source_ref?: string | null
+          space_id?: string
+          status?: string
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_items_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       feature_flags: {
         Row: {
           description: string | null
@@ -1052,6 +1171,68 @@ export type Database = {
             columns: ["active_theme_id"]
             isOneToOne: false
             referencedRelation: "themes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      surprises: {
+        Row: {
+          available_from: string
+          body: string | null
+          chain_index: number | null
+          chain_key: string | null
+          created_at: string
+          expires_at: string | null
+          favorited: boolean
+          id: string
+          kind: string
+          payload: Json
+          rarity: string
+          source_ref: string | null
+          space_id: string
+          title: string
+          unlocked_at: string | null
+        }
+        Insert: {
+          available_from?: string
+          body?: string | null
+          chain_index?: number | null
+          chain_key?: string | null
+          created_at?: string
+          expires_at?: string | null
+          favorited?: boolean
+          id?: string
+          kind: string
+          payload?: Json
+          rarity: string
+          source_ref?: string | null
+          space_id: string
+          title: string
+          unlocked_at?: string | null
+        }
+        Update: {
+          available_from?: string
+          body?: string | null
+          chain_index?: number | null
+          chain_key?: string | null
+          created_at?: string
+          expires_at?: string | null
+          favorited?: boolean
+          id?: string
+          kind?: string
+          payload?: Json
+          rarity?: string
+          source_ref?: string | null
+          space_id?: string
+          title?: string
+          unlocked_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "surprises_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
             referencedColumns: ["id"]
           },
         ]

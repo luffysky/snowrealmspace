@@ -53,6 +53,8 @@ const ALLOWLIST_NO_SPACE_ID = new Set([
   // 使用者層級而非 space 層級，理由見 REQUIRED_RLS_WITHOUT_SPACE_ID
   'user_identities',
   'oauth_transactions',
+  // 內容池是全站共用的公開參考資料（像 fonts），非租戶資料
+  'content_items',
 ])
 
 type Problem = { table: string; issue: string }

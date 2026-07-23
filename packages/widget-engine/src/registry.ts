@@ -289,14 +289,15 @@ export function getWidgetDefinition(id: string): WidgetDefinition<unknown> | nul
 /**
  * 新 space 的預設 Home 版面。
  *
- * Milestone B 只放「現在真的能用」的三個 widget（Q6：無假按鈕）。
- * daily_card / surprise_box / agent_message 要等 Milestone D、E 才有內容，
- * 屆時再加入預設版面。
+ * daily_card 放最上方最寬的位置 —— 它是每天第一眼看到的內容（Milestone E）。
+ * 只放「現在真的能用」的 widget（Q6：無假按鈕）；surprise_box / agent_message
+ * 要等各自的 Milestone 有內容再加入。
  */
 export function defaultLayoutItems(): GridItem[] {
   return [
-    { id: 'theme_switcher', x: 0, y: 0, w: 4, h: 2 },
-    { id: 'background_control', x: 4, y: 0, w: 3, h: 2 },
-    { id: 'quick_note', x: 7, y: 0, w: 5, h: 3 },
+    { id: 'daily_card', x: 0, y: 0, w: 6, h: 3 },
+    { id: 'theme_switcher', x: 6, y: 0, w: 6, h: 2 },
+    { id: 'background_control', x: 6, y: 2, w: 6, h: 2 },
+    { id: 'quick_note', x: 0, y: 3, w: 6, h: 3 },
   ]
 }
