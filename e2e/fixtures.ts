@@ -101,6 +101,19 @@ export async function cleanupUser(email: string): Promise<void> {
 
 /** 每個測試自動取得一位已受邀的使用者，結束後自動清理。 */
 export const test = base.extend<{ invited: InvitedUser }>({
+  // 站台密碼閘門會把所有請求導到 /gate。一般測試不是要測閘門，
+  // 所以在 context 預先塞入通過閘門的 cookie，讓它們透明通過。
+  // 專門測閘門的 gate.spec.ts 用乾淨 context（不帶這個 cookie）。
+  context: async ({ context }, use) => {
+    await context.addCookies([
+      {
+        name: 'sr-gate',
+        value: 'granted-2607',
+        url: E2E_BASE_URL,
+      },
+    ])
+    await use(context)
+  },
   invited: async ({}, use) => {
     const user = await createInvitedUser()
     await use(user)

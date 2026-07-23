@@ -1,14 +1,40 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { GATE_COOKIE, GATE_TOKEN } from '@/lib/gate'
 
 /**
- * 刷新 Supabase session。
+ * 刷新 Supabase session，並套用站台密碼閘門。
  *
  * Server Component 無法寫 cookie，所以 token 刷新必須發生在 middleware。
  * 沒有這一層，使用者會在 access token 過期（1 小時）後被登出，
  * 即使 refresh token 還有效 —— 這正是「登出再登入資料仍在」閉環的隱形殺手。
  */
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
+  // ── 站台密碼閘門（尚未對外開放）────────────────────────────
+  // 沒通過閘門的人只能看到 /gate 與其 API。通過後才進入正常流程。
+  const passedGate = request.cookies.get(GATE_COOKIE)?.value === GATE_TOKEN
+  const isGatePath = pathname === '/gate' || pathname.startsWith('/api/gate')
+  if (!passedGate && !isGatePath) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/gate'
+    url.search = pathname !== '/' ? `?next=${encodeURIComponent(pathname)}` : ''
+    return NextResponse.redirect(url)
+  }
+  // 已通過閘門、且正要看 /gate → 直接送進站
+  if (passedGate && pathname === '/gate') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/'
+    url.search = ''
+    return NextResponse.redirect(url)
+  }
+  // 閘門頁與其 API 不跑 Supabase —— 萬一 auth 服務掛了，
+  // 也不能連「輸入密碼」這一頁都 500 把人鎖在外面。
+  if (isGatePath) {
+    return NextResponse.next({ request })
+  }
+
   let response = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -36,7 +62,6 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const { pathname } = request.nextUrl
   const isProtected =
     pathname.startsWith('/home') ||
     pathname.startsWith('/settings') ||
