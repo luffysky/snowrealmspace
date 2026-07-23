@@ -296,8 +296,9 @@ export function defaultLayoutItems(): GridItem[] {
   return [
     { id: 'daily_card', x: 0, y: 0, w: 6, h: 3 },
     { id: 'surprise_box', x: 6, y: 0, w: 6, h: 3 },
-    { id: 'theme_switcher', x: 0, y: 3, w: 4, h: 2 },
-    { id: 'background_control', x: 4, y: 3, w: 4, h: 2 },
-    { id: 'quick_note', x: 8, y: 3, w: 4, h: 3 },
+    { id: 'agent_message', x: 0, y: 3, w: 6, h: 2 },
+    { id: 'theme_switcher', x: 6, y: 3, w: 3, h: 2 },
+    { id: 'background_control', x: 9, y: 3, w: 3, h: 2 },
+    { id: 'quick_note', x: 0, y: 5, w: 4, h: 3 },
   ]
 }

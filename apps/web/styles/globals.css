@@ -1590,6 +1590,150 @@ input[type='range'] {
 .sr-fav-star[aria-pressed='false'] { color: var(--sr-text-secondary); }
 .sr-fav-star:disabled { opacity: 0.5; cursor: default; }
 
+/* ── 通知鈴鐺 ───────────────────────────────────────────── */
+.sr-bell-badge {
+  position: absolute;
+  top: 2px;
+  inset-inline-end: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--sr-danger);
+  color: #fff;
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.sr-notif-panel {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + 8px);
+  width: min(22rem, 90vw);
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--sr-surface-opaque, var(--sr-surface));
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius-md);
+  box-shadow: var(--sr-shadow-lg, 0 12px 40px -12px rgba(0, 0, 0, 0.4));
+  z-index: 50;
+}
+.sr-notif-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sr-space-3) var(--sr-space-4);
+  border-bottom: var(--sr-border-width) solid var(--sr-border);
+  position: sticky;
+  top: 0;
+  background: inherit;
+}
+.sr-linkish {
+  border: none;
+  background: transparent;
+  color: var(--sr-text-secondary);
+  cursor: pointer;
+  font-size: var(--sr-text-sm);
+  text-decoration: none;
+  padding: 0;
+}
+.sr-linkish:hover { color: var(--sr-text-primary); }
+.sr-notif-list { list-style: none; margin: 0; padding: 0; }
+.sr-notif-item { border-bottom: var(--sr-border-width) solid var(--sr-border); }
+.sr-notif-unread { background: color-mix(in srgb, var(--sr-accent) 8%, transparent); }
+.sr-notif-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  text-align: start;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--sr-space-3) var(--sr-space-4);
+  color: inherit;
+  text-decoration: none;
+}
+.sr-notif-link:hover { background: var(--sr-surface-alt, rgba(0, 0, 0, 0.03)); }
+.sr-notif-cat {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sr-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sr-notif-title { font-weight: 600; font-size: var(--sr-text-sm); }
+.sr-notif-body { font-size: var(--sr-text-sm); color: var(--sr-text-secondary); line-height: 1.5; }
+
+/* ── Agent 訊息 widget ──────────────────────────────────── */
+.sr-agent-msg {
+  display: flex;
+  gap: var(--sr-space-3);
+  align-items: flex-start;
+}
+.sr-agent-avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--sr-accent) 18%, transparent);
+  color: var(--sr-accent);
+  font-size: 1rem;
+}
+.sr-agent-title { margin: 0 0 2px; font-size: var(--sr-text-sm); font-weight: 600; }
+.sr-agent-body { margin: 0; color: var(--sr-text-secondary); line-height: 1.6; }
+
+/* ── 每週回顧（Insights）────────────────────────────────── */
+.sr-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--sr-space-4);
+}
+.sr-insight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+}
+.sr-insight-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sr-insight-type {
+  font-size: var(--sr-text-sm);
+  font-weight: 600;
+  color: var(--sr-accent);
+  letter-spacing: 0.02em;
+}
+.sr-insight-del {
+  border: none;
+  background: transparent;
+  color: var(--sr-text-secondary);
+  cursor: pointer;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: var(--sr-radius-sm);
+  font-size: 0.85rem;
+}
+.sr-insight-del:hover { color: var(--sr-danger); }
+.sr-insight-del:disabled { opacity: 0.5; cursor: default; }
+.sr-insight-statement {
+  margin: 0;
+  font-size: var(--sr-text-base);
+  line-height: 1.6;
+}
+.sr-insight-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-3);
+  font-size: var(--sr-text-sm);
+  margin-top: auto;
+}
+
 /* ── 生日鏈 ─────────────────────────────────────────────── */
 .sr-chain {
   position: relative;

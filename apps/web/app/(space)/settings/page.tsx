@@ -3,6 +3,7 @@ import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { updatePrivacySettings } from './actions'
 import Link from 'next/link'
 import { PrivacyToggles } from './PrivacyToggles'
+import { AgentSettings } from './AgentSettings'
 
 export const metadata: Metadata = { title: 'Settings — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -31,6 +32,41 @@ export default async function SettingsPage() {
         <Link className="sr-button sr-button-secondary" href="/settings/account">
           管理登入方式
         </Link>
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>
+          每日與回顧
+        </h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          每天打開的驚喜、以及根據你活動整理的每週回顧。
+        </p>
+        <div className="sr-row" style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+          <Link className="sr-button sr-button-secondary" href="/insights">
+            每週回顧
+          </Link>
+          <Link className="sr-button sr-button-secondary" href="/surprises">
+            驚喜收藏
+          </Link>
+        </div>
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>
+          Agent 與通知
+        </h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          Agent 偶爾會主動說一句有根據的話。你可以調整頻率或完全關閉。
+        </p>
+        <AgentSettings
+          spaceId={space.id}
+          canEdit={role === 'owner'}
+          initial={{
+            agentProactive: settings.agent_proactive,
+            quietStart: (settings.quiet_hours_start ?? '').slice(0, 5),
+            quietEnd: (settings.quiet_hours_end ?? '').slice(0, 5),
+          }}
+        />
       </section>
 
       <section className="sr-card">

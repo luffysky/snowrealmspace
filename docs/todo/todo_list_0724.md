@@ -15,7 +15,7 @@
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ⬜ 未開始 | 0% |
 | D — AI Core | ⬜ 未開始 | 0%（需 AI 金鑰） |
-| E — Daily Loop | 🚧 核心完成 | 內容池 + 每日卡片 + 驚喜盒 + 生日鏈已通；主動訊息/Insight/通知未做 |
+| E — Daily Loop | ✅ 幾乎完成 | 內容池/每日卡片/驚喜盒+保底+收藏/生日鏈/主動訊息/Insight/通知全通；剩 cron 掃時區、weekly_recap 推播、Insight 的 LLM 升級（需 D） |
 | F — Integration | ⬜ 未開始 | 0% |
 | 部署 / 帳號 | 🚧 進行中 | 站台閘門、密碼註冊、hosted 建表已通；SMTP/R2/worker 待設 |
 
@@ -74,12 +74,16 @@
 - [x] ~~每日卡片 Home widget（問候 + 語錄 + 提示）~~
 - [x] ~~驚喜盒（依稀有度機率、每日一盒、美化開盒動畫）~~
 - [x] ~~生日鏈（條件解鎖、Home 全寬呈現）~~
+- [x] ~~Surprise 稀有度**保底計數器**（連 15 盒沒 rare 保底）+ 機率公開頁~~
+- [x] ~~Surprise archive（開過的收藏頁 `/surprises`、收藏★、只看收藏）~~
+- [x] ~~主動訊息：觸發條件（里程碑/每日）、頻率上限 3/日、Quiet hours、`FORBIDDEN_PATTERNS` 攔截（規則式，D 有 AI 再升級）~~
+- [x] ~~Insight Engine：5 種 fact/metric 類型、evidence.sourceIds + confidence（`/insights` 每週回顧、可刪）~~
+- [x] ~~Notification：in-app 鈴鐺、分類、已讀、一鍵關閉、Quiet hours（設定頁）~~
+- [x] ~~Agent 訊息 widget 實作（進 Home 觸發主動訊息、顯示最新一則）~~
+- [x] ~~深淺色切換（選項 A：任何主題自動算暗色版、nav 日/月鈕、cookie 記住）~~
 - [ ] cron 掃時區主動生成（目前是「開啟時若當天沒有就生成」，夠用但非完整方案）
-- [ ] Surprise 稀有度**保底計數器**（rare 太久沒出保底）+ 機率公開頁
-- [ ] Surprise archive（開過的收藏頁）
-- [ ] 主動訊息：觸發條件、頻率上限、`FORBIDDEN_PATTERNS` 攔截（部分內容已有過濾）
-- [ ] Insight：至少 3 種類型、evidence + confidence
-- [ ] Notification：in-app、分類、Quiet hours
+- [ ] Weekly Recap 專屬通知（目前回顧在 /insights，未主動推 weekly_recap 通知）
+- [ ] Insight 升級 inference/suggestion/creative（需 D 的 LLM）
 
 ---
 
@@ -125,10 +129,8 @@
 
 ## 深淺色切換（🆕 Luffy 0724 提出）
 
-- [ ] **明/暗模式切換** — 設計岔路待 Luffy 選：
-      (a) 獨立的明/暗開關，需為每個主題算暗色版（完整但工大）
-      (b) 一鍵切到內建深色主題（快，但等於換主題）
-      先擱著等決定。
+- [x] ~~**明/暗模式切換（選項 A）** — deriveDarkTheme 為任何主題自動算暗色版
+      （保留色相個性、確保 4.5 對比）、nav 日/月鈕、cookie 記住、SSR 不閃、切換 <150ms~~
 
 ---
 

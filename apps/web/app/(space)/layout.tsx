@@ -6,6 +6,7 @@ import { getFlags } from '@/lib/flags'
 import { accountHasRecovery } from '@/lib/auth/recovery'
 import { BindingReminder } from '@/components/BindingReminder'
 import { ThemeModeToggle } from '@/components/ThemeModeToggle'
+import { NotificationBell } from '@/components/NotificationBell'
 import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 import {
   compileThemeToCssText,
@@ -124,6 +125,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         </nav>
 
         <div className="sr-nav-end">
+          <NotificationBell />
           <ThemeModeToggle initialMode={mode} lightDef={definition} />
           <span className="sr-muted">{role === 'owner' ? '擁有者' : role}</span>
           <form action={signOut}>

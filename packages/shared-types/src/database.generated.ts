@@ -738,6 +738,59 @@ export type Database = {
         }
         Relationships: []
       }
+      insights: {
+        Row: {
+          confidence: number
+          created_at: string
+          deleted_at: string | null
+          evidence: Json
+          id: string
+          period_end: string | null
+          period_start: string | null
+          space_id: string
+          statement: string
+          title: string
+          type: string
+          visibility: string
+        }
+        Insert: {
+          confidence: number
+          created_at?: string
+          deleted_at?: string | null
+          evidence?: Json
+          id?: string
+          period_end?: string | null
+          period_start?: string | null
+          space_id: string
+          statement: string
+          title: string
+          type: string
+          visibility?: string
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          deleted_at?: string | null
+          evidence?: Json
+          id?: string
+          period_end?: string | null
+          period_start?: string | null
+          space_id?: string
+          statement?: string
+          title?: string
+          type?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "insights_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       job_records: {
         Row: {
           completed_at: string | null
@@ -825,6 +878,56 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "layouts_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          category: string
+          channel: string
+          created_at: string
+          id: string
+          link: string | null
+          payload: Json
+          read_at: string | null
+          space_id: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          category: string
+          channel?: string
+          created_at?: string
+          id?: string
+          link?: string | null
+          payload?: Json
+          read_at?: string | null
+          space_id: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          category?: string
+          channel?: string
+          created_at?: string
+          id?: string
+          link?: string | null
+          payload?: Json
+          read_at?: string | null
+          space_id?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_space_id_fkey"
             columns: ["space_id"]
             isOneToOne: false
             referencedRelation: "spaces"

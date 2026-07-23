@@ -136,7 +136,7 @@ describe('defaultLayoutItems', () => {
   it('只包含已實作、有內容的 widget', () => {
     // daily_card / surprise_box 在 Milestone E 有了內容，故加入預設版面。
     // 其餘尚無內容的不該進預設（Q6：無假東西）。
-    const notYetImplemented = ['agent_message', 'timeline_preview']
+    const notYetImplemented = ['timeline_preview']
     for (const item of defaultLayoutItems()) {
       expect(notYetImplemented, `${item.id} 尚未有內容，不該進預設版面`).not.toContain(item.id)
     }

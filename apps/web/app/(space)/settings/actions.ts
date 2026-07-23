@@ -99,3 +99,55 @@ export async function updatePrivacySettings(
   revalidatePath('/settings')
   return { status: 'saved', message: '已儲存。' }
 }
+
+const timeOrEmpty = z
+  .string()
+  .regex(/^([01]\d|2[0-3]):[0-5]\d$/, '時間格式需為 HH:MM')
+  .or(z.literal(''))
+
+const agentSchema = z
+  .object({
+    spaceId: z.string().uuid(),
+    agentProactive: z.enum(['off', 'important_only', 'daily']),
+    quietStart: timeOrEmpty,
+    quietEnd: timeOrEmpty,
+  })
+  .strict()
+
+/**
+ * 更新 Agent 主動訊息模式與 Quiet hours（Milestone E）。
+ * 「一鍵關閉」= agent_proactive 設 off。走 RLS：只有 owner 能寫。
+ */
+export async function updateAgentSettings(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const parsed = agentSchema.safeParse({
+    spaceId: formData.get('spaceId'),
+    agentProactive: formData.get('agentProactive'),
+    quietStart: formData.get('quietStart') ?? '',
+    quietEnd: formData.get('quietEnd') ?? '',
+  })
+  if (!parsed.success) {
+    return { status: 'error', message: parsed.error.issues[0]?.message ?? '輸入格式不正確。' }
+  }
+  const input = parsed.data
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+
+  const db = await getDb()
+  const { error } = await db
+    .from('space_settings')
+    .update({
+      agent_proactive: input.agentProactive,
+      quiet_hours_start: input.quietStart || null,
+      quiet_hours_end: input.quietEnd || null,
+    })
+    .eq('space_id', input.spaceId)
+
+  if (error) return { status: 'error', message: '沒有權限修改，或儲存失敗。' }
+
+  await emitEvent('settings.changed', input.spaceId, user.id, { keys: ['agent_proactive'] })
+  revalidatePath('/settings')
+  return { status: 'saved', message: '已儲存。' }
+}
