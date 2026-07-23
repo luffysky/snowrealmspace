@@ -2,6 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Lint 由專門的閘門負責（pnpm lint + CI），不綁在 build 上。
+  // 原因：`next build` 內建的 ESLint 規則集比我們的 eslint 設定嚴
+  // （例如 no-useless-assignment 這類純風格規則），會讓部署因風格問題失敗，
+  // 但那不是「build 壞掉」。解耦後 build 只管編譯，風格由 CI 擋。
+  eslint: { ignoreDuringBuilds: true },
+
   // E2E 用獨立的 build 目錄。沒有這個隔離，`next build` 會覆寫
   // 正在執行的 dev server 的 .next，導致 CSS chunk 變成 404
   // ——頁面看起來還在，但完全沒有樣式。見 90-build-log.md。
