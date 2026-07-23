@@ -1,0 +1,903 @@
+# 每日創作提示 — 材質與媒材
+# 換一種工具/媒材、實體與數位互換、用不熟悉的材料
+# 低能量的日子也做得到，具體、看了就知道怎麼做
+
+- id: p-material-001
+  text: 把今天的一個數位設計，用紙筆重畫一次。
+  tags: [material, medium, physical]
+  estimatedMinutes: 15
+
+- id: p-material-002
+  text: 用手機備忘錄打的一段字，改用鉛筆抄在紙上。
+  tags: [medium, physical, hands]
+  estimatedMinutes: 10
+
+- id: p-material-003
+  text: 找一枝很久沒用的筆，只用它寫滿一整頁。
+  tags: [tool, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-004
+  text: 把一張照片列印出來，用剪刀剪成三塊再重新拼貼。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 20
+
+- id: p-material-005
+  text: 用麥克筆而不是原子筆，寫下今天想記住的一句話。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 5
+
+- id: p-material-006
+  text: 摸三種不同材質的東西，各寫一個形容詞。
+  tags: [texture, physical, hands]
+  estimatedMinutes: 8
+
+- id: p-material-007
+  text: 把一張手繪草圖拍照，在手機上用手指描一遍輪廓。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 12
+
+- id: p-material-008
+  text: 用色鉛筆疊出一個你平常只用單色畫的東西。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 18
+
+- id: p-material-009
+  text: 拿一塊布，摺出一個立體形狀，拍下來。
+  tags: [material, physical, hands]
+  estimatedMinutes: 10
+
+- id: p-material-010
+  text: 用水彩畫一小塊顏色，不畫任何形狀。
+  tags: [medium, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-011
+  text: 把一段旋律用手在桌面敲出來，錄一段音。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 8
+
+- id: p-material-012
+  text: 用膠帶在牆上或桌上貼出一個簡單圖形。
+  tags: [material, physical, hands]
+  estimatedMinutes: 10
+
+- id: p-material-013
+  text: 找一張舊報紙，撕出一個字或一個形狀。
+  tags: [material, physical, hands]
+  estimatedMinutes: 8
+
+- id: p-material-014
+  text: 用黏土或口香糖捏一個小東西，不求像。
+  tags: [material, unfamiliar, hands]
+  estimatedMinutes: 15
+
+- id: p-material-015
+  text: 把一個 emoji 用蠟筆放大畫在紙上。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-016
+  text: 用鉛筆側邊，拓印一片葉子的紋路。
+  tags: [texture, tool, hands]
+  estimatedMinutes: 10
+
+- id: p-material-017
+  text: 拿手邊的橡皮擦當印章，蘸墨蓋幾個點。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-018
+  text: 用毛筆或水彩筆寫自己的名字一次。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 8
+
+- id: p-material-019
+  text: 把一段文字用打字機或機械鍵盤的節奏念出來錄下。
+  tags: [tool, digital, physical]
+  estimatedMinutes: 8
+
+- id: p-material-020
+  text: 用棉花棒蘸顏料點畫一朵花。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 15
+
+- id: p-material-021
+  text: 找一個金屬物件，用紙覆上做拓印。
+  tags: [texture, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-022
+  text: 把數位筆刷換成最粗的，重畫一張你熟悉的圖。
+  tags: [digital, tool, medium]
+  estimatedMinutes: 15
+
+- id: p-material-023
+  text: 用鉛筆只畫線稿，完全不上色。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 15
+
+- id: p-material-024
+  text: 拿一根牙籤蘸墨，畫一條盡量細的線。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-025
+  text: 把今天穿的衣服的布料，貼近拍一張紋理特寫。
+  tags: [texture, physical, digital]
+  estimatedMinutes: 5
+
+- id: p-material-026
+  text: 用色紙摺一個最簡單的東西，例如紙鶴或紙船。
+  tags: [material, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-027
+  text: 拿三種不同的紙，比較同一枝筆寫上去的感覺。
+  tags: [material, texture, tool]
+  estimatedMinutes: 15
+
+- id: p-material-028
+  text: 用手機把一張手寫字掃描成黑白高對比圖。
+  tags: [physical, digital, tool]
+  estimatedMinutes: 8
+
+- id: p-material-029
+  text: 把一段語音訊息，用手抄寫成一頁筆記。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-030
+  text: 用手指沾水，在深色桌面上寫一個字，看它蒸發。
+  tags: [unfamiliar, physical, hands]
+  estimatedMinutes: 5
+
+- id: p-material-031
+  text: 找一塊木頭或石頭，畫下它表面的紋路。
+  tags: [texture, material, hands]
+  estimatedMinutes: 15
+
+- id: p-material-032
+  text: 用剪貼把三張雜誌圖拼成一個新場景。
+  tags: [material, physical, hands]
+  estimatedMinutes: 20
+
+- id: p-material-033
+  text: 把一個數位圖示，用縫線或毛線在紙上「畫」出來。
+  tags: [digital, material, unfamiliar]
+  estimatedMinutes: 25
+
+- id: p-material-034
+  text: 用炭筆或眉筆，畫一塊由深到淺的漸層。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-035
+  text: 把一張畫用手機拍下，套一個濾鏡看變化。
+  tags: [physical, digital, tool]
+  estimatedMinutes: 8
+
+- id: p-material-036
+  text: 用手撕紙的邊緣，拼一個有機的形狀。
+  tags: [material, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-037
+  text: 拿咖啡或茶當顏料，在紙上畫一塊色。
+  tags: [unfamiliar, medium, hands]
+  estimatedMinutes: 12
+
+- id: p-material-038
+  text: 用鍵盤符號拼出一個小圖案，例如愛心或臉。
+  tags: [digital, tool, unfamiliar]
+  estimatedMinutes: 10
+
+- id: p-material-039
+  text: 把手邊一個立體物件，只用線條在紙上勾出來。
+  tags: [tool, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-040
+  text: 用海綿或紙巾蘸顏料，壓出斑駁的質感。
+  tags: [texture, tool, hands]
+  estimatedMinutes: 15
+
+- id: p-material-041
+  text: 把今天拍的一張照片，用蠟筆臨摹它的主色。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-042
+  text: 用一枝原子筆畫滿密密的斜線，做出灰階。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-043
+  text: 找一片橘子皮或菜葉，觀察並描下它的邊緣。
+  tags: [texture, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-044
+  text: 用手機錄下揉紙的聲音，聽三遍。
+  tags: [physical, digital, texture]
+  estimatedMinutes: 5
+
+- id: p-material-045
+  text: 拿一塊肥皂或蠟，用指甲刻一條線。
+  tags: [material, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-046
+  text: 把數位筆記裡的一頁，改用便利貼重排一次。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-047
+  text: 用兩種顏色的筆，交錯畫出一個網格。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 12
+
+- id: p-material-048
+  text: 摸一件平常忽略的家具，寫下它的觸感。
+  tags: [texture, physical, hands]
+  estimatedMinutes: 8
+
+- id: p-material-049
+  text: 用毛線或繩子在桌上排成一個字。
+  tags: [material, physical, hands]
+  estimatedMinutes: 10
+
+- id: p-material-050
+  text: 把一段程式碼或文字，抄在方格紙上排版。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-051
+  text: 用指尖沾一點顏料，直接按出五個指印。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-052
+  text: 找一個瓶蓋當圓規，畫三個重疊的圓。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-053
+  text: 用鉛筆在紙下墊硬幣，拓出浮雕感。
+  tags: [texture, tool, hands]
+  estimatedMinutes: 8
+
+- id: p-material-054
+  text: 把手機桌布換成自己隨手畫的一塊顏色。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-055
+  text: 用叉子蘸顏料，刮出平行的線條。
+  tags: [tool, unfamiliar, texture]
+  estimatedMinutes: 10
+
+- id: p-material-056
+  text: 拿一張描圖紙或烘焙紙，描下一個圖案。
+  tags: [material, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-057
+  text: 用手機的黑白模式拍一組質感特寫。
+  tags: [digital, texture, tool]
+  estimatedMinutes: 10
+
+- id: p-material-058
+  text: 把一段旋律用口哨吹出來，錄下三十秒。
+  tags: [physical, digital, unfamiliar]
+  estimatedMinutes: 8
+
+- id: p-material-059
+  text: 用蠟筆先塗一層，再用黑色蓋滿刮出圖案。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 20
+
+- id: p-material-060
+  text: 找一片瓦楞紙，感受它的凹凸並畫下橫紋。
+  tags: [texture, material, hands]
+  estimatedMinutes: 12
+
+- id: p-material-061
+  text: 用彩色便利貼在牆上拼一個像素圖。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 20
+
+- id: p-material-062
+  text: 拿一枝乾掉的筆，測試它還能畫出什麼線。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 8
+
+- id: p-material-063
+  text: 用手撕出雲的形狀，貼在藍色紙上。
+  tags: [material, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-064
+  text: 把一個手勢，用連續照片拍成四格。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 10
+
+- id: p-material-065
+  text: 用醬油或墨汁，滴在紙上讓它自然暈開。
+  tags: [medium, unfamiliar, texture]
+  estimatedMinutes: 10
+
+- id: p-material-066
+  text: 拿一塊橡皮，刻一個最簡單的印章圖案。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 25
+
+- id: p-material-067
+  text: 用手機錄一段筆尖在紙上摩擦的聲音。
+  tags: [digital, texture, physical]
+  estimatedMinutes: 5
+
+- id: p-material-068
+  text: 把一張數位插畫，只保留線條印出來上色。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 20
+
+- id: p-material-069
+  text: 用棉線蘸顏料，在對摺的紙間拉出圖案。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-070
+  text: 找一顆石頭，用白筆在上面畫一個小圖。
+  tags: [material, tool, hands]
+  estimatedMinutes: 15
+
+- id: p-material-071
+  text: 用鉛筆閉著眼睛畫手邊一個物件。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 8
+
+- id: p-material-072
+  text: 把家裡三種綠色的東西並排拍一張色卡。
+  tags: [physical, digital, texture]
+  estimatedMinutes: 10
+
+- id: p-material-073
+  text: 用粉筆在深色紙或地上寫一個字。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 8
+
+- id: p-material-074
+  text: 拿保鮮膜壓在濕顏料上，揭起看紋路。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-075
+  text: 把一段文字用不同字體手寫三次。
+  tags: [physical, medium, hands]
+  estimatedMinutes: 12
+
+- id: p-material-076
+  text: 用吸管吹濕顏料，讓它散成樹枝狀。
+  tags: [tool, unfamiliar, texture]
+  estimatedMinutes: 12
+
+- id: p-material-077
+  text: 找一塊透明玻璃，隔著它畫背後的東西。
+  tags: [unfamiliar, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-078
+  text: 用手機把手繪圖去背，只留線條。
+  tags: [physical, digital, tool]
+  estimatedMinutes: 15
+
+- id: p-material-079
+  text: 拿舊卡片剪出一把小刮刀，刮拭顏料。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 12
+
+- id: p-material-080
+  text: 用鹽撒在濕水彩上，乾後看它的結晶。
+  tags: [unfamiliar, texture, medium]
+  estimatedMinutes: 15
+
+- id: p-material-081
+  text: 把一個 app 圖示，用色紙剪拼還原。
+  tags: [digital, material, hands]
+  estimatedMinutes: 20
+
+- id: p-material-082
+  text: 用指腹在起霧的窗上畫一個圖。
+  tags: [unfamiliar, physical, hands]
+  estimatedMinutes: 5
+
+- id: p-material-083
+  text: 拿兩枝筆綁在一起，同時畫雙線。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-084
+  text: 用麥克筆在描圖紙上疊三層透出的顏色。
+  tags: [tool, material, texture]
+  estimatedMinutes: 15
+
+- id: p-material-085
+  text: 找一片布，剪一小塊縫在紙卡上。
+  tags: [material, unfamiliar, hands]
+  estimatedMinutes: 20
+
+- id: p-material-086
+  text: 用手機縮時錄下一滴墨在水中擴散。
+  tags: [digital, unfamiliar, texture]
+  estimatedMinutes: 10
+
+- id: p-material-087
+  text: 把數位調色盤裡的五個色，用蠟筆混出來。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 18
+
+- id: p-material-088
+  text: 拿一枝原子筆，只用點畫出一個形狀。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 20
+
+- id: p-material-089
+  text: 用手把紙揉皺再攤平，畫下摺痕。
+  tags: [texture, material, hands]
+  estimatedMinutes: 12
+
+- id: p-material-090
+  text: 找一根樹枝，蘸墨當筆寫一個字。
+  tags: [unfamiliar, tool, hands]
+  estimatedMinutes: 10
+
+- id: p-material-091
+  text: 把今天的心情用一塊單色顏料表示，塗一片。
+  tags: [medium, physical, hands]
+  estimatedMinutes: 8
+
+- id: p-material-092
+  text: 用彩色膠帶在筆記本邊緣貼一條裝飾。
+  tags: [material, physical, hands]
+  estimatedMinutes: 8
+
+- id: p-material-093
+  text: 拿一塊海綿撕出粗糙邊，蘸色蓋出雲。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-094
+  text: 用手機把一張畫轉成點陣圖看看像素。
+  tags: [digital, physical, tool]
+  estimatedMinutes: 10
+
+- id: p-material-095
+  text: 把一段話用貼紙字母拼在信封上。
+  tags: [material, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-096
+  text: 用指甲在鋁箔紙上壓出一個圖案。
+  tags: [material, texture, hands]
+  estimatedMinutes: 10
+
+- id: p-material-097
+  text: 拿一支毛筆只練習一種筆畫十次。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 15
+
+- id: p-material-098
+  text: 用手機錄下三種不同材質摩擦的聲音。
+  tags: [digital, texture, physical]
+  estimatedMinutes: 10
+
+- id: p-material-099
+  text: 把一個表情符號用黏土捏成立體的。
+  tags: [digital, material, hands]
+  estimatedMinutes: 20
+
+- id: p-material-100
+  text: 用鉛筆畫一格一格，做出從白到黑的階梯。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-101
+  text: 找一片落葉夾進書裡，明天再看它。
+  tags: [material, physical, hands]
+  estimatedMinutes: 5
+
+- id: p-material-102
+  text: 用水彩讓兩個顏色在濕紙上自然交融。
+  tags: [medium, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-103
+  text: 把一張數位設計，用便利貼在牆上放大重排。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 20
+
+- id: p-material-104
+  text: 拿一枝白色蠟筆先寫字，再刷上水彩顯字。
+  tags: [tool, unfamiliar, medium]
+  estimatedMinutes: 15
+
+- id: p-material-105
+  text: 用手指沾麵粉，在深色盤子上畫一個圖。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-106
+  text: 把一段旋律用橡皮筋彈奏錄下來。
+  tags: [unfamiliar, physical, digital]
+  estimatedMinutes: 10
+
+- id: p-material-107
+  text: 用剪刀在對摺紙上剪出對稱圖案。
+  tags: [tool, physical, hands]
+  estimatedMinutes: 10
+
+- id: p-material-108
+  text: 拿一塊碳粉或眼影，用手抹出柔和陰影。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-109
+  text: 把手繪線條拍下，在電腦上填色一次。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 20
+
+- id: p-material-110
+  text: 用牙刷刮顏料，噴濺出點狀星空。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-111
+  text: 找一塊軟木塞，切開看它的斷面紋理。
+  tags: [material, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-112
+  text: 用手機把三張照片疊成一張半透明拼貼。
+  tags: [digital, tool, physical]
+  estimatedMinutes: 15
+
+- id: p-material-113
+  text: 拿彩色鉛筆只用交叉線混出第三個顏色。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-114
+  text: 把一句喜歡的話用毛筆寫成一幅小字。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 15
+
+- id: p-material-115
+  text: 用瓶蓋蘸顏料，蓋出一整排圓圈。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-116
+  text: 找三種不同觸感的紙，並排貼成一張。
+  tags: [material, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-117
+  text: 用手撕出一個字母的形狀，不用剪刀。
+  tags: [material, physical, hands]
+  estimatedMinutes: 10
+
+- id: p-material-118
+  text: 把一段文字錄成語音，再手寫轉錄一次。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-119
+  text: 用蠟燭滴蠟在紙上，做一個封印般的圖。
+  tags: [unfamiliar, material, hands]
+  estimatedMinutes: 12
+
+- id: p-material-120
+  text: 拿一片紗布或網子蓋在紙上噴色，看網格。
+  tags: [texture, tool, hands]
+  estimatedMinutes: 12
+
+- id: p-material-121
+  text: 把一個數位漸層，用色鉛筆手工過渡出來。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 18
+
+- id: p-material-122
+  text: 用手指在沙子或糖上寫一個字，拍下來。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-123
+  text: 拿一支麥克筆在濕紙上畫，看墨的擴散。
+  tags: [tool, texture, medium]
+  estimatedMinutes: 10
+
+- id: p-material-124
+  text: 找一塊金屬湯匙，畫下它反射的扭曲影像。
+  tags: [physical, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-125
+  text: 用色紙拼一個你最愛的水果。
+  tags: [material, physical, hands]
+  estimatedMinutes: 18
+
+- id: p-material-126
+  text: 把手機相簿裡一張圖，用蠟筆抽出三個色塊。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-127
+  text: 拿棉花棒沾水，在水彩上洗出亮部。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 10
+
+- id: p-material-128
+  text: 用指甲或硬幣在紙下拓錢幣的圖案。
+  tags: [texture, tool, hands]
+  estimatedMinutes: 8
+
+- id: p-material-129
+  text: 把一段節奏，用不同物品敲出來錄音。
+  tags: [physical, digital, unfamiliar]
+  estimatedMinutes: 10
+
+- id: p-material-130
+  text: 用剪下的雜誌字，拼一句只給自己的話。
+  tags: [material, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-131
+  text: 拿一枝簽字筆，一筆不離紙畫完一個物件。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 10
+
+- id: p-material-132
+  text: 用手邊的果汁或紅酒，在紙上畫一塊漬。
+  tags: [unfamiliar, medium, texture]
+  estimatedMinutes: 8
+
+- id: p-material-133
+  text: 把一張紙泡濕再畫，感受纖維的變化。
+  tags: [material, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-134
+  text: 用手機的向量工具，把手繪塗鴉描成線條。
+  tags: [physical, digital, tool]
+  estimatedMinutes: 20
+
+- id: p-material-135
+  text: 拿三支不同粗細的筆，各寫同一個字。
+  tags: [tool, medium, hands]
+  estimatedMinutes: 10
+
+- id: p-material-136
+  text: 用彩色毛線在硬紙板上纏出一個圖形。
+  tags: [material, unfamiliar, hands]
+  estimatedMinutes: 25
+
+- id: p-material-137
+  text: 把一塊麵團或黏土，壓出各種質感印痕。
+  tags: [material, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-138
+  text: 用手機錄下自己撕紙、揉紙、彈紙三種聲音。
+  tags: [digital, texture, physical]
+  estimatedMinutes: 8
+
+- id: p-material-139
+  text: 拿一片保鮮膜揉皺當印章，蘸色蓋一片。
+  tags: [tool, texture, unfamiliar]
+  estimatedMinutes: 10
+
+- id: p-material-140
+  text: 把一個標誌用鉛筆放大到整張紙描一次。
+  tags: [digital, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-141
+  text: 用手指沾顏料，畫一條不用筆的線。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-142
+  text: 找一塊皮革或仿皮，畫下它的表面紋路。
+  tags: [texture, material, hands]
+  estimatedMinutes: 15
+
+- id: p-material-143
+  text: 用色鉛筆把一張黑白照片手工上色。
+  tags: [physical, digital, hands]
+  estimatedMinutes: 25
+
+- id: p-material-144
+  text: 拿一支筆刷沾水，在石板或地上寫消失的字。
+  tags: [unfamiliar, medium, hands]
+  estimatedMinutes: 8
+
+- id: p-material-145
+  text: 把三個 emoji 用不同材料各做一個。
+  tags: [digital, material, hands]
+  estimatedMinutes: 25
+
+- id: p-material-146
+  text: 用手撕貼出一片海，只用藍白兩色紙。
+  tags: [material, physical, hands]
+  estimatedMinutes: 20
+
+- id: p-material-147
+  text: 拿一枝原子筆，用力壓出無墨的凹痕字。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-148
+  text: 用手機微距鏡頭拍一滴水的表面。
+  tags: [digital, texture, tool]
+  estimatedMinutes: 8
+
+- id: p-material-149
+  text: 把一段旋律畫成線條，高音高、低音低。
+  tags: [unfamiliar, digital, hands]
+  estimatedMinutes: 12
+
+- id: p-material-150
+  text: 用糖或鹽在深色紙上排出一個圖案。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 10
+
+- id: p-material-151
+  text: 拿一片橘子橫切，蘸色當印章蓋一個。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 10
+
+- id: p-material-152
+  text: 用不同硬度的鉛筆，畫同一顆球的陰影。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 18
+
+- id: p-material-153
+  text: 把手繪圖掃描後，只調成單色剪影。
+  tags: [physical, digital, tool]
+  estimatedMinutes: 12
+
+- id: p-material-154
+  text: 用細沙或咖啡渣，撒出一條有厚度的線。
+  tags: [material, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-155
+  text: 拿一張透光紙，逆光描下窗外輪廓。
+  tags: [material, physical, hands]
+  estimatedMinutes: 15
+
+- id: p-material-156
+  text: 用彩色筆在濕的餐巾紙上點染，看它渲染。
+  tags: [tool, texture, medium]
+  estimatedMinutes: 10
+
+- id: p-material-157
+  text: 把一個網頁按鈕，用色紙剪貼還原一次。
+  tags: [digital, material, hands]
+  estimatedMinutes: 15
+
+- id: p-material-158
+  text: 用手掌整個蘸色，按出一個掌印再改造。
+  tags: [unfamiliar, texture, hands]
+  estimatedMinutes: 12
+
+- id: p-material-159
+  text: 拿橡皮擦當工具，在鉛筆塗黑處擦出圖。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-160
+  text: 用三種豆子在盤上排出一個字。
+  tags: [material, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-161
+  text: 把手機拍的紋理，設成一週的鎖定畫面。
+  tags: [digital, texture, physical]
+  estimatedMinutes: 8
+
+- id: p-material-162
+  text: 用毛筆蘸清水在報紙上寫字，看它變透。
+  tags: [tool, medium, unfamiliar]
+  estimatedMinutes: 8
+
+- id: p-material-163
+  text: 拿一塊網眼布，蓋在紙上拓出格紋。
+  tags: [texture, material, hands]
+  estimatedMinutes: 10
+
+- id: p-material-164
+  text: 用彩色鉛筆疊出你今天看到的天空色。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 15
+
+- id: p-material-165
+  text: 把一張畫剪成細條，交錯編織成新圖。
+  tags: [physical, unfamiliar, hands]
+  estimatedMinutes: 25
+
+- id: p-material-166
+  text: 用手指沾水在報紙上，讓某個字浮出來。
+  tags: [unfamiliar, physical, hands]
+  estimatedMinutes: 8
+
+- id: p-material-167
+  text: 拿一枝針，在黑紙上戳出星座的光點。
+  tags: [tool, unfamiliar, hands]
+  estimatedMinutes: 20
+
+- id: p-material-168
+  text: 用色紙拼出你房間窗外的一個顏色印象。
+  tags: [material, physical, hands]
+  estimatedMinutes: 18
+
+- id: p-material-169
+  text: 把手邊一個小物，用三種材料各畫一遍。
+  tags: [medium, physical, hands]
+  estimatedMinutes: 25
+
+- id: p-material-170
+  text: 用麵條或義大利麵，在盤上排一個圖形。
+  tags: [material, unfamiliar, hands]
+  estimatedMinutes: 12
+
+- id: p-material-171
+  text: 拿一片瓦楞紙撕開，露出裡面的波浪芯。
+  tags: [material, texture, hands]
+  estimatedMinutes: 8
+
+- id: p-material-172
+  text: 用手機把一段手寫字做成動態掃過的影片。
+  tags: [physical, digital, tool]
+  estimatedMinutes: 15
+
+- id: p-material-173
+  text: 把一個顏色，用五種不同材料各呈現一小塊。
+  tags: [material, texture, hands]
+  estimatedMinutes: 25
+
+- id: p-material-174
+  text: 用筷子蘸墨，寫一個又粗又拙的字。
+  tags: [unfamiliar, tool, hands]
+  estimatedMinutes: 10
+
+- id: p-material-175
+  text: 拿一塊冰塊放在水彩上，看它化開的痕跡。
+  tags: [unfamiliar, texture, medium]
+  estimatedMinutes: 12
+
+- id: p-material-176
+  text: 用色紙剪一個影子，貼在物件旁邊。
+  tags: [material, physical, hands]
+  estimatedMinutes: 12
+
+- id: p-material-177
+  text: 把今天的一個念頭，用黏土捏成抽象形狀。
+  tags: [material, unfamiliar, hands]
+  estimatedMinutes: 15
+
+- id: p-material-178
+  text: 用鉛筆把一張紙塗滿，再當作黑底來畫。
+  tags: [tool, texture, hands]
+  estimatedMinutes: 20
+
+- id: p-material-179
+  text: 拿一根吸管，蘸顏料吹出一朵散開的花。
+  tags: [tool, unfamiliar, texture]
+  estimatedMinutes: 12
+
+- id: p-material-180
+  text: 用手邊三種白色的東西，排出深淺層次。
+  tags: [material, texture, hands]
+  estimatedMinutes: 12

@@ -1,0 +1,903 @@
+# 每日創作提示：顏色實驗
+# 主題涵蓋配色練習、限制色數、取色、單色、對比色、情緒配色、色彩調和
+# id 格式 p-color-NNN；text 6-80 中文字；tags 2-3 個；estimatedMinutes 5-40
+
+- id: p-color-001
+  text: 從今天拍的一張照片取三個顏色，只用這三個做一張圖。
+  tags: [color, extraction, limited]
+  estimatedMinutes: 20
+
+- id: p-color-002
+  text: 只用黑與白兩色，畫此刻窗外的天空。
+  tags: [color, monochrome]
+  estimatedMinutes: 15
+
+- id: p-color-003
+  text: 挑一件今天穿的衣服，抓出它的兩個主色，配成一組。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-004
+  text: 選你最不喜歡的顏色，只用它的深淺變化畫一個小東西。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-005
+  text: 把藍色和橘色放在一起，看它們互相撐起彼此。
+  tags: [color, contrast]
+  estimatedMinutes: 15
+
+- id: p-color-006
+  text: 從冰箱裡拿出最有顏色的三樣食物，記下它們的色票。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-007
+  text: 用一個顏色加白色，做出五階由淺到深的階梯。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-008
+  text: 幫「今天的心情」配一組三色，不用管好不好看。
+  tags: [color, mood]
+  estimatedMinutes: 10
+
+- id: p-color-009
+  text: 只用房間裡找得到的顏色，湊出一組五色調色盤。
+  tags: [color, palette, limited]
+  estimatedMinutes: 20
+
+- id: p-color-010
+  text: 挑兩枝手邊的筆，只用這兩色畫完一張塗鴉。
+  tags: [color, limited]
+  estimatedMinutes: 15
+
+- id: p-color-011
+  text: 從一朵花或一片葉子取色，做一個小色卡。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-012
+  text: 選一首正在聽的歌，替它配一組顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-013
+  text: 用相鄰的三個色相（例如黃、黃綠、綠）畫一小塊。
+  tags: [color, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-014
+  text: 把一張舊照片轉成灰階，只看它的明暗。
+  tags: [color, monochrome]
+  estimatedMinutes: 10
+
+- id: p-color-015
+  text: 選一個明亮的重點色，其餘全部用灰調襯它。
+  tags: [color, contrast, palette]
+  estimatedMinutes: 20
+
+- id: p-color-016
+  text: 從一本書的封面取四個顏色，重新排出順序。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-017
+  text: 只用紅色的濃淡，畫一顆水果的靜物。
+  tags: [color, monochrome]
+  estimatedMinutes: 25
+
+- id: p-color-018
+  text: 找一組「本來不搭」的兩色，硬把它們放進同一張圖。
+  tags: [color, contrast]
+  estimatedMinutes: 20
+
+- id: p-color-019
+  text: 用暖色系（紅橘黃）配出一組四色，命名它。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-020
+  text: 用冷色系（藍綠紫）配一組四色，和暖色那組比一比。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-021
+  text: 從一杯飲料的顏色出發，延伸出三個相近色。
+  tags: [color, extraction, harmony]
+  estimatedMinutes: 10
+
+- id: p-color-022
+  text: 只用兩種顏色，畫出「早晨」的感覺。
+  tags: [color, mood, limited]
+  estimatedMinutes: 20
+
+- id: p-color-023
+  text: 挑一個顏色，找出它在房間裡出現的五個地方。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-024
+  text: 把一張圖的暖色和冷色對調，看它變成什麼樣子。
+  tags: [color, contrast]
+  estimatedMinutes: 25
+
+- id: p-color-025
+  text: 從一張電影截圖取五色，做成一條色帶。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 20
+
+- id: p-color-026
+  text: 選三種灰，只用這三種灰畫一個場景。
+  tags: [color, monochrome, limited]
+  estimatedMinutes: 20
+
+- id: p-color-027
+  text: 用綠色的各種深淺，畫一株你看得到的植物。
+  tags: [color, monochrome]
+  estimatedMinutes: 25
+
+- id: p-color-028
+  text: 為「安靜」配一組顏色，不超過四色。
+  tags: [color, mood, limited]
+  estimatedMinutes: 15
+
+- id: p-color-029
+  text: 找一個顏色的互補色，把它們並排塗成兩塊。
+  tags: [color, contrast]
+  estimatedMinutes: 10
+
+- id: p-color-030
+  text: 從今天吃的一餐取色，做成一組五色盤。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-031
+  text: 用一個色相，做出「粉、正、濁、暗」四種版本。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-032
+  text: 只用你今天看到最鮮豔的那個顏色畫一筆。
+  tags: [color, limited]
+  estimatedMinutes: 5
+
+- id: p-color-033
+  text: 從一張街景照取色，挑出裡面最不起眼的三色。
+  tags: [color, extraction]
+  estimatedMinutes: 15
+
+- id: p-color-034
+  text: 幫「下雨的午後」配一組顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-035
+  text: 用黑加一個彩色，做出三種不同的混色。
+  tags: [color, monochrome, limited]
+  estimatedMinutes: 15
+
+- id: p-color-036
+  text: 把同一個圖形，用四組不同配色各畫一次。
+  tags: [color, palette]
+  estimatedMinutes: 30
+
+- id: p-color-037
+  text: 從一件包裝或標籤取色，重組成新的配色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-038
+  text: 只用暖色，畫一個原本很冷的東西（例如冰塊）。
+  tags: [color, contrast, mood]
+  estimatedMinutes: 20
+
+- id: p-color-039
+  text: 選兩個相鄰色相，做一條五階漸層帶。
+  tags: [color, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-040
+  text: 為「甜」這個味道配一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 10
+
+- id: p-color-041
+  text: 從一張截圖取一個顏色，用它的明度做出五格。
+  tags: [color, extraction, monochrome]
+  estimatedMinutes: 15
+
+- id: p-color-042
+  text: 用最少的顏色（兩色）畫出一張臉的表情。
+  tags: [color, limited]
+  estimatedMinutes: 20
+
+- id: p-color-043
+  text: 挑一個顏色，寫下它讓你想到的三件事，再配色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-044
+  text: 從一塊布料或抱枕的花紋取出所有顏色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-045
+  text: 只用一種藍，從最淺到最深塗滿一整排格子。
+  tags: [color, monochrome]
+  estimatedMinutes: 15
+
+- id: p-color-046
+  text: 把紅配綠，努力讓它看起來不刺眼。
+  tags: [color, contrast, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-047
+  text: 為某個朋友的個性配一組三色（憑感覺就好）。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-048
+  text: 從窗外此刻的光線取一個顏色，記下它。
+  tags: [color, extraction]
+  estimatedMinutes: 5
+
+- id: p-color-049
+  text: 用三種顏色做出「60-30-10」的比例分配。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-050
+  text: 只用鉛筆的深淺，畫一顆蘋果的立體感。
+  tags: [color, monochrome]
+  estimatedMinutes: 25
+
+- id: p-color-051
+  text: 從一個馬克杯取色，把它配成一組桌面配色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-052
+  text: 選一個顏色當主角，加它的互補色當一小點綴。
+  tags: [color, contrast, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-053
+  text: 幫「深夜」配一組不超過三色的顏色。
+  tags: [color, mood, limited]
+  estimatedMinutes: 15
+
+- id: p-color-054
+  text: 用一個色相做三塊：加白、加灰、加黑。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-055
+  text: 從一張食物特寫，找出它最深和最淺的顏色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-056
+  text: 只用兩色，重新配一個你熟悉的品牌 logo。
+  tags: [color, limited, palette]
+  estimatedMinutes: 20
+
+- id: p-color-057
+  text: 把「吵鬧」翻譯成一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-058
+  text: 從一片天空的漸層取三個顏色，由上到下排好。
+  tags: [color, extraction, harmony]
+  estimatedMinutes: 10
+
+- id: p-color-059
+  text: 用單一綠色，畫五種不同的葉子輪廓。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-060
+  text: 找出兩個最能吵架的顏色，讓它們同框。
+  tags: [color, contrast]
+  estimatedMinutes: 15
+
+- id: p-color-061
+  text: 從一張老照片取色，還原它褪色前的樣子。
+  tags: [color, extraction, mood]
+  estimatedMinutes: 20
+
+- id: p-color-062
+  text: 用三種土色（棕、赭、卡其）配一組安穩的盤。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-063
+  text: 只用一色，改變它的透明度畫出前後層次。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-064
+  text: 幫「興奮」配一組亮到有點過頭的顏色。
+  tags: [color, mood]
+  estimatedMinutes: 10
+
+- id: p-color-065
+  text: 從一個廣告或雜誌頁面取五色，抄下它的配色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-066
+  text: 用黑白灰三階，把一張彩色圖重畫一遍。
+  tags: [color, monochrome, limited]
+  estimatedMinutes: 25
+
+- id: p-color-067
+  text: 選一個顏色，找它左右各一個鄰居，湊成溫和三色。
+  tags: [color, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-068
+  text: 為「想睡」這個狀態配一組柔和的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 10
+
+- id: p-color-069
+  text: 從一顆水果剖面取色，做成一張小色卡。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-070
+  text: 只用粉彩色，讓一個嚴肅的東西變得柔軟。
+  tags: [color, mood, palette]
+  estimatedMinutes: 20
+
+- id: p-color-071
+  text: 用最亮和最暗的兩色，做一張高對比海報。
+  tags: [color, contrast, limited]
+  estimatedMinutes: 25
+
+- id: p-color-072
+  text: 從一部遊戲的畫面截圖取五色，排成調色盤。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-073
+  text: 用一個橘色，做出從奶油到焦糖的五個階。
+  tags: [color, monochrome]
+  estimatedMinutes: 15
+
+- id: p-color-074
+  text: 幫「勇敢」配一組顏色，說得出理由就好。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-075
+  text: 只用三色，畫今天早餐的樣子。
+  tags: [color, limited, extraction]
+  estimatedMinutes: 20
+
+- id: p-color-076
+  text: 從路上招牌取色，挑一組最台灣味的配色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 15
+
+- id: p-color-077
+  text: 用互補色做一個漸層，看中間變成什麼濁色。
+  tags: [color, contrast, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-078
+  text: 為一段童年回憶配三個顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-079
+  text: 只用一種紫，塗出天亮前的那種光。
+  tags: [color, monochrome, mood]
+  estimatedMinutes: 20
+
+- id: p-color-080
+  text: 從一件很少穿的衣服取色，這次認真看它的顏色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-081
+  text: 用四色以內，畫出「熱鬧的夜市」。
+  tags: [color, limited, mood]
+  estimatedMinutes: 30
+
+- id: p-color-082
+  text: 選一個顏色，做出它三種飽和度的版本。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-083
+  text: 幫「一杯熱茶」配一組暖而不燙的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-084
+  text: 從磁磚或地板的花色取三色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-085
+  text: 只用黑色，靠疏密和線條表現三種深淺。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-086
+  text: 把一組柔和的配色，硬改成刺眼的版本。
+  tags: [color, contrast, palette]
+  estimatedMinutes: 20
+
+- id: p-color-087
+  text: 為「離別」配一組溫柔一點的顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-088
+  text: 從一張日落照片取三色，重現那一刻的溫度。
+  tags: [color, extraction, mood]
+  estimatedMinutes: 15
+
+- id: p-color-089
+  text: 用單色的深淺，畫一杯咖啡從滿到空。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-090
+  text: 挑三個顏色，讓其中一個明顯是主角。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-091
+  text: 從一盒色鉛筆裡閉眼抽三枝，只用它們畫。
+  tags: [color, limited]
+  estimatedMinutes: 20
+
+- id: p-color-092
+  text: 幫「新的開始」配一組乾淨的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-093
+  text: 從一件老物件的鏽或痕跡取色。
+  tags: [color, extraction, mood]
+  estimatedMinutes: 15
+
+- id: p-color-094
+  text: 用兩個相鄰色相加白，做一組奶油色系。
+  tags: [color, harmony, palette]
+  estimatedMinutes: 15
+
+- id: p-color-095
+  text: 只用一色一形，做九宮格的深淺變化。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-096
+  text: 把兩個對比色調到剛好平衡，誰都不搶。
+  tags: [color, contrast, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-097
+  text: 為某個地名配一組顏色（例如「京都」）。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-098
+  text: 從桌上最雜亂的一角取五色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-099
+  text: 用單一黃色，畫出從清晨到正午的光變化。
+  tags: [color, monochrome, mood]
+  estimatedMinutes: 25
+
+- id: p-color-100
+  text: 選一組三色，替它取一個像料理的名字。
+  tags: [color, palette]
+  estimatedMinutes: 10
+
+- id: p-color-101
+  text: 只用兩色畫一片海，剩下的靠留白。
+  tags: [color, limited, mood]
+  estimatedMinutes: 20
+
+- id: p-color-102
+  text: 從一張截圖夾出最亮的一點顏色當重點色。
+  tags: [color, extraction, contrast]
+  estimatedMinutes: 10
+
+- id: p-color-103
+  text: 用三個顏色做出「三角平衡」的配色。
+  tags: [color, harmony, palette]
+  estimatedMinutes: 20
+
+- id: p-color-104
+  text: 幫「星期一早上」配一組顏色，誠實就好。
+  tags: [color, mood]
+  estimatedMinutes: 10
+
+- id: p-color-105
+  text: 從寵物或動物的毛色取三色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-106
+  text: 只用一色，用力道畫出從輕到重五種筆觸。
+  tags: [color, monochrome]
+  estimatedMinutes: 15
+
+- id: p-color-107
+  text: 把一組冷色配色，只改一色讓它整組變暖。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-108
+  text: 為「一場大雨後」配一組清透的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-109
+  text: 從甜點或糖果的包裝取四色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-110
+  text: 用黑白兩色畫格子，只靠比例做出灰的錯覺。
+  tags: [color, monochrome, contrast]
+  estimatedMinutes: 20
+
+- id: p-color-111
+  text: 選兩個顏色，讓亮的在暗底上跳出來。
+  tags: [color, contrast]
+  estimatedMinutes: 15
+
+- id: p-color-112
+  text: 為一種聲音（例如雨聲）配一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-113
+  text: 從冰箱門上的磁鐵、便條取一組雜色盤。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-114
+  text: 用一個紅色，做出「番茄、磚、酒」三種紅。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-115
+  text: 挑一組四色，讓它們像同一個季節的顏色。
+  tags: [color, palette, mood]
+  estimatedMinutes: 15
+
+- id: p-color-116
+  text: 只用兩色，把一個房間畫成剪影。
+  tags: [color, limited]
+  estimatedMinutes: 20
+
+- id: p-color-117
+  text: 從一幅你喜歡的畫作取五色，抄它的比例。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 20
+
+- id: p-color-118
+  text: 幫「久違的重逢」配一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-119
+  text: 用一色的濃淡，畫水滴在玻璃上的樣子。
+  tags: [color, monochrome]
+  estimatedMinutes: 25
+
+- id: p-color-120
+  text: 把互補色各自調濁一點，看它們更好搭嗎。
+  tags: [color, contrast, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-121
+  text: 從一杯手搖飲的分層取色，由下往上排。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-122
+  text: 只用三色，重畫一個你以前的作品。
+  tags: [color, limited]
+  estimatedMinutes: 30
+
+- id: p-color-123
+  text: 為「祕密」配一組偏暗的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-124
+  text: 從陽台或走廊的植物取三個綠。
+  tags: [color, extraction, monochrome]
+  estimatedMinutes: 10
+
+- id: p-color-125
+  text: 用一個藍，做出「天、海、墨」三種藍。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-126
+  text: 選五色，只讓其中一色是暖的，其餘全冷。
+  tags: [color, contrast, palette]
+  estimatedMinutes: 20
+
+- id: p-color-127
+  text: 幫「小小的勝利」配一組明快的顏色。
+  tags: [color, mood]
+  estimatedMinutes: 10
+
+- id: p-color-128
+  text: 從你手機桌布取三色，看你每天在看什麼顏色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-129
+  text: 用單色分五階，畫一座由近到遠的山。
+  tags: [color, monochrome]
+  estimatedMinutes: 25
+
+- id: p-color-130
+  text: 把三個顏色排成漸層，再打亂重排一次。
+  tags: [color, harmony, palette]
+  estimatedMinutes: 15
+
+- id: p-color-131
+  text: 只用兩色畫一朵雲，其他留白。
+  tags: [color, limited, mood]
+  estimatedMinutes: 15
+
+- id: p-color-132
+  text: 從調味料罐（醬油、辣椒、抹茶）取一組食物色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-133
+  text: 選一個顏色，做出它最柔和與最強烈的兩端。
+  tags: [color, monochrome, contrast]
+  estimatedMinutes: 15
+
+- id: p-color-134
+  text: 為「賴床的週末」配一組慵懶的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 10
+
+- id: p-color-135
+  text: 從一張截圖只取黑白，看它的構圖還成立嗎。
+  tags: [color, monochrome, extraction]
+  estimatedMinutes: 15
+
+- id: p-color-136
+  text: 用四色以內，畫一個熱氣蒸騰的鍋。
+  tags: [color, limited, mood]
+  estimatedMinutes: 25
+
+- id: p-color-137
+  text: 挑三個顏色，讓它們像同一個人穿的搭配。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-138
+  text: 從書架上的書背，橫掃出一整排的顏色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-139
+  text: 只用一色，用點的密度做出漸層。
+  tags: [color, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-140
+  text: 把兩個對比色，各縮成一小點放在灰底上。
+  tags: [color, contrast, mood]
+  estimatedMinutes: 15
+
+- id: p-color-141
+  text: 為「第一次見面的緊張」配一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-142
+  text: 從一顆石頭或磚牆取三個低調的顏色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-143
+  text: 用一個綠色，做出「嫩芽、苔、松」三種綠。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-144
+  text: 選一組五色，刻意讓它們不和諧，記下感覺。
+  tags: [color, contrast, palette]
+  estimatedMinutes: 20
+
+- id: p-color-145
+  text: 幫「陰天」配一組不悲傷的灰色系。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-146
+  text: 從一碗麵或飯的配料取一組暖色盤。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-147
+  text: 只用兩色畫一隻動物的側臉。
+  tags: [color, limited]
+  estimatedMinutes: 20
+
+- id: p-color-148
+  text: 用一個色相，畫同一顆蘋果在三種光下的樣子。
+  tags: [color, monochrome, mood]
+  estimatedMinutes: 25
+
+- id: p-color-149
+  text: 選三色，讓最小面積的那色最搶眼。
+  tags: [color, contrast, palette]
+  estimatedMinutes: 15
+
+- id: p-color-150
+  text: 從電影海報取四色，猜它想給人的情緒。
+  tags: [color, extraction, mood]
+  estimatedMinutes: 15
+
+- id: p-color-151
+  text: 用黑白灰，畫一張你今天看到的臉。
+  tags: [color, monochrome]
+  estimatedMinutes: 25
+
+- id: p-color-152
+  text: 把冷暖各一色，放在同一朵花上。
+  tags: [color, contrast]
+  estimatedMinutes: 20
+
+- id: p-color-153
+  text: 為「等一個人」配一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-154
+  text: 從你今天的購物袋或收據取色，做一組意外配色。
+  tags: [color, extraction, palette]
+  estimatedMinutes: 10
+
+- id: p-color-155
+  text: 用一色，靠留白多寡做出五種明度。
+  tags: [color, monochrome, limited]
+  estimatedMinutes: 15
+
+- id: p-color-156
+  text: 選一組相鄰的四色，畫一片漸層的黃昏。
+  tags: [color, harmony, mood]
+  estimatedMinutes: 20
+
+- id: p-color-157
+  text: 只用三色，重現一張你最愛的照片的氣氛。
+  tags: [color, limited, extraction]
+  estimatedMinutes: 25
+
+- id: p-color-158
+  text: 幫「一整天沒說話」配一組安靜的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-159
+  text: 從一根蠟燭的火光取三個顏色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-160
+  text: 用一個粉紅，做出從櫻花到桃子的五階。
+  tags: [color, monochrome, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-161
+  text: 把兩個對比色互換位置，看主客易位的效果。
+  tags: [color, contrast]
+  estimatedMinutes: 15
+
+- id: p-color-162
+  text: 為「大掃除後」配一組清爽的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 15
+
+- id: p-color-163
+  text: 從一張夜景照取色，找出黑裡藏著的顏色。
+  tags: [color, extraction, mood]
+  estimatedMinutes: 15
+
+- id: p-color-164
+  text: 只用一色，畫一段從實到虛的漸隱。
+  tags: [color, monochrome]
+  estimatedMinutes: 15
+
+- id: p-color-165
+  text: 選五色，把它們的比例分成大中小三種面積。
+  tags: [color, palette, harmony]
+  estimatedMinutes: 20
+
+- id: p-color-166
+  text: 幫「小時候的暑假」配一組顏色。
+  tags: [color, mood]
+  estimatedMinutes: 15
+
+- id: p-color-167
+  text: 從一件毛衣或圍巾的織紋取三色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-168
+  text: 用兩色，畫一張只有影子的圖。
+  tags: [color, limited, monochrome]
+  estimatedMinutes: 20
+
+- id: p-color-169
+  text: 選一個顏色，找出它「加一點就毀掉」的搭檔色。
+  tags: [color, contrast, harmony]
+  estimatedMinutes: 15
+
+- id: p-color-170
+  text: 為「終於下班」配一組放鬆的顏色。
+  tags: [color, mood, palette]
+  estimatedMinutes: 10
+
+- id: p-color-171
+  text: 從一杯拿鐵的拉花取棕與白兩色的層次。
+  tags: [color, extraction, monochrome]
+  estimatedMinutes: 10
+
+- id: p-color-172
+  text: 用四色，把「春夏秋冬」各配一色。
+  tags: [color, palette, mood]
+  estimatedMinutes: 15
+
+- id: p-color-173
+  text: 只用一色的深淺，畫窗簾透光的樣子。
+  tags: [color, monochrome, mood]
+  estimatedMinutes: 20
+
+- id: p-color-174
+  text: 從一張隨手拍的失敗照片裡，找出三個好看的顏色。
+  tags: [color, extraction]
+  estimatedMinutes: 10
+
+- id: p-color-175
+  text: 選兩個顏色，讓它們在中間漸層出第三個新色。
+  tags: [color, harmony, contrast]
+  estimatedMinutes: 15
+
+- id: p-color-176
+  text: 累的話，只挑一個今天最順眼的顏色，記下來就好。
+  tags: [color, mood]
+  estimatedMinutes: 5
+
+- id: p-color-177
+  text: 沒力氣就從一張現成照片按三下取色，存起來。
+  tags: [color, extraction]
+  estimatedMinutes: 5
+
+- id: p-color-178
+  text: 低能量版：用一枝筆隨便塗一塊，感受它的顏色。
+  tags: [color, monochrome]
+  estimatedMinutes: 5
+
+- id: p-color-179
+  text: 幫「今天」選一個顏色，不用理由，放進收藏。
+  tags: [color, mood]
+  estimatedMinutes: 5
+
+- id: p-color-180
+  text: 只想輕鬆的話，把兩個喜歡的顏色並排看一分鐘。
+  tags: [color, contrast]
+  estimatedMinutes: 5

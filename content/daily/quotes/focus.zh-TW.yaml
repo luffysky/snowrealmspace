@@ -1,0 +1,542 @@
+# 每日語錄 — 專注與心流
+# 主題：進入狀態、排除干擾、深度工作、一次做一件事、沉浸
+- id: q-focus-001
+  text: 專心不是逼自己，是把其他東西先放遠一點。
+  tags: [focus, flow]
+- id: q-focus-002
+  text: 你不用一次做完，只要先做進去就好。
+  tags: [focus, deep_work]
+- id: q-focus-003
+  text: 把手機放到看不見的地方，比放到靜音更有用。
+  tags: [distraction, focus]
+- id: q-focus-004
+  text: 開始的門檻，通常比你以為的低一點。
+  tags: [focus, flow]
+- id: q-focus-005
+  text: 一次只留一個分頁，桌面會替你安靜下來。
+  tags: [distraction, single_task]
+- id: q-focus-006
+  text: 心流不是等來的，是做著做著才長出來的。
+  tags: [flow, immersion]
+- id: q-focus-007
+  text: 今天沒力氣就做十分鐘，十分鐘也算數。
+  tags: [focus, presence]
+- id: q-focus-008
+  text: 深度工作前，先給自己五分鐘什麼都不做。
+  tags: [deep_work, presence]
+- id: q-focus-009
+  text: 分心不是罪，只是提醒你該回到手邊這件事。
+  tags: [distraction, attention]
+- id: q-focus-010
+  text: 把「等一下再看」的東西，寫在紙上就能放下。
+  tags: [distraction, focus]
+- id: q-focus-011
+  text: 一件事做到底，比十件事各做一半更接近完成。
+  tags: [single_task, deep_work]
+- id: q-focus-012
+  text: 沉進去的那一刻，時間會忘記提醒你它在走。
+  tags: [immersion, flow]
+- id: q-focus-013
+  text: 專注是把注意力放回來，不是永遠不離開。
+  tags: [attention, focus]
+- id: q-focus-014
+  text: 慢慢來也是一種進度，別跟自己搶時間。
+  tags: [presence, focus]
+- id: q-focus-015
+  text: 先做最小的那一步，剩下的會自己接上來。
+  tags: [focus, flow]
+- id: q-focus-016
+  text: 關掉通知的那幾個小時，是你送給自己的。
+  tags: [distraction, deep_work]
+- id: q-focus-017
+  text: 手邊這一頁、這一段、這一筆，就夠你專注了。
+  tags: [single_task, presence]
+- id: q-focus-018
+  text: 心亂的時候，先整理桌面，再整理腦袋。
+  tags: [distraction, focus]
+- id: q-focus-019
+  text: 沉浸需要一點無聊當入口，別急著填滿它。
+  tags: [immersion, presence]
+- id: q-focus-020
+  text: 深度工作不比時數，比你有沒有真的在場。
+  tags: [deep_work, presence]
+- id: q-focus-021
+  text: 把大事切成小塊，每一塊都值得你認真。
+  tags: [single_task, focus]
+- id: q-focus-022
+  text: 卡住的時候，不是你不行，是需要換個角度。
+  tags: [focus, flow]
+- id: q-focus-023
+  text: 今天只想輕輕做一點也好，門一直開著。
+  tags: [presence, focus]
+- id: q-focus-024
+  text: 專注像調頻，慢慢轉，總會對上那個頻道。
+  tags: [attention, flow]
+- id: q-focus-025
+  text: 讓一件事佔滿你整個當下，其他先排隊。
+  tags: [single_task, immersion]
+- id: q-focus-026
+  text: 進入狀態沒有捷徑，只有一個又一個小開始。
+  tags: [flow, focus]
+- id: q-focus-027
+  text: 把想到的雜事丟進清單，腦袋就騰出空間了。
+  tags: [distraction, attention]
+- id: q-focus-028
+  text: 你不是缺專注力，是被太多視窗切碎了。
+  tags: [distraction, single_task]
+- id: q-focus-029
+  text: 深呼吸三次，再看第一行字，狀態會不一樣。
+  tags: [presence, focus]
+- id: q-focus-030
+  text: 沉浸是把耳朵借給作品，暫時收回世界的。
+  tags: [immersion, flow]
+- id: q-focus-031
+  text: 一次做一件事，是最溫柔的高效。
+  tags: [single_task, focus]
+- id: q-focus-032
+  text: 別等靈感，先坐下來，靈感會自己找上門。
+  tags: [flow, deep_work]
+- id: q-focus-033
+  text: 累的時候，做熟悉的那部分就好，別勉強新的。
+  tags: [presence, focus]
+- id: q-focus-034
+  text: 注意力會飄是正常的，溫柔地把它牽回來。
+  tags: [attention, presence]
+- id: q-focus-035
+  text: 把「順便」拿掉，你會發現時間變多了。
+  tags: [distraction, single_task]
+- id: q-focus-036
+  text: 心流藏在難度剛剛好的地方，別選太簡單的。
+  tags: [flow, immersion]
+- id: q-focus-037
+  text: 開始寫爛的第一句，是進入狀態的通行證。
+  tags: [flow, deep_work]
+- id: q-focus-038
+  text: 專注不需要儀式，但一杯茶會讓你慢下來。
+  tags: [focus, presence]
+- id: q-focus-039
+  text: 把要做的縮到一句話，你就知道從哪開始。
+  tags: [single_task, focus]
+- id: q-focus-040
+  text: 深度工作最怕的不是難，是一直被打斷。
+  tags: [deep_work, distraction]
+- id: q-focus-041
+  text: 沉進去之後，連椅子的硬都感覺不到了。
+  tags: [immersion, flow]
+- id: q-focus-042
+  text: 今天狀態不好，就當作幫明天暖身。
+  tags: [presence, focus]
+- id: q-focus-043
+  text: 你不欠進度什麼，做到哪都是往前。
+  tags: [presence, focus]
+- id: q-focus-044
+  text: 把干擾寫下來，它就從腦裡搬到紙上了。
+  tags: [distraction, attention]
+- id: q-focus-045
+  text: 專注是留在一件事身邊，久一點就好。
+  tags: [focus, single_task]
+- id: q-focus-046
+  text: 進入心流前，先關掉所有會叫你的東西。
+  tags: [flow, distraction]
+- id: q-focus-047
+  text: 一個番茄鐘的時間，足夠你走進去了。
+  tags: [deep_work, focus]
+- id: q-focus-048
+  text: 手在動，腦子才會跟上來，別只在原地想。
+  tags: [flow, deep_work]
+- id: q-focus-049
+  text: 沉浸不是逼自己入戲，是讓自己有空入戲。
+  tags: [immersion, presence]
+- id: q-focus-050
+  text: 把最重要的那件事，放在最不被打擾的時段。
+  tags: [deep_work, single_task]
+- id: q-focus-051
+  text: 分心的時候別罵自己，回來就好。
+  tags: [distraction, attention]
+- id: q-focus-052
+  text: 你的注意力很珍貴，別隨手給了跳出來的紅點。
+  tags: [attention, distraction]
+- id: q-focus-053
+  text: 先做，做著做著，就不想停了。
+  tags: [flow, focus]
+- id: q-focus-054
+  text: 今天想休息就休息，專注不會因此離開你。
+  tags: [presence, focus]
+- id: q-focus-055
+  text: 把桌面清空，是給接下來的自己讓路。
+  tags: [distraction, deep_work]
+- id: q-focus-056
+  text: 一次一步，你會走得比想像遠。
+  tags: [single_task, focus]
+- id: q-focus-057
+  text: 沉浸的門，是靜下來的那一刻打開的。
+  tags: [immersion, presence]
+- id: q-focus-058
+  text: 別把注意力借給還沒發生的擔心。
+  tags: [attention, presence]
+- id: q-focus-059
+  text: 深度工作是跟一件事約會，把手機留在門外。
+  tags: [deep_work, distraction]
+- id: q-focus-060
+  text: 卡關時起身走走，回來常會豁然開朗。
+  tags: [flow, presence]
+- id: q-focus-061
+  text: 專注不是繃緊，是放鬆地留在這裡。
+  tags: [focus, presence]
+- id: q-focus-062
+  text: 把待辦砍到只剩一件，你今天就贏一半了。
+  tags: [single_task, focus]
+- id: q-focus-063
+  text: 心流不吵，它安靜地讓你忘了自己。
+  tags: [flow, immersion]
+- id: q-focus-064
+  text: 今天只做得動一點點，那一點點也很好。
+  tags: [presence, focus]
+- id: q-focus-065
+  text: 每次回到手邊這件事，就是一次小小的練習。
+  tags: [attention, focus]
+- id: q-focus-066
+  text: 讓一件事情長一點，它才有機會變深。
+  tags: [deep_work, single_task]
+- id: q-focus-067
+  text: 進入狀態像下水，冷一下就習慣了。
+  tags: [flow, immersion]
+- id: q-focus-068
+  text: 把「等一下」變成「現在就這一步」。
+  tags: [focus, single_task]
+- id: q-focus-069
+  text: 干擾多的時候，戴上耳機也是一種築牆。
+  tags: [distraction, focus]
+- id: q-focus-070
+  text: 沉浸久了會累，累了就靠著休息一下。
+  tags: [immersion, presence]
+- id: q-focus-071
+  text: 你不必總是全速，慢速前進也在前進。
+  tags: [presence, focus]
+- id: q-focus-072
+  text: 專注是一種挑選，選了這個，就先不看那個。
+  tags: [attention, single_task]
+- id: q-focus-073
+  text: 深度工作的獎賞，是那種安靜的踏實。
+  tags: [deep_work, flow]
+- id: q-focus-074
+  text: 把想法先寫出來，再回頭整理，別同時做。
+  tags: [single_task, deep_work]
+- id: q-focus-075
+  text: 心亂時，只看下一個字，不看整篇。
+  tags: [focus, presence]
+- id: q-focus-076
+  text: 沉浸不是消失，是更清楚地在這裡。
+  tags: [immersion, presence]
+- id: q-focus-077
+  text: 讓自己無聊三分鐘，創作常從那裡開始。
+  tags: [flow, presence]
+- id: q-focus-078
+  text: 通知關掉不會錯過什麼，該來的還在。
+  tags: [distraction, attention]
+- id: q-focus-079
+  text: 一件事做完再開下一件，心才不會累。
+  tags: [single_task, focus]
+- id: q-focus-080
+  text: 進場前先決定：這段時間只給這一件事。
+  tags: [deep_work, single_task]
+- id: q-focus-081
+  text: 專注是慢慢累積的，不是一次到位的。
+  tags: [focus, attention]
+- id: q-focus-082
+  text: 今天不想深潛，就在淺水區待著也可以。
+  tags: [presence, immersion]
+- id: q-focus-083
+  text: 把「再看一下手機」換成「再寫一行」。
+  tags: [distraction, focus]
+- id: q-focus-084
+  text: 心流會在你不催它的時候悄悄靠近。
+  tags: [flow, presence]
+- id: q-focus-085
+  text: 深度不靠意志力，靠你先把干擾搬走。
+  tags: [deep_work, distraction]
+- id: q-focus-086
+  text: 注意力像水，你放在哪裡，那裡就長東西。
+  tags: [attention, focus]
+- id: q-focus-087
+  text: 別跟分心對抗，只要溫柔地轉身回來。
+  tags: [distraction, presence]
+- id: q-focus-088
+  text: 一次專注一小段，中間好好喘口氣。
+  tags: [focus, presence]
+- id: q-focus-089
+  text: 沉進作品裡的時候，世界會替你安靜。
+  tags: [immersion, flow]
+- id: q-focus-090
+  text: 今天做不多沒關係，你有來就已經算數。
+  tags: [presence, focus]
+- id: q-focus-091
+  text: 把桌上只留這一件工具，手就知道要做什麼。
+  tags: [single_task, focus]
+- id: q-focus-092
+  text: 進入狀態的鑰匙，常常只是「開始第一句」。
+  tags: [flow, deep_work]
+- id: q-focus-093
+  text: 專注不是拒絕全世界，是先陪好眼前這件。
+  tags: [focus, single_task]
+- id: q-focus-094
+  text: 把明天的煩惱留給明天，今天只顧這一頁。
+  tags: [attention, presence]
+- id: q-focus-095
+  text: 深度工作像潛水，越安靜，你看得越清楚。
+  tags: [deep_work, immersion]
+- id: q-focus-096
+  text: 分頁一多，心就跟著散，關掉幾個試試。
+  tags: [distraction, single_task]
+- id: q-focus-097
+  text: 慢一點沉下去，比快一點浮在表面好。
+  tags: [immersion, presence]
+- id: q-focus-098
+  text: 你不必等準備好，準備好是做出來的。
+  tags: [flow, focus]
+- id: q-focus-099
+  text: 讓注意力回家，它一直都認得路。
+  tags: [attention, presence]
+- id: q-focus-100
+  text: 今天只點一盞燈，照亮眼前這一步就好。
+  tags: [single_task, focus]
+- id: q-focus-101
+  text: 專注是一種安靜的勇敢，敢只做這一件。
+  tags: [focus, single_task]
+- id: q-focus-102
+  text: 心流不會敲門，它趁你認真時溜進來。
+  tags: [flow, immersion]
+- id: q-focus-103
+  text: 把干擾源放到另一個房間，牆會替你擋著。
+  tags: [distraction, deep_work]
+- id: q-focus-104
+  text: 累的日子，讓手做，別讓腦子加班。
+  tags: [presence, focus]
+- id: q-focus-105
+  text: 一次只解一個問題，別讓它們排隊插隊。
+  tags: [single_task, attention]
+- id: q-focus-106
+  text: 沉浸不需要靈感，只需要你先坐得住。
+  tags: [immersion, deep_work]
+- id: q-focus-107
+  text: 開始最難，開始之後就順了大半。
+  tags: [flow, focus]
+- id: q-focus-108
+  text: 專注是把「等等」延後，把「現在」拉近。
+  tags: [focus, presence]
+- id: q-focus-109
+  text: 今天走神很多次也沒關係，回來的次數更重要。
+  tags: [distraction, attention]
+- id: q-focus-110
+  text: 深度來自時間夠長，別總是淺淺地碰。
+  tags: [deep_work, immersion]
+- id: q-focus-111
+  text: 把「我要做很多」換成「我先做這個」。
+  tags: [single_task, focus]
+- id: q-focus-112
+  text: 心流是難度和能力剛好握手的那一刻。
+  tags: [flow, immersion]
+- id: q-focus-113
+  text: 靜音還不夠，把它翻面，眼不見心不亂。
+  tags: [distraction, focus]
+- id: q-focus-114
+  text: 今天低電量，就做省力的那一格。
+  tags: [presence, single_task]
+- id: q-focus-115
+  text: 注意力是有限的，別在無關的事上花光。
+  tags: [attention, distraction]
+- id: q-focus-116
+  text: 沉浸的入口，往往是一段不被打擾的安靜。
+  tags: [immersion, presence]
+- id: q-focus-117
+  text: 先做十五分鐘，時間到了想停也可以停。
+  tags: [deep_work, focus]
+- id: q-focus-118
+  text: 專注不是硬撐，撐不住就先放，再回來。
+  tags: [focus, presence]
+- id: q-focus-119
+  text: 把所有分頁收成一個，心就收成一件事。
+  tags: [single_task, distraction]
+- id: q-focus-120
+  text: 心流喜歡連續，別在半路一直看時間。
+  tags: [flow, immersion]
+- id: q-focus-121
+  text: 今天只想開個檔案看看，也是一種在場。
+  tags: [presence, focus]
+- id: q-focus-122
+  text: 把該回的訊息集中一次回，別零碎地被拉走。
+  tags: [distraction, attention]
+- id: q-focus-123
+  text: 一件事夠深，會比十件事夠多更讓你踏實。
+  tags: [deep_work, single_task]
+- id: q-focus-124
+  text: 進入狀態不靠心情好，靠你願意先動一下。
+  tags: [flow, focus]
+- id: q-focus-125
+  text: 專注時，讓身體也安靜下來，別一直換姿勢。
+  tags: [focus, presence]
+- id: q-focus-126
+  text: 沉浸像退潮，把喧嘩慢慢帶走，只剩你和它。
+  tags: [immersion, flow]
+- id: q-focus-127
+  text: 今天做一半就累了，那一半也是你的成果。
+  tags: [presence, focus]
+- id: q-focus-128
+  text: 把注意力當客人，一次只請一位進門。
+  tags: [attention, single_task]
+- id: q-focus-129
+  text: 深度工作需要留白，別把行程排到滿。
+  tags: [deep_work, presence]
+- id: q-focus-130
+  text: 分心來了，看它一眼，然後說晚點再見。
+  tags: [distraction, attention]
+- id: q-focus-131
+  text: 先寫一句最不完美的，門就開了。
+  tags: [flow, deep_work]
+- id: q-focus-132
+  text: 專注是把世界調小聲，把作品調大聲。
+  tags: [focus, immersion]
+- id: q-focus-133
+  text: 一次一格，慢慢填，作品會自己成形。
+  tags: [single_task, flow]
+- id: q-focus-134
+  text: 今天只想輕輕碰一下創作，也算數。
+  tags: [presence, focus]
+- id: q-focus-135
+  text: 把「還有很多」放一邊，只看「下一個」。
+  tags: [attention, single_task]
+- id: q-focus-136
+  text: 心流是一種被作品接住的感覺，別急著跳出來。
+  tags: [flow, immersion]
+- id: q-focus-137
+  text: 干擾少一點，靈感就多一點呼吸的空間。
+  tags: [distraction, presence]
+- id: q-focus-138
+  text: 深度工作前，先跟自己說：這段只做這個。
+  tags: [deep_work, single_task]
+- id: q-focus-139
+  text: 專注會累，累了休息不是中斷，是續航。
+  tags: [focus, presence]
+- id: q-focus-140
+  text: 沉進去以後，你會忘了原本要看幾點。
+  tags: [immersion, flow]
+- id: q-focus-141
+  text: 今天狀態很淡，就做淡淡的一點，別強求濃。
+  tags: [presence, focus]
+- id: q-focus-142
+  text: 注意力飄走十次，就溫柔地牽它回來十次。
+  tags: [attention, distraction]
+- id: q-focus-143
+  text: 一次做一件，做完的成就感會替你充電。
+  tags: [single_task, focus]
+- id: q-focus-144
+  text: 心流不是興奮，是一種安靜的全心全意。
+  tags: [flow, presence]
+- id: q-focus-145
+  text: 把噪音隔開，你會聽見自己想說的話。
+  tags: [distraction, immersion]
+- id: q-focus-146
+  text: 深度不是拚命，是給一件事足夠的時間。
+  tags: [deep_work, single_task]
+- id: q-focus-147
+  text: 今天只想坐在作品旁邊，什麼都好。
+  tags: [presence, immersion]
+- id: q-focus-148
+  text: 專注就是現在，只有現在這一筆。
+  tags: [focus, presence]
+- id: q-focus-149
+  text: 把跳出來的念頭記下來，讓它不再打斷你。
+  tags: [distraction, attention]
+- id: q-focus-150
+  text: 一件事先做透，比每件事都碰一下踏實。
+  tags: [single_task, deep_work]
+- id: q-focus-151
+  text: 進入心流沒有開關，只有一次次溫柔地回來。
+  tags: [flow, attention]
+- id: q-focus-152
+  text: 今天很淺也沒關係，明天還可以再深一點。
+  tags: [presence, focus]
+- id: q-focus-153
+  text: 專注像照相對焦，模糊一下，再慢慢清晰。
+  tags: [focus, attention]
+- id: q-focus-154
+  text: 讓一段時間只屬於一件事，它會回報你。
+  tags: [single_task, deep_work]
+- id: q-focus-155
+  text: 沉浸是你和作品之間，沒有第三者的時候。
+  tags: [immersion, flow]
+- id: q-focus-156
+  text: 把干擾當背景音，別讓它變成主角。
+  tags: [distraction, focus]
+- id: q-focus-157
+  text: 今天做不到深潛，浮潛看看風景也好。
+  tags: [presence, immersion]
+- id: q-focus-158
+  text: 注意力放這裡，這裡就慢慢亮起來。
+  tags: [attention, presence]
+- id: q-focus-159
+  text: 深度工作是給自己一段不用回覆誰的時間。
+  tags: [deep_work, distraction]
+- id: q-focus-160
+  text: 開始之後，別問還要多久，先享受在裡面。
+  tags: [flow, immersion]
+- id: q-focus-161
+  text: 專注是溫柔地拒絕，先不碰別的，只留這個。
+  tags: [focus, single_task]
+- id: q-focus-162
+  text: 心亂就先做手邊最小的那一件，心會跟上。
+  tags: [presence, focus]
+- id: q-focus-163
+  text: 一次只抱一件事，手才空得出來把它做好。
+  tags: [single_task, attention]
+- id: q-focus-164
+  text: 沉浸需要安全感，先把會打斷你的都關上。
+  tags: [immersion, distraction]
+- id: q-focus-165
+  text: 今天願意坐下來，就已經是一種專注。
+  tags: [presence, focus]
+- id: q-focus-166
+  text: 把注意力從螢幕邊角，慢慢移回正中央。
+  tags: [attention, focus]
+- id: q-focus-167
+  text: 深度來自重複回到同一件事，不是一次做完。
+  tags: [deep_work, single_task]
+- id: q-focus-168
+  text: 心流像順水，你只要別一直逆著划就好。
+  tags: [flow, presence]
+- id: q-focus-169
+  text: 干擾切掉一半，專注就多長出一倍。
+  tags: [distraction, focus]
+- id: q-focus-170
+  text: 今天能量低，就把標準放低，把自己放過。
+  tags: [presence, focus]
+- id: q-focus-171
+  text: 一件事，一段時間，一份心，就夠了。
+  tags: [single_task, immersion]
+- id: q-focus-172
+  text: 專注不是不分心，是分心後還願意回來。
+  tags: [attention, distraction]
+- id: q-focus-173
+  text: 沉進去的時候，連呼吸都變得剛剛好。
+  tags: [immersion, flow]
+- id: q-focus-174
+  text: 進入狀態前，先把桌面、心情都留白一點。
+  tags: [flow, presence]
+- id: q-focus-175
+  text: 深度工作不必轟轟烈烈，安靜地做就很好。
+  tags: [deep_work, presence]
+- id: q-focus-176
+  text: 把「等有空」改成「就現在這五分鐘」。
+  tags: [focus, single_task]
+- id: q-focus-177
+  text: 注意力是你最私人的資源，慢慢學會守著它。
+  tags: [attention, distraction]
+- id: q-focus-178
+  text: 今天只推進一點點，那一點點就是心流的起點。
+  tags: [flow, presence]
+- id: q-focus-179
+  text: 一次一件，是對作品也是對自己的溫柔。
+  tags: [single_task, presence]
+- id: q-focus-180
+  text: 沉浸過後，記得抬頭喝口水，再決定要不要繼續。
+  tags: [immersion, presence]

@@ -1,0 +1,545 @@
+# 每日語錄 — 主題：微小與日常
+# 一天一點點、小的堅持、把創作放進生活的縫隙、平凡的價值
+- id: q-everyday-001
+  text: 十分鐘也能做一點，不用等到有一整個下午。
+  tags: [everyday, small_steps]
+- id: q-everyday-002
+  text: 今天畫一條線也算數，明天再接著就好。
+  tags: [small_steps, daily]
+- id: q-everyday-003
+  text: 等公車的三分鐘，剛好夠記下一個念頭。
+  tags: [gaps, little]
+- id: q-everyday-004
+  text: 沒靈感的日子，把工具擺出來也是一種開始。
+  tags: [everyday, small_steps]
+- id: q-everyday-005
+  text: 一句歌詞、一個顏色，都是可以留下的東西。
+  tags: [ordinary, little]
+- id: q-everyday-006
+  text: 累的時候，只把檔案打開看一眼就夠了。
+  tags: [everyday, gaps]
+- id: q-everyday-007
+  text: 平凡的一天，也值得被寫下來一行。
+  tags: [ordinary, daily]
+- id: q-everyday-008
+  text: 小的堅持不需要別人看見，你知道就好。
+  tags: [consistency, little]
+- id: q-everyday-009
+  text: 把想法丟進備忘錄，未來的你會謝謝現在的你。
+  tags: [gaps, everyday]
+- id: q-everyday-010
+  text: 不必每次都完成，有時候只是碰一下。
+  tags: [small_steps, everyday]
+- id: q-everyday-011
+  text: 煮水的空檔，也能哼完半段旋律。
+  tags: [gaps, little]
+- id: q-everyday-012
+  text: 一天一頁，一年就是厚厚一本。
+  tags: [consistency, daily]
+- id: q-everyday-013
+  text: 洗碗時想到的點子，記得回來寫下。
+  tags: [gaps, ordinary]
+- id: q-everyday-014
+  text: 慢慢來也是一種前進，只是你沒察覺。
+  tags: [small_steps, consistency]
+- id: q-everyday-015
+  text: 今天沒力氣創作，那就好好過生活，也不虧。
+  tags: [everyday, ordinary]
+- id: q-everyday-016
+  text: 隨手拍下的雲，說不定是明天的靈感。
+  tags: [ordinary, little]
+- id: q-everyday-017
+  text: 每天一小步，比偶爾一大步更走得遠。
+  tags: [consistency, small_steps]
+- id: q-everyday-018
+  text: 不用等狀態最好的時候，現在就很剛好。
+  tags: [everyday, gaps]
+- id: q-everyday-019
+  text: 一個字也是字，一筆也是筆，都算你做的。
+  tags: [small_steps, little]
+- id: q-everyday-020
+  text: 生活裡的縫隙，就是創作的呼吸空間。
+  tags: [gaps, everyday]
+- id: q-everyday-021
+  text: 把難的事切小，小到你願意開始為止。
+  tags: [small_steps, little]
+- id: q-everyday-022
+  text: 睡前寫三行，比睡前想很多來得踏實。
+  tags: [routine, daily]
+- id: q-everyday-023
+  text: 有些日子只需要維持，不需要進步。
+  tags: [everyday, consistency]
+- id: q-everyday-024
+  text: 微小的東西累積起來，會變成你的樣子。
+  tags: [little, consistency]
+- id: q-everyday-025
+  text: 通勤路上看到的招牌字體，也是一種收集。
+  tags: [gaps, ordinary]
+- id: q-everyday-026
+  text: 今天只有五分鐘，那就用這五分鐘做一點。
+  tags: [gaps, everyday]
+- id: q-everyday-027
+  text: 不是每天都要有成果，有動作就很好。
+  tags: [everyday, consistency]
+- id: q-everyday-028
+  text: 把靈感放進口袋，不必馬上做完它。
+  tags: [gaps, little]
+- id: q-everyday-029
+  text: 泡茶等它涼的時間，夠你排一段句子。
+  tags: [gaps, ordinary]
+- id: q-everyday-030
+  text: 一點點也好過零，這是最誠實的算術。
+  tags: [small_steps, daily]
+- id: q-everyday-031
+  text: 你的日常，就是別人眼中的獨特風景。
+  tags: [ordinary, everyday]
+- id: q-everyday-032
+  text: 今天做不動，就把明天要做的寫下來。
+  tags: [gaps, small_steps]
+- id: q-everyday-033
+  text: 每天固定坐下五分鐘，久了會變成習慣。
+  tags: [routine, consistency]
+- id: q-everyday-034
+  text: 一句沒寫完的話，也是留給明天的線索。
+  tags: [gaps, little]
+- id: q-everyday-035
+  text: 平凡不是沒有價值，是還沒被你看見。
+  tags: [ordinary, everyday]
+- id: q-everyday-036
+  text: 排隊時觀察前面那個人的鞋，也是素材。
+  tags: [gaps, ordinary]
+- id: q-everyday-037
+  text: 小事做久了，就不再是小事了。
+  tags: [consistency, little]
+- id: q-everyday-038
+  text: 今天的低能量，不欠明天什麼。
+  tags: [everyday, ordinary]
+- id: q-everyday-039
+  text: 把畫板放在看得到的地方，路過就多一次機會。
+  tags: [routine, gaps]
+- id: q-everyday-040
+  text: 一天記一個顏色的名字，慢慢累積你的調色盤。
+  tags: [daily, little]
+- id: q-everyday-041
+  text: 不必寫得好，先寫得完就贏一半。
+  tags: [small_steps, everyday]
+- id: q-everyday-042
+  text: 早餐後的十分鐘，是最容易被忽略的禮物。
+  tags: [gaps, routine]
+- id: q-everyday-043
+  text: 你不用一直很有創意，過日子也是一種累積。
+  tags: [everyday, ordinary]
+- id: q-everyday-044
+  text: 把想法寫在便利貼上，貼在你會看到的地方。
+  tags: [little, routine]
+- id: q-everyday-045
+  text: 有時候只是重新讀一遍舊稿，就有新東西。
+  tags: [everyday, gaps]
+- id: q-everyday-046
+  text: 一週三次，比一週爆肝一次更長久。
+  tags: [consistency, routine]
+- id: q-everyday-047
+  text: 洗澡時哼的調子，出來記得錄下來。
+  tags: [gaps, ordinary]
+- id: q-everyday-048
+  text: 微小的進度也是進度，不用打折看待。
+  tags: [small_steps, little]
+- id: q-everyday-049
+  text: 今天只想整理素材夾，那也很有用。
+  tags: [everyday, routine]
+- id: q-everyday-050
+  text: 把一件大事拆成七天，每天就變得可行。
+  tags: [small_steps, consistency]
+- id: q-everyday-051
+  text: 生活的邊角料，正是創作的好材料。
+  tags: [ordinary, gaps]
+- id: q-everyday-052
+  text: 不必今天做很多，只要今天有碰到。
+  tags: [everyday, small_steps]
+- id: q-everyday-053
+  text: 睡前的一個念頭，值得你伸手記下。
+  tags: [routine, little]
+- id: q-everyday-054
+  text: 你走過的每條巷子，都可能變成一個場景。
+  tags: [ordinary, everyday]
+- id: q-everyday-055
+  text: 慢一點沒關係，重要的是你還在做。
+  tags: [consistency, everyday]
+- id: q-everyday-056
+  text: 一句話的草稿，勝過腦中完美的整篇。
+  tags: [small_steps, little]
+- id: q-everyday-057
+  text: 午休最後五分鐘，剛好夠塗一格。
+  tags: [gaps, routine]
+- id: q-everyday-058
+  text: 平常心也是一種心，不必天天熱血。
+  tags: [ordinary, everyday]
+- id: q-everyday-059
+  text: 把靈感當種子，今天先埋下，不急著發芽。
+  tags: [little, everyday]
+- id: q-everyday-060
+  text: 每天同一個時間坐下，身體會記得。
+  tags: [routine, consistency]
+- id: q-everyday-061
+  text: 今天只改標題也算數，明天再動內文。
+  tags: [small_steps, daily]
+- id: q-everyday-062
+  text: 廚房飄出的味道，也能寫成一段文字。
+  tags: [ordinary, gaps]
+- id: q-everyday-063
+  text: 微小到不起眼的堅持，最後最耐看。
+  tags: [little, consistency]
+- id: q-everyday-064
+  text: 沒完成的半成品，比空白的完美更值錢。
+  tags: [everyday, small_steps]
+- id: q-everyday-065
+  text: 把創作放進刷牙的時間旁邊，它會慢慢長出來。
+  tags: [routine, gaps]
+- id: q-everyday-066
+  text: 今天狀態不好，那就只做最輕鬆的那步。
+  tags: [everyday, small_steps]
+- id: q-everyday-067
+  text: 一天一句，累積起來就是你的語氣。
+  tags: [daily, consistency]
+- id: q-everyday-068
+  text: 平凡日子裡的一個細節，就夠你寫很久。
+  tags: [ordinary, little]
+- id: q-everyday-069
+  text: 不用衝刺，散步式的前進也會抵達。
+  tags: [small_steps, everyday]
+- id: q-everyday-070
+  text: 隨手畫的塗鴉，說不定藏著下一個作品。
+  tags: [gaps, little]
+- id: q-everyday-071
+  text: 把大目標藏起來，只看今天這一格。
+  tags: [small_steps, daily]
+- id: q-everyday-072
+  text: 洗衣機轉的時候，你也可以轉一段旋律。
+  tags: [gaps, ordinary]
+- id: q-everyday-073
+  text: 每天多寫一行，一個月後回頭會嚇到自己。
+  tags: [consistency, daily]
+- id: q-everyday-074
+  text: 今天沒進度，也不代表你退步了。
+  tags: [everyday, ordinary]
+- id: q-everyday-075
+  text: 一枝筆一張紙，就能填滿等待的空檔。
+  tags: [gaps, little]
+- id: q-everyday-076
+  text: 把想做的事拆到最小，小到不會抗拒。
+  tags: [small_steps, little]
+- id: q-everyday-077
+  text: 日常的重複裡，藏著你獨有的節奏。
+  tags: [routine, ordinary]
+- id: q-everyday-078
+  text: 今天只想看別人的作品，那也是養分。
+  tags: [everyday, gaps]
+- id: q-everyday-079
+  text: 一點靈感火花，先記下再說，別讓它跑掉。
+  tags: [little, gaps]
+- id: q-everyday-080
+  text: 微小的每一步，都在替未來鋪路。
+  tags: [small_steps, consistency]
+- id: q-everyday-081
+  text: 不用每天都精彩，安靜的日子也算一天。
+  tags: [ordinary, everyday]
+- id: q-everyday-082
+  text: 把調色盤存起來，累的時候也是一種完成。
+  tags: [everyday, little]
+- id: q-everyday-083
+  text: 早晨第一杯水的時間，順手記個念頭。
+  tags: [routine, gaps]
+- id: q-everyday-084
+  text: 一天一點，不求快，只求還在路上。
+  tags: [consistency, daily]
+- id: q-everyday-085
+  text: 你今天過的普通日子，是你作品的底色。
+  tags: [ordinary, everyday]
+- id: q-everyday-086
+  text: 電梯上樓的十秒，也能決定一個標題。
+  tags: [gaps, little]
+- id: q-everyday-087
+  text: 半途而廢的草稿，留著都比丟了好。
+  tags: [everyday, small_steps]
+- id: q-everyday-088
+  text: 固定一個小儀式，讓開始變得不費力。
+  tags: [routine, consistency]
+- id: q-everyday-089
+  text: 今天只想發呆，那就好好發呆，靈感會來。
+  tags: [everyday, ordinary]
+- id: q-everyday-090
+  text: 一次做一格，格子總會被填滿。
+  tags: [small_steps, daily]
+- id: q-everyday-091
+  text: 生活裡沒被注意的角落，最適合藏故事。
+  tags: [ordinary, gaps]
+- id: q-everyday-092
+  text: 把靈感寫在手機備忘錄，比記在腦裡牢。
+  tags: [little, gaps]
+- id: q-everyday-093
+  text: 每天固定翻一頁筆記本，習慣自己會長。
+  tags: [routine, daily]
+- id: q-everyday-094
+  text: 今天只做五分鐘也很好，你有出現就贏了。
+  tags: [everyday, small_steps]
+- id: q-everyday-095
+  text: 平凡的重複，最後會磨出不平凡的手感。
+  tags: [routine, consistency]
+- id: q-everyday-096
+  text: 一句隨口的話，寫下來就成了句子。
+  tags: [little, gaps]
+- id: q-everyday-097
+  text: 不必等大塊時間，碎片時間也能堆成作品。
+  tags: [gaps, small_steps]
+- id: q-everyday-098
+  text: 今天只想收拾桌面，那就替明天鋪好路。
+  tags: [everyday, routine]
+- id: q-everyday-099
+  text: 微小的火苗，只要不熄就會有下一天。
+  tags: [little, consistency]
+- id: q-everyday-100
+  text: 一天畫一片葉子，慢慢就有一整棵樹。
+  tags: [daily, small_steps]
+- id: q-everyday-101
+  text: 你不必時時在狀態裡，日常也在替你儲備。
+  tags: [ordinary, everyday]
+- id: q-everyday-102
+  text: 把想法先寫壞沒關係，壞的可以再改。
+  tags: [small_steps, everyday]
+- id: q-everyday-103
+  text: 買菜路上聽到的對話，也是一段素材。
+  tags: [ordinary, gaps]
+- id: q-everyday-104
+  text: 每天回來看一眼，就算沒動也是一種在。
+  tags: [routine, everyday]
+- id: q-everyday-105
+  text: 一點一滴，不是慢，是穩。
+  tags: [consistency, little]
+- id: q-everyday-106
+  text: 今天沒靈感，那就整理昨天的靈感。
+  tags: [everyday, gaps]
+- id: q-everyday-107
+  text: 把一首歌拆成一天一句，就寫得完了。
+  tags: [small_steps, daily]
+- id: q-everyday-108
+  text: 平凡的早晨，藏著你還沒發現的句子。
+  tags: [ordinary, little]
+- id: q-everyday-109
+  text: 睡前十分鐘的隨筆，是給自己的溫柔。
+  tags: [routine, gaps]
+- id: q-everyday-110
+  text: 微小的動作重複久了，就成了你的風格。
+  tags: [consistency, routine]
+- id: q-everyday-111
+  text: 今天只想換個字體看看，那也是在創作。
+  tags: [everyday, little]
+- id: q-everyday-112
+  text: 一格一格填，不用一次就把畫面填滿。
+  tags: [small_steps, gaps]
+- id: q-everyday-113
+  text: 生活的縫隙裡，剛好夠塞一個小點子。
+  tags: [gaps, little]
+- id: q-everyday-114
+  text: 每天做一點點，勝過想很多卻不動。
+  tags: [consistency, small_steps]
+- id: q-everyday-115
+  text: 今天過得很普通，這本身就是可以記的事。
+  tags: [ordinary, daily]
+- id: q-everyday-116
+  text: 把難的部分留到有力氣時，先做簡單的。
+  tags: [small_steps, everyday]
+- id: q-everyday-117
+  text: 一段錄音、一張隨拍，都是今天的紀錄。
+  tags: [little, gaps]
+- id: q-everyday-118
+  text: 固定的日常裡，也能偷偷長出新東西。
+  tags: [routine, ordinary]
+- id: q-everyday-119
+  text: 今天只想看看就好，看也是一種參與。
+  tags: [everyday, gaps]
+- id: q-everyday-120
+  text: 一天一磚，房子總有蓋好的那天。
+  tags: [consistency, small_steps]
+- id: q-everyday-121
+  text: 平凡的細節寫多了，就成了一個世界。
+  tags: [ordinary, little]
+- id: q-everyday-122
+  text: 沒空的時候，光是想著它也不算浪費。
+  tags: [everyday, gaps]
+- id: q-everyday-123
+  text: 把工具放在伸手可及的地方，開始就快一點。
+  tags: [routine, little]
+- id: q-everyday-124
+  text: 今天狀態普通，那就做普通份量的事。
+  tags: [everyday, ordinary]
+- id: q-everyday-125
+  text: 一句今天寫的話，是明天靈感的鉤子。
+  tags: [gaps, daily]
+- id: q-everyday-126
+  text: 微小的堅持，不必轟轟烈烈也能發光。
+  tags: [little, consistency]
+- id: q-everyday-127
+  text: 等麵煮好的三分鐘，夠你想一個開頭。
+  tags: [gaps, ordinary]
+- id: q-everyday-128
+  text: 今天只想存個草稿，明天的你會接住它。
+  tags: [small_steps, everyday]
+- id: q-everyday-129
+  text: 日復一日的小動作，是最不張揚的天賦。
+  tags: [routine, consistency]
+- id: q-everyday-130
+  text: 平凡的午後，也可以是靈感的產地。
+  tags: [ordinary, everyday]
+- id: q-everyday-131
+  text: 一次一句，句子總會排成一段。
+  tags: [small_steps, little]
+- id: q-everyday-132
+  text: 把想法丟進資料夾，未來翻到就是驚喜。
+  tags: [gaps, everyday]
+- id: q-everyday-133
+  text: 今天累的話，做十分之一也是你做的。
+  tags: [everyday, small_steps]
+- id: q-everyday-134
+  text: 早起的安靜時光，最適合放一點創作。
+  tags: [routine, gaps]
+- id: q-everyday-135
+  text: 微小不代表沒份量，它只是慢慢顯現。
+  tags: [little, consistency]
+- id: q-everyday-136
+  text: 一天翻一頁靈感簿，習慣自己會接手。
+  tags: [routine, daily]
+- id: q-everyday-137
+  text: 今天沒創作，也不必跟自己算帳。
+  tags: [everyday, ordinary]
+- id: q-everyday-138
+  text: 把大計畫縮成今天的一個小任務。
+  tags: [small_steps, little]
+- id: q-everyday-139
+  text: 走路時哼的旋律，回家用一分鐘記下。
+  tags: [gaps, ordinary]
+- id: q-everyday-140
+  text: 平常的通勤路，看久了也會有故事。
+  tags: [ordinary, routine]
+- id: q-everyday-141
+  text: 一點點也是在動，動著就不會生鏽。
+  tags: [consistency, small_steps]
+- id: q-everyday-142
+  text: 今天只想調整排版，那也是一種完成。
+  tags: [everyday, little]
+- id: q-everyday-143
+  text: 生活縫隙裡的靈光，記下就不會溜走。
+  tags: [gaps, little]
+- id: q-everyday-144
+  text: 每天固定五分鐘，比週末勉強兩小時穩。
+  tags: [routine, consistency]
+- id: q-everyday-145
+  text: 平凡的東西畫多了，眼睛會越來越準。
+  tags: [ordinary, small_steps]
+- id: q-everyday-146
+  text: 今天不想做完，只想開個頭，也很好。
+  tags: [everyday, small_steps]
+- id: q-everyday-147
+  text: 一小段草稿，是你留給明天的接力棒。
+  tags: [gaps, daily]
+- id: q-everyday-148
+  text: 微小的動作，累積成別人學不走的手感。
+  tags: [little, consistency]
+- id: q-everyday-149
+  text: 今天只想聽首歌找感覺，那也算準備。
+  tags: [everyday, gaps]
+- id: q-everyday-150
+  text: 一天做一件小事，日子會變得有形狀。
+  tags: [daily, small_steps]
+- id: q-everyday-151
+  text: 把靈感留在睡前那一刻，隔天再慢慢展開。
+  tags: [routine, gaps]
+- id: q-everyday-152
+  text: 平凡的重複裡，藏著別人偷不走的細節。
+  tags: [ordinary, routine]
+- id: q-everyday-153
+  text: 今天做不到多，那就把少的那點做好。
+  tags: [everyday, small_steps]
+- id: q-everyday-154
+  text: 一句備忘、一張截圖，都是給未來的線索。
+  tags: [little, gaps]
+- id: q-everyday-155
+  text: 每天回到同一張桌子，靈感也知道去哪找你。
+  tags: [routine, consistency]
+- id: q-everyday-156
+  text: 微小的今天，是明天的地基。
+  tags: [little, daily]
+- id: q-everyday-157
+  text: 今天只想整理靈感，那就替未來省了時間。
+  tags: [everyday, routine]
+- id: q-everyday-158
+  text: 一格一格慢慢上色，急不出好顏色。
+  tags: [small_steps, ordinary]
+- id: q-everyday-159
+  text: 平常日子的一個瞬間，值得你停下來看。
+  tags: [ordinary, little]
+- id: q-everyday-160
+  text: 空檔不必填滿，留一點給念頭發酵。
+  tags: [gaps, everyday]
+- id: q-everyday-161
+  text: 每天一點，不比誰快，只跟昨天的自己比。
+  tags: [consistency, daily]
+- id: q-everyday-162
+  text: 今天只想寫個標題，那就從標題開始。
+  tags: [small_steps, everyday]
+- id: q-everyday-163
+  text: 平凡的窗景，看久了也會變成畫面。
+  tags: [ordinary, gaps]
+- id: q-everyday-164
+  text: 微小的每天，會在某天突然連成一條線。
+  tags: [little, consistency]
+- id: q-everyday-165
+  text: 今天力氣少，就把力氣花在最想做的那點。
+  tags: [everyday, small_steps]
+- id: q-everyday-166
+  text: 一段隨手記的對話，是角色的第一句台詞。
+  tags: [gaps, ordinary]
+- id: q-everyday-167
+  text: 固定的作息裡，塞一個小小的創作角落。
+  tags: [routine, little]
+- id: q-everyday-168
+  text: 今天沒完成任何事，也還是完整的一天。
+  tags: [everyday, ordinary]
+- id: q-everyday-169
+  text: 一天一句，慢慢就有了自己的語彙。
+  tags: [daily, consistency]
+- id: q-everyday-170
+  text: 把想法先擱著，讓它在日常裡慢慢成形。
+  tags: [gaps, everyday]
+- id: q-everyday-171
+  text: 微小的堅持，不用向誰證明，向自己就好。
+  tags: [little, consistency]
+- id: q-everyday-172
+  text: 今天只想備份檔案，那也是照顧作品。
+  tags: [everyday, routine]
+- id: q-everyday-173
+  text: 一點靈感，趁熱記下，冷了就想不起來。
+  tags: [gaps, little]
+- id: q-everyday-174
+  text: 平凡的傍晚，也能是一段文字的開頭。
+  tags: [ordinary, daily]
+- id: q-everyday-175
+  text: 每天做一點，作品就在不知不覺中長大。
+  tags: [consistency, small_steps]
+- id: q-everyday-176
+  text: 今天只想坐著看看昨天做的，那也算陪伴。
+  tags: [everyday, gaps]
+- id: q-everyday-177
+  text: 一天一個小標記，回頭看就是一條走過的路。
+  tags: [daily, little]
+- id: q-everyday-178
+  text: 生活的縫隙不會等你，但也隨時歡迎你回來。
+  tags: [gaps, everyday]
+- id: q-everyday-179
+  text: 微小而規律，比盛大而短暫更接近長久。
+  tags: [consistency, routine]
+- id: q-everyday-180
+  text: 今天做的那一點，明天不會消失，它在等你。
+  tags: [small_steps, everyday]
+- id: q-everyday-181
+  text: 平凡的每一天，本身就是最耐讀的作品。
+  tags: [ordinary, daily]

@@ -1,0 +1,540 @@
+- id: q-curiosity-001
+  text: 不懂的東西，先去碰一下，再決定要不要懂。
+  tags: [curiosity, trying]
+- id: q-curiosity-002
+  text: 一個問題如果一直冒出來，它大概值得你認真看一眼。
+  tags: [question, curiosity]
+- id: q-curiosity-003
+  text: 今天沒力氣探索也沒關係，好奇心會等你。
+  tags: [curiosity, openness]
+- id: q-curiosity-004
+  text: 走一條沒走過的路回家，就算只差一個轉角。
+  tags: [exploration, trying]
+- id: q-curiosity-005
+  text: 你不必先愛上一件事，才有資格去試試看。
+  tags: [trying, openness]
+- id: q-curiosity-006
+  text: 把「為什麼會這樣」留在心裡一整天，也是一種探索。
+  tags: [question, wonder]
+- id: q-curiosity-007
+  text: 隔壁領域的一個詞，有時能解開你這邊卡住的結。
+  tags: [cross_field, discovery]
+- id: q-curiosity-008
+  text: 好奇不用轟轟烈烈，注意到一片葉子的形狀就夠了。
+  tags: [wonder, curiosity]
+- id: q-curiosity-009
+  text: 查一個你以為早就懂的字，常常會嚇一跳。
+  tags: [discovery, question]
+- id: q-curiosity-010
+  text: 覺得無聊的時候，是大腦在提醒你該換個角度看了。
+  tags: [curiosity, openness]
+- id: q-curiosity-011
+  text: 先不急著懂，讓陌生的東西在你心裡多待一會兒。
+  tags: [openness, wonder]
+- id: q-curiosity-012
+  text: 拆開一個看似簡單的東西，裡面通常藏著整個世界。
+  tags: [discovery, exploration]
+- id: q-curiosity-013
+  text: 你今天問出口的那個笨問題，可能救了未來的自己。
+  tags: [question, curiosity]
+- id: q-curiosity-014
+  text: 換一種調味料，也是一次小小的實驗。
+  tags: [trying, exploration]
+- id: q-curiosity-015
+  text: 不知道答案，是探索開始的地方，不是結束。
+  tags: [question, exploration]
+- id: q-curiosity-016
+  text: 讓自己在書店裡走錯區，往往撿到意外的東西。
+  tags: [discovery, exploration]
+- id: q-curiosity-017
+  text: 對一件小事多問一句，世界就會多回你一點。
+  tags: [question, curiosity]
+- id: q-curiosity-018
+  text: 你不需要理由才去看看窗外的那朵雲。
+  tags: [wonder, openness]
+- id: q-curiosity-019
+  text: 把不同的兩件事放在一起想，火花常常在那裡。
+  tags: [cross_field, discovery]
+- id: q-curiosity-020
+  text: 今天只想安靜，也可以只是靜靜地觀察。
+  tags: [wonder, openness]
+- id: q-curiosity-021
+  text: 一個陌生的名字，值得你花三分鐘去認識它。
+  tags: [discovery, curiosity]
+- id: q-curiosity-022
+  text: 試著把你會的東西，講給完全外行的人聽。
+  tags: [cross_field, trying]
+- id: q-curiosity-023
+  text: 迷路的時候，順便看看你從沒看過的街景。
+  tags: [exploration, discovery]
+- id: q-curiosity-024
+  text: 好奇心不會用完，它越用越大。
+  tags: [curiosity, openness]
+- id: q-curiosity-025
+  text: 你可以只是想知道，不必真的變成專家。
+  tags: [curiosity, openness]
+- id: q-curiosity-026
+  text: 一個「如果⋯⋯會怎樣」的念頭，值得你認真對待。
+  tags: [question, wonder]
+- id: q-curiosity-027
+  text: 換條路線通勤，讓熟悉的城市重新變陌生一點。
+  tags: [exploration, trying]
+- id: q-curiosity-028
+  text: 你不欣賞的東西，也許只是還沒有人幫你翻譯過。
+  tags: [openness, cross_field]
+- id: q-curiosity-029
+  text: 把好奇留給日常，比留給遠方更容易實現。
+  tags: [curiosity, wonder]
+- id: q-curiosity-030
+  text: 動手做壞一次，比看十遍教學學得還深。
+  tags: [trying, discovery]
+- id: q-curiosity-031
+  text: 每個領域的高手，講的其實常是同一件事。
+  tags: [cross_field, discovery]
+- id: q-curiosity-032
+  text: 今天的探索額度很低也沒關係，明天還有。
+  tags: [openness, exploration]
+- id: q-curiosity-033
+  text: 一個你答不出的問題，比一百個你會的更珍貴。
+  tags: [question, curiosity]
+- id: q-curiosity-034
+  text: 隨手翻開一本不屬於你的雜誌，看看別人在意什麼。
+  tags: [cross_field, discovery]
+- id: q-curiosity-035
+  text: 好奇是允許自己暫時不確定。
+  tags: [openness, curiosity]
+- id: q-curiosity-036
+  text: 把「這是什麼」問到底，你會走到很遠的地方。
+  tags: [question, exploration]
+- id: q-curiosity-037
+  text: 試一道你從沒做過的菜，就算最後叫了外送。
+  tags: [trying, exploration]
+- id: q-curiosity-038
+  text: 你注意到的細節，就是你的好奇留下的腳印。
+  tags: [wonder, discovery]
+- id: q-curiosity-039
+  text: 別急著關掉那個讓你困惑的畫面，多看一秒。
+  tags: [wonder, curiosity]
+- id: q-curiosity-040
+  text: 陌生的技能，先當成玩具，不要當成作業。
+  tags: [trying, openness]
+- id: q-curiosity-041
+  text: 一個好問題，會自己長出下一個問題。
+  tags: [question, discovery]
+- id: q-curiosity-042
+  text: 你可以對任何東西感興趣，不需要先問有沒有用。
+  tags: [curiosity, openness]
+- id: q-curiosity-043
+  text: 把手機放下三分鐘，看看眼前真正發生了什麼。
+  tags: [wonder, openness]
+- id: q-curiosity-044
+  text: 去問那個你一直想問卻怕丟臉的問題。
+  tags: [question, trying]
+- id: q-curiosity-045
+  text: 兩個不相干的興趣，可能在你身上第一次相遇。
+  tags: [cross_field, discovery]
+- id: q-curiosity-046
+  text: 今天只想看，不想做，那就好好地看。
+  tags: [wonder, openness]
+- id: q-curiosity-047
+  text: 一個新工具，值得你花五分鐘亂按一通。
+  tags: [trying, exploration]
+- id: q-curiosity-048
+  text: 你眼中的理所當然，是別人眼中的謎。
+  tags: [wonder, curiosity]
+- id: q-curiosity-049
+  text: 探索不一定要出遠門，翻抽屜也算。
+  tags: [exploration, discovery]
+- id: q-curiosity-050
+  text: 讓自己被一個問題困住，也是一種前進。
+  tags: [question, exploration]
+- id: q-curiosity-051
+  text: 你不必喜歡結果，才有資格享受過程。
+  tags: [trying, openness]
+- id: q-curiosity-052
+  text: 一句聽不懂的話，是一扇還沒打開的門。
+  tags: [curiosity, discovery]
+- id: q-curiosity-053
+  text: 把不同語言的同一個字查一查，會看見不同的世界觀。
+  tags: [cross_field, discovery]
+- id: q-curiosity-054
+  text: 好奇心低落的日子，就照顧自己，別逼它。
+  tags: [openness, curiosity]
+- id: q-curiosity-055
+  text: 你今天多知道的一件小事，會在某天派上用場。
+  tags: [discovery, curiosity]
+- id: q-curiosity-056
+  text: 試著問「還有沒有別的可能」，而不是「對不對」。
+  tags: [question, openness]
+- id: q-curiosity-057
+  text: 一個沒去過的店，也是一場小小的遠行。
+  tags: [exploration, trying]
+- id: q-curiosity-058
+  text: 對世界保持好奇，本身就是一種溫柔。
+  tags: [curiosity, wonder]
+- id: q-curiosity-059
+  text: 讓陌生人教你一件他擅長的事，你會意外開心。
+  tags: [cross_field, discovery]
+- id: q-curiosity-060
+  text: 一個你搞不懂的機制，值得你畫張圖試試看。
+  tags: [question, trying]
+- id: q-curiosity-061
+  text: 你可以只是喜歡看，不用變成收藏家。
+  tags: [wonder, openness]
+- id: q-curiosity-062
+  text: 換個時間出門，同一條街會給你不同的臉。
+  tags: [exploration, discovery]
+- id: q-curiosity-063
+  text: 把「我不會」改成「我還沒試」，只是一個念頭的距離。
+  tags: [trying, openness]
+- id: q-curiosity-064
+  text: 一個奇怪的念頭，別急著趕走它。
+  tags: [wonder, curiosity]
+- id: q-curiosity-065
+  text: 你感興趣的東西再冷門，都有人在為它著迷。
+  tags: [curiosity, openness]
+- id: q-curiosity-066
+  text: 追一個問題到源頭，常會經過你沒想過的風景。
+  tags: [question, exploration]
+- id: q-curiosity-067
+  text: 今天只把新東西看一眼就好，不必今天就懂。
+  tags: [openness, trying]
+- id: q-curiosity-068
+  text: 別的行業怎麼解決你的問題？值得問一問。
+  tags: [cross_field, question]
+- id: q-curiosity-069
+  text: 一件你嫌麻煩的事，拆開來看常常很有趣。
+  tags: [discovery, curiosity]
+- id: q-curiosity-070
+  text: 好奇不是要你什麼都懂，是讓你什麼都不怕靠近。
+  tags: [curiosity, openness]
+- id: q-curiosity-071
+  text: 試著用左手寫字，只是為了看看會怎樣。
+  tags: [trying, wonder]
+- id: q-curiosity-072
+  text: 一個你以為過時的東西，可能正在別處復活。
+  tags: [discovery, openness]
+- id: q-curiosity-073
+  text: 讓「這怎麼運作的」帶你走進一個新世界。
+  tags: [question, exploration]
+- id: q-curiosity-074
+  text: 你不需要許可，才能對一件事著迷。
+  tags: [curiosity, openness]
+- id: q-curiosity-075
+  text: 抬頭看看今天的天空是什麼顏色，這也算探索。
+  tags: [wonder, exploration]
+- id: q-curiosity-076
+  text: 把兩個領域的規則交換一下，會發現驚喜。
+  tags: [cross_field, discovery]
+- id: q-curiosity-077
+  text: 一次失敗的嘗試，也幫你劃掉了一個未知。
+  tags: [trying, discovery]
+- id: q-curiosity-078
+  text: 你今天可以只是靜靜地好奇，什麼都不用做。
+  tags: [curiosity, openness]
+- id: q-curiosity-079
+  text: 問「這是給誰設計的」，你會看見隱形的人。
+  tags: [question, wonder]
+- id: q-curiosity-080
+  text: 一個你不熟的音樂類型，值得你聽完一整首。
+  tags: [trying, discovery]
+- id: q-curiosity-081
+  text: 好奇會帶你認識自己都不知道的自己。
+  tags: [curiosity, discovery]
+- id: q-curiosity-082
+  text: 走進一間你平常不會進的店，看看裡面在賣什麼。
+  tags: [exploration, trying]
+- id: q-curiosity-083
+  text: 別人的答案很好，你的問題更重要。
+  tags: [question, curiosity]
+- id: q-curiosity-084
+  text: 把一個現象記下來，就算你還解釋不了它。
+  tags: [wonder, discovery]
+- id: q-curiosity-085
+  text: 今天低能量，就讓好奇心陪你休息，別催它工作。
+  tags: [openness, curiosity]
+- id: q-curiosity-086
+  text: 一個外行的問題，常常戳中專家的盲點。
+  tags: [question, cross_field]
+- id: q-curiosity-087
+  text: 試著把一件小事做到極致，你會看見新的維度。
+  tags: [trying, discovery]
+- id: q-curiosity-088
+  text: 你對世界的好奇，是它最喜歡收到的禮物。
+  tags: [curiosity, wonder]
+- id: q-curiosity-089
+  text: 換個角度重看一張老照片，會有新的發現。
+  tags: [discovery, wonder]
+- id: q-curiosity-090
+  text: 追根究底不是找碴，是溫柔地想理解。
+  tags: [question, openness]
+- id: q-curiosity-091
+  text: 一個你沒聽過的職業，背後是一整種生活。
+  tags: [cross_field, discovery]
+- id: q-curiosity-092
+  text: 你可以帶著問題睡覺，答案有時會在夢裡冒出來。
+  tags: [question, wonder]
+- id: q-curiosity-093
+  text: 試試看，是你送給可能性的一個機會。
+  tags: [trying, openness]
+- id: q-curiosity-094
+  text: 一片你沒注意過的雲，也是今天的新鮮事。
+  tags: [wonder, discovery]
+- id: q-curiosity-095
+  text: 把「無聊」當成訊號，去找點新的東西看。
+  tags: [curiosity, exploration]
+- id: q-curiosity-096
+  text: 別人習以為常的事，換你來問就變成新發現。
+  tags: [question, discovery]
+- id: q-curiosity-097
+  text: 學一個完全用不到的知識，只因為它好玩。
+  tags: [trying, curiosity]
+- id: q-curiosity-098
+  text: 你不必準備好，才能開始好奇。
+  tags: [openness, curiosity]
+- id: q-curiosity-099
+  text: 一個陌生的地圖角落，值得你放大看看。
+  tags: [exploration, discovery]
+- id: q-curiosity-100
+  text: 把日常的一個動作放慢，你會看見裡面的細節。
+  tags: [wonder, discovery]
+- id: q-curiosity-101
+  text: 問一句「這名字怎麼來的」，故事往往就打開了。
+  tags: [question, discovery]
+- id: q-curiosity-102
+  text: 你今天只想發呆，那就好好地對世界發呆。
+  tags: [wonder, openness]
+- id: q-curiosity-103
+  text: 兩個看似矛盾的想法，可以同時住在你腦裡。
+  tags: [openness, cross_field]
+- id: q-curiosity-104
+  text: 試著看懂一張你平常會跳過的圖表。
+  tags: [trying, discovery]
+- id: q-curiosity-105
+  text: 一個你回答不了的孩子問題，是最好的謎題。
+  tags: [question, wonder]
+- id: q-curiosity-106
+  text: 探索有時只是允許自己走遠一點點。
+  tags: [exploration, openness]
+- id: q-curiosity-107
+  text: 換個城市的人怎麼過日子？想想就很有意思。
+  tags: [cross_field, curiosity]
+- id: q-curiosity-108
+  text: 一件你以為很無聊的事，深入看常常會翻案。
+  tags: [discovery, openness]
+- id: q-curiosity-109
+  text: 你不需要一次懂全部，先懂一小塊就好。
+  tags: [openness, trying]
+- id: q-curiosity-110
+  text: 對著一個東西問「它以前是什麼」，時間就攤開了。
+  tags: [question, wonder]
+- id: q-curiosity-111
+  text: 試一個你一直說改天再說的小實驗，今天也行。
+  tags: [trying, exploration]
+- id: q-curiosity-112
+  text: 你注意到的怪事，可能是別人漏掉的線索。
+  tags: [wonder, discovery]
+- id: q-curiosity-113
+  text: 好奇不分大小，一個小疑問也是完整的好奇。
+  tags: [curiosity, openness]
+- id: q-curiosity-114
+  text: 把不同的兩本書輪流讀，它們會在你腦裡對話。
+  tags: [cross_field, discovery]
+- id: q-curiosity-115
+  text: 一條你沒點過的菜單品項，值得你賭一次。
+  tags: [trying, exploration]
+- id: q-curiosity-116
+  text: 你今天問的問題，是明天答案的種子。
+  tags: [question, curiosity]
+- id: q-curiosity-117
+  text: 看看一個你討厭的東西為什麼有人喜歡。
+  tags: [openness, question]
+- id: q-curiosity-118
+  text: 探索累了就靠著休息，好奇心不會離開你。
+  tags: [openness, curiosity]
+- id: q-curiosity-119
+  text: 一個新的比喻，能讓舊問題突然變透明。
+  tags: [cross_field, discovery]
+- id: q-curiosity-120
+  text: 對眼前的東西問一句「還能怎麼用」。
+  tags: [question, trying]
+- id: q-curiosity-121
+  text: 你可以只是好奇一個人怎麼想，不必同意他。
+  tags: [openness, curiosity]
+- id: q-curiosity-122
+  text: 走進不熟的巷子，多半藏著一點驚喜。
+  tags: [exploration, discovery]
+- id: q-curiosity-123
+  text: 一個你查了卻更困惑的答案，代表你更靠近了。
+  tags: [question, discovery]
+- id: q-curiosity-124
+  text: 今天只想小小地好奇一件事，那就足夠了。
+  tags: [curiosity, openness]
+- id: q-curiosity-125
+  text: 把兩種手藝混在一起，你可能發明一點新東西。
+  tags: [cross_field, trying]
+- id: q-curiosity-126
+  text: 一個你路過一百次的招牌，今天讀讀它寫什麼。
+  tags: [wonder, discovery]
+- id: q-curiosity-127
+  text: 問「如果反過來會怎樣」，常常打開一扇窗。
+  tags: [question, openness]
+- id: q-curiosity-128
+  text: 試著親手修一個小東西，而不是直接丟掉。
+  tags: [trying, discovery]
+- id: q-curiosity-129
+  text: 你對細節的好奇，會慢慢長成你的眼光。
+  tags: [wonder, curiosity]
+- id: q-curiosity-130
+  text: 一個陌生領域的入門影片，看十分鐘也值得。
+  tags: [cross_field, trying]
+- id: q-curiosity-131
+  text: 對一句廣告詞問「這是真的嗎」，你會學到很多。
+  tags: [question, discovery]
+- id: q-curiosity-132
+  text: 探索不必有目的地，走著走著就有了。
+  tags: [exploration, openness]
+- id: q-curiosity-133
+  text: 你今天能量不夠，就用眼睛探索，別用腳。
+  tags: [wonder, openness]
+- id: q-curiosity-134
+  text: 一個你覺得理所當然的規則，問問它為什麼存在。
+  tags: [question, curiosity]
+- id: q-curiosity-135
+  text: 試著模仿一個你欣賞的做法，再慢慢長出自己的。
+  tags: [trying, cross_field]
+- id: q-curiosity-136
+  text: 一種你沒吃過的水果，也是一趟小小的冒險。
+  tags: [trying, exploration]
+- id: q-curiosity-137
+  text: 你好奇的樣子，比你懂多少更迷人。
+  tags: [curiosity, openness]
+- id: q-curiosity-138
+  text: 把一個複雜的東西畫成三個圈，你就開始懂了。
+  tags: [trying, discovery]
+- id: q-curiosity-139
+  text: 一句你聽不懂的行話，是一段別人的日常。
+  tags: [cross_field, curiosity]
+- id: q-curiosity-140
+  text: 對世界說一聲「這好有趣」，不需要任何理由。
+  tags: [wonder, curiosity]
+- id: q-curiosity-141
+  text: 今天只翻開新東西的第一頁，就是一種前進。
+  tags: [trying, openness]
+- id: q-curiosity-142
+  text: 一個你答錯的猜測，也幫你排除了一條路。
+  tags: [trying, discovery]
+- id: q-curiosity-143
+  text: 問「這東西還可以是別的樣子嗎」，設計就開始了。
+  tags: [question, cross_field]
+- id: q-curiosity-144
+  text: 你不必是專家，也能為一件事發亮眼睛。
+  tags: [curiosity, openness]
+- id: q-curiosity-145
+  text: 換個材料重做一次，結果常常超出預期。
+  tags: [trying, discovery]
+- id: q-curiosity-146
+  text: 一個你不理解的選擇，背後多半有它的道理。
+  tags: [openness, question]
+- id: q-curiosity-147
+  text: 抬頭認一顆你不會叫名字的星星。
+  tags: [wonder, exploration]
+- id: q-curiosity-148
+  text: 好奇心累了就讓它躺著，明天它會自己站起來。
+  tags: [openness, curiosity]
+- id: q-curiosity-149
+  text: 把一件熟悉的事講給外星人聽，你會重新看見它。
+  tags: [cross_field, wonder]
+- id: q-curiosity-150
+  text: 一個你沒查過的字源，藏著一整段歷史。
+  tags: [discovery, question]
+- id: q-curiosity-151
+  text: 試著問「最早是誰想到這個的」。
+  tags: [question, discovery]
+- id: q-curiosity-152
+  text: 探索可以很小，小到只是換一條散步路線。
+  tags: [exploration, openness]
+- id: q-curiosity-153
+  text: 你今天的好奇不必有成果，能享受就夠了。
+  tags: [curiosity, openness]
+- id: q-curiosity-154
+  text: 一個別的領域的比賽，看它的規則也很有趣。
+  tags: [cross_field, curiosity]
+- id: q-curiosity-155
+  text: 把一個你討厭的任務當成謎題，感覺會不一樣。
+  tags: [openness, trying]
+- id: q-curiosity-156
+  text: 對一個你崇拜的人，問他最初是怎麼開始的。
+  tags: [question, discovery]
+- id: q-curiosity-157
+  text: 一種你沒用過的顏色，值得你今天試一筆。
+  tags: [trying, exploration]
+- id: q-curiosity-158
+  text: 你眼裡的世界越大，你就越自由。
+  tags: [wonder, openness]
+- id: q-curiosity-159
+  text: 一個「我怎麼從沒想過」的瞬間，就是探索的獎賞。
+  tags: [discovery, wonder]
+- id: q-curiosity-160
+  text: 把兩種你都懂一點的東西湊在一起，看看發生什麼。
+  tags: [cross_field, trying]
+- id: q-curiosity-161
+  text: 問一句「這背後的原理是什麼」，門就開了一條縫。
+  tags: [question, curiosity]
+- id: q-curiosity-162
+  text: 你不需要走很遠，才能發現新的東西。
+  tags: [exploration, discovery]
+- id: q-curiosity-163
+  text: 今天只想閉眼休息，那就聽聽周圍的聲音。
+  tags: [wonder, openness]
+- id: q-curiosity-164
+  text: 一個你以為只有一種答案的問題，其實有很多種。
+  tags: [question, openness]
+- id: q-curiosity-165
+  text: 試著用陌生的方式，做一件你很熟的事。
+  tags: [trying, discovery]
+- id: q-curiosity-166
+  text: 一顆石頭的紋路裡，也有幾百萬年的故事。
+  tags: [wonder, discovery]
+- id: q-curiosity-167
+  text: 你可以對答案好奇，也可以對問題本身著迷。
+  tags: [question, curiosity]
+- id: q-curiosity-168
+  text: 換一個你不熟的節目看看，別人在關心什麼。
+  tags: [cross_field, curiosity]
+- id: q-curiosity-169
+  text: 一個小小的「咦」，就是好奇心在敲門。
+  tags: [wonder, curiosity]
+- id: q-curiosity-170
+  text: 探索不是要征服未知，是願意跟它做朋友。
+  tags: [exploration, openness]
+- id: q-curiosity-171
+  text: 你今天做的一次小嘗試，會偷偷改變往後的路。
+  tags: [trying, discovery]
+- id: q-curiosity-172
+  text: 對一個習慣問「我是什麼時候開始這樣的」。
+  tags: [question, wonder]
+- id: q-curiosity-173
+  text: 一個新工具的說明書，偶爾也藏著驚喜。
+  tags: [discovery, trying]
+- id: q-curiosity-174
+  text: 你保持著好奇，世界就一直對你敞開。
+  tags: [curiosity, openness]
+- id: q-curiosity-175
+  text: 把一個難題翻譯成別的領域的話，它常會鬆動。
+  tags: [cross_field, question]
+- id: q-curiosity-176
+  text: 一次隨手的塗鴉，也可能長成一個新想法。
+  tags: [trying, discovery]
+- id: q-curiosity-177
+  text: 今天只想安靜地看世界轉，那也是一種參與。
+  tags: [wonder, openness]
+- id: q-curiosity-178
+  text: 對眼前的普通事物問一句「它其實很神奇吧」。
+  tags: [wonder, curiosity]
+- id: q-curiosity-179
+  text: 一個你還沒去過的方向，永遠為你留著。
+  tags: [exploration, openness]
+- id: q-curiosity-180
+  text: 帶著問題過生活，日子就不會只是重複。
+  tags: [question, curiosity]

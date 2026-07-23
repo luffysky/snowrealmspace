@@ -1,0 +1,724 @@
+# 每日創作提示 — 自然與戶外觀察
+# 主題：走出去看、天空/植物/光、季節變化、把自然帶進作品、戶外速寫
+# 允許低能量的日子，具體可動手做。
+
+- id: p-nature-001
+  text: 出門看一次天空，把此刻的顏色用三個詞寫下來。
+  tags: [nature, sky, observation]
+  estimatedMinutes: 5
+- id: p-nature-002
+  text: 找一片離你最近的葉子，描出它的邊緣線條。
+  tags: [plant, sketch]
+  estimatedMinutes: 10
+- id: p-nature-003
+  text: 站在窗邊三分鐘，只聽戶外的聲音，記下你聽到幾種。
+  tags: [nature, observation]
+  estimatedMinutes: 3
+- id: p-nature-004
+  text: 觀察此刻光線從哪個方向來，在紙上畫一個箭頭標出角度。
+  tags: [light, observation]
+  estimatedMinutes: 5
+- id: p-nature-005
+  text: 走到戶外，撿一樣自然的小東西帶回來放在桌上。
+  tags: [nature, outdoor]
+  estimatedMinutes: 8
+- id: p-nature-006
+  text: 拍一張今天雲的照片，明天再拍一張，比較兩者。
+  tags: [sky, observation]
+  estimatedMinutes: 5
+- id: p-nature-007
+  text: 找一棵你每天會經過的樹，記下它今天的樣子。
+  tags: [plant, season]
+  estimatedMinutes: 6
+- id: p-nature-008
+  text: 用五分鐘畫下窗外的地平線，只畫輪廓就好。
+  tags: [outdoor, sketch]
+  estimatedMinutes: 5
+- id: p-nature-009
+  text: 觀察一朵花或一片葉子上的光影，找出最亮的那一點。
+  tags: [light, plant]
+  estimatedMinutes: 7
+- id: p-nature-010
+  text: 走出門呼吸十次，記下空氣今天聞起來像什麼。
+  tags: [nature, outdoor]
+  estimatedMinutes: 4
+- id: p-nature-011
+  text: 抬頭找一片形狀有趣的雲，替它取一個名字。
+  tags: [sky, observation]
+  estimatedMinutes: 4
+- id: p-nature-012
+  text: 挑一種你看到的綠色，試著用文字精確描述它的深淺。
+  tags: [plant, observation]
+  estimatedMinutes: 6
+- id: p-nature-013
+  text: 在戶外找一處陰影，觀察它的邊緣是清晰還是柔和。
+  tags: [light, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-014
+  text: 畫一株你身邊的植物，只用連續不斷的一條線完成。
+  tags: [plant, sketch]
+  estimatedMinutes: 10
+- id: p-nature-015
+  text: 記下今天日出或日落的大約時間，感受白晝的長度。
+  tags: [season, sky]
+  estimatedMinutes: 3
+- id: p-nature-016
+  text: 找一顆石頭，觀察它的紋路，想像它經歷過什麼。
+  tags: [nature, observation]
+  estimatedMinutes: 8
+- id: p-nature-017
+  text: 站在戶外，數數看你能認出幾種不同的樹或草。
+  tags: [plant, outdoor]
+  estimatedMinutes: 7
+- id: p-nature-018
+  text: 觀察今天的天空是哪一種藍，把它調進你的作品裡。
+  tags: [sky, light]
+  estimatedMinutes: 12
+- id: p-nature-019
+  text: 用手機錄十秒戶外的環境音，之後閉眼重聽一次。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-020
+  text: 找一片落葉，把它夾進書裡，記下撿到的地點。
+  tags: [plant, season]
+  estimatedMinutes: 6
+- id: p-nature-021
+  text: 觀察陽光穿過葉子時的顏色，比直射的陽光更暖還是更冷。
+  tags: [light, plant]
+  estimatedMinutes: 7
+- id: p-nature-022
+  text: 快速畫下此刻雲的形狀，三十秒內完成，不求準確。
+  tags: [sky, sketch]
+  estimatedMinutes: 3
+- id: p-nature-023
+  text: 走到最近的一扇窗，描述你看到的最遠的東西。
+  tags: [outdoor, observation]
+  estimatedMinutes: 4
+- id: p-nature-024
+  text: 找一個開花的植物，數一數一朵花有幾片花瓣。
+  tags: [plant, observation]
+  estimatedMinutes: 6
+- id: p-nature-025
+  text: 觀察今天的風，看它讓哪些東西動了起來。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-026
+  text: 把今天天空的顏色，用色鉛筆或色票對應出來。
+  tags: [sky, light]
+  estimatedMinutes: 10
+- id: p-nature-027
+  text: 觀察一處水面，看它如何反射天空與周圍的光。
+  tags: [light, observation]
+  estimatedMinutes: 8
+- id: p-nature-028
+  text: 到戶外找一種你不知道名字的植物，記下它的特徵。
+  tags: [plant, outdoor]
+  estimatedMinutes: 9
+- id: p-nature-029
+  text: 畫一片葉子的葉脈，像畫一張小地圖。
+  tags: [plant, sketch]
+  estimatedMinutes: 12
+- id: p-nature-030
+  text: 感受今天的溫度，用一句話描述它在皮膚上的感覺。
+  tags: [season, observation]
+  estimatedMinutes: 3
+- id: p-nature-031
+  text: 找一處有樹影的地面，觀察光斑的形狀與移動。
+  tags: [light, outdoor]
+  estimatedMinutes: 7
+- id: p-nature-032
+  text: 抬頭看看今天的月亮在不在，記下它的位置與形狀。
+  tags: [sky, observation]
+  estimatedMinutes: 4
+- id: p-nature-033
+  text: 觀察一隻在戶外的鳥或昆蟲，看牠三十秒都在做什麼。
+  tags: [nature, observation]
+  estimatedMinutes: 5
+- id: p-nature-034
+  text: 用今天撿到的自然物，排出一個簡單的小圖案。
+  tags: [nature, outdoor]
+  estimatedMinutes: 10
+- id: p-nature-035
+  text: 觀察清晨或傍晚的光，它和正午的光有什麼不同。
+  tags: [light, season]
+  estimatedMinutes: 6
+- id: p-nature-036
+  text: 走出門，找出視野裡最高的那棵樹或建築。
+  tags: [outdoor, observation]
+  estimatedMinutes: 4
+- id: p-nature-037
+  text: 畫下一朵花的正面，只花五分鐘，不用畫完。
+  tags: [plant, sketch]
+  estimatedMinutes: 5
+- id: p-nature-038
+  text: 觀察今天雲的高度，是低垂還是高遠。
+  tags: [sky, observation]
+  estimatedMinutes: 4
+- id: p-nature-039
+  text: 找一段樹皮，用手感受它的紋理，再用文字描述。
+  tags: [plant, nature]
+  estimatedMinutes: 6
+- id: p-nature-040
+  text: 記錄今天的天氣一個詞，連續記一週後回頭看。
+  tags: [season, observation]
+  estimatedMinutes: 3
+- id: p-nature-041
+  text: 觀察陽光此刻落在室內的哪個角落，畫出那塊光的形狀。
+  tags: [light, sketch]
+  estimatedMinutes: 8
+- id: p-nature-042
+  text: 到戶外閉眼一分鐘，睜眼後寫下第一個注意到的東西。
+  tags: [nature, outdoor]
+  estimatedMinutes: 4
+- id: p-nature-043
+  text: 找一株盆栽或路邊的草，觀察它朝哪個方向生長。
+  tags: [plant, observation]
+  estimatedMinutes: 5
+- id: p-nature-044
+  text: 用天空今天的顏色，替你正在做的作品挑一個背景色。
+  tags: [sky, light]
+  estimatedMinutes: 12
+- id: p-nature-045
+  text: 觀察一朵雲飄動的方向，猜猜看風從哪裡吹來。
+  tags: [sky, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-046
+  text: 撿一片你覺得形狀最好看的葉子，把它描到本子上。
+  tags: [plant, sketch]
+  estimatedMinutes: 9
+- id: p-nature-047
+  text: 觀察此刻窗外光線的強弱，它讓你想到一天中的哪個時刻。
+  tags: [light, observation]
+  estimatedMinutes: 4
+- id: p-nature-048
+  text: 走到戶外，找出離你最近的一種會動的自然物。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-049
+  text: 觀察今天空氣的清晰度，遠方的東西是清楚還是模糊。
+  tags: [observation, season]
+  estimatedMinutes: 4
+- id: p-nature-050
+  text: 畫一棵樹的剪影，只填滿黑色，不畫細節。
+  tags: [plant, sketch]
+  estimatedMinutes: 8
+- id: p-nature-051
+  text: 找一朵含苞的花，記下它今天開了幾分。
+  tags: [plant, season]
+  estimatedMinutes: 5
+- id: p-nature-052
+  text: 觀察黃昏時天空的漸層，從地平線到頭頂變了幾種顏色。
+  tags: [sky, light]
+  estimatedMinutes: 8
+- id: p-nature-053
+  text: 走出門，記下腳下踩到的地面是什麼材質。
+  tags: [outdoor, observation]
+  estimatedMinutes: 3
+- id: p-nature-054
+  text: 觀察一片草地，看它其實藏了幾種不同的植物。
+  tags: [plant, outdoor]
+  estimatedMinutes: 7
+- id: p-nature-055
+  text: 把今天看到的一種自然顏色，記進你的靈感筆記。
+  tags: [nature, observation]
+  estimatedMinutes: 4
+- id: p-nature-056
+  text: 觀察光線讓一個物體投下的影子，影子是什麼顏色。
+  tags: [light, observation]
+  estimatedMinutes: 6
+- id: p-nature-057
+  text: 找一處天空與地面相接的線，用一筆畫下來。
+  tags: [sky, sketch]
+  estimatedMinutes: 5
+- id: p-nature-058
+  text: 到戶外觀察一種樹的葉子如何排列在枝條上。
+  tags: [plant, outdoor]
+  estimatedMinutes: 8
+- id: p-nature-059
+  text: 感受今天的濕度，空氣是乾爽還是黏膩。
+  tags: [season, observation]
+  estimatedMinutes: 3
+- id: p-nature-060
+  text: 觀察窗外一整片景色，找出其中最亮與最暗的地方。
+  tags: [light, observation]
+  estimatedMinutes: 6
+- id: p-nature-061
+  text: 撿一顆種子或果實，觀察大自然把它設計成什麼形狀。
+  tags: [plant, nature]
+  estimatedMinutes: 7
+- id: p-nature-062
+  text: 快速素描此刻窗外的一角，限時三分鐘。
+  tags: [outdoor, sketch]
+  estimatedMinutes: 3
+- id: p-nature-063
+  text: 觀察今天天空有幾層雲，它們移動的速度一樣嗎。
+  tags: [sky, observation]
+  estimatedMinutes: 5
+- id: p-nature-064
+  text: 找一種你喜歡的植物氣味，靠近聞一次並記下感覺。
+  tags: [plant, nature]
+  estimatedMinutes: 5
+- id: p-nature-065
+  text: 觀察早晨的第一道光落在哪裡，替這一天開個頭。
+  tags: [light, season]
+  estimatedMinutes: 4
+- id: p-nature-066
+  text: 走到戶外，把視野裡的一種形狀重複畫五次。
+  tags: [outdoor, sketch]
+  estimatedMinutes: 10
+- id: p-nature-067
+  text: 觀察一片天空多久沒有變化，再回頭看它變了多少。
+  tags: [sky, observation]
+  estimatedMinutes: 8
+- id: p-nature-068
+  text: 找一株長在意外之處的植物，例如牆縫裡的草。
+  tags: [plant, outdoor]
+  estimatedMinutes: 6
+- id: p-nature-069
+  text: 記下今天季節給你的一個小訊號，例如某種花開了。
+  tags: [season, observation]
+  estimatedMinutes: 4
+- id: p-nature-070
+  text: 觀察逆光下一片葉子的邊緣，它是不是發亮了。
+  tags: [light, plant]
+  estimatedMinutes: 6
+- id: p-nature-071
+  text: 到戶外找一個天然的圓形，例如水珠或果實。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-072
+  text: 用一分鐘看一朵雲，看它有沒有慢慢改變形狀。
+  tags: [sky, observation]
+  estimatedMinutes: 3
+- id: p-nature-073
+  text: 畫下窗台上或路邊植物的影子，而不是植物本身。
+  tags: [light, sketch]
+  estimatedMinutes: 9
+- id: p-nature-074
+  text: 觀察雨後或清晨植物上的水珠，看它如何盛住光。
+  tags: [light, plant]
+  estimatedMinutes: 6
+- id: p-nature-075
+  text: 走出門找出今天最主要的一種聲音來源。
+  tags: [nature, outdoor]
+  estimatedMinutes: 4
+- id: p-nature-076
+  text: 觀察一棵樹從底部到頂端，顏色有沒有變化。
+  tags: [plant, observation]
+  estimatedMinutes: 6
+- id: p-nature-077
+  text: 記下今天日照的方向，午後它會移到哪裡去。
+  tags: [light, sky]
+  estimatedMinutes: 5
+- id: p-nature-078
+  text: 找一片你經常忽略的角落綠意，仔細看它一分鐘。
+  tags: [plant, outdoor]
+  estimatedMinutes: 4
+- id: p-nature-079
+  text: 觀察今天天空的雲量，用一到十給它一個數字。
+  tags: [sky, observation]
+  estimatedMinutes: 3
+- id: p-nature-080
+  text: 用戶外撿到的一片葉子，拓印出它的形狀。
+  tags: [plant, sketch]
+  estimatedMinutes: 12
+- id: p-nature-081
+  text: 觀察光線在一天中如何改變一面牆的顏色。
+  tags: [light, observation]
+  estimatedMinutes: 8
+- id: p-nature-082
+  text: 到戶外找出三種不同的綠，把它們並排記下。
+  tags: [plant, outdoor]
+  estimatedMinutes: 7
+- id: p-nature-083
+  text: 感受今天的天氣讓你想做什麼，順著它安排一件小事。
+  tags: [season, nature]
+  estimatedMinutes: 5
+- id: p-nature-084
+  text: 觀察遠方山或建築在今天天氣下的清晰程度。
+  tags: [observation, outdoor]
+  estimatedMinutes: 4
+- id: p-nature-085
+  text: 畫下此刻雲的下緣線條，它是平的還是起伏的。
+  tags: [sky, sketch]
+  estimatedMinutes: 6
+- id: p-nature-086
+  text: 找一朵花，觀察它的中心和邊緣顏色差多少。
+  tags: [plant, light]
+  estimatedMinutes: 6
+- id: p-nature-087
+  text: 走到戶外，注意此刻風的溫度是暖的還是涼的。
+  tags: [nature, season]
+  estimatedMinutes: 3
+- id: p-nature-088
+  text: 觀察陽光透過窗簾或樹葉時形成的光斑。
+  tags: [light, observation]
+  estimatedMinutes: 5
+- id: p-nature-089
+  text: 找一種正在結果或掉葉的樹，記錄季節的痕跡。
+  tags: [plant, season]
+  estimatedMinutes: 7
+- id: p-nature-090
+  text: 用今天天空的顏色，隨手塗一小塊色卡留著。
+  tags: [sky, light]
+  estimatedMinutes: 8
+- id: p-nature-091
+  text: 觀察戶外一個小角落三分鐘，寫下三個細節。
+  tags: [outdoor, observation]
+  estimatedMinutes: 5
+- id: p-nature-092
+  text: 找一片葉子，觀察正面與背面的顏色差別。
+  tags: [plant, observation]
+  estimatedMinutes: 5
+- id: p-nature-093
+  text: 記下今天第一次注意到天空是幾點，那時它什麼樣子。
+  tags: [sky, observation]
+  estimatedMinutes: 3
+- id: p-nature-094
+  text: 觀察一處水漥或積水，看它倒映了什麼。
+  tags: [light, outdoor]
+  estimatedMinutes: 6
+- id: p-nature-095
+  text: 到戶外找一種你叫得出名字的植物，向它打個招呼。
+  tags: [plant, nature]
+  estimatedMinutes: 4
+- id: p-nature-096
+  text: 畫下一根樹枝的分叉，看它像不像一條河。
+  tags: [plant, sketch]
+  estimatedMinutes: 10
+- id: p-nature-097
+  text: 觀察今天陽光的顏色偏暖還是偏白。
+  tags: [light, season]
+  estimatedMinutes: 4
+- id: p-nature-098
+  text: 走出門三分鐘，回來後把感受寫成一句話。
+  tags: [outdoor, nature]
+  estimatedMinutes: 4
+- id: p-nature-099
+  text: 觀察一朵雲的邊緣，是清楚的還是散開的。
+  tags: [sky, observation]
+  estimatedMinutes: 4
+- id: p-nature-100
+  text: 找一片苔蘚或小草叢，靠近看它像不像一片森林。
+  tags: [plant, observation]
+  estimatedMinutes: 7
+- id: p-nature-101
+  text: 記下今天光線讓你想到的一個顏色名稱。
+  tags: [light, observation]
+  estimatedMinutes: 3
+- id: p-nature-102
+  text: 到戶外找一樣正在變化的東西，例如枯萎或萌芽。
+  tags: [plant, season]
+  estimatedMinutes: 6
+- id: p-nature-103
+  text: 觀察黃昏的雲被夕陽染成什麼顏色。
+  tags: [sky, light]
+  estimatedMinutes: 6
+- id: p-nature-104
+  text: 用五分鐘素描窗外一棵樹的大致形狀。
+  tags: [plant, sketch]
+  estimatedMinutes: 5
+- id: p-nature-105
+  text: 走到戶外，感受今天陽光曬在身上的溫度。
+  tags: [light, outdoor]
+  estimatedMinutes: 3
+- id: p-nature-106
+  text: 觀察一種植物的花苞、盛開與凋謝，找找看都有哪些。
+  tags: [plant, season]
+  estimatedMinutes: 8
+- id: p-nature-107
+  text: 記下今天天空最特別的一個瞬間。
+  tags: [sky, observation]
+  estimatedMinutes: 3
+- id: p-nature-108
+  text: 找一處自然的線條，例如葉緣或海岸，畫下它的走勢。
+  tags: [nature, sketch]
+  estimatedMinutes: 9
+- id: p-nature-109
+  text: 觀察此刻室內最靠近窗戶的物體，它被光照亮了嗎。
+  tags: [light, observation]
+  estimatedMinutes: 4
+- id: p-nature-110
+  text: 到戶外找一種昆蟲或鳥的聲音，試著模仿它。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-111
+  text: 觀察今天雲的顏色，是純白還是帶灰帶黃。
+  tags: [sky, light]
+  estimatedMinutes: 4
+- id: p-nature-112
+  text: 找一片大葉子，把它當畫布，觀察上面的紋路走向。
+  tags: [plant, observation]
+  estimatedMinutes: 6
+- id: p-nature-113
+  text: 記錄今天日落的方位，它比昨天偏了嗎。
+  tags: [sky, season]
+  estimatedMinutes: 4
+- id: p-nature-114
+  text: 走出門，撿一樣能放進口袋的自然紀念品。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-115
+  text: 觀察一株植物在風中如何搖擺，哪個部分動得最多。
+  tags: [plant, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-116
+  text: 把今天觀察到的天空，濃縮成一句短詩。
+  tags: [sky, nature]
+  estimatedMinutes: 8
+- id: p-nature-117
+  text: 觀察正午與傍晚同一處影子的長度差別。
+  tags: [light, observation]
+  estimatedMinutes: 10
+- id: p-nature-118
+  text: 到戶外找一種你從沒仔細看過的常見植物。
+  tags: [plant, outdoor]
+  estimatedMinutes: 6
+- id: p-nature-119
+  text: 觀察今天空氣裡有沒有季節的味道。
+  tags: [season, nature]
+  estimatedMinutes: 4
+- id: p-nature-120
+  text: 用一條線畫出窗外遠山或屋頂的起伏。
+  tags: [outdoor, sketch]
+  estimatedMinutes: 5
+- id: p-nature-121
+  text: 觀察一片葉子在陽光下是半透明還是不透光。
+  tags: [light, plant]
+  estimatedMinutes: 5
+- id: p-nature-122
+  text: 找一種正在開的野花，把它的顏色記進調色盤。
+  tags: [plant, light]
+  estimatedMinutes: 8
+- id: p-nature-123
+  text: 記下此刻天空的一個字，例如晴、陰、暖、遠。
+  tags: [sky, observation]
+  estimatedMinutes: 3
+- id: p-nature-124
+  text: 到戶外觀察光影邊界，它讓地面分成幾塊。
+  tags: [light, outdoor]
+  estimatedMinutes: 6
+- id: p-nature-125
+  text: 找一株植物，觀察它最新長出的那片嫩葉。
+  tags: [plant, season]
+  estimatedMinutes: 5
+- id: p-nature-126
+  text: 觀察今天雲移動的方向，替它畫一個小箭頭。
+  tags: [sky, sketch]
+  estimatedMinutes: 4
+- id: p-nature-127
+  text: 走出門，找一個你今天覺得最舒服的自然位置。
+  tags: [outdoor, nature]
+  estimatedMinutes: 5
+- id: p-nature-128
+  text: 觀察一朵花的顏色在陰影與陽光下差多少。
+  tags: [light, plant]
+  estimatedMinutes: 6
+- id: p-nature-129
+  text: 記錄今天早晚的溫差感受，用兩個詞形容。
+  tags: [season, observation]
+  estimatedMinutes: 4
+- id: p-nature-130
+  text: 找一片天空的空白處，看它其實不只一種顏色。
+  tags: [sky, light]
+  estimatedMinutes: 5
+- id: p-nature-131
+  text: 到戶外速寫一朵雲，畫完後看真雲變了沒。
+  tags: [sky, sketch]
+  estimatedMinutes: 8
+- id: p-nature-132
+  text: 觀察一棵樹的樹冠形狀，它像什麼幾何圖形。
+  tags: [plant, observation]
+  estimatedMinutes: 5
+- id: p-nature-133
+  text: 記下今天最先注意到的一種自然聲音。
+  tags: [nature, outdoor]
+  estimatedMinutes: 3
+- id: p-nature-134
+  text: 觀察此刻光從哪扇窗進來，替房間畫出亮暗分佈。
+  tags: [light, sketch]
+  estimatedMinutes: 9
+- id: p-nature-135
+  text: 找一種爬藤或垂枝植物，觀察它攀附或下垂的方式。
+  tags: [plant, observation]
+  estimatedMinutes: 6
+- id: p-nature-136
+  text: 走出門，找一處視野最開闊的地方站一分鐘。
+  tags: [outdoor, nature]
+  estimatedMinutes: 4
+- id: p-nature-137
+  text: 觀察今天天空的雲和昨天有什麼不一樣。
+  tags: [sky, season]
+  estimatedMinutes: 4
+- id: p-nature-138
+  text: 把一片撿來的葉子貼進本子，寫下它讓你想到的事。
+  tags: [plant, nature]
+  estimatedMinutes: 7
+- id: p-nature-139
+  text: 觀察傍晚光線變化，記下它由亮轉暗的過程。
+  tags: [light, season]
+  estimatedMinutes: 10
+- id: p-nature-140
+  text: 到戶外找一個天然的對稱形狀，例如花或蝴蝶。
+  tags: [nature, observation]
+  estimatedMinutes: 6
+- id: p-nature-141
+  text: 用今天雲的形狀，聯想並寫下一個小故事開頭。
+  tags: [sky, nature]
+  estimatedMinutes: 10
+- id: p-nature-142
+  text: 觀察一株植物的根、莖、葉各佔多少比例。
+  tags: [plant, observation]
+  estimatedMinutes: 5
+- id: p-nature-143
+  text: 走到戶外，注意腳邊有沒有你沒看過的小生物。
+  tags: [nature, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-144
+  text: 觀察陽光此刻的角度，猜猜看現在大約幾點。
+  tags: [light, sky]
+  estimatedMinutes: 4
+- id: p-nature-145
+  text: 找一片今天的天空，把它的心情寫成一句話。
+  tags: [sky, observation]
+  estimatedMinutes: 4
+- id: p-nature-146
+  text: 到戶外收集三種不同的自然質感，用手感受它們。
+  tags: [nature, outdoor]
+  estimatedMinutes: 8
+- id: p-nature-147
+  text: 觀察一棵樹的影子，它比樹本身高還是矮。
+  tags: [light, observation]
+  estimatedMinutes: 5
+- id: p-nature-148
+  text: 找一種你居住地特有的植物，記下它的樣子。
+  tags: [plant, outdoor]
+  estimatedMinutes: 7
+- id: p-nature-149
+  text: 記錄今天天氣的一個聲音，例如風聲或雨聲。
+  tags: [season, nature]
+  estimatedMinutes: 3
+- id: p-nature-150
+  text: 觀察清晨的天空與夜晚的天空，顏色差在哪。
+  tags: [sky, light]
+  estimatedMinutes: 6
+- id: p-nature-151
+  text: 到戶外找一片被光穿透的葉子，畫下它的透光感。
+  tags: [light, sketch]
+  estimatedMinutes: 12
+- id: p-nature-152
+  text: 觀察一種植物一週間的變化，今天先記下起點。
+  tags: [plant, season]
+  estimatedMinutes: 6
+- id: p-nature-153
+  text: 走出門，找一個你今天想帶進作品的自然元素。
+  tags: [nature, outdoor]
+  estimatedMinutes: 8
+- id: p-nature-154
+  text: 觀察今天天空最深與最淺的地方各在哪裡。
+  tags: [sky, observation]
+  estimatedMinutes: 5
+- id: p-nature-155
+  text: 找一朵花，用放大的視角只畫它的一小部分。
+  tags: [plant, sketch]
+  estimatedMinutes: 15
+- id: p-nature-156
+  text: 觀察午後陽光把室內拉出多長的光帶。
+  tags: [light, observation]
+  estimatedMinutes: 6
+- id: p-nature-157
+  text: 到戶外找一種會反光的自然表面，例如葉面或水。
+  tags: [light, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-158
+  text: 記下這個季節你最常看到的一種顏色。
+  tags: [season, observation]
+  estimatedMinutes: 4
+- id: p-nature-159
+  text: 觀察一朵雲從出現到散去，需要多久。
+  tags: [sky, observation]
+  estimatedMinutes: 15
+- id: p-nature-160
+  text: 找一株植物，觀察它上面有沒有小昆蟲居住。
+  tags: [plant, nature]
+  estimatedMinutes: 6
+- id: p-nature-161
+  text: 走出門，把今天的天氣畫成一個簡單符號。
+  tags: [outdoor, sketch]
+  estimatedMinutes: 5
+- id: p-nature-162
+  text: 觀察陽光在不同物體上反射出的不同亮度。
+  tags: [light, observation]
+  estimatedMinutes: 6
+- id: p-nature-163
+  text: 找一片你路過的綠地，記下它最吸引你的一點。
+  tags: [plant, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-164
+  text: 觀察今天雲層厚薄，陽光能不能穿過來。
+  tags: [sky, light]
+  estimatedMinutes: 4
+- id: p-nature-165
+  text: 到戶外速寫一株完整的小草，連根一起畫。
+  tags: [plant, sketch]
+  estimatedMinutes: 12
+- id: p-nature-166
+  text: 觀察日出或日落時，太陽附近天空的漸層順序。
+  tags: [sky, light]
+  estimatedMinutes: 8
+- id: p-nature-167
+  text: 走出門，找一個能同時看到天空與植物的角度。
+  tags: [outdoor, observation]
+  estimatedMinutes: 5
+- id: p-nature-168
+  text: 觀察一片落葉的顏色，它是均勻的還是斑駁的。
+  tags: [plant, season]
+  estimatedMinutes: 5
+- id: p-nature-169
+  text: 把今天觀察到的自然光，設定成作品的主要光源方向。
+  tags: [light, nature]
+  estimatedMinutes: 15
+- id: p-nature-170
+  text: 觀察此刻窗外，找出正在移動與靜止的東西各一樣。
+  tags: [outdoor, observation]
+  estimatedMinutes: 4
+- id: p-nature-171
+  text: 找一種帶香氣的植物，聞完後試著用顏色形容那氣味。
+  tags: [plant, nature]
+  estimatedMinutes: 6
+- id: p-nature-172
+  text: 觀察今天的天空，把它和某個記憶中的日子連在一起。
+  tags: [sky, nature]
+  estimatedMinutes: 6
+- id: p-nature-173
+  text: 到戶外找一處自然的圖案重複，例如樹皮或波紋。
+  tags: [nature, observation]
+  estimatedMinutes: 7
+- id: p-nature-174
+  text: 觀察一棵樹在早晨與傍晚的顏色差別。
+  tags: [plant, light]
+  estimatedMinutes: 10
+- id: p-nature-175
+  text: 走出門五分鐘，只做一件事：好好看一次天空。
+  tags: [sky, outdoor]
+  estimatedMinutes: 5
+- id: p-nature-176
+  text: 找一片今天的葉子，觀察它邊緣是圓的、尖的還是鋸齒。
+  tags: [plant, observation]
+  estimatedMinutes: 5
+- id: p-nature-177
+  text: 觀察光線讓一杯水或玻璃折射出的顏色。
+  tags: [light, observation]
+  estimatedMinutes: 6
+- id: p-nature-178
+  text: 到戶外找一種你想長期記錄的自然物，今天拍第一張。
+  tags: [nature, season]
+  estimatedMinutes: 5
+- id: p-nature-179
+  text: 觀察今天天空的雲，把它想像成一幅畫的構圖。
+  tags: [sky, sketch]
+  estimatedMinutes: 8
+- id: p-nature-180
+  text: 就算今天沒力氣出門，也在窗邊看一眼外面的天色。
+  tags: [sky, observation]
+  estimatedMinutes: 3

@@ -1,0 +1,903 @@
+# 每日創作提示 —— 主題：聲音與通感
+# 用聲音觸發視覺、把感覺轉成形狀、氣味顏色互換、節奏與構圖
+# 允許低能量的日子；具體、看了就知道怎麼做
+
+- id: p-sound-001
+  text: 放一首沒有歌詞的音樂，邊聽邊隨手畫線，音樂停就停。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 10
+
+- id: p-sound-002
+  text: 閉上眼睛聽三十秒周圍的聲音，睜眼寫下你聽到的第一個顏色。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 3
+
+- id: p-sound-003
+  text: 選一個字，念出它的聲音，替這個聲音配一種你覺得對的顏色。
+  tags: [sound, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-004
+  text: 用手指在桌上敲一段節奏，再把這段節奏畫成一排長短不一的橫線。
+  tags: [rhythm, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-005
+  text: 現在正在響的聲音裡，挑最低沉的那個，替它想一個形狀。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-006
+  text: 聽一首快歌，用蠟筆在紙上跟著節奏點點，快的地方點密一點。
+  tags: [rhythm, sensory]
+  estimatedMinutes: 8
+
+- id: p-sound-007
+  text: 把你今天的心情想成一種聲音，是尖的、圓的、還是毛毛的？寫一句。
+  tags: [feeling, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-008
+  text: 倒一杯水，聽它注入杯子的聲音，替那個由高到低的變化配一條漸層。
+  tags: [sound, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-009
+  text: 用嘴巴發出「嗡」的長音，感覺它在胸口的震動，畫出這個震動的樣子。
+  tags: [sound, sensory]
+  estimatedMinutes: 5
+
+- id: p-sound-010
+  text: 想一種你喜歡的氣味，如果它會發出聲音，那會是什麼聲音？寫下來。
+  tags: [smell, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-011
+  text: 聽一首歌的前奏，在它進歌詞之前，先畫完一個圖形。
+  tags: [music, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-012
+  text: 敲三下不同的東西（杯子、木桌、枕頭），排出它們的音高順序。
+  tags: [sound, rhythm]
+  estimatedMinutes: 6
+
+- id: p-sound-013
+  text: 把「安靜」這個感覺畫成一種顏色，只用一種顏色，塗滿一小塊。
+  tags: [feeling, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-014
+  text: 聽窗外最遠的一個聲音，猜它離你多遠，再用線條的粗細表現這個距離。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-015
+  text: 哼一段你記得的旋律，哼完把它畫成一條上上下下的曲線。
+  tags: [music, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-016
+  text: 今天太累就只做這個：聽一首歌，選一個字形容它的顏色。
+  tags: [music, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-017
+  text: 用兩種樂器聲（例如鋼琴和鼓）各配一種形狀，畫在紙的兩邊。
+  tags: [music, synesthesia]
+  estimatedMinutes: 8
+
+- id: p-sound-018
+  text: 摸一塊粗糙的布，如果這個觸感是聲音，它會怎麼響？發出來試試。
+  tags: [sensory, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-019
+  text: 把一首歌的鼓點用點畫在紙上，其他樂器忽略，只留下節拍的骨架。
+  tags: [rhythm, music]
+  estimatedMinutes: 9
+
+- id: p-sound-020
+  text: 想像你最喜歡的顏色在唱歌，那是高音還是低音？哼一個音出來。
+  tags: [synesthesia, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-021
+  text: 聽一段雨聲或找一段雨聲，把雨的密度畫成畫面上點的密度。
+  tags: [sound, translate]
+  estimatedMinutes: 8
+
+- id: p-sound-022
+  text: 說出「圓」和「尖」兩個字，感覺哪個聲音更亮，記下你的直覺。
+  tags: [sound, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-023
+  text: 選一首慢歌，用最少的線條畫出它的呼吸，線越少越好。
+  tags: [music, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-024
+  text: 敲一段心跳的節奏，把它畫成一排等距的小圓點。
+  tags: [rhythm, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-025
+  text: 聞一杯茶或咖啡，替這個香氣選一個溫度和一個顏色，寫兩個詞。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-026
+  text: 聽一首歌，只在你覺得「亮」的瞬間點一下紙，數數共點了幾下。
+  tags: [music, sensory]
+  estimatedMinutes: 7
+
+- id: p-sound-027
+  text: 把冰箱、電扇這類持續的背景音，畫成一條平平的長線。
+  tags: [sound, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-028
+  text: 想一個尖銳的聲音（例如剎車），用一個顏色和一個形狀把它釘在紙上。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-029
+  text: 哼出你今天的疲累，是長長的一聲，還是斷斷續續的？畫出那個長度。
+  tags: [feeling, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-030
+  text: 播一首歌，閉眼想像一個房間，這首歌把房間染成什麼顏色？寫一句。
+  tags: [music, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-031
+  text: 用筆桿在不同材質上刮出聲音，挑一個最喜歡的，替它取個名字。
+  tags: [sound, sensory]
+  estimatedMinutes: 6
+
+- id: p-sound-032
+  text: 把「甜」的味道想成聲音，再把這個聲音畫成一條曲線。
+  tags: [translate, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-033
+  text: 聽一首歌，把主唱的聲音想成一種天氣，記下是晴、陰還是雨。
+  tags: [music, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-034
+  text: 用三個不同大小的圓，代表你現在聽到的三種聲音的大小。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-035
+  text: 今天很沉重的話，就聽一首歌，靜靜聽完，不用畫也不用寫。
+  tags: [music, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-036
+  text: 敲快、敲慢、再敲快，把這三段節奏畫成三塊不同疏密的區域。
+  tags: [rhythm, translate]
+  estimatedMinutes: 8
+
+- id: p-sound-037
+  text: 想像海浪的聲音，用一種顏色從深到淺畫出它退回去的樣子。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-038
+  text: 說出你的名字，聽自己的聲音，替這個聲音選一個形狀。
+  tags: [sound, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-039
+  text: 選一首歌，只用直線畫它，遇到轉折才換方向。
+  tags: [music, synesthesia]
+  estimatedMinutes: 8
+
+- id: p-sound-040
+  text: 把柑橘的氣味想成一種顏色，再想它是安靜還是吵鬧，寫兩句。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-041
+  text: 用指甲輕刮桌面，感覺這個聲音在牙齒的反應，畫一個表情。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-042
+  text: 聽一首歌，把它的開頭和結尾各畫一個色塊，比較哪個比較暗。
+  tags: [music, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-043
+  text: 想一個溫柔的聲音，把它畫成一團模糊的、沒有邊界的形狀。
+  tags: [sound, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-044
+  text: 把腳步聲的節奏敲在桌上，畫成一排腳印般的間隔。
+  tags: [rhythm, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-045
+  text: 聞一次你的手，如果這個味道有音量，是大聲還是小聲？寫一句。
+  tags: [smell, sensory]
+  estimatedMinutes: 3
+
+- id: p-sound-046
+  text: 播一首歌，用它的第一個顏色印象，替今天的自己選一件衣服顏色。
+  tags: [music, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-047
+  text: 聽一段風聲，把風的方向畫成畫面上流動的線。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-048
+  text: 發出「叮」的一聲，感覺它有多長的尾巴，用一條線畫出那條尾巴。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-049
+  text: 把「累」和「輕鬆」各哼一個音，聽哪個比較高，記下來。
+  tags: [feeling, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-050
+  text: 選一首歌，在紙上只畫它讓你想抬頭的那一刻。
+  tags: [music, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-051
+  text: 用手掌拍不同力道，把大力和小力畫成大點和小點。
+  tags: [rhythm, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-052
+  text: 想像薄荷的清涼，如果它是一個和弦，是明亮還是陰暗？寫一句。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-053
+  text: 聽一首歌，把你注意到的三種樂器各配一種顏色，畫成三條線。
+  tags: [music, synesthesia]
+  estimatedMinutes: 9
+
+- id: p-sound-054
+  text: 敲桌子敲到你覺得「這就是今天的節奏」，把它畫成一小段圖案。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-055
+  text: 今天沒力氣就好：聽一首歌，選一個形容詞放進心裡，結束。
+  tags: [music, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-056
+  text: 把你早餐的味道想成一種聲音，短短形容它，寫一句就好。
+  tags: [smell, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-057
+  text: 聽一段鳥叫，把每一聲畫成一個小點，看它們怎麼排列。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-058
+  text: 用喉嚨從低哼到高，感覺聲音爬升，畫一條往上的斜線。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-059
+  text: 選一首歌，把它的情緒畫成天空的顏色，只塗一片。
+  tags: [music, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-060
+  text: 摸一杯熱飲，把這個溫暖想成一種低沉的音，哼出來試試。
+  tags: [sensory, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-061
+  text: 聽現在最近的一個聲音，猜它是圓的還是有稜角，畫出那個輪廓。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-062
+  text: 把「早晨」這兩個字念出來，替它們配一種淡淡的顏色。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-063
+  text: 用兩隻手在桌上敲出對話般的節奏，一問一答，畫成兩排點。
+  tags: [rhythm, translate]
+  estimatedMinutes: 8
+
+- id: p-sound-064
+  text: 想一種你討厭的聲音，用最少的線把它的刺畫出來，然後翻頁蓋住。
+  tags: [sound, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-065
+  text: 聽一首歌的副歌，把它最高的那一句畫成畫面的最上方。
+  tags: [music, translate]
+  estimatedMinutes: 7
+
+- id: p-sound-066
+  text: 聞一朵花或一瓶香水，替它的餘味畫一條慢慢淡掉的漸層。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-067
+  text: 拍一下手，聽它在房間裡的回音，畫出回音散開的方向。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-068
+  text: 把你現在的專注度想成一種音量，是靜音、小聲還是滿格？寫一句。
+  tags: [feeling, sound]
+  estimatedMinutes: 3
+
+- id: p-sound-069
+  text: 選一首歌，跟著它的節奏眨眼，感覺快慢，再把快慢畫成疏密。
+  tags: [rhythm, sensory]
+  estimatedMinutes: 7
+
+- id: p-sound-070
+  text: 想像雪落下的聲音，如果它有顏色，是純白還是帶點藍？塗一小塊。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-071
+  text: 用湯匙輕敲三個不同的杯子，排出你最喜歡的音高組合。
+  tags: [sound, rhythm]
+  estimatedMinutes: 6
+
+- id: p-sound-072
+  text: 把「疲倦」畫成一條線，是垂下去的還是斷掉的？畫完就休息。
+  tags: [feeling, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-073
+  text: 聽一首歌，只記住一個瞬間的顏色，睡前想起它。
+  tags: [music, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-074
+  text: 對著鏡子小聲說一句話，觀察聲音和嘴形，替這個聲音選一個形狀。
+  tags: [sound, sensory]
+  estimatedMinutes: 5
+
+- id: p-sound-075
+  text: 想一種酸的味道，如果它是節奏，是急促還是拖長？敲出來試試。
+  tags: [smell, rhythm]
+  estimatedMinutes: 4
+
+- id: p-sound-076
+  text: 聽一段流水，把水流的方向畫成畫面上的一條主線。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-077
+  text: 用力吐一口氣，聽這個聲音，替它畫一個從實到虛的形狀。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-078
+  text: 選一首歌，把它分成三段，每段配一個顏色，看顏色怎麼變化。
+  tags: [music, synesthesia]
+  estimatedMinutes: 9
+
+- id: p-sound-079
+  text: 把你窗外此刻的聲音，用一個字形容，再替那個字配一種顏色。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-080
+  text: 敲一段你覺得「像走路」的節奏，畫成一排交錯的腳步。
+  tags: [rhythm, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-081
+  text: 想像木頭燃燒的劈啪聲，替這種聲音選一個暖色，塗一小塊。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-082
+  text: 聞一次舊書或木頭，如果這個味道會發聲，是低沉還是沙沙的？寫一句。
+  tags: [smell, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-083
+  text: 今天只想躺著就好：閉眼聽一首歌，讓一個顏色浮出來，記住它。
+  tags: [music, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-084
+  text: 用指尖在桌上畫圓，一邊發出「嗚」的聲音，感覺兩者的速度是否一致。
+  tags: [sound, sensory]
+  estimatedMinutes: 5
+
+- id: p-sound-085
+  text: 聽一首歌，把貝斯或低音想成一片地板，畫在畫面的最底部。
+  tags: [music, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-086
+  text: 把「開心」哼成一個音，「難過」哼成另一個音，比較它們的高低。
+  tags: [feeling, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-087
+  text: 想一種辣的感覺，如果它是顏色和聲音，各是什麼？寫兩個詞。
+  tags: [sensory, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-088
+  text: 聽鐘或計時器的滴答，把每一聲畫成等距的一豎，畫滿一行。
+  tags: [rhythm, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-089
+  text: 選一首歌，用它的感覺替一杯水想像一個顏色，喝之前先看它一眼。
+  tags: [music, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-090
+  text: 對著手掌哈氣，聽那個氣音，替它畫一團柔軟的灰。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-091
+  text: 把你現在的呼吸節奏，畫成一條起伏平緩的波浪線。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-092
+  text: 想一個遙遠的聲音（火車、飛機），用越來越淡的色塊表現它遠去。
+  tags: [sound, translate]
+  estimatedMinutes: 7
+
+- id: p-sound-093
+  text: 聽一首歌，只畫它讓你想閉眼的那一段，其他都跳過。
+  tags: [music, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-094
+  text: 用兩個字念出來測試：哪個字聽起來比較重？把重的那個寫大一點。
+  tags: [sound, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-095
+  text: 想像玻璃碎裂的聲音，用尖銳的短線把它畫成一片散開的碎片。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-096
+  text: 聞一次雨後的空氣或想像它，替這個味道選一種灰藍，塗一小塊。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-097
+  text: 用手指彈桌面彈出快慢交替，把它畫成長短交錯的線。
+  tags: [rhythm, translate]
+  estimatedMinutes: 7
+
+- id: p-sound-098
+  text: 把「溫柔」這個詞念慢一點，聽它的圓滑，替它配一個沒有尖角的形狀。
+  tags: [sound, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-099
+  text: 聽一首歌，把最讓你放鬆的樂器聲，畫成畫面中央最大的形狀。
+  tags: [music, synesthesia]
+  estimatedMinutes: 8
+
+- id: p-sound-100
+  text: 想一種甜點的味道，如果它是一段旋律，會怎麼哼？哼三秒試試。
+  tags: [smell, music]
+  estimatedMinutes: 4
+
+- id: p-sound-101
+  text: 敲出你心情的節奏，快代表急、慢代表沉，畫成一段密度變化。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 7
+
+- id: p-sound-102
+  text: 聽一段咖啡機或水壺的聲音，把它從無到有的過程畫成一條上升線。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-103
+  text: 今天很低落就好：聽一首歌，允許自己什麼都不畫，只是聽。
+  tags: [music, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-104
+  text: 用「颯」「叮」「咚」三個字，各配一個形狀，畫成一排。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-105
+  text: 想像遠處的雷聲，把它的沉重畫成畫面下方的一大片深色。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-106
+  text: 聞一次肥皂或洗髮精，替這個乾淨的味道選一個高音，哼出來。
+  tags: [smell, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-107
+  text: 拍手三下，數它們之間的間隔，把間隔畫成三段等長的空白。
+  tags: [rhythm, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-108
+  text: 選一首歌，把它的節奏想成走路、跑步還是漂浮？寫一句形容。
+  tags: [music, rhythm]
+  estimatedMinutes: 5
+
+- id: p-sound-109
+  text: 對著空杯子哼，聽它放大你的聲音，替這個共鳴畫一圈圈的波紋。
+  tags: [sound, sensory]
+  estimatedMinutes: 5
+
+- id: p-sound-110
+  text: 把「安心」的感覺想成一種聲音的質地，是絨的、滑的還是暖的？寫一句。
+  tags: [feeling, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-111
+  text: 聽一首歌，用它的高音替畫面上方選色，低音替下方選色。
+  tags: [music, synesthesia]
+  estimatedMinutes: 8
+
+- id: p-sound-112
+  text: 想像沙子從指縫流下的聲音，畫成一條細細往下的漸密線。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-113
+  text: 用不同力道寫同一個字三次，把力道的大小當成音量來感覺。
+  tags: [sensory, sound]
+  estimatedMinutes: 6
+
+- id: p-sound-114
+  text: 選一首歌，把你聽到的情緒畫成一種水果的顏色，寫下是哪種水果。
+  tags: [music, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-115
+  text: 敲桌子模仿雨，從小雨敲到大雨再回小雨，畫成一段疏密起伏。
+  tags: [rhythm, translate]
+  estimatedMinutes: 8
+
+- id: p-sound-116
+  text: 聞一次你的枕頭，如果這個味道有速度，是快是慢？寫一句就好。
+  tags: [smell, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-117
+  text: 哼一段沒有名字的旋律，把它的最後一個音畫成一個句點。
+  tags: [music, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-118
+  text: 想一個很輕的聲音（羽毛落地），用最淡的一筆把它畫在角落。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-119
+  text: 聽一首歌，把它從安靜變吵的那一刻，畫成顏色由淡轉濃。
+  tags: [music, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-120
+  text: 用兩根手指在桌上模仿心跳，快一點慢一點，感覺哪種讓你安定。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-121
+  text: 把「苦」的味道想成一種顏色，再想它會不會回甘，用漸層表現。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-122
+  text: 聽窗外，把最大聲和最小聲的聲音各畫一個圓，比較大小。
+  tags: [sound, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-123
+  text: 今天很滿了就好：聽半首歌，選一個顏色，剩下的明天再說。
+  tags: [music, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-124
+  text: 對著手機錄十秒周圍的聲音，回放時替它想一個場景的顏色。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-125
+  text: 想像貓的呼嚕聲，把這個震動畫成一圈圈往外的柔軟波紋。
+  tags: [sound, sensory]
+  estimatedMinutes: 6
+
+- id: p-sound-126
+  text: 用「啪」和「噓」兩個字，畫出一個爆開、一個散開的形狀。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-127
+  text: 選一首歌，把它讓你想到的一個氣味寫下來，只寫一個詞。
+  tags: [music, smell]
+  estimatedMinutes: 4
+
+- id: p-sound-128
+  text: 敲出「三短一長」的節奏，把它畫成三小點加一條線。
+  tags: [rhythm, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-129
+  text: 聞一次巧克力或想像它，替這個濃郁的味道選一個低沉的音。
+  tags: [smell, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-130
+  text: 聽一首歌，畫一條線跟著旋律走，旋律高線就往上，低就往下。
+  tags: [music, translate]
+  estimatedMinutes: 8
+
+- id: p-sound-131
+  text: 把你現在的心跳貼手感覺一下，替這個節奏選一種顏色。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-132
+  text: 想像風鈴的聲音，把每一聲畫成散落各處的小亮點。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-133
+  text: 用嘴發出從尖到鈍的三種聲音，各配一個從尖到鈍的形狀。
+  tags: [sound, sensory]
+  estimatedMinutes: 6
+
+- id: p-sound-134
+  text: 選一首歌，把它的速度想成一種交通工具，寫下是什麼。
+  tags: [music, rhythm]
+  estimatedMinutes: 4
+
+- id: p-sound-135
+  text: 聽一段掌聲或想像它，把人多人少畫成點的密度。
+  tags: [sound, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-136
+  text: 把「清晨的空氣」想成一種聲音的顏色，用最淺的色塗一片。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-137
+  text: 今天沒電了就好：閉眼聽一個聲音三十秒，感覺它，結束。
+  tags: [sound, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-138
+  text: 用手指刮梳子的齒，聽這串聲音，把它畫成一排密密的短線。
+  tags: [sound, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-139
+  text: 想像海底的聲音，深沉又緩慢，用深藍畫一片慢慢暈開的區域。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-140
+  text: 選一首歌，把它的節奏分成強拍和弱拍，畫成大點和小點。
+  tags: [rhythm, music]
+  estimatedMinutes: 8
+
+- id: p-sound-141
+  text: 聞一次香料或想像肉桂，替這個味道選一個暖橘，配一個緩慢的音。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-142
+  text: 對著空房間喊一個字，聽有沒有回音，把回音的層次畫成幾道弧線。
+  tags: [sound, sensory]
+  estimatedMinutes: 5
+
+- id: p-sound-143
+  text: 把「緊張」想成一種聲音的密度，是連續不斷還是斷斷續續？畫出來。
+  tags: [feeling, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-144
+  text: 聽一首歌，只在你想微笑的瞬間畫一個小記號，數共幾個。
+  tags: [music, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-145
+  text: 用兩個玻璃杯裝不同水位，各敲一下，比較音高高低，畫兩條線。
+  tags: [sound, rhythm]
+  estimatedMinutes: 7
+
+- id: p-sound-146
+  text: 想像貓走在木地板上的聲音，把每一步畫成輕輕的一點。
+  tags: [sound, translate]
+  estimatedMinutes: 5
+
+- id: p-sound-147
+  text: 把你最喜歡的一首歌的感覺，濃縮成一種顏色，塗滿一小格。
+  tags: [music, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-148
+  text: 敲出你走路的節奏，再敲出你趕時間的節奏，比較它們的疏密。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-149
+  text: 聞一次新鮮的水果，替它的清脆選一個高亮的顏色，寫一句。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 4
+
+- id: p-sound-150
+  text: 聽一首歌，把它的結尾想成一種收尾動作（關門、揮手），寫下來。
+  tags: [music, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-151
+  text: 用不同速度說「慢慢來」三次，感覺哪個速度最貼近今天的你。
+  tags: [sound, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-152
+  text: 想像蟬聲那種持續的高頻，把它畫成一大片密密麻麻的細點。
+  tags: [sound, translate]
+  estimatedMinutes: 7
+
+- id: p-sound-153
+  text: 把「柔軟」和「堅硬」各哼一個音，比較它們的音色，記下差別。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-154
+  text: 選一首歌，把主旋律畫成一條粗線，伴奏畫成旁邊的細線。
+  tags: [music, synesthesia]
+  estimatedMinutes: 9
+
+- id: p-sound-155
+  text: 聞一次泥土或雨林的味道，替這個綠意選一個聲音，哼出來。
+  tags: [smell, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-156
+  text: 今天只能撐三分鐘：聽一段前奏，選一個顏色，就這樣。
+  tags: [music, feeling]
+  estimatedMinutes: 3
+
+- id: p-sound-157
+  text: 用筆敲桌面模仿時鐘，快到你覺得緊張時停下，畫下那個密度。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 6
+
+- id: p-sound-158
+  text: 想像氣泡飲料的聲音，把每個小泡泡畫成往上冒的小圈圈。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-159
+  text: 把「明亮」和「昏暗」各配一種聲音，一個清脆一個沉悶，念出來。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-160
+  text: 聽一首歌，把它讓你想到的季節寫下來，再替那個季節選一種顏色。
+  tags: [music, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-161
+  text: 對著窗戶哈氣，聽那個氣音，替它畫一團正在消失的白霧。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-162
+  text: 把你此刻的能量畫成一條線的長度，長就精神好，短就好好休息。
+  tags: [feeling, translate]
+  estimatedMinutes: 4
+
+- id: p-sound-163
+  text: 想像鐵鏈拖地的聲音，用一條重重的粗線把它畫在畫面下方。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 6
+
+- id: p-sound-164
+  text: 聞一次醋或檸檬，替這個酸的刺激選一個尖銳的形狀，畫出來。
+  tags: [smell, synesthesia]
+  estimatedMinutes: 5
+
+- id: p-sound-165
+  text: 聽一首歌，把它的音量起伏想成一座山的稜線，畫出來。
+  tags: [music, translate]
+  estimatedMinutes: 8
+
+- id: p-sound-166
+  text: 用手掌搓出摩擦聲，感覺這個聲音的溫度，替它選一個暖色。
+  tags: [sound, sensory]
+  estimatedMinutes: 4
+
+- id: p-sound-167
+  text: 把「期待」哼成一個往上的音，感覺它有沒有停在半空，記下感覺。
+  tags: [feeling, sound]
+  estimatedMinutes: 4
+
+- id: p-sound-168
+  text: 想像雪地踩下去的咯吱聲，把這個顆粒感畫成一排小小的凹點。
+  tags: [sound, translate]
+  estimatedMinutes: 6
+
+- id: p-sound-169
+  text: 選一首歌，把它前十秒和最後十秒的顏色各畫一塊，看變化。
+  tags: [music, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-170
+  text: 敲一段你覺得像笑聲的節奏，跳跳的、輕快的，畫成一串小點。
+  tags: [rhythm, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-171
+  text: 聞一次你今天喝的飲料，如果它是一個和弦，是明亮還是溫暖？寫一句。
+  tags: [smell, music]
+  estimatedMinutes: 4
+
+- id: p-sound-172
+  text: 今天真的很難就好：聽一首熟悉的歌，讓它陪你，不用做任何事。
+  tags: [music, feeling]
+  estimatedMinutes: 4
+
+- id: p-sound-173
+  text: 用嘴模仿三種動物叫聲，各替它們配一個顏色，畫成三個色點。
+  tags: [sound, synesthesia]
+  estimatedMinutes: 7
+
+- id: p-sound-174
+  text: 想像遠方教堂鐘聲，把它一波波的餘韻畫成漸淡的同心圓。
+  tags: [sound, translate]
+  estimatedMinutes: 7
+
+- id: p-sound-175
+  text: 把「放鬆」的感覺想成一種樂器，是鋼琴、吉他還是海浪聲？寫下來。
+  tags: [feeling, music]
+  estimatedMinutes: 4
+
+- id: p-sound-176
+  text: 聽一首歌，把讓你身體想動的那個部分，圈起來畫個記號。
+  tags: [music, sensory]
+  estimatedMinutes: 6
+
+- id: p-sound-177
+  text: 用指甲在紙上刮出聲音，聽它的質地，替這個粗糙感選一種顏色。
+  tags: [sound, sensory]
+  estimatedMinutes: 5
+
+- id: p-sound-178
+  text: 想一個你今天聽過最溫柔的聲音，把它畫成一個圓潤的小形狀。
+  tags: [sound, feeling]
+  estimatedMinutes: 5
+
+- id: p-sound-179
+  text: 把三種味道（甜、酸、苦）各配一個音高，由低到高排出來哼。
+  tags: [smell, sound]
+  estimatedMinutes: 6
+
+- id: p-sound-180
+  text: 聽一首歌，畫下它結束後留在你心裡的那一點顏色，然後好好休息。
+  tags: [music, synesthesia]
+  estimatedMinutes: 6

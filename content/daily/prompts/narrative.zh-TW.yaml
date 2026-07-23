@@ -1,0 +1,903 @@
+# 每日創作提示 — 故事與敘事
+# 主題：給作品一個故事、角色、場景、一格漫畫、把一句話畫出來、無字敘事
+# 繁體中文（台灣用語）
+
+- id: p-narrative-001
+  text: 用一格畫面說一個小故事，畫面裡不出現任何文字。
+  tags: [narrative, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-002
+  text: 幫你最近的一張塗鴉補一句旁白，讓它變成故事的開頭。
+  tags: [narrative, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-003
+  text: 畫一個角色，只用他的鞋子告訴別人他今天過得如何。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-004
+  text: 想一個場景：雨停後的第一分鐘，這裡有誰、在做什麼。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-005
+  text: 把「他終於放下了」這句話畫成一個沒有台詞的畫面。
+  tags: [wordless, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-006
+  text: 用三格漫畫講一個「以為要糟了，結果沒事」的小事。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-007
+  text: 幫一顆掉在地上的鈕扣寫下它是怎麼來到這裡的。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-008
+  text: 畫一個角色，設定他有一個從不對別人說的小習慣。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-009
+  text: 描寫一個房間，讓人一看就知道主人剛剛匆忙離開。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-010
+  text: 今天很累的話，就畫一格：一個人和一杯還冒著煙的飲料。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-011
+  text: 給你桌上一樣舊物品編一段它被留下的理由。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-012
+  text: 畫兩個角色，只用他們之間的距離表現關係。
+  tags: [character, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-013
+  text: 把「原來你也在這裡」這句話畫成一個相遇的瞬間。
+  tags: [wordless, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-014
+  text: 用四格講一個小小的誤會，最後一格才揭曉真相。
+  tags: [comic, sequence]
+  estimatedMinutes: 35
+
+- id: p-narrative-015
+  text: 設計一個角色，他的口袋裡永遠裝著同一樣東西。
+  tags: [character, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-016
+  text: 想像一個深夜的便利商店，寫下這時走進來的是誰。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-017
+  text: 只想動一點點的話，畫一扇半開的門，門後有什麼你決定。
+  tags: [wordless, scene]
+  estimatedMinutes: 8
+
+- id: p-narrative-018
+  text: 幫一段你哼過的旋律配上一個畫面故事。
+  tags: [narrative, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-019
+  text: 畫一個角色的正面與背面，讓兩面透露不同的心情。
+  tags: [character, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-020
+  text: 描寫一條走過很多次的路，今天它多了一樣沒見過的東西。
+  tags: [scene, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-021
+  text: 把「別怕，我在」畫成一個伸出手的畫面，不寫字。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-022
+  text: 用一格漫畫記錄一個「今天最好笑的瞬間」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-023
+  text: 幫一個沒有名字的角色取名，並寫下名字的由來。
+  tags: [character, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-024
+  text: 想像一座燈塔，寫下守燈人今晚在等的是什麼。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-025
+  text: 把一段對話拆成三格，只畫表情不畫嘴巴說的話。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-026
+  text: 給你手邊的一枝筆一段冒險經歷，它去過哪裡。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-027
+  text: 畫一個角色，讓觀眾從他的手勢猜出他在說謊。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-028
+  text: 描寫一個雪停後的清晨庭院，第一串腳印屬於誰。
+  tags: [scene, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-029
+  text: 累的日子，就把「終於到家了」畫成一格畫面。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-030
+  text: 用兩格畫出「之前」與「之後」，中間發生了什麼留白。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-031
+  text: 幫一張全家福裡缺席的那個人寫下他去了哪。
+  tags: [narrative, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-032
+  text: 設計一個角色，他隨身帶著一張已經看不清的照片。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-033
+  text: 想像一個廢棄遊樂園的午後，寫下唯一還在轉的那個東西。
+  tags: [scene, story]
+  estimatedMinutes: 25
+
+- id: p-narrative-034
+  text: 把「我原諒你了」畫成一個和解的畫面，不用任何字。
+  tags: [wordless, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-035
+  text: 用四格記錄一杯咖啡從熱到涼之間發生的事。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-036
+  text: 幫窗外一隻停下的鳥編一段牠今天的行程。
+  tags: [narrative, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-037
+  text: 畫一個角色，他的傷疤背後有一個他很驕傲的故事。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-038
+  text: 描寫一間深夜還亮著燈的教室，裡面留下了誰。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-039
+  text: 只想畫一點的話，畫一雙正要牽起來的手。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-040
+  text: 用一格漫畫表現「等了很久，終於等到」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-041
+  text: 給你今天吃的某樣食物一段旅行的來歷。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-042
+  text: 設計兩個角色，他們用同一個動作表達完全相反的意思。
+  tags: [character, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-043
+  text: 想像一個潮水退去的沙灘，海留給岸上的是什麼。
+  tags: [scene, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-044
+  text: 把「再見了，老朋友」畫成一個轉身離開的背影。
+  tags: [wordless, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-045
+  text: 用三格講一個小小的勇氣：從不敢到敢。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-046
+  text: 幫一把撐開在角落的舊傘寫下它上次淋雨是什麼時候。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-047
+  text: 畫一個角色，讓他的影子透露他真正的樣子。
+  tags: [character, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-048
+  text: 描寫一個剛搬空的房間，牆上留下家具的痕跡。
+  tags: [scene, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-049
+  text: 累的話就畫一格：一隻趴在窗邊看雨的動物。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-050
+  text: 用兩格畫「說出口前」和「說出口後」的表情。
+  tags: [comic, sequence]
+  estimatedMinutes: 20
+
+- id: p-narrative-051
+  text: 給一顆種在陽台的植物寫一段它想去的遠方。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-052
+  text: 設計一個角色，他總是最後一個離開，寫下原因。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-053
+  text: 想像一列末班車，寫下這節車廂裡三個人各自要去哪。
+  tags: [scene, story]
+  estimatedMinutes: 25
+
+- id: p-narrative-054
+  text: 把「我一直記得」畫成一個回頭望的瞬間。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-055
+  text: 用四格記錄一場沒有贏家也沒有輸家的比賽。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-056
+  text: 幫路邊一台被鎖著很久的腳踏車編一個主人的故事。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-057
+  text: 畫一個角色，讓觀眾從他吃東西的樣子認識他。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-058
+  text: 描寫一個電梯突然停住的十秒，裡面有兩個陌生人。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-059
+  text: 只想小小動一下，就畫一格：桌上兩個空掉的杯子。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-060
+  text: 用一格漫畫表現「終於把話說開了」的輕鬆。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-061
+  text: 給你抽屜最底層的一樣東西寫下它為何被藏起來。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-062
+  text: 設計一個角色，他有一個祕密的收藏，畫出其中一件。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-063
+  text: 想像一場停電的夜晚，寫下這家人做了什麼平常不做的事。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-064
+  text: 把「你長大了」畫成一個量身高的畫面，不寫字。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-065
+  text: 用三格畫一個從陌生到熟悉的過程。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-066
+  text: 幫一面貼滿便利貼的牆想像便利貼上寫的都是什麼。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-067
+  text: 畫一個角色，用他選的座位透露他的性格。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-068
+  text: 描寫一座橋，寫下有人站在上面沒有要過去也不回頭。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-069
+  text: 累的日子，畫一格：被子裡露出的一隻腳。
+  tags: [wordless, moment]
+  estimatedMinutes: 5
+
+- id: p-narrative-070
+  text: 用兩格對比「小時候看的它」和「現在看的它」。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-071
+  text: 給你今天遇到的一個聲音寫下它背後的畫面。
+  tags: [narrative, moment]
+  estimatedMinutes: 10
+
+- id: p-narrative-072
+  text: 設計一個角色，他說的話和心裡想的永遠相反。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-073
+  text: 想像一間開了很久的小店最後一天營業的樣子。
+  tags: [scene, story]
+  estimatedMinutes: 25
+
+- id: p-narrative-074
+  text: 把「謝謝你留下來」畫成一個並肩坐著的畫面。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-075
+  text: 用四格講一個「弄丟又找回」的物品的故事。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-076
+  text: 幫一張到不了的明信片編上它的目的地和內容。
+  tags: [narrative, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-077
+  text: 畫一個角色，讓他的笑裡藏著一點沒說出來的事。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-078
+  text: 描寫一個屋頂，寫下有誰習慣在這裡躲起來想事情。
+  tags: [scene, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-079
+  text: 只畫一點的話，畫一格：一隻手正要按下開關。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-080
+  text: 用一格漫畫表現「假裝沒看到但其實很在意」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-081
+  text: 給窗台上一杯養了很久的水寫下它照顧著什麼。
+  tags: [narrative, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-082
+  text: 設計兩個角色，一個總在追，一個總在等。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-narrative-083
+  text: 想像一場趕不上的告別，寫下遲到的人看見了什麼。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-084
+  text: 把「我準備好了」畫成一個繫好鞋帶站起來的瞬間。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-085
+  text: 用三格畫一個習慣是怎麼養成的。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-086
+  text: 幫一把生鏽的鑰匙想像它能打開的那扇門後面是什麼。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-087
+  text: 畫一個角色，讓他和寵物的相似之處成為笑點。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-088
+  text: 描寫一個候診室，寫下坐在角落那個人在等的消息。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-089
+  text: 累的話，畫一格：一盞留給晚歸的人的燈。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-090
+  text: 用兩格畫「出發時」和「回來時」同一個背包的差別。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-091
+  text: 給一句你今天無意間聽到的話配上一個場景。
+  tags: [narrative, scene]
+  estimatedMinutes: 15
+
+- id: p-narrative-092
+  text: 設計一個角色，他收集別人不要的東西，說出原因。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-093
+  text: 想像一個下著大雪的公車站，只有一個人在等車。
+  tags: [scene, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-094
+  text: 把「其實我很緊張」畫成一雙在桌下握緊的手。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-095
+  text: 用四格記錄一次失敗，但最後一格有人在笑。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-096
+  text: 幫一張被翻爛的地圖標出主人最常去的那個點。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-097
+  text: 畫一個角色，用他寫字的姿勢透露他的年紀。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-098
+  text: 描寫一座圖書館關門後的樣子，最後離開的是誰。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-099
+  text: 只想小動一下，畫一格：兩把並排掛著的傘。
+  tags: [wordless, moment]
+  estimatedMinutes: 5
+
+- id: p-narrative-100
+  text: 用一格漫畫表現「明明生氣卻笑出來了」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-101
+  text: 給你今天走過的一個轉角編一件曾在這裡發生的事。
+  tags: [narrative, scene]
+  estimatedMinutes: 15
+
+- id: p-narrative-102
+  text: 設計一個角色，他有一句永遠說不完整的口頭禪。
+  tags: [character, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-103
+  text: 想像一間頂樓的儲藏室，寫下被遺忘在裡面的一箱東西。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-104
+  text: 把「我會等你回來」畫成一張留在桌上的紙條的畫面。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-105
+  text: 用三格畫一個小小的和好，不需要任何道歉的話。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-106
+  text: 幫一雙磨破的鞋想像它們一起走過的最長一段路。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-107
+  text: 畫一個角色，讓觀眾從他的行李看出他要離開多久。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-108
+  text: 描寫一片正在收割的田，寫下有人停下手在看遠方。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-109
+  text: 累的日子，畫一格：一隻蜷在暖氣旁睡著的貓。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-110
+  text: 用兩格畫同一扇窗的白天與夜晚，裡面的人不同。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-111
+  text: 給你手機裡最舊的一張照片重新編一段當時的故事。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-112
+  text: 設計一個角色，他只在沒人看見時才會做某件事。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-113
+  text: 想像一個開了一整夜的洗衣店，寫下最後一位客人。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-114
+  text: 把「換我照顧你了」畫成一個角色互換位置的畫面。
+  tags: [wordless, moment]
+  estimatedMinutes: 25
+
+- id: p-narrative-115
+  text: 用四格講一個祕密是怎麼被守住又被溫柔說破的。
+  tags: [comic, sequence]
+  estimatedMinutes: 35
+
+- id: p-narrative-116
+  text: 幫一顆滾到床底的彈珠寫下它是誰的、掉了多久。
+  tags: [narrative, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-117
+  text: 畫一個角色，讓他的圍巾綁法透露今天的心情。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-118
+  text: 描寫一個剛下過雪的市場，第一個攤子亮起了燈。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-119
+  text: 只想動一點，畫一格：一雙大手牽著一雙小手。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-120
+  text: 用一格漫畫表現「口是心非被拆穿的那一刻」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-121
+  text: 給你今天看到的一朵雲寫下它正在變成什麼。
+  tags: [narrative, moment]
+  estimatedMinutes: 10
+
+- id: p-narrative-122
+  text: 設計一個角色，他把重要的話都寫在別人看不到的地方。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-123
+  text: 想像一個海邊的小屋，寫下窗台上那排貝殼的來歷。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-124
+  text: 把「你先走，我隨後就到」畫成一個揮手的背影。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-125
+  text: 用三格畫一個「越幫越忙但很溫馨」的小場面。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-126
+  text: 幫一張只剩下半截的票根想像那天去了哪裡。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-127
+  text: 畫一個角色，讓觀眾從他怎麼道別看出他捨不得。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-128
+  text: 描寫一個空無一人的操場，只有一顆球還在滾。
+  tags: [scene, wordless]
+  estimatedMinutes: 15
+
+- id: p-narrative-129
+  text: 累的話，畫一格：一杯放涼卻沒人喝的茶。
+  tags: [wordless, moment]
+  estimatedMinutes: 5
+
+- id: p-narrative-130
+  text: 用兩格畫「以為是最後一面」與「其實還有一面」。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-131
+  text: 給一件穿不下的舊衣服寫下它最想被記得的那一天。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-132
+  text: 設計一個角色，他的名字被叫錯了一輩子，他不介意。
+  tags: [character, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-133
+  text: 想像一場延誤很久的班機，寫下候機室裡的一段對話。
+  tags: [scene, story]
+  estimatedMinutes: 25
+
+- id: p-narrative-134
+  text: 把「我聽見了」畫成一個突然停下腳步側耳的瞬間。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-135
+  text: 用四格記錄一次搬家，讓貓成為故事的主角。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-136
+  text: 幫一台停在半空的時鐘想像它停下的那一刻發生了什麼。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-137
+  text: 畫一個角色，用他的口袋深度暗示他今天塞了多少心事。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-138
+  text: 描寫一段長長的走廊，盡頭那扇門今天第一次被打開。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-139
+  text: 只畫一點，畫一格：一把椅子上留著剛脫下的外套。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-140
+  text: 用一格漫畫表現「終於敢承認自己想要」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-141
+  text: 給你今天的一段沉默配上它其實想說的一句話。
+  tags: [narrative, moment]
+  estimatedMinutes: 10
+
+- id: p-narrative-142
+  text: 設計一個角色，他每年只在同一天做同一件事。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-143
+  text: 想像一個結冰的湖面，寫下有人第一個踏上去的理由。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-144
+  text: 把「一起走剩下的路」畫成兩個人並肩的長影子。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-145
+  text: 用三格畫一個「小小的謊言最後變成禮物」的故事。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-146
+  text: 幫一本翻到一半就停下的書想像讀者為何離開。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-147
+  text: 畫一個角色，讓他的手錶方向透露他心裡在等的時間。
+  tags: [character, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-148
+  text: 描寫一個煙火散去後的河堤，還有誰不肯離開。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-149
+  text: 累的日子，畫一格：門口整齊擺著的兩雙拖鞋。
+  tags: [wordless, moment]
+  estimatedMinutes: 5
+
+- id: p-narrative-150
+  text: 用兩格畫「答應時的臉」和「做到時的臉」。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-151
+  text: 給你今天路過的一扇亮著的窗編裡面正發生的事。
+  tags: [narrative, scene]
+  estimatedMinutes: 15
+
+- id: p-narrative-152
+  text: 設計一個角色，他總是替別人記住重要的日子。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-153
+  text: 想像一列開進隧道的火車，寫下車廂裡瞬間安靜下來的人。
+  tags: [scene, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-154
+  text: 把「我終於懂了」畫成一個豁然抬頭的表情。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-155
+  text: 用四格講一個「被討厭的東西後來變成最愛」的過程。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-156
+  text: 幫一朵夾在書裡壓乾的花想像它被摘下的那個下午。
+  tags: [narrative, story]
+  estimatedMinutes: 15
+
+- id: p-narrative-157
+  text: 畫一個角色，讓他打招呼的方式就說明他和對方多熟。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-158
+  text: 描寫一個雨後積水的巷子，倒影裡多了一個人。
+  tags: [scene, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-159
+  text: 只想小動，畫一格：一隻手正把傘往對方那邊傾。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-160
+  text: 用一格漫畫表現「話到嘴邊又吞回去」。
+  tags: [comic, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-161
+  text: 給你今天的一個氣味寫下它把你帶回的那個場景。
+  tags: [narrative, scene]
+  estimatedMinutes: 10
+
+- id: p-narrative-162
+  text: 設計一個角色，他把道歉都畫成畫而不用嘴說。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-163
+  text: 想像一個開往山上的纜車，寫下車裡兩人沒說出的話。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-164
+  text: 把「你回來了」畫成一個猛然站起的瞬間。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-165
+  text: 用三格畫一個小孩教會大人的一件事。
+  tags: [comic, sequence]
+  estimatedMinutes: 30
+
+- id: p-narrative-166
+  text: 幫一顆種在罐子裡發芽的豆子寫下它想長成的樣子。
+  tags: [narrative, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-167
+  text: 畫一個角色，讓他遞東西的手勢透露他的溫柔。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-168
+  text: 描寫一座清晨的漁港，第一艘回港的船帶回了什麼。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-169
+  text: 累的話，畫一格：桌上一盤留給某人的宵夜。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-170
+  text: 用兩格畫「一個人吃飯」和「有人來坐下」。
+  tags: [comic, sequence]
+  estimatedMinutes: 25
+
+- id: p-narrative-171
+  text: 給你今天的一次遲疑寫下如果當時做了會怎樣。
+  tags: [narrative, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-172
+  text: 設計一個角色，他把重要的人畫成星座記在心裡。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-173
+  text: 想像一個大掃除的午後，寫下捨不得丟掉的那一樣。
+  tags: [scene, story]
+  estimatedMinutes: 20
+
+- id: p-narrative-174
+  text: 把「這次換我送你」畫成一個站在門口目送的畫面。
+  tags: [wordless, moment]
+  estimatedMinutes: 20
+
+- id: p-narrative-175
+  text: 用四格記錄一個約定從許下到兌現的四個瞬間。
+  tags: [comic, sequence]
+  estimatedMinutes: 35
+
+- id: p-narrative-176
+  text: 幫一支用到只剩短短的鉛筆寫下它畫過最多的東西。
+  tags: [narrative, story]
+  estimatedMinutes: 10
+
+- id: p-narrative-177
+  text: 畫一個角色，讓他睡著的姿勢說出他今天有多放心。
+  tags: [character, moment]
+  estimatedMinutes: 15
+
+- id: p-narrative-178
+  text: 描寫一個雪夜的窗，玻璃上有人畫了又擦掉的字。
+  tags: [scene, wordless]
+  estimatedMinutes: 20
+
+- id: p-narrative-179
+  text: 只想動一下，畫一格：兩個頭靠在一起看同一本書。
+  tags: [wordless, moment]
+  estimatedMinutes: 8
+
+- id: p-narrative-180
+  text: 用一格漫畫替今天的自己畫一個很小很小的勝利。
+  tags: [comic, moment]
+  estimatedMinutes: 12

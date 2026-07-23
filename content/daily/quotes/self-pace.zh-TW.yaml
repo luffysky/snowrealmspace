@@ -1,0 +1,723 @@
+# 每日語錄 — 比較與自我
+# 主題：不跟別人比、走自己的節奏、羨慕時怎麼想、社群焦慮、自己的路
+# 溫柔、具體，不製造罪惡感，不空泛激勵。
+
+- id: q-selfpace-001
+  text: 別人的進度不是你的時鐘。
+  tags: [self_pace, comparison]
+
+- id: q-selfpace-002
+  text: 你今天走得慢，不代表你走錯方向。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-003
+  text: 有人早開花，有人晚結果，都在同一片天空下。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-004
+  text: 滑到一半覺得心裡緊緊的，那不是你落後，是螢幕太亮了。
+  tags: [social, comparison]
+
+- id: q-selfpace-005
+  text: 羨慕，是你看見了自己也想要的東西，記下來就好。
+  tags: [envy, own_path]
+
+- id: q-selfpace-006
+  text: 你不必今天就變好，你只要今天沒有離開就好。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-007
+  text: 別人的高光是剪過的，你的日常是完整的。
+  tags: [social, comparison]
+
+- id: q-selfpace-008
+  text: 慢，是一種你可以選擇的速度，不是一種缺陷。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-009
+  text: 今天沒力氣創作，就讓自己只是活著，也很好。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-010
+  text: 你的路窄一點，但只有你走得進去。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-011
+  text: 看到別人做得好，先深呼吸，再問：那是我真的想要的嗎？
+  tags: [envy, own_path]
+
+- id: q-selfpace-012
+  text: 追蹤數不會替你把作品完成。
+  tags: [social, own_path]
+
+- id: q-selfpace-013
+  text: 你不是慢熱，你是需要時間把東西做對。
+  tags: [self_pace, individuality]
+
+- id: q-selfpace-014
+  text: 別人衝刺的時候，你在打地基，兩者都算數。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-015
+  text: 沒有人規定你要在幾歲之前完成什麼。
+  tags: [own_path, acceptance]
+
+- id: q-selfpace-016
+  text: 你的作品不需要贏過誰，只需要像你。
+  tags: [individuality, comparison]
+
+- id: q-selfpace-017
+  text: 動態牆是別人挑好的片段，不是他們的全部。
+  tags: [social, comparison]
+
+- id: q-selfpace-018
+  text: 今天做一點點，明天的你會謝謝這一點點。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-019
+  text: 羨慕過後，記得回頭看看自己已經走到哪裡。
+  tags: [envy, acceptance]
+
+- id: q-selfpace-020
+  text: 你可以欣賞別人的光，同時不否定自己的。
+  tags: [comparison, individuality]
+
+- id: q-selfpace-021
+  text: 節奏亂了不要緊，重新找到自己的呼吸就好。
+  tags: [rhythm, self_pace]
+
+- id: q-selfpace-022
+  text: 不是每個人都要往同一個方向跑。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-023
+  text: 你今天低電量，那就用省電模式過一天。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-024
+  text: 把手機放下，你的世界並沒有變小。
+  tags: [social, own_path]
+
+- id: q-selfpace-025
+  text: 別人的成功不會扣掉你的份。
+  tags: [comparison, acceptance]
+
+- id: q-selfpace-026
+  text: 你走的是一條沒有地圖的路，慢一點是應該的。
+  tags: [own_path, self_pace]
+
+- id: q-selfpace-027
+  text: 有些花在秋天才開，它們沒有遲到。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-028
+  text: 你不需要證明給演算法看。
+  tags: [social, own_path]
+
+- id: q-selfpace-029
+  text: 進度條是別人設計的，你可以自己畫一條。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-030
+  text: 今天只想耍廢，也是照顧自己的一種方式。
+  tags: [acceptance, rhythm]
+
+- id: q-selfpace-031
+  text: 你和別人不在同一條起跑線，也不必到同一個終點。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-032
+  text: 羨慕別人的自律時，先問自己有沒有好好睡。
+  tags: [envy, self_pace]
+
+- id: q-selfpace-033
+  text: 你的第一步很小，但它是你的。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-034
+  text: 別急著和昨天的自己以外的人比較。
+  tags: [comparison, self_pace]
+
+- id: q-selfpace-035
+  text: 靈感沒來的日子，就先把桌子擦乾淨。
+  tags: [rhythm, acceptance]
+
+- id: q-selfpace-036
+  text: 你不是不夠好，你只是還在路上。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-037
+  text: 別人一天發三篇，你三天想清楚一件事，都可以。
+  tags: [self_pace, comparison]
+
+- id: q-selfpace-038
+  text: 你的價值不是按讚數換算出來的。
+  tags: [social, individuality]
+
+- id: q-selfpace-039
+  text: 慢慢來，這件事本來就急不得。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-040
+  text: 看到很厲害的人，記得他們也曾經很生疏。
+  tags: [envy, comparison]
+
+- id: q-selfpace-041
+  text: 你可以今天什麼都不產出，只是好好過。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-042
+  text: 別人的節奏是快歌，你的是慢板，都是音樂。
+  tags: [rhythm, individuality]
+
+- id: q-selfpace-043
+  text: 你走自己的路，就不會撞到別人的牆。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-044
+  text: 焦慮通常是滑太久的副作用，關掉試試。
+  tags: [social, acceptance]
+
+- id: q-selfpace-045
+  text: 你不必追上任何人，你只要不放開自己。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-046
+  text: 有時候停下來，是為了看清楚要往哪走。
+  tags: [rhythm, own_path]
+
+- id: q-selfpace-047
+  text: 別人的作品很好，不代表你的就不好。
+  tags: [comparison, individuality]
+
+- id: q-selfpace-048
+  text: 你今天只完成了一句話，那也比空白多。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-049
+  text: 羨慕是一面鏡子，照出你心裡真正在乎的。
+  tags: [envy, own_path]
+
+- id: q-selfpace-050
+  text: 你的步伐或許零散，但方向是你自己的。
+  tags: [own_path, self_pace]
+
+- id: q-selfpace-051
+  text: 不是每個安靜的日子都是浪費。
+  tags: [acceptance, rhythm]
+
+- id: q-selfpace-052
+  text: 你不欠世界一個更快的自己。
+  tags: [self_pace, individuality]
+
+- id: q-selfpace-053
+  text: 螢幕裡的人生是橫幅，你的是全景。
+  tags: [social, comparison]
+
+- id: q-selfpace-054
+  text: 別人跑得快，可能只是路比較平。
+  tags: [comparison, acceptance]
+
+- id: q-selfpace-055
+  text: 你可以在原地停一天，明天再走。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-056
+  text: 慢工不一定出細活，但慌張一定出錯。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-057
+  text: 你的獨特，往往藏在你以為的缺點裡。
+  tags: [individuality, acceptance]
+
+- id: q-selfpace-058
+  text: 不用把每個人都當成你的參照點。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-059
+  text: 今天做不動，就把目標縮到你能做的大小。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-060
+  text: 你走的每一步都在畫一條沒人畫過的線。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-061
+  text: 別人的十年功，你只看到他今天的樣子。
+  tags: [comparison, social]
+
+- id: q-selfpace-062
+  text: 羨慕來了就讓它來，別讓它住下來。
+  tags: [envy, acceptance]
+
+- id: q-selfpace-063
+  text: 你不是進度落後，你是路線不同。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-064
+  text: 有些日子的成就，是好好把自己接住。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-065
+  text: 你的創作不是比賽，沒有名次。
+  tags: [comparison, individuality]
+
+- id: q-selfpace-066
+  text: 一直看別人，你會忘記自己想去哪。
+  tags: [social, own_path]
+
+- id: q-selfpace-067
+  text: 慢下來，才聽得見自己真正想說什麼。
+  tags: [rhythm, own_path]
+
+- id: q-selfpace-068
+  text: 你不需要今天就有答案。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-069
+  text: 別人曬成果，你在醞釀，兩件事都在發生。
+  tags: [social, self_pace]
+
+- id: q-selfpace-070
+  text: 你的節奏值得被自己尊重。
+  tags: [rhythm, self_pace]
+
+- id: q-selfpace-071
+  text: 不是所有的種子，都在同一個季節發芽。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-072
+  text: 你可以慢慢變成自己，不用趕。
+  tags: [self_pace, individuality]
+
+- id: q-selfpace-073
+  text: 別人的濾鏡，不是你的現實。
+  tags: [social, comparison]
+
+- id: q-selfpace-074
+  text: 你今天想休息，那就是今天最重要的事。
+  tags: [acceptance, rhythm]
+
+- id: q-selfpace-075
+  text: 走得慢的人，看得見路邊的風景。
+  tags: [self_pace, own_path]
+
+- id: q-selfpace-076
+  text: 羨慕之後，把它變成你下一步的線索。
+  tags: [envy, own_path]
+
+- id: q-selfpace-077
+  text: 你不用把別人的終點當成自己的起點。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-078
+  text: 有時候不做，也是一種選擇，而且是對的。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-079
+  text: 你的作品裡有你，那就夠特別了。
+  tags: [individuality, own_path]
+
+- id: q-selfpace-080
+  text: 不用每次打開手機都拿自己去換算。
+  tags: [social, comparison]
+
+- id: q-selfpace-081
+  text: 你走得穩，比走得快重要。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-082
+  text: 有人爆紅，有人慢慢長，你想當哪一種都行。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-083
+  text: 今天沒靈感很正常，靈感也需要休假。
+  tags: [rhythm, acceptance]
+
+- id: q-selfpace-084
+  text: 你不是在跟誰賽跑，你是在往自己靠近。
+  tags: [own_path, self_pace]
+
+- id: q-selfpace-085
+  text: 別人厲害，不會讓你變得不厲害。
+  tags: [comparison, acceptance]
+
+- id: q-selfpace-086
+  text: 你可以只做一半，剩下的明天再說。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-087
+  text: 社群上的比較，多半是拿自己的幕後比別人的舞台。
+  tags: [social, comparison]
+
+- id: q-selfpace-088
+  text: 你的獨特不需要解釋給不懂的人聽。
+  tags: [individuality, own_path]
+
+- id: q-selfpace-089
+  text: 慢一點沒關係，你又不是在逃命。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-090
+  text: 別人的道路再亮，也照不到你腳下。
+  tags: [own_path, comparison]
+
+- id: q-selfpace-091
+  text: 今天的低潮，是明天靈感的伏筆。
+  tags: [acceptance, rhythm]
+
+- id: q-selfpace-092
+  text: 你不必追熱門，你可以做只有你在乎的東西。
+  tags: [social, individuality]
+
+- id: q-selfpace-093
+  text: 每個人的時區不一樣，你沒有遲到。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-094
+  text: 羨慕別人的產量前，先看看他犧牲了什麼。
+  tags: [envy, comparison]
+
+- id: q-selfpace-095
+  text: 你的步調如果讓你舒服，那就是對的步調。
+  tags: [rhythm, self_pace]
+
+- id: q-selfpace-096
+  text: 不用把別人的期待背在自己肩上。
+  tags: [own_path, acceptance]
+
+- id: q-selfpace-097
+  text: 你今天只是想安靜地待著，這也值得。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-098
+  text: 有人做得多，有人做得深，你選一種就好。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-099
+  text: 你不是慢，你是還沒被看見而已。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-100
+  text: 關掉通知，你會重新聽見自己的想法。
+  tags: [social, own_path]
+
+- id: q-selfpace-101
+  text: 別人的里程碑不是你的截止日。
+  tags: [comparison, self_pace]
+
+- id: q-selfpace-102
+  text: 你可以既欣賞別人，又忠於自己。
+  tags: [envy, individuality]
+
+- id: q-selfpace-103
+  text: 走自己的路，偶爾迷路也是路的一部分。
+  tags: [own_path, acceptance]
+
+- id: q-selfpace-104
+  text: 今天做不完的，不代表永遠做不完。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-105
+  text: 你的價值不會因為誰比你快而減少。
+  tags: [comparison, acceptance]
+
+- id: q-selfpace-106
+  text: 別把演算法的胃口，當成你的方向。
+  tags: [social, own_path]
+
+- id: q-selfpace-107
+  text: 你需要的可能不是更努力，而是更溫柔。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-108
+  text: 慢慢累積的東西，通常最扎實。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-109
+  text: 別人擅長的，剛好留了空間讓你擅長別的。
+  tags: [comparison, individuality]
+
+- id: q-selfpace-110
+  text: 今天的你只要不苛責自己，就已經很好。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-111
+  text: 你的獨特是原廠設定，不是要修掉的 bug。
+  tags: [individuality, acceptance]
+
+- id: q-selfpace-112
+  text: 少看一點動態，多看一點自己的稿。
+  tags: [social, own_path]
+
+- id: q-selfpace-113
+  text: 你可以慢慢走，只要你還朝著喜歡的方向。
+  tags: [own_path, self_pace]
+
+- id: q-selfpace-114
+  text: 羨慕是暫時的，把它變成一個小小的行動就好。
+  tags: [envy, own_path]
+
+- id: q-selfpace-115
+  text: 別人的節奏你學不來，因為那不是你的心跳。
+  tags: [rhythm, individuality]
+
+- id: q-selfpace-116
+  text: 今天累了就停，明天的你會接手。
+  tags: [acceptance, rhythm]
+
+- id: q-selfpace-117
+  text: 你不用趕在誰之前，你只需要不落下自己。
+  tags: [self_pace, comparison]
+
+- id: q-selfpace-118
+  text: 別人的完美，往往是你沒看到的重來很多次。
+  tags: [comparison, social]
+
+- id: q-selfpace-119
+  text: 你的路也許沒人走過，那正是它珍貴的地方。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-120
+  text: 允許自己有一段什麼都不想做的時間。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-121
+  text: 進步不一定看得見，有時它在你看不到的地方。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-122
+  text: 你不需要每天都發光，星星白天也在。
+  tags: [rhythm, individuality]
+
+- id: q-selfpace-123
+  text: 拿自己和別人比，比的永遠是不同的東西。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-124
+  text: 你今天願意打開這裡，就是一種前進。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-125
+  text: 別人開快車，你散步，都會抵達自己的地方。
+  tags: [rhythm, own_path]
+
+- id: q-selfpace-126
+  text: 你的作品不必迎合誰的口味。
+  tags: [individuality, social]
+
+- id: q-selfpace-127
+  text: 羨慕的時候，記得你也曾是別人羨慕的對象。
+  tags: [envy, acceptance]
+
+- id: q-selfpace-128
+  text: 慢下來，不是退步，是換一種前進。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-129
+  text: 你可以在自己的季節裡，慢慢成熟。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-130
+  text: 別人怎麼過，是他們的事，你顧好自己就好。
+  tags: [own_path, social]
+
+- id: q-selfpace-131
+  text: 你今天沒有大進展，但你沒有後退。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-132
+  text: 每個創作者都有一段沒人看的時期。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-133
+  text: 你的價值不需要即時更新給誰看。
+  tags: [social, individuality]
+
+- id: q-selfpace-134
+  text: 走得慢的人，比較不會錯過自己。
+  tags: [self_pace, own_path]
+
+- id: q-selfpace-135
+  text: 別人衝在前面，也許只是路不同，不是你慢。
+  tags: [comparison, rhythm]
+
+- id: q-selfpace-136
+  text: 今天低能量的你，也是完整的你。
+  tags: [acceptance, individuality]
+
+- id: q-selfpace-137
+  text: 你不用把每個更新都變成焦慮的來源。
+  tags: [social, acceptance]
+
+- id: q-selfpace-138
+  text: 有些路要自己走過，才知道原來能走。
+  tags: [own_path, self_pace]
+
+- id: q-selfpace-139
+  text: 你的節奏不需要跟上任何人的鼓點。
+  tags: [rhythm, individuality]
+
+- id: q-selfpace-140
+  text: 羨慕之後，把注意力慢慢移回自己的手上。
+  tags: [envy, own_path]
+
+- id: q-selfpace-141
+  text: 你可以今天只前進一公分，那也算數。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-142
+  text: 別人的爆發背後，是你沒看見的長期累積。
+  tags: [comparison, social]
+
+- id: q-selfpace-143
+  text: 你的獨特不必和誰一樣才算好。
+  tags: [individuality, comparison]
+
+- id: q-selfpace-144
+  text: 停下來看看天空，不算浪費時間。
+  tags: [rhythm, acceptance]
+
+- id: q-selfpace-145
+  text: 你走的路窄，但風景只屬於你。
+  tags: [own_path, individuality]
+
+- id: q-selfpace-146
+  text: 不用和別人比誰先，你只跟自己約好方向。
+  tags: [comparison, own_path]
+
+- id: q-selfpace-147
+  text: 今天什麼都提不起勁，那就先提一杯水。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-148
+  text: 你的慢，是給作品發酵的時間。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-149
+  text: 別讓別人的速度，偷走你對過程的享受。
+  tags: [comparison, rhythm]
+
+- id: q-selfpace-150
+  text: 你不是落後，你只是還在自己的第一章。
+  tags: [self_pace, own_path]
+
+- id: q-selfpace-151
+  text: 社群的熱鬧不是你必須參加的派對。
+  tags: [social, own_path]
+
+- id: q-selfpace-152
+  text: 你可以慢慢好起來，沒有人在計時。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-153
+  text: 別人跑馬拉松，你在散步，都在動。
+  tags: [rhythm, comparison]
+
+- id: q-selfpace-154
+  text: 你的想法就算小眾，也值得被你自己做出來。
+  tags: [individuality, own_path]
+
+- id: q-selfpace-155
+  text: 羨慕不是敵人，它只是想告訴你你要什麼。
+  tags: [envy, own_path]
+
+- id: q-selfpace-156
+  text: 今天做不到最好，做到還可以就好。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-157
+  text: 你不必和世界一樣快，你只要和自己同步。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-158
+  text: 別人的量產不代表品質，你的慢不代表停滯。
+  tags: [comparison, self_pace]
+
+- id: q-selfpace-159
+  text: 你今天存在著，就已經在你的路上。
+  tags: [own_path, acceptance]
+
+- id: q-selfpace-160
+  text: 少比較一點，你會多喜歡自己一點。
+  tags: [comparison, acceptance]
+
+- id: q-selfpace-161
+  text: 你的創作沒有標準答案，因為它是你寫的。
+  tags: [individuality, own_path]
+
+- id: q-selfpace-162
+  text: 別人發光的時候，你也在悄悄積蓄。
+  tags: [social, self_pace]
+
+- id: q-selfpace-163
+  text: 慢慢來，才能把想法好好地放進作品裡。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-164
+  text: 你不用擁有別人的節奏，才配擁有自己的路。
+  tags: [rhythm, own_path]
+
+- id: q-selfpace-165
+  text: 今天只想躺著，那就好好躺著，這也是照顧。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-166
+  text: 別人的終點線，不會是衡量你的尺。
+  tags: [comparison, individuality]
+
+- id: q-selfpace-167
+  text: 你的獨特，是別人模仿不來的優勢。
+  tags: [individuality, own_path]
+
+- id: q-selfpace-168
+  text: 把手機翻面，這一刻只屬於你和你的桌子。
+  tags: [social, rhythm]
+
+- id: q-selfpace-169
+  text: 你可以今天什麼都沒完成，明天重新開始。
+  tags: [self_pace, acceptance]
+
+- id: q-selfpace-170
+  text: 每一條自己的路，剛開始都看起來很孤單。
+  tags: [own_path, acceptance]
+
+- id: q-selfpace-171
+  text: 你不需要更像別人，你需要更像自己。
+  tags: [individuality, comparison]
+
+- id: q-selfpace-172
+  text: 羨慕過後，把那份心動留給自己的下一件作品。
+  tags: [envy, own_path]
+
+- id: q-selfpace-173
+  text: 你的節奏慢，是因為你在意做好，不是不在意。
+  tags: [self_pace, rhythm]
+
+- id: q-selfpace-174
+  text: 別人的熱度會退，你慢慢建的東西會留下。
+  tags: [social, self_pace]
+
+- id: q-selfpace-175
+  text: 你今天願意對自己溫柔一點，就已經很勇敢。
+  tags: [acceptance, individuality]
+
+- id: q-selfpace-176
+  text: 不用追上潮流，潮流本來就會退。
+  tags: [social, own_path]
+
+- id: q-selfpace-177
+  text: 你走你的節奏，時間自然會替你排好順序。
+  tags: [rhythm, self_pace]
+
+- id: q-selfpace-178
+  text: 別人的花園再美，也不必拔掉自己的草。
+  tags: [comparison, individuality]
+
+- id: q-selfpace-179
+  text: 今天沒做出東西，但你把自己顧好了，這也是產出。
+  tags: [acceptance, self_pace]
+
+- id: q-selfpace-180
+  text: 你的路是慢慢走出來的，不是抄來的。
+  tags: [own_path, individuality]

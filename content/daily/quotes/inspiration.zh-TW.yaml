@@ -1,0 +1,540 @@
+- id: q-inspiration-001
+  text: 靈感不是等來的，是平常存下來的。
+  tags: [inspiration, material]
+- id: q-inspiration-002
+  text: 今天沒有靈感也沒關係，先把眼睛打開就好。
+  tags: [inspiration, everyday]
+- id: q-inspiration-003
+  text: 你隨手記下的那句話，以後會謝謝今天的你。
+  tags: [collecting, material]
+- id: q-inspiration-004
+  text: 素材是慢慢撿的，不是一次搬完的。
+  tags: [collecting, material]
+- id: q-inspiration-005
+  text: 輸入夠多的時候，輸出會自己找上門。
+  tags: [input, source]
+- id: q-inspiration-006
+  text: 把今天看到的顏色記下來，那也是素材。
+  tags: [collecting, everyday]
+- id: q-inspiration-007
+  text: 靈感常常躲在你覺得無聊的那件事裡。
+  tags: [inspiration, source]
+- id: q-inspiration-008
+  text: 累的日子，收集一片天空就夠了。
+  tags: [collecting, everyday]
+- id: q-inspiration-009
+  text: 你經過的每條路，都可能變成一句話。
+  tags: [everyday, nourishment]
+- id: q-inspiration-010
+  text: 不必逼自己有創意，先讓自己好奇。
+  tags: [inspiration, input]
+- id: q-inspiration-011
+  text: 靈感是輸入的利息，先存進去才有得領。
+  tags: [input, source]
+- id: q-inspiration-012
+  text: 一句偷聽到的對話，也能長成一個故事。
+  tags: [collecting, source]
+- id: q-inspiration-013
+  text: 把日常當養分，就不會覺得日子白過。
+  tags: [everyday, nourishment]
+- id: q-inspiration-014
+  text: 今天讀到的一段話，先收著，別急著用。
+  tags: [collecting, reference]
+- id: q-inspiration-015
+  text: 靈感喜歡找正在動手的人。
+  tags: [inspiration, source]
+- id: q-inspiration-016
+  text: 你不是沒有靈感，是還沒把它寫下來。
+  tags: [inspiration, collecting]
+- id: q-inspiration-017
+  text: 素材庫空的日子，就出門走走吧。
+  tags: [material, everyday]
+- id: q-inspiration-018
+  text: 一張隨手拍的照片，是給未來的你的禮物。
+  tags: [collecting, reference]
+- id: q-inspiration-019
+  text: 靈感是舊東西的新組合。
+  tags: [inspiration, source]
+- id: q-inspiration-020
+  text: 別小看今天的一個念頭，先接住它。
+  tags: [inspiration, collecting]
+- id: q-inspiration-021
+  text: 看得多、記得下，靈感自然變厚。
+  tags: [input, nourishment]
+- id: q-inspiration-022
+  text: 生活過得夠仔細，素材就不缺。
+  tags: [everyday, material]
+- id: q-inspiration-023
+  text: 你喜歡的東西，就是你的素材來源。
+  tags: [source, reference]
+- id: q-inspiration-024
+  text: 低能量的日子，讓別人的作品餵你。
+  tags: [input, nourishment]
+- id: q-inspiration-025
+  text: 靈感不會敲門，它只是路過，記得抬頭。
+  tags: [inspiration, everyday]
+- id: q-inspiration-026
+  text: 把碎片先收起來，圖案以後會浮現。
+  tags: [collecting, material]
+- id: q-inspiration-027
+  text: 今天的觀察，是明天的材料。
+  tags: [everyday, material]
+- id: q-inspiration-028
+  text: 靈感是被使用出來的，不是被等出來的。
+  tags: [inspiration, source]
+- id: q-inspiration-029
+  text: 你不需要靈感才開始，開始了才有靈感。
+  tags: [inspiration, input]
+- id: q-inspiration-030
+  text: 收藏別人的好句子，不是抄，是餵養。
+  tags: [collecting, nourishment]
+- id: q-inspiration-031
+  text: 每天存一點小發現，日子就有回甘。
+  tags: [everyday, collecting]
+- id: q-inspiration-032
+  text: 靈感是好奇心的副產品。
+  tags: [inspiration, input]
+- id: q-inspiration-033
+  text: 廚房、街角、車廂，都是素材產地。
+  tags: [source, everyday]
+- id: q-inspiration-034
+  text: 你今天記下的小事，會在某天派上用場。
+  tags: [collecting, material]
+- id: q-inspiration-035
+  text: 累了就先當觀眾，別急著當作者。
+  tags: [input, everyday]
+- id: q-inspiration-036
+  text: 靈感常在洗澡、走路、發呆時出現。
+  tags: [inspiration, source]
+- id: q-inspiration-037
+  text: 把喜歡的東西存成一個資料夾，那是你的礦。
+  tags: [collecting, reference]
+- id: q-inspiration-038
+  text: 靈感不是天分，是一種收集的習慣。
+  tags: [inspiration, collecting]
+- id: q-inspiration-039
+  text: 你經歷過的一切，都可以拿回來用。
+  tags: [material, nourishment]
+- id: q-inspiration-040
+  text: 今天什麼都沒產出，也還在吸收。
+  tags: [input, everyday]
+- id: q-inspiration-041
+  text: 一個好問題，比一個好答案更能生素材。
+  tags: [source, input]
+- id: q-inspiration-042
+  text: 靈感喜歡有準備的筆記本。
+  tags: [collecting, reference]
+- id: q-inspiration-043
+  text: 別怕點子太小，小點子會長大。
+  tags: [inspiration, material]
+- id: q-inspiration-044
+  text: 你看世界的角度，就是最原始的素材。
+  tags: [source, everyday]
+- id: q-inspiration-045
+  text: 靈感不夠時，翻翻自己的舊筆記。
+  tags: [reference, collecting]
+- id: q-inspiration-046
+  text: 把感受寫下來，情緒也能變成材料。
+  tags: [collecting, nourishment]
+- id: q-inspiration-047
+  text: 今天散步時，帶一個念頭回家就好。
+  tags: [everyday, collecting]
+- id: q-inspiration-048
+  text: 靈感是連結，不是憑空。
+  tags: [inspiration, source]
+- id: q-inspiration-049
+  text: 你消化過的東西，才會變成你的。
+  tags: [input, nourishment]
+- id: q-inspiration-050
+  text: 素材不用完美，先撿進籃子再說。
+  tags: [collecting, material]
+- id: q-inspiration-051
+  text: 今天的疲憊，也是一種可以寫的素材。
+  tags: [everyday, material]
+- id: q-inspiration-052
+  text: 靈感住在細節裡，慢一點才看得見。
+  tags: [inspiration, everyday]
+- id: q-inspiration-053
+  text: 多輸入一點，才不會總是掏空自己。
+  tags: [input, nourishment]
+- id: q-inspiration-054
+  text: 把喜歡的一句歌詞留下來，那是種子。
+  tags: [collecting, reference]
+- id: q-inspiration-055
+  text: 靈感是你注意力停留過的地方。
+  tags: [inspiration, source]
+- id: q-inspiration-056
+  text: 沒力氣創作的時候，看看就好，看也算數。
+  tags: [input, everyday]
+- id: q-inspiration-057
+  text: 你收集的每樣東西，都在偷偷連線。
+  tags: [collecting, material]
+- id: q-inspiration-058
+  text: 今天讓生活餵你，明天再回饋它。
+  tags: [nourishment, everyday]
+- id: q-inspiration-059
+  text: 靈感不是稀有品，是被忽略的日常。
+  tags: [inspiration, everyday]
+- id: q-inspiration-060
+  text: 把想法丟進口袋，別讓它路過就走了。
+  tags: [collecting, inspiration]
+- id: q-inspiration-061
+  text: 你讀過的書，總有一天會替你說話。
+  tags: [input, nourishment]
+- id: q-inspiration-062
+  text: 素材是耐心撿來的，不是靈光一閃。
+  tags: [collecting, material]
+- id: q-inspiration-063
+  text: 今天觀察一個陌生人，也是一種輸入。
+  tags: [input, everyday]
+- id: q-inspiration-064
+  text: 靈感在你放鬆的時候才敢靠近。
+  tags: [inspiration, source]
+- id: q-inspiration-065
+  text: 把生活切片收藏，以後拼得出風景。
+  tags: [collecting, material]
+- id: q-inspiration-066
+  text: 你今天感動的瞬間，記得留一份備份。
+  tags: [collecting, everyday]
+- id: q-inspiration-067
+  text: 靈感是舊記憶被新的一天喚醒。
+  tags: [inspiration, source]
+- id: q-inspiration-068
+  text: 輸入的時候不必有目的，先享受再說。
+  tags: [input, nourishment]
+- id: q-inspiration-069
+  text: 你喜歡的作品，是你未來風格的線索。
+  tags: [reference, source]
+- id: q-inspiration-070
+  text: 今天存下的一個字，可能是明天的開頭。
+  tags: [collecting, material]
+- id: q-inspiration-071
+  text: 靈感不挑時間，但你要準備好紙筆。
+  tags: [inspiration, collecting]
+- id: q-inspiration-072
+  text: 把煩惱寫成筆記，它就從敵人變素材。
+  tags: [collecting, nourishment]
+- id: q-inspiration-073
+  text: 你的日常，別人看是題材，你自己也是。
+  tags: [everyday, source]
+- id: q-inspiration-074
+  text: 靈感是餵飽的腦子打的一個嗝。
+  tags: [input, inspiration]
+- id: q-inspiration-075
+  text: 收集不是囤積，是給未來的自己留線索。
+  tags: [collecting, reference]
+- id: q-inspiration-076
+  text: 今天只吸收，不產出，也是好好過了一天。
+  tags: [input, everyday]
+- id: q-inspiration-077
+  text: 靈感藏在你重複做的事裡，只是被習慣蓋住。
+  tags: [inspiration, everyday]
+- id: q-inspiration-078
+  text: 把窗外的一幕記下來，那是免費的素材。
+  tags: [collecting, everyday]
+- id: q-inspiration-079
+  text: 你不缺才華，你缺一本隨手記的本子。
+  tags: [collecting, material]
+- id: q-inspiration-080
+  text: 靈感是輸入與輸入之間擦出的火花。
+  tags: [input, source]
+- id: q-inspiration-081
+  text: 今天的無聊，可能是明天靈感的孵化場。
+  tags: [inspiration, everyday]
+- id: q-inspiration-082
+  text: 把喜歡的畫面截圖存起來，那是你的靈感倉。
+  tags: [collecting, reference]
+- id: q-inspiration-083
+  text: 你觀察越久的東西，越會給你回報。
+  tags: [input, source]
+- id: q-inspiration-084
+  text: 靈感不是靈丹，是慢慢養出來的體質。
+  tags: [inspiration, nourishment]
+- id: q-inspiration-085
+  text: 今天走的一段路，記得帶一個細節回來。
+  tags: [collecting, everyday]
+- id: q-inspiration-086
+  text: 素材夠多的時候，選擇本身就是創作。
+  tags: [material, source]
+- id: q-inspiration-087
+  text: 你昨天存的東西，今天正在替你發芽。
+  tags: [collecting, nourishment]
+- id: q-inspiration-088
+  text: 靈感喜歡雜食的人，什麼都嚐一點。
+  tags: [input, source]
+- id: q-inspiration-089
+  text: 沒靈感的日子，就當在替下一次蓄水。
+  tags: [input, everyday]
+- id: q-inspiration-090
+  text: 把一句心裡的話寫下來，它就不會溜走。
+  tags: [collecting, inspiration]
+- id: q-inspiration-091
+  text: 你經過的季節，都會回來成為素材。
+  tags: [everyday, material]
+- id: q-inspiration-092
+  text: 靈感是把兩個不相干的東西放在一起。
+  tags: [inspiration, source]
+- id: q-inspiration-093
+  text: 今天喜歡的一個瞬間，就是今天的收穫。
+  tags: [collecting, everyday]
+- id: q-inspiration-094
+  text: 別等準備好才開始收集，邊走邊撿就好。
+  tags: [collecting, material]
+- id: q-inspiration-095
+  text: 你看的每一部片，都在偷偷擴充你的素材。
+  tags: [input, reference]
+- id: q-inspiration-096
+  text: 靈感不是燃料用完就沒，是可以再種的。
+  tags: [inspiration, nourishment]
+- id: q-inspiration-097
+  text: 把日子當田，收集是播種，創作是收成。
+  tags: [collecting, nourishment]
+- id: q-inspiration-098
+  text: 今天記下的疑問，會帶你去某個答案。
+  tags: [collecting, source]
+- id: q-inspiration-099
+  text: 你身邊的平凡，是別人羨慕的題材。
+  tags: [everyday, source]
+- id: q-inspiration-100
+  text: 靈感喜歡被記錄，不喜歡被空想。
+  tags: [inspiration, collecting]
+- id: q-inspiration-101
+  text: 累的時候，讓別人的靈感先陪你走一段。
+  tags: [input, nourishment]
+- id: q-inspiration-102
+  text: 一張舊照片，可以叫醒一整段回憶。
+  tags: [reference, source]
+- id: q-inspiration-103
+  text: 你今天多看一眼，素材就多一分。
+  tags: [input, everyday]
+- id: q-inspiration-104
+  text: 靈感是你把生活翻面看到的那一側。
+  tags: [inspiration, everyday]
+- id: q-inspiration-105
+  text: 把有感覺的東西留下，說不上為什麼也沒關係。
+  tags: [collecting, material]
+- id: q-inspiration-106
+  text: 你消化的每件小事，都在替你長創意。
+  tags: [input, nourishment]
+- id: q-inspiration-107
+  text: 靈感常在你不找它的時候出現。
+  tags: [inspiration, source]
+- id: q-inspiration-108
+  text: 今天沒動筆，但你有在看，這樣就好。
+  tags: [input, everyday]
+- id: q-inspiration-109
+  text: 收集就是在跟未來的自己合作。
+  tags: [collecting, reference]
+- id: q-inspiration-110
+  text: 你喜歡的每個細節，都是你風格的碎片。
+  tags: [source, reference]
+- id: q-inspiration-111
+  text: 靈感是給常常留意的人的獎品。
+  tags: [inspiration, everyday]
+- id: q-inspiration-112
+  text: 把一天裡最亮的一刻寫下來就夠了。
+  tags: [collecting, everyday]
+- id: q-inspiration-113
+  text: 你讀進去的，遲早會流出來。
+  tags: [input, nourishment]
+- id: q-inspiration-114
+  text: 素材不會憑空長，但會被留意的人養大。
+  tags: [material, collecting]
+- id: q-inspiration-115
+  text: 今天的心情，也可以好好收進口袋。
+  tags: [collecting, everyday]
+- id: q-inspiration-116
+  text: 靈感是把熟悉的東西重新看一次。
+  tags: [inspiration, source]
+- id: q-inspiration-117
+  text: 你不用有靈感才配創作，先動手就好。
+  tags: [inspiration, input]
+- id: q-inspiration-118
+  text: 把生活裡的小好奇，一個個收起來。
+  tags: [collecting, input]
+- id: q-inspiration-119
+  text: 靈感是很多次輸入之後的自然滿出來。
+  tags: [input, source]
+- id: q-inspiration-120
+  text: 你今天記下的，是給枯竭時的自己的存糧。
+  tags: [collecting, nourishment]
+- id: q-inspiration-121
+  text: 素材藏在你懶得看第二眼的地方。
+  tags: [material, everyday]
+- id: q-inspiration-122
+  text: 靈感不必偉大，能讓你想動手就夠。
+  tags: [inspiration, source]
+- id: q-inspiration-123
+  text: 今天聽到的一段旋律，先留著別丟。
+  tags: [collecting, reference]
+- id: q-inspiration-124
+  text: 你活過的每一天，都是素材的原礦。
+  tags: [everyday, material]
+- id: q-inspiration-125
+  text: 靈感喜歡輸入雜、輸出慢的人。
+  tags: [input, inspiration]
+- id: q-inspiration-126
+  text: 低潮的時候，收集比創作更適合。
+  tags: [collecting, everyday]
+- id: q-inspiration-127
+  text: 把喜歡的東西攤開來，靈感就在縫隙裡。
+  tags: [inspiration, reference]
+- id: q-inspiration-128
+  text: 你今天的一個念頭，值得被留下來。
+  tags: [collecting, inspiration]
+- id: q-inspiration-129
+  text: 素材是慢火熬的，急不來。
+  tags: [material, nourishment]
+- id: q-inspiration-130
+  text: 靈感在你願意停下來看的那一刻降落。
+  tags: [inspiration, everyday]
+- id: q-inspiration-131
+  text: 今天看的展、逛的店，都會回來找你。
+  tags: [input, reference]
+- id: q-inspiration-132
+  text: 你收下的每份感動，都會變成能量。
+  tags: [collecting, nourishment]
+- id: q-inspiration-133
+  text: 靈感不是找出來的，是被你養出來的。
+  tags: [inspiration, nourishment]
+- id: q-inspiration-134
+  text: 把生活過成田野調查，處處都是素材。
+  tags: [everyday, material]
+- id: q-inspiration-135
+  text: 你今天沒靈感，也許只是輸入不夠。
+  tags: [input, inspiration]
+- id: q-inspiration-136
+  text: 一句路邊招牌，也能勾出一個念頭。
+  tags: [source, everyday]
+- id: q-inspiration-137
+  text: 收集的當下不必知道用途，先收再說。
+  tags: [collecting, material]
+- id: q-inspiration-138
+  text: 你翻過的舊筆記，常常藏著新答案。
+  tags: [reference, source]
+- id: q-inspiration-139
+  text: 靈感是餵飽自己之後的自然回甜。
+  tags: [input, nourishment]
+- id: q-inspiration-140
+  text: 今天多留意一個氣味，那也算收集。
+  tags: [collecting, everyday]
+- id: q-inspiration-141
+  text: 你喜歡的東西越雜，靈感越有底氣。
+  tags: [input, source]
+- id: q-inspiration-142
+  text: 素材是給明天的自己的伏筆。
+  tags: [material, collecting]
+- id: q-inspiration-143
+  text: 靈感不會等你有空，但筆記本會。
+  tags: [inspiration, collecting]
+- id: q-inspiration-144
+  text: 今天什麼靈感都沒有，也是誠實的一天。
+  tags: [inspiration, everyday]
+- id: q-inspiration-145
+  text: 把喜歡的顏色、句子、聲音，都存進口袋。
+  tags: [collecting, reference]
+- id: q-inspiration-146
+  text: 你看世界的方式，本身就是素材。
+  tags: [source, everyday]
+- id: q-inspiration-147
+  text: 靈感是輸入太多、忍不住想輸出。
+  tags: [input, inspiration]
+- id: q-inspiration-148
+  text: 今天替自己撿一句喜歡的話回家。
+  tags: [collecting, everyday]
+- id: q-inspiration-149
+  text: 你存下的素材，是給枯竭日子的救生圈。
+  tags: [collecting, nourishment]
+- id: q-inspiration-150
+  text: 靈感喜歡有在生活的人。
+  tags: [inspiration, everyday]
+- id: q-inspiration-151
+  text: 把一次失敗記下來，它也是好素材。
+  tags: [collecting, material]
+- id: q-inspiration-152
+  text: 你今天吸收的，會在某天悄悄開花。
+  tags: [input, nourishment]
+- id: q-inspiration-153
+  text: 靈感是舊經驗遇上今天的心情。
+  tags: [inspiration, source]
+- id: q-inspiration-154
+  text: 素材不嫌小，一個字也能起頭。
+  tags: [material, collecting]
+- id: q-inspiration-155
+  text: 今天讓眼睛多逛一會兒，就有收穫。
+  tags: [input, everyday]
+- id: q-inspiration-156
+  text: 你留下的每個瞬間，都是靈感的存款。
+  tags: [collecting, source]
+- id: q-inspiration-157
+  text: 靈感不是點燃，是慢慢煨熱的。
+  tags: [inspiration, nourishment]
+- id: q-inspiration-158
+  text: 把日常拆開看，裡面全是可用的零件。
+  tags: [everyday, material]
+- id: q-inspiration-159
+  text: 你今天喜歡的，先收著，別問值不值得。
+  tags: [collecting, reference]
+- id: q-inspiration-160
+  text: 靈感住在你願意慢下來的地方。
+  tags: [inspiration, everyday]
+- id: q-inspiration-161
+  text: 多看別人怎麼做，不是抄，是補課。
+  tags: [input, reference]
+- id: q-inspiration-162
+  text: 你收集的雜物，某天會拼成一句話。
+  tags: [collecting, material]
+- id: q-inspiration-163
+  text: 靈感是好奇心沒有被關掉的證據。
+  tags: [inspiration, input]
+- id: q-inspiration-164
+  text: 今天只是好好看世界，也算在創作。
+  tags: [input, everyday]
+- id: q-inspiration-165
+  text: 把感覺存進本子，情緒就有了去處。
+  tags: [collecting, nourishment]
+- id: q-inspiration-166
+  text: 你身邊的日常，是永遠挖不完的礦。
+  tags: [everyday, source]
+- id: q-inspiration-167
+  text: 靈感是很多小輸入疊出來的高度。
+  tags: [input, source]
+- id: q-inspiration-168
+  text: 今天記一句心裡話，就是今天的作品。
+  tags: [collecting, everyday]
+- id: q-inspiration-169
+  text: 素材撿得夠久，靈感就變成習慣。
+  tags: [collecting, material]
+- id: q-inspiration-170
+  text: 你翻閱過的一切，都在替你鋪路。
+  tags: [input, reference]
+- id: q-inspiration-171
+  text: 靈感是被生活輕輕碰了一下的反應。
+  tags: [inspiration, everyday]
+- id: q-inspiration-172
+  text: 今天存的一張圖，也許是明天的起點。
+  tags: [collecting, reference]
+- id: q-inspiration-173
+  text: 你不需要很有靈感，需要的是隨手記。
+  tags: [inspiration, collecting]
+- id: q-inspiration-174
+  text: 把喜歡的東西收成一座小山，慢慢挑。
+  tags: [collecting, material]
+- id: q-inspiration-175
+  text: 靈感是你餵給自己的東西的回音。
+  tags: [input, nourishment]
+- id: q-inspiration-176
+  text: 今天沒有產出，也還在替自己蓄電。
+  tags: [input, everyday]
+- id: q-inspiration-177
+  text: 你留意的每個細節，都是未來的伏筆。
+  tags: [collecting, source]
+- id: q-inspiration-178
+  text: 靈感喜歡有在收集的手。
+  tags: [inspiration, collecting]
+- id: q-inspiration-179
+  text: 把一天過得仔細，素材自己會排隊來。
+  tags: [everyday, material]
+- id: q-inspiration-180
+  text: 你存下的東西，會在對的那天替你發聲。
+  tags: [collecting, nourishment]

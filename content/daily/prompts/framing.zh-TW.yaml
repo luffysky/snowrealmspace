@@ -1,0 +1,903 @@
+# 每日創作提示 — 取景與攝影
+# 主題：用手機拍、構圖練習、找光影、多角度、日常紀錄
+# 每則可獨立出現，允許低能量的日子。
+
+- id: p-framing-001
+  text: 拍同一個東西十張，每張換一個角度。
+  tags: [framing, angle]
+  estimatedMinutes: 15
+
+- id: p-framing-002
+  text: 蹲下來，用比平常低的高度拍眼前這個東西。
+  tags: [framing, angle]
+  estimatedMinutes: 4
+
+- id: p-framing-003
+  text: 找一道光，把手伸進去拍它落在皮膚上的樣子。
+  tags: [light, capture]
+  estimatedMinutes: 5
+
+- id: p-framing-004
+  text: 拍窗戶。只拍窗框和它框住的那一小塊世界。
+  tags: [framing, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-005
+  text: 把手機貼近桌面，拍一杯飲料的水平視角。
+  tags: [angle, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-006
+  text: 今天只拍影子，一張就好，找一個形狀好看的。
+  tags: [light, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-007
+  text: 用九宮格線把主角放在其中一個交叉點上拍一張。
+  tags: [composition, framing]
+  estimatedMinutes: 8
+
+- id: p-framing-008
+  text: 拍腳邊的地面。磁磚、柏油或落葉，就拍你踩著的。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-009
+  text: 找一條線，讓它從畫面一角延伸進去，拍下來。
+  tags: [composition, framing]
+  estimatedMinutes: 7
+
+- id: p-framing-010
+  text: 拍一杯熱飲的熱氣，逆著光比較容易看見。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-011
+  text: 把某個東西放在畫面正中央，拍一張對稱的照片。
+  tags: [composition, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-012
+  text: 從門縫或門框後面拍出去，讓門當前景。
+  tags: [framing, composition]
+  estimatedMinutes: 7
+
+- id: p-framing-013
+  text: 拍你此刻的手在做的事，不用擺好，就這樣拍。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-014
+  text: 舉高手機從正上方俯拍你的餐桌或書桌。
+  tags: [angle, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-015
+  text: 找一面牆的陰影邊界，拍光和暗交界的那條線。
+  tags: [light, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-016
+  text: 拍一片葉子，靠近到只剩葉脈和光。
+  tags: [light, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-017
+  text: 只用畫面的三分之一放主角，其餘留白。
+  tags: [composition, crop]
+  estimatedMinutes: 7
+
+- id: p-framing-018
+  text: 拍一張全是同一種顏色的照片。
+  tags: [composition, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-019
+  text: 站在原地轉一圈，只拍最順眼的那個方向。
+  tags: [framing, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-020
+  text: 拍水面的倒影，把手機湊近水邊。
+  tags: [light, composition]
+  estimatedMinutes: 10
+
+- id: p-framing-021
+  text: 找一個窗邊的物件，拍它被光照亮的那一半。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-022
+  text: 拍一張刻意歪斜的照片，看看傾斜帶來什麼感覺。
+  tags: [angle, composition]
+  estimatedMinutes: 5
+
+- id: p-framing-023
+  text: 對著天空拍，讓地面只佔畫面最下面一條。
+  tags: [composition, framing]
+  estimatedMinutes: 4
+
+- id: p-framing-024
+  text: 拍你今天吃的第一餐，不修圖，直接記錄。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-025
+  text: 找兩個一樣的東西並排，拍它們的重複感。
+  tags: [composition, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-026
+  text: 用前景擋住一部分畫面，例如葉子或欄杆。
+  tags: [framing, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-027
+  text: 拍一個轉角，讓兩面牆在畫面裡交會。
+  tags: [composition, angle]
+  estimatedMinutes: 6
+
+- id: p-framing-028
+  text: 把手機倒過來貼近地面拍，換一個蟲的視角。
+  tags: [angle, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-029
+  text: 拍窗簾透光的樣子，讓光變柔。
+  tags: [light, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-030
+  text: 只拍局部：一隻鞋、一個把手、一角桌沿。
+  tags: [crop, everyday]
+  estimatedMinutes: 4
+
+- id: p-framing-031
+  text: 找一個圓形的東西，把它放滿整個畫面。
+  tags: [composition, crop]
+  estimatedMinutes: 6
+
+- id: p-framing-032
+  text: 拍陽光透過樹葉在地上的光斑。
+  tags: [light, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-033
+  text: 拍同一扇窗，早上一張、傍晚一張，比較光。
+  tags: [light, everyday]
+  estimatedMinutes: 10
+
+- id: p-framing-034
+  text: 讓主角在畫面邊緣，把大部分空間留給背景。
+  tags: [composition, framing]
+  estimatedMinutes: 7
+
+- id: p-framing-035
+  text: 拍一條路或走廊，讓它往畫面深處消失。
+  tags: [composition, angle]
+  estimatedMinutes: 8
+
+- id: p-framing-036
+  text: 拍你手邊最舊的一樣東西。
+  tags: [everyday, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-037
+  text: 靠很近拍一個表面的質感：木紋、布料或牆面。
+  tags: [crop, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-038
+  text: 拍一張只有黑與白兩種明暗的照片。
+  tags: [light, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-039
+  text: 從樓梯上往下拍，利用高度差。
+  tags: [angle, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-040
+  text: 拍一個影子比本體更有趣的畫面。
+  tags: [light, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-041
+  text: 拍窗外，但把焦點對在窗上的水珠或灰塵。
+  tags: [framing, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-042
+  text: 拍一杯水，讓後面的東西透過水變形。
+  tags: [light, everyday]
+  estimatedMinutes: 8
+
+- id: p-framing-043
+  text: 找一個對稱的建築正面，站正中間拍。
+  tags: [composition, framing]
+  estimatedMinutes: 10
+
+- id: p-framing-044
+  text: 拍今天的天氣，用一個具體的東西代表它。
+  tags: [everyday, capture]
+  estimatedMinutes: 5
+
+- id: p-framing-045
+  text: 讓畫面裡有一條明顯的斜線切過去。
+  tags: [composition, angle]
+  estimatedMinutes: 6
+
+- id: p-framing-046
+  text: 拍一個人的手，不拍臉，只拍手在做什麼。
+  tags: [crop, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-047
+  text: 把最亮的地方放在畫面一角，其餘壓暗。
+  tags: [light, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-048
+  text: 拍一排東西，讓它們形成一條線。
+  tags: [composition, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-049
+  text: 拍你現在坐的位置看出去的景，不移動。
+  tags: [everyday, framing]
+  estimatedMinutes: 3
+
+- id: p-framing-050
+  text: 找一個洞或框，透過它拍後面的東西。
+  tags: [framing, composition]
+  estimatedMinutes: 7
+
+- id: p-framing-051
+  text: 拍逆光的物件，讓它的邊緣發亮。
+  tags: [light, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-052
+  text: 拍一張你只留下四分之一畫面有東西的照片。
+  tags: [composition, crop]
+  estimatedMinutes: 6
+
+- id: p-framing-053
+  text: 貼著牆面平行拍過去，看透視怎麼跑。
+  tags: [angle, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-054
+  text: 拍一杯咖啡或茶，從正上方俯拍一張。
+  tags: [angle, everyday]
+  estimatedMinutes: 4
+
+- id: p-framing-055
+  text: 找一個顏色跳出來的東西，讓它成為主角。
+  tags: [composition, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-056
+  text: 拍雨後或水龍頭下的一滴水。
+  tags: [light, capture]
+  estimatedMinutes: 10
+
+- id: p-framing-057
+  text: 拍你今天穿的鞋，從你低頭看的角度。
+  tags: [angle, everyday]
+  estimatedMinutes: 3
+
+- id: p-framing-058
+  text: 用欄杆或格柵當前景，拍後面的景。
+  tags: [framing, composition]
+  estimatedMinutes: 7
+
+- id: p-framing-059
+  text: 拍一面被光切成明暗兩塊的牆。
+  tags: [light, composition]
+  estimatedMinutes: 5
+
+- id: p-framing-060
+  text: 靠近拍一個平常沒細看的日用品。
+  tags: [crop, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-061
+  text: 拍天花板。抬頭找一個好看的角落。
+  tags: [angle, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-062
+  text: 讓畫面上半和下半各佔一半，找一條分界線。
+  tags: [composition, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-063
+  text: 拍一串重複的圖案：磚、窗、階梯都可以。
+  tags: [composition, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-064
+  text: 拍你桌上最亂的一角，誠實記錄它。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-065
+  text: 找傍晚偏橘的光，拍任何被它照到的東西。
+  tags: [light, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-066
+  text: 把手機橫著和直著各拍一張同一個景，比較。
+  tags: [framing, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-067
+  text: 拍一個圓和一個方在同個畫面裡。
+  tags: [composition, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-068
+  text: 從很遠的地方拍一個很小的主角。
+  tags: [composition, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-069
+  text: 拍你養的植物、寵物或最近常看的東西。
+  tags: [everyday, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-070
+  text: 拍鏡子或反光表面裡的自己或房間。
+  tags: [light, framing]
+  estimatedMinutes: 7
+
+- id: p-framing-071
+  text: 找一條長長的陰影，把它拍進畫面裡。
+  tags: [light, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-072
+  text: 拍一個東西的細節，近到別人猜不出是什麼。
+  tags: [crop, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-073
+  text: 站著、坐著、蹲著各拍同一景一張，選最好的。
+  tags: [angle, framing]
+  estimatedMinutes: 8
+
+- id: p-framing-074
+  text: 拍一杯飲料的杯緣線條，靠近一點。
+  tags: [crop, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-075
+  text: 拍窗台上的東西，讓外面的光當背景。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-076
+  text: 用一個框把主角圍起來：門、窗、拱門都行。
+  tags: [framing, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-077
+  text: 拍一張留白很多、只有一個小主角的照片。
+  tags: [composition, crop]
+  estimatedMinutes: 6
+
+- id: p-framing-078
+  text: 拍地上的水窪和它倒映的天空。
+  tags: [light, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-079
+  text: 拍你手上正在讀的書或螢幕，帶點環境。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-080
+  text: 找一個弧形或曲線，讓它引導視線。
+  tags: [composition, framing]
+  estimatedMinutes: 7
+
+- id: p-framing-081
+  text: 拍清晨或深夜，那個時段特有的光。
+  tags: [light, everyday]
+  estimatedMinutes: 8
+
+- id: p-framing-082
+  text: 把主角放最左邊，讓它看向畫面右邊的空間。
+  tags: [composition, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-083
+  text: 拍一個透明的東西：玻璃、塑膠袋或水瓶。
+  tags: [light, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-084
+  text: 從桌子底下往上拍桌面的東西。
+  tags: [angle, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-085
+  text: 拍一張全部都很暗、只有一點光的照片。
+  tags: [light, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-086
+  text: 拍你走過的路面上任何有趣的痕跡。
+  tags: [everyday, capture]
+  estimatedMinutes: 5
+
+- id: p-framing-087
+  text: 找三個同類的東西，排成一個三角形拍。
+  tags: [composition, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-088
+  text: 拍一扇半開的門，透露後面一點點。
+  tags: [framing, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-089
+  text: 拍一個角落，讓兩道光在那裡碰面。
+  tags: [light, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-090
+  text: 拍你今天遇到最日常的一個瞬間。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-091
+  text: 把手機貼在地上，拍地平線那麼低的世界。
+  tags: [angle, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-092
+  text: 拍一個東西的正面、側面、背面各一張。
+  tags: [angle, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-093
+  text: 拍紗窗、鐵網或百葉窗後面的光。
+  tags: [light, framing]
+  estimatedMinutes: 7
+
+- id: p-framing-094
+  text: 找一個框中框：畫面裡再框住一個小畫面。
+  tags: [framing, composition]
+  estimatedMinutes: 9
+
+- id: p-framing-095
+  text: 拍一杯飲料裡的冰塊或氣泡，靠很近。
+  tags: [crop, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-096
+  text: 拍你此刻窗外的天空，不管它長怎樣。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-097
+  text: 讓一條電線或繩子橫過畫面，當成一條線。
+  tags: [composition, framing]
+  estimatedMinutes: 5
+
+- id: p-framing-098
+  text: 拍某個東西在強光下最深的那道影子。
+  tags: [light, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-099
+  text: 拍一個你覺得醜、但構圖好看的東西。
+  tags: [composition, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-100
+  text: 拍你手機裡最想記住的今天這一刻。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-101
+  text: 拍階梯，讓它的線條在畫面裡排出節奏。
+  tags: [composition, angle]
+  estimatedMinutes: 7
+
+- id: p-framing-102
+  text: 找一塊乾淨的背景，把小東西放上去拍。
+  tags: [composition, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-103
+  text: 拍傍晚窗邊，光快沒了的那種顏色。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-104
+  text: 拍一個從沒被你拍過的家裡角落。
+  tags: [everyday, framing]
+  estimatedMinutes: 5
+
+- id: p-framing-105
+  text: 讓畫面裡有近、中、遠三層東西。
+  tags: [composition, framing]
+  estimatedMinutes: 9
+
+- id: p-framing-106
+  text: 拍一張只有線條、沒有明確主角的照片。
+  tags: [composition, crop]
+  estimatedMinutes: 7
+
+- id: p-framing-107
+  text: 拍光穿過縫隙照進來的那一道。
+  tags: [light, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-108
+  text: 拍你正在用的杯子、筆或鑰匙，就一個。
+  tags: [everyday, crop]
+  estimatedMinutes: 3
+
+- id: p-framing-109
+  text: 從很低的角度拍一棵樹或一根柱子往上看。
+  tags: [angle, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-110
+  text: 拍兩個顏色相撞的畫面，讓它們對比。
+  tags: [composition, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-111
+  text: 拍窗玻璃上的反射和後面的景疊在一起。
+  tags: [light, framing]
+  estimatedMinutes: 8
+
+- id: p-framing-112
+  text: 拍一個手掌大的範圍，塞滿細節。
+  tags: [crop, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-113
+  text: 拍你今天走過最有光的一段路。
+  tags: [light, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-114
+  text: 讓主角只露出一部分，其餘被邊框切掉。
+  tags: [crop, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-115
+  text: 拍一個對角線構圖：主角從角落到角落。
+  tags: [composition, angle]
+  estimatedMinutes: 7
+
+- id: p-framing-116
+  text: 拍一杯熱湯或熱飲上升的煙。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-117
+  text: 拍一個平常路過從不看的招牌或標示。
+  tags: [everyday, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-118
+  text: 找一個重複到滿版的畫面，例如整面窗戶。
+  tags: [composition, crop]
+  estimatedMinutes: 7
+
+- id: p-framing-119
+  text: 拍地面和牆面的交界那條線。
+  tags: [composition, framing]
+  estimatedMinutes: 5
+
+- id: p-framing-120
+  text: 拍今天最溫暖的一個畫面，不管大小。
+  tags: [everyday, light]
+  estimatedMinutes: 4
+
+- id: p-framing-121
+  text: 用一片葉子或紙擋在鏡頭前拍柔化的光。
+  tags: [light, framing]
+  estimatedMinutes: 7
+
+- id: p-framing-122
+  text: 拍一個東西在水裡或玻璃後扭曲的樣子。
+  tags: [light, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-123
+  text: 拍你正前方一公尺內任何一個東西。
+  tags: [everyday, crop]
+  estimatedMinutes: 3
+
+- id: p-framing-124
+  text: 讓天空佔畫面四分之三，地面只留一條。
+  tags: [composition, framing]
+  estimatedMinutes: 5
+
+- id: p-framing-125
+  text: 拍一個影子和它的主人一起入鏡。
+  tags: [light, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-126
+  text: 拍你今天吃的水果或食物的剖面。
+  tags: [crop, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-127
+  text: 找一個 S 形的線條，讓視線繞著它走。
+  tags: [composition, framing]
+  estimatedMinutes: 8
+
+- id: p-framing-128
+  text: 拍清晨窗邊灰藍色的那種冷光。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-129
+  text: 拍一個角落，只用畫面的一小塊裝下它。
+  tags: [crop, composition]
+  estimatedMinutes: 5
+
+- id: p-framing-130
+  text: 拍雨滴打在窗上或水面上的畫面。
+  tags: [light, capture]
+  estimatedMinutes: 10
+
+- id: p-framing-131
+  text: 拍你的影子在地上，就這一張。
+  tags: [light, everyday]
+  estimatedMinutes: 3
+
+- id: p-framing-132
+  text: 把三個東西排成由大到小拍一張。
+  tags: [composition, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-133
+  text: 拍一扇窗的一角，讓框和光同時入鏡。
+  tags: [framing, light]
+  estimatedMinutes: 6
+
+- id: p-framing-134
+  text: 拍你走進門看到的第一眼。
+  tags: [everyday, framing]
+  estimatedMinutes: 3
+
+- id: p-framing-135
+  text: 讓畫面裡有一個明顯的引導線指向主角。
+  tags: [composition, framing]
+  estimatedMinutes: 8
+
+- id: p-framing-136
+  text: 拍夜裡的一盞燈，讓周圍暗下來。
+  tags: [light, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-137
+  text: 拍一個平面的東西正對著它拍成純平面。
+  tags: [angle, composition]
+  estimatedMinutes: 5
+
+- id: p-framing-138
+  text: 拍你今天心情的顏色，找一個對應的東西。
+  tags: [everyday, capture]
+  estimatedMinutes: 5
+
+- id: p-framing-139
+  text: 拍一串由近到遠越來越小的東西。
+  tags: [composition, angle]
+  estimatedMinutes: 8
+
+- id: p-framing-140
+  text: 拍光在牆上投出的一個抽象形狀。
+  tags: [light, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-141
+  text: 拍手機能對到最近焦的極限細節。
+  tags: [crop, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-142
+  text: 拍你桌上一個物件三種不同的擺法。
+  tags: [composition, everyday]
+  estimatedMinutes: 8
+
+- id: p-framing-143
+  text: 拍一道從高處灑下來的光柱。
+  tags: [light, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-144
+  text: 拍窗外的一棵樹，只拍它的一根枝。
+  tags: [crop, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-145
+  text: 讓主角在最上面，下面全部留給空間。
+  tags: [composition, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-146
+  text: 拍一個你每天都用、卻沒拍過的東西。
+  tags: [everyday, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-147
+  text: 拍兩條平行線，讓它們在遠處看似交會。
+  tags: [composition, angle]
+  estimatedMinutes: 7
+
+- id: p-framing-148
+  text: 拍傍晚天空從亮到暗的漸層。
+  tags: [light, everyday]
+  estimatedMinutes: 8
+
+- id: p-framing-149
+  text: 拍一個縫隙，透過它看見一小塊景。
+  tags: [framing, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-150
+  text: 拍你此刻能伸手碰到的任何一個東西。
+  tags: [everyday, crop]
+  estimatedMinutes: 3
+
+- id: p-framing-151
+  text: 拍一個東西貼著邊框，只留一半在畫面裡。
+  tags: [crop, framing]
+  estimatedMinutes: 5
+
+- id: p-framing-152
+  text: 拍陽光下一個東西邊緣發亮的輪廓。
+  tags: [light, composition]
+  estimatedMinutes: 7
+
+- id: p-framing-153
+  text: 拍一組同色系但不同深淺的東西。
+  tags: [composition, capture]
+  estimatedMinutes: 8
+
+- id: p-framing-154
+  text: 從最高的地方往下俯拍一整片景。
+  tags: [angle, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-155
+  text: 拍你今天笑出來或停下來的那一刻的東西。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-156
+  text: 拍一個東西和它在桌面的倒影一起。
+  tags: [light, composition]
+  estimatedMinutes: 7
+
+- id: p-framing-157
+  text: 拍窗框把外面的景切成幾格的樣子。
+  tags: [framing, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-158
+  text: 拍一個你覺得普通、但光很美的畫面。
+  tags: [light, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-159
+  text: 拍一個圓形物體的正中心對稱畫面。
+  tags: [composition, angle]
+  estimatedMinutes: 6
+
+- id: p-framing-160
+  text: 拍夜晚窗外的燈光，讓它糊成一片。
+  tags: [light, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-161
+  text: 拍一個角度讓熟悉的東西變得陌生。
+  tags: [angle, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-162
+  text: 拍你今天喝的水或飲料，就這一杯。
+  tags: [everyday, crop]
+  estimatedMinutes: 3
+
+- id: p-framing-163
+  text: 拍一條長影和一條短影同時入鏡。
+  tags: [light, composition]
+  estimatedMinutes: 6
+
+- id: p-framing-164
+  text: 找一個畫面，讓它左右幾乎一模一樣。
+  tags: [composition, framing]
+  estimatedMinutes: 8
+
+- id: p-framing-165
+  text: 拍一個表面的紋路，近到看不出原物。
+  tags: [crop, capture]
+  estimatedMinutes: 6
+
+- id: p-framing-166
+  text: 拍你剛才第一眼被吸引的那個東西。
+  tags: [everyday, capture]
+  estimatedMinutes: 3
+
+- id: p-framing-167
+  text: 讓前景模糊、遠景清楚，或反過來試試。
+  tags: [framing, composition]
+  estimatedMinutes: 8
+
+- id: p-framing-168
+  text: 拍一道午後斜射進屋的光。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-169
+  text: 拍三張同一個東西，只換手機遠近。
+  tags: [framing, angle]
+  estimatedMinutes: 8
+
+- id: p-framing-170
+  text: 拍一個被雨或霧模糊掉的景。
+  tags: [light, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-171
+  text: 拍你手邊最小的一樣東西，放到滿版。
+  tags: [crop, everyday]
+  estimatedMinutes: 5
+
+- id: p-framing-172
+  text: 拍一個畫面，讓一條線把它分成兩半。
+  tags: [composition, framing]
+  estimatedMinutes: 6
+
+- id: p-framing-173
+  text: 拍光和影在同一個物件上的對比。
+  tags: [light, composition]
+  estimatedMinutes: 7
+
+- id: p-framing-174
+  text: 拍你窗邊此刻的光，明天再拍一次比較。
+  tags: [light, everyday]
+  estimatedMinutes: 6
+
+- id: p-framing-175
+  text: 拍一個讓你今天覺得平靜的畫面。
+  tags: [everyday, capture]
+  estimatedMinutes: 4
+
+- id: p-framing-176
+  text: 拍一個由許多小東西組成的滿版畫面。
+  tags: [composition, crop]
+  estimatedMinutes: 8
+
+- id: p-framing-177
+  text: 拍一個東西被光穿透後透出來的顏色。
+  tags: [light, capture]
+  estimatedMinutes: 7
+
+- id: p-framing-178
+  text: 從門後探出手機，只拍露出的一小條景。
+  tags: [framing, angle]
+  estimatedMinutes: 6
+
+- id: p-framing-179
+  text: 拍你今天最不想錯過的一個小細節。
+  tags: [everyday, crop]
+  estimatedMinutes: 3
+
+- id: p-framing-180
+  text: 拍完今天這張後，看看和昨天的有什麼不同。
+  tags: [everyday, capture]
+  estimatedMinutes: 5
