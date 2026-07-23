@@ -1,0 +1,744 @@
+# 每日創作提示 — 視覺日記與日常紀錄
+# 主題：記錄今天、把一天畫成一張、收集今天的一個畫面、每天一格、生活素材庫
+# 允許低能量的日子。具體、可動手做。
+
+- id: p-diary-001
+  text: 用一個畫面記錄今天，之後你會想起來的那個。
+  tags: [diary, moment]
+  estimatedMinutes: 10
+- id: p-diary-002
+  text: 拍下你今天喝的第一杯飲料，連杯子一起入鏡。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-003
+  text: 把今天最占空間的一件事，畫成一個簡單的形狀。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-004
+  text: 記下你今天走過、平常不會多看一眼的一段路。
+  tags: [diary, everyday]
+  estimatedMinutes: 5
+- id: p-diary-005
+  text: 拍你此刻的桌面，原封不動，不用整理。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-006
+  text: 今天聽到的一句話，抄下來，不解釋。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-007
+  text: 把今天的天空拍下來，就現在窗外那片。
+  tags: [diary, one_frame]
+  estimatedMinutes: 3
+- id: p-diary-008
+  text: 畫一個小格子，塞進今天最想記住的顏色。
+  tags: [diary, everyday]
+  estimatedMinutes: 6
+- id: p-diary-009
+  text: 記錄你今天第一次笑出來是因為什麼。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-010
+  text: 拍下你現在腳邊、桌下或身旁的地面。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-011
+  text: 把今天的心情選一個天氣符號代表，畫下來。
+  tags: [diary, one_frame]
+  estimatedMinutes: 5
+- id: p-diary-012
+  text: 記下你今天吃的午餐，哪怕只是一行字。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-013
+  text: 拍一張今天讓你停下腳步三秒的東西。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-014
+  text: 用三個詞總結今天到現在為止，寫下來。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-015
+  text: 收集今天出現在你面前的一個數字，拍或寫都行。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-016
+  text: 畫下你今天穿的鞋，站著低頭看的那個角度。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-017
+  text: 記下今天有誰讓你覺得被在乎，一句就好。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-018
+  text: 拍你手邊正在用的一個舊物，說它幾歲了。
+  tags: [diary, archive]
+  estimatedMinutes: 5
+- id: p-diary-019
+  text: 把今天窗外的光畫成一塊顏色就好，不必像。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-020
+  text: 記下你今天說出口最多次的那個字或詞。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-021
+  text: 拍下今天你手機裡最後一張照片的續集，補一張。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-022
+  text: 今天有一件事你原本不想做卻做了，記下它。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-023
+  text: 畫一格四方框，只放今天的一個小物件。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-024
+  text: 拍你現在坐的地方，讓未來的你認得出來。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-025
+  text: 記下今天讓你分心最久的一件事，不評價。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-026
+  text: 收集一片今天的葉子、票根或包裝，拍下來存著。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-027
+  text: 把今天的溫度用一個顏色記錄，冷或暖你決定。
+  tags: [diary, one_frame]
+  estimatedMinutes: 5
+- id: p-diary-028
+  text: 記下你今天到現在喝了幾杯水，誠實就好。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-029
+  text: 拍下今天你經過最喜歡的一扇窗或一道門。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-030
+  text: 今天你聽了什麼歌，寫下歌名和當下在做什麼。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-031
+  text: 畫你今天手裡拿最久的那個東西的輪廓。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-032
+  text: 記下今天的一個氣味，它讓你想到什麼。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-033
+  text: 拍你今天的影子，地上、牆上，哪個都行。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-034
+  text: 收集今天路上的一個招牌字，拍或抄下來。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-035
+  text: 用一句話寫下今天的天氣，像跟朋友報告那樣。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-036
+  text: 畫一格今天的早餐，就算只是一個圈也算。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-037
+  text: 記下今天你花最多錢的一筆，買了什麼。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-038
+  text: 拍下你今天用過最多次的那個按鈕或開關。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-039
+  text: 今天有一個瞬間你想暫停，把它寫下來。
+  tags: [diary, moment]
+  estimatedMinutes: 5
+- id: p-diary-040
+  text: 畫今天窗外的一棵樹或一株植物，五筆之內。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-041
+  text: 記下你今天最想跟誰說話，還沒說也沒關係。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-042
+  text: 收集今天你桌上出現的一張紙，拍下正面。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-043
+  text: 把今天的忙碌程度畫成一條線，直的或波浪。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-044
+  text: 記下今天你打開最多次的那個 App，不批評。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-045
+  text: 拍你今天穿的衣服的一個細節，扣子或線頭。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-046
+  text: 今天讓你嘆一口氣的事，寫下來就放下。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-047
+  text: 畫一格今天的交通工具，公車、腳踏車或自己的腳。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-048
+  text: 記下今天第一個叫你名字的人是誰。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-049
+  text: 收集今天最順手的一個瞬間，拍下手在做什麼。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-050
+  text: 把今天用一種食物比喻，寫下是什麼、為什麼。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-051
+  text: 拍你今天待最久的那個房間的一角。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-052
+  text: 畫今天的月亮或路燈，圓的那個發光體。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-053
+  text: 記下今天你重複做最多次的一個小動作。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-054
+  text: 收集今天一張收據或票券，拍下來歸檔。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-055
+  text: 今天有什麼讓你意外的小事，一句話記著。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-056
+  text: 拍下你此刻眼前最遠的那個點。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-057
+  text: 畫一格今天你喝的那杯咖啡或茶的杯口。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-058
+  text: 記下今天你等待最久的一件事，等了多久。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-059
+  text: 收集今天一個好聽的聲音，用文字描述它。
+  tags: [diary, collect]
+  estimatedMinutes: 5
+- id: p-diary-060
+  text: 把今天的精神狀態用電量百分比表示，畫個電池。
+  tags: [diary, one_frame]
+  estimatedMinutes: 5
+- id: p-diary-061
+  text: 拍你今天最靠近的一株植物，葉子或花瓣。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-062
+  text: 記下今天讓你放鬆下來的那一刻是幾點。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-063
+  text: 畫今天你手機的鎖定畫面，憑印象就好。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-064
+  text: 記下今天你對自己說過的一句話。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-065
+  text: 收集今天窗外經過的一個顏色的東西，拍下來。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-066
+  text: 把今天畫成一張，只有一個大大的表情。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-067
+  text: 記下今天你最想再吃一次的味道。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-068
+  text: 拍下你今天摸過最有質感的一個表面。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-069
+  text: 今天你為誰做了一件小事，記下來。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-070
+  text: 畫一格今天的雲，就算是一團也好。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-071
+  text: 記下今天你最先想到的一個地方，遠或近。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-072
+  text: 收集一個今天出現的字體或手寫字，拍下來。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-073
+  text: 拍你今天用來記事的紙、便利貼或螢幕。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-074
+  text: 把今天最累的那一刻畫成一個姿勢的小人。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-075
+  text: 記下今天你按下最多次的一個念頭。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-076
+  text: 收集今天你經過的一個氣味攤位或店家，記名字。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-077
+  text: 拍此刻你左手邊的第一個東西。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-078
+  text: 畫今天你的手，張開放在桌上那樣。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-079
+  text: 記下今天你最想跳過的一段時間，幾點到幾點。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-080
+  text: 收集今天一句想留著的網路留言或訊息。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-081
+  text: 把今天的行程畫成一條路線，起點到現在。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-082
+  text: 記下今天有什麼氣味讓你突然想起以前。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-083
+  text: 拍你今天窗戶上的反光、水氣或灰塵。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-084
+  text: 今天你聽見的第一個聲音是什麼，寫下來。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-085
+  text: 畫一格今天的晚餐，用最少的線條。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-086
+  text: 記下今天讓你想道謝卻沒說出口的一件事。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-087
+  text: 收集今天一個好看的包裝或標籤，拍下來。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-088
+  text: 拍你今天走過的樓梯、電梯或坡道。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-089
+  text: 把今天用一個天氣預報的語氣寫一句話。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-090
+  text: 畫今天你戴的眼鏡、耳機或手錶。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-091
+  text: 記下今天你最想重來一次的三十秒。
+  tags: [diary, moment]
+  estimatedMinutes: 5
+- id: p-diary-092
+  text: 收集今天出現在你視線裡的一種動物或昆蟲。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-093
+  text: 拍你此刻正前方的畫面，不移動位置。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-094
+  text: 記下今天你最先醒來想到的那件事。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-095
+  text: 把今天的顏色調成一組三格色卡，塗上去。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-096
+  text: 記下今天你路過卻沒進去的一家店。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-097
+  text: 收集今天你桌上的一個小垃圾之前的樣子，拍下。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-098
+  text: 畫一格今天的門把，你今天摸過最多次的那個。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-099
+  text: 記下今天你查了什麼、搜尋了什麼問題。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-100
+  text: 拍下今天你看見最藍或最綠的一塊。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-101
+  text: 把今天最想保留的一秒，用一句話定格。
+  tags: [diary, moment]
+  estimatedMinutes: 5
+- id: p-diary-102
+  text: 畫今天你身邊一個發光的東西，燈或螢幕。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-103
+  text: 記下今天你最後一次抬頭看天是幾點。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-104
+  text: 收集今天一個你覺得有趣的組合，拍下來。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-105
+  text: 用一個形狀畫今天的忙碌，圓、方或亂線。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-106
+  text: 記下今天你重看最多次的一則訊息。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-107
+  text: 拍你今天用的杯子放下後留的水痕或空杯。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-108
+  text: 今天你想起了誰，寫下名字和一個畫面。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-109
+  text: 畫一格今天窗外的建築線條，橫豎斜。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-110
+  text: 記下今天你笑得最開心的一刻。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-111
+  text: 收集今天一張你想留下的截圖，說為什麼。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-112
+  text: 拍你今天走最遠的那一趟的終點。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-113
+  text: 把今天的速度畫成一個交通號誌，紅黃綠。
+  tags: [diary, one_frame]
+  estimatedMinutes: 5
+- id: p-diary-114
+  text: 記下今天你最想放進口袋帶走的一個瞬間。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-115
+  text: 收集今天你聞到的一種食物香氣，寫下地點。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-116
+  text: 拍此刻你頭頂上方的天花板或天空。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-117
+  text: 畫今天你手裡的筆、湯匙或筷子。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-118
+  text: 記下今天你決定不做的一件事，也是選擇。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-119
+  text: 收集今天一段你聽到的對話片段，抄一句。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-120
+  text: 把今天最重的心情畫成一塊石頭的大小。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-121
+  text: 記下今天讓你安心的一個聲音或畫面。
+  tags: [diary, moment]
+  estimatedMinutes: 5
+- id: p-diary-122
+  text: 拍你今天最常低頭看的那個位置。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-123
+  text: 畫一格今天的路口或轉角，你今天經過的。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-124
+  text: 記下今天你最想再多睡的那個時刻。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-125
+  text: 收集今天一個你想記得的小成就，一句話。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-126
+  text: 拍下今天你身邊最亂的一角，不整理。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-127
+  text: 把今天的節奏畫成一段心電圖的起伏。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-128
+  text: 記下今天讓你會心一笑的一個巧合。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-129
+  text: 收集今天路邊一個你沒看過的東西，拍下。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-130
+  text: 拍你今天穿的襪子，就低頭那個角度。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-131
+  text: 畫今天你窗台或桌邊的一個小擺設。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-132
+  text: 記下今天你最想跟過去的自己說的一句話。
+  tags: [diary, journal]
+  estimatedMinutes: 6
+- id: p-diary-133
+  text: 收集今天一個好看的光影，拍下它落在哪。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-134
+  text: 把今天的忙與閒切成兩塊，畫出誰比較大。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-135
+  text: 記下今天你花最久盯著看的一個畫面。
+  tags: [diary, moment]
+  estimatedMinutes: 5
+- id: p-diary-136
+  text: 拍你今天喝完的那個瓶子或罐子。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-137
+  text: 今天你原諒了自己什麼，寫一句就好。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-138
+  text: 畫一格今天的鑰匙、卡片或悠遊卡。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-139
+  text: 記下今天你最想按下重播的一段聲音。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-140
+  text: 收集今天一張你路過的海報或告示，拍下。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-141
+  text: 把今天的自己畫成一隻動物，配一個表情。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-142
+  text: 記下今天你最先聞到的早晨氣味。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-143
+  text: 拍你此刻右手能碰到的第一個東西。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-144
+  text: 記下今天你想收藏的一句廣告詞或標語。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-145
+  text: 畫今天窗外最高的那個東西的頂端。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-146
+  text: 記下今天有什麼比昨天好了一點點。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-147
+  text: 收集今天你桌上的三樣東西，拍成一排。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-148
+  text: 把今天的溫度和心情各畫一格，並排放。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-149
+  text: 記下今天你最想留給明天的一件事。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-150
+  text: 拍你今天用手機拍的第一張照片旁邊的東西。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-151
+  text: 畫一格今天的雨傘、外套或圍巾。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-152
+  text: 記下今天你聽到最溫柔的一句話。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-153
+  text: 收集今天一個你想再訪的地方，記下名字。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-154
+  text: 拍你今天路過的一面牆，磚、漆或塗鴉。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-155
+  text: 把今天畫成一格漫畫，一句對白就夠。
+  tags: [diary, one_frame]
+  estimatedMinutes: 9
+- id: p-diary-156
+  text: 記下今天讓你鬆一口氣的那一刻。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-157
+  text: 收集今天你看到的一個時鐘畫面，記下時間。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-158
+  text: 拍你今天坐過的椅子，離開後的樣子。
+  tags: [diary, everyday]
+  estimatedMinutes: 3
+- id: p-diary-159
+  text: 畫今天你窗外的一條電線或欄杆的線條。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-160
+  text: 記下今天你最想擁抱誰。
+  tags: [diary, journal]
+  estimatedMinutes: 4
+- id: p-diary-161
+  text: 收集今天一個好聽的地名或店名，寫下來。
+  tags: [diary, archive]
+  estimatedMinutes: 3
+- id: p-diary-162
+  text: 拍此刻你眼前最亮和最暗的兩個地方。
+  tags: [diary, moment]
+  estimatedMinutes: 4
+- id: p-diary-163
+  text: 把今天的力氣分成早中晚，畫三根高低不同的柱。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-164
+  text: 記下今天你想謝謝身體哪個部位。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-165
+  text: 收集今天你經過的一朵花或一片草，拍下。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-166
+  text: 畫一格今天的碗、盤子或便當盒。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-167
+  text: 記下今天你最想收進口袋的一個字。
+  tags: [diary, everyday]
+  estimatedMinutes: 4
+- id: p-diary-168
+  text: 拍你今天窗外的黃昏或夜色，就現在。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-169
+  text: 收集今天一個讓你安靜下來的畫面，存起來。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-170
+  text: 把今天的天氣和身體感覺畫成同一格。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-171
+  text: 記下今天你想給自己的一個小獎勵。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-172
+  text: 拍你今天最靠近的一盞燈的光。
+  tags: [diary, collect]
+  estimatedMinutes: 3
+- id: p-diary-173
+  text: 記下今天你錯過卻沒關係的一件事。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-174
+  text: 畫一格今天的手機或電腦，螢幕上什麼都行。
+  tags: [diary, one_frame]
+  estimatedMinutes: 6
+- id: p-diary-175
+  text: 收集今天你想記得的一個溫度，冷飲或暖手。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-176
+  text: 拍你今天走進的第一扇門的門口。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-177
+  text: 把今天用一個標點符號代表，畫大大的它。
+  tags: [diary, one_frame]
+  estimatedMinutes: 5
+- id: p-diary-178
+  text: 記下今天你最想跟明天的自己約定的事。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-179
+  text: 收集今天一段你哼過的旋律，寫下歌詞一句。
+  tags: [diary, archive]
+  estimatedMinutes: 4
+- id: p-diary-180
+  text: 拍你此刻的手，正在做的最後一件事。
+  tags: [diary, moment]
+  estimatedMinutes: 3
+- id: p-diary-181
+  text: 畫今天你窗外看到的一個人的剪影。
+  tags: [diary, one_frame]
+  estimatedMinutes: 7
+- id: p-diary-182
+  text: 記下今天最小但真實的一個快樂。
+  tags: [diary, journal]
+  estimatedMinutes: 5
+- id: p-diary-183
+  text: 收集今天一個你想留下的味道，寫下它的名字。
+  tags: [diary, collect]
+  estimatedMinutes: 4
+- id: p-diary-184
+  text: 把今天畫成一張，只要一個你記得的畫面。
+  tags: [diary, one_frame]
+  estimatedMinutes: 8
+- id: p-diary-185
+  text: 記下今天你最想對這一天說的一句話。
+  tags: [diary, journal]
+  estimatedMinutes: 5

@@ -1,0 +1,928 @@
+# 每日創作提示 — 主題：心情轉創作
+# 把此刻的心情變成一張圖、一個顏色、一個形狀。無論好壞，都能用。
+# id 遞增，text 6-80 中文字，tags 2-3 個，estimatedMinutes 3-30。
+
+- id: p-mood-001
+  text: 用一個顏色代表現在的心情，不用解釋為什麼。
+  tags: [mood, color]
+  estimatedMinutes: 3
+
+- id: p-mood-002
+  text: 在紙上塗一整片顏色，塗到你覺得夠了為止。
+  tags: [mood, color, release]
+  estimatedMinutes: 5
+
+- id: p-mood-003
+  text: 如果現在的心情是一個形狀，把它畫出來，一筆就好。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 4
+
+- id: p-mood-004
+  text: 挑兩個顏色放在一起，看它們像不像你今天的狀態。
+  tags: [mood, color]
+  estimatedMinutes: 5
+
+- id: p-mood-005
+  text: 閉上眼睛畫一條線，睜開後看它是快是慢。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 3
+
+- id: p-mood-006
+  text: 用力塗一團黑，然後在旁邊留一小塊空白。
+  tags: [mood, release, abstract]
+  estimatedMinutes: 5
+
+- id: p-mood-007
+  text: 把心情畫成一朵雲，它是薄的還是厚的。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-008
+  text: 只用圓形，畫出你現在心裡的樣子。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-009
+  text: 選一個顏色代表早上，一個代表現在，畫在一起。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-010
+  text: 用手指沾顏料點三下，力道由你決定。
+  tags: [mood, expression, release]
+  estimatedMinutes: 4
+
+- id: p-mood-011
+  text: 畫一條代表今天的地平線，它是平的還是斜的。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-012
+  text: 把心情想成天氣，畫出那個天氣的一角。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-013
+  text: 用最淡的顏色畫一個很小的東西。
+  tags: [mood, color, expression]
+  estimatedMinutes: 4
+
+- id: p-mood-014
+  text: 隨手塗鴉三十秒，時間到就停，不用完成。
+  tags: [mood, release, expression]
+  estimatedMinutes: 3
+
+- id: p-mood-015
+  text: 把此刻的重量畫成一個物件，重的畫大，輕的畫小。
+  tags: [mood, visualize, abstract]
+  estimatedMinutes: 7
+
+- id: p-mood-016
+  text: 挑一個顏色，說它現在對你太多還是太少。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-017
+  text: 畫一個框，把心情關進去，或讓它溢出框外。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-018
+  text: 用波浪線畫出今天的起伏，一條就好。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 4
+
+- id: p-mood-019
+  text: 找一個你手邊的顏色，拍下來當作今天的紀錄。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-020
+  text: 把心情畫成一種質地，光滑的還是粗糙的。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-021
+  text: 用兩種顏色畫一條漸層，從哪裡走到哪裡。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 7
+
+- id: p-mood-022
+  text: 畫一個門，它是開著還是關著。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-023
+  text: 把現在的緊繃或放鬆，畫成一條線的鬆緊。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 4
+
+- id: p-mood-024
+  text: 選一個顏色貼在牆上，讓它陪你一整天。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-025
+  text: 畫一個容器，畫出裡面裝了多滿。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-026
+  text: 用最快的速度畫一個圈，看它有多亂。
+  tags: [mood, release, expression]
+  estimatedMinutes: 3
+
+- id: p-mood-027
+  text: 把心情想成一種溫度，畫出冷或熱的顏色。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-028
+  text: 在紙的一角畫一個小記號，代表現在的你在哪。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-029
+  text: 用三個點畫出你和某件事的距離。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-030
+  text: 畫一個往上或往下的箭頭，只選一個方向。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-031
+  text: 把今天的聲音畫出來，吵的還是靜的。
+  tags: [mood, visualize, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-032
+  text: 選一張手機裡的照片，說它像不像現在的心情。
+  tags: [mood, feeling, visualize]
+  estimatedMinutes: 4
+
+- id: p-mood-033
+  text: 用鉛筆的最重和最輕，各畫一條線。
+  tags: [mood, expression, abstract]
+  estimatedMinutes: 5
+
+- id: p-mood-034
+  text: 畫一個影子，它比你大還是比你小。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-035
+  text: 把心情揉成一顆球，畫出它有多緊。
+  tags: [mood, release, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-036
+  text: 用一個顏色蓋掉另一個顏色，看誰贏。
+  tags: [mood, color, release]
+  estimatedMinutes: 5
+
+- id: p-mood-037
+  text: 畫一條路，它通向哪裡不用想清楚。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-038
+  text: 把現在的心情畫成早餐盤裡的一樣東西。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-039
+  text: 用點點填滿一小塊，密的還是疏的由你。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 7
+
+- id: p-mood-040
+  text: 選一個顏色，把它畫得越來越淡。
+  tags: [mood, color, release]
+  estimatedMinutes: 6
+
+- id: p-mood-041
+  text: 畫一扇窗，窗外是什麼天色。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-042
+  text: 用一條線把兩個情緒連起來。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-043
+  text: 把心情畫成水，它是靜的還是流動的。
+  tags: [mood, visualize, abstract]
+  estimatedMinutes: 6
+
+- id: p-mood-044
+  text: 隨便撕一張紙，看撕痕像不像今天。
+  tags: [mood, release, expression]
+  estimatedMinutes: 3
+
+- id: p-mood-045
+  text: 用暖色畫一個角落，只要暖色。
+  tags: [mood, color, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-046
+  text: 畫一顆種子或一棵樹，看你想畫哪個。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-047
+  text: 把此刻畫成一個天空的顏色，不用畫雲。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-048
+  text: 用手掌壓一個顏料印，那就是今天。
+  tags: [mood, expression, release]
+  estimatedMinutes: 4
+
+- id: p-mood-049
+  text: 畫一個圈，把想留下的放進去。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-050
+  text: 用冷色畫一片海，多深由你。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 7
+
+- id: p-mood-051
+  text: 把心情畫成一個動作：伸展還是縮起。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-052
+  text: 選三個顏色排成一個順序，這是你的今天。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-053
+  text: 畫一個很滿的畫面，塞到沒有空隙。
+  tags: [mood, release, expression]
+  estimatedMinutes: 8
+
+- id: p-mood-054
+  text: 反過來，畫一個幾乎空白的畫面，只留一點。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 4
+
+- id: p-mood-055
+  text: 把現在畫成一種花的樣子，開了還是含苞。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-056
+  text: 用一條線走完一整張紙，不抬筆。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-057
+  text: 畫一個火，它是大是小是快熄了。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-058
+  text: 把心情放進一個杯子，畫出水位在哪。
+  tags: [mood, visualize, abstract]
+  estimatedMinutes: 5
+
+- id: p-mood-059
+  text: 選一個顏色，說它像今天的哪一刻。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-060
+  text: 用兩隻手同時畫兩條線，看它們像不像。
+  tags: [mood, expression, abstract]
+  estimatedMinutes: 4
+
+- id: p-mood-061
+  text: 畫一個結，鬆的還是打死的。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-062
+  text: 把心情畫成一座山的高低起伏。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-063
+  text: 用最少的線畫一張臉，什麼表情都行。
+  tags: [mood, expression, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-064
+  text: 挑一個顏色代表想丟掉的，把它塗掉。
+  tags: [mood, color, release]
+  estimatedMinutes: 5
+
+- id: p-mood-065
+  text: 畫一個往外散開的形狀，像光或像炸開。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 6
+
+- id: p-mood-066
+  text: 把此刻的節奏畫成一排長短不一的線。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-067
+  text: 用一個顏色畫滿指甲大小的方格。
+  tags: [mood, color, expression]
+  estimatedMinutes: 4
+
+- id: p-mood-068
+  text: 畫一雙鞋，它想去哪裡或想留在原地。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-069
+  text: 把心情畫成一種光：刺眼的還是微弱的。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-070
+  text: 用鉛筆側面塗一片灰，深淺自己抓。
+  tags: [mood, expression, release]
+  estimatedMinutes: 5
+
+- id: p-mood-071
+  text: 畫一個往內捲的螺旋，捲到中心。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-072
+  text: 選一個食物的顏色，代表你想被餵養的感覺。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-073
+  text: 把心情畫成一件衣服，厚的還是薄的。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-074
+  text: 用三筆畫完一個東西，多一筆都不行。
+  tags: [mood, expression, abstract]
+  estimatedMinutes: 4
+
+- id: p-mood-075
+  text: 畫一片落葉，它剛落還是躺很久了。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-076
+  text: 把現在畫成一個天氣預報的圖示。
+  tags: [mood, visualize, abstract]
+  estimatedMinutes: 5
+
+- id: p-mood-077
+  text: 用一個顏色從左畫到右，看它變不變。
+  tags: [mood, color, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-078
+  text: 畫一個裂縫，讓它從哪裡開始。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 5
+
+- id: p-mood-079
+  text: 把心情畫成一顆石頭的形狀，圓的還是尖的。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-080
+  text: 選兩個相反的顏色，讓它們在紙上相遇。
+  tags: [mood, color, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-081
+  text: 畫一座橋，它連著什麼和什麼。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-082
+  text: 用最溫柔的力道畫一整片顏色。
+  tags: [mood, color, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-083
+  text: 把此刻畫成一個房間，裡面有多少東西。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 8
+
+- id: p-mood-084
+  text: 畫一隻鳥，飛著還是停著。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-085
+  text: 用不同大小的圓，畫出心裡的擁擠或空。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 7
+
+- id: p-mood-086
+  text: 選一個顏色代表想被聽見的感覺。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-087
+  text: 把心情畫成一段音樂的形狀，高低長短。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-088
+  text: 用一條斷斷續續的線，畫今天的注意力。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-089
+  text: 畫一個影格，只框住今天的一秒鐘。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-090
+  text: 把重的心情畫在紙的下面，輕的畫在上面。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-091
+  text: 用一個顏色畫一個很慢的圈。
+  tags: [mood, color, expression]
+  estimatedMinutes: 4
+
+- id: p-mood-092
+  text: 畫一杯熱的東西，冒不冒煙由你。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-093
+  text: 把心情畫成一個天平，哪邊比較重。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-094
+  text: 選一個顏色塗在手背上，看它待多久。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-095
+  text: 畫一片草地，風有沒有在吹。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-096
+  text: 用連續的小勾勾填滿一條線。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-097
+  text: 把此刻畫成一個表情符號，不要現成的。
+  tags: [mood, expression, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-098
+  text: 用一個顏色畫一滴水落下的痕跡。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-099
+  text: 畫一個籠子，門是開的還是鎖的。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-100
+  text: 把心情畫成一種距離，遠的用小，近的用大。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-101
+  text: 選一個顏色，把它畫在最角落。
+  tags: [mood, color, expression]
+  estimatedMinutes: 3
+
+- id: p-mood-102
+  text: 畫一條河，它急還是緩。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-103
+  text: 用交叉的線畫一張網，密疏由你。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 7
+
+- id: p-mood-104
+  text: 把現在畫成一顆星，亮還是快滅。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-105
+  text: 用兩個顏色畫一個沒有名字的東西。
+  tags: [mood, color, abstract]
+  estimatedMinutes: 6
+
+- id: p-mood-106
+  text: 畫一個往上長的東西，藤蔓或火苗都行。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-107
+  text: 把心情畫成一塊布的皺褶。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-108
+  text: 選一個顏色代表最想休息的部位。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-109
+  text: 用一條螺旋往外畫，越畫越大。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 6
+
+- id: p-mood-110
+  text: 畫一片正在融化的東西。
+  tags: [mood, visualize, release]
+  estimatedMinutes: 6
+
+- id: p-mood-111
+  text: 把此刻畫成一個天花板的高度。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-112
+  text: 用手邊任何一枝筆，畫一個此刻的記號。
+  tags: [mood, expression, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-113
+  text: 畫一個口袋，裡面裝著什麼不用寫出來。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-114
+  text: 把心情畫成一種速度：奔跑或散步。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-115
+  text: 選一個顏色，說它現在讓你想靠近還是走開。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-116
+  text: 畫一座燈塔，光照到多遠。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-117
+  text: 用重疊的三角形畫出心裡的層次。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 7
+
+- id: p-mood-118
+  text: 把現在畫成一雙眼睛的樣子。
+  tags: [mood, expression, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-119
+  text: 用一個顏色塗一片，再用橡皮擦擦出一條路。
+  tags: [mood, expression, release]
+  estimatedMinutes: 7
+
+- id: p-mood-120
+  text: 畫一朵浪，它剛湧起還是快落下。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-121
+  text: 把心情畫成一個口的形狀，張開還是抿著。
+  tags: [mood, expression, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-122
+  text: 選一個顏色畫在紙的正中央，只有它。
+  tags: [mood, color, expression]
+  estimatedMinutes: 4
+
+- id: p-mood-123
+  text: 畫一個雨滴到水面的漣漪。
+  tags: [mood, visualize, release]
+  estimatedMinutes: 6
+
+- id: p-mood-124
+  text: 把此刻畫成一段樓梯，往上還是往下。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-125
+  text: 用最短的一筆，畫出現在的你。
+  tags: [mood, expression, abstract]
+  estimatedMinutes: 3
+
+- id: p-mood-126
+  text: 畫一團毛線，它整齊還是纏在一起。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-127
+  text: 把心情畫成一個氣球，飽的還是消了氣。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-128
+  text: 選兩個顏色，讓一個包住另一個。
+  tags: [mood, color, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-129
+  text: 畫一條地下的根，往哪裡伸。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-130
+  text: 把現在畫成一種味道的顏色，酸甜苦都行。
+  tags: [mood, color, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-131
+  text: 用點連成一條看不清方向的路。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-132
+  text: 畫一個屋簷下躲雨的小空間。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-133
+  text: 把心情畫成一種厚度，一層還是很多層。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-134
+  text: 選一個顏色畫一條慢慢消失的尾巴。
+  tags: [mood, color, release]
+  estimatedMinutes: 5
+
+- id: p-mood-135
+  text: 畫一個正在打包或正在攤開的東西。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-136
+  text: 把此刻畫成一個時鐘，指針停在哪。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-137
+  text: 用一整排短線畫出呼吸的快慢。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-138
+  text: 畫一顆快掉下來的果子。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-139
+  text: 把心情畫成一片被風翻開的紙。
+  tags: [mood, visualize, release]
+  estimatedMinutes: 6
+
+- id: p-mood-140
+  text: 選一個顏色代表想對自己說的話。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-141
+  text: 畫一個往地平線縮小的東西。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-142
+  text: 用兩種深淺的同一色，畫今天的兩面。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-143
+  text: 畫一個門把，你想推還是想拉。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-144
+  text: 把現在畫成一個泡泡，快破還是很穩。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-145
+  text: 用鋸齒線畫出心裡的不平。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 5
+
+- id: p-mood-146
+  text: 畫一個被子的形狀，蓋住多少。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-147
+  text: 把心情畫成一朵煙，往哪個方向散。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 6
+
+- id: p-mood-148
+  text: 選一個顏色，把它畫成越來越濃。
+  tags: [mood, color, expression]
+  estimatedMinutes: 6
+
+- id: p-mood-149
+  text: 畫一個潮水退後留下的痕跡。
+  tags: [mood, visualize, release]
+  estimatedMinutes: 7
+
+- id: p-mood-150
+  text: 把此刻畫成一根蠟燭，剩多長。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-151
+  text: 用一個顏色畫兩個並排的圈，一大一小。
+  tags: [mood, color, abstract]
+  estimatedMinutes: 5
+
+- id: p-mood-152
+  text: 畫一個正在發芽的小點。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-153
+  text: 把心情畫成一片被踩過的雪。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-154
+  text: 選一個顏色代表最靠近你的那個感覺。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-155
+  text: 畫一個沒有出口的迷宮，或有一個出口。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 8
+
+- id: p-mood-156
+  text: 用一條線畫今天的心電圖。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 5
+
+- id: p-mood-157
+  text: 把現在畫成一扇半開的百葉窗。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-158
+  text: 用最大的力氣塗滿一整格，然後放下。
+  tags: [mood, release, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-159
+  text: 畫一個影子拉得很長的傍晚。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-160
+  text: 把心情畫成一顆包著什麼的殼。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-161
+  text: 選一個顏色，畫一個只有你懂的符號。
+  tags: [mood, color, expression]
+  estimatedMinutes: 5
+
+- id: p-mood-162
+  text: 畫一個正在退潮的海岸線。
+  tags: [mood, visualize, release]
+  estimatedMinutes: 6
+
+- id: p-mood-163
+  text: 把此刻畫成一件正在晾乾的東西。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-164
+  text: 用重複的橫線把一整頁填滿。
+  tags: [mood, abstract, expression]
+  estimatedMinutes: 8
+
+- id: p-mood-165
+  text: 畫一個往你靠近或往你遠去的光點。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-166
+  text: 把心情畫成一座正在下雪或放晴的窗景。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-167
+  text: 選一個顏色，說它是今天的開始還是結尾。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 3
+
+- id: p-mood-168
+  text: 畫一個抱著膝蓋的簡單形狀。
+  tags: [mood, expression, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-169
+  text: 用一個顏色畫一條想被牽住的手。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-170
+  text: 把現在畫成一個正在充電或沒電的符號。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-171
+  text: 畫一片有裂痕的冰，或完整的冰。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-172
+  text: 用一筆長線把所有心情連成一團。
+  tags: [mood, abstract, release]
+  estimatedMinutes: 5
+
+- id: p-mood-173
+  text: 把此刻畫成一個盆栽，缺水還是剛澆過。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-174
+  text: 選一個顏色蓋住整張紙，什麼都不畫。
+  tags: [mood, color, release]
+  estimatedMinutes: 5
+
+- id: p-mood-175
+  text: 畫一個正在翻頁的動作。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-176
+  text: 把心情畫成一個回聲，一圈圈往外。
+  tags: [mood, abstract, visualize]
+  estimatedMinutes: 6
+
+- id: p-mood-177
+  text: 用一個顏色畫一條走到一半停下的線。
+  tags: [mood, color, expression]
+  estimatedMinutes: 4
+
+- id: p-mood-178
+  text: 畫一個屋頂上的天窗，看得到什麼。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 7
+
+- id: p-mood-179
+  text: 把現在畫成一顆正在轉的陀螺，快停了嗎。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-180
+  text: 選一個顏色，把它當作今天送給自己的禮物。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-181
+  text: 畫一個很小很小的圓，就代表今天做過了。
+  tags: [mood, expression, release]
+  estimatedMinutes: 3
+
+- id: p-mood-182
+  text: 用一條線畫出你和明天之間的樣子。
+  tags: [mood, abstract, feeling]
+  estimatedMinutes: 5
+
+- id: p-mood-183
+  text: 把心情畫成一扇正在關上或打開的門縫。
+  tags: [mood, visualize, feeling]
+  estimatedMinutes: 6
+
+- id: p-mood-184
+  text: 選一個顏色代表你希望明天多一點的東西。
+  tags: [mood, color, feeling]
+  estimatedMinutes: 4
+
+- id: p-mood-185
+  text: 畫一個句點，把今天輕輕放在那裡。
+  tags: [mood, expression, release]
+  estimatedMinutes: 3

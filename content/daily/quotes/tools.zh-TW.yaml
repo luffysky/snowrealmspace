@@ -1,0 +1,542 @@
+# 每日語錄 — 工具與手感
+# 主題：工具不是重點、熟悉工具、限制工具、手比工具重要、換工具的意義、不被工具綁架
+- id: q-tools-001
+  text: 工具再好，也代替不了你想說的話。
+  tags: [tools, craft]
+- id: q-tools-002
+  text: 先把手弄髒，再去挑更順手的傢伙。
+  tags: [hands, craft]
+- id: q-tools-003
+  text: 一支用熟的舊筆，勝過十支還在猶豫的新筆。
+  tags: [tools, mastery]
+- id: q-tools-004
+  text: 你不是缺工具，只是還沒開始。
+  tags: [tools, craft]
+- id: q-tools-005
+  text: 換軟體不會換掉你的卡關，但會換掉你的今天下午。
+  tags: [tools, medium]
+- id: q-tools-006
+  text: 限制少一點選擇，反而多一點動手。
+  tags: [constraint, craft]
+- id: q-tools-007
+  text: 手感是練出來的，不是買出來的。
+  tags: [hands, skill]
+- id: q-tools-008
+  text: 最好的工具，是你閉著眼也知道它在哪的那一個。
+  tags: [tools, mastery]
+- id: q-tools-009
+  text: 今天沒力氣就用最簡單的那支，能開始就好。
+  tags: [simplicity, tools]
+- id: q-tools-010
+  text: 畫壞的線，換再貴的筆也一樣壞，那沒關係。
+  tags: [craft, hands]
+- id: q-tools-011
+  text: 工具在等你，不是你在等工具。
+  tags: [tools, craft]
+- id: q-tools-012
+  text: 熟悉一樣東西，要花的是時間，不是金錢。
+  tags: [mastery, skill]
+- id: q-tools-013
+  text: 少開幾個分頁，多留幾分鐘給手。
+  tags: [constraint, hands]
+- id: q-tools-014
+  text: 你的手記得的，比你的腦以為的多。
+  tags: [hands, skill]
+- id: q-tools-015
+  text: 一把鈍刀用久了，你會知道怎麼順著它。
+  tags: [tools, mastery]
+- id: q-tools-016
+  text: 不必等到工具齊全，齊全那天永遠不會到。
+  tags: [tools, simplicity]
+- id: q-tools-017
+  text: 換工具是為了走更遠，不是為了逃更快。
+  tags: [tools, craft]
+- id: q-tools-018
+  text: 把功能關掉一半，你會更清楚自己要什麼。
+  tags: [constraint, simplicity]
+- id: q-tools-019
+  text: 慢慢用一樣東西，它會慢慢變成你的一部分。
+  tags: [mastery, hands]
+- id: q-tools-020
+  text: 低能量的日子，讓工具替你多扛一點。
+  tags: [tools, simplicity]
+- id: q-tools-021
+  text: 好用不是因為它厲害，是因為你懂它。
+  tags: [mastery, tools]
+- id: q-tools-022
+  text: 手先動起來，靈感才追得上。
+  tags: [hands, craft]
+- id: q-tools-023
+  text: 工具的極限，往往離你的極限還很遠。
+  tags: [tools, skill]
+- id: q-tools-024
+  text: 一種顏料、一張紙，也能撐起一整個下午。
+  tags: [constraint, medium]
+- id: q-tools-025
+  text: 別急著換新的，先把手上這個摸透。
+  tags: [mastery, tools]
+- id: q-tools-026
+  text: 你選的媒材，會悄悄改變你說話的方式。
+  tags: [medium, craft]
+- id: q-tools-027
+  text: 工具越少，越藏不住手上的功夫，這很誠實。
+  tags: [constraint, skill]
+- id: q-tools-028
+  text: 熟到某個程度，工具就消失了，只剩你和作品。
+  tags: [mastery, craft]
+- id: q-tools-029
+  text: 沒有完美的筆刷，只有願意重畫的手。
+  tags: [hands, craft]
+- id: q-tools-030
+  text: 今天只想隨手塗兩筆，也是在用手。
+  tags: [hands, simplicity]
+- id: q-tools-031
+  text: 工具是橋，不是目的地。
+  tags: [tools, craft]
+- id: q-tools-032
+  text: 把快捷鍵練熟，手就不會打斷念頭。
+  tags: [skill, hands]
+- id: q-tools-033
+  text: 越簡單的工具，越考驗你怎麼看。
+  tags: [simplicity, skill]
+- id: q-tools-034
+  text: 換了新工具，還是要從第一條線重新學起。
+  tags: [tools, mastery]
+- id: q-tools-035
+  text: 別讓「找更好的工具」變成不動手的藉口。
+  tags: [tools, craft]
+- id: q-tools-036
+  text: 手的溫度，是任何工具都印不出來的。
+  tags: [hands, craft]
+- id: q-tools-037
+  text: 用限制逼出來的辦法，常常最有意思。
+  tags: [constraint, craft]
+- id: q-tools-038
+  text: 一個熟悉的介面，能省下很多與自己的爭執。
+  tags: [mastery, tools]
+- id: q-tools-039
+  text: 工具不會嫌你今天畫得慢。
+  tags: [tools, simplicity]
+- id: q-tools-040
+  text: 先求做完，再求換更好的做法。
+  tags: [craft, simplicity]
+- id: q-tools-041
+  text: 你和工具之間，需要的是時間，不是說明書。
+  tags: [mastery, hands]
+- id: q-tools-042
+  text: 削鉛筆也是創作的一部分，別小看那半分鐘。
+  tags: [craft, hands]
+- id: q-tools-043
+  text: 被工具綁住的，往往不是手，是心裡的那句「還不夠好」。
+  tags: [tools, craft]
+- id: q-tools-044
+  text: 換工具前，先問這是想進步，還是想逃避。
+  tags: [tools, craft]
+- id: q-tools-045
+  text: 一支筆能做的事，比你以為的多很多。
+  tags: [constraint, medium]
+- id: q-tools-046
+  text: 手熟了，工具就變透明，你只看見要做的東西。
+  tags: [mastery, hands]
+- id: q-tools-047
+  text: 今天用最順手的那個就好，別為難自己。
+  tags: [simplicity, tools]
+- id: q-tools-048
+  text: 工具幫你走一半，另一半永遠是手的事。
+  tags: [tools, hands]
+- id: q-tools-049
+  text: 練久了的動作，會比腦子更早知道答案。
+  tags: [skill, hands]
+- id: q-tools-050
+  text: 少一點設定，多一點下筆。
+  tags: [constraint, simplicity]
+- id: q-tools-051
+  text: 好工具讓你忘記它，壞工具讓你只記得它。
+  tags: [tools, mastery]
+- id: q-tools-052
+  text: 手感回不來的日子，就先描一描舊的線條。
+  tags: [hands, simplicity]
+- id: q-tools-053
+  text: 工具能複製，手上的分寸不能。
+  tags: [hands, skill]
+- id: q-tools-054
+  text: 挑工具像挑鞋，合腳比好看重要。
+  tags: [tools, craft]
+- id: q-tools-055
+  text: 給自己一個限制，看看能走到哪。
+  tags: [constraint, craft]
+- id: q-tools-056
+  text: 一樣東西用到破舊，是很深的熟悉。
+  tags: [mastery, tools]
+- id: q-tools-057
+  text: 工具再新，你的眼光才是關鍵。
+  tags: [tools, skill]
+- id: q-tools-058
+  text: 手先學會，腦才跟得上，順序常常是反的。
+  tags: [hands, skill]
+- id: q-tools-059
+  text: 別把整個下午花在比較規格上。
+  tags: [tools, simplicity]
+- id: q-tools-060
+  text: 熟手用簡單工具，也做得出細膩的活。
+  tags: [mastery, simplicity]
+- id: q-tools-061
+  text: 換媒材是換一種思考，不只是換一種筆。
+  tags: [medium, craft]
+- id: q-tools-062
+  text: 工具的預設值，不一定是你的答案。
+  tags: [tools, craft]
+- id: q-tools-063
+  text: 手上有繭的地方，藏著你走過的路。
+  tags: [hands, mastery]
+- id: q-tools-064
+  text: 今天只想整理工具，也算是靠近了創作。
+  tags: [tools, simplicity]
+- id: q-tools-065
+  text: 限制不是牆，是給你借力的把手。
+  tags: [constraint, craft]
+- id: q-tools-066
+  text: 越用越順的，才是真正屬於你的工具。
+  tags: [mastery, tools]
+- id: q-tools-067
+  text: 手的記憶很老實，練多少就記多少。
+  tags: [hands, skill]
+- id: q-tools-068
+  text: 別讓工具的功能表比你的作品還豐富。
+  tags: [constraint, simplicity]
+- id: q-tools-069
+  text: 一件趁手的工具，會讓你更想動手。
+  tags: [tools, hands]
+- id: q-tools-070
+  text: 熟練不是變快，是知道哪裡可以慢。
+  tags: [mastery, skill]
+- id: q-tools-071
+  text: 工具替你省的力氣，留給更難的地方。
+  tags: [tools, craft]
+- id: q-tools-072
+  text: 沒有神器，只有肯反覆做的手。
+  tags: [hands, craft]
+- id: q-tools-073
+  text: 換工具的第一天很笨拙，那很正常。
+  tags: [tools, mastery]
+- id: q-tools-074
+  text: 把工具收好，也是在替下一次的自己鋪路。
+  tags: [tools, craft]
+- id: q-tools-075
+  text: 手感是身體的知識，說不清楚但騙不了人。
+  tags: [hands, skill]
+- id: q-tools-076
+  text: 用最少的東西，做出剛剛好的東西。
+  tags: [simplicity, constraint]
+- id: q-tools-077
+  text: 工具幫不了你決定要畫什麼。
+  tags: [tools, craft]
+- id: q-tools-078
+  text: 一支筆握久了，會長成你手的形狀。
+  tags: [hands, mastery]
+- id: q-tools-079
+  text: 今天力氣不多，就做一個小小的、完成得了的東西。
+  tags: [simplicity, craft]
+- id: q-tools-080
+  text: 限制讓你認真對待每一個選擇。
+  tags: [constraint, craft]
+- id: q-tools-081
+  text: 熟了之後，工具的脾氣你都能哄。
+  tags: [mastery, tools]
+- id: q-tools-082
+  text: 換工具是為了做得更像自己，不是更像別人。
+  tags: [tools, craft]
+- id: q-tools-083
+  text: 手上的力道，比任何設定都準。
+  tags: [hands, skill]
+- id: q-tools-084
+  text: 工具越花俏，越容易忘記為什麼開始。
+  tags: [tools, simplicity]
+- id: q-tools-085
+  text: 摸熟一樣東西，比擁有十樣東西踏實。
+  tags: [mastery, tools]
+- id: q-tools-086
+  text: 手先動，想法會在動的過程裡浮出來。
+  tags: [hands, craft]
+- id: q-tools-087
+  text: 一種媒材的脾氣，要相處才會懂。
+  tags: [medium, mastery]
+- id: q-tools-088
+  text: 別被「更好用」牽著跑，好用的前提是你會用。
+  tags: [tools, skill]
+- id: q-tools-089
+  text: 今天只想擦掉重畫，那也是在練手。
+  tags: [hands, simplicity]
+- id: q-tools-090
+  text: 工具能給你路，走不走是你的事。
+  tags: [tools, craft]
+- id: q-tools-091
+  text: 削尖一支筆的專注，也能延續到下一筆。
+  tags: [craft, hands]
+- id: q-tools-092
+  text: 限制之下長出來的巧思，最像你自己。
+  tags: [constraint, craft]
+- id: q-tools-093
+  text: 熟悉一個工具的邊界，就多了一分自由。
+  tags: [mastery, tools]
+- id: q-tools-094
+  text: 手感不是天賦，是你重複過的每一次。
+  tags: [hands, skill]
+- id: q-tools-095
+  text: 把工具用到底，再談要不要換。
+  tags: [tools, mastery]
+- id: q-tools-096
+  text: 越少的工具，越逼你動腦子。
+  tags: [constraint, skill]
+- id: q-tools-097
+  text: 工具的功能是別人給的，用法是你長出來的。
+  tags: [tools, craft]
+- id: q-tools-098
+  text: 手不會騙你，練得夠不夠它都知道。
+  tags: [hands, skill]
+- id: q-tools-099
+  text: 今天想歇一歇，就讓工具躺著，明天再說。
+  tags: [tools, simplicity]
+- id: q-tools-100
+  text: 一支便宜的筆，也畫得出真心的線。
+  tags: [medium, craft]
+- id: q-tools-101
+  text: 熟練的手，能把普通的工具用出巧。
+  tags: [mastery, hands]
+- id: q-tools-102
+  text: 別讓收藏工具的快樂，蓋過使用它的快樂。
+  tags: [tools, craft]
+- id: q-tools-103
+  text: 限制是一種提醒：你其實不需要那麼多。
+  tags: [constraint, simplicity]
+- id: q-tools-104
+  text: 換工具沒有對錯，只有適不適合現在的你。
+  tags: [tools, craft]
+- id: q-tools-105
+  text: 手先熟起來，速度自然會來。
+  tags: [hands, skill]
+- id: q-tools-106
+  text: 工具是死的，你怎麼用它才是活的。
+  tags: [tools, craft]
+- id: q-tools-107
+  text: 一樣工具陪你越久，越難用言語形容它的好。
+  tags: [mastery, tools]
+- id: q-tools-108
+  text: 今天畫不好，換工具也一樣，那就先休息。
+  tags: [tools, simplicity]
+- id: q-tools-109
+  text: 把注意力從裝備移回手上，會輕鬆很多。
+  tags: [hands, simplicity]
+- id: q-tools-110
+  text: 限制不是委屈自己，是替自己聚焦。
+  tags: [constraint, craft]
+- id: q-tools-111
+  text: 熟到骨子裡的工具，會替你接住失手的瞬間。
+  tags: [mastery, hands]
+- id: q-tools-112
+  text: 工具只負責記錄，感覺得靠你自己。
+  tags: [tools, craft]
+- id: q-tools-113
+  text: 手的分寸感，是很多次失手換來的。
+  tags: [hands, skill]
+- id: q-tools-114
+  text: 越簡單的媒材，越藏不了偷懶，也藏不了用心。
+  tags: [medium, simplicity]
+- id: q-tools-115
+  text: 別急著追新，先把舊的用出感情。
+  tags: [tools, mastery]
+- id: q-tools-116
+  text: 一個限制，逼出十種你沒想過的走法。
+  tags: [constraint, craft]
+- id: q-tools-117
+  text: 手熟之後，你會開始享受過程本身。
+  tags: [mastery, hands]
+- id: q-tools-118
+  text: 工具幫你把想法落地，落地後就是你的了。
+  tags: [tools, craft]
+- id: q-tools-119
+  text: 今天只想試試新筆的觸感，這樣就夠了。
+  tags: [tools, simplicity]
+- id: q-tools-120
+  text: 少幾樣選擇，手就不再猶豫。
+  tags: [constraint, hands]
+- id: q-tools-121
+  text: 工具會過時，練出來的手不會。
+  tags: [hands, skill]
+- id: q-tools-122
+  text: 摸清一支筆的軟硬，作品就多一分把握。
+  tags: [mastery, medium]
+- id: q-tools-123
+  text: 換工具的當下會慢，慢是學習的味道。
+  tags: [tools, mastery]
+- id: q-tools-124
+  text: 工具再多，動手的還是這雙手。
+  tags: [tools, hands]
+- id: q-tools-125
+  text: 限制之內的自由，往往比無限更迷人。
+  tags: [constraint, craft]
+- id: q-tools-126
+  text: 今天沒手感，就把工具擺順，明天更好開始。
+  tags: [tools, simplicity]
+- id: q-tools-127
+  text: 熟悉，是你和工具之間不必再解釋的默契。
+  tags: [mastery, tools]
+- id: q-tools-128
+  text: 手上的重複，是最誠實的練習。
+  tags: [hands, skill]
+- id: q-tools-129
+  text: 別讓工具的完美，逼停你不完美的手。
+  tags: [tools, craft]
+- id: q-tools-130
+  text: 一種顏色也能做出深淺，看你怎麼調。
+  tags: [constraint, medium]
+- id: q-tools-131
+  text: 工具替你開路，但路上的風景要你自己走。
+  tags: [tools, craft]
+- id: q-tools-132
+  text: 手練到某天，會替你想到你沒想到的。
+  tags: [hands, skill]
+- id: q-tools-133
+  text: 換不換工具都行，別讓這件事佔掉創作的心。
+  tags: [tools, simplicity]
+- id: q-tools-134
+  text: 熟練是把複雜的動作，變成不用想的本能。
+  tags: [mastery, skill]
+- id: q-tools-135
+  text: 越少的工具，越容易帶著走，越容易開始。
+  tags: [simplicity, tools]
+- id: q-tools-136
+  text: 手的觸感會告訴你，這一筆對不對。
+  tags: [hands, craft]
+- id: q-tools-137
+  text: 工具不會替你負責，這其實是好消息。
+  tags: [tools, craft]
+- id: q-tools-138
+  text: 一支用慣的工具，是很安靜的陪伴。
+  tags: [mastery, tools]
+- id: q-tools-139
+  text: 今天只要動一下手，就沒有白過。
+  tags: [hands, simplicity]
+- id: q-tools-140
+  text: 限制像框，把散開的注意力收攏起來。
+  tags: [constraint, craft]
+- id: q-tools-141
+  text: 熟練不是不會錯，是知道錯了怎麼救。
+  tags: [mastery, skill]
+- id: q-tools-142
+  text: 工具的價格，畫不進你的作品裡。
+  tags: [tools, craft]
+- id: q-tools-143
+  text: 手多做幾次，遲疑就少一點。
+  tags: [hands, skill]
+- id: q-tools-144
+  text: 換媒材那陣子的笨拙，其實是新的視野在長。
+  tags: [medium, mastery]
+- id: q-tools-145
+  text: 別把力氣花在挑，留給做。
+  tags: [tools, craft]
+- id: q-tools-146
+  text: 一把好用的工具，是被你的手養出來的。
+  tags: [mastery, hands]
+- id: q-tools-147
+  text: 限制底下，每個決定都變得有重量。
+  tags: [constraint, craft]
+- id: q-tools-148
+  text: 今天想慢慢來，工具會等你。
+  tags: [tools, simplicity]
+- id: q-tools-149
+  text: 手感這種東西，練回來比想像中快。
+  tags: [hands, skill]
+- id: q-tools-150
+  text: 工具是延伸，不是替身。
+  tags: [tools, hands]
+- id: q-tools-151
+  text: 熟到一定程度，你會忘記手上拿的是什麼。
+  tags: [mastery, craft]
+- id: q-tools-152
+  text: 用手去記，比用腦去背牢得多。
+  tags: [hands, skill]
+- id: q-tools-153
+  text: 別讓新工具的學習成本，嚇退今天的靈感。
+  tags: [tools, simplicity]
+- id: q-tools-154
+  text: 少即是多，這句話在工具上尤其真。
+  tags: [simplicity, constraint]
+- id: q-tools-155
+  text: 一支筆的重量，久了會變成手的一部分。
+  tags: [mastery, hands]
+- id: q-tools-156
+  text: 工具幫你到門口，跨進去要靠自己的手。
+  tags: [tools, hands]
+- id: q-tools-157
+  text: 限制不是缺乏，是另一種完整。
+  tags: [constraint, craft]
+- id: q-tools-158
+  text: 今天只想磨磨工具、擦擦桌子，也很好。
+  tags: [tools, simplicity]
+- id: q-tools-159
+  text: 手上的分寸，是規格表寫不出來的。
+  tags: [hands, skill]
+- id: q-tools-160
+  text: 熟悉的工具，讓你把心思全給作品。
+  tags: [mastery, craft]
+- id: q-tools-161
+  text: 工具再厲害，也要有人願意動手。
+  tags: [tools, hands]
+- id: q-tools-162
+  text: 換工具之後，先別急著評價，多用幾天。
+  tags: [tools, mastery]
+- id: q-tools-163
+  text: 手的技藝，是慢慢堆起來的，堆過就不會塌。
+  tags: [hands, skill]
+- id: q-tools-164
+  text: 越簡單的工具，越給你發揮的空間。
+  tags: [simplicity, craft]
+- id: q-tools-165
+  text: 別讓工具替你決定風格，那該是你的。
+  tags: [tools, craft]
+- id: q-tools-166
+  text: 一件趁手的工具，會安靜地替你頂住難處。
+  tags: [mastery, tools]
+- id: q-tools-167
+  text: 今天畫一條線就好，手需要熱身。
+  tags: [hands, simplicity]
+- id: q-tools-168
+  text: 限制逼你認識自己真正想要的。
+  tags: [constraint, craft]
+- id: q-tools-169
+  text: 工具是手的延伸，不是想像力的替代。
+  tags: [tools, hands]
+- id: q-tools-170
+  text: 熟了，才知道一樣工具能陪你走多遠。
+  tags: [mastery, tools]
+- id: q-tools-171
+  text: 手多摸幾遍材料，它就會回你更多。
+  tags: [hands, medium]
+- id: q-tools-172
+  text: 別在工具上追求完美，把完美留給作品的心意。
+  tags: [tools, craft]
+- id: q-tools-173
+  text: 一支舊筆的手感，是花錢買不回的交情。
+  tags: [mastery, hands]
+- id: q-tools-174
+  text: 今天沒靈感，就讓手先隨便動，別勉強腦子。
+  tags: [hands, simplicity]
+- id: q-tools-175
+  text: 工具會換，手會老，但做東西的心可以一直新。
+  tags: [craft, hands]
+- id: q-tools-176
+  text: 把一樣工具用到爛熟，就是一種踏實的自由。
+  tags: [mastery, tools]
+- id: q-tools-177
+  text: 限制少了選擇的焦慮，多了動手的痛快。
+  tags: [constraint, craft]
+- id: q-tools-178
+  text: 手感回來的那一刻，你自己會第一個知道。
+  tags: [hands, skill]
+- id: q-tools-179
+  text: 工具幫你記住，但感受得由你親手放進去。
+  tags: [tools, craft]
+- id: q-tools-180
+  text: 今天不必厲害，順手做一點，就夠了。
+  tags: [simplicity, hands]

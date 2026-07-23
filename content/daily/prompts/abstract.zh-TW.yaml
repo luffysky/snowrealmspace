@@ -1,0 +1,953 @@
+# 每日創作提示：抽象與圖形
+# 主題：基本形狀、點線面、負空間、圖案重複、幾何、把具象簡化成抽象
+# 允許低能量的日子——有些提示只要五分鐘、一支筆就能完成。
+
+- id: p-abstract-001
+  text: 只用三角形，拼出一個你認得的東西。
+  tags: [abstract, shape]
+  estimatedMinutes: 15
+
+- id: p-abstract-002
+  text: 在紙上畫一個圓，再想辦法讓它看起來不像圓。
+  tags: [abstract, shape]
+  estimatedMinutes: 10
+
+- id: p-abstract-003
+  text: 用五條直線把一張紙分成大小都不同的區塊。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-004
+  text: 畫一個正方形，只塗它四個角落，中間留白。
+  tags: [abstract, negative_space]
+  estimatedMinutes: 6
+
+- id: p-abstract-005
+  text: 把今天的心情，只用一種形狀重複表達。
+  tags: [abstract, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-006
+  text: 用點畫出一條看不見的線，讓眼睛自己連起來。
+  tags: [abstract, line]
+  estimatedMinutes: 10
+
+- id: p-abstract-007
+  text: 畫三個大小遞減的圓，讓它們像往遠方退去。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-008
+  text: 只用橫線和直線，畫一張你家的平面圖。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 15
+
+- id: p-abstract-009
+  text: 把一朵花簡化到剩下三個形狀就好。
+  tags: [abstract, simplify]
+  estimatedMinutes: 12
+
+- id: p-abstract-010
+  text: 在整張紙畫滿小點，只留一個圓形的空白。
+  tags: [abstract, negative_space, pattern]
+  estimatedMinutes: 20
+
+- id: p-abstract-011
+  text: 用一條線不離開紙面，畫完一隻貓的輪廓。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 8
+
+- id: p-abstract-012
+  text: 把六個正方形排成你覺得最舒服的位置。
+  tags: [abstract, shape, geometry]
+  estimatedMinutes: 7
+
+- id: p-abstract-013
+  text: 畫一個形狀，再畫它的影子，只畫影子那個形狀。
+  tags: [abstract, negative_space, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-014
+  text: 用長短不一的直線，表現「吵」這個感覺。
+  tags: [abstract, line]
+  estimatedMinutes: 10
+
+- id: p-abstract-015
+  text: 畫一排一模一樣的三角形，再讓其中一個轉個方向。
+  tags: [abstract, pattern, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-016
+  text: 只用圓形，畫出你早餐吃的東西。
+  tags: [abstract, shape, simplify]
+  estimatedMinutes: 12
+
+- id: p-abstract-017
+  text: 把一個字拆成它的基本筆畫，只留最短那幾筆。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 10
+
+- id: p-abstract-018
+  text: 畫一條線從紙的左下走到右上，中途讓它猶豫三次。
+  tags: [abstract, line]
+  estimatedMinutes: 6
+
+- id: p-abstract-019
+  text: 用四方格畫一張圖，每格只能放一種形狀。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 15
+
+- id: p-abstract-020
+  text: 把兩個圓重疊，只塗它們交會的那塊。
+  tags: [abstract, shape, negative_space]
+  estimatedMinutes: 7
+
+- id: p-abstract-021
+  text: 畫一個半圓，讓它看起來像正要升起或落下。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-022
+  text: 用同一個形狀由大到小，鋪成一條螺旋。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 15
+
+- id: p-abstract-023
+  text: 只畫物體的邊緣，不畫它的裡面。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 10
+
+- id: p-abstract-024
+  text: 把一整頁分成黑與白兩塊，比例你決定。
+  tags: [abstract, negative_space]
+  estimatedMinutes: 8
+
+- id: p-abstract-025
+  text: 畫五個菱形，讓它們像掉落中被定格。
+  tags: [abstract, shape, geometry]
+  estimatedMinutes: 10
+
+- id: p-abstract-026
+  text: 用點的疏密，畫出一片由亮到暗的漸層。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 18
+
+- id: p-abstract-027
+  text: 把你走去公車站的路，只用一條彎線畫出來。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 6
+
+- id: p-abstract-028
+  text: 畫一個網格，只在對角線的格子放點。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-029
+  text: 用三個形狀組成一張臉，別讓它太寫實。
+  tags: [abstract, shape, simplify]
+  estimatedMinutes: 12
+
+- id: p-abstract-030
+  text: 畫一條線，越畫越用力，看它的粗細怎麼變。
+  tags: [abstract, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-031
+  text: 把一棵樹簡化成一個三角形加一條線。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-032
+  text: 在紙中央留一個手掌大的空白，其餘畫滿線。
+  tags: [abstract, negative_space, line]
+  estimatedMinutes: 15
+
+- id: p-abstract-033
+  text: 用正方形一個接一個，走出一條樓梯的形狀。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-034
+  text: 畫兩個形狀，讓大家一看就知道誰在推誰。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-035
+  text: 只用圓弧，畫出「輕」這個字的感覺。
+  tags: [abstract, line, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-036
+  text: 把一首歌的節奏，用長短方塊排成一排。
+  tags: [abstract, pattern, shape]
+  estimatedMinutes: 12
+
+- id: p-abstract-037
+  text: 畫一個看起來要滾走的圓，用它旁邊的線暗示。
+  tags: [abstract, shape, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-038
+  text: 用重複的短斜線，鋪滿半張紙當作陰影。
+  tags: [abstract, pattern, line]
+  estimatedMinutes: 12
+
+- id: p-abstract-039
+  text: 把窗外看到的建築，簡化成幾個長方形疊起來。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 12
+
+- id: p-abstract-040
+  text: 畫一個形狀，再用它的負空間畫出另一個形狀。
+  tags: [abstract, negative_space, form]
+  estimatedMinutes: 15
+
+- id: p-abstract-041
+  text: 用九個圓排成一個大正方形，全部一樣大。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-042
+  text: 只用兩條線，表現「終於鬆一口氣」。
+  tags: [abstract, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-043
+  text: 把一杯咖啡從上往下看，簡化成兩個同心圓。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-044
+  text: 畫一整排三角形，讓它們像一道山的剪影。
+  tags: [abstract, pattern, simplify]
+  estimatedMinutes: 10
+
+- id: p-abstract-045
+  text: 用線把紙分成螺旋走道，像一座迷宮。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 20
+
+- id: p-abstract-046
+  text: 畫一個被切掉一角的正方形，讓缺口成為主角。
+  tags: [abstract, negative_space, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-047
+  text: 用點畫出一個你想念的人的側臉輪廓。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 15
+
+- id: p-abstract-048
+  text: 把六邊形一個貼一個，鋪成蜂巢的一小角。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 18
+
+- id: p-abstract-049
+  text: 畫三條平行線，再讓中間那條慢慢偏離。
+  tags: [abstract, line]
+  estimatedMinutes: 6
+
+- id: p-abstract-050
+  text: 只用形狀，不用文字，畫出「上班」兩個字。
+  tags: [abstract, shape, simplify]
+  estimatedMinutes: 12
+
+- id: p-abstract-051
+  text: 把一片葉子簡化成一條中線加幾條斜線。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-052
+  text: 畫一個圓，在裡面塞滿越來越小的圓。
+  tags: [abstract, pattern, shape]
+  estimatedMinutes: 12
+
+- id: p-abstract-053
+  text: 用直角折出一條線，像走在城市的街廓裡。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-054
+  text: 在紙上撒下二十個點，再挑五個連成一個星座。
+  tags: [abstract, line, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-055
+  text: 畫一個形狀，讓它一半實心、一半只有輪廓。
+  tags: [abstract, shape, negative_space]
+  estimatedMinutes: 8
+
+- id: p-abstract-056
+  text: 把雨滴落地的樣子，用短線的方向表現出來。
+  tags: [abstract, line, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-057
+  text: 用同一個三角形，旋轉八次圍成一個圈。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-058
+  text: 把腳踏車簡化到只剩兩個圓和幾條線。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 10
+
+- id: p-abstract-059
+  text: 畫一條粗線和一條細線，讓它們像在對話。
+  tags: [abstract, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-060
+  text: 用方格紙，只塗出一個字母的形狀。
+  tags: [abstract, geometry, shape]
+  estimatedMinutes: 10
+
+- id: p-abstract-061
+  text: 把一整頁畫滿圓，唯一的方形就特別顯眼。
+  tags: [abstract, pattern, shape]
+  estimatedMinutes: 15
+
+- id: p-abstract-062
+  text: 只用弧線，畫出風吹過草地的方向。
+  tags: [abstract, line, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-063
+  text: 畫兩個三角形，讓它們像屋頂一樣互相靠著。
+  tags: [abstract, shape, geometry]
+  estimatedMinutes: 6
+
+- id: p-abstract-064
+  text: 把你今天說過最多次的話，變成一個重複圖案。
+  tags: [abstract, pattern, simplify]
+  estimatedMinutes: 15
+
+- id: p-abstract-065
+  text: 在方框裡放一個形狀，讓它靠邊而不置中。
+  tags: [abstract, negative_space, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-066
+  text: 用點的大小變化，畫出一個從近到遠的隊伍。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-067
+  text: 畫一個梯形，讓它看起來像一條伸向遠方的路。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-068
+  text: 只用橫線，讓上半頁密、下半頁疏。
+  tags: [abstract, line, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-069
+  text: 把一隻手簡化成五條線加一個方塊。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-070
+  text: 畫一個圓，讓一條線從裡面穿出去。
+  tags: [abstract, shape, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-071
+  text: 用四個一樣的形狀，做出一個對稱的花樣。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 12
+
+- id: p-abstract-072
+  text: 把一座橋簡化成一條弧線和兩個支點。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-073
+  text: 畫一片全黑，只用橡皮擦擦出形狀。
+  tags: [abstract, negative_space, form]
+  estimatedMinutes: 15
+
+- id: p-abstract-074
+  text: 用漸漸靠近的直線，做出快要相撞的緊張感。
+  tags: [abstract, line, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-075
+  text: 把音符換成方塊，畫出一段安靜的旋律。
+  tags: [abstract, shape, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-076
+  text: 畫一個五邊形，再讓它每條邊都往內凹。
+  tags: [abstract, shape, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-077
+  text: 用重複的圓，鋪成一片會呼吸的泡泡。
+  tags: [abstract, pattern, shape]
+  estimatedMinutes: 15
+
+- id: p-abstract-078
+  text: 把一台車從側面簡化成兩圓一長方。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-079
+  text: 畫一條線在紙上打結，看它自己纏出形狀。
+  tags: [abstract, line]
+  estimatedMinutes: 6
+
+- id: p-abstract-080
+  text: 只留紙的四個角，其餘全部塗滿。
+  tags: [abstract, negative_space]
+  estimatedMinutes: 12
+
+- id: p-abstract-081
+  text: 用越來越密的斜線，做出一個由平到立體的面。
+  tags: [abstract, line, form]
+  estimatedMinutes: 15
+
+- id: p-abstract-082
+  text: 把你的名字，用最少的直線筆畫重新設計。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 15
+
+- id: p-abstract-083
+  text: 畫十個大小不一的圓，讓它們像水面的漣漪。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-084
+  text: 用三角形填滿一個大三角形，像切披薩。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-085
+  text: 畫一個形狀，讓它一半在紙上、一半跑出邊界。
+  tags: [abstract, shape, negative_space]
+  estimatedMinutes: 6
+
+- id: p-abstract-086
+  text: 把貓伸懶腰的樣子，用一條連續弧線畫完。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 8
+
+- id: p-abstract-087
+  text: 用點排成一條螺旋，越往中心越密。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 15
+
+- id: p-abstract-088
+  text: 畫兩個方形，讓一個把另一個壓進角落。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-089
+  text: 只用垂直線，做出一片竹林的密度。
+  tags: [abstract, line, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-090
+  text: 把一朵雲簡化成三個相疊的半圓。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-091
+  text: 畫一個圓，把它切成大小不等的六塊。
+  tags: [abstract, geometry, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-092
+  text: 用形狀的重複，畫出電扇轉動的殘影。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-093
+  text: 在整齊的格子裡，故意讓一格歪掉。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-094
+  text: 把一雙鞋簡化成兩個側面的梯形。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-095
+  text: 畫一條線分開兩片空白，讓左邊比右邊安靜。
+  tags: [abstract, negative_space, line]
+  estimatedMinutes: 6
+
+- id: p-abstract-096
+  text: 用同心圓一圈圈畫，像木頭的年輪。
+  tags: [abstract, pattern, line]
+  estimatedMinutes: 10
+
+- id: p-abstract-097
+  text: 把一隻鳥飛的瞬間，簡化成兩道弧線。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-098
+  text: 畫一個正方形，再讓它的四邊往外爆開。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-099
+  text: 用點的疏密，寫出一個看得懂的字。
+  tags: [abstract, pattern, simplify]
+  estimatedMinutes: 15
+
+- id: p-abstract-100
+  text: 畫三個形狀排成一列，讓它們一個比一個著急。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-101
+  text: 把一整頁畫滿橫線，只在一處讓線斷開。
+  tags: [abstract, line, negative_space]
+  estimatedMinutes: 12
+
+- id: p-abstract-102
+  text: 用六個三角形拼一個六角星。
+  tags: [abstract, geometry, shape]
+  estimatedMinutes: 10
+
+- id: p-abstract-103
+  text: 把馬克杯簡化成一個方形加一個半圓把手。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-104
+  text: 畫一條線像心跳一樣上下走，再突然拉平。
+  tags: [abstract, line, form]
+  estimatedMinutes: 6
+
+- id: p-abstract-105
+  text: 用重疊的方形，做出一層層透明的錯覺。
+  tags: [abstract, shape, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-106
+  text: 把你房間的雜亂，簡化成五個色塊的位置。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 12
+
+- id: p-abstract-107
+  text: 畫一個圓，讓它旁邊的空白也變成一個形狀。
+  tags: [abstract, negative_space, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-108
+  text: 用短橫線由密到疏，畫出退去的潮水。
+  tags: [abstract, line, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-109
+  text: 把三角形一個疊一個，堆成一座尖塔。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-110
+  text: 畫一個形狀，只畫它被光照到的那一半。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-111
+  text: 用點沿著一條看不見的曲線排開。
+  tags: [abstract, line, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-112
+  text: 把一台鋼琴的鍵，簡化成長短交錯的方塊。
+  tags: [abstract, simplify, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-113
+  text: 畫一條線，讓它越走越慢，最後停下來。
+  tags: [abstract, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-114
+  text: 用四種形狀填滿一頁，不留任何空白。
+  tags: [abstract, shape, pattern]
+  estimatedMinutes: 20
+
+- id: p-abstract-115
+  text: 把一把傘打開，簡化成一個扇形加一條線。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-116
+  text: 畫一個圓，讓它被三條線切出光影的層次。
+  tags: [abstract, geometry, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-117
+  text: 用重複的菱形，鋪成一片會發光的地磚。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 15
+
+- id: p-abstract-118
+  text: 把「累」這個感覺，用一條往下垂的線畫出來。
+  tags: [abstract, line, form]
+  estimatedMinutes: 5
+
+- id: p-abstract-119
+  text: 畫兩個圓，讓它們像正要碰到又還沒碰到。
+  tags: [abstract, shape, negative_space]
+  estimatedMinutes: 6
+
+- id: p-abstract-120
+  text: 用形狀的大小，排出從嬰兒到大人的順序。
+  tags: [abstract, simplify, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-121
+  text: 把一整頁分成九宮格，每格畫一種線的方向。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 15
+
+- id: p-abstract-122
+  text: 畫一個看起來會旋轉的圖案，只用直線。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 12
+
+- id: p-abstract-123
+  text: 把一顆蘋果簡化成一個圓加一小段梗。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 5
+
+- id: p-abstract-124
+  text: 用點畫出一張漸漸消失的臉。
+  tags: [abstract, pattern, negative_space]
+  estimatedMinutes: 15
+
+- id: p-abstract-125
+  text: 畫三角、方、圓各一個，讓它們像一家人。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-126
+  text: 用越來越長的線，畫出一段加速的過程。
+  tags: [abstract, line, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-127
+  text: 把捷運路線圖簡化成幾條直線和幾個圓點。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 12
+
+- id: p-abstract-128
+  text: 畫一個形狀，讓它的一角刺破另一個形狀。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-129
+  text: 用重複的波浪線，鋪滿一整片海。
+  tags: [abstract, pattern, line]
+  estimatedMinutes: 15
+
+- id: p-abstract-130
+  text: 在紙中央畫一個小點，其餘全部留白。
+  tags: [abstract, negative_space]
+  estimatedMinutes: 5
+
+- id: p-abstract-131
+  text: 把一隻魚簡化成一個橢圓加一個三角尾。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-132
+  text: 畫一格格的棋盤，讓其中一格突然凸起來。
+  tags: [abstract, geometry, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-133
+  text: 用線的粗細變化，畫出遠處的山霧。
+  tags: [abstract, line, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-134
+  text: 把時鐘簡化成一個圓和兩條長短針。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 5
+
+- id: p-abstract-135
+  text: 畫五個一樣的形狀，讓最後一個開始瓦解。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-136
+  text: 用兩種形狀交替，排出一條斑馬線。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-137
+  text: 把一封信摺起來的樣子，簡化成幾個梯形。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-138
+  text: 畫一個圓，讓它一邊被咬掉一口。
+  tags: [abstract, shape, negative_space]
+  estimatedMinutes: 5
+
+- id: p-abstract-139
+  text: 用點的密度，畫出一片由白天到夜晚的天空。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 18
+
+- id: p-abstract-140
+  text: 把一支麥克風簡化成一個圓加一根長方。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-141
+  text: 畫兩條線在中間交叉，看它切出四塊空白。
+  tags: [abstract, line, negative_space]
+  estimatedMinutes: 5
+
+- id: p-abstract-142
+  text: 用三角形做出一片指向同一邊的箭頭陣。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 10
+
+- id: p-abstract-143
+  text: 把大樓的窗戶，簡化成整齊的一格格方塊。
+  tags: [abstract, simplify, pattern]
+  estimatedMinutes: 10
+
+- id: p-abstract-144
+  text: 畫一個形狀，讓它像被壓扁又想彈回來。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-145
+  text: 用一條線畫過整頁，途中只彎一次。
+  tags: [abstract, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-146
+  text: 把星星簡化成兩個交疊的三角形。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 6
+
+- id: p-abstract-147
+  text: 畫一片圓點，讓它們慢慢排成一個字母。
+  tags: [abstract, pattern, simplify]
+  estimatedMinutes: 15
+
+- id: p-abstract-148
+  text: 用方形一層層縮小，畫出往下的隧道。
+  tags: [abstract, geometry, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-149
+  text: 把一把吉他簡化成一個葫蘆形加六條線。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-150
+  text: 畫一個形狀，只在它周圍畫線，留它全白。
+  tags: [abstract, negative_space, line]
+  estimatedMinutes: 10
+
+- id: p-abstract-151
+  text: 用重複的圓，做出一串越來越淡的腳印。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-152
+  text: 把彩虹簡化成七條弧線，不用顏色也認得。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-153
+  text: 畫一個三角形，讓它站得很穩或很危險，你選。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 6
+
+- id: p-abstract-154
+  text: 用網格畫一張圖，再把一半的格子塗黑。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-155
+  text: 把一台相機簡化成方形加圓形鏡頭。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-156
+  text: 畫一條線走成方形，再走成圓形，一筆完成。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-157
+  text: 用點畫出一朵正在散開的煙火。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-158
+  text: 把樓梯簡化成一排由低到高的方塊。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-159
+  text: 畫兩個形狀，讓它們之間的空白也有名字。
+  tags: [abstract, negative_space, shape]
+  estimatedMinutes: 10
+
+- id: p-abstract-160
+  text: 用長方形一塊塊堆疊，畫一座搖搖欲墜的塔。
+  tags: [abstract, geometry, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-161
+  text: 把一隻蝴蝶簡化成左右對稱的四個三角形。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-162
+  text: 畫一整頁的斜線，只在角落留一個圓的空白。
+  tags: [abstract, line, negative_space]
+  estimatedMinutes: 15
+
+- id: p-abstract-163
+  text: 用形狀的方向，做出一群往同一邊跑的感覺。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-164
+  text: 把一朵花簡化成一個圓加六片花瓣的弧線。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-165
+  text: 畫一個正方形，再用線把它拉成一個菱形。
+  tags: [abstract, geometry, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-166
+  text: 用點的多寡，畫出「熱鬧」到「冷清」的變化。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-167
+  text: 把一支筆簡化成一個長方加一個小三角。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 5
+
+- id: p-abstract-168
+  text: 畫一條線，讓它繞成一個看不出開頭的圈。
+  tags: [abstract, line]
+  estimatedMinutes: 8
+
+- id: p-abstract-169
+  text: 用三角形和方形交錯，鋪成一片拼布。
+  tags: [abstract, pattern, geometry]
+  estimatedMinutes: 15
+
+- id: p-abstract-170
+  text: 把一隻狗坐著的樣子，簡化成三個三角形。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-171
+  text: 畫一個形狀，讓它的影子比本體還大。
+  tags: [abstract, negative_space, form]
+  estimatedMinutes: 8
+
+- id: p-abstract-172
+  text: 用重複的直線，做出一面隨風擺動的旗子。
+  tags: [abstract, line, form]
+  estimatedMinutes: 12
+
+- id: p-abstract-173
+  text: 把一座燈塔簡化成一個高長方加一個圓。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 6
+
+- id: p-abstract-174
+  text: 畫十字線分成四格，讓每格重量看起來一樣。
+  tags: [abstract, geometry, negative_space]
+  estimatedMinutes: 10
+
+- id: p-abstract-175
+  text: 用圓的重疊，畫出一串連在一起的泡泡雲。
+  tags: [abstract, pattern, shape]
+  estimatedMinutes: 12
+
+- id: p-abstract-176
+  text: 把一台電風扇簡化成一個圓加三片弧葉。
+  tags: [abstract, simplify, geometry]
+  estimatedMinutes: 8
+
+- id: p-abstract-177
+  text: 畫一條線，越接近終點越抖，像快沒力氣。
+  tags: [abstract, line, form]
+  estimatedMinutes: 5
+
+- id: p-abstract-178
+  text: 用方格填色，拼出一個八位元風格的愛心。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-179
+  text: 把窗簾的皺褶，簡化成一排長短不一的弧線。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 10
+
+- id: p-abstract-180
+  text: 畫一個形狀，讓它看起來正從紙面浮起來。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-181
+  text: 用點連成一條輪廓，畫出你手邊的杯子。
+  tags: [abstract, line, simplify]
+  estimatedMinutes: 10
+
+- id: p-abstract-182
+  text: 把一整頁切成大中小三塊，各放一個形狀。
+  tags: [abstract, negative_space, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-183
+  text: 畫一排圓，讓它們像被丟進水裡沉下去。
+  tags: [abstract, pattern, form]
+  estimatedMinutes: 10
+
+- id: p-abstract-184
+  text: 用直線交織出一片會晃眼的網格。
+  tags: [abstract, line, geometry]
+  estimatedMinutes: 15
+
+- id: p-abstract-185
+  text: 把一台縫紉機的針，簡化成一條上下的短線。
+  tags: [abstract, simplify, line]
+  estimatedMinutes: 5
+
+- id: p-abstract-186
+  text: 畫兩個形狀，讓小的躲在大的後面探頭。
+  tags: [abstract, shape, negative_space]
+  estimatedMinutes: 8
+
+- id: p-abstract-187
+  text: 用漸大的三角形，畫出一道展開的紙扇。
+  tags: [abstract, geometry, pattern]
+  estimatedMinutes: 12
+
+- id: p-abstract-188
+  text: 把一串鑰匙簡化成幾個圓圈連著長條。
+  tags: [abstract, simplify, shape]
+  estimatedMinutes: 8
+
+- id: p-abstract-189
+  text: 畫一條線把整頁繞滿，不讓它碰到自己。
+  tags: [abstract, line]
+  estimatedMinutes: 15
+
+- id: p-abstract-190
+  text: 用形狀的傾斜角度，表現「快要跌倒」。
+  tags: [abstract, shape, form]
+  estimatedMinutes: 8

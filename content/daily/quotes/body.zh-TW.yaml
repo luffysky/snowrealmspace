@@ -1,0 +1,544 @@
+# 每日語錄 — 身體與節奏
+# 主題：睡飽再做、精神狀態影響創作、找到自己的時段、身體是工具、休息是一部分、別硬撐
+# 繁體中文（台灣用語）
+
+- id: q-body-001
+  text: 睡不夠的時候，先別急著怪自己沒靈感。
+  tags: [body, sleep]
+- id: q-body-002
+  text: 精神好的那半小時，抵得過硬撐的一整天。
+  tags: [energy, condition]
+- id: q-body-003
+  text: 身體累了會誠實地說，只是你常常沒在聽。
+  tags: [body, condition]
+- id: q-body-004
+  text: 有些人早上最清醒，有些人半夜才醒過來，你是哪一種？
+  tags: [timing, rhythm]
+- id: q-body-005
+  text: 休息不是創作的暫停，它本來就在裡面。
+  tags: [rest, rhythm]
+- id: q-body-006
+  text: 今天低能量，那就做低能量能做的事。
+  tags: [energy, condition]
+- id: q-body-007
+  text: 眼睛痠了就閉一下，畫面不會跑掉。
+  tags: [body, rest]
+- id: q-body-008
+  text: 先喝口水吧，很多卡關其實只是渴了。
+  tags: [body, physical]
+- id: q-body-009
+  text: 你不是機器，不必每天輸出一樣多。
+  tags: [rhythm, condition]
+- id: q-body-010
+  text: 找到自己最順的時段，把難的事留給它。
+  tags: [timing, energy]
+- id: q-body-011
+  text: 肩膀已經聳到耳朵旁邊了，讓它掉下來。
+  tags: [body, physical]
+- id: q-body-012
+  text: 撐著做出來的東西，你自己也看得出來。
+  tags: [condition, energy]
+- id: q-body-013
+  text: 睡飽的腦袋會自己把昨天的難題解開。
+  tags: [sleep, condition]
+- id: q-body-014
+  text: 節奏不是越快越好，是剛好接得上下一步。
+  tags: [rhythm, timing]
+- id: q-body-015
+  text: 今天只想躺著，那就好好躺著。
+  tags: [rest, condition]
+- id: q-body-016
+  text: 手會痠是提醒，不是抱怨，聽它的。
+  tags: [body, physical]
+- id: q-body-017
+  text: 咖啡能借你精神，但總是要還的。
+  tags: [energy, condition]
+- id: q-body-018
+  text: 靈感常常在散步的第三個路口才出現。
+  tags: [body, rhythm]
+- id: q-body-019
+  text: 你的黃金時段是誰都偷不走的資產。
+  tags: [timing, energy]
+- id: q-body-020
+  text: 做不動的時候，可能不是懶，是該睡了。
+  tags: [sleep, energy]
+- id: q-body-021
+  text: 身體是你唯一帶得走的工具，別磨壞它。
+  tags: [body, physical]
+- id: q-body-022
+  text: 一整天沒站起來過，先走去窗邊看看。
+  tags: [body, rest]
+- id: q-body-023
+  text: 疲勞的時候做的決定，明天常常想改。
+  tags: [condition, energy]
+- id: q-body-024
+  text: 慢一點沒關係，只要還在自己的節奏裡。
+  tags: [rhythm, timing]
+- id: q-body-025
+  text: 今天沒力氣，把它記下來，不要記成失敗。
+  tags: [energy, condition]
+- id: q-body-026
+  text: 深呼吸三次，肩頸就先鬆了一半。
+  tags: [body, physical]
+- id: q-body-027
+  text: 熬夜趕出來的，隔天多半要重來。
+  tags: [sleep, condition]
+- id: q-body-028
+  text: 你不是每天都要衝刺，散步的日子也算數。
+  tags: [rhythm, rest]
+- id: q-body-029
+  text: 精神渙散時，硬看螢幕只是在浪費眼睛。
+  tags: [condition, body]
+- id: q-body-030
+  text: 找出你一天裡最不想被打擾的那一小時。
+  tags: [timing, rhythm]
+- id: q-body-031
+  text: 累到卡住，往往閉眼十分鐘就通了。
+  tags: [rest, condition]
+- id: q-body-032
+  text: 身體先暖起來，腦袋才跟得上。
+  tags: [body, physical]
+- id: q-body-033
+  text: 低潮的日子做維護，好的日子做突破。
+  tags: [rhythm, energy]
+- id: q-body-034
+  text: 睡前把想法寫一行，比腦裡打轉好睡。
+  tags: [sleep, rest]
+- id: q-body-035
+  text: 你的節奏不必跟別人對齊，對齊自己就好。
+  tags: [rhythm, timing]
+- id: q-body-036
+  text: 手指僵了，甩一甩，比咬牙撐著快。
+  tags: [body, physical]
+- id: q-body-037
+  text: 沒精神的時候，整理素材也是在前進。
+  tags: [energy, condition]
+- id: q-body-038
+  text: 天亮才睡的人，別逼自己在早上開機。
+  tags: [timing, sleep]
+- id: q-body-039
+  text: 休息夠了再回來，畫面會更清楚。
+  tags: [rest, condition]
+- id: q-body-040
+  text: 身體發出的訊號，比行事曆更值得信任。
+  tags: [body, condition]
+- id: q-body-041
+  text: 今天做一點就好，明天的你會謝謝現在留了力。
+  tags: [energy, rhythm]
+- id: q-body-042
+  text: 眼睛乾了，遠方看二十秒，這叫保養不是偷懶。
+  tags: [body, rest]
+- id: q-body-043
+  text: 精神不濟時的自我懷疑，多半是缺覺造成的。
+  tags: [sleep, condition]
+- id: q-body-044
+  text: 你不欠任何人一個高產的今天。
+  tags: [rhythm, condition]
+- id: q-body-045
+  text: 找到能專心的那段光線，就在那裡工作。
+  tags: [timing, energy]
+- id: q-body-046
+  text: 腰痠了就換個姿勢，別跟椅子拚耐力。
+  tags: [body, physical]
+- id: q-body-047
+  text: 硬撐能撐一次，撐不了一整季。
+  tags: [condition, rest]
+- id: q-body-048
+  text: 睡飽的判斷力，是最便宜的升級。
+  tags: [sleep, condition]
+- id: q-body-049
+  text: 節奏亂了不用重來，慢慢接回去就好。
+  tags: [rhythm, timing]
+- id: q-body-050
+  text: 今天的低能量，只是今天的，不是你的全部。
+  tags: [energy, condition]
+- id: q-body-051
+  text: 站起來倒杯水的路上，答案有時就來了。
+  tags: [body, rest]
+- id: q-body-052
+  text: 你的身體不是敵人，別老是在跟它拔河。
+  tags: [body, physical]
+- id: q-body-053
+  text: 想睡就睡，靈感不會因為你熬夜就多。
+  tags: [sleep, energy]
+- id: q-body-054
+  text: 有人上午銳利，有人黃昏才對焦，找到你的。
+  tags: [timing, rhythm]
+- id: q-body-055
+  text: 累的時候放過自己，也是一種專業。
+  tags: [rest, condition]
+- id: q-body-056
+  text: 脖子往左往右轉一圈，成本零，回報不小。
+  tags: [body, physical]
+- id: q-body-057
+  text: 精神狀態會滲進作品裡，它藏不住。
+  tags: [condition, energy]
+- id: q-body-058
+  text: 別在最累的時段安排最難的事。
+  tags: [timing, energy]
+- id: q-body-059
+  text: 躺平一下午，明天可能就衝得動了。
+  tags: [rest, rhythm]
+- id: q-body-060
+  text: 身體是長期夥伴，值得你對它好一點。
+  tags: [body, physical]
+- id: q-body-061
+  text: 睡不好的隔天，把標準暫時調低沒關係。
+  tags: [sleep, condition]
+- id: q-body-062
+  text: 你的節奏裡本來就該有喘氣的空格。
+  tags: [rhythm, rest]
+- id: q-body-063
+  text: 精神來了再開始，比逼自己坐著划算。
+  tags: [energy, timing]
+- id: q-body-064
+  text: 手腕開始隱隱作痛，就是該停的訊號。
+  tags: [body, physical]
+- id: q-body-065
+  text: 今天只有三分力，那就做三分的事。
+  tags: [energy, condition]
+- id: q-body-066
+  text: 睡飽之後，昨天覺得爛的東西沒那麼爛。
+  tags: [sleep, condition]
+- id: q-body-067
+  text: 找到你思緒最清的那個鐘頭，守住它。
+  tags: [timing, rhythm]
+- id: q-body-068
+  text: 休息不是獎勵，是繼續下去的燃料。
+  tags: [rest, energy]
+- id: q-body-069
+  text: 你的眼睛已經看很久了，讓它們閉一會兒。
+  tags: [body, rest]
+- id: q-body-070
+  text: 硬做出來的靈感，通常很硬。
+  tags: [condition, energy]
+- id: q-body-071
+  text: 熬夜是跟明天借的，利息很高。
+  tags: [sleep, condition]
+- id: q-body-072
+  text: 節奏對了，難事也會變得順手。
+  tags: [rhythm, timing]
+- id: q-body-073
+  text: 今天不想動就不動，別把休息當虧欠。
+  tags: [rest, condition]
+- id: q-body-074
+  text: 久坐讓腦子鈍掉，起來走兩步就醒了。
+  tags: [body, physical]
+- id: q-body-075
+  text: 精神好的時候，一句話就寫對了。
+  tags: [energy, condition]
+- id: q-body-076
+  text: 你不必在別人的時區裡創作。
+  tags: [timing, rhythm]
+- id: q-body-077
+  text: 睡飽的人比較不會鑽牛角尖。
+  tags: [sleep, condition]
+- id: q-body-078
+  text: 身體撐不住時，作品也會透露出來。
+  tags: [body, condition]
+- id: q-body-079
+  text: 允許自己有一天什麼都不產出。
+  tags: [rest, rhythm]
+- id: q-body-080
+  text: 手邊放杯溫水，比灌第三杯咖啡溫柔。
+  tags: [body, physical]
+- id: q-body-081
+  text: 低能量的日子，適合修修補補而不是開新坑。
+  tags: [energy, rhythm]
+- id: q-body-082
+  text: 你的清醒時段有限，別浪費在無關緊要上。
+  tags: [timing, energy]
+- id: q-body-083
+  text: 睡前少滑一點螢幕，明天的眼睛會感謝你。
+  tags: [sleep, body]
+- id: q-body-084
+  text: 卡住的時候，先問自己上次好好睡是什麼時候。
+  tags: [sleep, condition]
+- id: q-body-085
+  text: 節奏是自己調的，不是別人喊的口令。
+  tags: [rhythm, timing]
+- id: q-body-086
+  text: 累到眼皮沉，就別再假裝在專心。
+  tags: [rest, condition]
+- id: q-body-087
+  text: 身體暖、呼吸穩，思路自然順。
+  tags: [body, physical]
+- id: q-body-088
+  text: 今天狀態差，記得那不代表你差。
+  tags: [condition, energy]
+- id: q-body-089
+  text: 找出你一天中最不想被吵的黃金半小時。
+  tags: [timing, rhythm]
+- id: q-body-090
+  text: 休息時真的休息，別在腦裡繼續開會。
+  tags: [rest, condition]
+- id: q-body-091
+  text: 睡飽了，很多焦慮會自己退場。
+  tags: [sleep, condition]
+- id: q-body-092
+  text: 你的手不是無限耐用，記得讓它歇。
+  tags: [body, physical]
+- id: q-body-093
+  text: 沒力氣的日子，喝口熱湯也算照顧自己。
+  tags: [energy, physical]
+- id: q-body-094
+  text: 硬撐到深夜的成果，白天常常認不得。
+  tags: [sleep, condition]
+- id: q-body-095
+  text: 節奏慢下來，不等於停下來。
+  tags: [rhythm, rest]
+- id: q-body-096
+  text: 眼睛痠、頭悶，就是身體在請你暫停。
+  tags: [body, rest]
+- id: q-body-097
+  text: 你在對的時段做事，會省下一半力氣。
+  tags: [timing, energy]
+- id: q-body-098
+  text: 睡眠不是浪費時間，是在整理你的白天。
+  tags: [sleep, rest]
+- id: q-body-099
+  text: 狀態不好時，把門檻放低到你跨得過去。
+  tags: [condition, energy]
+- id: q-body-100
+  text: 身體發冷就先添件衣服，別跟溫度硬拚。
+  tags: [body, physical]
+- id: q-body-101
+  text: 今天做不完的，交給睡飽的明天。
+  tags: [sleep, rhythm]
+- id: q-body-102
+  text: 你的節奏是私人的，不必公開比較。
+  tags: [rhythm, timing]
+- id: q-body-103
+  text: 累的時候別做刪除的決定，容易後悔。
+  tags: [condition, rest]
+- id: q-body-104
+  text: 起身伸個懶腰，血液會替你把腦子叫醒。
+  tags: [body, physical]
+- id: q-body-105
+  text: 低潮日的一小步，也是往前的一步。
+  tags: [energy, rhythm]
+- id: q-body-106
+  text: 找到讓你最專注的那段安靜，守好它。
+  tags: [timing, condition]
+- id: q-body-107
+  text: 睡飽的直覺，比熬夜的蠻力可靠。
+  tags: [sleep, condition]
+- id: q-body-108
+  text: 身體是你創作的第一個工具，先把它顧好。
+  tags: [body, physical]
+- id: q-body-109
+  text: 今天想休息就休息，不必先賺到資格。
+  tags: [rest, condition]
+- id: q-body-110
+  text: 精神一散，最好的段落也會寫歪。
+  tags: [energy, condition]
+- id: q-body-111
+  text: 找出你什麼時候手最穩、心最靜。
+  tags: [timing, rhythm]
+- id: q-body-112
+  text: 打呵欠不是丟臉，是身體在跟你講話。
+  tags: [body, sleep]
+- id: q-body-113
+  text: 別把每一天都當終點衝，路還很長。
+  tags: [rhythm, rest]
+- id: q-body-114
+  text: 睡飽後回頭看，卡關常常只是小事。
+  tags: [sleep, condition]
+- id: q-body-115
+  text: 手痠、眼花、心煩，三者常常一起來，先休息。
+  tags: [body, rest]
+- id: q-body-116
+  text: 你的能量會回來，只是今天先讓它去休息。
+  tags: [energy, condition]
+- id: q-body-117
+  text: 在你最清醒的時段，做最需要你的事。
+  tags: [timing, energy]
+- id: q-body-118
+  text: 睡得好，情緒就少一半的暗礁。
+  tags: [sleep, condition]
+- id: q-body-119
+  text: 身體不是拿來耗盡的，是拿來陪你走遠的。
+  tags: [body, physical]
+- id: q-body-120
+  text: 沒靈感的時候，也許只是該吃頓好的了。
+  tags: [energy, physical]
+- id: q-body-121
+  text: 節奏被打亂沒關係，接回來就是了。
+  tags: [rhythm, timing]
+- id: q-body-122
+  text: 累到讀不進去，闔上就對了，別死撐。
+  tags: [rest, condition]
+- id: q-body-123
+  text: 站起來動一動，靈感有時是走出來的。
+  tags: [body, physical]
+- id: q-body-124
+  text: 低能量的日子，記得那不是你的錯。
+  tags: [energy, condition]
+- id: q-body-125
+  text: 你的最佳時段，別拿去回無關緊要的訊息。
+  tags: [timing, energy]
+- id: q-body-126
+  text: 缺覺的腦袋容易鑽死巷，先補眠再說。
+  tags: [sleep, condition]
+- id: q-body-127
+  text: 身體舒服，心就穩，作品就不慌。
+  tags: [body, condition]
+- id: q-body-128
+  text: 今天只做得到清單的一項，那也很好。
+  tags: [energy, rhythm]
+- id: q-body-129
+  text: 熬夜的靈感是預支的，記得會被扣回去。
+  tags: [sleep, energy]
+- id: q-body-130
+  text: 眼睛乾澀就眨慢一點，看遠一點。
+  tags: [body, rest]
+- id: q-body-131
+  text: 你不必二十四小時都在狀態裡。
+  tags: [condition, rest]
+- id: q-body-132
+  text: 找到你一天裡思緒最清亮的那個時刻。
+  tags: [timing, rhythm]
+- id: q-body-133
+  text: 睡飽的人，比較敢承認作品哪裡不好。
+  tags: [sleep, condition]
+- id: q-body-134
+  text: 身體是感官的來源，先讓它舒服。
+  tags: [body, physical]
+- id: q-body-135
+  text: 累了就停，不是放棄，是換氣。
+  tags: [rest, rhythm]
+- id: q-body-136
+  text: 沒電的日子，充電也是正事。
+  tags: [energy, rest]
+- id: q-body-137
+  text: 挑對時段開工，等於先贏了一半。
+  tags: [timing, energy]
+- id: q-body-138
+  text: 睡不好，先別急著判自己不夠努力。
+  tags: [sleep, condition]
+- id: q-body-139
+  text: 久盯螢幕的頭痛，多半靠休息解決，不靠硬撐。
+  tags: [body, rest]
+- id: q-body-140
+  text: 你的節奏可以有快有慢，都算數。
+  tags: [rhythm, timing]
+- id: q-body-141
+  text: 想睡的時候讀不進東西，那是身體在踩煞車。
+  tags: [sleep, condition]
+- id: q-body-142
+  text: 起身走去泡杯茶，也是在照顧創作。
+  tags: [body, rest]
+- id: q-body-143
+  text: 今天低落，不代表你走錯了路。
+  tags: [energy, condition]
+- id: q-body-144
+  text: 把難的部分留給你最清醒的那段。
+  tags: [timing, energy]
+- id: q-body-145
+  text: 睡飽的清晨，常常送你昨晚要不到的句子。
+  tags: [sleep, timing]
+- id: q-body-146
+  text: 身體是節奏的樂器，先幫它調音。
+  tags: [body, rhythm]
+- id: q-body-147
+  text: 累到手在抖，就別再逼它精準了。
+  tags: [rest, physical]
+- id: q-body-148
+  text: 精神散了，先離開桌子，不是離開夢想。
+  tags: [energy, rest]
+- id: q-body-149
+  text: 你有自己的作息，不必羨慕別人的早起。
+  tags: [timing, rhythm]
+- id: q-body-150
+  text: 睡足的日子，連瓶頸看起來都比較好過。
+  tags: [sleep, condition]
+- id: q-body-151
+  text: 身體發出的每個小訊號，都值得你停下聽。
+  tags: [body, condition]
+- id: q-body-152
+  text: 沒力氣做大事，就把小事收拾乾淨。
+  tags: [energy, rhythm]
+- id: q-body-153
+  text: 你最順的那兩小時，比十小時的硬撐值錢。
+  tags: [timing, energy]
+- id: q-body-154
+  text: 睡前的焦慮，多半在睡飽後就淡了。
+  tags: [sleep, condition]
+- id: q-body-155
+  text: 讓肩膀、下巴、眉頭都鬆開，你會呼吸得比較深。
+  tags: [body, physical]
+- id: q-body-156
+  text: 休息是創作的一部分，不是它的對手。
+  tags: [rest, rhythm]
+- id: q-body-157
+  text: 今天的低電量，只是提醒你昨天用力了。
+  tags: [energy, condition]
+- id: q-body-158
+  text: 找到讓你不知不覺投入的那個時段。
+  tags: [timing, rhythm]
+- id: q-body-159
+  text: 睡飽再看一次，或許根本不用改。
+  tags: [sleep, condition]
+- id: q-body-160
+  text: 身體累了，先餵它、暖它、讓它躺。
+  tags: [body, physical]
+- id: q-body-161
+  text: 硬撐的日子做的，多半明天要修。
+  tags: [condition, rest]
+- id: q-body-162
+  text: 你的節奏由你定，別讓別人替你按快轉。
+  tags: [rhythm, timing]
+- id: q-body-163
+  text: 眼睛痛就閉起來，世界會等你。
+  tags: [body, rest]
+- id: q-body-164
+  text: 沒精神的時候，散步比逼稿有用。
+  tags: [energy, physical]
+- id: q-body-165
+  text: 睡好覺，是最不起眼的創作準備。
+  tags: [sleep, rest]
+- id: q-body-166
+  text: 你不必在最累的時候證明什麼。
+  tags: [condition, energy]
+- id: q-body-167
+  text: 選在你頭腦最清的時候做決定。
+  tags: [timing, condition]
+- id: q-body-168
+  text: 身體是你走這條路的腳，別磨到走不動。
+  tags: [body, physical]
+- id: q-body-169
+  text: 累了就慢下來，路不會因此消失。
+  tags: [rest, rhythm]
+- id: q-body-170
+  text: 今天只有一點點力氣，那就用在最想做的事上。
+  tags: [energy, timing]
+- id: q-body-171
+  text: 睡飽的腦子，連挑錯字都更準。
+  tags: [sleep, condition]
+- id: q-body-172
+  text: 你的高峰時段是天賦，別總是拿去救火。
+  tags: [timing, energy]
+- id: q-body-173
+  text: 身體先安頓好，心思才回得來。
+  tags: [body, condition]
+- id: q-body-174
+  text: 允許自己今天只是活著，不必產出。
+  tags: [rest, condition]
+- id: q-body-175
+  text: 熬到最後的那點成果，常常撐不過隔天的檢視。
+  tags: [sleep, condition]
+- id: q-body-176
+  text: 節奏卡住時，換件家事做，腦子會自己整理。
+  tags: [rhythm, body]
+- id: q-body-177
+  text: 疲倦不是缺點，是身體在誠實記帳。
+  tags: [condition, physical]
+- id: q-body-178
+  text: 你最清醒的那段光陰，值得留給最珍惜的事。
+  tags: [timing, energy]
+- id: q-body-179
+  text: 睡飽這件小事，撐住了你其他所有事。
+  tags: [sleep, rest]
+- id: q-body-180
+  text: 身體舒展了，句子也跟著鬆開來。
+  tags: [body, rhythm]

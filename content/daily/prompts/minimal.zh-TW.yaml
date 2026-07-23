@@ -1,0 +1,928 @@
+# 每日創作提示：極簡與減法
+# 主題：拿掉一半、只留最重要的、一筆完成、越少越好、留白練習、刪到不能再刪
+# id 一律 p-minimal-NNN；text 6-80 中文字；tags 2-3 個；estimatedMinutes 3-30
+
+- id: p-minimal-001
+  text: 拿一張你的舊作品，刪到只剩最重要的一個元素。
+  tags: [minimal, reduction]
+  estimatedMinutes: 15
+
+- id: p-minimal-002
+  text: 挑今天拍的一張照片，只裁切出最想留下的四分之一。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-003
+  text: 用一筆線條畫出你現在的心情，不能提筆重來。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-004
+  text: 寫一句話描述今天，然後把它砍成三個字。
+  tags: [reduction, less]
+  estimatedMinutes: 6
+
+- id: p-minimal-005
+  text: 打開桌面，只留下今天真正會用到的三個檔案，其他收起來。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 12
+
+- id: p-minimal-006
+  text: 選一段你寫過的文字，刪掉一半的字，看它會不會更好。
+  tags: [reduction, less]
+  estimatedMinutes: 15
+
+- id: p-minimal-007
+  text: 在白紙正中央畫一個小點，其餘全部留白，看它十秒。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 3
+
+- id: p-minimal-008
+  text: 今天低能量也沒關係，只擦掉一件桌上不需要的東西就好。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-009
+  text: 把一份待辦清單刪到只剩一件事，其他明天再說。
+  tags: [reduction, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-010
+  text: 用三種以內的顏色，畫一個你今天看到的東西。
+  tags: [minimal, less]
+  estimatedMinutes: 12
+
+- id: p-minimal-011
+  text: 挑一首歌，只哼出你記得的那一句旋律，錄下來。
+  tags: [essential, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-012
+  text: 寫一封信，規定自己只能用二十個字。
+  tags: [reduction, less]
+  estimatedMinutes: 10
+
+- id: p-minimal-013
+  text: 找一張塞滿東西的照片，用手指遮住一半，留下更好的那半。
+  tags: [subtract, whitespace]
+  estimatedMinutes: 6
+
+- id: p-minimal-014
+  text: 閉上眼睛，用一筆畫出一隻貓，睜眼再看它。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 4
+
+- id: p-minimal-015
+  text: 從房間裡選一個角落，只清空它，別碰其他地方。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 15
+
+- id: p-minimal-016
+  text: 把今天想說的長訊息，改寫成只有一行的版本。
+  tags: [reduction, less]
+  estimatedMinutes: 8
+
+- id: p-minimal-017
+  text: 用單一種筆觸畫滿一小格，感受重複中的簡單。
+  tags: [one_stroke, simplicity]
+  estimatedMinutes: 10
+
+- id: p-minimal-018
+  text: 挑一張桌面截圖，數數上面有幾個圖示，關掉一半。
+  tags: [subtract, reduction]
+  estimatedMinutes: 7
+
+- id: p-minimal-019
+  text: 寫下你今天的五個想法，只圈起最重要的一個。
+  tags: [essential, reduction]
+  estimatedMinutes: 6
+
+- id: p-minimal-020
+  text: 在一張紙的角落畫一個小圖，剩下的大片空白就留著。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 8
+
+- id: p-minimal-021
+  text: 拿一段對話，刪掉所有形容詞，看它剩下什麼。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-022
+  text: 今天累的話，只需把手機主畫面刪掉一個 app。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-023
+  text: 用一條不斷開的線，把紙上三個點連成一個圖形。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-024
+  text: 選一個你常用的句子，找出裡面可以拿掉的兩個字。
+  tags: [reduction, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-025
+  text: 把一張複雜的圖，用五個以內的形狀重畫一次。
+  tags: [simplicity, reduction]
+  estimatedMinutes: 15
+
+- id: p-minimal-026
+  text: 只用黑白兩色，記錄眼前的一個物件。
+  tags: [minimal, less]
+  estimatedMinutes: 12
+
+- id: p-minimal-027
+  text: 從一個抽屜裡拿出一樣不需要的東西，就這一樣。
+  tags: [subtract, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-028
+  text: 寫一段話介紹自己，然後刪到只剩最真的一句。
+  tags: [reduction, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-029
+  text: 在空白頁面上打一個字，就讓它孤單地待著。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 3
+
+- id: p-minimal-030
+  text: 用一筆把你的名字寫成一個連續的符號。
+  tags: [one_stroke, simplicity]
+  estimatedMinutes: 5
+
+- id: p-minimal-031
+  text: 把播放清單刪到只剩今天想聽的五首歌。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-032
+  text: 找一張照片，把它調成黑白，看少了顏色會不會更靜。
+  tags: [subtract, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-033
+  text: 寫下想做的十件事，狠心劃掉九件，只留一件。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-034
+  text: 用一個圓，畫出你今天的樣子，其他都不加。
+  tags: [minimal, one_stroke]
+  estimatedMinutes: 5
+
+- id: p-minimal-035
+  text: 今天沒力氣的話，只把一封舊郵件歸檔或刪掉。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-036
+  text: 挑一段影片，只截出最喜歡的一秒，存成一張圖。
+  tags: [essential, reduction]
+  estimatedMinutes: 8
+
+- id: p-minimal-037
+  text: 在紙上留下四分之三的空白，只在一角寫一個詞。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-038
+  text: 把一個複雜的想法，講給自己聽，只用一句話。
+  tags: [reduction, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-039
+  text: 用一種筆、一種顏色，畫完一整張小圖。
+  tags: [one_stroke, simplicity]
+  estimatedMinutes: 15
+
+- id: p-minimal-040
+  text: 清理收藏夾，只留下三個你真的會回去看的連結。
+  tags: [subtract, reduction]
+  estimatedMinutes: 10
+
+- id: p-minimal-041
+  text: 寫一首只有三行的小詩，每行不超過六個字。
+  tags: [minimal, less]
+  estimatedMinutes: 12
+
+- id: p-minimal-042
+  text: 拍一張桌面照，明天再拍一張更空的，比較差別。
+  tags: [subtract, whitespace]
+  estimatedMinutes: 5
+
+- id: p-minimal-043
+  text: 把一段自我介紹的影片，剪到只剩十秒。
+  tags: [reduction, essential]
+  estimatedMinutes: 15
+
+- id: p-minimal-044
+  text: 用一條橫線和一個點，組出一個表情。
+  tags: [minimal, one_stroke]
+  estimatedMinutes: 4
+
+- id: p-minimal-045
+  text: 今天只選一件衣服，想像衣櫃只剩它，記下感覺。
+  tags: [subtract, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-046
+  text: 把一頁密密麻麻的筆記，抄成只有三個重點。
+  tags: [reduction, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-047
+  text: 在螢幕上開一個全白的畫面，什麼都不放，看一分鐘。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 3
+
+- id: p-minimal-048
+  text: 用一筆畫一座山，一筆畫一片海，就這兩筆。
+  tags: [one_stroke, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-049
+  text: 挑一個常用資料夾，刪掉裡面一個再也不會開的檔案。
+  tags: [subtract, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-050
+  text: 把今天的日記寫成一個字，就一個。
+  tags: [reduction, essential]
+  estimatedMinutes: 3
+
+- id: p-minimal-051
+  text: 用最少的線條畫出一棵樹，能少一筆就少一筆。
+  tags: [minimal, reduction]
+  estimatedMinutes: 10
+
+- id: p-minimal-052
+  text: 找一張過度修飾的圖，把所有濾鏡拿掉，還它原樣。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 8
+
+- id: p-minimal-053
+  text: 寫下一段長句，把它拆成越短越好的幾句。
+  tags: [reduction, less]
+  estimatedMinutes: 10
+
+- id: p-minimal-054
+  text: 在紙中央畫一條垂直線，兩邊留白，就完成了。
+  tags: [whitespace, one_stroke]
+  estimatedMinutes: 4
+
+- id: p-minimal-055
+  text: 今天很累就好好休息，只把一個通知關掉。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-056
+  text: 用三個詞概括一本書或一部電影，不能多。
+  tags: [reduction, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-057
+  text: 畫一個方框，裡面只放一個你今天珍惜的東西。
+  tags: [minimal, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-058
+  text: 把手機桌布換成純色，感受少了圖案的清爽。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 4
+
+- id: p-minimal-059
+  text: 寫一段給明天的話，砍到只剩十個字。
+  tags: [reduction, less]
+  estimatedMinutes: 8
+
+- id: p-minimal-060
+  text: 用不提筆的一條線，描出你手掌的輪廓。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-061
+  text: 從一段錄音裡，只留下最重要的一句話。
+  tags: [essential, reduction]
+  estimatedMinutes: 10
+
+- id: p-minimal-062
+  text: 把一張構圖很滿的照片，重新裁成大量留白的版本。
+  tags: [whitespace, subtract]
+  estimatedMinutes: 8
+
+- id: p-minimal-063
+  text: 今天只做一個微小的決定：晚餐吃最簡單的那樣。
+  tags: [simplicity, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-064
+  text: 用一個圈和一條線，畫出一個奔跑的人。
+  tags: [minimal, one_stroke]
+  estimatedMinutes: 5
+
+- id: p-minimal-065
+  text: 挑一段程式或文字，刪掉沒有用到的部分。
+  tags: [subtract, reduction]
+  estimatedMinutes: 15
+
+- id: p-minimal-066
+  text: 把想感謝的話，寫成只有一句的短訊。
+  tags: [reduction, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-067
+  text: 在整張白紙上，只塗一小塊顏色，其餘留空。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 8
+
+- id: p-minimal-068
+  text: 用一筆連續的曲線，畫出海浪的樣子。
+  tags: [one_stroke, simplicity]
+  estimatedMinutes: 5
+
+- id: p-minimal-069
+  text: 清空一個相簿，只留下你真正想保存的三張。
+  tags: [subtract, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-070
+  text: 把一段話裡的驚嘆號全部拿掉，讀讀看語氣的變化。
+  tags: [reduction, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-071
+  text: 今天低能量沒關係，只整理眼前一平方公尺的空間。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 6
+
+- id: p-minimal-072
+  text: 用最少的字，替一張照片下一個標題。
+  tags: [reduction, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-073
+  text: 在畫面裡只放一個主角，把背景全部留白。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 12
+
+- id: p-minimal-074
+  text: 用一條線把「開心」畫出來，不用畫臉。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-075
+  text: 從書架挑一本書，決定把它送走或收進箱子。
+  tags: [subtract, less]
+  estimatedMinutes: 8
+
+- id: p-minimal-076
+  text: 把一段旋律，簡化成只有三個音符。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-077
+  text: 用一個色塊，代表你此刻的情緒，別加任何字。
+  tags: [minimal, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-078
+  text: 挑一個滿滿的資料夾名稱，改成一個字。
+  tags: [reduction, simplicity]
+  estimatedMinutes: 4
+
+- id: p-minimal-079
+  text: 在紙上只寫一個問句，剩下的空白留給思考。
+  tags: [whitespace, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-080
+  text: 用連續不斷的線，畫完一整張臉的輪廓。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 8
+
+- id: p-minimal-081
+  text: 今天只清一個口袋或一個包，拿出不需要的東西。
+  tags: [subtract, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-082
+  text: 把一份簡報刪到只剩一張投影片，放最重要的話。
+  tags: [reduction, essential]
+  estimatedMinutes: 15
+
+- id: p-minimal-083
+  text: 用兩個三角形，拼出一個你想到的東西。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 6
+
+- id: p-minimal-084
+  text: 把常說的口頭禪拿掉一個，練習說話留白。
+  tags: [subtract, whitespace]
+  estimatedMinutes: 5
+
+- id: p-minimal-085
+  text: 寫下心中的煩惱，只保留最核心的一件。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-086
+  text: 在畫面正中放一個小方塊，四周空到底。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-087
+  text: 用一筆畫出一朵雲，越簡單越好。
+  tags: [one_stroke, less]
+  estimatedMinutes: 4
+
+- id: p-minimal-088
+  text: 挑一個群組或訂閱，今天退出一個就好。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-089
+  text: 把一整段介紹文字，濃縮成一個吸引人的短句。
+  tags: [reduction, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-090
+  text: 用單一線條的粗細變化，畫出遠近的感覺。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 12
+
+- id: p-minimal-091
+  text: 今天只需替書桌拍一張照，什麼都不用整理。
+  tags: [whitespace, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-092
+  text: 把一個複雜的圖示，重畫成一個看得懂的符號。
+  tags: [reduction, simplicity]
+  estimatedMinutes: 15
+
+- id: p-minimal-093
+  text: 選一個常用的密碼提示，把它簡化到一個字。
+  tags: [reduction, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-094
+  text: 在紙上畫一條地平線，天和地都留白，就好了。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 4
+
+- id: p-minimal-095
+  text: 用一筆勾出一隻鳥的飛行姿態。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-096
+  text: 把桌面上疊著的紙，只留最上面一張，其他收走。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 6
+
+- id: p-minimal-097
+  text: 寫一封道歉或感謝，只准用一個句子。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-098
+  text: 用一個顏色的深淺，畫出一顆蘋果。
+  tags: [minimal, less]
+  estimatedMinutes: 12
+
+- id: p-minimal-099
+  text: 今天太累就只做一件事：關掉一個沒在用的分頁。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-100
+  text: 把一段長對白，改寫成只有兩句的版本。
+  tags: [reduction, less]
+  estimatedMinutes: 10
+
+- id: p-minimal-101
+  text: 在畫面裡刻意留下一大片空，讓主角有呼吸的地方。
+  tags: [whitespace, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-102
+  text: 用一條線畫出一座橋，連起紙上兩邊。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-103
+  text: 從一堆想法裡，只挑一個今天真的想做的。
+  tags: [reduction, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-104
+  text: 把一張彩色圖片，減成只剩兩種顏色。
+  tags: [subtract, minimal]
+  estimatedMinutes: 10
+
+- id: p-minimal-105
+  text: 今天只需在空白紙上簽一個名，感受留白的紙。
+  tags: [whitespace, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-106
+  text: 把想做的專案功能列一串，砍到只剩核心的一個。
+  tags: [reduction, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-107
+  text: 用一個正方形和一個圓，組成一張臉。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 6
+
+- id: p-minimal-108
+  text: 把手機首頁的資料夾清空，只留最常用的四個 app。
+  tags: [subtract, reduction]
+  estimatedMinutes: 8
+
+- id: p-minimal-109
+  text: 寫一句話總結你的一整年，越短越有力。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-110
+  text: 用一筆畫出無限符號，感受不斷開的線。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 3
+
+- id: p-minimal-111
+  text: 今天只清理一個瀏覽器分頁群組，別的先放著。
+  tags: [subtract, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-112
+  text: 把一段文字裡重複的詞，各留一個就好。
+  tags: [reduction, less]
+  estimatedMinutes: 8
+
+- id: p-minimal-113
+  text: 在紙的下方畫一小排草，上方全部留給天空。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-114
+  text: 用最少的步驟，把一件事的做法寫成三步。
+  tags: [reduction, simplicity]
+  estimatedMinutes: 10
+
+- id: p-minimal-115
+  text: 選一張塞太多元素的設計稿，拿掉最不重要的三樣。
+  tags: [subtract, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-116
+  text: 用一條連續線描一顆心，不能斷。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 4
+
+- id: p-minimal-117
+  text: 今天低能量的話，只把一張桌面圖示拖進垃圾桶。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-118
+  text: 把一段話唸出來，錄下最短的一次表達。
+  tags: [reduction, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-119
+  text: 在白底上放一個小黑點，命名它，就是作品。
+  tags: [minimal, whitespace]
+  estimatedMinutes: 5
+
+- id: p-minimal-120
+  text: 用兩筆畫出一間房子，一個屋頂一面牆。
+  tags: [one_stroke, simplicity]
+  estimatedMinutes: 5
+
+- id: p-minimal-121
+  text: 把一份收藏歌單，砍到只剩一首代表你的歌。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-122
+  text: 挑一個雜亂的相片，把邊邊多餘的部分裁乾淨。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 6
+
+- id: p-minimal-123
+  text: 寫下今天想抱怨的事，然後刪光，只留一個字。
+  tags: [reduction, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-124
+  text: 在紙上只用一個逗號的形狀，構成一幅畫。
+  tags: [minimal, one_stroke]
+  estimatedMinutes: 8
+
+- id: p-minimal-125
+  text: 今天只做一次深呼吸，然後在紙上畫一條線。
+  tags: [whitespace, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-126
+  text: 把一段自我介紹刪到只剩一個最想被記住的詞。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-127
+  text: 用三筆以內，畫出一個正在思考的人。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-128
+  text: 從行事曆刪掉一個其實可以不去的行程。
+  tags: [subtract, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-129
+  text: 把一張構圖，改成只有上半部有內容，下半留白。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 10
+
+- id: p-minimal-130
+  text: 用一個字回答「今天過得如何」。
+  tags: [reduction, essential]
+  estimatedMinutes: 3
+
+- id: p-minimal-131
+  text: 拿一段影片旁白，刪到只剩必要的關鍵句。
+  tags: [subtract, reduction]
+  estimatedMinutes: 15
+
+- id: p-minimal-132
+  text: 用一筆畫一條魚，尾巴用同一條線帶出來。
+  tags: [one_stroke, simplicity]
+  estimatedMinutes: 5
+
+- id: p-minimal-133
+  text: 今天累了就休息，只把桌上一個杯子洗掉。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-134
+  text: 把一段介紹改寫兩次，每次都比上次短。
+  tags: [reduction, less]
+  estimatedMinutes: 12
+
+- id: p-minimal-135
+  text: 在畫布中央只放一行字，四周全部空著。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-136
+  text: 用一個色塊配一條線，做出最簡單的封面。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 12
+
+- id: p-minimal-137
+  text: 挑一個很久沒開的 app，今天把它刪掉。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-138
+  text: 把想到的十個標題，刪到只剩最好的那一個。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-139
+  text: 用不提筆的一線，畫出一副眼鏡。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 4
+
+- id: p-minimal-140
+  text: 從衣櫃選三件很少穿的，決定其中一件的去留。
+  tags: [subtract, less]
+  estimatedMinutes: 8
+
+- id: p-minimal-141
+  text: 把一段文字裡的括號和註解全刪掉，讓它變乾淨。
+  tags: [reduction, simplicity]
+  estimatedMinutes: 8
+
+- id: p-minimal-142
+  text: 在紙的一角畫一顆小星星，其餘是整片夜空的黑或白。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 6
+
+- id: p-minimal-143
+  text: 用一個圓弧，畫出微笑，就這麼一筆。
+  tags: [one_stroke, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-144
+  text: 把桌面資源回收桶清空，感受那份俐落。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 4
+
+- id: p-minimal-145
+  text: 寫一段祝福，砍到只剩五個字。
+  tags: [reduction, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-146
+  text: 用兩種形狀，重複排成一個簡單的圖案。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 12
+
+- id: p-minimal-147
+  text: 今天只做一件小事：把一封訂閱信退訂。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-148
+  text: 把一份說明書，改寫成只有三個步驟。
+  tags: [reduction, simplicity]
+  estimatedMinutes: 12
+
+- id: p-minimal-149
+  text: 在整頁留白上，只寫今天最想記住的一句話。
+  tags: [whitespace, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-150
+  text: 用一筆勾出一個茶杯，含把手。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-151
+  text: 挑一個雜物盒，只拿出一樣可以丟的東西。
+  tags: [subtract, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-152
+  text: 把想寫的長貼文，濃縮成一句短短的心情。
+  tags: [reduction, less]
+  estimatedMinutes: 8
+
+- id: p-minimal-153
+  text: 用一個大圓和一個小圓，畫出白天與黑夜。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 6
+
+- id: p-minimal-154
+  text: 今天低能量沒關係，只把床頭一樣東西歸位。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-155
+  text: 把一段旋律的和弦，減到只用一個。
+  tags: [reduction, essential]
+  estimatedMinutes: 12
+
+- id: p-minimal-156
+  text: 在紙上畫一個框，框裡什麼都不放，就是留白練習。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 4
+
+- id: p-minimal-157
+  text: 用一筆畫出一條蜿蜒的路。
+  tags: [one_stroke, less]
+  estimatedMinutes: 5
+
+- id: p-minimal-158
+  text: 清一次下載資料夾，只留今天還需要的檔案。
+  tags: [subtract, reduction]
+  estimatedMinutes: 12
+
+- id: p-minimal-159
+  text: 把一段長標語，刪成三個字的口號。
+  tags: [reduction, essential]
+  estimatedMinutes: 8
+
+- id: p-minimal-160
+  text: 用單色線條，畫出一杯冒著熱氣的咖啡。
+  tags: [minimal, one_stroke]
+  estimatedMinutes: 10
+
+- id: p-minimal-161
+  text: 挑一個桌面小工具，關掉它，看桌面變乾淨。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 4
+
+- id: p-minimal-162
+  text: 把想對自己說的話，寫成只有三個字的提醒。
+  tags: [reduction, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-163
+  text: 在畫面左側放一個小物件，右側大片留白。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 8
+
+- id: p-minimal-164
+  text: 用一條線畫出一支雨傘的形狀。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-165
+  text: 今天只需刪掉相簿裡三張模糊或重複的照片。
+  tags: [subtract, less]
+  estimatedMinutes: 6
+
+- id: p-minimal-166
+  text: 把一段廣播稿，剪成只剩最有力的十秒。
+  tags: [reduction, essential]
+  estimatedMinutes: 15
+
+- id: p-minimal-167
+  text: 用一個色點，標出畫面的重心，其他都留空。
+  tags: [minimal, whitespace]
+  estimatedMinutes: 6
+
+- id: p-minimal-168
+  text: 挑一個 email 標籤，把它跟另一個合併成一個。
+  tags: [subtract, simplicity]
+  estimatedMinutes: 8
+
+- id: p-minimal-169
+  text: 寫下三個目標，選一個當今年唯一的重點。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-170
+  text: 用一筆連續線，寫出「靜」這個字的感覺。
+  tags: [one_stroke, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-171
+  text: 今天太累就好好躺著，只在腦中想像一個空房間。
+  tags: [whitespace, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-172
+  text: 把一份筆記的標題層級，砍到只剩兩層。
+  tags: [reduction, simplicity]
+  estimatedMinutes: 10
+
+- id: p-minimal-173
+  text: 用兩個點和一條線，畫出一個表情符號。
+  tags: [minimal, one_stroke]
+  estimatedMinutes: 4
+
+- id: p-minimal-174
+  text: 從書桌抽屜挑一支不出水的筆，丟掉它。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-175
+  text: 把一段對話截圖，只保留最關鍵的一則。
+  tags: [reduction, essential]
+  estimatedMinutes: 6
+
+- id: p-minimal-176
+  text: 在整片留白的畫面上，只落下一滴墨。
+  tags: [whitespace, minimal]
+  estimatedMinutes: 5
+
+- id: p-minimal-177
+  text: 用一筆畫出一輪彎月。
+  tags: [one_stroke, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-178
+  text: 清一次桌面截圖，只留今天要用的那幾張。
+  tags: [subtract, reduction]
+  estimatedMinutes: 8
+
+- id: p-minimal-179
+  text: 把一句座右銘，刪到只剩兩個字。
+  tags: [reduction, essential]
+  estimatedMinutes: 5
+
+- id: p-minimal-180
+  text: 用一種筆觸，把一整張紙輕輕鋪滿淡淡的灰。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 15
+
+- id: p-minimal-181
+  text: 挑一個常開的通知，把它永久靜音。
+  tags: [subtract, less]
+  estimatedMinutes: 3
+
+- id: p-minimal-182
+  text: 把想介紹自己的三句話，合併成一句。
+  tags: [reduction, essential]
+  estimatedMinutes: 10
+
+- id: p-minimal-183
+  text: 在紙上只畫一條水平線，把畫面一分為二。
+  tags: [whitespace, one_stroke]
+  estimatedMinutes: 4
+
+- id: p-minimal-184
+  text: 用最少的形狀，拼出一個你喜歡的動物。
+  tags: [minimal, simplicity]
+  estimatedMinutes: 12
+
+- id: p-minimal-185
+  text: 今天什麼都不做也可以，只對著空白頁面待一分鐘。
+  tags: [whitespace, less]
+  estimatedMinutes: 3

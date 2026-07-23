@@ -1,0 +1,943 @@
+# 每日創作提示 — 人物與角色
+# 主題：畫角色、命名與故事、表情練習、把自己畫成角色、路人速寫
+# 允許低能量的日子，看了就知道怎麼做。
+
+- id: p-character-001
+  text: 畫一個角色，只給它一個表情，讓人猜它在想什麼。
+  tags: [character, expression]
+  estimatedMinutes: 20
+
+- id: p-character-002
+  text: 幫今天遇到的一個路人畫速寫，只抓三筆最像的線條。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-003
+  text: 把自己畫成一個奇幻角色，給它一件你現實中沒有的能力。
+  tags: [self, character]
+  estimatedMinutes: 25
+
+- id: p-character-004
+  text: 想一個角色的名字，再倒過來為這個名字設計一張臉。
+  tags: [story, face]
+  estimatedMinutes: 15
+
+- id: p-character-005
+  text: 畫同一張臉的三種表情：開心、生氣、快哭出來。
+  tags: [expression, face]
+  estimatedMinutes: 20
+
+- id: p-character-006
+  text: 只用圓形和三角形拼出一個可愛的角色。
+  tags: [character, sketch]
+  estimatedMinutes: 10
+
+- id: p-character-007
+  text: 幫一個角色寫三句自我介紹，再照著畫出它。
+  tags: [story, character]
+  estimatedMinutes: 20
+
+- id: p-character-008
+  text: 畫一個正在偷笑的人，重點放在嘴角和眼睛。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-009
+  text: 把你最喜歡的食物擬人化，給它一個個性。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-010
+  text: 低能量版：畫一個角色的臉，只要眼睛和嘴巴就好。
+  tags: [face, character]
+  estimatedMinutes: 5
+
+- id: p-character-011
+  text: 為一個角色設計髮型，讓髮型就能說出它的個性。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-012
+  text: 畫一個路人的背影，讓人光看背影就想知道他是誰。
+  tags: [sketch, personality]
+  estimatedMinutes: 15
+
+- id: p-character-013
+  text: 給一個角色取名，並想像它的名字是誰取的、為什麼。
+  tags: [story, character]
+  estimatedMinutes: 15
+
+- id: p-character-014
+  text: 畫一個角色最尷尬的瞬間，把表情放到最大。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-015
+  text: 把你今天的心情畫成一個角色，不用像人也沒關係。
+  tags: [self, character]
+  estimatedMinutes: 15
+
+- id: p-character-016
+  text: 觀察一位路人的走路姿勢，用線條把它記下來。
+  tags: [sketch, personality]
+  estimatedMinutes: 10
+
+- id: p-character-017
+  text: 設計一個角色的招牌動作，畫出它擺這個動作的樣子。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-018
+  text: 畫一個角色驚訝到說不出話的表情。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-019
+  text: 用一種動物的特徵，設計一個半人半獸的角色。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-020
+  text: 幫自己畫一張大頭貼，但畫成十年後的你。
+  tags: [self, portrait]
+  estimatedMinutes: 20
+
+- id: p-character-021
+  text: 畫兩個角色在對看，讓人猜他們是什麼關係。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-022
+  text: 只用眼睛畫出一個角色，其他部位都不畫。
+  tags: [expression, face]
+  estimatedMinutes: 10
+
+- id: p-character-023
+  text: 幫一個路人編一個名字和職業，再畫下他此刻的樣子。
+  tags: [sketch, story]
+  estimatedMinutes: 20
+
+- id: p-character-024
+  text: 設計一個總是很累的角色，連姿勢都在喊累。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-025
+  text: 畫一張臉，先畫哭的，再把它改成笑的。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-026
+  text: 把自己畫成一隻小動物，保留一個你最明顯的特徵。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-027
+  text: 為一個角色設計一件他絕不離身的物品，並畫出來。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-character-028
+  text: 低能量版：畫一個火柴人，只用姿勢表達心情。
+  tags: [sketch, expression]
+  estimatedMinutes: 5
+
+- id: p-character-029
+  text: 畫一個角色在忍住不笑，快要憋不住的臉。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-030
+  text: 想一個角色最怕的東西，畫出它遇到時的反應。
+  tags: [character, expression]
+  estimatedMinutes: 20
+
+- id: p-character-031
+  text: 觀察咖啡店裡一位客人，畫下他和桌上的東西。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-032
+  text: 設計一個名字裡有顏色的角色，畫出符合這顏色的它。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-character-033
+  text: 畫一個角色第一次看到雪的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-034
+  text: 把自己畫成一個電玩角色，附上一句它的台詞。
+  tags: [self, story]
+  estimatedMinutes: 25
+
+- id: p-character-035
+  text: 用三個圈圈快速畫出一家人的頭，再畫上不同表情。
+  tags: [face, sketch]
+  estimatedMinutes: 15
+
+- id: p-character-036
+  text: 幫一個角色設計他的房間，讓房間透露他的個性。
+  tags: [character, personality]
+  estimatedMinutes: 30
+
+- id: p-character-037
+  text: 畫一個角色假裝沒事、其實很難過的臉。
+  tags: [expression, face]
+  estimatedMinutes: 20
+
+- id: p-character-038
+  text: 在路上找一個有特色的老人，速寫他的皺紋和神情。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-039
+  text: 為一個角色寫一句他常掛在嘴邊的話，並畫他在說。
+  tags: [story, expression]
+  estimatedMinutes: 20
+
+- id: p-character-040
+  text: 低能量版：把一個圓圈畫成一張笑臉，就完成了。
+  tags: [face, expression]
+  estimatedMinutes: 5
+
+- id: p-character-041
+  text: 設計一個和你完全相反個性的角色，畫出他的樣子。
+  tags: [character, personality]
+  estimatedMinutes: 25
+
+- id: p-character-042
+  text: 畫一個角色打哈欠打到一半的表情。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-043
+  text: 把童年的自己畫成一個角色，加上當時最愛的玩具。
+  tags: [self, story]
+  estimatedMinutes: 25
+
+- id: p-character-044
+  text: 幫一個角色取名，再幫他取一個只有好友才知道的綽號。
+  tags: [story, character]
+  estimatedMinutes: 15
+
+- id: p-character-045
+  text: 畫兩張同一個角色的臉，一張白天一張深夜。
+  tags: [expression, self]
+  estimatedMinutes: 20
+
+- id: p-character-046
+  text: 觀察捷運上一位低頭滑手機的人，畫下他的姿態。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-047
+  text: 設計一個角色的制服或戰袍，讓人看就知道他做什麼。
+  tags: [character, story]
+  estimatedMinutes: 30
+
+- id: p-character-048
+  text: 畫一個角色收到禮物那一刻的表情。
+  tags: [expression, story]
+  estimatedMinutes: 15
+
+- id: p-character-049
+  text: 用你的名字第一個字的形狀，發想一個角色。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-050
+  text: 畫一個角色皺眉思考的側臉。
+  tags: [expression, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-051
+  text: 為一個角色寫下他的三個秘密，再畫出藏著秘密的臉。
+  tags: [story, expression]
+  estimatedMinutes: 25
+
+- id: p-character-052
+  text: 低能量版：畫一對眉毛，光靠眉毛表達生氣。
+  tags: [expression, face]
+  estimatedMinutes: 5
+
+- id: p-character-053
+  text: 把一種天氣擬人化，畫成一個有脾氣的角色。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-054
+  text: 觀察公園裡遛狗的人，把人和狗一起速寫下來。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-055
+  text: 設計一個角色小時候和長大後的兩種樣子。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-056
+  text: 畫一個角色強顏歡笑的臉，眼睛卻沒在笑。
+  tags: [expression, face]
+  estimatedMinutes: 20
+
+- id: p-character-057
+  text: 把此刻的自己畫下來，就當作一張角色設定圖。
+  tags: [self, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-058
+  text: 幫一個角色設計一句開場白，再畫他登場的姿勢。
+  tags: [story, character]
+  estimatedMinutes: 20
+
+- id: p-character-059
+  text: 畫五個小圈圈，每個裡面放一種不同的眼神。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-060
+  text: 想像你養的寵物會說話，畫出它說話時的表情。
+  tags: [character, expression]
+  estimatedMinutes: 20
+
+- id: p-character-061
+  text: 速寫一位正在工作的店員，抓住他專注的瞬間。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-062
+  text: 設計一個名字很長的貴族角色，畫出他驕傲的臉。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-063
+  text: 畫一個角色終於放鬆下來、鬆一口氣的表情。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-064
+  text: 把你的一個缺點畫成一個角色，讓它變得可愛。
+  tags: [self, personality]
+  estimatedMinutes: 20
+
+- id: p-character-065
+  text: 為一個角色畫出他最重視的一位朋友。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-066
+  text: 低能量版：用一條線畫出一個側臉輪廓。
+  tags: [sketch, portrait]
+  estimatedMinutes: 5
+
+- id: p-character-067
+  text: 畫一個角色被嚇到跳起來的動作和表情。
+  tags: [expression, character]
+  estimatedMinutes: 20
+
+- id: p-character-068
+  text: 觀察一位路人的鞋子和包包，反推他是什麼樣的人並畫下。
+  tags: [sketch, personality]
+  estimatedMinutes: 20
+
+- id: p-character-069
+  text: 設計一個和季節有關的角色，例如春天的使者。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-070
+  text: 畫同一個角色的正臉和側臉，看看能不能像同一個人。
+  tags: [portrait, face]
+  estimatedMinutes: 25
+
+- id: p-character-071
+  text: 把你今天做的一件小事，畫成一個角色的日常。
+  tags: [self, story]
+  estimatedMinutes: 20
+
+- id: p-character-072
+  text: 幫一個角色設計他生氣時的口頭禪，並畫他在罵人。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-073
+  text: 畫一個角色在雨中沒帶傘、卻很享受的樣子。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-character-074
+  text: 用便利貼隨手畫下路邊看到的一張有趣的臉。
+  tags: [sketch, face]
+  estimatedMinutes: 10
+
+- id: p-character-075
+  text: 設計一個總是很冷靜、什麼都不怕的角色。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-076
+  text: 畫一個角色努力憋住眼淚、假裝很堅強的臉。
+  tags: [expression, face]
+  estimatedMinutes: 20
+
+- id: p-character-077
+  text: 把自己畫成一個童話裡的角色，配一句旁白。
+  tags: [self, story]
+  estimatedMinutes: 25
+
+- id: p-character-078
+  text: 為一個角色想一個他最難忘的回憶，畫出當時的他。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-079
+  text: 畫三個路人的頭，每個都用一個字形容他們的氣質。
+  tags: [sketch, personality]
+  estimatedMinutes: 15
+
+- id: p-character-080
+  text: 低能量版：只畫一個角色的一隻眼睛，練習眼神。
+  tags: [expression, face]
+  estimatedMinutes: 5
+
+- id: p-character-081
+  text: 設計一個名字聽起來很兇、其實很溫柔的角色。
+  tags: [character, personality]
+  estimatedMinutes: 25
+
+- id: p-character-082
+  text: 畫一個角色偷偷喜歡別人、被發現時的臉。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-083
+  text: 觀察一位在等人的路人，畫出他不耐煩的小動作。
+  tags: [sketch, expression]
+  estimatedMinutes: 15
+
+- id: p-character-084
+  text: 把一件家具擬人化，給它一個名字和個性。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-085
+  text: 畫一個角色從沮喪到重新振作的兩格表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-086
+  text: 為未來的自己畫一張理想的樣子，當成角色設定。
+  tags: [self, portrait]
+  estimatedMinutes: 20
+
+- id: p-character-087
+  text: 設計一個和某種樂器有關的角色，畫他演奏的姿態。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-088
+  text: 畫一個角色被逗笑到停不下來的臉。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-089
+  text: 記錄一位路人身上最亮眼的一個顏色，畫進速寫裡。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-090
+  text: 幫一個角色寫下他的夢想，再畫他望向遠方的樣子。
+  tags: [story, character]
+  estimatedMinutes: 25
+
+- id: p-character-091
+  text: 畫一個角色說謊時、眼神飄走的表情。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-092
+  text: 把自己畫成一個機器人，保留你的一個習慣動作。
+  tags: [self, character]
+  estimatedMinutes: 25
+
+- id: p-character-093
+  text: 低能量版：畫一個嘴巴的六種形狀，代表六種情緒。
+  tags: [expression, face]
+  estimatedMinutes: 10
+
+- id: p-character-094
+  text: 設計一個守護某個地方的角色，畫他站崗的樣子。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-095
+  text: 畫一個角色剛睡醒、頭髮亂翹的迷糊表情。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-096
+  text: 速寫路邊一位攤販，把他的手和商品都畫進去。
+  tags: [sketch, portrait]
+  estimatedMinutes: 20
+
+- id: p-character-097
+  text: 為一個角色設計一個他討厭卻擺脫不了的習慣。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-098
+  text: 畫一個角色和很久不見的人重逢時的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-099
+  text: 把你此刻聽的一首歌，畫成一個角色的樣子。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-100
+  text: 幫一個角色取名，並把名字寫成他喜歡的字體風格。
+  tags: [story, character]
+  estimatedMinutes: 15
+
+- id: p-character-101
+  text: 畫一個角色打從心底佩服別人的眼神。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-102
+  text: 觀察一對聊天的朋友，畫出他們之間的距離和姿勢。
+  tags: [sketch, story]
+  estimatedMinutes: 20
+
+- id: p-character-103
+  text: 設計一個活在海底的角色，想他怎麼呼吸、怎麼移動。
+  tags: [character, story]
+  estimatedMinutes: 30
+
+- id: p-character-104
+  text: 畫一個角色故意裝可憐、想討東西吃的臉。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-105
+  text: 低能量版：畫一個角色戴上帽子，換一種氣質。
+  tags: [character, sketch]
+  estimatedMinutes: 5
+
+- id: p-character-106
+  text: 把你昨天的夢裡出現的人，憑印象畫成一個角色。
+  tags: [self, story]
+  estimatedMinutes: 20
+
+- id: p-character-107
+  text: 為一個角色設計一雙能透露職業的手。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-108
+  text: 畫一個角色鬧脾氣、把臉別過去的樣子。
+  tags: [expression, character]
+  estimatedMinutes: 15
+
+- id: p-character-109
+  text: 速寫一位公車司機或運將，抓住他開車的專注。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-110
+  text: 設計一個名字和數字有關的角色，例如叫「七」的人。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-111
+  text: 畫一個角色第一次上台、緊張到手心冒汗的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-112
+  text: 把自己畫成一位老年的你，想像那時的神情。
+  tags: [self, portrait]
+  estimatedMinutes: 25
+
+- id: p-character-113
+  text: 幫一個角色寫他今天的心情日記一句話，再畫他寫時的臉。
+  tags: [story, expression]
+  estimatedMinutes: 20
+
+- id: p-character-114
+  text: 畫一個角色下定決心那一刻的堅定眼神。
+  tags: [expression, personality]
+  estimatedMinutes: 15
+
+- id: p-character-115
+  text: 觀察一位撐傘的路人，把傘和人的線條一起速寫。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-116
+  text: 設計一個總是遲到、卻很受歡迎的角色。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-117
+  text: 畫一個角色被誤會時、又急又委屈的臉。
+  tags: [expression, face]
+  estimatedMinutes: 20
+
+- id: p-character-118
+  text: 把你最常穿的衣服畫在一個原創角色身上。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-119
+  text: 為一個角色設計一個跟隨他的小夥伴，畫在一起。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-120
+  text: 低能量版：畫兩顆眼睛，一顆睜大一顆瞇著。
+  tags: [expression, face]
+  estimatedMinutes: 5
+
+- id: p-character-121
+  text: 畫一個角色終於贏了、忍不住握拳的表情。
+  tags: [expression, story]
+  estimatedMinutes: 15
+
+- id: p-character-122
+  text: 速寫一位在讀書的人，抓住他低頭的角度。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-123
+  text: 設計一個住在雪國的角色，讓穿著透露那裡有多冷。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-124
+  text: 畫一個角色故作鎮定、其實心跳很快的表情。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-125
+  text: 把你的一個好習慣擬人化，畫成鼓勵你的角色。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-126
+  text: 幫一個角色設計他最愛吃的一道菜，畫他吃的表情。
+  tags: [character, expression]
+  estimatedMinutes: 20
+
+- id: p-character-127
+  text: 畫一個角色看著窗外發呆的側影。
+  tags: [portrait, story]
+  estimatedMinutes: 15
+
+- id: p-character-128
+  text: 觀察一位抱小孩的家長,速寫兩人交疊的輪廓。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-129
+  text: 設計一個名字會隨心情改變的奇幻角色。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-130
+  text: 畫一個角色被稱讚、害羞到不敢看人的臉。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-131
+  text: 把自己畫成一張撲克牌上的人物角色。
+  tags: [self, character]
+  estimatedMinutes: 25
+
+- id: p-character-132
+  text: 為一個角色寫下他最後悔的一件事，畫出他的沉默。
+  tags: [story, expression]
+  estimatedMinutes: 25
+
+- id: p-character-133
+  text: 低能量版：用愛心、星星取代眼睛，畫一個興奮的臉。
+  tags: [expression, face]
+  estimatedMinutes: 5
+
+- id: p-character-134
+  text: 畫一個角色終於等到公車、鬆一口氣的樣子。
+  tags: [expression, story]
+  estimatedMinutes: 15
+
+- id: p-character-135
+  text: 設計一個和某種顏色過敏的搞笑角色。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-136
+  text: 速寫一位街頭表演者，抓住他最誇張的一個動作。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-137
+  text: 幫一個角色設計一個他隨身攜帶的護身符。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-character-138
+  text: 畫一個角色被自己的笑話冷場、尷尬的臉。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-139
+  text: 把你今天穿的顏色,配成一個角色的主色調來設計他。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-140
+  text: 為一個角色畫出他二十年後的樣子，加一句他的感想。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-141
+  text: 畫一個角色在鏡子前練習微笑的表情。
+  tags: [expression, self]
+  estimatedMinutes: 15
+
+- id: p-character-142
+  text: 觀察一位在打瞌睡的乘客，速寫他歪掉的頭。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-143
+  text: 設計一個名字取自一種花的溫柔角色。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-144
+  text: 畫一個角色終於說出真心話時的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-145
+  text: 低能量版：畫一個歪嘴的臉，代表今天有點無奈。
+  tags: [expression, self]
+  estimatedMinutes: 5
+
+- id: p-character-146
+  text: 把你討厭的一種天氣擬人化，畫成一個角色。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-147
+  text: 為一個角色設計一個他小時候受過的傷或疤。
+  tags: [character, story]
+  estimatedMinutes: 20
+
+- id: p-character-148
+  text: 畫一個角色遇到偶像、激動到說不出話的臉。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-149
+  text: 速寫一位正在講電話的路人，抓住他的手勢。
+  tags: [sketch, portrait]
+  estimatedMinutes: 10
+
+- id: p-character-150
+  text: 設計一個一年只醒來一天的神秘角色。
+  tags: [character, story]
+  estimatedMinutes: 30
+
+- id: p-character-151
+  text: 畫一個角色故意板著臉、卻藏不住溫柔的表情。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-152
+  text: 把自己畫成一個超級英雄，設計你的專屬標誌。
+  tags: [self, character]
+  estimatedMinutes: 25
+
+- id: p-character-153
+  text: 幫一個角色寫下他最珍惜的一句話，畫他說時的臉。
+  tags: [story, expression]
+  estimatedMinutes: 20
+
+- id: p-character-154
+  text: 畫一個角色第一天上班、既緊張又期待的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-155
+  text: 觀察一位在買菜的長輩，速寫他挑東西的神情。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-156
+  text: 設計一個影子會自己行動的角色，畫出他和影子。
+  tags: [character, story]
+  estimatedMinutes: 30
+
+- id: p-character-157
+  text: 畫一個角色偷吃東西被抓包的瞬間。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-158
+  text: 低能量版：畫一個閉著眼睛、很滿足的臉。
+  tags: [expression, face]
+  estimatedMinutes: 5
+
+- id: p-character-159
+  text: 把你的星座擬人化，設計成一個有個性的角色。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-160
+  text: 為一個角色設計一句他睡前一定會說的話。
+  tags: [character, story]
+  estimatedMinutes: 15
+
+- id: p-character-161
+  text: 畫一個角色鼓起勇氣、正要開口告白的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-162
+  text: 速寫一位在慢跑的人，用流暢的線條抓住動態。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-163
+  text: 設計一個名字是一個聲音的角色，例如叫「叮」。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-164
+  text: 畫一個角色累了一整天、癱在椅子上的姿勢。
+  tags: [character, personality]
+  estimatedMinutes: 15
+
+- id: p-character-165
+  text: 把你最近的一個小成就，畫成一個角色慶祝的樣子。
+  tags: [self, story]
+  estimatedMinutes: 20
+
+- id: p-character-166
+  text: 幫一個角色設計一個他絕不能說的秘密身分。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-167
+  text: 畫一個角色恍然大悟、眼睛一亮的表情。
+  tags: [expression, face]
+  estimatedMinutes: 15
+
+- id: p-character-168
+  text: 觀察一位在餵鴿子的人，速寫他和鳥的互動。
+  tags: [sketch, story]
+  estimatedMinutes: 15
+
+- id: p-character-169
+  text: 設計一個只能用畫畫溝通的角色，畫他在比手畫腳。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-170
+  text: 畫一個角色終於原諒某人時、放下心的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-171
+  text: 低能量版：把你現在的姿勢畫成一個火柴人。
+  tags: [self, sketch]
+  estimatedMinutes: 5
+
+- id: p-character-172
+  text: 把你最想去的地方擬人化，畫成邀請你的角色。
+  tags: [character, story]
+  estimatedMinutes: 25
+
+- id: p-character-173
+  text: 為一個角色設計他生氣和開心時不同的走路方式。
+  tags: [character, personality]
+  estimatedMinutes: 25
+
+- id: p-character-174
+  text: 畫一個角色假裝沒在偷看、其實一直在瞄的眼神。
+  tags: [expression, personality]
+  estimatedMinutes: 20
+
+- id: p-character-175
+  text: 速寫一位在整理東西的店員，抓住他俐落的手勢。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-176
+  text: 設計一個記憶只能維持一天的角色，畫他每天寫的字條。
+  tags: [character, story]
+  estimatedMinutes: 30
+
+- id: p-character-177
+  text: 畫一個角色被雨淋濕、卻笑得很開心的樣子。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-178
+  text: 把小時候害怕的東西畫成一個其實很膽小的角色。
+  tags: [self, character]
+  estimatedMinutes: 20
+
+- id: p-character-179
+  text: 幫一個角色設計一個只有他懂的手勢暗號。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-180
+  text: 畫一個角色看著老照片、陷入回憶的側臉。
+  tags: [portrait, story]
+  estimatedMinutes: 20
+
+- id: p-character-181
+  text: 低能量版：只畫一個角色的一撮呆毛表達他的心情。
+  tags: [character, sketch]
+  estimatedMinutes: 5
+
+- id: p-character-182
+  text: 設計一個名字每個人都念錯、他很無奈的角色。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-183
+  text: 畫一個角色鬆手放走一顆氣球時的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-184
+  text: 觀察一位在等紅燈的機車騎士，速寫他的裝備。
+  tags: [sketch, portrait]
+  estimatedMinutes: 15
+
+- id: p-character-185
+  text: 把你此刻的三個心情，畫成三個表情各異的分身。
+  tags: [self, expression]
+  estimatedMinutes: 20
+
+- id: p-character-186
+  text: 為一個角色設計他遇到危險時、身體的第一個反應。
+  tags: [character, personality]
+  estimatedMinutes: 20
+
+- id: p-character-187
+  text: 畫一個角色說完再見、轉身時偷偷落下的表情。
+  tags: [expression, story]
+  estimatedMinutes: 20
+
+- id: p-character-188
+  text: 幫今天讓你印象最深的一個人，畫一張致敬的角色設定。
+  tags: [self, portrait]
+  estimatedMinutes: 25

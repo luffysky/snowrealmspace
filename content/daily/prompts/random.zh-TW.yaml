@@ -1,0 +1,928 @@
+# 每日創作提示 — 主題：隨機與偶然
+# 讓意外做決定，把選擇權交出去一次。
+# 低能量的日子也能做，挑短的、做一半也算。
+
+- id: p-random-001
+  text: 隨手翻開一本書，用你看到的第一個名詞當主題，畫一張小圖。
+  tags: [random, word]
+  estimatedMinutes: 15
+
+- id: p-random-002
+  text: 擲一次骰子，點數是幾就用幾種顏色完成今天這張畫，不能多也不能少。
+  tags: [dice, chance]
+  estimatedMinutes: 20
+
+- id: p-random-003
+  text: 閉上眼睛，在紙上畫一條線，睜開後把它變成一隻動物。
+  tags: [blind, accident]
+  estimatedMinutes: 10
+
+- id: p-random-004
+  text: 用手機的隨機數字產生器選 1 到 12，那個月份的天氣就是今天的配色。
+  tags: [random, generative]
+  estimatedMinutes: 12
+
+- id: p-random-005
+  text: 把三個顏色的筆放進袋子，不看抽一支，只用它畫完一朵花。
+  tags: [chance, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-006
+  text: 隨機翻到手機相簿的某一張照片，只畫照片右下角那一小塊。
+  tags: [random, accident]
+  estimatedMinutes: 15
+
+- id: p-random-007
+  text: 擲骰子兩次，第一次是眼睛數量，第二次是腳的數量，畫出這隻生物。
+  tags: [dice, generative]
+  estimatedMinutes: 18
+
+- id: p-random-008
+  text: 閉眼在白紙上點五個點，睜開後把它們連成一個星座並取名。
+  tags: [blind, chance]
+  estimatedMinutes: 12
+
+- id: p-random-009
+  text: 打開字典隨便指一個位置，用指到的那個詞寫一句話。
+  tags: [word, random]
+  estimatedMinutes: 6
+
+- id: p-random-010
+  text: 讓水彩在濕紙上自己暈開，等它停下來後再決定那是什麼。
+  tags: [accident, unexpected]
+  estimatedMinutes: 20
+
+- id: p-random-011
+  text: 用擲硬幣決定每一筆要往左還是往右，畫滿一整條路徑。
+  tags: [chance, generative]
+  estimatedMinutes: 15
+
+- id: p-random-012
+  text: 隨機選一首正在播的歌，歌名的第一個字就是今天要畫的東西。
+  tags: [random, word]
+  estimatedMinutes: 12
+
+- id: p-random-013
+  text: 把顏料滴在紙上，拿起紙讓它自己流動，流成的形狀就別再改了。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-014
+  text: 骰子點數決定線條粗細（1 最細 6 最粗），畫一棵每根枝條都不同粗的樹。
+  tags: [dice, generative]
+  estimatedMinutes: 18
+
+- id: p-random-015
+  text: 閉著眼睛剪紙，剪出一個形狀，睜眼後貼在紙上補成一幅畫。
+  tags: [blind, accident]
+  estimatedMinutes: 15
+
+- id: p-random-016
+  text: 隨便翻一頁報紙或雜誌，把看到的第一個標題當成畫的名字。
+  tags: [word, random]
+  estimatedMinutes: 12
+
+- id: p-random-017
+  text: 從口袋或包包摸出一樣東西，不挑，就畫摸到的第一個。
+  tags: [chance, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-018
+  text: 讓筆在紙上自由亂走十秒，再從那團線裡找出一張臉描出來。
+  tags: [accident, generative]
+  estimatedMinutes: 10
+
+- id: p-random-019
+  text: 擲骰決定：奇數畫圓、偶數畫方，重複十次拼成一幅抽象畫。
+  tags: [dice, chance]
+  estimatedMinutes: 15
+
+- id: p-random-020
+  text: 隨機停下正在看的影片，畫下暫停畫面裡最模糊的那一角。
+  tags: [random, accident]
+  estimatedMinutes: 15
+
+- id: p-random-021
+  text: 閉眼寫下五個詞，睜開後選最奇怪的那個當今天的靈感。
+  tags: [blind, word]
+  estimatedMinutes: 8
+
+- id: p-random-022
+  text: 把色鉛筆全倒出來，不看拿三支，這三色就是今天的全部。
+  tags: [chance, unexpected]
+  estimatedMinutes: 12
+
+- id: p-random-023
+  text: 用手機時鐘的秒數決定畫幾隻鳥（30 秒就 30 隻，累了畫到累為止）。
+  tags: [random, generative]
+  estimatedMinutes: 20
+
+- id: p-random-024
+  text: 讓咖啡或茶漬滴在紙上，乾了以後沿著邊緣描出一座島。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-025
+  text: 擲兩顆骰子當座標，在方格紙上標點，連續十次連成一條路。
+  tags: [dice, generative]
+  estimatedMinutes: 15
+
+- id: p-random-026
+  text: 翻開任何一本書的第 77 頁，把第一行抄下來當畫面的旁白。
+  tags: [word, random]
+  estimatedMinutes: 8
+
+- id: p-random-027
+  text: 閉眼在紙上塗一團顏色，睜眼後決定它是天空、海還是別的。
+  tags: [blind, accident]
+  estimatedMinutes: 10
+
+- id: p-random-028
+  text: 從窗外隨機選一個路過的人，只憑三秒印象畫他的背影。
+  tags: [chance, unexpected]
+  estimatedMinutes: 12
+
+- id: p-random-029
+  text: 用擲硬幣決定畫是白天還是夜晚，正面白天、反面夜晚，別後悔。
+  tags: [chance, random]
+  estimatedMinutes: 15
+
+- id: p-random-030
+  text: 把橡皮擦丟在桌上，它停的方向就是今天畫面裡光的來向。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-031
+  text: 隨機挑通訊錄裡一個名字，用他的名字筆畫數當畫裡物件的數量。
+  tags: [random, generative]
+  estimatedMinutes: 12
+
+- id: p-random-032
+  text: 骰子擲三次，分別當紅、綠、藍的比例，調出一個顏色塗滿一格。
+  tags: [dice, generative]
+  estimatedMinutes: 8
+
+- id: p-random-033
+  text: 閉眼撕紙，撕成幾片就用幾片拼一張臉，缺角也留著。
+  tags: [blind, accident]
+  estimatedMinutes: 12
+
+- id: p-random-034
+  text: 打開任一 App，用第一個跳出的通知文字當今天的主題句。
+  tags: [word, random]
+  estimatedMinutes: 6
+
+- id: p-random-035
+  text: 讓筆從紙的一角滑到對角，中途不抬筆，這條線就是地平線。
+  tags: [accident, generative]
+  estimatedMinutes: 8
+
+- id: p-random-036
+  text: 抽一張撲克牌，數字是幾就畫幾片葉子，花色決定它們的顏色調。
+  tags: [chance, generative]
+  estimatedMinutes: 15
+
+- id: p-random-037
+  text: 隨機翻到食譜的某一道菜，把那道菜畫成一個穿衣服的角色。
+  tags: [random, word]
+  estimatedMinutes: 20
+
+- id: p-random-038
+  text: 閉眼在空中比劃一個字，睜眼後憑記憶把那個軌跡畫下來。
+  tags: [blind, accident]
+  estimatedMinutes: 8
+
+- id: p-random-039
+  text: 讓墨水從筆尖自然滴落三滴，把三個墨點連成一隻昆蟲。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-040
+  text: 擲骰子選格數，把今天的畫平均切成那麼多塊，每塊配一個顏色。
+  tags: [dice, generative]
+  estimatedMinutes: 18
+
+- id: p-random-041
+  text: 隨機問身邊的人「說一個顏色和一個動物」，就畫那個組合。
+  tags: [random, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-042
+  text: 把手機音樂設成隨機，這首歌多長，你就畫多久，歌停就停。
+  tags: [chance, accident]
+  estimatedMinutes: 12
+
+- id: p-random-043
+  text: 翻開日曆隨便指一天，那天的數字就是今天要畫的窗戶數量。
+  tags: [random, generative]
+  estimatedMinutes: 15
+
+- id: p-random-044
+  text: 閉眼把三支不同顏色的筆握在一起畫一條線，看它們怎麼糾纏。
+  tags: [blind, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-045
+  text: 讓鹽灑在濕水彩上，乾了以後那片結晶紋路就是今天的星空。
+  tags: [accident, unexpected]
+  estimatedMinutes: 20
+
+- id: p-random-046
+  text: 從書架隨手抽一本書，用書背顏色當今天畫面的主色。
+  tags: [random, chance]
+  estimatedMinutes: 12
+
+- id: p-random-047
+  text: 骰子擲出的數字就是你今天只能用的筆畫數，畫一個超簡化的動物。
+  tags: [dice, generative]
+  estimatedMinutes: 10
+
+- id: p-random-048
+  text: 閉眼在紙上寫自己的名字三遍，睜眼後把交疊的線塗成迷宮。
+  tags: [blind, accident]
+  estimatedMinutes: 12
+
+- id: p-random-049
+  text: 隨機選捷運或公車的一站名，把站名想像成一個地方畫出來。
+  tags: [random, word]
+  estimatedMinutes: 18
+
+- id: p-random-050
+  text: 把彈珠沾顏料放進盒子裡搖，滾出的軌跡就是今天的作品。
+  tags: [accident, generative]
+  estimatedMinutes: 15
+
+- id: p-random-051
+  text: 抽兩張撲克牌，一張當形狀、一張當顏色，畫它們的組合。
+  tags: [chance, generative]
+  estimatedMinutes: 12
+
+- id: p-random-052
+  text: 隨手翻書停在某頁，數那頁有幾個逗號，就畫幾朵雲。
+  tags: [random, word]
+  estimatedMinutes: 10
+
+- id: p-random-053
+  text: 閉著眼睛把紙揉皺，攤開後沿著折痕描一座山脈。
+  tags: [blind, accident]
+  estimatedMinutes: 12
+
+- id: p-random-054
+  text: 讓一滴水滴進墨裡看它擴散，趁還沒定型時決定那是什麼生物。
+  tags: [accident, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-055
+  text: 用今天的分鐘數（現在是幾分）當主角的年齡，畫這個人。
+  tags: [random, generative]
+  estimatedMinutes: 15
+
+- id: p-random-056
+  text: 骰子點數決定天空的顏色（1 紅 2 橙 3 黃 4 綠 5 藍 6 紫），畫一片天。
+  tags: [dice, chance]
+  estimatedMinutes: 12
+
+- id: p-random-057
+  text: 隨機打開手機備忘錄裡的一則舊筆記，把裡面一句話畫成畫。
+  tags: [random, word]
+  estimatedMinutes: 15
+
+- id: p-random-058
+  text: 閉眼在紙的四角各點一下，睜眼把四點連成一個歪掉的房間。
+  tags: [blind, accident]
+  estimatedMinutes: 10
+
+- id: p-random-059
+  text: 把顏料吹過紙面（用嘴或吸管），吹出的枝狀就是今天的樹。
+  tags: [accident, generative]
+  estimatedMinutes: 12
+
+- id: p-random-060
+  text: 抽一張撲克牌，紅色畫暖色的東西，黑色畫冷色的東西。
+  tags: [chance, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-061
+  text: 隨便翻到一頁，把那頁最長的一個詞當成一種新的天氣畫出來。
+  tags: [word, random]
+  estimatedMinutes: 15
+
+- id: p-random-062
+  text: 骰子擲出幾點，就在畫面裡藏幾隻同樣的小動物，讓人找。
+  tags: [dice, generative]
+  estimatedMinutes: 20
+
+- id: p-random-063
+  text: 閉眼隨手抓一把彩色筆，抓到幾支就用那幾支畫一片草地。
+  tags: [blind, chance]
+  estimatedMinutes: 12
+
+- id: p-random-064
+  text: 讓橡皮筋沾墨彈在紙上，彈出的線條就是今天畫面的骨架。
+  tags: [accident, generative]
+  estimatedMinutes: 10
+
+- id: p-random-065
+  text: 隨機選路上一個招牌，把招牌上的字重組成一句奇怪的話。
+  tags: [random, word]
+  estimatedMinutes: 12
+
+- id: p-random-066
+  text: 用手機搖一搖或隨機 App 選一個 emoji，把它畫成寫實的樣子。
+  tags: [random, generative]
+  estimatedMinutes: 18
+
+- id: p-random-067
+  text: 閉眼把筆放紙上不動三秒，睜眼從那個墨點長出一整株植物。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-068
+  text: 擲硬幣連續五次，正反排列決定五格畫面的黑白，拼成條碼風格。
+  tags: [chance, generative]
+  estimatedMinutes: 15
+
+- id: p-random-069
+  text: 讓沙子或碎屑撒在膠上，黏住的地方就是今天畫面的地面。
+  tags: [accident, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-070
+  text: 隨機翻一本書兩次，兩個詞湊成一個店名，畫這家店的招牌。
+  tags: [word, random]
+  estimatedMinutes: 18
+
+- id: p-random-071
+  text: 骰子點數就是你今天畫畫能用的分鐘數乘以三，時間到就交卷。
+  tags: [dice, chance]
+  estimatedMinutes: 18
+
+- id: p-random-072
+  text: 閉眼在紙上畫一個圈，睜眼後把它變成任何圓形的東西。
+  tags: [blind, accident]
+  estimatedMinutes: 8
+
+- id: p-random-073
+  text: 把幾種顏料隨便滴在一起，不攪拌，直接拿它畫一朵雲的影子。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-074
+  text: 隨機挑一張你拍過的天空照，只用照片裡出現過的顏色作畫。
+  tags: [random, chance]
+  estimatedMinutes: 15
+
+- id: p-random-075
+  text: 抽撲克牌決定畫幾層樓的房子，J 是 11、Q 是 12、K 是 13。
+  tags: [chance, generative]
+  estimatedMinutes: 20
+
+- id: p-random-076
+  text: 閉著眼睛把今天想到的第一個字寫大大，睜眼把它裝飾成海報。
+  tags: [blind, word]
+  estimatedMinutes: 15
+
+- id: p-random-077
+  text: 讓兩滴不同色的墨在紙上相遇，看它們怎麼混，就叫它今天的日落。
+  tags: [accident, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-078
+  text: 用生日的月和日當座標（如 7 月 23 日就是第 7 行第 23 格）畫個記號。
+  tags: [random, generative]
+  estimatedMinutes: 10
+
+- id: p-random-079
+  text: 骰子擲三次相加，那個數字就是今天畫面裡星星的總數。
+  tags: [dice, generative]
+  estimatedMinutes: 15
+
+- id: p-random-080
+  text: 隨機翻到雜誌一頁，把整頁最大的那張圖倒過來重新畫一遍。
+  tags: [random, unexpected]
+  estimatedMinutes: 20
+
+- id: p-random-081
+  text: 閉眼在紙上畫波浪線，睜眼後在浪裡加一艘不會沉的小船。
+  tags: [blind, accident]
+  estimatedMinutes: 10
+
+- id: p-random-082
+  text: 把碎紙屑撒在紙上定位，撒到哪就在哪畫一顆星星。
+  tags: [accident, generative]
+  estimatedMinutes: 12
+
+- id: p-random-083
+  text: 隨機停下音樂 App，看到的專輯封面就決定今天畫面的氣氛。
+  tags: [random, chance]
+  estimatedMinutes: 15
+
+- id: p-random-084
+  text: 抽一張牌，數字是幾就用幾種不同的線條質感填滿一個形狀。
+  tags: [chance, generative]
+  estimatedMinutes: 15
+
+- id: p-random-085
+  text: 翻到書的最後一頁，把最後一句話畫成一個結束的畫面。
+  tags: [word, random]
+  estimatedMinutes: 15
+
+- id: p-random-086
+  text: 骰子點數就是你今天只能畫的物件總數，多一個都不行。
+  tags: [dice, chance]
+  estimatedMinutes: 12
+
+- id: p-random-087
+  text: 閉眼在紙上簽名一百次疊在一起，睜眼把交錯處塗成一團毛球生物。
+  tags: [blind, generative]
+  estimatedMinutes: 15
+
+- id: p-random-088
+  text: 讓水彩筆自然甩幾滴在紙上，把每滴當成一顆行星畫上環。
+  tags: [accident, generative]
+  estimatedMinutes: 12
+
+- id: p-random-089
+  text: 隨機拿身邊一個包裝袋，把上面的圖案剪一塊拼進你的畫。
+  tags: [random, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-090
+  text: 抽兩張牌，一張是主角的心情、一張是場景，用你自己的解讀畫。
+  tags: [chance, generative]
+  estimatedMinutes: 20
+
+- id: p-random-091
+  text: 閉眼把左手（非慣用手）放紙上描它的輪廓，睜眼變成一片森林。
+  tags: [blind, accident]
+  estimatedMinutes: 12
+
+- id: p-random-092
+  text: 讓一根頭髮或線黏在膠上，沿著它彎曲的樣子畫一條河。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-093
+  text: 隨機選手機裡最舊的一張截圖，畫下畫面角落被你忽略的東西。
+  tags: [random, accident]
+  estimatedMinutes: 15
+
+- id: p-random-094
+  text: 骰子點數決定畫面裡有幾扇門，每扇通往你想像的不同地方。
+  tags: [dice, generative]
+  estimatedMinutes: 20
+
+- id: p-random-095
+  text: 翻書隨機取一頁，把那頁出現最多次的字放大寫成今天的標語。
+  tags: [word, random]
+  estimatedMinutes: 12
+
+- id: p-random-096
+  text: 閉眼用手指沾顏料在紙上點，睜眼把指印連成一串腳印。
+  tags: [blind, accident]
+  estimatedMinutes: 10
+
+- id: p-random-097
+  text: 讓兩張濕紙壓在一起再撕開，印上去的紋路就是今天的畫底。
+  tags: [accident, unexpected]
+  estimatedMinutes: 12
+
+- id: p-random-098
+  text: 用抽籤 App 選 1 到 100，那個數字就是今天畫面裡的年份氛圍。
+  tags: [random, generative]
+  estimatedMinutes: 18
+
+- id: p-random-099
+  text: 抽撲克牌，紅心畫愛的、方塊畫貴的、梅花畫醜的、黑桃畫危險的。
+  tags: [chance, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-100
+  text: 隨手翻書指一個字，用那個字造一種不存在的花並畫出來。
+  tags: [word, generative]
+  estimatedMinutes: 18
+
+- id: p-random-101
+  text: 骰子擲兩次，第一次是頭、第二次是身體，隨機組出一隻怪獸。
+  tags: [dice, generative]
+  estimatedMinutes: 20
+
+- id: p-random-102
+  text: 閉眼在紙上畫三角形，睜眼後把每個角變成一種不同的天氣。
+  tags: [blind, accident]
+  estimatedMinutes: 12
+
+- id: p-random-103
+  text: 把顏料塗在瓶蓋邊緣蓋在紙上，隨機蓋滿一整片圓圈森林。
+  tags: [accident, generative]
+  estimatedMinutes: 15
+
+- id: p-random-104
+  text: 隨機挑一則今天看過的訊息，把它的語氣畫成一個表情。
+  tags: [random, word]
+  estimatedMinutes: 10
+
+- id: p-random-105
+  text: 抽一張牌，數字幾就把畫面分幾等份，每份用不同方向的斜線。
+  tags: [chance, generative]
+  estimatedMinutes: 15
+
+- id: p-random-106
+  text: 翻書取一頁，把那頁第一個和最後一個字連成今天的畫名。
+  tags: [word, random]
+  estimatedMinutes: 12
+
+- id: p-random-107
+  text: 閉眼把筆亂繞畫滿半張紙，睜眼在線團裡找出三隻藏著的動物。
+  tags: [blind, generative]
+  estimatedMinutes: 15
+
+- id: p-random-108
+  text: 讓橡皮擦屑掉在畫上不要清掉，把它們當成雪或落葉留著。
+  tags: [accident, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-109
+  text: 隨機選路上一輛車的顏色，那就是今天畫面唯一能用的顏色。
+  tags: [random, chance]
+  estimatedMinutes: 12
+
+- id: p-random-110
+  text: 骰子點數決定今天畫的是幾隻眼睛的怪物，替它想個名字。
+  tags: [dice, generative]
+  estimatedMinutes: 15
+
+- id: p-random-111
+  text: 閉眼把紙轉一圈，睜眼從隨便一角開始畫，畫到轉回原點。
+  tags: [blind, accident]
+  estimatedMinutes: 12
+
+- id: p-random-112
+  text: 讓一滴洗碗精滴進顏料裡，攪一下看氣泡紋，那就是今天的海面。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-113
+  text: 隨機翻開相片，把照片裡最不重要的背景放大成主角來畫。
+  tags: [random, unexpected]
+  estimatedMinutes: 18
+
+- id: p-random-114
+  text: 抽撲克牌決定畫幾隻手，每隻手正在做一件不同的事。
+  tags: [chance, generative]
+  estimatedMinutes: 20
+
+- id: p-random-115
+  text: 翻書停在某頁，用那頁的頁碼當今天畫面裡氣球的數量。
+  tags: [word, random]
+  estimatedMinutes: 12
+
+- id: p-random-116
+  text: 閉眼在紙中央畫一點，睜眼從那點向外畫放射線變成太陽或爆炸。
+  tags: [blind, generative]
+  estimatedMinutes: 10
+
+- id: p-random-117
+  text: 讓濕顏料被電風扇或吹風機吹散，吹成的形狀就別再修了。
+  tags: [accident, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-118
+  text: 隨機選一個 emoji 鍵盤上的臉，把它的情緒放大畫成一整張臉。
+  tags: [random, generative]
+  estimatedMinutes: 15
+
+- id: p-random-119
+  text: 骰子擲三次當三個房間的顏色，畫一棟橫切開的三層小屋。
+  tags: [dice, generative]
+  estimatedMinutes: 20
+
+- id: p-random-120
+  text: 閉眼隨手在月曆上點一天，那天的星期幾就是今天配色的心情。
+  tags: [blind, chance]
+  estimatedMinutes: 10
+
+- id: p-random-121
+  text: 把兩滴墨放紙兩端，傾斜讓它們往中間跑，相遇處就是今天的重點。
+  tags: [accident, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-122
+  text: 隨機翻書找一個動詞，畫一個正在做那個動作的物品（不是人）。
+  tags: [word, generative]
+  estimatedMinutes: 18
+
+- id: p-random-123
+  text: 抽一張牌，數字幾就在畫面裡畫幾扇窗，每扇窗後有不同的天氣。
+  tags: [chance, generative]
+  estimatedMinutes: 20
+
+- id: p-random-124
+  text: 閉眼把三個顏色隨便塗在一起，睜眼決定這片混色是黎明還是黃昏。
+  tags: [blind, accident]
+  estimatedMinutes: 10
+
+- id: p-random-125
+  text: 讓紙巾吸掉一部分濕顏料，留白的地方就是今天畫面裡的光。
+  tags: [accident, unexpected]
+  estimatedMinutes: 12
+
+- id: p-random-126
+  text: 隨機選今天走過的一個地方，只憑氣味的記憶畫一種顏色。
+  tags: [random, unexpected]
+  estimatedMinutes: 8
+
+- id: p-random-127
+  text: 骰子點數決定今天的畫要旋轉幾次（每次 90 度）才算完成。
+  tags: [dice, chance]
+  estimatedMinutes: 15
+
+- id: p-random-128
+  text: 翻書取一頁，把那頁裡任何一個數字當成今天畫面的溫度。
+  tags: [word, random]
+  estimatedMinutes: 12
+
+- id: p-random-129
+  text: 閉眼在紙上畫一顆心，睜眼後故意把它畫歪、畫破、畫成別的。
+  tags: [blind, accident]
+  estimatedMinutes: 8
+
+- id: p-random-130
+  text: 讓顏料自然結塊乾掉，把裂開的紋路當成一片乾旱的大地。
+  tags: [accident, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-131
+  text: 隨機挑通訊軟體最近一個貼圖，把它重畫成寫實或恐怖版。
+  tags: [random, unexpected]
+  estimatedMinutes: 18
+
+- id: p-random-132
+  text: 抽兩張撲克牌相加，總和就是今天畫面裡雨滴或雪花的數量。
+  tags: [chance, generative]
+  estimatedMinutes: 15
+
+- id: p-random-133
+  text: 翻書隨機取兩頁，把兩頁各一個詞湊成一種新食物並畫出來。
+  tags: [word, generative]
+  estimatedMinutes: 18
+
+- id: p-random-134
+  text: 閉眼把筆從左畫到右不抬手，睜眼在那條線上蓋一排小房子。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-135
+  text: 讓水滴在剛畫好的線上流下來，把暈開的痕跡當成下雨的窗。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-136
+  text: 隨機選 App 商店首頁第一個圖示，把它的顏色偷來當今天主色。
+  tags: [random, chance]
+  estimatedMinutes: 12
+
+- id: p-random-137
+  text: 骰子點數就是今天畫面裡雲的數量，每朵長得都不一樣。
+  tags: [dice, generative]
+  estimatedMinutes: 15
+
+- id: p-random-138
+  text: 閉眼寫下三個地名，睜眼把它們畫成同一張想像的地圖。
+  tags: [blind, word]
+  estimatedMinutes: 18
+
+- id: p-random-139
+  text: 把兩種顏料放保鮮膜下壓一壓再掀開，印出的紋理就是今天的底。
+  tags: [accident, generative]
+  estimatedMinutes: 12
+
+- id: p-random-140
+  text: 隨機翻到書中間某句，把那句話的情緒畫成一片抽象色塊。
+  tags: [random, word]
+  estimatedMinutes: 12
+
+- id: p-random-141
+  text: 抽撲克牌，花色決定季節（心春方夏梅秋桃冬），畫那個季節的一角。
+  tags: [chance, generative]
+  estimatedMinutes: 20
+
+- id: p-random-142
+  text: 閉眼點一個位置，那就是今天畫面裡唯一光源的所在。
+  tags: [blind, accident]
+  estimatedMinutes: 15
+
+- id: p-random-143
+  text: 讓小蟲或落葉隨機停在畫紙上（若剛好有），沿著它畫一圈場景。
+  tags: [accident, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-144
+  text: 隨機選一個你不會念的外文字，把它當成一種生物的叫聲來畫。
+  tags: [random, word]
+  estimatedMinutes: 15
+
+- id: p-random-145
+  text: 骰子擲兩次，一次是白天長度、一次是夜晚長度，畫這顆星球的天空。
+  tags: [dice, generative]
+  estimatedMinutes: 20
+
+- id: p-random-146
+  text: 閉眼隨手撕下日曆或便條的一角，把那個形狀補成一朵雲。
+  tags: [blind, accident]
+  estimatedMinutes: 8
+
+- id: p-random-147
+  text: 讓兩滴顏料在傾斜的紙上賽跑，先到底的那色就當今天的主角。
+  tags: [accident, chance]
+  estimatedMinutes: 8
+
+- id: p-random-148
+  text: 隨機翻開任一頁，把那頁第三行的字數當成畫裡台階的數量。
+  tags: [word, random]
+  estimatedMinutes: 12
+
+- id: p-random-149
+  text: 抽一張牌，用牌面的圖案結構（幾個點怎麼排）當畫面的構圖。
+  tags: [chance, generative]
+  estimatedMinutes: 18
+
+- id: p-random-150
+  text: 閉眼把兩隻手同時在紙上畫，睜眼看這對稱又不對稱的圖是什麼。
+  tags: [blind, unexpected]
+  estimatedMinutes: 12
+
+- id: p-random-151
+  text: 讓顏料透過紗網或濾網噴上紙，噴出的點點就是今天的銀河。
+  tags: [accident, generative]
+  estimatedMinutes: 15
+
+- id: p-random-152
+  text: 隨機選手機最近播過的一首歌，把副歌第一句畫成一個畫面。
+  tags: [random, word]
+  estimatedMinutes: 18
+
+- id: p-random-153
+  text: 骰子點數決定今天只能用單手、閉眼、或倒著畫其中一種限制。
+  tags: [dice, blind]
+  estimatedMinutes: 15
+
+- id: p-random-154
+  text: 翻書取一頁，把那頁的段落數量當成今天畫面裡樓層的數量。
+  tags: [word, random]
+  estimatedMinutes: 15
+
+- id: p-random-155
+  text: 閉眼在紙上畫一個門，睜眼決定門後是什麼並只畫門縫的光。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-156
+  text: 讓蠟筆先隨便亂塗一層，再用黑色蓋滿刮出圖案，看意外的顏色。
+  tags: [accident, unexpected]
+  estimatedMinutes: 20
+
+- id: p-random-157
+  text: 隨機挑一個路過的聲音（車、鳥、風），把它畫成一種線條。
+  tags: [random, accident]
+  estimatedMinutes: 10
+
+- id: p-random-158
+  text: 抽三張撲克牌排成一列，用三個數字當一座城市的三棟樓高度。
+  tags: [chance, generative]
+  estimatedMinutes: 18
+
+- id: p-random-159
+  text: 閉眼把紙折三折再打開，睜眼沿著折線把紙分成三個小世界畫。
+  tags: [blind, generative]
+  estimatedMinutes: 20
+
+- id: p-random-160
+  text: 讓一顆彈珠或小球沾墨在紙上滾一圈，滾出的圈就是今天的軌道。
+  tags: [accident, generative]
+  estimatedMinutes: 12
+
+- id: p-random-161
+  text: 隨機翻書找一個顏色的詞，全畫面只准用那個顏色的深淺變化。
+  tags: [word, chance]
+  estimatedMinutes: 15
+
+- id: p-random-162
+  text: 骰子點數決定今天畫幾隻腳的家具，替它想像它會怎麼走路。
+  tags: [dice, generative]
+  estimatedMinutes: 18
+
+- id: p-random-163
+  text: 閉眼在心裡選一個童年地點，睜眼只憑模糊記憶畫它的顏色。
+  tags: [blind, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-164
+  text: 讓兩色顏料在濕紙邊界相碰，不要幫忙融合，看它自然形成的邊。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-165
+  text: 隨機選一張發票或收據，把上面某個品名畫成擬人化的角色。
+  tags: [random, word]
+  estimatedMinutes: 18
+
+- id: p-random-166
+  text: 抽一張牌，數字幾就把一個字重複寫幾次疊成今天的圖案。
+  tags: [chance, word]
+  estimatedMinutes: 12
+
+- id: p-random-167
+  text: 翻書取一頁，把那頁的行數當成今天畫面裡橫線的雨。
+  tags: [word, generative]
+  estimatedMinutes: 10
+
+- id: p-random-168
+  text: 閉眼把顏料抹在手掌蓋在紙上，睜眼把手印變成一棵樹或一隻鳥。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-169
+  text: 讓一團衛生紙沾顏料隨機按在紙上，印出的斑點就是今天的雲海。
+  tags: [accident, generative]
+  estimatedMinutes: 12
+
+- id: p-random-170
+  text: 隨機選今天穿的一件衣服的顏色，只用它和黑白完成一張畫。
+  tags: [random, chance]
+  estimatedMinutes: 15
+
+- id: p-random-171
+  text: 骰子擲三次相乘（超過就取個位數），那數字是今天畫的星球數。
+  tags: [dice, generative]
+  estimatedMinutes: 18
+
+- id: p-random-172
+  text: 閉眼在紙上畫閃電般的折線，睜眼在轉折處各長出一顆果實。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-173
+  text: 讓墨滴在摺起的紙中間再對摺壓開，做一張對稱的墨蝶。
+  tags: [accident, unexpected]
+  estimatedMinutes: 10
+
+- id: p-random-174
+  text: 隨機挑一個曾夢到卻記不清的畫面，用最模糊的方式把它畫出來。
+  tags: [random, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-175
+  text: 抽一張撲克牌，紅色今天畫圓的世界，黑色今天畫方的世界。
+  tags: [chance, generative]
+  estimatedMinutes: 18
+
+- id: p-random-176
+  text: 翻書找一頁，把那頁第一個問號前的句子當成今天畫的謎題。
+  tags: [word, random]
+  estimatedMinutes: 15
+
+- id: p-random-177
+  text: 閉眼把三支筆綁一起畫一圈，睜眼把三條平行圈補成一顆星球。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-178
+  text: 讓顏料在冰塊上融化流動（若有冰），流痕就是今天的抽象地圖。
+  tags: [accident, unexpected]
+  estimatedMinutes: 20
+
+- id: p-random-179
+  text: 隨機選今天喝的飲料，把它的顏色和溫度畫成一種情緒。
+  tags: [random, generative]
+  estimatedMinutes: 10
+
+- id: p-random-180
+  text: 骰子點數就是今天這張畫最多能花的分鐘數乘以五，時間到就結束。
+  tags: [dice, chance]
+  estimatedMinutes: 25
+
+- id: p-random-181
+  text: 閉眼隨手在紙上寫一個數字，睜眼把那個數字裝飾成一隻生物。
+  tags: [blind, generative]
+  estimatedMinutes: 12
+
+- id: p-random-182
+  text: 讓兩張畫過的廢紙隨機重疊，透光看它們合成的新圖並描下來。
+  tags: [accident, unexpected]
+  estimatedMinutes: 15
+
+- id: p-random-183
+  text: 隨機翻書取一頁，用那頁的標點符號排成今天畫面的星圖。
+  tags: [word, generative]
+  estimatedMinutes: 15
+
+- id: p-random-184
+  text: 抽兩張撲克牌，大的當太陽、小的當月亮，畫它們同時在的天空。
+  tags: [chance, generative]
+  estimatedMinutes: 18
+
+- id: p-random-185
+  text: 閉眼把畫紙翻面，睜眼在背面隱約透出的線條上重新畫一張。
+  tags: [blind, accident]
+  estimatedMinutes: 12

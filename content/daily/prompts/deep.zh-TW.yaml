@@ -1,0 +1,928 @@
+# 每日創作提示 — 深度專案的一小步
+# 主題：把大專案切成今天就能動手的小步驟
+# 每則獨一無二；允許低能量的日子；不空泛、不製造罪惡感、不假倒數。
+
+- id: p-deep-001
+  text: 挑一個你擱著的大計畫，只做它最小的下一步，做完就停。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-002
+  text: 把你最想完成的大目標，寫成一句「今天可以做的一件事」。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 10
+
+- id: p-deep-003
+  text: 打開那個一直沒動的檔案，看五分鐘就好，不用改任何東西。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-004
+  text: 把大專案拆成三個階段，只寫標題，先不管細節。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 15
+
+- id: p-deep-005
+  text: 為你的長期計畫建一個資料夾，把散落的東西丟進去。
+  tags: [deep, project]
+  estimatedMinutes: 20
+
+- id: p-deep-006
+  text: 寫下這個專案卡住的那一步，光是說清楚就往前一點。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 15
+
+- id: p-deep-007
+  text: 挑系列作的下一集，只列出它要有的三個元素。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-008
+  text: 今天只做「準備工作」：把工具擺好，明天的你會謝謝你。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-009
+  text: 把大目標的完成畫面寫成三句話，貼在看得到的地方。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-010
+  text: 找出專案裡最小、最無聊、最好完成的一項，先把它解決。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-011
+  text: 低能量的日子，就只把昨天做的重讀一遍，什麼都不加。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-012
+  text: 為擱置的計畫寫一份「重啟說明」，給幾週後回來的自己。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-013
+  text: 把專案的下一步拆到「不可能失敗」的大小，然後做掉。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 15
+
+- id: p-deep-014
+  text: 列出這個大專案需要學的一件事，今天只查它是什麼。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-015
+  text: 幫系列作想一個共同的視覺或聲音記號，讓每一集都認得出。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-016
+  text: 把「有一天要做」的計畫，改寫成「這個月的一小步」。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-017
+  text: 為專案設一個超低的今日目標，達成後允許自己收工。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-018
+  text: 打開草稿，只修一個句子或一個線條，不求多。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-019
+  text: 把大專案裡最讓你興奮的部分先做，順序可以自己定。
+  tags: [deep, momentum]
+  estimatedMinutes: 30
+
+- id: p-deep-020
+  text: 寫下三個「做完會很爽」的小任務，挑一個動手。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-021
+  text: 為長期計畫畫一條時間線，只標出下一個里程碑。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-022
+  text: 把卡住的地方跳過去，先做它後面那一步。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-023
+  text: 幫系列作開一個編號清單，把已完成和未完成分開。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-024
+  text: 今天只清理專案的工作區，讓明天更好開始。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-025
+  text: 把一個模糊的大想法，寫成一頁能給別人看的說明。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 30
+
+- id: p-deep-026
+  text: 找出專案裡你一直在拖的那一步，只做它的前三分鐘。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-027
+  text: 為大目標倒推：完成前一步是什麼？再前一步呢？寫下來。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-028
+  text: 把系列作的下一集開個檔，寫一行標題就算數。
+  tags: [deep, series]
+  estimatedMinutes: 10
+
+- id: p-deep-029
+  text: 挑專案裡一段舊的東西重做，看看你進步了多少。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-030
+  text: 把「完成整個專案」換成「完成今天這一格」，只填一格。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-031
+  text: 為長期計畫寫下三個假設，之後可以一個一個驗證。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-032
+  text: 打開專案，做一件「五分鐘內能收尾」的事就好。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-033
+  text: 把大專案的第一個版本定義成「難看但能動」，朝它前進。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-034
+  text: 列出專案需要的素材清單，今天只蒐集其中一項。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-035
+  text: 幫系列作寫一句貫穿全系列的主軸，之後每集都對照它。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-036
+  text: 把卡住的問題寫成一個能上網搜尋的具體問句。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 15
+
+- id: p-deep-037
+  text: 為專案設「最小可交付」的樣子，先做到那裡就好。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-038
+  text: 今天只把想法用語音或便條隨手記下，整理留給明天。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-039
+  text: 把大計畫的一個章節拆成三個小段，先寫最短那段。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-040
+  text: 找出專案下一步真正需要的唯一決定，把它做掉。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-041
+  text: 為長期計畫寫一封信給一年後的自己，說你今天起步了。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-042
+  text: 把系列作已完成的部分排在一起看，感受累積的份量。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-043
+  text: 挑專案裡最小的一塊，把它完整做完，體會收尾的感覺。
+  tags: [deep, progress]
+  estimatedMinutes: 35
+
+- id: p-deep-044
+  text: 低能量時，只把待辦清單重新排序，把最容易的放最前。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-045
+  text: 把大目標寫在紙上，撕掉一角代表「今天開始了」。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-046
+  text: 為專案的下一步設一個計時器，時間到就算完成。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-047
+  text: 把一個複雜的功能拆成「輸入、處理、輸出」三塊來看。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-048
+  text: 幫系列作規劃接下來三集的順序，只寫每集一句話。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-049
+  text: 打開專案，把昨天沒寫完的那句話補完就好。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-050
+  text: 為長期計畫記下第一個「小小的成功」，往後好回頭看。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-051
+  text: 把專案裡「應該重做但一直沒動」的那塊，先重做十分之一。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-052
+  text: 列出完成大目標的三條可能路徑，先不用選，只是看清楚。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-053
+  text: 幫系列作做一個範本，讓下一集能直接套用開始。
+  tags: [deep, series]
+  estimatedMinutes: 30
+
+- id: p-deep-054
+  text: 今天只把專案的檔名和資料夾整理成看得懂的樣子。
+  tags: [deep, momentum]
+  estimatedMinutes: 20
+
+- id: p-deep-055
+  text: 把大專案的一個難點，先做出一個「夠爛可以丟掉」的版本。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-056
+  text: 為專案寫下「完成的定義」，這樣你會知道何時該停。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-057
+  text: 打開草稿，只做加法或只做減法，二選一，做一個。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-058
+  text: 把卡住的專案講給一個想像中的朋友聽，寫下你會怎麼說。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-059
+  text: 幫系列作補一個之前跳過的空缺，補齊一集就好。
+  tags: [deep, series]
+  estimatedMinutes: 35
+
+- id: p-deep-060
+  text: 為長期計畫拍一張「起點照片」，之後對照會很有感。
+  tags: [deep, long_term]
+  estimatedMinutes: 10
+
+- id: p-deep-061
+  text: 把專案的下一步寫在便利貼貼在螢幕上，做完撕掉。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-062
+  text: 挑一個你一直想加進專案的細節，今天只加這一個。
+  tags: [deep, progress]
+  estimatedMinutes: 25
+
+- id: p-deep-063
+  text: 把大目標切成「這週、這月、這季」三格，各填一件事。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-064
+  text: 低能量的日子，只把靈感存進收藏夾，不用馬上用。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-065
+  text: 為系列作寫一份簡短的風格筆記，讓每集都連得起來。
+  tags: [deep, series]
+  estimatedMinutes: 25
+
+- id: p-deep-066
+  text: 把專案卡住的那個決定，設一個期限，到期就選一個。
+  tags: [deep, next_step]
+  estimatedMinutes: 15
+
+- id: p-deep-067
+  text: 打開專案，做一次「只看不改」的巡視，記下三個想法。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-068
+  text: 把大計畫的最後一步先想清楚，再回來走現在這一步。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-069
+  text: 為專案做一個進度條，塗滿今天推進的那一小段。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-070
+  text: 把一個大功能先做成「假的能動」，之後再換成真的。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 30
+
+- id: p-deep-071
+  text: 幫系列作回顧前一集，記下一個可以延續的線索。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-072
+  text: 今天只寫下「明天要做的第一件事」，然後就可以休息。
+  tags: [deep, next_step]
+  estimatedMinutes: 10
+
+- id: p-deep-073
+  text: 把專案裡最模糊的部分，先問自己五個為什麼。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-074
+  text: 為長期計畫留一個「每次回來都先做」的固定小儀式。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-075
+  text: 挑專案裡一個能在今天結束的小任務，做完就慶祝一下。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-076
+  text: 打開草稿，把最後一段刪掉重寫，只寫這一段。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-077
+  text: 把大專案的骨架先搭好，內容之後再慢慢填。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 30
+
+- id: p-deep-078
+  text: 幫系列作想下一集的開頭，只寫第一句或第一格。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-079
+  text: 低能量時，只把工具打開放著，看它十分鐘也算數。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-080
+  text: 為專案列出「絕對不做」的清單，替自己減少負擔。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-081
+  text: 把今天的一小步做完後，寫一句「我做到了」記下來。
+  tags: [deep, progress]
+  estimatedMinutes: 20
+
+- id: p-deep-082
+  text: 挑專案裡一個你怕做壞的部分，先在旁邊練習一次。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-083
+  text: 把大目標拆成十步，今天只把第一步和第二步寫清楚。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-084
+  text: 幫系列作補一份索引，讓自己隨時找得到每一集。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-085
+  text: 打開專案，把一個明顯的小錯改掉就好，別追求完美。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-086
+  text: 為長期計畫寫下「為什麼想做」，卡住時可以回來看。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-087
+  text: 把專案的下一步錄成一段語音備忘，先講出來再動手。
+  tags: [deep, next_step]
+  estimatedMinutes: 15
+
+- id: p-deep-088
+  text: 挑一個能複製貼上再修改的舊成果，當這次的起點。
+  tags: [deep, momentum]
+  estimatedMinutes: 20
+
+- id: p-deep-089
+  text: 把大計畫先做出一頁大綱，之後每天填一小塊。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-090
+  text: 幫系列作辦一次「自己看的小回顧」，挑出最喜歡的一集。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-091
+  text: 為專案設一個「今天到這裡就好」的停損點，說到做到。
+  tags: [deep, progress]
+  estimatedMinutes: 25
+
+- id: p-deep-092
+  text: 把卡住的那步，換一個完全不同的方法試十分鐘。
+  tags: [deep, next_step]
+  estimatedMinutes: 15
+
+- id: p-deep-093
+  text: 打開專案，把散在各處的筆記併成一份就算今天的進度。
+  tags: [deep, momentum]
+  estimatedMinutes: 20
+
+- id: p-deep-094
+  text: 為長期計畫畫一張「現在在哪裡」的地圖，標一個點。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-095
+  text: 把大專案的一個章節讀給自己聽，找出唸不順的地方。
+  tags: [deep, progress]
+  estimatedMinutes: 25
+
+- id: p-deep-096
+  text: 挑專案裡一件「三分鐘內能做」的事，現在就做掉。
+  tags: [deep, next_step]
+  estimatedMinutes: 10
+
+- id: p-deep-097
+  text: 把大目標拆到「今天、這裡、用手邊工具」就能開始的程度。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-098
+  text: 幫系列作想一個好記的命名規則，之後每集都照著取。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-099
+  text: 低能量的日子，只把昨天的成果備份一份，就當今天有做。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-100
+  text: 為專案寫下一個小到不可能拒絕的今日任務，做它。
+  tags: [deep, next_step]
+  estimatedMinutes: 15
+
+- id: p-deep-101
+  text: 把大計畫裡最難的一塊，先只做「開頭那一小口」。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-102
+  text: 幫長期計畫設一個每週固定的十分鐘，先排進行事曆。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-103
+  text: 把專案的一段舊筆記重讀，補上一句現在才想到的話。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-104
+  text: 挑系列作的下一集，先把結尾想好，再回頭做開頭。
+  tags: [deep, series]
+  estimatedMinutes: 25
+
+- id: p-deep-105
+  text: 把大目標寫成「如果只能做一件事」，然後做那件事。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-106
+  text: 打開草稿，只調整一個地方的順序，看看是否更順。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-107
+  text: 為專案做一張「已完成」清單，把做過的都寫上去。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-108
+  text: 把卡住的地方標成「待解決」，先繞過去做能做的。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-109
+  text: 幫系列作補一集「番外」，用比較輕鬆的方式往前一步。
+  tags: [deep, series]
+  estimatedMinutes: 35
+
+- id: p-deep-110
+  text: 為長期計畫寫下三年後的樣子，再回來走今天這步。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-111
+  text: 把專案的下一步分成「準備、動手、收尾」，今天只做準備。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-112
+  text: 挑一個你覺得最好玩的小片段先做，順序不重要。
+  tags: [deep, momentum]
+  estimatedMinutes: 30
+
+- id: p-deep-113
+  text: 把大計畫的一個想法，畫成一張隨手的草圖。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-114
+  text: 為系列作寫一份「未來想做的集數」靈感清單，先存三個。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-115
+  text: 今天只把專案的目標重新讀一次，確認方向沒跑掉。
+  tags: [deep, long_term]
+  estimatedMinutes: 10
+
+- id: p-deep-116
+  text: 把一個大任務切成兩半，只做前半，後半留給明天。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-117
+  text: 打開專案，把一段太長的東西砍短一半就好。
+  tags: [deep, progress]
+  estimatedMinutes: 20
+
+- id: p-deep-118
+  text: 為專案的下一步找一個現成的參考，先看再做。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-119
+  text: 幫系列作把已完成的集數重新命名，讓順序一目了然。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-120
+  text: 低能量時，只把明天要用的素材放到桌面就好。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-121
+  text: 把大目標裡一個「總覺得會很難」的部分，先試做五分鐘。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-122
+  text: 為長期計畫寫下第一個要克服的障礙，只寫是什麼。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-123
+  text: 把專案卡住的原因分成「我能改的」和「不能改的」兩欄。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-124
+  text: 挑草稿裡一個你最滿意的地方，把它延伸一點。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-125
+  text: 幫系列作定一個「多久出一集」的節奏，寫下來提醒自己。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-126
+  text: 打開專案，只把標題或封面調得更好一點。
+  tags: [deep, momentum]
+  estimatedMinutes: 20
+
+- id: p-deep-127
+  text: 把大計畫的第一版做完後，先別看，明天再回來檢查。
+  tags: [deep, progress]
+  estimatedMinutes: 30
+
+- id: p-deep-128
+  text: 為專案的下一步寫下「怎樣算完成」的一句話。
+  tags: [deep, next_step]
+  estimatedMinutes: 15
+
+- id: p-deep-129
+  text: 把長期計畫裡一件一直沒查的事，今天只查十分鐘。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-130
+  text: 挑系列作下一集要用的一個素材，今天只準備它。
+  tags: [deep, series]
+  estimatedMinutes: 25
+
+- id: p-deep-131
+  text: 把大目標貼在牆上，每完成一小步就打一個勾。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-132
+  text: 打開草稿，做一件「刪掉會更好」的事，勇敢刪。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-133
+  text: 把一個複雜的步驟寫成給自己看的操作清單。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-134
+  text: 幫系列作補一段前情提要，讓自己重新接上進度。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-135
+  text: 低能量的日子，只把專案打開停留一分鐘，然後關掉。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-136
+  text: 為專案設一個「最小每日份量」，達到就算今天成功。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-137
+  text: 把大計畫裡兩個相似的部分合併，減少一步要做的事。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-138
+  text: 挑專案的下一步，把它跟一首歌的長度綁在一起做。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-139
+  text: 幫系列作做一次「三集小結」，看看走到哪、往哪走。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-140
+  text: 為長期計畫記下今天的一個小小突破，哪怕很微小。
+  tags: [deep, progress]
+  estimatedMinutes: 10
+
+- id: p-deep-141
+  text: 把專案卡住的那步，畫成流程圖看清楚卡在哪個環節。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-142
+  text: 打開草稿，只補一個之前留白的地方就好。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-143
+  text: 為專案挑一個「今天想學會的一招」，練它一次。
+  tags: [deep, momentum]
+  estimatedMinutes: 25
+
+- id: p-deep-144
+  text: 把大目標寫成一句口號，讓自己一眼記得要往哪走。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-145
+  text: 幫系列作規劃一個「完結的樣子」，先想好如何收尾。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-146
+  text: 挑專案裡最小的一個 bug 或瑕疵，把它修掉。
+  tags: [deep, progress]
+  estimatedMinutes: 20
+
+- id: p-deep-147
+  text: 把下一步拆到「只要開始就會停不下來」的那個點。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-148
+  text: 為長期計畫做一份「已經走了多遠」的回顧清單。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-149
+  text: 低能量時，只把今天想到的一句話加進專案就好。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-150
+  text: 把大計畫的一段內容，換個順序試試看會不會更好。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-151
+  text: 挑系列作下一集，先做最省力的那個部分暖身。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-152
+  text: 為專案的下一步設定「開始就好」，不要求做完。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-153
+  text: 把大目標分給未來三個月，每個月只放一件事。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-154
+  text: 打開草稿，把開頭重寫一次，只寫第一段。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-155
+  text: 幫系列作補一份「角色或主題」設定，讓後續好接。
+  tags: [deep, series]
+  estimatedMinutes: 25
+
+- id: p-deep-156
+  text: 為專案的進度拍一張截圖，日後回顧會很有感。
+  tags: [deep, progress]
+  estimatedMinutes: 10
+
+- id: p-deep-157
+  text: 把卡住的問題先寫成三種可能解法，選最省事的試。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-158
+  text: 挑專案裡一個能獨立完成的小模組，今天把它收尾。
+  tags: [deep, next_step]
+  estimatedMinutes: 35
+
+- id: p-deep-159
+  text: 為長期計畫寫一句「即使慢也在前進」貼給自己看。
+  tags: [deep, long_term]
+  estimatedMinutes: 10
+
+- id: p-deep-160
+  text: 把大計畫裡一個抽象概念，用一個具體例子解釋清楚。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-161
+  text: 打開專案，只把顏色、字體或版面調順一點就好。
+  tags: [deep, momentum]
+  estimatedMinutes: 20
+
+- id: p-deep-162
+  text: 幫系列作把下一集的大綱寫成三個要點。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-163
+  text: 把專案的下一步分成「今天做、之後做」，只挑今天那些。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-164
+  text: 為長期計畫設一個「回來繼續」的提醒，安在明天。
+  tags: [deep, long_term]
+  estimatedMinutes: 10
+
+- id: p-deep-165
+  text: 把大目標裡一件放很久的事，先做它十分之一。
+  tags: [deep, progress]
+  estimatedMinutes: 25
+
+- id: p-deep-166
+  text: 挑草稿裡一個粗糙的地方，把它磨得細一點。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-167
+  text: 把專案卡住的那步交給明天的自己，今天先寫下線索。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 15
+
+- id: p-deep-168
+  text: 幫系列作整理一份「靈感倉庫」，今天只丟一個進去。
+  tags: [deep, series]
+  estimatedMinutes: 15
+
+- id: p-deep-169
+  text: 低能量時，只把待辦裡最容易的一項打勾完成。
+  tags: [deep, momentum]
+  estimatedMinutes: 15
+
+- id: p-deep-170
+  text: 為專案的一個部分寫下「完成後會怎樣」，讓自己有畫面。
+  tags: [deep, progress]
+  estimatedMinutes: 15
+
+- id: p-deep-171
+  text: 把大計畫先做出目錄，之後每天挑一個標題來填。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 25
+
+- id: p-deep-172
+  text: 挑系列作下一集，只把要用的工具都準備好放著。
+  tags: [deep, series]
+  estimatedMinutes: 20
+
+- id: p-deep-173
+  text: 為長期計畫寫下「這一步之後就簡單了」的那個關卡。
+  tags: [deep, long_term]
+  estimatedMinutes: 15
+
+- id: p-deep-174
+  text: 打開草稿，把一個粗略想法補上細節，只補一段。
+  tags: [deep, next_step]
+  estimatedMinutes: 25
+
+- id: p-deep-175
+  text: 把專案的今日進度寫成一句話日記，記下你走了一步。
+  tags: [deep, progress]
+  estimatedMinutes: 10
+
+- id: p-deep-176
+  text: 把大目標倒過來想：如果明天就要交，今天會先做什麼？
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-177
+  text: 幫系列作補一集之前想做卻沒做的，圓一個小心願。
+  tags: [deep, series]
+  estimatedMinutes: 40
+
+- id: p-deep-178
+  text: 為專案挑一個「做了會很有成就感」的小任務動手。
+  tags: [deep, momentum]
+  estimatedMinutes: 30
+
+- id: p-deep-179
+  text: 把長期計畫的下一步寫在明天最顯眼的地方，今天就休息。
+  tags: [deep, next_step]
+  estimatedMinutes: 10
+
+- id: p-deep-180
+  text: 把大專案想成一系列小步的累積，今天只負責走好這一步。
+  tags: [deep, long_term]
+  estimatedMinutes: 20
+
+- id: p-deep-181
+  text: 挑專案裡一段你想丟掉的東西，先另存一份再動手改。
+  tags: [deep, next_step]
+  estimatedMinutes: 20
+
+- id: p-deep-182
+  text: 為系列作做一張「全系列一覽圖」，今天只畫出框架。
+  tags: [deep, series]
+  estimatedMinutes: 25
+
+- id: p-deep-183
+  text: 把大目標拆到「一句話就能交代給別人」的清楚程度。
+  tags: [deep, breaking_down]
+  estimatedMinutes: 20
+
+- id: p-deep-184
+  text: 低能量的日子，就把過去的成果拿出來看，補一點電。
+  tags: [deep, momentum]
+  estimatedMinutes: 10
+
+- id: p-deep-185
+  text: 為長期計畫記下今天沒做的原因，明天好對症下藥。
+  tags: [deep, long_term]
+  estimatedMinutes: 10

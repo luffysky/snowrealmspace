@@ -1,0 +1,543 @@
+# 每日語錄 — 中斷後重新開始
+# 主題：停了一陣子回來、重拾、接續、不責備空白期
+# 語氣：具體、溫柔、允許低能量的日子，絕不製造罪惡感或羞辱
+- id: q-restart-001
+  text: 停了一陣子沒關係，接著上次的地方繼續就好。
+  tags: [restart, returning]
+- id: q-restart-002
+  text: 你不用從頭開始，那些學過的都還在你手裡。
+  tags: [resume, continuing]
+- id: q-restart-003
+  text: 空白的那段日子，也是這個作品的一部分。
+  tags: [gap, no_blame]
+- id: q-restart-004
+  text: 回來的第一筆，畫得歪一點也沒關係。
+  tags: [returning, again]
+- id: q-restart-005
+  text: 重拾一件事，比從零開始輕鬆得多。
+  tags: [pick_up, resume]
+- id: q-restart-006
+  text: 今天只想開個檔案看一眼，那也算數。
+  tags: [returning, no_blame]
+- id: q-restart-007
+  text: 手感會回來的，先讓它慢慢暖起來。
+  tags: [resume, again]
+- id: q-restart-008
+  text: 中斷不是失敗，只是換了個呼吸的節奏。
+  tags: [gap, no_blame]
+- id: q-restart-009
+  text: 你走開的時候，這裡一直幫你留著位子。
+  tags: [returning, continuing]
+- id: q-restart-010
+  text: 撿起放下的那支筆，就是最難的一步了。
+  tags: [pick_up, restart]
+- id: q-restart-011
+  text: 不必補回落下的進度，往前一點就好。
+  tags: [continuing, no_blame]
+- id: q-restart-012
+  text: 有些休息是必要的，你只是聽了身體的話。
+  tags: [gap, no_blame]
+- id: q-restart-013
+  text: 回到桌前，光是這個動作就值得被肯定。
+  tags: [returning, restart]
+- id: q-restart-014
+  text: 上次寫到一半的句子，今天可以接下去。
+  tags: [resume, pick_up]
+- id: q-restart-015
+  text: 低能量的日子，做一點點也是往前。
+  tags: [continuing, no_blame]
+- id: q-restart-016
+  text: 你不是重新開始，你是繼續。
+  tags: [continuing, resume]
+- id: q-restart-017
+  text: 荒了一陣的田，翻兩下土就能再種。
+  tags: [restart, again]
+- id: q-restart-018
+  text: 慢慢來，重新熟悉這裡就好。
+  tags: [returning, restart]
+- id: q-restart-019
+  text: 放著的靈感沒有壞掉，它在等你回來。
+  tags: [pick_up, returning]
+- id: q-restart-020
+  text: 今天做的，會接住你昨天沒做完的。
+  tags: [continuing, resume]
+- id: q-restart-021
+  text: 停下來過的人，才知道怎麼繼續走。
+  tags: [gap, again]
+- id: q-restart-022
+  text: 不用向誰交代那段空白，它是你的。
+  tags: [gap, no_blame]
+- id: q-restart-023
+  text: 重新坐下，比坐得久更重要。
+  tags: [restart, returning]
+- id: q-restart-024
+  text: 把昨天的草稿打開，就是今天的起點。
+  tags: [pick_up, resume]
+- id: q-restart-025
+  text: 你回來了，這就夠成為今天的好消息。
+  tags: [returning, no_blame]
+- id: q-restart-026
+  text: 生疏是正常的，多做幾次就順了。
+  tags: [again, resume]
+- id: q-restart-027
+  text: 一次只接一條線，別急著全部拾起。
+  tags: [pick_up, continuing]
+- id: q-restart-028
+  text: 中場休息過後，下半場才正要開始。
+  tags: [restart, again]
+- id: q-restart-029
+  text: 那些沒動的日子，讓你想清楚了要往哪走。
+  tags: [gap, no_blame]
+- id: q-restart-030
+  text: 回來不必解釋，坐下就好。
+  tags: [returning, no_blame]
+- id: q-restart-031
+  text: 你收著的那個念頭，今天可以再拿出來看看。
+  tags: [pick_up, again]
+- id: q-restart-032
+  text: 進度沒有歸零，它只是被你按了暫停。
+  tags: [resume, continuing]
+- id: q-restart-033
+  text: 重新握筆的手，還記得怎麼寫。
+  tags: [resume, returning]
+- id: q-restart-034
+  text: 隔了好一段再回來，眼光反而更清楚。
+  tags: [gap, again]
+- id: q-restart-035
+  text: 今天不逼自己完成，只是回來看看。
+  tags: [returning, no_blame]
+- id: q-restart-036
+  text: 撿起中斷的線頭，慢慢就能織回去。
+  tags: [pick_up, continuing]
+- id: q-restart-037
+  text: 你沒有落後，你只是走了自己的路線。
+  tags: [no_blame, gap]
+- id: q-restart-038
+  text: 重開一個檔案，是給自己的一個小小允許。
+  tags: [restart, no_blame]
+- id: q-restart-039
+  text: 接續，比完美地重來更接近完成。
+  tags: [continuing, resume]
+- id: q-restart-040
+  text: 停過的地方，正好是最熟的地方。
+  tags: [pick_up, returning]
+- id: q-restart-041
+  text: 今天只要比昨天多一筆就好。
+  tags: [continuing, again]
+- id: q-restart-042
+  text: 你不欠這個作品什麼，回來是因為你想。
+  tags: [returning, no_blame]
+- id: q-restart-043
+  text: 荒廢的感覺會過去，動手就能沖淡它。
+  tags: [restart, again]
+- id: q-restart-044
+  text: 把落下的那頁翻回來，繼續寫就好。
+  tags: [resume, pick_up]
+- id: q-restart-045
+  text: 慢一點回來，也還是回來了。
+  tags: [returning, no_blame]
+- id: q-restart-046
+  text: 空檔讓靈感發酵，現在正好拿出來用。
+  tags: [gap, pick_up]
+- id: q-restart-047
+  text: 重新起步不需要儀式，需要的只是開始。
+  tags: [restart, resume]
+- id: q-restart-048
+  text: 你放下的東西還在原地，沒有走遠。
+  tags: [pick_up, returning]
+- id: q-restart-049
+  text: 今天做一點，明天的你會感謝現在的你。
+  tags: [continuing, again]
+- id: q-restart-050
+  text: 中斷之後的第一天，本來就會有點卡。
+  tags: [restart, no_blame]
+- id: q-restart-051
+  text: 不用把空白填滿，往前走就是了。
+  tags: [gap, continuing]
+- id: q-restart-052
+  text: 回到熟悉的工具前，深呼吸，開始。
+  tags: [returning, restart]
+- id: q-restart-053
+  text: 你收藏的那些想法，今天可以動一個。
+  tags: [pick_up, resume]
+- id: q-restart-054
+  text: 拾起一半的作品，比想像中容易接上。
+  tags: [pick_up, continuing]
+- id: q-restart-055
+  text: 暫停過的人，重新出發時更懂得配速。
+  tags: [again, restart]
+- id: q-restart-056
+  text: 今天的你，允許昨天的你休息。
+  tags: [gap, no_blame]
+- id: q-restart-057
+  text: 從最小的一步接回去，就不會太重。
+  tags: [resume, continuing]
+- id: q-restart-058
+  text: 回來這件事，本身就是一種創作。
+  tags: [returning, restart]
+- id: q-restart-059
+  text: 你手邊沒完成的，今天可以再靠近一點。
+  tags: [continuing, pick_up]
+- id: q-restart-060
+  text: 生疏只是暫時的，做著做著就親切了。
+  tags: [again, resume]
+- id: q-restart-061
+  text: 別急著追回什麼，先把手放上去。
+  tags: [returning, no_blame]
+- id: q-restart-062
+  text: 那段沒創作的日子，也在悄悄養著你。
+  tags: [gap, no_blame]
+- id: q-restart-063
+  text: 重新翻開筆記本，上次的你在等你。
+  tags: [pick_up, resume]
+- id: q-restart-064
+  text: 接續一件老作品，像和老朋友重逢。
+  tags: [continuing, returning]
+- id: q-restart-065
+  text: 今天能開始，就已經勝過昨天的猶豫。
+  tags: [restart, again]
+- id: q-restart-066
+  text: 你不必變回從前那樣，現在的你也可以。
+  tags: [returning, no_blame]
+- id: q-restart-067
+  text: 停一下再走，路還是同一條路。
+  tags: [gap, continuing]
+- id: q-restart-068
+  text: 撿回中途的想法，讓它繼續長大。
+  tags: [pick_up, resume]
+- id: q-restart-069
+  text: 重來不丟臉，願意重來才難得。
+  tags: [restart, no_blame]
+- id: q-restart-070
+  text: 你留下的痕跡都還在，接著畫就好。
+  tags: [pick_up, continuing]
+- id: q-restart-071
+  text: 今天只做暖身，明天再認真也可以。
+  tags: [returning, no_blame]
+- id: q-restart-072
+  text: 空白之後的作品，往往帶著新的味道。
+  tags: [gap, again]
+- id: q-restart-073
+  text: 你不是從零，你是從記得的地方開始。
+  tags: [resume, continuing]
+- id: q-restart-074
+  text: 回到這裡，燈就會為你亮起來。
+  tags: [returning, restart]
+- id: q-restart-075
+  text: 拿起放了很久的那件事，動它一下。
+  tags: [pick_up, again]
+- id: q-restart-076
+  text: 落下的節奏，可以重新自己定。
+  tags: [restart, resume]
+- id: q-restart-077
+  text: 沒力氣的日子，寫一行也是完成。
+  tags: [continuing, no_blame]
+- id: q-restart-078
+  text: 你回頭看那段停頓，會謝謝它給的喘息。
+  tags: [gap, no_blame]
+- id: q-restart-079
+  text: 接上斷掉的那句，故事就繼續了。
+  tags: [resume, continuing]
+- id: q-restart-080
+  text: 重新開始不用等準備好，開始就是準備。
+  tags: [restart, again]
+- id: q-restart-081
+  text: 你擱著的靈感，今天願意見它一面嗎。
+  tags: [pick_up, returning]
+- id: q-restart-082
+  text: 慢下來過的手，畫出來的線更穩。
+  tags: [gap, again]
+- id: q-restart-083
+  text: 回來的每一次，都比上一次更熟門熟路。
+  tags: [returning, resume]
+- id: q-restart-084
+  text: 把中斷當成逗號，不是句號。
+  tags: [continuing, no_blame]
+- id: q-restart-085
+  text: 今天先坐下來，其他的等手熱了再說。
+  tags: [returning, restart]
+- id: q-restart-086
+  text: 沒做的那些天，不會抵銷你已經做的。
+  tags: [gap, no_blame]
+- id: q-restart-087
+  text: 重拾一支停用的畫筆，它還很好用。
+  tags: [pick_up, resume]
+- id: q-restart-088
+  text: 你可以慢慢接回原本的自己。
+  tags: [returning, continuing]
+- id: q-restart-089
+  text: 重新起筆的緊張，做兩下就散了。
+  tags: [restart, again]
+- id: q-restart-090
+  text: 停頓收藏了很多想法，現在可以拆開。
+  tags: [gap, pick_up]
+- id: q-restart-091
+  text: 你回到創作裡，就像回到自己的房間。
+  tags: [returning, resume]
+- id: q-restart-092
+  text: 接著上次的顏色調下去，不用重配。
+  tags: [continuing, resume]
+- id: q-restart-093
+  text: 今天做的雖小，卻把中斷接了起來。
+  tags: [continuing, again]
+- id: q-restart-094
+  text: 允許自己回來得笨拙一點。
+  tags: [returning, no_blame]
+- id: q-restart-095
+  text: 你沒有荒廢，你只是把力氣借給了別的事。
+  tags: [gap, no_blame]
+- id: q-restart-096
+  text: 拾起未竟的段落，把它好好收尾。
+  tags: [pick_up, continuing]
+- id: q-restart-097
+  text: 重新出發的人，行囊裡多了經驗。
+  tags: [restart, again]
+- id: q-restart-098
+  text: 回來坐一會兒，不做也沒關係。
+  tags: [returning, no_blame]
+- id: q-restart-099
+  text: 中場的空白，讓下一段更有話想說。
+  tags: [gap, resume]
+- id: q-restart-100
+  text: 你放著的畫，今天多添一筆就好。
+  tags: [continuing, pick_up]
+- id: q-restart-101
+  text: 停過再走，才知道自己真的想繼續。
+  tags: [gap, again]
+- id: q-restart-102
+  text: 重新翻到那一頁，接著寫下去。
+  tags: [resume, continuing]
+- id: q-restart-103
+  text: 今天回來，就是給自己最好的招呼。
+  tags: [returning, restart]
+- id: q-restart-104
+  text: 你不用追上任何人，包括過去的自己。
+  tags: [no_blame, continuing]
+- id: q-restart-105
+  text: 撿回丟在半路的想法，它沒生鏽。
+  tags: [pick_up, resume]
+- id: q-restart-106
+  text: 中斷之後，願意再試一次就很了不起。
+  tags: [restart, again]
+- id: q-restart-107
+  text: 那段沒動筆的日子，也長出了新的眼睛。
+  tags: [gap, no_blame]
+- id: q-restart-108
+  text: 回到熟悉的節奏，先走一小段就好。
+  tags: [returning, resume]
+- id: q-restart-109
+  text: 你留在半空的那句話，今天可以落地。
+  tags: [continuing, pick_up]
+- id: q-restart-110
+  text: 重新握上滑鼠，畫面就會慢慢認得你。
+  tags: [returning, restart]
+- id: q-restart-111
+  text: 停久了也沒關係，門一直是開的。
+  tags: [gap, returning]
+- id: q-restart-112
+  text: 接下去，比重頭來更省力也更真實。
+  tags: [continuing, resume]
+- id: q-restart-113
+  text: 今天做一點點，把手感慢慢喚醒。
+  tags: [again, resume]
+- id: q-restart-114
+  text: 你不是重新學，你是喚回本來就會的。
+  tags: [resume, returning]
+- id: q-restart-115
+  text: 空白期不是浪費，是換氣的地方。
+  tags: [gap, no_blame]
+- id: q-restart-116
+  text: 拾起放涼的計畫，重新加點溫度。
+  tags: [pick_up, restart]
+- id: q-restart-117
+  text: 回來的路上，你已經走了大半。
+  tags: [returning, continuing]
+- id: q-restart-118
+  text: 今天只要打開，剩下的交給明天。
+  tags: [returning, no_blame]
+- id: q-restart-119
+  text: 中斷後接上的那一筆，最有溫度。
+  tags: [continuing, resume]
+- id: q-restart-120
+  text: 你停下時沒有失去什麼，都還在。
+  tags: [gap, no_blame]
+- id: q-restart-121
+  text: 重新起步的緩慢，是誠實的緩慢。
+  tags: [restart, no_blame]
+- id: q-restart-122
+  text: 撿回半途的旋律，讓它繼續往下走。
+  tags: [pick_up, continuing]
+- id: q-restart-123
+  text: 你回來了，作品也跟著醒過來。
+  tags: [returning, resume]
+- id: q-restart-124
+  text: 今天不必厲害，只要願意坐下。
+  tags: [returning, no_blame]
+- id: q-restart-125
+  text: 停過的地方，是最好的重新出發點。
+  tags: [gap, restart]
+- id: q-restart-126
+  text: 接續一段舊創作，像續上一段對話。
+  tags: [continuing, resume]
+- id: q-restart-127
+  text: 你不用把生疏藏起來，它會自己退場。
+  tags: [again, no_blame]
+- id: q-restart-128
+  text: 重新翻出那個檔案，它一直在等。
+  tags: [pick_up, returning]
+- id: q-restart-129
+  text: 慢慢接回來，比急著補回來更長久。
+  tags: [continuing, no_blame]
+- id: q-restart-130
+  text: 今天回來，是對自己溫柔的選擇。
+  tags: [returning, no_blame]
+- id: q-restart-131
+  text: 空下來的那陣子，替你濾掉了很多雜音。
+  tags: [gap, again]
+- id: q-restart-132
+  text: 撿起未完的線稿，上色的手還記得。
+  tags: [pick_up, resume]
+- id: q-restart-133
+  text: 重新開始，是給故事再一次的機會。
+  tags: [restart, again]
+- id: q-restart-134
+  text: 你走遠過，才更認得回家的路。
+  tags: [returning, gap]
+- id: q-restart-135
+  text: 今天接一小段，明天再多接一點。
+  tags: [continuing, resume]
+- id: q-restart-136
+  text: 停頓不用被彌補，它已經完成了任務。
+  tags: [gap, no_blame]
+- id: q-restart-137
+  text: 拿回擱著的那支筆，它輕輕的。
+  tags: [pick_up, returning]
+- id: q-restart-138
+  text: 回到創作，就像回到能好好呼吸的地方。
+  tags: [returning, resume]
+- id: q-restart-139
+  text: 你不是重來，你把上次的自己接了回來。
+  tags: [continuing, resume]
+- id: q-restart-140
+  text: 今天做的第一筆，會替你打破僵局。
+  tags: [restart, again]
+- id: q-restart-141
+  text: 荒過的地方最肥沃，種下去就會發芽。
+  tags: [gap, restart]
+- id: q-restart-142
+  text: 你手裡的技藝沒有離開，喊它就來。
+  tags: [resume, returning]
+- id: q-restart-143
+  text: 接著寫，讓上次的努力有個下文。
+  tags: [continuing, resume]
+- id: q-restart-144
+  text: 回來得晚一點，作品不會因此嫌你。
+  tags: [returning, no_blame]
+- id: q-restart-145
+  text: 今天先把工具擺好，就已經開始了。
+  tags: [restart, returning]
+- id: q-restart-146
+  text: 那些沒創作的日子，也是你在生活。
+  tags: [gap, no_blame]
+- id: q-restart-147
+  text: 撿起放下的針線，補上就好，不用拆掉重來。
+  tags: [pick_up, continuing]
+- id: q-restart-148
+  text: 重新出發時的小步伐，也在往前。
+  tags: [restart, again]
+- id: q-restart-149
+  text: 你回到桌前的樣子，本身就很動人。
+  tags: [returning, no_blame]
+- id: q-restart-150
+  text: 中斷處接上一針，線就不會散開。
+  tags: [continuing, resume]
+- id: q-restart-151
+  text: 停久不是問題，願意回來才是重點。
+  tags: [gap, returning]
+- id: q-restart-152
+  text: 拾起舊念頭，替它換上今天的心情。
+  tags: [pick_up, again]
+- id: q-restart-153
+  text: 重新開始的門檻，其實只有一步高。
+  tags: [restart, no_blame]
+- id: q-restart-154
+  text: 你放著的都沒壞，回來就能用。
+  tags: [pick_up, resume]
+- id: q-restart-155
+  text: 今天回來坐一下，不逼自己交出成果。
+  tags: [returning, no_blame]
+- id: q-restart-156
+  text: 空白之後再動筆，線條更知道要去哪。
+  tags: [gap, again]
+- id: q-restart-157
+  text: 接續上次的思路，它其實記得你。
+  tags: [continuing, resume]
+- id: q-restart-158
+  text: 慢下來一陣子，是為了走得更遠。
+  tags: [gap, continuing]
+- id: q-restart-159
+  text: 重新握起工具，指尖會自己想起來。
+  tags: [returning, resume]
+- id: q-restart-160
+  text: 你不用一次做完，接上就是進步。
+  tags: [continuing, no_blame]
+- id: q-restart-161
+  text: 撿回中途的夢，讓它繼續做下去。
+  tags: [pick_up, again]
+- id: q-restart-162
+  text: 停過再回來的人，腳步更踏實。
+  tags: [gap, returning]
+- id: q-restart-163
+  text: 今天願意開始，就已經翻過最難那頁。
+  tags: [restart, again]
+- id: q-restart-164
+  text: 你收著的作品，今天透透氣也好。
+  tags: [pick_up, returning]
+- id: q-restart-165
+  text: 接著上次收尾的地方，往下走一小段。
+  tags: [continuing, resume]
+- id: q-restart-166
+  text: 回來不是補課，是回到你喜歡的事上。
+  tags: [returning, no_blame]
+- id: q-restart-167
+  text: 空檔沉澱下來的，都會成為養分。
+  tags: [gap, resume]
+- id: q-restart-168
+  text: 重新起步，帶上這陣子多懂的自己。
+  tags: [restart, again]
+- id: q-restart-169
+  text: 你手感的火沒熄，撥一下就再亮。
+  tags: [resume, returning]
+- id: q-restart-170
+  text: 今天做一點，把中斷輕輕縫合。
+  tags: [continuing, pick_up]
+- id: q-restart-171
+  text: 停下來過沒關係，你依然是創作的人。
+  tags: [gap, no_blame]
+- id: q-restart-172
+  text: 拾起那個一直惦記的計畫，動它第一步。
+  tags: [pick_up, restart]
+- id: q-restart-173
+  text: 回來的今天，就從最小的地方接起。
+  tags: [returning, resume]
+- id: q-restart-174
+  text: 你不欠進度，你只欠自己一次溫柔的重啟。
+  tags: [restart, no_blame]
+- id: q-restart-175
+  text: 接續下去，讓上次的你不至於白費。
+  tags: [continuing, resume]
+- id: q-restart-176
+  text: 空白期教會你的，會寫進下一個作品。
+  tags: [gap, again]
+- id: q-restart-177
+  text: 今天回到這裡，慢慢的，一切都還來得及。
+  tags: [returning, no_blame]
+- id: q-restart-178
+  text: 撿起放下的那條路，走兩步就熟了。
+  tags: [pick_up, continuing]
+- id: q-restart-179
+  text: 重新開始，其實只是把喜歡的事再握緊。
+  tags: [restart, resume]
+- id: q-restart-180
+  text: 你回來的每一步，都算數，都值得。
+  tags: [returning, no_blame]

@@ -1,0 +1,744 @@
+# 每日創作提示 — 臨摹與重混
+# 主題：臨摹喜歡的作品、拆解別人怎麼做、用自己的方式重做、致敬。
+# 強調練習與學習，不是抄襲販售。允許低能量的日子。
+
+- id: p-remix-001
+  text: 臨摹一張你喜歡的作品，只為了搞懂它怎麼做的。
+  tags: [remix, imitation]
+  estimatedMinutes: 30
+- id: p-remix-002
+  text: 挑一句你很愛的歌詞，改寫成講你今天心情的版本。
+  tags: [rework, learning]
+  estimatedMinutes: 15
+- id: p-remix-003
+  text: 找一張你收藏很久的照片，只複製它的光線方向拍一張。
+  tags: [imitation, reference]
+  estimatedMinutes: 20
+- id: p-remix-004
+  text: 把一段喜歡的文字抄一遍，一邊抄一邊標出哪裡讓你停下來。
+  tags: [study, imitation]
+  estimatedMinutes: 15
+- id: p-remix-005
+  text: 選一個你佩服的作者，用他的句型寫三句你自己的話。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-006
+  text: 今天很累的話，只把一張喜歡的圖描邊，不用上色。
+  tags: [imitation, study]
+  estimatedMinutes: 10
+- id: p-remix-007
+  text: 拆解一首你單曲循環的歌，寫下它的段落結構是怎麼排的。
+  tags: [deconstruct, study]
+  estimatedMinutes: 25
+- id: p-remix-008
+  text: 把一道你吃過很好吃的菜，憑記憶重做一次，記下差在哪。
+  tags: [rework, learning]
+  estimatedMinutes: 45
+- id: p-remix-009
+  text: 挑一格喜歡的漫畫分鏡，換成你自己的角色重畫一次。
+  tags: [rework, homage]
+  estimatedMinutes: 30
+- id: p-remix-010
+  text: 找一個你欣賞的介面截圖，臨摹它的排版比例。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-011
+  text: 抄下一段你喜歡的對白，再想想若換成你會怎麼寫。
+  tags: [rework, reference]
+  estimatedMinutes: 15
+- id: p-remix-012
+  text: 選一位攝影師的一張照片，只模仿它的構圖去拍。
+  tags: [imitation, reference]
+  estimatedMinutes: 20
+- id: p-remix-013
+  text: 把一首詩逐字重打一遍，感受它斷句的節奏。
+  tags: [study, imitation]
+  estimatedMinutes: 15
+- id: p-remix-014
+  text: 拿一段喜歡的旋律，用不同樂器或哼唱重彈一次。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-015
+  text: 找一張海報，只把它的配色抽出來做成你的色票。
+  tags: [deconstruct, reference]
+  estimatedMinutes: 20
+- id: p-remix-016
+  text: 低能量日：把一張喜歡的圖放大，只觀察一個角落十分鐘。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-017
+  text: 選一段你佩服的程式碼，手打重寫一遍並註解每一行。
+  tags: [study, imitation]
+  estimatedMinutes: 40
+- id: p-remix-018
+  text: 把一部電影的開場鏡頭，用手機分鏡圖畫下來。
+  tags: [deconstruct, study]
+  estimatedMinutes: 30
+- id: p-remix-019
+  text: 挑一位插畫家的線條，只練習模仿他畫頭髮的方式。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-020
+  text: 找一段廣告文案，換成賣一個你身邊的小東西。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-021
+  text: 臨摹一幅名畫的其中一隻手，就練這一隻手。
+  tags: [imitation, study]
+  estimatedMinutes: 30
+- id: p-remix-022
+  text: 把一首你愛的歌，換成完全相反的情緒重新編排。
+  tags: [rework, homage]
+  estimatedMinutes: 35
+- id: p-remix-023
+  text: 選一張喜歡的照片，猜它用了什麼光圈快門，寫下推理。
+  tags: [deconstruct, study]
+  estimatedMinutes: 15
+- id: p-remix-024
+  text: 抄寫一段你喜歡的散文開頭，再用同樣語氣寫你的早晨。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-025
+  text: 找一個你欣賞的 logo，用紙筆徒手臨摹五次。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-026
+  text: 把一段舞蹈動作放慢重看，只學會其中一個八拍。
+  tags: [imitation, learning]
+  estimatedMinutes: 30
+- id: p-remix-027
+  text: 低能量日：只選一個你喜歡的作品，寫一句它好在哪。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-028
+  text: 挑一張漫畫封面，模仿它的字體排版做你自己的標題。
+  tags: [imitation, homage]
+  estimatedMinutes: 25
+- id: p-remix-029
+  text: 拆解一篇你覺得好讀的文章，列出它每段在做什麼。
+  tags: [deconstruct, study]
+  estimatedMinutes: 25
+- id: p-remix-030
+  text: 用你喜歡的畫家的筆觸，重畫你家窗外的景色。
+  tags: [rework, homage]
+  estimatedMinutes: 35
+- id: p-remix-031
+  text: 找一段 podcast 的開場白，模仿它的節奏錄你的版本。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-032
+  text: 把一張你喜歡的動圖，逐格畫出它的關鍵幀。
+  tags: [deconstruct, study]
+  estimatedMinutes: 30
+- id: p-remix-033
+  text: 選一位歌手的咬字方式，跟著同一句練十遍。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-034
+  text: 臨摹一張街拍，只還原它人物與背景的距離感。
+  tags: [imitation, reference]
+  estimatedMinutes: 25
+- id: p-remix-035
+  text: 把一段喜歡的文字翻成另一種語氣，像講給小孩聽。
+  tags: [rework, learning]
+  estimatedMinutes: 15
+- id: p-remix-036
+  text: 找一個你欣賞的網頁動效，用文字描述它是怎麼動的。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-037
+  text: 挑一幅水彩，只練它渲染天空那一塊的漸層。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-038
+  text: 把一首歌的鼓點抄成節奏譜，跟著拍手打一次。
+  tags: [deconstruct, learning]
+  estimatedMinutes: 20
+- id: p-remix-039
+  text: 低能量日：翻你收藏夾，重新看一次最喜歡的那件作品。
+  tags: [reference, study]
+  estimatedMinutes: 10
+- id: p-remix-040
+  text: 模仿一位詩人的意象，寫一首關於下雨的四行詩。
+  tags: [imitation, homage]
+  estimatedMinutes: 20
+- id: p-remix-041
+  text: 找一張料理照片，重現它的擺盤角度拍你的晚餐。
+  tags: [imitation, reference]
+  estimatedMinutes: 15
+- id: p-remix-042
+  text: 拆解一支你笑很久的短影片，寫下它的笑點結構。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-043
+  text: 用你喜歡的漫畫家畫眼睛的方式，畫五種表情。
+  tags: [imitation, learning]
+  estimatedMinutes: 30
+- id: p-remix-044
+  text: 把一段經典台詞，改寫成你會對朋友說的白話版。
+  tags: [rework, homage]
+  estimatedMinutes: 15
+- id: p-remix-045
+  text: 選一張黑白照，模仿它的明暗分佈畫一張素描。
+  tags: [imitation, study]
+  estimatedMinutes: 30
+- id: p-remix-046
+  text: 找一首你愛的間奏，試著在鍵盤上摸出前三個音。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-047
+  text: 臨摹一張字帖的一個字，寫滿一整行。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-048
+  text: 把一部動畫的一秒鏡頭，用你的角色致敬重畫。
+  tags: [homage, rework]
+  estimatedMinutes: 35
+- id: p-remix-049
+  text: 挑一段你佩服的旁白，模仿他停頓的位置念一遍。
+  tags: [imitation, learning]
+  estimatedMinutes: 15
+- id: p-remix-050
+  text: 找一張你喜歡的排版，量出它的邊界留白比例。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-051
+  text: 低能量日：把喜歡的一句歌詞抄在便條上貼起來。
+  tags: [imitation, reference]
+  estimatedMinutes: 10
+- id: p-remix-052
+  text: 選一位廚師的一道菜，只學會他切菜的一個手法。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-053
+  text: 把一段小說場景，改成用第一人稱重寫一次。
+  tags: [rework, study]
+  estimatedMinutes: 25
+- id: p-remix-054
+  text: 找一張插畫，只臨摹它人物的姿勢骨架線。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-055
+  text: 拆解一首你愛的歌的和弦進行，抄下前四個和弦。
+  tags: [deconstruct, learning]
+  estimatedMinutes: 25
+- id: p-remix-056
+  text: 模仿一位攝影師修圖的色調，套到你的一張舊照上。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-057
+  text: 把一段喜歡的開場白，改成你的自我介紹版本。
+  tags: [rework, homage]
+  estimatedMinutes: 15
+- id: p-remix-058
+  text: 選一幅畫，只模仿它主角與邊框的距離重構圖。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-059
+  text: 找一支你重看很多次的 MV，畫下它最愛的一幕。
+  tags: [homage, reference]
+  estimatedMinutes: 30
+- id: p-remix-060
+  text: 臨摹一段書法的運筆，注意起筆與收筆的力道。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-061
+  text: 低能量日：只聽一遍喜歡的歌，寫下你聽到幾種樂器。
+  tags: [deconstruct, study]
+  estimatedMinutes: 10
+- id: p-remix-062
+  text: 把一段你欣賞的程式函式，換個寫法達成同樣結果。
+  tags: [rework, learning]
+  estimatedMinutes: 40
+- id: p-remix-063
+  text: 選一張喜歡的插畫，模仿它的雲怎麼畫，畫三朵。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-064
+  text: 把一首詩的意象換掉，但保留它原本的節奏感。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-065
+  text: 找一段舞步，只錄下自己模仿其中一個轉身。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-066
+  text: 拆解一個你愛用的 app，畫出它第一頁的資訊層級。
+  tags: [deconstruct, study]
+  estimatedMinutes: 25
+- id: p-remix-067
+  text: 模仿一位作家寫景的方式，描述你現在坐的地方。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-068
+  text: 把一張照片轉成鉛筆稿，只保留最重要的三條線。
+  tags: [rework, study]
+  estimatedMinutes: 20
+- id: p-remix-069
+  text: 選一段你愛的貝斯線，跟著哼唱錄下來。
+  tags: [imitation, learning]
+  estimatedMinutes: 15
+- id: p-remix-070
+  text: 找一個喜歡的品牌配色，用它重做你自己的名片。
+  tags: [rework, reference]
+  estimatedMinutes: 30
+- id: p-remix-071
+  text: 低能量日：把一件喜歡的作品，只用一個詞形容它。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-072
+  text: 臨摹一張漫畫的動作線，感受它怎麼表現速度。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-073
+  text: 把一段廣播劇的情緒，模仿著念同一句話三種語氣。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-074
+  text: 找一張構圖乾淨的照片，模仿它拍你的桌面。
+  tags: [imitation, reference]
+  estimatedMinutes: 15
+- id: p-remix-075
+  text: 拆解一則你覺得高明的貼文，列出它的鉤子在哪。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-076
+  text: 用你喜歡的畫家的配色，重畫一顆你手邊的水果。
+  tags: [rework, homage]
+  estimatedMinutes: 30
+- id: p-remix-077
+  text: 挑一句你愛的英文歌詞，翻成你覺得最好的中文。
+  tags: [rework, learning]
+  estimatedMinutes: 20
+- id: p-remix-078
+  text: 找一段動畫走路循環，逐格臨摹其中四幀。
+  tags: [imitation, study]
+  estimatedMinutes: 35
+- id: p-remix-079
+  text: 模仿一位主廚調味的順序，重做一顆你常煮的蛋。
+  tags: [imitation, learning]
+  estimatedMinutes: 15
+- id: p-remix-080
+  text: 把一段小說對話，改成完全用動作不用台詞表達。
+  tags: [rework, study]
+  estimatedMinutes: 25
+- id: p-remix-081
+  text: 選一張你喜歡的圖，只練它畫陰影的排線方向。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-082
+  text: 低能量日：翻一本喜歡的書，只重讀最愛的一頁。
+  tags: [reference, study]
+  estimatedMinutes: 10
+- id: p-remix-083
+  text: 找一支縮時影片，模仿它的節奏剪一段你的日常。
+  tags: [imitation, rework]
+  estimatedMinutes: 40
+- id: p-remix-084
+  text: 臨摹一幅山水，只練它畫遠山那層淡淡的墨。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-085
+  text: 把一首你愛的歌，只用口哨重現它的主旋律。
+  tags: [rework, homage]
+  estimatedMinutes: 10
+- id: p-remix-086
+  text: 選一段你欣賞的簡報，模仿它一頁只講一件事的做法。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-087
+  text: 找一張人像，只臨摹它眼睛到鼻子那一小塊。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-088
+  text: 拆解一個讓你捨不得關的遊戲開頭，寫它怎麼抓住你。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-089
+  text: 模仿一位散文家的長句，寫一段不用句號的描述。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-090
+  text: 把一張照片的天空換成別的顏色，只練調色。
+  tags: [rework, learning]
+  estimatedMinutes: 20
+- id: p-remix-091
+  text: 選一段你愛的吉他 riff，慢速跟彈到能連起來。
+  tags: [imitation, learning]
+  estimatedMinutes: 30
+- id: p-remix-092
+  text: 找一個喜歡的字型，徒手臨摹它的其中五個字母。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-093
+  text: 低能量日：只把一段喜歡的旋律，在心裡默哼三遍。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-094
+  text: 臨摹一張分鏡表，理解它一頁塞了幾個鏡頭。
+  tags: [imitation, deconstruct]
+  estimatedMinutes: 25
+- id: p-remix-095
+  text: 把一段你喜歡的文案，改成賣完全相反的東西。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-096
+  text: 選一位插畫家的上色順序，跟著他的步驟畫一顆星。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-097
+  text: 找一張你收藏的建築照，臨摹它的線條透視。
+  tags: [imitation, study]
+  estimatedMinutes: 30
+- id: p-remix-098
+  text: 拆解一首你愛哭的歌，找出讓你鼻酸的那一句在哪。
+  tags: [deconstruct, study]
+  estimatedMinutes: 15
+- id: p-remix-099
+  text: 用你欣賞的攝影師的視角，蹲低拍一張地面照。
+  tags: [imitation, reference]
+  estimatedMinutes: 15
+- id: p-remix-100
+  text: 把一段程式的變數命名，模仿高手的風格重新命名。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-101
+  text: 挑一幅印象派，只模仿它筆觸的短促與方向。
+  tags: [imitation, study]
+  estimatedMinutes: 30
+- id: p-remix-102
+  text: 找一段你愛的收尾金句，寫三個你自己版本的收尾。
+  tags: [rework, learning]
+  estimatedMinutes: 20
+- id: p-remix-103
+  text: 低能量日：只重看一次喜歡的短片，注意它的第一秒。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-104
+  text: 臨摹一張老照片，只還原它的顆粒與褪色感。
+  tags: [imitation, rework]
+  estimatedMinutes: 25
+- id: p-remix-105
+  text: 把一首兒歌的旋律，重填成講你今天的歌詞。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-106
+  text: 選一位作家開篇的方式，用它寫你日記的第一句。
+  tags: [imitation, rework]
+  estimatedMinutes: 15
+- id: p-remix-107
+  text: 找一張你喜歡的名片，量它字級大小的層次。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-108
+  text: 模仿一位歌手轉音的位置，跟著同一句唱五次。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-109
+  text: 臨摹一格四格漫畫的節奏，換你的角色重講一次。
+  tags: [rework, homage]
+  estimatedMinutes: 30
+- id: p-remix-110
+  text: 把一張風景照，只用三種顏色重畫成色塊。
+  tags: [rework, study]
+  estimatedMinutes: 25
+- id: p-remix-111
+  text: 選一段你愛的合聲，試著唱出其中一條和聲線。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-112
+  text: 找一個你欣賞的按鈕設計，臨摹它的圓角與陰影。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-113
+  text: 低能量日：把一件喜歡的作品，只截下最喜歡的一角。
+  tags: [reference, study]
+  estimatedMinutes: 10
+- id: p-remix-114
+  text: 拆解一部電影的配樂，寫下音樂在哪個瞬間進來。
+  tags: [deconstruct, study]
+  estimatedMinutes: 25
+- id: p-remix-115
+  text: 模仿一位詩人的斷行方式，把你的一段話重排成詩。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-116
+  text: 找一張料理特寫，臨摹它光打在食物上的反光。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-117
+  text: 把一段你愛的旁白，模仿它的語速朗讀一頁書。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-118
+  text: 選一張插畫的背景，只臨摹它的植物怎麼畫。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-119
+  text: 找一首你愛的歌，把它的節奏改成慢兩倍重聽感受。
+  tags: [rework, deconstruct]
+  estimatedMinutes: 15
+- id: p-remix-120
+  text: 臨摹一張漫畫的網點與陰影分佈，只練這一頁。
+  tags: [imitation, study]
+  estimatedMinutes: 30
+- id: p-remix-121
+  text: 低能量日：只抄一句你今天看到最喜歡的話。
+  tags: [imitation, reference]
+  estimatedMinutes: 10
+- id: p-remix-122
+  text: 把一段電影對白，改寫成發生在你家廚房的版本。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-123
+  text: 選一位攝影師的構圖習慣，連拍三張都放中央偏左。
+  tags: [imitation, reference]
+  estimatedMinutes: 15
+- id: p-remix-124
+  text: 找一段你佩服的程式邏輯，用白話一步步寫成筆記。
+  tags: [deconstruct, study]
+  estimatedMinutes: 30
+- id: p-remix-125
+  text: 臨摹一幅畫的天空，只用一支筆一種顏色完成。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-126
+  text: 把一首歌的副歌，改成講一個你認識的人的故事。
+  tags: [rework, homage]
+  estimatedMinutes: 25
+- id: p-remix-127
+  text: 選一個你欣賞的開場動畫，逐幀截出它的前六格。
+  tags: [deconstruct, study]
+  estimatedMinutes: 25
+- id: p-remix-128
+  text: 找一張手繪字，臨摹它的一個標題寫在你的筆記本上。
+  tags: [imitation, homage]
+  estimatedMinutes: 20
+- id: p-remix-129
+  text: 模仿一位廚師的擺盤留白，重擺一盤你的早餐。
+  tags: [imitation, learning]
+  estimatedMinutes: 15
+- id: p-remix-130
+  text: 把一段小說的第三人稱，改寫成日記的第一人稱。
+  tags: [rework, study]
+  estimatedMinutes: 25
+- id: p-remix-131
+  text: 選一張圖，只臨摹它畫水面倒影的那一塊。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-132
+  text: 低能量日：把喜歡的一段旋律，用手指在桌上敲出來。
+  tags: [imitation, reference]
+  estimatedMinutes: 10
+- id: p-remix-133
+  text: 找一支你愛的訪談，模仿主持人接話的方式練一段。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-134
+  text: 臨摹一張速寫，感受作者哪幾筆是刻意留白的。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-135
+  text: 把一段你愛的獨白，改成寫給十年後自己的信。
+  tags: [rework, homage]
+  estimatedMinutes: 25
+- id: p-remix-136
+  text: 選一位畫家畫水的方式，練它的一道波紋畫十次。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-137
+  text: 找一個喜歡的排版格線，用它重排你的一頁筆記。
+  tags: [rework, reference]
+  estimatedMinutes: 25
+- id: p-remix-138
+  text: 拆解一首你愛的歌的前奏，數它幾秒才進主歌。
+  tags: [deconstruct, study]
+  estimatedMinutes: 15
+- id: p-remix-139
+  text: 模仿一位插畫家畫手的比例，畫五隻不同姿勢的手。
+  tags: [imitation, learning]
+  estimatedMinutes: 30
+- id: p-remix-140
+  text: 把一張彩色照片轉黑白，只留下你覺得最有力的對比。
+  tags: [rework, study]
+  estimatedMinutes: 15
+- id: p-remix-141
+  text: 選一段你愛的過場音效，試著用嘴或物品重現它。
+  tags: [imitation, rework]
+  estimatedMinutes: 15
+- id: p-remix-142
+  text: 低能量日：只挑一件喜歡的作品，寫下它讓你想到誰。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-143
+  text: 臨摹一張分格漫畫，只還原它對話框的擺放位置。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-144
+  text: 把一首詩換成散文，再換回詩，看你保留了什麼。
+  tags: [rework, study]
+  estimatedMinutes: 25
+- id: p-remix-145
+  text: 選一位攝影師拍陰天的方式，出門拍三張陰天的照。
+  tags: [imitation, reference]
+  estimatedMinutes: 20
+- id: p-remix-146
+  text: 找一段程式碼的縮排風格，模仿它重排你的一個檔案。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-147
+  text: 臨摹一幅畫的一片葉子，觀察它的葉脈怎麼收。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-148
+  text: 把一段廣告的旁白節奏，重寫成你介紹一本書的稿。
+  tags: [rework, homage]
+  estimatedMinutes: 25
+- id: p-remix-149
+  text: 選一首歌的和聲堆疊，只跟唱最上面那條旋律線。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-150
+  text: 找一個喜歡的圖示組，臨摹其中三個的線條粗細。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-151
+  text: 低能量日：把一句喜歡的台詞唸出聲一次就好。
+  tags: [imitation, reference]
+  estimatedMinutes: 10
+- id: p-remix-152
+  text: 拆解一支讓你停下滑動的影片，寫它前三秒放了什麼。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-153
+  text: 模仿一位作家用氣味描寫的方式，寫你家的味道。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-154
+  text: 把一張照片的主角挪到邊緣，只練這種構圖一次。
+  tags: [rework, study]
+  estimatedMinutes: 15
+- id: p-remix-155
+  text: 選一段你愛的間奏，用哼的把它記在錄音裡。
+  tags: [imitation, learning]
+  estimatedMinutes: 15
+- id: p-remix-156
+  text: 找一幅畫，只臨摹它最亮和最暗的兩個點。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-157
+  text: 把一段對話用你家鄉的口氣重寫一遍。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-158
+  text: 選一位設計師的排版，臨摹他標題與內文的間距。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-159
+  text: 找一首歌的鼓組聲響，試著用嘴模仿它的節拍。
+  tags: [imitation, learning]
+  estimatedMinutes: 15
+- id: p-remix-160
+  text: 低能量日：只看喜歡的畫一分鐘，記住一個細節就好。
+  tags: [study, reference]
+  estimatedMinutes: 10
+- id: p-remix-161
+  text: 臨摹一張人像的頭髮走向，只練這一撮怎麼分。
+  tags: [imitation, study]
+  estimatedMinutes: 25
+- id: p-remix-162
+  text: 把一段你愛的旁白，換成講一件今天發生的小事。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-163
+  text: 選一位攝影師的黃金時刻用光，傍晚出門拍一張。
+  tags: [imitation, reference]
+  estimatedMinutes: 25
+- id: p-remix-164
+  text: 拆解一個你喜歡的表單流程，畫出它每一步問什麼。
+  tags: [deconstruct, study]
+  estimatedMinutes: 25
+- id: p-remix-165
+  text: 模仿一位畫家畫雲的方式，用棉花般的筆觸畫三朵。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-166
+  text: 把一首歌的歌詞抄下來，圈出它重複最多的詞。
+  tags: [deconstruct, study]
+  estimatedMinutes: 15
+- id: p-remix-167
+  text: 選一張插畫的邊框裝飾，臨摹它一個角落的花紋。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-168
+  text: 找一段你欣賞的自我介紹，模仿它的結構寫你的。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-169
+  text: 低能量日：把喜歡的一段文字，只朗讀給自己聽一遍。
+  tags: [reference, study]
+  estimatedMinutes: 10
+- id: p-remix-170
+  text: 臨摹一幅畫的地面陰影，觀察它往哪個方向拉長。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-171
+  text: 把一段電影運鏡，用手機模仿著推近拉遠拍一次。
+  tags: [imitation, rework]
+  estimatedMinutes: 25
+- id: p-remix-172
+  text: 選一位作者的比喻手法，替一件日常物寫三個比喻。
+  tags: [imitation, learning]
+  estimatedMinutes: 20
+- id: p-remix-173
+  text: 找一張你喜歡的貼紙，臨摹它的輪廓與粗邊。
+  tags: [imitation, study]
+  estimatedMinutes: 20
+- id: p-remix-174
+  text: 把一首快歌改編成安靜的睡前版本，只哼副歌。
+  tags: [rework, homage]
+  estimatedMinutes: 20
+- id: p-remix-175
+  text: 拆解一篇你讀完就分享的文章，寫它讓你想分享的原因。
+  tags: [deconstruct, study]
+  estimatedMinutes: 20
+- id: p-remix-176
+  text: 選一位插畫家的水面畫法，練它的反光與波紋一次。
+  tags: [imitation, learning]
+  estimatedMinutes: 25
+- id: p-remix-177
+  text: 把一張照片裁成正方形，模仿你喜歡的那種留白。
+  tags: [rework, reference]
+  estimatedMinutes: 15
+- id: p-remix-178
+  text: 低能量日：只重聽喜歡的一首歌，什麼都不用做。
+  tags: [reference, study]
+  estimatedMinutes: 10
+- id: p-remix-179
+  text: 臨摹一張圖的主色調，用它畫一個簡單的形狀。
+  tags: [imitation, study]
+  estimatedMinutes: 15
+- id: p-remix-180
+  text: 找一段你愛的收場白，模仿它的語氣寫你的結尾。
+  tags: [imitation, rework]
+  estimatedMinutes: 20
+- id: p-remix-181
+  text: 把一幅名畫的人物換成你認識的人重新想像。
+  tags: [rework, homage]
+  estimatedMinutes: 30
+- id: p-remix-182
+  text: 選一位攝影師的黑白對比，把一張彩照重新調成他的味道。
+  tags: [imitation, rework]
+  estimatedMinutes: 25
+- id: p-remix-183
+  text: 找一首歌的橋段，數它換了幾次和弦再回副歌。
+  tags: [deconstruct, study]
+  estimatedMinutes: 15
+- id: p-remix-184
+  text: 臨摹一張圖裡你最不會畫的那個部位，只練它。
+  tags: [imitation, learning]
+  estimatedMinutes: 30
+- id: p-remix-185
+  text: 把一段你欣賞的介紹詞，改寫成介紹你自己的房間。
+  tags: [rework, homage]
+  estimatedMinutes: 20

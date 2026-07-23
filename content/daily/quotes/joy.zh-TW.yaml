@@ -1,0 +1,542 @@
+# 每日語錄 — 創作的快樂與滿足
+# 主題：做東西本身的樂趣、完成的爽感、玩、好玩比厲害重要、單純喜歡
+- id: q-joy-001
+  text: 做得開心，比做得厲害更難得。
+  tags: [joy, play]
+- id: q-joy-002
+  text: 手一動起來，煩惱就先讓一讓。
+  tags: [play, lightness]
+- id: q-joy-003
+  text: 完成的那一下，整個人鬆下來，值得。
+  tags: [satisfaction, delight]
+- id: q-joy-004
+  text: 亂塗也是塗，玩就好。
+  tags: [play, fun]
+- id: q-joy-005
+  text: 你喜歡就夠了，不用有理由。
+  tags: [love, enjoyment]
+- id: q-joy-006
+  text: 沒靈感的日子，摸摸材料也算數。
+  tags: [lightness, play]
+- id: q-joy-007
+  text: 存檔的那聲，像替自己蓋了個章。
+  tags: [satisfaction, delight]
+- id: q-joy-008
+  text: 做壞了也是你做的，那很珍貴。
+  tags: [love, joy]
+- id: q-joy-009
+  text: 專心到忘記時間，是很好的一天。
+  tags: [enjoyment, joy]
+- id: q-joy-010
+  text: 不厲害沒關係，好玩就繼續。
+  tags: [fun, play]
+- id: q-joy-011
+  text: 一個小東西做完，也能開心一整晚。
+  tags: [satisfaction, delight]
+- id: q-joy-012
+  text: 想到就試試看，這股衝動很寶貴。
+  tags: [play, joy]
+- id: q-joy-013
+  text: 你不是在交作業，是在玩。
+  tags: [play, lightness]
+- id: q-joy-014
+  text: 顏色調對的那瞬間，會忍不住笑。
+  tags: [delight, satisfaction]
+- id: q-joy-015
+  text: 累了就放著，它不會跑掉。
+  tags: [lightness, love]
+- id: q-joy-016
+  text: 做自己想做的，本來就很爽。
+  tags: [satisfaction, enjoyment]
+- id: q-joy-017
+  text: 隨手記下的點子，日後會謝謝你。
+  tags: [joy, play]
+- id: q-joy-018
+  text: 沒人看也沒關係，你看得到就好。
+  tags: [love, enjoyment]
+- id: q-joy-019
+  text: 拼到最後一塊的感覺，很難形容。
+  tags: [satisfaction, delight]
+- id: q-joy-020
+  text: 今天只想剪剪貼貼，也很正當。
+  tags: [play, lightness]
+- id: q-joy-021
+  text: 做東西的手感，騙不了人。
+  tags: [enjoyment, satisfaction]
+- id: q-joy-022
+  text: 半成品也是你的，別急著否定它。
+  tags: [love, lightness]
+- id: q-joy-023
+  text: 一筆下去對了，那種痛快很上癮。
+  tags: [delight, satisfaction]
+- id: q-joy-024
+  text: 玩得盡興，就沒有白費。
+  tags: [fun, enjoyment]
+- id: q-joy-025
+  text: 喜歡的東西，做起來特別不累。
+  tags: [love, joy]
+- id: q-joy-026
+  text: 低能量的日子，發呆也是在醞釀。
+  tags: [lightness, play]
+- id: q-joy-027
+  text: 從無到有，這件事永遠不無聊。
+  tags: [joy, satisfaction]
+- id: q-joy-028
+  text: 手癢就動手，別問值不值得。
+  tags: [play, fun]
+- id: q-joy-029
+  text: 收尾的那幾筆，最療癒。
+  tags: [satisfaction, delight]
+- id: q-joy-030
+  text: 你做的每個決定，都讓它更像你。
+  tags: [love, joy]
+- id: q-joy-031
+  text: 亂試沒有錯，試出來的才是你的。
+  tags: [play, delight]
+- id: q-joy-032
+  text: 今天做一點點，明天再說。
+  tags: [lightness, play]
+- id: q-joy-033
+  text: 做完退一步看，那口氣很甜。
+  tags: [satisfaction, enjoyment]
+- id: q-joy-034
+  text: 不必偉大，能讓你笑就夠了。
+  tags: [fun, joy]
+- id: q-joy-035
+  text: 沉進去做的時候，世界很安靜。
+  tags: [enjoyment, love]
+- id: q-joy-036
+  text: 手上有東西可以捏，就不慌了。
+  tags: [play, lightness]
+- id: q-joy-037
+  text: 成品有點歪，反而更可愛。
+  tags: [delight, love]
+- id: q-joy-038
+  text: 想玩什麼就玩什麼，這裡沒有評審。
+  tags: [play, fun]
+- id: q-joy-039
+  text: 一個念頭變成真的，很神奇。
+  tags: [joy, satisfaction]
+- id: q-joy-040
+  text: 做到一半停下，也是完成的一種。
+  tags: [lightness, love]
+- id: q-joy-041
+  text: 你花的每分鐘，都藏在成品裡。
+  tags: [satisfaction, love]
+- id: q-joy-042
+  text: 好玩的東西，不需要解釋。
+  tags: [fun, enjoyment]
+- id: q-joy-043
+  text: 靈感來的時候，抓住它就好。
+  tags: [delight, play]
+- id: q-joy-044
+  text: 慢慢做，享受過程本身。
+  tags: [enjoyment, lightness]
+- id: q-joy-045
+  text: 做喜歡的事，時間會變溫柔。
+  tags: [love, enjoyment]
+- id: q-joy-046
+  text: 一點小巧思，就能讓自己得意半天。
+  tags: [satisfaction, delight]
+- id: q-joy-047
+  text: 沒方向就先亂畫，畫著畫著就有了。
+  tags: [play, joy]
+- id: q-joy-048
+  text: 今天想休息，材料明天等你。
+  tags: [lightness, love]
+- id: q-joy-049
+  text: 動手的樂趣，別人搶不走。
+  tags: [enjoyment, joy]
+- id: q-joy-050
+  text: 完成度不重要，你玩得爽最重要。
+  tags: [fun, satisfaction]
+- id: q-joy-051
+  text: 把腦裡的東西倒出來，很痛快。
+  tags: [satisfaction, delight]
+- id: q-joy-052
+  text: 你不欠任何人一件作品。
+  tags: [lightness, love]
+- id: q-joy-053
+  text: 拿起工具的那刻，已經開始了。
+  tags: [play, joy]
+- id: q-joy-054
+  text: 做著做著就笑出來，這才對。
+  tags: [fun, delight]
+- id: q-joy-055
+  text: 喜歡的過程，會自己長出結果。
+  tags: [love, satisfaction]
+- id: q-joy-056
+  text: 一天只想排排顏色，也很充實。
+  tags: [play, lightness]
+- id: q-joy-057
+  text: 做出來就贏了，好不好看再說。
+  tags: [satisfaction, fun]
+- id: q-joy-058
+  text: 玩心比技巧珍貴多了。
+  tags: [play, joy]
+- id: q-joy-059
+  text: 小小的完成，也配得上慶祝。
+  tags: [delight, satisfaction]
+- id: q-joy-060
+  text: 你做的東西，記得你當下的心情。
+  tags: [love, enjoyment]
+- id: q-joy-061
+  text: 沒力氣做大的，就做小的。
+  tags: [lightness, play]
+- id: q-joy-062
+  text: 手忙起來，心就靜下來。
+  tags: [enjoyment, joy]
+- id: q-joy-063
+  text: 做給自己開心，是最好的理由。
+  tags: [love, joy]
+- id: q-joy-064
+  text: 亂搞一通，也可能撞出好東西。
+  tags: [play, delight]
+- id: q-joy-065
+  text: 那個對了的瞬間，比什麼都爽。
+  tags: [satisfaction, delight]
+- id: q-joy-066
+  text: 玩得開心，本身就是收穫。
+  tags: [fun, enjoyment]
+- id: q-joy-067
+  text: 想做就做，別等準備好。
+  tags: [play, joy]
+- id: q-joy-068
+  text: 做完的東西，會回頭抱抱你。
+  tags: [satisfaction, love]
+- id: q-joy-069
+  text: 隨性一點，作品才有呼吸。
+  tags: [lightness, play]
+- id: q-joy-070
+  text: 你的手比你想的還會做東西。
+  tags: [joy, enjoyment]
+- id: q-joy-071
+  text: 今天只想看看素材，也算在創作。
+  tags: [lightness, love]
+- id: q-joy-072
+  text: 做到忘我，是給自己的禮物。
+  tags: [enjoyment, delight]
+- id: q-joy-073
+  text: 好玩的東西，做多久都不膩。
+  tags: [fun, love]
+- id: q-joy-074
+  text: 完成不是終點，是一次深呼吸。
+  tags: [satisfaction, lightness]
+- id: q-joy-075
+  text: 想像變成實物，是最爽的魔法。
+  tags: [delight, satisfaction]
+- id: q-joy-076
+  text: 你不需要厲害，只需要喜歡。
+  tags: [love, joy]
+- id: q-joy-077
+  text: 試錯本身，也很有意思。
+  tags: [play, fun]
+- id: q-joy-078
+  text: 累的時候，做一點就好，別逼自己。
+  tags: [lightness, love]
+- id: q-joy-079
+  text: 做出第一版，就已經很了不起。
+  tags: [satisfaction, joy]
+- id: q-joy-080
+  text: 玩顏色、玩形狀，玩就對了。
+  tags: [play, fun]
+- id: q-joy-081
+  text: 沉浸的那段時間，誰都拿不走。
+  tags: [enjoyment, love]
+- id: q-joy-082
+  text: 做東西不用理由，喜歡就是理由。
+  tags: [love, joy]
+- id: q-joy-083
+  text: 收工前多看一眼，那是你的驕傲。
+  tags: [satisfaction, delight]
+- id: q-joy-084
+  text: 亂中有你，那就對了。
+  tags: [play, love]
+- id: q-joy-085
+  text: 一個小發現，能讓整天發光。
+  tags: [delight, joy]
+- id: q-joy-086
+  text: 玩得盡興的手，會記得這份快樂。
+  tags: [fun, enjoyment]
+- id: q-joy-087
+  text: 只想剪個紙、貼個貼紙，也很好。
+  tags: [play, lightness]
+- id: q-joy-088
+  text: 做完的爽，會自己找上你。
+  tags: [satisfaction, delight]
+- id: q-joy-089
+  text: 你做的，不必給誰交代。
+  tags: [lightness, love]
+- id: q-joy-090
+  text: 動手玩，比想半天有趣多了。
+  tags: [play, fun]
+- id: q-joy-091
+  text: 喜歡到願意重做一次，就是熱愛。
+  tags: [love, enjoyment]
+- id: q-joy-092
+  text: 今天做不了大的，摸一下也開心。
+  tags: [lightness, joy]
+- id: q-joy-093
+  text: 那個成了的瞬間，眼睛會亮。
+  tags: [delight, satisfaction]
+- id: q-joy-094
+  text: 好玩不用花大錢，動手就有。
+  tags: [fun, play]
+- id: q-joy-095
+  text: 做著喜歡的事，時間會偷偷加速。
+  tags: [enjoyment, love]
+- id: q-joy-096
+  text: 半途卡住也沒關係，卡著也是你的。
+  tags: [lightness, love]
+- id: q-joy-097
+  text: 完成一件小事，也能挺胸走路。
+  tags: [satisfaction, joy]
+- id: q-joy-098
+  text: 想玩就玩，這裡永遠有位子。
+  tags: [play, fun]
+- id: q-joy-099
+  text: 你的作品在等你，不急，慢慢來。
+  tags: [lightness, love]
+- id: q-joy-100
+  text: 手感對了，整個人都通了。
+  tags: [satisfaction, delight]
+- id: q-joy-101
+  text: 做東西的快樂，很純，沒有雜質。
+  tags: [joy, enjoyment]
+- id: q-joy-102
+  text: 亂玩一下，說不定就上手了。
+  tags: [play, fun]
+- id: q-joy-103
+  text: 完成的感覺，像替自己撐了場。
+  tags: [satisfaction, delight]
+- id: q-joy-104
+  text: 沒靈感就整理素材，也是前進。
+  tags: [lightness, play]
+- id: q-joy-105
+  text: 喜歡的東西，值得你多花一點時間。
+  tags: [love, enjoyment]
+- id: q-joy-106
+  text: 做著做著哼起歌，就是對了。
+  tags: [fun, joy]
+- id: q-joy-107
+  text: 小小的巧手，做出大大的滿足。
+  tags: [satisfaction, delight]
+- id: q-joy-108
+  text: 想做什麼都可以，這是你的地盤。
+  tags: [play, love]
+- id: q-joy-109
+  text: 玩比贏重要，開心比完美重要。
+  tags: [fun, joy]
+- id: q-joy-110
+  text: 累了就靠著素材休息，它不催你。
+  tags: [lightness, love]
+- id: q-joy-111
+  text: 從草稿到成品，每一步都算數。
+  tags: [satisfaction, enjoyment]
+- id: q-joy-112
+  text: 手一停不下來，那是好徵兆。
+  tags: [enjoyment, joy]
+- id: q-joy-113
+  text: 做給自己的，最誠實也最快樂。
+  tags: [love, joy]
+- id: q-joy-114
+  text: 亂加一點，作品就活了起來。
+  tags: [play, delight]
+- id: q-joy-115
+  text: 對上的那一刻，值得記下來。
+  tags: [satisfaction, delight]
+- id: q-joy-116
+  text: 純粹的好玩，不需要任何說明。
+  tags: [fun, enjoyment]
+- id: q-joy-117
+  text: 想到就開工，別讓念頭涼掉。
+  tags: [play, joy]
+- id: q-joy-118
+  text: 完成的東西，會替你收好那份心意。
+  tags: [satisfaction, love]
+- id: q-joy-119
+  text: 隨手做的小玩意，最耐看。
+  tags: [lightness, delight]
+- id: q-joy-120
+  text: 你動手的樣子，本身就很好看。
+  tags: [joy, love]
+- id: q-joy-121
+  text: 只想選選材料的日子，也是創作日。
+  tags: [lightness, play]
+- id: q-joy-122
+  text: 投入的那段，是偷來的幸福。
+  tags: [enjoyment, delight]
+- id: q-joy-123
+  text: 好玩的手感，做一百次都想再來。
+  tags: [fun, love]
+- id: q-joy-124
+  text: 收尾不是壓力，是給自己的擁抱。
+  tags: [satisfaction, lightness]
+- id: q-joy-125
+  text: 把腦裡的畫面做出來，超痛快。
+  tags: [delight, satisfaction]
+- id: q-joy-126
+  text: 不用比誰厲害，喜歡就足夠。
+  tags: [love, joy]
+- id: q-joy-127
+  text: 試著試著，就試出樂趣了。
+  tags: [play, fun]
+- id: q-joy-128
+  text: 沒力的時候，做五分鐘就收，很好。
+  tags: [lightness, love]
+- id: q-joy-129
+  text: 完成初稿的你，已經很勇敢。
+  tags: [satisfaction, joy]
+- id: q-joy-130
+  text: 玩形狀、玩質感，玩到笑出來。
+  tags: [play, fun]
+- id: q-joy-131
+  text: 沉進去的時間，最不會後悔。
+  tags: [enjoyment, love]
+- id: q-joy-132
+  text: 喜歡就做，這句話一直有效。
+  tags: [love, joy]
+- id: q-joy-133
+  text: 做完看著它，那口氣很值得。
+  tags: [satisfaction, delight]
+- id: q-joy-134
+  text: 亂中生趣，別怕它不整齊。
+  tags: [play, delight]
+- id: q-joy-135
+  text: 一個新招學會，開心到想炫耀。
+  tags: [delight, joy]
+- id: q-joy-136
+  text: 玩得夠開心，就沒有浪費時間這回事。
+  tags: [fun, enjoyment]
+- id: q-joy-137
+  text: 想開工就開工，不用等到有心情。
+  tags: [play, joy]
+- id: q-joy-138
+  text: 做出來的東西，記著你熬過的夜。
+  tags: [satisfaction, love]
+- id: q-joy-139
+  text: 隨性拼一拼，也可能拼出驚喜。
+  tags: [lightness, delight]
+- id: q-joy-140
+  text: 你的雙手，藏著很多小快樂。
+  tags: [joy, enjoyment]
+- id: q-joy-141
+  text: 今天只想翻翻靈感，也很好。
+  tags: [lightness, play]
+- id: q-joy-142
+  text: 全神貫注的時候，最像自己。
+  tags: [enjoyment, love]
+- id: q-joy-143
+  text: 好玩的事，做久了也不覺得久。
+  tags: [fun, love]
+- id: q-joy-144
+  text: 完成的重量，只有做過的人懂。
+  tags: [satisfaction, delight]
+- id: q-joy-145
+  text: 把想法變真的，是最上癮的事。
+  tags: [delight, satisfaction]
+- id: q-joy-146
+  text: 你不必厲害，只要記得喜歡。
+  tags: [love, joy]
+- id: q-joy-147
+  text: 錯了再試，試錯也是一種玩。
+  tags: [play, fun]
+- id: q-joy-148
+  text: 沒能量就先躺著，靈感會自己回來。
+  tags: [lightness, love]
+- id: q-joy-149
+  text: 做出一點點成果，就足以微笑。
+  tags: [satisfaction, joy]
+- id: q-joy-150
+  text: 玩線條、玩留白，玩得心裡發癢。
+  tags: [play, delight]
+- id: q-joy-151
+  text: 沉浸在做的當下，煩惱都退場。
+  tags: [enjoyment, lightness]
+- id: q-joy-152
+  text: 為喜歡而做，效果總是特別好。
+  tags: [love, satisfaction]
+- id: q-joy-153
+  text: 做完的那一刻，值得替自己拍拍手。
+  tags: [satisfaction, delight]
+- id: q-joy-154
+  text: 亂玩沒有標準答案，這就是自由。
+  tags: [play, fun]
+- id: q-joy-155
+  text: 一個細節被你搞定，爽感翻倍。
+  tags: [delight, satisfaction]
+- id: q-joy-156
+  text: 開心地做，遠比正確地做重要。
+  tags: [fun, joy]
+- id: q-joy-157
+  text: 手癢的日子，就是該動手的日子。
+  tags: [play, enjoyment]
+- id: q-joy-158
+  text: 你做的東西，都在替你記錄此刻。
+  tags: [satisfaction, love]
+- id: q-joy-159
+  text: 隨手的塗鴉，往往最有你的味道。
+  tags: [lightness, delight]
+- id: q-joy-160
+  text: 動手做，就是最好的休息。
+  tags: [enjoyment, joy]
+- id: q-joy-161
+  text: 只想擺弄一下工具，也算開始了。
+  tags: [lightness, play]
+- id: q-joy-162
+  text: 投入的每一秒，都在餵養你的喜歡。
+  tags: [love, enjoyment]
+- id: q-joy-163
+  text: 好玩的東西，會讓你捨不得停。
+  tags: [fun, delight]
+- id: q-joy-164
+  text: 完成的踏實感，睡覺都甜一點。
+  tags: [satisfaction, lightness]
+- id: q-joy-165
+  text: 把念頭捏成形，是很私密的快樂。
+  tags: [delight, love]
+- id: q-joy-166
+  text: 不追厲害，只追那份純粹的喜歡。
+  tags: [love, joy]
+- id: q-joy-167
+  text: 邊做邊改，改到自己滿意就好。
+  tags: [play, satisfaction]
+- id: q-joy-168
+  text: 沒力的日子，允許自己只旁觀。
+  tags: [lightness, love]
+- id: q-joy-169
+  text: 做出雛形的你，已經超過昨天。
+  tags: [satisfaction, joy]
+- id: q-joy-170
+  text: 玩材質、玩配色，玩到眼睛發光。
+  tags: [play, delight]
+- id: q-joy-171
+  text: 專注做東西的安靜，很珍貴。
+  tags: [enjoyment, lightness]
+- id: q-joy-172
+  text: 因為喜歡而做的，都不會白做。
+  tags: [love, satisfaction]
+- id: q-joy-173
+  text: 蓋上最後一筆，長長吐一口氣。
+  tags: [satisfaction, delight]
+- id: q-joy-174
+  text: 玩就是玩，這裡沒人幫你打分數。
+  tags: [play, fun]
+- id: q-joy-175
+  text: 一個小突破，能開心好幾天。
+  tags: [delight, joy]
+- id: q-joy-176
+  text: 願意動手，就已經贏過猶豫的自己。
+  tags: [play, joy]
+- id: q-joy-177
+  text: 你的喜歡，值得被好好做出來。
+  tags: [love, satisfaction]
+- id: q-joy-178
+  text: 做東西的樂趣，藏在指尖，不在結果。
+  tags: [enjoyment, fun]
+- id: q-joy-179
+  text: 今天輕輕做一點，就很剛好。
+  tags: [lightness, love]
+- id: q-joy-180
+  text: 完成一件喜歡的事，是給自己的好日子。
+  tags: [satisfaction, joy]

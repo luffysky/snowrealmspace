@@ -1,0 +1,928 @@
+# 每日創作提示 — 字體與排版練習
+# 主題：換字體、字級對比、行距、對齊、只用文字做設計、標題練習
+# 每則獨一無二；允許低能量的日子；不空泛、不製造罪惡感。
+
+- id: p-typography-001
+  text: 同一句話，用三種字體各排一次，看差別。
+  tags: [typography, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-002
+  text: 把今天的心情寫成一個字，放大到整個畫面。
+  tags: [title, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-003
+  text: 找一段舊訊息，重排它的行距，讀起來更舒服為止。
+  tags: [spacing, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-004
+  text: 用一個標題和一行小字，做出主從關係。
+  tags: [hierarchy, title]
+  estimatedMinutes: 12
+
+- id: p-typography-005
+  text: 只用文字，不放任何圖，做一張生日卡的版面。
+  tags: [text_only, layout]
+  estimatedMinutes: 20
+
+- id: p-typography-006
+  text: 把一個詞左對齊、置中、右對齊各排一次，選你最喜歡的。
+  tags: [alignment, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-007
+  text: 今天很累的話，只換一個字體，看看畫面變了沒。
+  tags: [font, comparison]
+  estimatedMinutes: 5
+
+- id: p-typography-008
+  text: 挑一個襯線字體，配一個無襯線字體，讓它們同框。
+  tags: [font, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-009
+  text: 寫下一句喜歡的話，把最重要的兩個字放大兩倍。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-010
+  text: 把一段文字的行距調到很寬，再調到很窄，感受呼吸感。
+  tags: [spacing, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-011
+  text: 用純文字排一張電影海報的標題區。
+  tags: [title, text_only]
+  estimatedMinutes: 20
+
+- id: p-typography-012
+  text: 找一個常用字，數數看它有幾種你能想到的寫法。
+  tags: [font, comparison]
+  estimatedMinutes: 8
+
+- id: p-typography-013
+  text: 讓一行標題和一段內文用不同字級，差距明顯一點。
+  tags: [hierarchy, spacing]
+  estimatedMinutes: 12
+
+- id: p-typography-014
+  text: 把一段文字全部靠左，只讓標題置中，看層次。
+  tags: [alignment, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-015
+  text: 用一個字母或一個字，填滿整個版面當背景。
+  tags: [title, text_only]
+  estimatedMinutes: 15
+
+- id: p-typography-016
+  text: 挑三個字體，各寫你的名字一次，貼在一起比較。
+  tags: [font, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-017
+  text: 把一段句子的字距拉開一點，讓它像在慢慢說話。
+  tags: [spacing, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-018
+  text: 做一個只有大標題的畫面，其他什麼都不放。
+  tags: [title, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-019
+  text: 用粗體和細體的同款字體，排出一句對話。
+  tags: [font, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-020
+  text: 把一段文字左右對齊，看兩側是否都成一直線。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-021
+  text: 累的日子，只把一行字放大，就算完成。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 5
+
+- id: p-typography-022
+  text: 用同一句話做三種行距版本，選最好讀的。
+  tags: [spacing, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-023
+  text: 幫一段長文字加一個小標，讓眼睛有停靠點。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-024
+  text: 只用逗號和句號當裝飾，排一段文字。
+  tags: [text_only, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-025
+  text: 找一個手寫感字體，寫下今天最想說的一句話。
+  tags: [font, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-026
+  text: 把兩個字上下疊放，中間留一大段空白。
+  tags: [spacing, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-027
+  text: 做一個標題，只用大小不同的同一個字。
+  tags: [title, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-028
+  text: 把一段文字全部靠右對齊，看看感覺變得怎樣。
+  tags: [alignment, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-029
+  text: 用數字排一個版面，只有日期，沒有字。
+  tags: [text_only, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-030
+  text: 挑一段歌詞，用你覺得最搭的字體重排。
+  tags: [font, layout]
+  estimatedMinutes: 18
+
+- id: p-typography-031
+  text: 讓一個字很大、一個字很小，放在同一行。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 8
+
+- id: p-typography-032
+  text: 把一段文字的每一行都對齊到同一條左線。
+  tags: [alignment, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-033
+  text: 只改行距，把一段擁擠的文字變得好呼吸。
+  tags: [spacing, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-034
+  text: 用一句短語當標題，練習把它排得有氣勢。
+  tags: [title, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-035
+  text: 找兩個很像的字體，排同一句話，找出差別在哪。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-036
+  text: 用純文字排一張菜單的版面。
+  tags: [text_only, layout]
+  estimatedMinutes: 25
+
+- id: p-typography-037
+  text: 把標題、副標、內文用三個字級排一次。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 18
+
+- id: p-typography-038
+  text: 低能量日：把一句話置中，就這樣。
+  tags: [alignment, text_only]
+  estimatedMinutes: 5
+
+- id: p-typography-039
+  text: 用很粗的字體寫一個字，感受它的重量。
+  tags: [font, title]
+  estimatedMinutes: 8
+
+- id: p-typography-040
+  text: 把一段文字排成很窄的一直條，像瀑布。
+  tags: [layout, alignment]
+  estimatedMinutes: 12
+
+- id: p-typography-041
+  text: 讓標題的字距比內文寬，看看差異。
+  tags: [spacing, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-042
+  text: 用一個問號當畫面主角，配一行小字。
+  tags: [text_only, hierarchy]
+  estimatedMinutes: 10
+
+- id: p-typography-043
+  text: 挑一個字體，把它從最細排到最粗依序放一排。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-044
+  text: 把一段話拆成三行，每行的斷句都念得順。
+  tags: [layout, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-045
+  text: 只用一種字體，靠大小和粗細做出三個層次。
+  tags: [hierarchy, font]
+  estimatedMinutes: 18
+
+- id: p-typography-046
+  text: 把一個標題置中，內文靠左，看對比。
+  tags: [alignment, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-047
+  text: 用文字排一張明信片的正面，只有一句話。
+  tags: [text_only, title]
+  estimatedMinutes: 15
+
+- id: p-typography-048
+  text: 找一段太密的文字，加大行距救活它。
+  tags: [spacing, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-049
+  text: 用襯線字體寫一個字，感受它的優雅。
+  tags: [font, text_only]
+  estimatedMinutes: 8
+
+- id: p-typography-050
+  text: 把兩句話一大一小疊在一起，做出耳語感。
+  tags: [hierarchy, spacing]
+  estimatedMinutes: 12
+
+- id: p-typography-051
+  text: 只用標點符號排出一張臉或一個圖形。
+  tags: [text_only, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-052
+  text: 把一段文字對齊到畫面正中央的一條線。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-053
+  text: 用一個字體做開心版，再用另一個做安靜版。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-054
+  text: 幫一句長句子挑出關鍵字，只放大那一個。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-055
+  text: 累的話，把一段文字整段往下移，留出上方空白。
+  tags: [spacing, layout]
+  estimatedMinutes: 6
+
+- id: p-typography-056
+  text: 用全大寫和全小寫排同一句英文，比感覺。
+  tags: [font, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-057
+  text: 做一個標題，讓它佔畫面一半以上的空間。
+  tags: [title, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-058
+  text: 把一段文字每行縮排一點點，排成階梯。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-059
+  text: 只用文字排一張「請勿打擾」的門牌。
+  tags: [text_only, title]
+  estimatedMinutes: 15
+
+- id: p-typography-060
+  text: 把行距調到剛好一個字高，再調到兩個字高，比較。
+  tags: [spacing, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-061
+  text: 用一個很細的字體排一整句話，看它有多輕。
+  tags: [font, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-062
+  text: 讓一段文字的第一個字特別大，像故事開頭。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-063
+  text: 把三行字分別靠左、置中、靠右，堆成一組。
+  tags: [alignment, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-064
+  text: 用文字做一個計時器的畫面，只有數字。
+  tags: [text_only, title]
+  estimatedMinutes: 15
+
+- id: p-typography-065
+  text: 挑一句座右銘，用最有力的字體排它。
+  tags: [font, title]
+  estimatedMinutes: 15
+
+- id: p-typography-066
+  text: 把一段文字的段落之間留一大格空白。
+  tags: [spacing, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-067
+  text: 用大中小三種字，排一則假的天氣預報。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 18
+
+- id: p-typography-068
+  text: 把一個標題和它的英文翻譯上下對齊擺好。
+  tags: [alignment, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-069
+  text: 低能量日：只選一個你喜歡的字體，存下來。
+  tags: [font, comparison]
+  estimatedMinutes: 5
+
+- id: p-typography-070
+  text: 用文字排一張演唱會的門票版面。
+  tags: [text_only, layout]
+  estimatedMinutes: 25
+
+- id: p-typography-071
+  text: 讓一句話的字越排越大，像逐漸靠近。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-072
+  text: 把兩種字體混在同一個標題裡，一個字換一次。
+  tags: [font, title]
+  estimatedMinutes: 15
+
+- id: p-typography-073
+  text: 只用文字，做一張「歡迎光臨」的招牌。
+  tags: [text_only, title]
+  estimatedMinutes: 18
+
+- id: p-typography-074
+  text: 把一段文字的字距縮到很緊，看它多密實。
+  tags: [spacing, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-075
+  text: 用一個字級排完整段，只靠斷行做節奏。
+  tags: [layout, text_only]
+  estimatedMinutes: 15
+
+- id: p-typography-076
+  text: 讓標題靠左貼齊邊緣，留出右邊大片空白。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-077
+  text: 挑一個圓潤字體和一個方正字體，同框比對。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-078
+  text: 用文字做一張「今日公休」的告示。
+  tags: [text_only, title]
+  estimatedMinutes: 12
+
+- id: p-typography-079
+  text: 把一段文字分成兩欄，練習欄與欄之間的間距。
+  tags: [layout, spacing]
+  estimatedMinutes: 20
+
+- id: p-typography-080
+  text: 讓一個標題比內文大五倍，感受落差。
+  tags: [hierarchy, title]
+  estimatedMinutes: 10
+
+- id: p-typography-081
+  text: 累的話，把一句話換成手寫字體就好。
+  tags: [font, text_only]
+  estimatedMinutes: 5
+
+- id: p-typography-082
+  text: 把一段文字全部置中，再全部靠左，選較好讀的。
+  tags: [alignment, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-083
+  text: 用純文字排一頁書的內頁，含頁碼。
+  tags: [text_only, layout]
+  estimatedMinutes: 25
+
+- id: p-typography-084
+  text: 讓標題和內文之間的空白，剛好等於一行字高。
+  tags: [spacing, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-085
+  text: 用一個字體寫「快樂」，用另一個寫「安靜」。
+  tags: [font, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-086
+  text: 把一句話排成弧形或斜線，打破水平。
+  tags: [layout, text_only]
+  estimatedMinutes: 15
+
+- id: p-typography-087
+  text: 做一個只有標題和日期的簡單封面。
+  tags: [title, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-088
+  text: 把三段文字的行距各設不同，比哪個最舒服。
+  tags: [spacing, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-089
+  text: 用文字排一張捷運站名的指示牌。
+  tags: [text_only, alignment]
+  estimatedMinutes: 18
+
+- id: p-typography-090
+  text: 讓一個字反白，其他字正常，做出重點。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-091
+  text: 把一段英文和中文並排，讓兩者字級看起來一致。
+  tags: [font, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-092
+  text: 用標點符號當項目符號，排一張清單。
+  tags: [text_only, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-093
+  text: 把標題置中、副標靠右，練習不對齊的平衡。
+  tags: [alignment, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-094
+  text: 低能量日：只把一段文字的行距加寬一點。
+  tags: [spacing, layout]
+  estimatedMinutes: 5
+
+- id: p-typography-095
+  text: 用一個很裝飾的字體寫一個字，其餘用最簡單的。
+  tags: [font, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-096
+  text: 把一句名言排成一張可以當桌布的畫面。
+  tags: [title, layout]
+  estimatedMinutes: 20
+
+- id: p-typography-097
+  text: 讓一段文字每行長度都差不多，練習斷行。
+  tags: [layout, alignment]
+  estimatedMinutes: 15
+
+- id: p-typography-098
+  text: 用大小對比，把一句話分成「重要」和「補充」。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-099
+  text: 挑一個字體，只用它排完一整張自我介紹。
+  tags: [font, layout]
+  estimatedMinutes: 20
+
+- id: p-typography-100
+  text: 把兩個標題左右並排，中間用一條線隔開。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-101
+  text: 用文字排一張「售完」的貼紙。
+  tags: [text_only, title]
+  estimatedMinutes: 10
+
+- id: p-typography-102
+  text: 把一段文字的字距和行距一起調，找最順的組合。
+  tags: [spacing, comparison]
+  estimatedMinutes: 18
+
+- id: p-typography-103
+  text: 讓標題斜放一點角度，內文保持水平。
+  tags: [layout, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-104
+  text: 用同一句話，做粗體版和細體版各一次。
+  tags: [font, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-105
+  text: 把一段文字排成右對齊，看它的邊緣線條。
+  tags: [alignment, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-106
+  text: 用純文字排一張演出的節目單。
+  tags: [text_only, layout]
+  estimatedMinutes: 25
+
+- id: p-typography-107
+  text: 讓一個標題用三種字體各排一版，選最搭主題的。
+  tags: [font, title]
+  estimatedMinutes: 18
+
+- id: p-typography-108
+  text: 累的話，把一句話放大置中，加一句小字署名。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 6
+
+- id: p-typography-109
+  text: 把段落首行縮排一格，練習傳統排版。
+  tags: [alignment, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-110
+  text: 用一個字填滿畫面，再用小字在角落補一句。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-111
+  text: 把行距故意調得很寬，做出寂靜的感覺。
+  tags: [spacing, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-112
+  text: 挑一個字體，觀察它的數字和文字搭不搭。
+  tags: [font, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-113
+  text: 用文字排一張書名頁，只有書名和作者。
+  tags: [title, text_only]
+  estimatedMinutes: 15
+
+- id: p-typography-114
+  text: 讓標題、副標、註解三層各縮小一級。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-115
+  text: 把一段文字左對齊，右邊自然參差，觀察節奏。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-116
+  text: 用兩種字體排一句話，一半正式一半隨性。
+  tags: [font, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-117
+  text: 低能量日：把一個標題換成大寫就好。
+  tags: [title, comparison]
+  estimatedMinutes: 5
+
+- id: p-typography-118
+  text: 用文字排一張「營業中」的翻牌。
+  tags: [text_only, title]
+  estimatedMinutes: 12
+
+- id: p-typography-119
+  text: 把一段文字的每個字距都拉開一倍，看它散開。
+  tags: [spacing, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-120
+  text: 讓一句話從左上排到右下，斜著走。
+  tags: [layout, alignment]
+  estimatedMinutes: 12
+
+- id: p-typography-121
+  text: 用一個字級做整頁，只靠粗細分主次。
+  tags: [hierarchy, font]
+  estimatedMinutes: 18
+
+- id: p-typography-122
+  text: 把一句英文標語，用三種字體各試一次。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-123
+  text: 用文字排一張謝卡，只有兩個字：謝謝。
+  tags: [text_only, title]
+  estimatedMinutes: 10
+
+- id: p-typography-124
+  text: 讓標題貼齊上緣，署名貼齊下緣，中間全空。
+  tags: [layout, alignment]
+  estimatedMinutes: 12
+
+- id: p-typography-125
+  text: 把一段文字的行距慢慢加大，做成漸開的效果。
+  tags: [spacing, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-126
+  text: 用一個粗字體和一個手寫字體，排一句對比。
+  tags: [font, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-127
+  text: 把一個問句放大，答案用小字放它下方。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-128
+  text: 用純文字排一張活動海報，含時間地點。
+  tags: [text_only, layout]
+  estimatedMinutes: 30
+
+- id: p-typography-129
+  text: 讓三行字置中，每行長度不同，看是否平衡。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-130
+  text: 挑一個字體，把它的粗體當標題、細體當內文。
+  tags: [font, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-131
+  text: 累的話，只把一段文字整體縮小一點，留出邊界。
+  tags: [spacing, layout]
+  estimatedMinutes: 5
+
+- id: p-typography-132
+  text: 把一句話排成兩行，讓斷點落在最有力的字前。
+  tags: [layout, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-133
+  text: 用文字排一張倒數牌，只有一個大數字。
+  tags: [title, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-134
+  text: 讓標題右對齊、內文左對齊，做出張力。
+  tags: [alignment, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-135
+  text: 把一段文字換成襯線字體，再換無襯線，比可讀性。
+  tags: [font, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-136
+  text: 用一句話當唯一內容，練習它在畫面裡的位置。
+  tags: [layout, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-137
+  text: 讓標題的字距寬鬆，內文緊湊，做出氣質差。
+  tags: [spacing, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-138
+  text: 用文字排一張咖啡店的價目表。
+  tags: [text_only, alignment]
+  estimatedMinutes: 25
+
+- id: p-typography-139
+  text: 把一個字體的所有粗細，從細到粗排成色階。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-140
+  text: 低能量日：把一句話置中，換個喜歡的字體。
+  tags: [font, alignment]
+  estimatedMinutes: 5
+
+- id: p-typography-141
+  text: 讓一段文字的段首用一個特別大的字帶頭。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-142
+  text: 把兩句話一左一右對齊在畫面兩邊。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-143
+  text: 用文字排一張電子邀請函的標題區。
+  tags: [text_only, title]
+  estimatedMinutes: 20
+
+- id: p-typography-144
+  text: 讓行距等於字高的一點五倍，感受標準間距。
+  tags: [spacing, layout]
+  estimatedMinutes: 10
+
+- id: p-typography-145
+  text: 用一個字體排嚴肅版，另一個排可愛版，同句話。
+  tags: [font, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-146
+  text: 把一段文字排成一個正方形的區塊。
+  tags: [layout, alignment]
+  estimatedMinutes: 15
+
+- id: p-typography-147
+  text: 讓標題用超大字，其他資訊縮到角落。
+  tags: [hierarchy, title]
+  estimatedMinutes: 12
+
+- id: p-typography-148
+  text: 用純文字排一張唱片封面的字樣。
+  tags: [text_only, title]
+  estimatedMinutes: 25
+
+- id: p-typography-149
+  text: 把一句話的每個字都換一種顏色深淺，做層次。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-150
+  text: 累的話，只調整一段文字的對齊方式，看差別。
+  tags: [alignment, comparison]
+  estimatedMinutes: 5
+
+- id: p-typography-151
+  text: 用文字排一張機票登機證的版面。
+  tags: [text_only, layout]
+  estimatedMinutes: 30
+
+- id: p-typography-152
+  text: 讓標題和副標之間，留出一整行空白的距離。
+  tags: [spacing, hierarchy]
+  estimatedMinutes: 10
+
+- id: p-typography-153
+  text: 挑一個很有個性的字體，只寫一個字。
+  tags: [font, title]
+  estimatedMinutes: 8
+
+- id: p-typography-154
+  text: 把一段文字兩端對齊，處理最後一行的收尾。
+  tags: [alignment, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-155
+  text: 用大中小三級字，排一張假的地址標籤。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 15
+
+- id: p-typography-156
+  text: 讓一句話重複三次，每次換一種字體。
+  tags: [font, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-157
+  text: 用文字排一張「小心地滑」的警示牌。
+  tags: [text_only, title]
+  estimatedMinutes: 12
+
+- id: p-typography-158
+  text: 把一段文字的行距故意調到很擠，體會壓迫感。
+  tags: [spacing, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-159
+  text: 讓標題橫排，副標直排，練習方向對比。
+  tags: [layout, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-160
+  text: 用一個字體排完一段話，圈出你最喜歡的一個字。
+  tags: [font, text_only]
+  estimatedMinutes: 10
+
+- id: p-typography-161
+  text: 把一句話置中在畫面正中，四周留大量空白。
+  tags: [alignment, spacing]
+  estimatedMinutes: 10
+
+- id: p-typography-162
+  text: 用文字排一張新年賀卡，只有四個字。
+  tags: [text_only, title]
+  estimatedMinutes: 12
+
+- id: p-typography-163
+  text: 讓一段文字用三個字級，做出明顯的視覺順序。
+  tags: [hierarchy, layout]
+  estimatedMinutes: 18
+
+- id: p-typography-164
+  text: 低能量日：把一個字放到最大，其餘不管。
+  tags: [title, text_only]
+  estimatedMinutes: 5
+
+- id: p-typography-165
+  text: 用兩種行距排同一段，讓上半緊、下半鬆。
+  tags: [spacing, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-166
+  text: 挑一個字體，觀察它的標點長什麼樣子。
+  tags: [font, comparison]
+  estimatedMinutes: 8
+
+- id: p-typography-167
+  text: 把一句話的關鍵字換成不同字體，其餘不變。
+  tags: [font, hierarchy]
+  estimatedMinutes: 12
+
+- id: p-typography-168
+  text: 用純文字排一張電影片尾的工作人員字幕。
+  tags: [text_only, alignment]
+  estimatedMinutes: 25
+
+- id: p-typography-169
+  text: 讓標題貼齊左邊，內文靠右，練習反差對齊。
+  tags: [alignment, hierarchy]
+  estimatedMinutes: 15
+
+- id: p-typography-170
+  text: 把一段文字的每一段前後都留出相等空白。
+  tags: [spacing, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-171
+  text: 用一個字體做白天版，再用同字體加粗做夜晚版。
+  tags: [font, comparison]
+  estimatedMinutes: 12
+
+- id: p-typography-172
+  text: 讓一句短語佔滿寬度，字被拉到剛好貼齊兩邊。
+  tags: [alignment, title]
+  estimatedMinutes: 12
+
+- id: p-typography-173
+  text: 用文字排一張圖書館的分類指示牌。
+  tags: [text_only, layout]
+  estimatedMinutes: 20
+
+- id: p-typography-174
+  text: 把標題放大、內文縮小，比例調到你覺得剛好。
+  tags: [hierarchy, comparison]
+  estimatedMinutes: 15
+
+- id: p-typography-175
+  text: 累的話，只把一段文字換行位置改順一點。
+  tags: [layout, text_only]
+  estimatedMinutes: 5
+
+- id: p-typography-176
+  text: 用三種字體寫同一個標題，貼在牆上遠看比較。
+  tags: [font, title]
+  estimatedMinutes: 15
+
+- id: p-typography-177
+  text: 讓一段文字置中對齊，觀察每行收尾的形狀。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-178
+  text: 把行距和段距都放大，做出很透氣的長文。
+  tags: [spacing, layout]
+  estimatedMinutes: 15
+
+- id: p-typography-179
+  text: 用純文字排一張致謝名單的版面。
+  tags: [text_only, alignment]
+  estimatedMinutes: 20
+
+- id: p-typography-180
+  text: 讓一個標題用細字體，反而顯得更高級，試試看。
+  tags: [font, title]
+  estimatedMinutes: 12
+
+- id: p-typography-181
+  text: 把一段文字分成問句和答句，用兩個字級分開。
+  tags: [hierarchy, text_only]
+  estimatedMinutes: 12
+
+- id: p-typography-182
+  text: 用文字排一張「寄存中」的號碼牌。
+  tags: [text_only, title]
+  estimatedMinutes: 10
+
+- id: p-typography-183
+  text: 讓標題左對齊、日期右對齊，同一條基線上。
+  tags: [alignment, layout]
+  estimatedMinutes: 12
+
+- id: p-typography-184
+  text: 把一句話用最小字體排一次，再用最大排一次。
+  tags: [hierarchy, comparison]
+  estimatedMinutes: 10
+
+- id: p-typography-185
+  text: 低能量日：挑一個字體存起來，明天再用。
+  tags: [font, comparison]
+  estimatedMinutes: 5
