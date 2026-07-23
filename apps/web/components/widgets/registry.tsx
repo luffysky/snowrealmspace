@@ -17,6 +17,7 @@ export type { WidgetProps } from './types'
 
 const COMPONENTS: Record<string, ComponentType<WidgetProps>> = {
   daily_card: lazy(() => import('./impl/DailyCardWidget')),
+  surprise_box: lazy(() => import('./impl/SurpriseBoxWidget')),
   theme_switcher: lazy(() => import('./impl/ThemeSwitcherWidget')),
   background_control: lazy(() => import('./impl/BackgroundControlWidget')),
   quick_note: lazy(() => import('./impl/QuickNoteWidget')),

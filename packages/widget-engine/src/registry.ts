@@ -153,9 +153,9 @@ export const WIDGET_REGISTRY = {
     version: '1.0.0',
     category: 'daily',
     description: '可以打開的東西。',
-    defaultSize: { w: 3, h: 3 },
-    minSize: { w: 2, h: 2 },
-    maxSize: { w: 4, h: 4 },
+    defaultSize: { w: 4, h: 3 },
+    minSize: { w: 3, h: 3 },
+    maxSize: { w: 6, h: 5 },
     configSchema: surpriseBoxConfig,
     defaultConfig: surpriseBoxConfig.parse({}),
     permissions: ['read:daily'],
@@ -290,14 +290,14 @@ export function getWidgetDefinition(id: string): WidgetDefinition<unknown> | nul
  * 新 space 的預設 Home 版面。
  *
  * daily_card 放最上方最寬的位置 —— 它是每天第一眼看到的內容（Milestone E）。
- * 只放「現在真的能用」的 widget（Q6：無假按鈕）；surprise_box / agent_message
- * 要等各自的 Milestone 有內容再加入。
+ * 只放「現在真的能用」的 widget（Q6：無假按鈕）；agent_message 等各自的 Milestone 有內容再加入。
  */
 export function defaultLayoutItems(): GridItem[] {
   return [
     { id: 'daily_card', x: 0, y: 0, w: 6, h: 3 },
-    { id: 'theme_switcher', x: 6, y: 0, w: 6, h: 2 },
-    { id: 'background_control', x: 6, y: 2, w: 6, h: 2 },
-    { id: 'quick_note', x: 0, y: 3, w: 6, h: 3 },
+    { id: 'surprise_box', x: 6, y: 0, w: 6, h: 3 },
+    { id: 'theme_switcher', x: 0, y: 3, w: 4, h: 2 },
+    { id: 'background_control', x: 4, y: 3, w: 4, h: 2 },
+    { id: 'quick_note', x: 8, y: 3, w: 4, h: 3 },
   ]
 }

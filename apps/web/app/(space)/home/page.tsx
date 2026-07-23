@@ -5,6 +5,7 @@ import { emitEvent } from '@snowrealm/analytics'
 import { WIDGET_REGISTRY, GRID, defaultLayoutItems, getWidgetDefinition } from '@snowrealm/widget-engine'
 import { createAdminClient } from '@snowrealm/db/server'
 import { HomeGrid, type WidgetInstanceRow, type AvailableWidget } from './HomeGrid'
+import BirthdayChain from '@/components/widgets/impl/BirthdayChainWidget'
 
 export const metadata: Metadata = { title: 'Home — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -98,6 +99,9 @@ export default async function HomePage() {
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{space.name}</h1>
       </section>
+
+      {/* 生日鏈：這個空間的核心禮物，全寬呈現在版面之上 */}
+      <BirthdayChain />
 
       {layout ? (
         <HomeGrid
