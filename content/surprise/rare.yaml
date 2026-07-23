@@ -1,0 +1,653 @@
+# 驚喜盒內容 — rare（稀有）
+# 比一般驚喜更特別、更用心：較長的暖心話、小小的儀式感、難得的鼓勵、值得收藏的句子。
+# 溫暖、有驚喜感、真誠。空間不宣稱有感情。
+
+- id: s-rare-001
+  label: 一封慢慢寫的信
+  text: 你可能不知道，你為一個細節花的那些時間，最後都會留在作品裡，被某個人接收到。那不是浪費，那是你把在意藏進去的方式。
+  tags: [warm, rare, keepsake]
+
+- id: s-rare-002
+  label: 給此刻的小小儀式
+  text: 現在，把肩膀往後放鬆一點，深深吸一口氣，再慢慢吐掉。就這一次，不為了效率，只為了讓身體記得，它一直陪著你走到這裡。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-003
+  label: 值得收進口袋的句子
+  text: 你不需要每天都閃閃發光。有些日子只是安靜地存在，而那樣的日子，往往在事後才顯出它們有多重要。
+  tags: [keepsake, warm, reflection]
+
+- id: s-rare-004
+  label: 難得的一句真話
+  text: 你把自己要求得那麼嚴，其實已經比你以為的走得更遠了。回頭看看那條路，是你一步一步鋪出來的，沒有人替你走過任何一段。
+  tags: [encouragement, warm, rare]
+
+- id: s-rare-005
+  label: 一段收藏起來的話
+  text: 溫柔不是軟弱，它是一種在看清世界之後，仍然選擇不變硬的力氣。你身上有這種力氣，這件事本身就很珍貴。
+  tags: [meaningful, warm, keepsake]
+
+- id: s-rare-006
+  label: 為今天留一格空白
+  text: 試著在今天替自己留一段什麼都不做的時間。不是偷懶，是給腦袋一個喘息的縫隙，讓那些還沒成形的想法有地方慢慢長出來。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-007
+  label: 一句想送給你的話
+  text: 你願意把心思放在別人看不見的地方，這種認真通常沒有掌聲，但正是它讓你和別人不一樣。這份特質，請你自己也記得欣賞。
+  tags: [encouragement, warm, meaningful]
+
+- id: s-rare-008
+  label: 慢下來的三十秒
+  text: 找一個窗，看向最遠的那個點，停留三十秒。眼睛需要遠方，心也是。看得遠一點，很多近處的煩惱會忽然變得可以放下。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-009
+  label: 一顆藏了很久的糖
+  text: 你做的很多事，短時間內看不到回音，但它們不會憑空消失。它們會在某個你意想不到的時刻，換一種樣子回到你身上。
+  tags: [gift, warm, rare]
+
+- id: s-rare-010
+  label: 給努力的人的悄悄話
+  text: 進步這件事，多半不是轟轟烈烈的。它藏在你今天比昨天多懂的一點點裡，藏在你不再犯的那個舊錯誤裡。你正在變好，只是太安靜了。
+  tags: [encouragement, reflection, rare]
+
+- id: s-rare-011
+  label: 一個值得記住的比喻
+  text: 你像是在為一棵看不到根的樹澆水。你不確定它有沒有在長，但只要你持續，某天它會突然冒出你等了很久的那片綠。
+  tags: [meaningful, warm, keepsake]
+
+- id: s-rare-012
+  label: 替自己泡一杯的時間
+  text: 去泡一杯你喜歡的飲料吧，慢慢地，不急著回來。等它的溫度剛剛好的那幾分鐘，就當作是今天你送給自己的一小段假期。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-013
+  label: 一段想被你聽見的話
+  text: 你不必把每一件事都做到完美才值得休息。累了就停，這不是放棄，是聰明。真正能走得遠的人，都懂得替自己留餘力。
+  tags: [warm, encouragement, rare]
+
+- id: s-rare-014
+  label: 收藏一種看事情的角度
+  text: 你曾經覺得過不去的那些關卡，現在回頭看，多半已經變成你能輕鬆聊起的往事。今天卡住你的，將來也會是這樣。
+  tags: [reflection, keepsake, rare]
+
+- id: s-rare-015
+  label: 一個小小的提醒
+  text: 你對別人那麼寬容，記得也把同樣的溫柔留一份給自己。你值得被你自己好好對待，這不是奢侈，是應該的。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-016
+  label: 給創作者的一句話
+  text: 你腦中那個還不完整的想法，別急著否定它。最好的東西一開始往往都很笨拙，是你的耐心把它一點一點養成了樣子。
+  tags: [encouragement, meaningful, rare]
+
+- id: s-rare-017
+  label: 一段可以帶著走的話
+  text: 不是所有付出都要被看見才算數。有些溫柔你悄悄給了出去，它就在那個人心裡發著光，只是他可能還來不及告訴你。
+  tags: [warm, keepsake, meaningful]
+
+- id: s-rare-018
+  label: 為雙手做一件事
+  text: 把手心搓熱，輕輕蓋在閉起的眼睛上，停留一會兒。這雙手替你做了那麼多事，讓它們也感受一次被溫暖的樣子。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-019
+  label: 一句難得的坦白
+  text: 你其實比你自己相信的更堅強。那些你以為自己撐不過去的時刻，最後都撐過來了，而你甚至沒給自己記上一功。
+  tags: [encouragement, reflection, rare]
+
+- id: s-rare-020
+  label: 想讓你收下的一段話
+  text: 你在意的那些小事一點也不小。是那些細節堆起了一個人的品味與溫度，而你剛好是會為這些事認真的人，這很難得。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-021
+  label: 給此刻的一份安靜
+  text: 把手機翻過來，讓螢幕朝下，就一小段時間。世界沒有你想像的那麼急，很多事願意等你把自己的節奏調回來。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-022
+  label: 一顆遲來的星星
+  text: 你曾經想放棄卻沒有放棄的那一次，才是真正厲害的地方。撐下去從來不容易，而你做到了，這件事值得你偶爾拿出來對自己驕傲。
+  tags: [encouragement, keepsake, rare]
+
+- id: s-rare-023
+  label: 收進心裡的一句話
+  text: 你不需要向誰證明你夠好。你已經是了。那些懷疑只是路過的天氣，而你是天氣底下一直都在的那片土地。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-024
+  label: 為今天挑一個顏色
+  text: 隨手找一樣你喜歡的顏色的東西，放在看得到的地方。讓它陪你一整天。有時候讓心情變好，只需要眼角有一點喜歡的東西。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-025
+  label: 一段值得停下來讀的話
+  text: 你以為自己走得很慢，但慢不等於停。河流也很慢，它從不著急，卻總能抵達海。你的方向是對的，剩下的交給時間。
+  tags: [encouragement, reflection, keepsake]
+
+- id: s-rare-026
+  label: 給疲憊的一句話
+  text: 累，不是因為你不夠好，而是因為你一直在認真地活。認真的人才會累，這份累裡藏著你對生活的不將就。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-027
+  label: 一個小小的告白
+  text: 你做過的一件善良的事，可能早就被你忘了，但接收到的那個人記得。善意有很長的記憶，它會替你在別處默默活著。
+  tags: [warm, keepsake, meaningful]
+
+- id: s-rare-028
+  label: 替呼吸留一點時間
+  text: 試試看：吸氣數到四，停住數到四，吐氣數到六。做三輪就好。這是身體最誠實的重開機，它從不讓人失望。
+  tags: [ritual, rare, reflection]
+
+- id: s-rare-029
+  label: 一句想陪你走遠的話
+  text: 你不是要成為別人，你只是要成為更像自己的那個人。這條路沒有地圖，但你每一次忠於自己的選擇，都在替它畫出方向。
+  tags: [meaningful, encouragement, keepsake]
+
+- id: s-rare-030
+  label: 為今天寫一行字
+  text: 找張紙，寫下今天讓你有一點點開心的一件小事，哪怕只是一口好喝的水。把它留著。這些小事累積起來，就是你善待自己的證據。
+  tags: [ritual, warm, keepsake]
+
+- id: s-rare-031
+  label: 一段不常說出口的話
+  text: 你的存在本身就已經替某些人讓世界好過一點了。你不必做什麼特別的事，光是你在，對某些人來說就已經是一種安心。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-032
+  label: 收藏一種相信
+  text: 你正在做的事，也許現在還看不出意義。但意義多半是回頭才看得清的，等你走得夠遠，這一段會變成你很慶幸沒放棄的一段。
+  tags: [reflection, encouragement, keepsake]
+
+- id: s-rare-033
+  label: 給雙眼的休息
+  text: 閉上眼睛，慢慢地數十下再張開。這麼小的一件事，卻是你一整天當中最少虧待自己的十秒。眼睛會謝謝你，你也會。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-034
+  label: 一句想留給你的話
+  text: 別人的節奏是別人的，你不必跟著跑。花有花期，你也有你的。晚一點開的花，往往開得更久，也更被記得。
+  tags: [encouragement, meaningful, rare]
+
+- id: s-rare-035
+  label: 一份藏起來的溫柔
+  text: 你替別人著想的那些時刻，也許沒被說出來，但都被感覺到了。體貼是一種很安靜的才華，而你剛好擁有很多。
+  tags: [warm, keepsake, meaningful]
+
+- id: s-rare-036
+  label: 為今天挑一首歌
+  text: 放一首你很久沒聽、但一聽就會想起某段時光的歌。讓它帶你回去一下下。有些記憶需要偶爾被拜訪，才不會走散。
+  tags: [ritual, warm, reflection]
+
+- id: s-rare-037
+  label: 一段值得慢慢想的話
+  text: 你不用把所有問題都今天解決。有些事需要的不是更多努力，而是更多時間。放著，讓它慢慢自己找到出口，也是一種認真。
+  tags: [reflection, warm, rare]
+
+- id: s-rare-038
+  label: 給心的一句悄悄話
+  text: 你曾經以為自己撐不過去的那段日子，現在你正站在它的另一端回望。這說明了一件事：你比困難更有耐力，一向如此。
+  tags: [encouragement, keepsake, rare]
+
+- id: s-rare-039
+  label: 替自己說一句好話
+  text: 對著鏡子，說一句平常你只會對朋友說的鼓勵，說給自己聽。你會發現，你對別人有多溫柔，就有多值得那份溫柔。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-040
+  label: 一顆值得留著的種子
+  text: 你今天學到的、想到的、感受到的，都不會白費。它們像種子落進土裡，你看不見它們發芽，但它們正在你看不見的地方準備長大。
+  tags: [meaningful, reflection, keepsake]
+
+- id: s-rare-041
+  label: 一句想送到你手上的話
+  text: 你不需要更完美才配得上好事。好事不是獎品，不是做到某個標準才發。你此刻的樣子，就已經值得一些溫柔的降臨。
+  tags: [warm, encouragement, rare]
+
+- id: s-rare-042
+  label: 為肩膀鬆一次綁
+  text: 把兩邊肩膀用力聳到最高，停三秒，再一口氣放掉。感覺那份沉重被卸下的瞬間。你揹了很多，偶爾也要記得放下來看看。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-043
+  label: 收藏一種眼光
+  text: 你有一種本事，能在別人忽略的地方看見美。這種眼光很稀有，它讓你的世界比別人多了一層溫度，也讓你身邊的人跟著被照亮。
+  tags: [meaningful, warm, keepsake]
+
+- id: s-rare-044
+  label: 一段陪你入睡的話
+  text: 今天做得夠多了。沒做完的，明天還在，它們哪裡都不會去。此刻你唯一要做的，就是好好把自己交給休息，讓夜晚替你收尾。
+  tags: [warm, reflection, rare]
+
+- id: s-rare-045
+  label: 給雙腳一個獎勵
+  text: 脫掉鞋子，讓腳趾自由地動一動，伸展一下。這雙腳帶你走過今天所有的地方，替它們鬆一口氣，是最容易被忘記的溫柔。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-046
+  label: 一句難得的認可
+  text: 你把一件事堅持了這麼久，光是這份持續就贏過很多人。世界上最難的不是開始，是不放棄，而你正在做那件最難的事。
+  tags: [encouragement, keepsake, rare]
+
+- id: s-rare-047
+  label: 收進抽屜的一段話
+  text: 你的溫柔不是理所當然的。它是你即使被生活磨過，仍然選擇留下的東西。這份選擇很勇敢，也很值得被人好好珍惜。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-048
+  label: 為今天找一個香味
+  text: 去聞一樣你喜歡的味道，咖啡、茶、皂香、或窗外的空氣都好。氣味是記憶最短的路，讓一個好味道替你把今天標記成溫柔的一天。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-049
+  label: 一段值得記下的話
+  text: 你不必贏過所有人。你只要今天比昨天多喜歡自己一點，就已經走在一條很多人一輩子都找不到的路上了。
+  tags: [reflection, encouragement, keepsake]
+
+- id: s-rare-050
+  label: 給忙碌的一個縫隙
+  text: 停下來，感受一下此刻你的呼吸是深還是淺。如果是淺的，就補一口長長的氣。身體的訊號很老實，值得你偶爾停下來聽它說話。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-051
+  label: 一句想被你收下的話
+  text: 你為別人撐傘的時候，別忘了自己也會淋濕。今天，讓某個人替你撐一次，或者，至少讓自己躲進屋簷下歇一會兒。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-052
+  label: 收藏一個小小的真理
+  text: 慢慢來，其實比較快。急著要結果的時候，往往漏掉了讓事情變好的那些細節。你天生就懂得慢，這不是缺點，是你的節奏。
+  tags: [reflection, keepsake, rare]
+
+- id: s-rare-053
+  label: 為心情換一個場景
+  text: 走到另一個房間，或走到窗邊，讓眼前的畫面換一換。換個地方，思緒也會跟著鬆開。卡住的時候，有時只是需要換一扇窗。
+  tags: [ritual, warm, reflection]
+
+- id: s-rare-054
+  label: 一段值得珍藏的話
+  text: 你做的許多決定，當下都沒有標準答案，你只是憑著當時最好的自己選了。那已經足夠好了。別用現在的眼光，苛責過去盡了力的你。
+  tags: [warm, reflection, keepsake]
+
+- id: s-rare-055
+  label: 給今天一個溫柔的開場
+  text: 在開始忙之前，先替自己說一句：「不管今天怎麼樣，我都會好好對待自己。」把這句話當成今天的底色，其餘的事就交給它去暈開。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-056
+  label: 一句難得說出的實話
+  text: 你其實已經很好了。不是「還可以更好」的那種好，而是此刻就值得被肯定的好。這句話你可能不習慣聽，但它是真的。
+  tags: [encouragement, warm, rare]
+
+- id: s-rare-057
+  label: 收進心底的一段話
+  text: 你曾經以為很重要、後來卻淡掉的那些煩惱，說明了一件溫柔的事：時間會替你篩選，真正重要的會留下，其餘的會自己走遠。
+  tags: [reflection, keepsake, meaningful]
+
+- id: s-rare-058
+  label: 為手指做一個伸展
+  text: 把十根手指用力張開到最大，停住，再慢慢握成拳。做兩三次。這雙手替你打字、創作、握住重要的東西，值得偶爾被好好照顧。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-059
+  label: 一段想留在你耳邊的話
+  text: 你不是麻煩，你的需要也不是。願意說出自己需要什麼的人，其實很勇敢。下一次想開口的時候，記得你有這個資格。
+  tags: [warm, encouragement, rare]
+
+- id: s-rare-060
+  label: 收藏一種溫柔的相信
+  text: 你相信的那些美好的事，也許現在的世界還配不上它們，但別因此把它們收起來。正是因為有人願意相信，那些美好才不會絕種。
+  tags: [meaningful, warm, keepsake]
+
+- id: s-rare-061
+  label: 為此刻按一次暫停
+  text: 把正在做的事停一下，問自己：現在的我，需要的是繼續，還是休息？誠實地回答，然後照著做。你比任何進度表都更懂你自己。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-062
+  label: 一句值得收下的鼓勵
+  text: 你不必等到準備好才開始。沒有人是完全準備好的，大家都是一邊走一邊學。你已經有的勇氣，比你缺的那份準備更重要。
+  tags: [encouragement, meaningful, rare]
+
+- id: s-rare-063
+  label: 給今天留一個好句子
+  text: 隨手記下今天你聽到或想到的一句喜歡的話，哪怕只有幾個字。這些句子日後翻出來，會像是過去的你，隔著時間對現在的你眨眼。
+  tags: [ritual, keepsake, warm]
+
+- id: s-rare-064
+  label: 一段慢下來才懂的話
+  text: 你以為的浪費時間，有時是心在替你消化那些說不清的東西。發呆、走神、放空，都不是罪。它們是你內在正在整理自己的方式。
+  tags: [reflection, warm, rare]
+
+- id: s-rare-065
+  label: 替自己倒一杯水
+  text: 去倒一杯水，慢慢喝完它。不趕，不配著別的事。就只是喝水，感覺它流過喉嚨。這是你今天最簡單、也最不會後悔的一件善待。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-066
+  label: 一句想陪你久一點的話
+  text: 你身上那些你以為的「太多」——想太多、感覺太深、在乎太重——其實正是讓你成為你的原因。別修剪它們，那是你最珍貴的部分。
+  tags: [meaningful, warm, keepsake]
+
+- id: s-rare-067
+  label: 收藏一種面對的方式
+  text: 遇到過不去的時候，不一定要用力衝。有時候繞一下、等一下、放一晚再看，路自己就出現了。柔軟也是一種很厲害的解法。
+  tags: [reflection, encouragement, rare]
+
+- id: s-rare-068
+  label: 為今天挑一個小目標
+  text: 替今天選一件小小的、做得到的事，做完它。不是為了成就，是為了讓自己感覺「我可以」。這種確定感，是最實在的能量來源。
+  tags: [ritual, encouragement, meaningful]
+
+- id: s-rare-069
+  label: 一段值得反覆讀的話
+  text: 你的價值不是由你完成了多少事決定的。就算今天什麼都沒做成，你依然完整，依然值得。生產力衡量產出，衡量不了一個人。
+  tags: [warm, reflection, keepsake]
+
+- id: s-rare-070
+  label: 給臉部一個放鬆
+  text: 注意一下你的眉頭、下巴、嘴角，它們是不是不知不覺就緊起來了？輕輕鬆開它們。臉是最誠實的地方，讓它先鬆下來，心會跟上。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-071
+  label: 一句藏了心意的話
+  text: 你認真的樣子很好看。不是完美的那種好看，是投入的那種——眼裡有光、忘了時間的那種。這種好看，別人不一定說，但都看得見。
+  tags: [warm, encouragement, rare]
+
+- id: s-rare-072
+  label: 收進口袋的一個念頭
+  text: 你不欠世界一個永遠都好的狀態。有低潮、有卡關、有什麼都不想做的日子，都很正常。允許自己不好，也是照顧自己的一部分。
+  tags: [warm, reflection, meaningful]
+
+- id: s-rare-073
+  label: 為今天記一件好事
+  text: 想一想今天有沒有一個瞬間，讓你覺得「還好有這個」。把它在心裡多停留幾秒。快樂常常是這樣被錯過的——它來過，只是沒被留住。
+  tags: [ritual, warm, keepsake]
+
+- id: s-rare-074
+  label: 一段想被你相信的話
+  text: 你走到今天的每一步，都是靠自己撐過來的。就算有人幫過你，最後邁出去的那隻腳，都是你的。這份力氣一直都在你身上。
+  tags: [encouragement, reflection, rare]
+
+- id: s-rare-075
+  label: 收藏一個溫柔的提醒
+  text: 你不必把善良用光在所有人身上。有些人值得你的溫柔，有些人不值得。學會分辨，不是變冷，是懂得把好的留給對的人，包括你自己。
+  tags: [meaningful, warm, rare]
+
+- id: s-rare-076
+  label: 給今天一次深呼吸
+  text: 現在，做一次比平常更深的呼吸。吸到不能再吸，停一下，再全部吐光。感覺胸口那份被撐開又放鬆的感覺。這一口氣，只屬於你。
+  tags: [ritual, rare, warm]
+
+- id: s-rare-077
+  label: 一句值得帶在身上的話
+  text: 你不用讓所有人都懂你。真正重要的那幾個人懂就夠了，剩下的誤解，時間會替你澄清，或者，根本不需要澄清。
+  tags: [reflection, encouragement, keepsake]
+
+- id: s-rare-078
+  label: 為今天說一次謝謝
+  text: 對一個平常被你視為理所當然的東西說聲謝謝——一盞燈、一張椅子、一雙好走的鞋。感恩不必宏大，它藏在最日常的地方等你發現。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-079
+  label: 一段想慢慢說給你聽的話
+  text: 你也許覺得自己普通，但普通裡有一種被低估的珍貴。願意日復一日把該做的事做好、把在乎的人放心上，這種人才是真正撐起世界的人。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-080
+  label: 收藏一種和自己的和解
+  text: 過去那個做錯選擇的你，不需要被原諒，因為他從來沒有惡意，他只是還不夠懂。對他溫柔一點，那也是現在的你，變得更成熟的證明。
+  tags: [reflection, warm, rare]
+
+- id: s-rare-081
+  label: 給眼睛看一次遠方
+  text: 找到房間裡最遠的那個角落，讓視線在那裡停一會兒。眼睛長時間看近的東西會累，心也是。看遠一點，是一種很便宜的療癒。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-082
+  label: 一句難得的溫柔實話
+  text: 你不需要贏得每一場對話、證明每一個觀點。有時候不爭，不是輸，是你選擇把力氣留給更值得的事。安靜的成熟，最有力量。
+  tags: [meaningful, encouragement, rare]
+
+- id: s-rare-083
+  label: 收進心裡的一段暖話
+  text: 你曾經照顧過的人、幫過的忙、聽過的心事，都在別人的生命裡留下了痕跡。你或許不知道，但你早已是某些人記憶裡溫暖的那一段。
+  tags: [warm, keepsake, meaningful]
+
+- id: s-rare-084
+  label: 為今天挑一個微笑
+  text: 想一件會讓你嘴角忍不住上揚的事——一個人、一句話、一個畫面。讓那個微笑真的出現在臉上。身體會記得這個表情，它會替你留住這份好。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-085
+  label: 一段值得收藏的相信
+  text: 你正在慢慢變成一個你會喜歡的人。這個過程不會有煙火，只有一次又一次微小的選擇。而你每一次選擇溫柔與誠實，都在替未來鋪路。
+  tags: [reflection, encouragement, keepsake]
+
+- id: s-rare-086
+  label: 給脖子一個小小的鬆綁
+  text: 讓頭慢慢往左倒，感覺右邊脖子被拉開，停幾秒，再換另一邊。這裡藏了你一整天低頭的疲憊，鬆開它，像替自己卸下一個看不見的重量。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-087
+  label: 一句想放進你心裡的話
+  text: 你不必時時刻刻都有意義。有些時光就是拿來浪費的、發呆的、什麼也不留下的，而那樣的時光，往往在多年後成了最想念的部分。
+  tags: [warm, reflection, rare]
+
+- id: s-rare-088
+  label: 收藏一個看待失敗的方式
+  text: 你搞砸過的每一件事，都替你換來了一個別人沒有的東西——經驗。失敗不是相反詞，它是成功的前一頁，而你正在一頁一頁往下翻。
+  tags: [encouragement, reflection, keepsake]
+
+- id: s-rare-089
+  label: 為今天留一句給明天
+  text: 寫一句話給明天的自己，不必勵志，只要真誠。也許是「別忘了喝水」，也許是「你可以的」。讓今天的你，替明天的你放一個溫柔的伏筆。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-090
+  label: 一段想陪你面對難處的話
+  text: 現在的難，是因為你正在往上走，上坡本來就比較喘。等你走到平的地方回頭看，會發現這段喘不過氣的路，正是你長出肌肉的地方。
+  tags: [encouragement, reflection, rare]
+
+- id: s-rare-091
+  label: 收進抽屜的溫柔
+  text: 你對世界的那點期待、那點浪漫、那點不肯妥協，都不是幼稚。是你還沒被磨平，是你心裡還留著光。請你好好護著這團光，別讓它熄。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-092
+  label: 給雙手一個交握
+  text: 把兩隻手交握在一起，輕輕握一下，像和一位老朋友打招呼。這雙手一直忠實地替你工作，這一握，是你難得對它們說的謝謝。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-093
+  label: 一句值得反覆咀嚼的話
+  text: 你不必為了合群而變成別人。真正對的人，喜歡的是你原本的樣子，不是你努力偽裝出來的版本。做自己，是最省力也最長久的活法。
+  tags: [reflection, encouragement, keepsake]
+
+- id: s-rare-094
+  label: 為心情做一次整理
+  text: 花一分鐘，把此刻心裡最重的那件事說出來——對自己說也好，寫下來也行。說出來，它就沒那麼大了。情緒最怕被看見，一被看見就鬆了。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-095
+  label: 一段想溫柔提醒你的話
+  text: 你不欠任何人一個解釋，關於你為什麼選擇休息、選擇拒絕、選擇走一條和別人不一樣的路。你的人生，你有最終的決定權，一直都有。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-096
+  label: 收藏一個關於時間的秘密
+  text: 你現在覺得漫長難熬的，未來會被壓縮成一句輕描淡寫的話。而你現在覺得平凡無奇的日常，未來會被放大成很想再回去的一天。好好過今天。
+  tags: [reflection, keepsake, meaningful]
+
+- id: s-rare-097
+  label: 給今天一個好的收尾
+  text: 在結束一天之前，替自己做一件小小的、完整的事——泡個腳、讀幾頁書、收拾一個角落。有始有終的小事，會讓整個一天感覺被好好安放了。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-098
+  label: 一句難得的直白
+  text: 你已經比很多人努力了。你只是太習慣看自己還差的部分，卻忘了計算自己已經走過的距離。今天，試著只看你做到的，那份清單其實很長。
+  tags: [encouragement, warm, rare]
+
+- id: s-rare-099
+  label: 收進心底的一種勇敢
+  text: 願意在受過傷之後，還選擇對人保持柔軟，這是最高級的勇敢。你沒有變得防備、變得刻薄，這件事本身，就值得你為自己鼓一次掌。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-100
+  label: 為今天挑一個窗景
+  text: 走到窗邊，認真看一分鐘外面的世界——天空的顏色、樹的動靜、路過的人。世界一直在替你上演一些免費的美，只是平常你太忙沒空看。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-101
+  label: 一段值得收好的話
+  text: 你不是「還不夠好」，你只是「還在路上」。這兩者天差地別。前者是否定，後者是希望。而你，一直都是後者，從來不是前者。
+  tags: [encouragement, reflection, keepsake]
+
+- id: s-rare-102
+  label: 給身體一次伸懶腰
+  text: 現在，雙手往上舉到最高，用力伸一個大大的懶腰，像貓一樣把身體整個拉長。做完會有一種很舒服的酸。這是身體最原始的快樂，別省。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-103
+  label: 一句想留給你的溫柔
+  text: 你替別人記得的那些小事——他的喜好、他的忌口、他隨口說過的願望——說明你是一個把愛放在細節裡的人。這種愛，最不張揚，也最深。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-104
+  label: 收藏一種面對評價的姿態
+  text: 不是每個人的意見都需要被你放在心上。有些話出自了解，值得聽；有些話只是路過的噪音，聽過就好。你有權替自己篩選要相信誰。
+  tags: [reflection, encouragement, rare]
+
+- id: s-rare-105
+  label: 為今天種一個念想
+  text: 想一件你一直想做、卻還沒去做的小事——不必是大夢想，一頓想吃的飯也行。把它記下來，替它挑一個日子。期待，是生活最好的燃料。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-106
+  label: 一段想慢慢傳給你的話
+  text: 你身上有一種安靜的重量，讓靠近你的人覺得踏實。那不是你刻意營造的，是你長年待人真誠自然長出來的。這份重量，很難得，也很難學。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-107
+  label: 收進口袋的一句話
+  text: 你不必今天就想通所有的事。有些答案要等你走遠一點才會浮現，急也急不來。允許自己暫時不懂，也是一種對人生的信任。
+  tags: [reflection, warm, rare]
+
+- id: s-rare-108
+  label: 給今天一次靜默
+  text: 找一個沒有聲音的角落，坐下來，什麼都不做，就待一分鐘。安靜有它的營養，我們平常太吵，久了會忘記，原來什麼都不聽，也是一種休息。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-109
+  label: 一句值得留下的相信
+  text: 你的溫柔會替你把對的人吸引過來。你不用去追、去討好，只要繼續做真誠的自己，那些同頻的人，會在某個路口自然而然地認出你。
+  tags: [encouragement, meaningful, keepsake]
+
+- id: s-rare-110
+  label: 為雙腳做一次踏實
+  text: 把雙腳平放在地上，感覺腳掌和地面接觸的那份實在。你被穩穩地承接著，一直都是。累的時候，記得你腳下始終有一片托著你的地。
+  tags: [ritual, warm, rare]
+
+- id: s-rare-111
+  label: 一段想被你收藏的話
+  text: 你經歷過的每一段難熬，都沒有白費——它們把你變成一個更能懂別人的人。你受過的傷，日後會變成你伸給別人的那隻溫暖的手。
+  tags: [warm, reflection, keepsake]
+
+- id: s-rare-112
+  label: 收藏一個關於節奏的真理
+  text: 你不必一直往前。休息不是脫離軌道，它就是軌道的一部分。連田都需要休耕才長得好，何況是你。慢一段，是為了能走更長的一段。
+  tags: [reflection, encouragement, rare]
+
+- id: s-rare-113
+  label: 為今天挑一件舒服的事
+  text: 替自己安排一件今天一定會做的、純粹讓自己舒服的小事——一段音樂、一集節目、一塊喜歡的點心。快樂不必等大事，它可以被你主動安排。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-114
+  label: 一句難得的溫柔叮嚀
+  text: 你可以又努力、又善待自己，這兩件事從來不衝突。真正走得遠的人，不是把自己逼到極限，而是懂得在用力和放鬆之間，找到自己的呼吸。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-115
+  label: 收進心裡的一種眼光
+  text: 你看待世界的方式很特別，那些你注意到的、在意的、覺得美的東西，拼起來就是一個只屬於你的世界。這個世界，別人進不來，也複製不了。
+  tags: [meaningful, keepsake, reflection]
+
+- id: s-rare-116
+  label: 給今天一次自我確認
+  text: 問自己一句：「我今天，有沒有對自己好過？」如果還沒，現在就補一件。這個問題若能每天問一次，日子會慢慢往溫柔的方向偏過去。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-117
+  label: 一段值得慢讀的話
+  text: 你不是被困住了，你只是暫時停在一個需要沉澱的地方。種子在土裡的那段時間，看起來什麼都沒發生，其實正是它最用力的時候。
+  tags: [encouragement, reflection, keepsake]
+
+- id: s-rare-118
+  label: 為心留一扇窗
+  text: 找一件今天讓你稍微感動的小事，在心裡替它留一個位置。感動是很容易蒸發的東西，你多留意一次，心就多柔軟一分，也多富有一分。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-119
+  label: 一句想陪你久一點的話
+  text: 你值得的，不是那種要你不斷證明才給的愛，而是那種你只要是你、就理所當然被珍惜的愛。別把標準降低，你配得上後面那一種。
+  tags: [warm, encouragement, rare]
+
+- id: s-rare-120
+  label: 收藏一個溫柔的結論
+  text: 走到這裡，你已經比你想像的更堅韌、更溫柔、更懂得怎麼活了。剩下的路還很長，但你帶著的，是一個一路都沒放棄善良的自己。這就夠了。
+  tags: [warm, meaningful, keepsake]
+
+- id: s-rare-121
+  label: 給今天一個小小的完成
+  text: 挑一件擱著很久、其實很快就能收尾的小事，現在把它做完。那份「終於處理掉」的輕鬆，是你今天最容易得到、也最踏實的一份快樂。
+  tags: [ritual, encouragement, rare]
+
+- id: s-rare-122
+  label: 一段想留在你心上的話
+  text: 你不必等到被誰肯定，才允許自己開心。你可以是第一個為自己鼓掌的人。學會欣賞自己，是一種不必依賴別人的、最穩的幸福。
+  tags: [warm, reflection, keepsake]
+
+- id: s-rare-123
+  label: 收藏一種關於堅持的理解
+  text: 堅持不是咬牙硬撐，那樣會斷。真正的堅持是柔軟的——今天做一點，明天做一點，累了就停一下，然後再回來。你一直用的，就是這種方式。
+  tags: [reflection, encouragement, rare]
+
+- id: s-rare-124
+  label: 為今天挑一個好的念頭
+  text: 睡前，替自己想一個明天值得期待的小理由——哪怕只是一杯早晨的咖啡。帶著期待入睡的人，隔天醒來，心裡會先亮一盞小燈。
+  tags: [ritual, warm, gift]
+
+- id: s-rare-125
+  label: 一句難得的溫柔真話
+  text: 你不必是最好的，你只要是真的。真誠的東西，就算不完美，也比完美的假象更能打動人。你身上那份真，才是別人真正記得你的原因。
+  tags: [meaningful, encouragement, keepsake]
+
+- id: s-rare-126
+  label: 收進心底的一段暖意
+  text: 你可能忘了，但你曾經在某個平凡的日子，替某個人撐住了他快要塌下來的那一刻。你的存在，替別人的世界多留了一點光，這種事很珍貴。
+  tags: [warm, meaningful, rare]
+
+- id: s-rare-127
+  label: 給呼吸一個溫柔的儀式
+  text: 現在，把注意力放在鼻尖，感覺空氣進來時微涼、出去時微溫。只是專心呼吸這一件事，就能把飄遠的心，輕輕收回到此刻的身體裡。
+  tags: [ritual, reflection, rare]
+
+- id: s-rare-128
+  label: 一段值得收好的相信
+  text: 你正在做的努力，就像替一幅還看不出全貌的畫上色。你只能看見眼前這一小塊，但你每一筆都算數。等它完成，你會慶幸自己沒有中途放下筆。
+  tags: [encouragement, meaningful, keepsake]
+
+- id: s-rare-129
+  label: 為今天留一句感謝自己
+  text: 對自己說一句：「謝謝你今天這麼認真。」你很少這樣謝自己，總把功勞往外推。但今天的一切，確實是你撐起來的，這句謝，你受得起。
+  tags: [ritual, warm, meaningful]
+
+- id: s-rare-130
+  label: 一句想慢慢留給你的話
+  text: 你不必成為一個沒有裂縫的人。光，往往就是從裂縫裡透進來的。你身上那些你以為的破損，其實正是讓溫柔和理解，能夠照進你心裡的地方。
+  tags: [warm, meaningful, keepsake]

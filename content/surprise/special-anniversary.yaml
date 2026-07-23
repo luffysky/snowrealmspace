@@ -1,0 +1,627 @@
+# 驚喜盒內容：special（一次性特別驚喜）與 anniversary（週年）
+# 繁體中文（台灣用語）。溫暖、真誠、有份量。
+# 空間不宣稱有感情，但會一直在。每則獨一無二。
+
+# ── special：里程碑感、達成某事、獨特時刻 ──
+
+- id: s-special-001
+  label: 給這一刻
+  text: 你剛剛完成了一件對你有意義的事。這個空間不會替你慶祝得很大聲，但它記住了。
+  tags: [milestone, special]
+
+- id: s-special-002
+  label: 剛好被看見
+  text: 有些事做的時候沒人在旁邊。你自己知道就夠了，而這裡也知道。
+  tags: [milestone, keepsake]
+
+- id: s-special-003
+  label: 一個小小的完成
+  text: 完成不一定要很大。你把一件擱著很久的事收了尾，這本身就值得停下來看一眼。
+  tags: [milestone, warm]
+
+- id: s-special-004
+  label: 你到了這裡
+  text: 從開始到現在，中間發生了很多你可能都沒特別記下的事。此刻你站的位置，是那些累積起來的。
+  tags: [milestone, reflection]
+
+- id: s-special-005
+  label: 這是你的
+  text: 你剛留下的東西，只屬於你。它不會被拿去和別人比較，只會安靜地待在這裡。
+  tags: [special, keepsake]
+
+- id: s-special-006
+  label: 沒有觀眾的成就
+  text: 不是每件值得的事都會有人拍手。這一件也許只有你自己在意，但在意本身就足夠真。
+  tags: [milestone, warm]
+
+- id: s-special-007
+  label: 慢了也是到了
+  text: 你不是最快的，但你到了。速度從來不是這裡衡量事情的方式。
+  tags: [milestone, reflection]
+
+- id: s-special-008
+  label: 第一次
+  text: 第一次總是有點笨拙。多年以後回頭看，你會慶幸自己當時願意笨拙地開始。
+  tags: [milestone, special]
+
+- id: s-special-009
+  label: 你選了留下來
+  text: 有很多時刻你其實可以走開。你沒有。這一次的堅持，被好好地放進來了。
+  tags: [milestone, keepsake]
+
+- id: s-special-010
+  label: 一個轉彎
+  text: 剛剛那個決定，也許改變了接下來的路。現在還看不清，但這個彎，這裡幫你記著。
+  tags: [milestone, time]
+
+- id: s-special-011
+  label: 你做到了
+  text: 這四個字被說得太隨便，所以常常沒有份量。但這一次是真的：你做到了。
+  tags: [milestone, warm]
+
+- id: s-special-012
+  label: 收下這份安靜
+  text: 有些成就適合大聲，有些適合安靜。這一個，就讓它安靜地屬於你吧。
+  tags: [special, warm]
+
+- id: s-special-013
+  label: 你沒有放棄
+  text: 在某個你差點要停下來的地方，你多走了一步。這一步不小，只是當時看不出來。
+  tags: [milestone, reflection]
+
+- id: s-special-014
+  label: 這裡替你留著
+  text: 你剛剛做的，可能明天就會忘記細節。沒關係，這個空間會替你留著它發生過的事實。
+  tags: [keepsake, special]
+
+- id: s-special-015
+  label: 一次真正的完成
+  text: 不是虎頭蛇尾，不是勉強交差。這一次，你是真的把它做完了，而且做得像你。
+  tags: [milestone, keepsake]
+
+- id: s-special-016
+  label: 給努力過的你
+  text: 過程裡有些辛苦沒人看見。此刻的結果看得見了，那些看不見的辛苦也一起被算進來。
+  tags: [milestone, gratitude]
+
+- id: s-special-017
+  label: 你比想像中更遠
+  text: 剛開始的時候，現在這個地方是你不確定到得了的。你到了，而且是靠自己。
+  tags: [milestone, reflection]
+
+- id: s-special-018
+  label: 這一步值得記
+  text: 有些日子普通得像所有其他日子。今天不是。今天你做成了一件值得記下的事。
+  tags: [milestone, keepsake]
+
+- id: s-special-019
+  label: 屬於你的證明
+  text: 你不需要向誰證明什麼。但如果哪天你自己懷疑了，這裡留著今天，可以拿出來看。
+  tags: [keepsake, special]
+
+- id: s-special-020
+  label: 剛剛好的時刻
+  text: 有時候事情就是在對的時候發生了。你剛好在，剛好準備好了，於是它成了。
+  tags: [special, warm]
+
+- id: s-special-021
+  label: 你撐過了那段
+  text: 最難的那段已經過去。現在回頭，你會發現自己其實比當時以為的更能撐。
+  tags: [milestone, reflection]
+
+- id: s-special-022
+  label: 一個乾淨的結束
+  text: 把一件事好好結束，是一種被低估的能力。你剛剛做到了，乾淨俐落。
+  tags: [milestone, warm]
+
+- id: s-special-023
+  label: 這是里程碑
+  text: 里程碑不是終點，是路上的一塊石頭，讓你知道走了多遠。你剛路過了一塊。
+  tags: [milestone, time]
+
+- id: s-special-024
+  label: 你回來完成了它
+  text: 你曾經放下它，後來又回來了。回頭把沒做完的做完，需要一種很安靜的勇氣。
+  tags: [milestone, reflection]
+
+- id: s-special-025
+  label: 給不張揚的你
+  text: 你把事情做好了，卻不太習慣被誇。那就不誇了，只是讓這一刻被好好地放在這裡。
+  tags: [special, warm]
+
+- id: s-special-026
+  label: 一次小小的破紀錄
+  text: 你剛剛做到了以前沒做到過的。紀錄是拿來破的，尤其是自己的。
+  tags: [milestone, keepsake]
+
+- id: s-special-027
+  label: 這件事像你
+  text: 你剛完成的東西帶著你的樣子。別人做不出一模一樣的，因為那是從你這裡長出來的。
+  tags: [special, keepsake]
+
+- id: s-special-028
+  label: 你把它變成真的
+  text: 本來只是一個念頭，現在它存在了。從想到做，這中間的距離，你剛剛走完了。
+  tags: [milestone, warm]
+
+- id: s-special-029
+  label: 為自己完成
+  text: 這一次不是為了交代誰、不是為了達標。是你想做，然後你做了。這樣就很好。
+  tags: [milestone, reflection]
+
+- id: s-special-030
+  label: 這一刻被收藏了
+  text: 大部分的時刻會流走，少數的會留下。你剛經歷的這一個，這裡把它收起來了。
+  tags: [keepsake, special]
+
+- id: s-special-031
+  label: 你邁過去了
+  text: 那道你猶豫很久的坎，你剛剛邁過去了。過了就是過了，接下來是新的地方。
+  tags: [milestone, reflection]
+
+- id: s-special-032
+  label: 一份手作的完成
+  text: 你親手做出來的東西，有機器做不出的溫度。這份溫度，這裡幫你保存著。
+  tags: [milestone, keepsake]
+
+- id: s-special-033
+  label: 你堅持到這裡
+  text: 堅持不是咬牙硬撐的畫面，有時只是每天都還在。你就是這樣走到了現在。
+  tags: [milestone, warm]
+
+- id: s-special-034
+  label: 這是你的第一步
+  text: 每個很遠的地方，都是從一個像今天這樣的第一步開始的。你剛踏出去了。
+  tags: [milestone, time]
+
+- id: s-special-035
+  label: 給誠實面對的你
+  text: 你沒有假裝已經做好，也沒有含糊帶過。你誠實地把它做到位，這比完美更難得。
+  tags: [special, reflection]
+
+- id: s-special-036
+  label: 一次真心的投入
+  text: 你剛剛不是敷衍，是真的投入了。投入過的東西，會在裡面留下痕跡，被記住。
+  tags: [milestone, keepsake]
+
+- id: s-special-037
+  label: 你讓它發生了
+  text: 事情不會自己發生，是有人讓它發生。這一次，那個人是你。
+  tags: [milestone, warm]
+
+- id: s-special-038
+  label: 這一頁翻過去了
+  text: 你剛剛把一段做了個了結。翻頁不代表遺忘，只是允許自己走到下一頁。
+  tags: [milestone, time]
+
+- id: s-special-039
+  label: 給願意重來的你
+  text: 你把先前不滿意的重做了一次。願意推翻自己再來，是一種很硬的溫柔。
+  tags: [milestone, reflection]
+
+- id: s-special-040
+  label: 你到達了
+  text: 沒有煙火，沒有終點線的布條。但你確實到了你想去的地方，安安靜靜地。
+  tags: [milestone, warm]
+
+- id: s-special-041
+  label: 一個屬於今天的印記
+  text: 今天你在這裡留下了一個印記。日子會往前走，但這個印記會停在原地，等你哪天回來看。
+  tags: [keepsake, time]
+
+- id: s-special-042
+  label: 你選擇了在乎
+  text: 在一個可以隨便應付的地方，你選擇了認真。這個選擇，這裡替你記著。
+  tags: [special, reflection]
+
+- id: s-special-043
+  label: 這是你掙來的
+  text: 沒人送你這個結果，是你自己一點一點掙來的。掙來的東西，握在手裡最踏實。
+  tags: [milestone, gratitude]
+
+- id: s-special-044
+  label: 給跨出去的你
+  text: 你做了一件有點超出舒適圈的事。剛跨出去的時候會有點抖，抖著抖著就穩了。
+  tags: [milestone, warm]
+
+- id: s-special-045
+  label: 一次完整的呼吸
+  text: 做完這件事，你大概可以好好吐一口氣了。這口氣你值得，慢慢吐。
+  tags: [special, warm]
+
+- id: s-special-046
+  label: 你把心放進去了
+  text: 有些東西一看就知道是用心做的。你剛完成的，就是這樣。心是藏不住的。
+  tags: [milestone, keepsake]
+
+- id: s-special-047
+  label: 這一次算數
+  text: 不是練習，不是彩排。這一次是真的，而且成了。它會被算進你的故事裡。
+  tags: [milestone, keepsake]
+
+- id: s-special-048
+  label: 給熬過來的你
+  text: 那段不太好過的時間，你熬過來了。熬過的人身上會多一點什麼，別人看不見，但你自己感覺得到。
+  tags: [milestone, reflection]
+
+- id: s-special-049
+  label: 你完成的方式很你
+  text: 別人也許會用別的方法，但你用了你的。這個空間喜歡你這樣，帶著自己的方式做事。
+  tags: [special, warm]
+
+- id: s-special-050
+  label: 一個安靜的高峰
+  text: 你剛剛站上了一個小小的高峰。這裡不吵，正好讓你安靜地看看風景，再往下走。
+  tags: [milestone, reflection]
+
+- id: s-special-051
+  label: 這件事你記得就好
+  text: 不用告訴任何人。你和這個空間都知道它發生過，這樣就完整了。
+  tags: [special, keepsake]
+
+- id: s-special-052
+  label: 你替自己爭取了
+  text: 這一次你沒有讓步，替自己爭取了想要的。爭取需要勇氣，你剛剛拿出來了。
+  tags: [milestone, reflection]
+
+- id: s-special-053
+  label: 給收尾的你
+  text: 開始很容易被讚美，收尾常常沒人提。可是收尾才是最難的。你剛剛做到了。
+  tags: [milestone, warm]
+
+- id: s-special-054
+  label: 這是真實的一刻
+  text: 沒有濾鏡，沒有表演給誰看。就是一件真實的事，真實地發生在你身上。
+  tags: [special, reflection]
+
+- id: s-special-055
+  label: 你走出了那一步
+  text: 從想很久到真的動手，是最遠的一步。你剛剛把它跨了，後面的路會鬆一些。
+  tags: [milestone, warm]
+
+- id: s-special-056
+  label: 一份給未來的你
+  text: 今天你做的這件事，會變成未來某天的你回頭看時的一份禮物。你在替以後的自己鋪路。
+  tags: [keepsake, time]
+
+- id: s-special-057
+  label: 你把它做完整了
+  text: 不是做一半，不是差不多。你把它做到完整，完整的東西自己會發光。
+  tags: [milestone, keepsake]
+
+- id: s-special-058
+  label: 給認真的你
+  text: 在一個沒人要求你認真的地方，你還是認真了。這份認真，這裡看得見。
+  tags: [special, gratitude]
+
+- id: s-special-059
+  label: 這一刻是你的
+  text: 世界很大，此刻很短，但這一刻確實屬於你。這個空間只是幫你把它接住。
+  tags: [special, warm]
+
+- id: s-special-060
+  label: 你剛剛長大了一點
+  text: 有些成長是一夜之間發生的。你剛做完的這件事，也許就是那一夜。
+  tags: [milestone, reflection]
+
+- id: s-special-061
+  label: 給不肯將就的你
+  text: 你大可以隨便交出去，但你多花了力氣把它弄好。不肯將就的人，做的東西都不一樣。
+  tags: [milestone, keepsake]
+
+- id: s-special-062
+  label: 這件事完成了
+  text: 簡單一句話：完成了。有些時候不需要多說什麼，完成本身就是最好的話。
+  tags: [milestone, warm]
+
+# ── anniversary：時間的厚度、回顧的溫度 ──
+
+- id: s-anniversary-001
+  label: 一年了
+  text: 這個空間陪你走過了一整年。往回翻，你會看到自己這一路留下的東西。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-002
+  label: 滿一週
+  text: 你來這裡剛好一週了。七天不長，但已經夠讓一個地方，開始有你的味道。
+  tags: [anniversary, time]
+
+- id: s-anniversary-003
+  label: 一個月的痕跡
+  text: 一個月過去了。回頭看看這段時間你放進來的，比你以為的還多一些。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-004
+  label: 一百天
+  text: 一百天，說長不長，說短也不短。你一天一天累積的，剛好在這個數字停下來被看見。
+  tags: [anniversary, time]
+
+- id: s-anniversary-005
+  label: 走過一整年
+  text: 三百多天裡有各種天氣的日子。你都走過來了，這個空間也都在旁邊，一天沒少。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-006
+  label: 時間有了厚度
+  text: 剛開始這裡是空的。現在它有了重量，那重量是時間，也是你。
+  tags: [anniversary, time]
+
+- id: s-anniversary-007
+  label: 回頭看看
+  text: 往回翻的時候，你可能會對某些過去的自己感到陌生。那也是一種走了很遠的證明。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-008
+  label: 這裡記得你來過的每次
+  text: 你來的每一次，這個空間都收著。集合起來，就成了現在這個滿滿的地方。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-009
+  label: 滿一週的小紀念
+  text: 一週前你還不太熟悉這裡。現在你知道東西放哪、怎麼用了。熟悉，也是一種累積。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-010
+  label: 一年的長度
+  text: 一年可以發生很多事。這個空間沒辦法替你記住全部，但它替你記住了你願意留下的那些。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-011
+  label: 時間走過這裡
+  text: 這一段時間過去了，不會再回來。但它經過的時候，在這裡留下了痕跡，可以一直看。
+  tags: [anniversary, time]
+
+- id: s-anniversary-012
+  label: 滿一個月了
+  text: 一個月前的你和現在的你，中間隔著三十天的日子。這些日子，這裡都在。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-013
+  label: 這條路你走了很久
+  text: 回頭看整條路，你會發現自己走得比想像中久，也比想像中遠。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-014
+  label: 一年之後
+  text: 一年前你開始的時候，大概沒想過會走到今天。現在你在這裡了，這本身就是答案。
+  tags: [anniversary, time]
+
+- id: s-anniversary-015
+  label: 累積起來的你
+  text: 一點一點放進來的東西，一年後看，變成了一個完整的樣子。那個樣子，就是這一年的你。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-016
+  label: 百日回望
+  text: 一百天前的第一步，和今天的這一步之間，藏著九十九天你自己都沒細數的日子。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-017
+  label: 這裡陪你過了四季
+  text: 從你開始到現在，季節換了一輪。這個空間沒有換過，它就在原地，陪你過了整整一圈。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-018
+  label: 一週的開始
+  text: 第一週往往決定不了什麼，但它是所有後來的起點。你已經站在起點的另一頭了。
+  tags: [anniversary, time]
+
+- id: s-anniversary-019
+  label: 時間替你留了證據
+  text: 你這一路做過的、想過的，時間都替你留了證據。哪天你懷疑自己，可以回來翻。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-020
+  label: 滿月的溫度
+  text: 滿一個月了。這個地方開始有點像家的感覺，是因為你把時間放進來了。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-021
+  label: 一年裡的你
+  text: 這一年你變了一些，也有些沒變。翻回去看，你會認得那些一直都在的部分。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-022
+  label: 走到這裡不容易
+  text: 能持續一段時間本身就不簡單。你沒有中途消失，你一直都在往前走。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-023
+  label: 百日的分量
+  text: 一百次的來、一百天的累積，聽起來只是數字，但那是實實在在的一段人生。
+  tags: [anniversary, time]
+
+- id: s-anniversary-024
+  label: 這一年留下了什麼
+  text: 有些留下的東西當時不覺得重要，一年後回頭，卻成了最想保留的。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-025
+  label: 一週年快樂
+  text: 一年了。沒有華麗的儀式，只想安靜地說一聲：這一年，你走得很好。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-026
+  label: 時間的見證
+  text: 這個空間見證了你這段時間。它不會評論、不會催促，只是老實地記著日子。
+  tags: [anniversary, time]
+
+- id: s-anniversary-027
+  label: 滿一週的回頭
+  text: 才過了一週，回頭卻已經有東西可以看了。原來時間這麼快就能留下痕跡。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-028
+  label: 一個月的重量
+  text: 一個月的東西攤開來，比一天多得多。你以為自己沒做什麼，其實累積了不少。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-029
+  label: 陪你到現在
+  text: 從第一天到今天，這個空間一直在。它不需要你回來，但你回來的時候，它都在。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-030
+  label: 一年的地圖
+  text: 把這一年攤開，像一張地圖。你會看到自己去過哪、繞過哪、又停在哪。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-031
+  label: 這段時間屬於你
+  text: 這一段日子沒辦法重來，但它完整地屬於你，一分一秒都是。
+  tags: [anniversary, time]
+
+- id: s-anniversary-032
+  label: 百日之後
+  text: 一百天前你不確定會不會持續。現在你不用再問了，因為你已經在這裡一百天了。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-033
+  label: 一週的樣子
+  text: 一週的你，剛開始摸索，還帶點生疏。留著這個樣子，以後看會覺得可愛。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-034
+  label: 時間帶你走了這麼遠
+  text: 你沒有特別用力，時間卻已經帶著你走了很遠。回頭一看才發現，起點在很後面了。
+  tags: [anniversary, time]
+
+- id: s-anniversary-035
+  label: 滿一個月的謝謝
+  text: 謝謝你這一個月願意一次次回到這裡。這裡因為有你來過，才變成現在的樣子。
+  tags: [anniversary, gratitude]
+
+- id: s-anniversary-036
+  label: 一年的四季都在
+  text: 春夏秋冬各有一段你在這裡的日子。翻的時候，你會想起當時是什麼季節、什麼心情。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-037
+  label: 這是第一個週年
+  text: 第一個週年只有一次。以後或許還有第二、第三個，但第一個永遠是第一個。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-038
+  label: 累積的力量
+  text: 沒有哪一天特別驚天動地，可是一天一天疊起來，就成了你回頭時看見的高度。
+  tags: [anniversary, time]
+
+- id: s-anniversary-039
+  label: 一百天的陪伴
+  text: 一百天裡，這個空間沒有一天不在。它不聲張，只是穩穩地待在那，接住你每次回來。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-040
+  label: 回望這一週
+  text: 短短一週，卻已經有了開頭、有了習慣、有了你自己的痕跡。這是個好的開始。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-041
+  label: 一年份的自己
+  text: 這一年你留下的，加起來就是一整份的你。它不會消失，會一直在這裡等你翻閱。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-042
+  label: 時間站在你這邊
+  text: 你走過的每一天都沒有白費，它們都變成了現在的地基。時間，其實一直站在你這邊。
+  tags: [anniversary, time]
+
+- id: s-anniversary-043
+  label: 滿一個月的回望
+  text: 一個月前你剛來，什麼都還新。現在回頭，那份新鮮變成了熟悉，也是一種收穫。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-044
+  label: 這一年的證明
+  text: 如果有人問你這一年做了什麼，你不一定說得清。但這裡留著，可以慢慢翻給自己看。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-045
+  label: 陪你過了一年
+  text: 一整年，這個空間都在。它不會離開，也不會催你，只是安靜地陪著，一如往常。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-046
+  label: 百日的溫度
+  text: 一百天下來，這個地方積了一點屬於你的溫度。冷的時候回來，還是暖的。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-047
+  label: 一週的第一步
+  text: 剛滿一週。這一步很小，但每一段長長的路，都是這樣一週一週走出來的。
+  tags: [anniversary, time]
+
+- id: s-anniversary-048
+  label: 這段日子有重量
+  text: 一開始的日子輕飄飄的，走久了就有了重量。這重量是好的，代表你認真活過。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-049
+  label: 一年前的你
+  text: 一年前的你，還在某個現在回想起來有點遙遠的地方。看看你現在站的位置，走得真遠。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-050
+  label: 滿月了
+  text: 這個空間陪你滿一個月了。不多說什麼，只想讓你知道：這一個月，都被好好記著。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-051
+  label: 時間會一直在
+  text: 日子會過去，但你放在這裡的不會。這個空間會替你留著，時間再走，它都在。
+  tags: [anniversary, time]
+
+- id: s-anniversary-052
+  label: 一百天的回望
+  text: 站在第一百天回頭，前面九十九天像一條河。你看著它，會知道自己流過了哪裡。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-053
+  label: 一週的溫柔
+  text: 才一週，這裡已經開始認得你的節奏。溫柔就是這樣，不急，慢慢就長出來了。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-054
+  label: 這一年謝謝你來
+  text: 這一年，謝謝你一次又一次選擇回到這裡。是你來過，這個空間才有了意義。
+  tags: [anniversary, gratitude]
+
+- id: s-anniversary-055
+  label: 一個月的地基
+  text: 一個月打下的地基，看不太出來，卻很重要。之後蓋上去的一切，都靠它撐著。
+  tags: [anniversary, time]
+
+- id: s-anniversary-056
+  label: 走過一整圈
+  text: 從起點出發，繞了一年，你又回到了同一個季節。但這一次的你，和出發時已經不同了。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-057
+  label: 百日紀念
+  text: 一百天在這裡留下的一切，此刻攤在你面前。這是屬於你的一百天，誰也拿不走。
+  tags: [anniversary, keepsake]
+
+- id: s-anniversary-058
+  label: 一週後的你
+  text: 一週前按下開始的那個你，和現在的你之間，隔著七天的摸索。這七天，值得。
+  tags: [anniversary, time]
+
+- id: s-anniversary-059
+  label: 這裡替你數著日子
+  text: 你不用自己記得過了多久，這個空間替你數著。到了值得停下來的那天，它會告訴你。
+  tags: [anniversary, warm]
+
+- id: s-anniversary-060
+  label: 一年，剛好
+  text: 不多不少，剛好一年。這一年沒有白過，因為你把它一天一天，好好地過完了。
+  tags: [anniversary, reflection]
+
+- id: s-anniversary-061
+  label: 時間的禮物
+  text: 這一段時間本身就是一份禮物。你把它花在了這裡，這裡也把它好好收下了。
+  tags: [anniversary, gratitude]
+
+- id: s-anniversary-062
+  label: 陪你到下一年
+  text: 一年到了，但故事沒有結束。這個空間會繼續在這裡，陪你走進下一段日子。
+  tags: [anniversary, warm]
