@@ -1088,3 +1088,28 @@ input[type='range'] {
   /* 窄螢幕上按鈕不可被擠出容器，否則整頁會被撐寬（見 90-build-log.md） */
   flex-wrap: wrap;
 }
+
+/* ── 字體選擇（ADR-016）────────────────────────────────── */
+.sr-font-pairs {
+  list-style: none;
+  margin: 0 0 var(--sr-space-4);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+}
+
+/*
+ * 字體樣張。行高放寬 —— 楷體與手寫體的字腔比黑體高，
+ * 用內文行高會擠在一起看不出差別。
+ */
+.sr-font-sample {
+  margin: var(--sr-space-2) 0 0;
+  font-size: var(--sr-text-lg);
+  line-height: 1.8;
+  color: var(--sr-text-primary);
+}
+
+.sr-field + .sr-field {
+  margin-top: var(--sr-space-5);
+}

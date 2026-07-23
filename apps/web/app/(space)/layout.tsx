@@ -9,6 +9,7 @@ import {
   defaultThemeDefinition,
   type ThemeDefinition,
 } from '@snowrealm/theme-engine'
+import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
 import { signOut } from '../(auth)/actions'
@@ -55,6 +56,13 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   const themeCss = compileThemeToCssText(definition, ':root')
   const dataAttrs = themeDataAttributes(definition)
 
+  /*
+   * 字體同樣在 SSR 解析。客戶端載入的話首屏會先用系統字體畫一次再換，
+   * 中文字體與系統字體的字寬差很多，那一下跳動非常明顯。
+   * 解析失敗回 null，頁面退回 CSS 檔的預設堆疊（已在 server-fonts 記錄原因）。
+   */
+  const fonts = await resolveThemeFonts(db, definition)
+
   // 背景：SSR 就解析好，避免進頁後才閃一下
   const background = (await resolveCurrentBackground(
     db,
@@ -73,6 +81,16 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   return (
     <div className="sr-shell" {...dataAttrs}>
       <style dangerouslySetInnerHTML={{ __html: themeCss }} />
+      {fonts && (
+        <>
+          <style dangerouslySetInnerHTML={{ __html: fonts.css }} />
+          {fonts.preload.map((href) => (
+            // crossOrigin 不可省：字體一律是 CORS 請求，即使同源。
+            // 少了它瀏覽器會預載一份、實際用時再載一份。
+            <link key={href} rel="preload" as="font" type="font/woff2" href={href} crossOrigin="" />
+          ))}
+        </>
+      )}
 
       <BackgroundLayer spaceId={space.id} state={background} />
 

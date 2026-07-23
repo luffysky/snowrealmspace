@@ -14,6 +14,7 @@ import { applyThemeToPreview } from '@/lib/theme/apply'
 import { ColorField } from './ColorField'
 import { SurfaceControls } from './SurfaceControls'
 import { A11yPanel } from './A11yPanel'
+import { FontPanel } from './FontPanel'
 import { ThemePreview } from './ThemePreview'
 
 export type SavedTheme = {
@@ -274,6 +275,8 @@ export function ThemeStudio({
             />
           ))}
         </section>
+
+        <FontPanel draft={draft} onChange={update} />
 
         <SurfaceControls draft={draft} onChange={update} />
 
