@@ -17,7 +17,7 @@ SnowRealm Space — 一個會隨長期使用而成長的私人數位空間。
 | `docs/spec/01-decisions.md` | ADR，所有決策的真相來源 |
 | `docs/spec/10-acceptance.md` | 每個 Milestone 的驗收條件 |
 | `docs/spec/90-build-log.md` | 實作與規格的偏離紀錄 |
-| `todo_list_0723.md` | 被外部資源卡住的待辦 |
+| `docs/todo/todo_list_0724.md` | 被外部資源卡住的待辦 |
 
 ---
 
@@ -265,6 +265,6 @@ pnpm tsx scripts/queue-ping.ts          # queue 往返（需 worker 執行中）
 依 ADR-001，未通過驗收不得開始下一個 Milestone。
 
 **完整剩餘工作盤點見 `docs/spec/91-backlog.md`** —— 回答「還差多少」。
-**被外部資源卡住的項目見 `todo_list_0723.md`**（字體檔、Zeabur、R2、git remote、AI 金鑰）。
+**被外部資源卡住的項目見 `docs/todo/todo_list_0724.md`**（字體檔、Zeabur、R2、git remote、AI 金鑰）。
 
 部署平台為 **Zeabur**（ADR-008）：web、worker、Supabase 同一平台，R2 仍用 Cloudflare。

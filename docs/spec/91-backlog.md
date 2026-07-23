@@ -2,7 +2,7 @@
 
 > 建立於 2026-07-23。
 >
-> **為什麼有這份：** `todo_list_0723.md` 只記了「被外部資源卡住」的項目，
+> **為什麼有這份：** `docs/todo/todo_list_0724.md` 只記了「被外部資源卡住」的項目，
 > 不是完整範圍。完整範圍原本散在 `10-acceptance.md` 的驗收條件裡，
 > 沒有被追蹤成可勾選的清單 —— 那讓「還差多少」這個問題無法回答。
 >
@@ -35,7 +35,7 @@ D（AI Core）是單一最大的一塊。
 
 | 項目 | 狀態 |
 |---|---|
-| 8 套 OFL 字體檔案 | ⬜ **需要人工下載**（見 `todo_list_0723.md` P0） |
+| 8 套 OFL 字體檔案 | ⬜ **需要人工下載**（見 `docs/todo/todo_list_0724.md` P0） |
 | `scripts/build-fonts.ts` 分片腳本 | ⬜ 可先寫，等檔案到位才能跑 |
 | 繁中 unicode-range 分片（約 100 片） | ⬜ |
 | `fonts` / `font_pairs` seed | ⬜ 表已建好，資料未填 |
@@ -114,7 +114,7 @@ D（AI Core）是單一最大的一塊。
 | Memory | 提案 → 批准流程、pgvector 檢索、Memory Center |
 | 設計分析 | light（免費 vision）/ deep（付費）兩條路徑 |
 
-**相依：** 需要至少兩把免費 AI 金鑰（`todo_list_0723.md` P2）。
+**相依：** 需要至少兩把免費 AI 金鑰（`docs/todo/todo_list_0724.md` P2）。
 
 ---
 
