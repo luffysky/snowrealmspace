@@ -1,0 +1,903 @@
+# 每日創作提示 — 觀察練習
+# 主題：引導觀察生活、顏色、光影、細節、周遭
+# 全部繁體中文（台灣用語）。每一則獨一無二。
+
+- id: p-observe-001
+  text: 把今天看到的一個顏色記下來。不用馬上用。
+  tags: [observation, color, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-002
+  text: 找一個你每天經過但沒仔細看過的東西，看三十秒。
+  tags: [observation, everyday, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-003
+  text: 記錄今天光線最好的一個時刻，拍下來或寫下來。
+  tags: [observation, light, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-004
+  text: 看看你手邊的杯子，描述它的三個細節。
+  tags: [observation, detail, low_effort]
+  estimatedMinutes: 3
+
+- id: p-observe-005
+  text: 抬頭看天空一分鐘，記下雲的形狀或天空的顏色。
+  tags: [observation, color, light]
+  estimatedMinutes: 2
+
+- id: p-observe-006
+  text: 找出房間裡最舊的一樣東西，看看它磨損的地方。
+  tags: [observation, detail, texture]
+  estimatedMinutes: 4
+
+- id: p-observe-007
+  text: 閉上眼睛一分鐘，記下你聽到的三種聲音。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 2
+
+- id: p-observe-008
+  text: 觀察窗外的一棵樹或一株植物，它今天有什麼變化。
+  tags: [observation, everyday, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-009
+  text: 看看你今天穿的衣服，它是什麼顏色，接近什麼東西的顏色。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-010
+  text: 找一道影子，看它的邊緣是清楚的還是模糊的。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-011
+  text: 摸摸身邊三種不同的材質，記下它們的觸感差別。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-012
+  text: 看一個人的鞋子，猜猜他今天走了多少路。
+  tags: [observation, detail, surroundings]
+  estimatedMinutes: 2
+
+- id: p-observe-013
+  text: 記下你今天喝的第一杯飲料，它的溫度和顏色。
+  tags: [observation, everyday, color]
+  estimatedMinutes: 2
+
+- id: p-observe-014
+  text: 找出視線裡最亮和最暗的兩個點，比較它們。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-015
+  text: 觀察一個路人的走路方式，用一個詞形容它。
+  tags: [observation, surroundings, detail]
+  estimatedMinutes: 2
+
+- id: p-observe-016
+  text: 看看桌面，數數上面有幾種不同的顏色。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-017
+  text: 找一片葉子，看它的葉脈往哪個方向長。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-018
+  text: 記下此刻空氣的味道，只要一個詞就好。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-019
+  text: 觀察光從窗戶進來的角度，它照到哪裡。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-020
+  text: 找出你今天摸過最冰的東西和最溫暖的東西。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-021
+  text: 看一張你熟悉的照片，找出一個你以前沒注意的細節。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 4
+
+- id: p-observe-022
+  text: 觀察雨或水在玻璃上流下的路線。
+  tags: [observation, detail, texture]
+  estimatedMinutes: 3
+
+- id: p-observe-023
+  text: 記下你今天看到的第一個紅色的東西。
+  tags: [observation, color, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-024
+  text: 找一個角落，看看灰塵或光線在那裡怎麼堆積。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-025
+  text: 觀察一杯熱飲冒出的蒸氣，看它怎麼散開。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-026
+  text: 看看你的手，描述掌紋或指甲的一個細節。
+  tags: [observation, detail, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-027
+  text: 找出今天最安靜的一分鐘，記下那時你在哪裡。
+  tags: [observation, everyday, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-028
+  text: 觀察路上的招牌，找一個字體特別的。
+  tags: [observation, surroundings, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-029
+  text: 看看天空在日落前後顏色怎麼變，記下兩個顏色。
+  tags: [observation, color, light]
+  estimatedMinutes: 5
+
+- id: p-observe-030
+  text: 找一樣有規律紋路的東西，磁磚、布料或木頭都行。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-031
+  text: 記下你今天聽到最遠的一個聲音。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 2
+
+- id: p-observe-032
+  text: 觀察一隻動物，鳥、貓、狗都行，看它在做什麼。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 4
+
+- id: p-observe-033
+  text: 找出房間裡三種不同的白色，比較它們的差別。
+  tags: [observation, color, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-034
+  text: 看看你的影子，它現在比你高還是矮。
+  tags: [observation, light, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-035
+  text: 記下今天窗外光線的變化，早上和現在有什麼不同。
+  tags: [observation, light, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-036
+  text: 找一樣透明的東西，看光穿過它時發生什麼。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-037
+  text: 觀察一個人的手勢，他說話時手怎麼動。
+  tags: [observation, surroundings, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-038
+  text: 看看地板或地面，找出一個你沒注意過的痕跡。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-039
+  text: 記下今天的天氣給你的第一個身體感覺。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-040
+  text: 找一片反光的表面，看它映出什麼。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-041
+  text: 觀察食物的顏色，你今天吃的東西是什麼色調。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-042
+  text: 看看你常用的一支筆或工具，它哪裡磨得最亮。
+  tags: [observation, detail, texture]
+  estimatedMinutes: 3
+
+- id: p-observe-043
+  text: 找出周圍最柔軟和最堅硬的東西各一樣。
+  tags: [observation, texture, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-044
+  text: 記下夜裡你看到的一盞燈，它是什麼顏色的光。
+  tags: [observation, light, color]
+  estimatedMinutes: 2
+
+- id: p-observe-045
+  text: 觀察一朵花或一片草，看它今天有沒有動。
+  tags: [observation, noticing, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-046
+  text: 看看你的房間，哪個角落最暗，為什麼。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-047
+  text: 找一個聲音，形容它像什麼別的東西。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-048
+  text: 觀察窗玻璃上的反光和外面的景，兩層疊在一起。
+  tags: [observation, light, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-049
+  text: 記下今天摸到的一個意外的觸感。
+  tags: [observation, texture, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-050
+  text: 看看你手機或電腦的螢幕光，它是偏藍還是偏黃。
+  tags: [observation, light, color]
+  estimatedMinutes: 2
+
+- id: p-observe-051
+  text: 找一樣圓形的東西，看它的邊緣是不是真的很圓。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-052
+  text: 觀察路邊一棵樹的樹皮，摸摸它的紋理。
+  tags: [observation, texture, surroundings]
+  estimatedMinutes: 4
+
+- id: p-observe-053
+  text: 記下今天讓你停下腳步看一眼的東西。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-054
+  text: 看看天花板，那裡有什麼你平常不看的東西。
+  tags: [observation, detail, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-055
+  text: 找出視線裡三種綠色，比較它們的深淺。
+  tags: [observation, color, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-056
+  text: 觀察燈光在牆上投出的形狀。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-057
+  text: 記下你今天路過的一扇門，它是什麼顏色。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 2
+
+- id: p-observe-058
+  text: 看看你的桌子在陽光下和在燈光下顏色一樣嗎。
+  tags: [observation, light, color]
+  estimatedMinutes: 4
+
+- id: p-observe-059
+  text: 找一樣正在移動的東西，看它多久停一次。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-060
+  text: 觀察你的手在光下和陰影裡皮膚的顏色差別。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-061
+  text: 記下今天第一次讓你覺得舒服的畫面。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-062
+  text: 找一個生鏽或褪色的東西，看時間在它身上留下什麼。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-063
+  text: 看看馬路上的柏油，它其實是純黑的嗎。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-064
+  text: 觀察水面，看它反射的東西怎麼晃動。
+  tags: [observation, light, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-065
+  text: 記下你此刻手指碰到的東西的溫度。
+  tags: [observation, texture, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-066
+  text: 找出房間裡最高和最低的一樣東西。
+  tags: [observation, surroundings, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-067
+  text: 觀察一個人臉上的表情，用一句話描述它。
+  tags: [observation, detail, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-068
+  text: 看看今天的月亮或路燈，它周圍有沒有光暈。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-069
+  text: 記下你走路時腳下踩到的不同地面。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-070
+  text: 找一樣半透明的東西，看它怎麼把光變柔。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-071
+  text: 觀察你早上和晚上的房間，光的感覺哪裡不同。
+  tags: [observation, light, everyday]
+  estimatedMinutes: 4
+
+- id: p-observe-072
+  text: 記下今天看到最鮮豔的一個顏色，它在哪裡。
+  tags: [observation, color, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-073
+  text: 找一個常忽略的縫隙，看看裡面有什麼。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-074
+  text: 觀察遠處的一棟建築，它的輪廓是什麼形狀。
+  tags: [observation, surroundings, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-075
+  text: 看看你的飲料杯上有沒有凝結的水珠。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-076
+  text: 記下今天讓你想多看一眼的一種光。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-077
+  text: 找出周圍五樣東西，各給它們一個顏色名稱。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 4
+
+- id: p-observe-078
+  text: 觀察風怎麼吹動樹葉、頭髮或衣服。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-079
+  text: 看看鏡子裡的房間，它和真的房間哪裡不一樣。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-080
+  text: 記下你今天遇到的一個重複出現的圖案。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-081
+  text: 找一樣木頭做的東西，看它的木紋走向。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-082
+  text: 觀察早晨第一道照進來的光落在哪裡。
+  tags: [observation, light, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-083
+  text: 看看你桌上最小的一樣東西，仔細瞧它。
+  tags: [observation, detail, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-084
+  text: 記下今天天空最像什麼顏色的東西。
+  tags: [observation, color, light]
+  estimatedMinutes: 2
+
+- id: p-observe-085
+  text: 找一個聲音的來源，走近或轉頭確認它是什麼。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-086
+  text: 觀察你手邊食物表面的光澤或粗糙。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 2
+
+- id: p-observe-087
+  text: 看看窗簾透光的樣子，光在上面是什麼形狀。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-088
+  text: 記下今天最讓你眼睛放鬆的一個畫面。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-089
+  text: 找出兩樣相同的東西，看它們其實哪裡不同。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 4
+
+- id: p-observe-090
+  text: 觀察一杯水裡的光和影，慢慢看一分鐘。
+  tags: [observation, light, detail]
+  estimatedMinutes: 2
+
+- id: p-observe-091
+  text: 記下你今天摸過最有趣的表面。
+  tags: [observation, texture, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-092
+  text: 找一個陰影，看它一小時後移到哪裡。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 5
+
+- id: p-observe-093
+  text: 看看你身上的一件配件，回想它是怎麼來的。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-094
+  text: 觀察路上一台車的顏色，替它想一個更精確的名字。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-095
+  text: 記下今天你聞到的一種讓你想起別的地方的味道。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-096
+  text: 找一樣金屬的東西，看它反光的地方在哪。
+  tags: [observation, light, texture]
+  estimatedMinutes: 3
+
+- id: p-observe-097
+  text: 觀察你的房間有幾個不同的光源。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-098
+  text: 看看一本書或雜誌的封面，它用了哪些顏色。
+  tags: [observation, color, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-099
+  text: 記下今天讓你覺得溫暖的一個色調。
+  tags: [observation, color, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-100
+  text: 找一個角度，讓熟悉的房間看起來陌生一點。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 4
+
+- id: p-observe-101
+  text: 觀察雨後或早晨地面上的濕痕怎麼變乾。
+  tags: [observation, detail, noticing]
+  estimatedMinutes: 4
+
+- id: p-observe-102
+  text: 看看你手心的紋路在燈下和窗邊哪裡比較清楚。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-103
+  text: 記下今天你看到最細的一條線。
+  tags: [observation, detail, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-104
+  text: 找一個半開的抽屜或櫃子，看裡面東西怎麼排列。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-105
+  text: 觀察遠山、大樓或天際線在傍晚的顏色。
+  tags: [observation, color, light]
+  estimatedMinutes: 3
+
+- id: p-observe-106
+  text: 看看你手邊有沒有兩個顏色很搭的東西。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-107
+  text: 記下今天陽光照在皮膚上的感覺。
+  tags: [observation, light, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-108
+  text: 找一個聲音在一整天裡出現了幾次。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-109
+  text: 觀察一杯咖啡或茶表面的紋路和顏色層次。
+  tags: [observation, detail, color]
+  estimatedMinutes: 3
+
+- id: p-observe-110
+  text: 看看你今天走過的路，哪一段光線最不一樣。
+  tags: [observation, light, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-111
+  text: 找一片天空，看它從一端到另一端顏色怎麼漸變。
+  tags: [observation, color, light]
+  estimatedMinutes: 3
+
+- id: p-observe-112
+  text: 記下你此刻視線正中央的東西是什麼。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-113
+  text: 觀察一個人的背影，猜猜他要去哪裡。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-114
+  text: 找一樣毛絨或纖維的東西，看它的絨毛往哪倒。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-115
+  text: 看看今天的燈光讓你的房間偏暖還是偏冷。
+  tags: [observation, light, color]
+  estimatedMinutes: 3
+
+- id: p-observe-116
+  text: 記下你今天第一次注意到的一種聲音。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-117
+  text: 找一個窗戶，看它把外面切成什麼形狀的畫面。
+  tags: [observation, surroundings, light]
+  estimatedMinutes: 3
+
+- id: p-observe-118
+  text: 觀察食物在盤子上的擺放和顏色搭配。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-119
+  text: 看看一個常用的把手，哪裡被手摸得最光滑。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-120
+  text: 記下今天最讓你意外的一個小畫面。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-121
+  text: 找出周圍所有藍色的東西，數一數有幾樣。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-122
+  text: 觀察夕陽或路燈把影子拉得多長。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-123
+  text: 看看你手邊紙張的邊緣，它是平的還是毛的。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 2
+
+- id: p-observe-124
+  text: 記下今天讓你想拍照的一瞬間，不拍也行。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-125
+  text: 找一個高處往下看，熟悉的地方變什麼樣子。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 4
+
+- id: p-observe-126
+  text: 觀察玻璃杯裡液體和空氣交界的那條線。
+  tags: [observation, detail, light]
+  estimatedMinutes: 2
+
+- id: p-observe-127
+  text: 看看你的衣櫃，最常穿的顏色是哪一種。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 4
+
+- id: p-observe-128
+  text: 記下你今天踩過的一種讓腳有感覺的地面。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-129
+  text: 找一個影子和它的主人，比比看誰的形狀更清楚。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-130
+  text: 觀察窗外的顏色在陰天和晴天差多少。
+  tags: [observation, color, light]
+  estimatedMinutes: 3
+
+- id: p-observe-131
+  text: 看看你手機殼或包包上的磨損痕跡。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-132
+  text: 記下你此刻最靠近的三種材質。
+  tags: [observation, texture, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-133
+  text: 找一個轉角，看光和影在那裡怎麼分界。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-134
+  text: 觀察一群人裡誰的動作最慢。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-135
+  text: 看看你今天用過的東西裡，哪一樣顏色最舊。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-136
+  text: 記下今天窗外一個會動的東西。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 2
+
+- id: p-observe-137
+  text: 找一樣有洞或有孔的東西，看光從哪裡透過去。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-138
+  text: 觀察你喝水時杯緣接觸嘴唇的溫度。
+  tags: [observation, texture, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-139
+  text: 看看地上的落葉或碎屑排成什麼樣子。
+  tags: [observation, detail, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-140
+  text: 記下今天最深和最淺的一個顏色。
+  tags: [observation, color, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-141
+  text: 找一個平常不抬頭的地方，往上看看有什麼。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 3
+
+- id: p-observe-142
+  text: 觀察光透過樹葉或格柵在地上的斑點。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-143
+  text: 看看你今天碰到最光滑的表面是什麼。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-144
+  text: 記下你此刻聽到最近的一個聲音。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-145
+  text: 找一杯飲料，看它在杯底沉澱了什麼。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-146
+  text: 觀察你房間的顏色主要是暖色還是冷色。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 4
+
+- id: p-observe-147
+  text: 看看今天雲移動的方向和速度。
+  tags: [observation, noticing, light]
+  estimatedMinutes: 3
+
+- id: p-observe-148
+  text: 記下你今天看到的一個對比很強的畫面。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-149
+  text: 找一個物品的影子，描述它的形狀。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-150
+  text: 觀察一個人手上拿的東西，猜他要去做什麼。
+  tags: [observation, surroundings, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-151
+  text: 看看你桌上東西的擺放，哪一樣位置最固定。
+  tags: [observation, everyday, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-152
+  text: 記下今天讓你覺得乾淨俐落的一個畫面。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-153
+  text: 找一片天空，把它的顏色配一個具體的名字。
+  tags: [observation, color, light]
+  estimatedMinutes: 3
+
+- id: p-observe-154
+  text: 觀察你走進室內時眼睛適應光線的那幾秒。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-155
+  text: 看看手邊布料的織法，是密的還是鬆的。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-156
+  text: 記下你今天注意到的一個新氣味。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-157
+  text: 找一個反覆出現在你生活裡的顏色。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 4
+
+- id: p-observe-158
+  text: 觀察燈剛關掉時房間怎麼慢慢變暗。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-159
+  text: 看看你手邊物品的邊角，是尖的還是磨圓了。
+  tags: [observation, texture, detail]
+  estimatedMinutes: 2
+
+- id: p-observe-160
+  text: 記下今天你經過最有味道的一個地方。
+  tags: [observation, noticing, surroundings]
+  estimatedMinutes: 2
+
+- id: p-observe-161
+  text: 找一個窗景，看它一天裡不同時間的樣子。
+  tags: [observation, light, everyday]
+  estimatedMinutes: 5
+
+- id: p-observe-162
+  text: 觀察你雙手的溫度，兩隻手一樣暖嗎。
+  tags: [observation, texture, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-163
+  text: 看看你今天遇到最鮮明的一個對比色。
+  tags: [observation, color, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-164
+  text: 找一樣會發光的東西，看它照亮周圍多大範圍。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-165
+  text: 記下你今天覺得最安靜的一個顏色。
+  tags: [observation, color, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-166
+  text: 觀察一個表面在濕的時候和乾的時候顏色差多少。
+  tags: [observation, color, texture]
+  estimatedMinutes: 3
+
+- id: p-observe-167
+  text: 看看你此刻頭頂上方有什麼東西。
+  tags: [observation, surroundings, low_effort]
+  estimatedMinutes: 1
+
+- id: p-observe-168
+  text: 找一個小東西，把它放在光下轉動看它的變化。
+  tags: [observation, light, detail]
+  estimatedMinutes: 4
+
+- id: p-observe-169
+  text: 記下今天讓你多停留一秒的一種材質。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-170
+  text: 觀察遠處和近處的東西，哪個顏色比較淡。
+  tags: [observation, color, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-171
+  text: 看看你今天走過的地面有幾種不同的材質。
+  tags: [observation, texture, everyday]
+  estimatedMinutes: 3
+
+- id: p-observe-172
+  text: 找一個影子，看它是一層還是有深淺兩層。
+  tags: [observation, light, detail]
+  estimatedMinutes: 3
+
+- id: p-observe-173
+  text: 記下你今天看到最柔和的一種光。
+  tags: [observation, light, noticing]
+  estimatedMinutes: 2
+
+- id: p-observe-174
+  text: 觀察一個房間，哪個顏色佔得最多。
+  tags: [observation, color, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-175
+  text: 找一樣舊物，聞聞它有沒有味道。
+  tags: [observation, detail, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-176
+  text: 看看你手邊有沒有兩樣同色但不同質感的東西。
+  tags: [observation, texture, color]
+  estimatedMinutes: 3
+
+- id: p-observe-177
+  text: 記下今天讓你想起某個季節的一個畫面。
+  tags: [observation, noticing, everyday]
+  estimatedMinutes: 2
+
+- id: p-observe-178
+  text: 觀察光線最先照到房間的哪個東西上。
+  tags: [observation, light, surroundings]
+  estimatedMinutes: 3
+
+- id: p-observe-179
+  text: 找一個聲音，判斷它是規律的還是隨機的。
+  tags: [observation, noticing, low_effort]
+  estimatedMinutes: 2
+
+- id: p-observe-180
+  text: 看看你今天最常低頭看的東西是什麼顏色。
+  tags: [observation, color, everyday]
+  estimatedMinutes: 2

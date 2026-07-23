@@ -34,10 +34,11 @@ const CONTENT = join(ROOT, 'content')
 
 /** 各類的數量門檻。10 年份量的設計見 09-content-pool.md §7.2。 */
 const THRESHOLDS = {
-  quotes: 1000,
-  prompts: 1000,
-  greetings: 240, // 各時段至少 60
-  surprises: 300,
+  // 10 年 × 365 天，每天一則不重複 → 3650 是下限（使用者指示）。
+  quotes: 3650,
+  prompts: 3650,
+  greetings: 240, // 各時段至少 60；問候依時段輪替，不需 3650
+  surprises: 600,
   chain: 5,
 } as const
 

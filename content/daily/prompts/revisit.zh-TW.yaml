@@ -1,0 +1,703 @@
+# 每日創作提示：回顧與重做舊作
+# 主題運用雪境累積的作品，引導使用者回頭重新詮釋、只改一個變數、或從舊素材出發。
+
+- id: p-revisit-001
+  text: 找一張你三個月前的作品，只改字體，其他都不動。
+  tags: [revisit, revision, single_change]
+  estimatedMinutes: 15
+- id: p-revisit-002
+  text: 挑一個你放棄的東西，只重做它最不滿意的那一個地方。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-003
+  text: 把你最舊的一張作品，用現在的眼光重新配色。
+  tags: [reinterpret, old_work, single_change]
+  estimatedMinutes: 20
+- id: p-revisit-004
+  text: 打開半年前的作品，只把它裁切成正方形，看看重點有沒有變。
+  tags: [revisit, single_change, iteration]
+  estimatedMinutes: 10
+- id: p-revisit-005
+  text: 選一段舊文字，只換掉開頭第一句，其餘保留。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-006
+  text: 找出你最喜歡的一張舊作，臨摹它一次，記下手感的差異。
+  tags: [remake, old_work, iteration]
+  estimatedMinutes: 30
+- id: p-revisit-007
+  text: 拿一張舊照片，只調整明暗，不碰顏色與構圖。
+  tags: [revisit, single_change, revision]
+  estimatedMinutes: 10
+- id: p-revisit-008
+  text: 挑一件未完成的舊作，今天只補上你當時卡住的那一步。
+  tags: [remake, old_work, revision]
+  estimatedMinutes: 25
+- id: p-revisit-009
+  text: 把一年前的一句話，用現在的語氣重新寫一遍。
+  tags: [reinterpret, old_work, revision]
+  estimatedMinutes: 15
+- id: p-revisit-010
+  text: 找一張舊作，只把主角換到畫面另一側，觀察平衡的變化。
+  tags: [iteration, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-011
+  text: 翻出最早的草稿，只保留你最喜歡的一個元素，其餘重畫。
+  tags: [remake, archive, reinterpret]
+  estimatedMinutes: 30
+- id: p-revisit-012
+  text: 選一張舊作，把它縮到指甲大小，看看還剩下什麼。
+  tags: [revisit, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-013
+  text: 拿一段舊錄音或哼唱，只換一種節奏重新錄一次。
+  tags: [remake, single_change, iteration]
+  estimatedMinutes: 20
+- id: p-revisit-014
+  text: 把去年的一張作品轉成黑白，記下你反而更喜歡的部分。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-015
+  text: 找一件舊作，只替它想一個新標題，什麼都不改。
+  tags: [reinterpret, single_change, revision]
+  estimatedMinutes: 5
+- id: p-revisit-016
+  text: 挑一張舊圖，只放大局部當成新作，其餘全部裁掉。
+  tags: [reinterpret, old_work, single_change]
+  estimatedMinutes: 15
+- id: p-revisit-017
+  text: 回到你三則前的作品，找一個當時的錯誤，這次刻意保留它。
+  tags: [revisit, iteration, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-018
+  text: 選一件舊作，只把它翻轉左右，觀察觀看順序怎麼變。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-019
+  text: 拿最舊的一段文字，只刪掉一半的字，看剩下的夠不夠。
+  tags: [revision, old_work, single_change]
+  estimatedMinutes: 15
+- id: p-revisit-020
+  text: 找一張你當時很滿意的作品，今天誠實列出它三個缺點。
+  tags: [revisit, old_work, revision]
+  estimatedMinutes: 15
+- id: p-revisit-021
+  text: 把半年前的作品，用完全相反的色調重做一次。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-022
+  text: 挑一個舊主題，只用一種顏色重新詮釋它。
+  tags: [reinterpret, single_change, iteration]
+  estimatedMinutes: 20
+- id: p-revisit-023
+  text: 翻出一張老照片，只把背景換掉，主體不動。
+  tags: [single_change, remake, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-024
+  text: 選一件舊作，把它交給明天的自己，先寫下三行說明。
+  tags: [archive, old_work, revision]
+  estimatedMinutes: 10
+- id: p-revisit-025
+  text: 找一張你畫壞的作品，只把最糟的一角重畫。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-026
+  text: 拿一年前的作品，只改它的比例，正方變長條看看。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-027
+  text: 選一段舊文字，只把每個句號換成問號，讀讀語氣。
+  tags: [revision, single_change, reinterpret]
+  estimatedMinutes: 10
+- id: p-revisit-028
+  text: 回到最早的作品，用一句話總結你當時最想說什麼。
+  tags: [archive, old_work, revisit]
+  estimatedMinutes: 10
+- id: p-revisit-029
+  text: 挑一張舊作，只換掉它的字型大小，看層次有沒有變清楚。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-030
+  text: 拿一件舊作的邊角料，拼成一張全新的小圖。
+  tags: [remake, archive, reinterpret]
+  estimatedMinutes: 25
+- id: p-revisit-031
+  text: 找兩張你不同時期的舊作，把它們併成一張。
+  tags: [remake, archive, iteration]
+  estimatedMinutes: 30
+- id: p-revisit-032
+  text: 選一件舊作，只把它的留白加倍，其餘不動。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-033
+  text: 翻出你最不敢看的舊作，今天只改一個地方就好。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-034
+  text: 把一張舊圖只換一個焦點，讓視線落在別處。
+  tags: [single_change, iteration, reinterpret]
+  estimatedMinutes: 15
+- id: p-revisit-035
+  text: 選一段舊句子，用你阿嬤會說的話重講一次。
+  tags: [reinterpret, revision, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-036
+  text: 找一張舊作，只把它印成很小的貼紙尺寸重新排版。
+  tags: [reinterpret, iteration, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-037
+  text: 回到三個月前的作品，只補一個當時省略的細節。
+  tags: [revision, single_change, revisit]
+  estimatedMinutes: 15
+- id: p-revisit-038
+  text: 拿一件舊作，把它的主色抽掉，看還撐不撐得住。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-039
+  text: 挑一張老作品，只調整它的間距，讓呼吸更順。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-040
+  text: 選一件半途而廢的作品，今天只決定它該不該繼續。
+  tags: [archive, old_work, revisit]
+  estimatedMinutes: 10
+- id: p-revisit-041
+  text: 把最舊的一張作品，用你現在最順手的工具重畫。
+  tags: [remake, old_work, iteration]
+  estimatedMinutes: 35
+- id: p-revisit-042
+  text: 找一段舊文字，只保留動詞，其餘先拿掉再讀。
+  tags: [revision, single_change, reinterpret]
+  estimatedMinutes: 15
+- id: p-revisit-043
+  text: 選一張舊作，只換掉它最右邊那個元素。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-044
+  text: 回顧上個月的作品，把當時的心情用一個顏色標記。
+  tags: [archive, revisit, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-045
+  text: 拿一件舊作，只把它旋轉九十度當成新構圖。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-046
+  text: 挑一張你覺得太滿的舊作，只做減法，拿掉三樣東西。
+  tags: [revision, iteration, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-047
+  text: 找一張太空的舊作，只加一樣東西讓它完整。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-048
+  text: 選一段舊旋律，只換一個和弦聽聽差別。
+  tags: [single_change, remake, iteration]
+  estimatedMinutes: 20
+- id: p-revisit-049
+  text: 把去年同一天的作品翻出來，寫下你變了哪裡。
+  tags: [archive, revisit, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-050
+  text: 拿一件舊作，只把它的邊框拿掉，看畫面有沒有變開。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-051
+  text: 選一張舊圖，用剪紙的方式重新拼一次它的輪廓。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 30
+- id: p-revisit-052
+  text: 回到你第一則作品，只把它的標題改得更誠實。
+  tags: [revision, single_change, archive]
+  estimatedMinutes: 10
+- id: p-revisit-053
+  text: 找一件舊作，只換掉它的主角，故事重講。
+  tags: [reinterpret, remake, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-054
+  text: 挑一張舊作，把它的顏色都調暗一階，看情緒怎麼變。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 15
+- id: p-revisit-055
+  text: 拿一段舊文字，只把它排成一首短詩的樣子。
+  tags: [reinterpret, revision, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-056
+  text: 選一件舊作，只把它縮成一格漫畫的大小重畫。
+  tags: [remake, iteration, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-057
+  text: 翻出一張舊草圖，這次照著它認真完成一次。
+  tags: [remake, old_work, iteration]
+  estimatedMinutes: 40
+- id: p-revisit-058
+  text: 找一張舊作，只把它的線條加粗，看重量的變化。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-059
+  text: 選一段舊句子，只換掉一個關鍵詞，意思就翻面。
+  tags: [revision, single_change, reinterpret]
+  estimatedMinutes: 10
+- id: p-revisit-060
+  text: 把三個月前的作品，用一個表情符號重新命名。
+  tags: [reinterpret, single_change, revisit]
+  estimatedMinutes: 5
+- id: p-revisit-061
+  text: 拿一件舊作，只把它的天空換個時間，晨變夜。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-062
+  text: 挑一張老作品，只把它的主色換成互補色。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 15
+- id: p-revisit-063
+  text: 找一段舊錄音，只保留三秒，把它剪成一個開頭。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-064
+  text: 選一件舊作，寫封短信給當時做它的自己。
+  tags: [archive, revisit, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-065
+  text: 把最舊的作品，只用手機隨手重拍一張致敬版。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-066
+  text: 拿一張舊圖，只把它的解析度故意調糊，當成新質感。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 10
+- id: p-revisit-067
+  text: 挑一件你半年沒碰的作品，今天只打開它看五分鐘。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-068
+  text: 選一張舊作，只加一條線就好，看它會往哪裡走。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-069
+  text: 找一段舊文字，把它倒過來從最後一句讀起再重寫。
+  tags: [reinterpret, revision, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-070
+  text: 回到上一則作品，只把它做得更小、更安靜一點。
+  tags: [revision, iteration, revisit]
+  estimatedMinutes: 15
+- id: p-revisit-071
+  text: 拿一件舊作，只換掉它的材質，紙變布看看。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-072
+  text: 挑一張老作品，只把它的重點移到角落。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-073
+  text: 選一件舊作，用一句話說出你現在不會這樣做的原因。
+  tags: [revisit, old_work, revision]
+  estimatedMinutes: 10
+- id: p-revisit-074
+  text: 把去年的作品，只換一種筆刷重描一次輪廓。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-075
+  text: 找一張舊作，把它變成一張賀卡的版面。
+  tags: [reinterpret, iteration, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-076
+  text: 拿一段舊旋律，只放慢一半速度重新聽。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 10
+- id: p-revisit-077
+  text: 選一件舊作，只把它最亮的地方壓暗。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-078
+  text: 翻出三張同題材的舊作，選出最好的那張，說為什麼。
+  tags: [archive, revisit, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-079
+  text: 把一張舊圖，只加一層淡淡的紋理當成新皮膚。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-080
+  text: 找一件舊作，只重寫它的第一段，其餘保留。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-081
+  text: 選一張老作品，把它縮到只剩剪影重新看。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-082
+  text: 拿一件放棄的作品，今天只想清楚你為什麼放棄。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-083
+  text: 把最舊的作品，只換一個結尾，讓它收得不一樣。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-084
+  text: 挑一張舊作，只把它水平置中，看穩不穩。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-085
+  text: 找一段舊文字，只把長句全部切短。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-086
+  text: 選一件舊作，用完全不同的媒材重做一遍。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 40
+- id: p-revisit-087
+  text: 回到三則前的作品，只把它的顏色數量減到兩種。
+  tags: [single_change, iteration, revisit]
+  estimatedMinutes: 20
+- id: p-revisit-088
+  text: 拿一張老照片，只裁掉一半，讓它變成留白的作品。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-089
+  text: 挑一件舊作，把它交給隨機的字型，只看排版。
+  tags: [single_change, iteration, revision]
+  estimatedMinutes: 10
+- id: p-revisit-090
+  text: 選一張舊作，只加一個影子，讓它站起來。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-091
+  text: 把一年前的作品，只用一分鐘快速重畫它的印象。
+  tags: [remake, iteration, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-092
+  text: 找一件舊作，只把它的比重從左移到右。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-093
+  text: 選一段舊句子，只換掉標點的位置，讀讀停頓。
+  tags: [revision, single_change, reinterpret]
+  estimatedMinutes: 10
+- id: p-revisit-094
+  text: 翻出最早的三張作品，排成一條時間線看變化。
+  tags: [archive, revisit, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-095
+  text: 拿一件舊作，只把它的主題句放到最後才出現。
+  tags: [revision, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-096
+  text: 把一張舊圖，只換成夜晚的光線重新想像。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-097
+  text: 挑一件舊作，只做一個你當年不敢做的大膽選擇。
+  tags: [remake, iteration, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-098
+  text: 選一張老作品，只把它翻拍後加一句手寫註解。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-099
+  text: 找一段舊錄音，只在結尾加三秒的安靜。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-100
+  text: 回到上週的作品，只把它印出來貼在牆上看一天。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-101
+  text: 拿一件舊作，只換掉它的視角，從低處往上看。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-102
+  text: 把最舊的作品，只把它的主角變老十歲重畫。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 30
+- id: p-revisit-103
+  text: 挑一張舊作，只把它的圓角全改成直角。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-104
+  text: 選一件舊作，用一個孩子的角度重新描述它。
+  tags: [reinterpret, revision, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-105
+  text: 找一段舊文字，只把它讀出聲，改掉念不順的地方。
+  tags: [revision, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-106
+  text: 拿一張老照片，只把它的一角折起來當成新構圖。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-107
+  text: 把三個月前的作品，只加一個對照的元素。
+  tags: [single_change, revision, revisit]
+  estimatedMinutes: 20
+- id: p-revisit-108
+  text: 選一件舊作，只把它的節奏改快，看情緒怎麼變。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 15
+- id: p-revisit-109
+  text: 翻出一張你以為很爛的舊作，找出它一個好處。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-110
+  text: 找一件舊作，只重做它的一個角落，當成明信片。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-111
+  text: 拿一張舊圖，只把它的主色調成粉彩系。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 15
+- id: p-revisit-112
+  text: 選一段舊句子，只加一個轉折詞讓它有懸念。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-113
+  text: 把最舊的作品，只把它擺進一個相框重新拍。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-114
+  text: 挑一件舊作，只把它的細節全部模糊，留下大形。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-115
+  text: 回到你第一則作品，只補一句當時沒說完的話。
+  tags: [revision, single_change, archive]
+  estimatedMinutes: 15
+- id: p-revisit-116
+  text: 找一張舊作，只把它的方向從橫改直。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-117
+  text: 選一件舊作，把它拆成三個小片段各自獨立。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-118
+  text: 拿一段舊旋律，只換一種樂器的音色。
+  tags: [single_change, remake, iteration]
+  estimatedMinutes: 20
+- id: p-revisit-119
+  text: 把去年的作品，只挑一個顏色抽出來做成新主題。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-120
+  text: 挑一張老作品，只把它的天空留白，其餘保留。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-121
+  text: 找一件舊作，用手機濾鏡幫它換一個年代感。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-122
+  text: 選一段舊文字，只把第一人稱換成第三人稱。
+  tags: [revision, single_change, reinterpret]
+  estimatedMinutes: 15
+- id: p-revisit-123
+  text: 把三則前的作品，只加一個聲音的想像描述。
+  tags: [reinterpret, single_change, revisit]
+  estimatedMinutes: 15
+- id: p-revisit-124
+  text: 拿一張舊圖，只把它的主角換成剪影背光。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-125
+  text: 挑一件舊作，今天只整理它的檔案名稱與標籤。
+  tags: [archive, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-126
+  text: 回到最舊的作品，用它當封面重新排一個小合集。
+  tags: [archive, reinterpret, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-127
+  text: 找一張舊作，只把它印成負片般的反色。
+  tags: [single_change, reinterpret, iteration]
+  estimatedMinutes: 10
+- id: p-revisit-128
+  text: 選一件舊作，只重做它讓你最猶豫的那一筆。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-129
+  text: 把一年前的作品，只換一個天氣重新設定氛圍。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-130
+  text: 拿一段舊句子，只把形容詞全部拿掉再讀一次。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-131
+  text: 挑一張老作品，只加一個人的影子在角落。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-132
+  text: 找一件舊作，把它的一個細節放大成整張新作。
+  tags: [reinterpret, remake, old_work]
+  estimatedMinutes: 30
+- id: p-revisit-133
+  text: 選一張舊作，只把它的對比拉到最強看看。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-134
+  text: 把三個月前的作品，只換一個字型行距重新排。
+  tags: [revision, single_change, revisit]
+  estimatedMinutes: 10
+- id: p-revisit-135
+  text: 拿一件未完成的作品，今天只決定它的下一步。
+  tags: [revisit, old_work, revision]
+  estimatedMinutes: 10
+- id: p-revisit-136
+  text: 挑一張舊作，只用左手重畫它的輪廓一次。
+  tags: [remake, iteration, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-137
+  text: 找一段舊錄音，只加一個環境音當背景。
+  tags: [single_change, remake, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-138
+  text: 選一件舊作，寫下它教會你的一件事。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-139
+  text: 把最舊的作品，只換一種紙的顏色重新輸出。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-140
+  text: 拿一張舊圖，只把它切成九宮格重新排列。
+  tags: [reinterpret, iteration, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-141
+  text: 挑一件舊作，只把它的標點改成全形看排版。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-142
+  text: 回到上一則作品，只把它做成一個循環的動畫感。
+  tags: [reinterpret, iteration, revisit]
+  estimatedMinutes: 30
+- id: p-revisit-143
+  text: 找一張舊作，只把它的主角移出畫面外一半。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-144
+  text: 選一段舊文字，只保留最後一句當成新作的開頭。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-145
+  text: 把去年的作品，只用單一線稿重畫，不上色。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 25
+- id: p-revisit-146
+  text: 拿一件舊作，今天只把它安靜地看完，不改任何東西。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-147
+  text: 挑一張老作品，只換一個更貼近它的背景音樂。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-148
+  text: 找一件舊作，只把它縮小放進一個更大的空白裡。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-149
+  text: 選一張舊作，只重做它的簽名或落款。
+  tags: [single_change, revision, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-150
+  text: 把三則前的作品，只加一個對比色的小點。
+  tags: [single_change, iteration, revisit]
+  estimatedMinutes: 10
+- id: p-revisit-151
+  text: 拿一段舊旋律，只把結尾改成不解決的懸空音。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-152
+  text: 挑一件舊作，用便利貼幫它寫三個可能的續作方向。
+  tags: [archive, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-153
+  text: 找一張舊作，只把它的邊緣故意做得粗糙。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-154
+  text: 選一段舊句子，只把它翻成台語念念看。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-155
+  text: 把最舊的作品，只擷取一個顏色貼在今天的桌面。
+  tags: [archive, single_change, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-156
+  text: 拿一張舊圖，只把它的中心留空，改把重點推到邊。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-157
+  text: 挑一件舊作，只把它的一句話改得更短更狠。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-158
+  text: 回到你第一則作品，用現在的技術補完它一次。
+  tags: [remake, old_work, iteration]
+  estimatedMinutes: 40
+- id: p-revisit-159
+  text: 找一張舊作，只換一個季節重新配它的顏色。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-160
+  text: 選一件舊作，把它的一角剪下來做成新的開頭。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-161
+  text: 把三個月前的作品，只加一個標點停頓在中間。
+  tags: [single_change, revision, revisit]
+  estimatedMinutes: 10
+- id: p-revisit-162
+  text: 拿一件舊作，今天只把它重新命名成一個問句。
+  tags: [reinterpret, single_change, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-163
+  text: 挑一張老作品，只把它的高光位置換到另一邊。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-164
+  text: 找一段舊文字，只把它排成一封信的樣子。
+  tags: [reinterpret, revision, old_work]
+  estimatedMinutes: 15
+- id: p-revisit-165
+  text: 選一件舊作，只重畫它讓你當時最得意的部分。
+  tags: [remake, single_change, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-166
+  text: 把去年的作品，只換一個字重，其餘版面不動。
+  tags: [revision, single_change, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-167
+  text: 拿一張舊圖，只把它疊上今天拍的一張照片。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 20
+- id: p-revisit-168
+  text: 挑一件舊作，只把它印小放進錢包帶一天。
+  tags: [archive, single_change, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-169
+  text: 找一張舊作，用三十秒重畫一個更誠實的版本。
+  tags: [remake, iteration, old_work]
+  estimatedMinutes: 5
+- id: p-revisit-170
+  text: 選一件舊作，只把它的第一句與最後一句對調。
+  tags: [revision, single_change, reinterpret]
+  estimatedMinutes: 15
+- id: p-revisit-171
+  text: 回到最舊的作品，寫下你希望它變成的一個樣子。
+  tags: [revisit, archive, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-172
+  text: 拿一段舊錄音，只把它加速兩倍當成新素材。
+  tags: [single_change, reinterpret, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-173
+  text: 把三則前的作品，只把它的主角換成你自己。
+  tags: [reinterpret, single_change, revisit]
+  estimatedMinutes: 20
+- id: p-revisit-174
+  text: 挑一件舊作，只把它的背景填成純黑再看一次。
+  tags: [single_change, iteration, old_work]
+  estimatedMinutes: 10
+- id: p-revisit-175
+  text: 找一張舊作，只用它的輪廓重描出一張新線稿。
+  tags: [remake, reinterpret, old_work]
+  estimatedMinutes: 25

@@ -1,0 +1,528 @@
+- id: q-time-001
+  text: 一天畫一條線，一年後就是一本書。
+  tags: [time, accumulation]
+- id: q-time-002
+  text: 你現在覺得慢，是因為還沒回頭看。
+  tags: [slow, time]
+- id: q-time-003
+  text: 累積不是每天都看得見，但它一直在。
+  tags: [accumulation, continuity]
+- id: q-time-004
+  text: 種子在土裡的時候，看起來什麼都沒發生。
+  tags: [patience, growth]
+- id: q-time-005
+  text: 樹不會催自己長高，它只是每天多一點。
+  tags: [growth, patience]
+- id: q-time-006
+  text: 今天做的那一點點，會在你忘記的時候發芽。
+  tags: [accumulation, growth]
+- id: q-time-007
+  text: 慢慢來，通常是最快的路。
+  tags: [slow, patience]
+- id: q-time-008
+  text: 時間不會偏心，它只是安靜地站在堅持的人那邊。
+  tags: [persistence, time]
+- id: q-time-009
+  text: 一年前的你，大概想不到今天的你會在這裡。
+  tags: [time, growth]
+- id: q-time-010
+  text: 河流不急著到海，但它從來沒有停下。
+  tags: [continuity, patience]
+- id: q-time-011
+  text: 有些改變只在回頭時才看得出來。
+  tags: [time, memory]
+- id: q-time-012
+  text: 你不是沒有進步，只是進步藏在細節裡。
+  tags: [accumulation, growth]
+- id: q-time-013
+  text: 冬天的沉默，是春天的準備。
+  tags: [season, patience]
+- id: q-time-014
+  text: 每一次坐下來，都是在替未來的自己鋪路。
+  tags: [accumulation, long_term]
+- id: q-time-015
+  text: 厚度是時間給認真的人的禮物。
+  tags: [time, accumulation]
+- id: q-time-016
+  text: 今天低能量也沒關係，慢的日子也算數。
+  tags: [slow, patience]
+- id: q-time-017
+  text: 不必每天開花，根在往下扎就好。
+  tags: [growth, patience]
+- id: q-time-018
+  text: 微小的堅持，久了會有重量。
+  tags: [persistence, accumulation]
+- id: q-time-019
+  text: 你留下的每一筆，都在替明天的你說話。
+  tags: [continuity, long_term]
+- id: q-time-020
+  text: 四季走一圈，你也走了很遠。
+  tags: [season, time]
+- id: q-time-021
+  text: 複利最迷人的地方，是它在你睡著時也在工作。
+  tags: [accumulation, long_term]
+- id: q-time-022
+  text: 別小看今天，它是一年後回憶的一塊磚。
+  tags: [accumulation, memory]
+- id: q-time-023
+  text: 慢，不代表停；它只是換一種前進。
+  tags: [slow, continuity]
+- id: q-time-024
+  text: 有些種子要等好幾季才醒來。
+  tags: [season, patience]
+- id: q-time-025
+  text: 你今天的一小步，未來會替你走一大段。
+  tags: [accumulation, long_term]
+- id: q-time-026
+  text: 時間會把零散的努力，收攏成一件作品。
+  tags: [accumulation, time]
+- id: q-time-027
+  text: 不急，果實有它自己的節奏。
+  tags: [patience, season]
+- id: q-time-028
+  text: 你走過的路，會在腳底留下地圖。
+  tags: [memory, continuity]
+- id: q-time-029
+  text: 每天一點點，比偶爾用力更遠。
+  tags: [persistence, accumulation]
+- id: q-time-030
+  text: 沉澱下來的東西，往往最耐放。
+  tags: [slow, long_term]
+- id: q-time-031
+  text: 一頁一頁地寫，某天會變成一整章。
+  tags: [accumulation, growth]
+- id: q-time-032
+  text: 你以為停在原地，其實只是根還沒露出地面。
+  tags: [patience, growth]
+- id: q-time-033
+  text: 記得為過去的自己，感謝一下。
+  tags: [memory, time]
+- id: q-time-034
+  text: 好東西通常需要一點時間醞釀。
+  tags: [patience, slow]
+- id: q-time-035
+  text: 今天的紀錄，是未來翻回來的溫柔。
+  tags: [memory, continuity]
+- id: q-time-036
+  text: 別和季節搶時間，該來的都會來。
+  tags: [season, patience]
+- id: q-time-037
+  text: 一點一滴，其實從不安靜，只是你聽不見。
+  tags: [accumulation, slow]
+- id: q-time-038
+  text: 走得慢的人，通常看得比較清楚。
+  tags: [slow, patience]
+- id: q-time-039
+  text: 你今天種下的，明年由你收成。
+  tags: [growth, long_term]
+- id: q-time-040
+  text: 時間站在持續的人這邊，而不是用力的人。
+  tags: [persistence, time]
+- id: q-time-041
+  text: 有時候，撐過去就是成長本身。
+  tags: [persistence, growth]
+- id: q-time-042
+  text: 一年很長，長到足夠讓你變成另一個人。
+  tags: [time, growth]
+- id: q-time-043
+  text: 別怕慢，怕的是停在原地又不甘心。
+  tags: [slow, patience]
+- id: q-time-044
+  text: 冰川移動的速度，你看不見，卻改變了整片山谷。
+  tags: [slow, accumulation]
+- id: q-time-045
+  text: 每個微小的今天，都在替一個很大的以後投票。
+  tags: [accumulation, long_term]
+- id: q-time-046
+  text: 你不需要每天都精彩，能繼續就很好。
+  tags: [continuity, persistence]
+- id: q-time-047
+  text: 年輪不會說話，但它記得每一個冬天。
+  tags: [season, memory]
+- id: q-time-048
+  text: 慢工出來的，別人拿不走。
+  tags: [slow, long_term]
+- id: q-time-049
+  text: 你留下的痕跡，會替你記得你來過。
+  tags: [memory, continuity]
+- id: q-time-050
+  text: 時間會替真誠的努力作證。
+  tags: [time, persistence]
+- id: q-time-051
+  text: 有些日子只是在補充養分，看不出來很正常。
+  tags: [patience, growth]
+- id: q-time-052
+  text: 一磚一瓦，房子總會蓋起來。
+  tags: [accumulation, persistence]
+- id: q-time-053
+  text: 別催花，花有花的鐘。
+  tags: [patience, season]
+- id: q-time-054
+  text: 你回頭看的那一天，會謝謝今天沒放棄的自己。
+  tags: [persistence, memory]
+- id: q-time-055
+  text: 涓滴匯流，最後也能推動一座水車。
+  tags: [accumulation, continuity]
+- id: q-time-056
+  text: 慢下來，你才有空間長出深度。
+  tags: [slow, growth]
+- id: q-time-057
+  text: 春天不會問你準備好了沒，它只是來了。
+  tags: [season, time]
+- id: q-time-058
+  text: 累積是安靜的，直到它突然被看見。
+  tags: [accumulation, growth]
+- id: q-time-059
+  text: 每天多一頁，時間會替你裝訂成冊。
+  tags: [accumulation, continuity]
+- id: q-time-060
+  text: 你走的每一步，都算數，哪怕很小。
+  tags: [persistence, accumulation]
+- id: q-time-061
+  text: 有些成長是往下的，先扎根再抽芽。
+  tags: [growth, patience]
+- id: q-time-062
+  text: 十年一瞬，也是一天一天走出來的。
+  tags: [long_term, accumulation]
+- id: q-time-063
+  text: 別怕開始得晚，樹最好的種植時間就是現在。
+  tags: [growth, long_term]
+- id: q-time-064
+  text: 熬過的每個冬天，都藏在你的年輪裡。
+  tags: [season, persistence]
+- id: q-time-065
+  text: 時間的厚度，是一頁一頁翻出來的。
+  tags: [time, accumulation]
+- id: q-time-066
+  text: 你以為的白費，往往是還沒到收成的季節。
+  tags: [season, patience]
+- id: q-time-067
+  text: 慢慢寫，故事會自己長出結局。
+  tags: [slow, growth]
+- id: q-time-068
+  text: 持續比爆發更難，也更值得。
+  tags: [persistence, long_term]
+- id: q-time-069
+  text: 今天留下的一句話，明年會變成一段記憶。
+  tags: [memory, continuity]
+- id: q-time-070
+  text: 河道是水一遍一遍磨出來的。
+  tags: [accumulation, patience]
+- id: q-time-071
+  text: 不必和昨天比，和去年比就好。
+  tags: [time, growth]
+- id: q-time-072
+  text: 有些花只在夜裡開，沒人看見它也照樣綻放。
+  tags: [patience, persistence]
+- id: q-time-073
+  text: 你正在寫的，是一年後想讀的東西。
+  tags: [long_term, continuity]
+- id: q-time-074
+  text: 慢慢累積的信任，最禁得起風。
+  tags: [slow, long_term]
+- id: q-time-075
+  text: 別擔心進度，擔心的是有沒有在路上。
+  tags: [continuity, persistence]
+- id: q-time-076
+  text: 時間會把粗糙的東西磨得溫潤。
+  tags: [slow, time]
+- id: q-time-077
+  text: 一顆種子的耐心，等得起整個春天。
+  tags: [patience, season]
+- id: q-time-078
+  text: 你每天守住的那一點點，就是根。
+  tags: [persistence, growth]
+- id: q-time-079
+  text: 慢就慢，反正你沒有要回頭。
+  tags: [slow, continuity]
+- id: q-time-080
+  text: 累積到某個點，量會變成質。
+  tags: [accumulation, growth]
+- id: q-time-081
+  text: 你走過的每個季節，都在替你上色。
+  tags: [season, memory]
+- id: q-time-082
+  text: 有些答案要等時間慢慢說。
+  tags: [patience, time]
+- id: q-time-083
+  text: 一年後回頭，今天會像一塊踏腳石。
+  tags: [long_term, memory]
+- id: q-time-084
+  text: 別怕微小，星星也是一顆一顆亮起來的。
+  tags: [accumulation, patience]
+- id: q-time-085
+  text: 深的東西，都長得慢。
+  tags: [slow, growth]
+- id: q-time-086
+  text: 你今天願意坐下來，就已經在往前了。
+  tags: [persistence, continuity]
+- id: q-time-087
+  text: 時間會替沉默的努力翻譯。
+  tags: [time, persistence]
+- id: q-time-088
+  text: 落葉不是結束，是給明年的養分。
+  tags: [season, growth]
+- id: q-time-089
+  text: 每天一點點的堆疊，會在某天變成地基。
+  tags: [accumulation, long_term]
+- id: q-time-090
+  text: 慢一點，才留得住細節。
+  tags: [slow, memory]
+- id: q-time-091
+  text: 你不需要趕上誰，你有自己的節氣。
+  tags: [season, patience]
+- id: q-time-092
+  text: 堅持不是咬牙，是每天願意再來一次。
+  tags: [persistence, continuity]
+- id: q-time-093
+  text: 記憶會替時間留下體積。
+  tags: [memory, time]
+- id: q-time-094
+  text: 一步一步，就是最踏實的捷徑。
+  tags: [slow, persistence]
+- id: q-time-095
+  text: 有些改變太緩，緩到像沒動，其實走了好遠。
+  tags: [slow, accumulation]
+- id: q-time-096
+  text: 你留在這裡的每一天，都在長成這個空間的一部分。
+  tags: [continuity, growth]
+- id: q-time-097
+  text: 別急著開花，先把葉子養好。
+  tags: [patience, growth]
+- id: q-time-098
+  text: 時間對耐心的人特別溫柔。
+  tags: [patience, time]
+- id: q-time-099
+  text: 一年很短，短到你會希望多留下一些。
+  tags: [time, memory]
+- id: q-time-100
+  text: 慢慢做的事，通常做得比較久。
+  tags: [slow, long_term]
+- id: q-time-101
+  text: 你今天種的樹，會替以後的你遮蔭。
+  tags: [growth, long_term]
+- id: q-time-102
+  text: 累積像存錢，看不出來，卻越來越有底氣。
+  tags: [accumulation, long_term]
+- id: q-time-103
+  text: 別怕重來，年輪也是一圈一圈畫的。
+  tags: [continuity, persistence]
+- id: q-time-104
+  text: 有些日子只要走過去，就已經很好。
+  tags: [patience, persistence]
+- id: q-time-105
+  text: 時間會把今天的辛苦，收進未來的柔軟裡。
+  tags: [time, memory]
+- id: q-time-106
+  text: 每一次回來，都是在替這個習慣加厚。
+  tags: [continuity, accumulation]
+- id: q-time-107
+  text: 慢慢長的東西，根都比較穩。
+  tags: [slow, growth]
+- id: q-time-108
+  text: 你正在做的，是一件需要時間才看得懂的事。
+  tags: [patience, long_term]
+- id: q-time-109
+  text: 春耕的人，不會怪夏天還沒收成。
+  tags: [season, patience]
+- id: q-time-110
+  text: 一點一點來，時間會替你完成剩下的。
+  tags: [accumulation, patience]
+- id: q-time-111
+  text: 你走的每一里，都留在腿的記憶裡。
+  tags: [memory, persistence]
+- id: q-time-112
+  text: 別和快的人比，比的是能走多遠。
+  tags: [slow, long_term]
+- id: q-time-113
+  text: 沉住氣，好的東西經得起等。
+  tags: [patience, long_term]
+- id: q-time-114
+  text: 今天的一小格，會拼進未來的整張圖。
+  tags: [accumulation, continuity]
+- id: q-time-115
+  text: 時間不會辜負一直在的人。
+  tags: [persistence, time]
+- id: q-time-116
+  text: 有些成長，得等下一個季節才看得見。
+  tags: [season, growth]
+- id: q-time-117
+  text: 慢慢累起來的，塌得也慢。
+  tags: [slow, long_term]
+- id: q-time-118
+  text: 你今天寫下的，一年後會替你記得這一天。
+  tags: [memory, continuity]
+- id: q-time-119
+  text: 別怕現在看不到結果，果實還在路上。
+  tags: [patience, growth]
+- id: q-time-120
+  text: 一天不多，三百六十五天就很可觀。
+  tags: [accumulation, long_term]
+- id: q-time-121
+  text: 慢也是一種認真。
+  tags: [slow, patience]
+- id: q-time-122
+  text: 你堆的每一層，都在讓地基更深。
+  tags: [accumulation, persistence]
+- id: q-time-123
+  text: 時間會把重複，變成擅長。
+  tags: [persistence, growth]
+- id: q-time-124
+  text: 落雪一片一片，最後蓋滿整座山。
+  tags: [accumulation, season]
+- id: q-time-125
+  text: 別催自己，成熟有它的時辰。
+  tags: [patience, season]
+- id: q-time-126
+  text: 你今天沒放棄，就已經贏過昨天。
+  tags: [persistence, continuity]
+- id: q-time-127
+  text: 有些路要走久了，才會變成自己的。
+  tags: [slow, long_term]
+- id: q-time-128
+  text: 記憶是時間留給我們的收藏。
+  tags: [memory, time]
+- id: q-time-129
+  text: 一頁空白也算數，明天再接著寫。
+  tags: [continuity, patience]
+- id: q-time-130
+  text: 慢慢來，反正這是一場很長的旅程。
+  tags: [slow, long_term]
+- id: q-time-131
+  text: 你今天的耐心，是明天的底氣。
+  tags: [patience, growth]
+- id: q-time-132
+  text: 累積像潮水，退了又來，總在往前。
+  tags: [accumulation, continuity]
+- id: q-time-133
+  text: 別怕冬天，它只是讓你休息，不是結束。
+  tags: [season, patience]
+- id: q-time-134
+  text: 每一天都是給未來的一封信。
+  tags: [continuity, long_term]
+- id: q-time-135
+  text: 時間站在慢慢走、卻沒停的人這邊。
+  tags: [slow, persistence]
+- id: q-time-136
+  text: 你回頭時會發現，走過的路都連成了線。
+  tags: [memory, continuity]
+- id: q-time-137
+  text: 有些種子只是還沒到它的季節。
+  tags: [season, patience]
+- id: q-time-138
+  text: 慢慢累的東西，別人一時學不來。
+  tags: [slow, long_term]
+- id: q-time-139
+  text: 今天多一點，明天就少一點要補。
+  tags: [accumulation, persistence]
+- id: q-time-140
+  text: 時間會把此刻，釀成以後的味道。
+  tags: [time, memory]
+- id: q-time-141
+  text: 你只要繼續，路自己會延伸。
+  tags: [continuity, persistence]
+- id: q-time-142
+  text: 別怕慢工，慢工才有細活。
+  tags: [slow, growth]
+- id: q-time-143
+  text: 一年後的你，正在被今天的你養大。
+  tags: [long_term, growth]
+- id: q-time-144
+  text: 累積是把時間，摺進厚度裡。
+  tags: [accumulation, time]
+- id: q-time-145
+  text: 有些花謝了，是為了明年開得更好。
+  tags: [season, patience]
+- id: q-time-146
+  text: 你留下的每個字，都是時間的座標。
+  tags: [memory, continuity]
+- id: q-time-147
+  text: 慢慢走，你才不會錯過沿途。
+  tags: [slow, patience]
+- id: q-time-148
+  text: 堅持久了，會變成你的一部分。
+  tags: [persistence, long_term]
+- id: q-time-149
+  text: 今天種下的耐心，會結出從容的果。
+  tags: [patience, growth]
+- id: q-time-150
+  text: 時間會替沉默的日子，補上意義。
+  tags: [time, memory]
+- id: q-time-151
+  text: 你不必跑，能一直走就好。
+  tags: [slow, continuity]
+- id: q-time-152
+  text: 累積像雪，一層一層，最後厚得驚人。
+  tags: [accumulation, season]
+- id: q-time-153
+  text: 別怕現在小，大都是從小長來的。
+  tags: [growth, patience]
+- id: q-time-154
+  text: 每個回來的日子，都在替這裡添一圈年輪。
+  tags: [continuity, memory]
+- id: q-time-155
+  text: 慢慢做，時間會替你收尾。
+  tags: [slow, patience]
+- id: q-time-156
+  text: 你今天的一點堅持，是未來的一整片森林。
+  tags: [persistence, growth]
+- id: q-time-157
+  text: 有些季節就是用來等待的。
+  tags: [season, patience]
+- id: q-time-158
+  text: 時間的複利，藏在每個平凡的今天。
+  tags: [accumulation, long_term]
+- id: q-time-159
+  text: 你走得再慢，也在離起點越來越遠。
+  tags: [slow, continuity]
+- id: q-time-160
+  text: 別急著看成果，先享受長出來的過程。
+  tags: [patience, growth]
+- id: q-time-161
+  text: 一天天累起來的，才拆不散。
+  tags: [accumulation, long_term]
+- id: q-time-162
+  text: 今天留下的溫度，未來會替你保存。
+  tags: [memory, continuity]
+- id: q-time-163
+  text: 時間對持續的人，特別大方。
+  tags: [persistence, time]
+- id: q-time-164
+  text: 慢慢地，你會長成當初想成為的樣子。
+  tags: [slow, growth]
+- id: q-time-165
+  text: 冬藏之後，是春發。
+  tags: [season, patience]
+- id: q-time-166
+  text: 你堆的每一天，都在替以後鋪厚。
+  tags: [accumulation, long_term]
+- id: q-time-167
+  text: 別怕停一下，河也有靜靜的深潭。
+  tags: [patience, slow]
+- id: q-time-168
+  text: 一年的自己，是三百多個今天疊出來的。
+  tags: [accumulation, time]
+- id: q-time-169
+  text: 只要還在寫，這個故事就沒有結束。
+  tags: [continuity, persistence]
+- id: q-time-170
+  text: 時間會替耐得住的人，留一份厚禮。
+  tags: [patience, long_term]
+- id: q-time-171
+  text: 你今天的痕跡，是未來回望的路標。
+  tags: [memory, continuity]
+- id: q-time-172
+  text: 慢慢累的底子，撐得起以後的高。
+  tags: [slow, growth]
+- id: q-time-173
+  text: 每個季節都有它要教的事，不必趕。
+  tags: [season, patience]
+- id: q-time-174
+  text: 一點一滴的堅持，久了自成一片風景。
+  tags: [persistence, accumulation]
+- id: q-time-175
+  text: 時間不喧嘩，它只是把你悄悄變厚。
+  tags: [time, growth]
+- id: q-time-176
+  text: 你回頭的那天，會看見一整條走過的痕跡。
+  tags: [memory, long_term]

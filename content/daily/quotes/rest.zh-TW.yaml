@@ -1,0 +1,534 @@
+- id: q-rest-001
+  text: 今天只是休息，不是停下來。
+  tags: [rest, pause]
+- id: q-rest-002
+  text: 累的時候，把標準降低一點，不是放棄。
+  tags: [rest, self_compassion]
+- id: q-rest-003
+  text: 沒有靈感的日子，就整理素材，那也是在前進。
+  tags: [low_energy, slow]
+- id: q-rest-004
+  text: 不是每天都要有產出，有些日子只是活著就夠了。
+  tags: [permission, self_compassion]
+- id: q-rest-005
+  text: 你不是機器，不必每天都全速運轉。
+  tags: [rest, kindness]
+- id: q-rest-006
+  text: 疲憊也是身體在說話，聽它一次。
+  tags: [rest, recovery]
+- id: q-rest-007
+  text: 停在半路的稿子，不會因為你休息就消失。
+  tags: [pause, patience]
+- id: q-rest-008
+  text: 今天做不到的，明天的你未必做不到。
+  tags: [patience, gentle]
+- id: q-rest-009
+  text: 允許自己有一天什麼都不想。
+  tags: [permission, rest]
+- id: q-rest-010
+  text: 空白的一天，不等於浪費的一天。
+  tags: [rest, self_compassion]
+- id: q-rest-011
+  text: 低潮不是你壞掉了，只是電量低了。
+  tags: [low_energy, recovery]
+- id: q-rest-012
+  text: 慢慢來，時間比你想的還多。
+  tags: [slow, patience]
+- id: q-rest-013
+  text: 對自己說一句：辛苦了。
+  tags: [kindness, self_compassion]
+- id: q-rest-014
+  text: 不想動的日子，讓自己好好不想動。
+  tags: [permission, low_energy]
+- id: q-rest-015
+  text: 休息不需要理由，累了就是理由。
+  tags: [rest, permission]
+- id: q-rest-016
+  text: 你已經撐得比自己以為的還久了。
+  tags: [self_compassion, kindness]
+- id: q-rest-017
+  text: 進度停一天，人生不會因此偏航。
+  tags: [pause, patience]
+- id: q-rest-018
+  text: 今天的溫柔，留一點給自己。
+  tags: [kindness, gentle]
+- id: q-rest-019
+  text: 電量見底時，逼自己只會更慢。
+  tags: [low_energy, recovery]
+- id: q-rest-020
+  text: 有些疲憊，睡一覺才還得清。
+  tags: [rest, recovery]
+- id: q-rest-021
+  text: 放下不是失敗，是換一口氣。
+  tags: [pause, self_compassion]
+- id: q-rest-022
+  text: 不必為了休息而感到抱歉。
+  tags: [permission, kindness]
+- id: q-rest-023
+  text: 今天走得慢，是因為昨天走得夠遠。
+  tags: [slow, patience]
+- id: q-rest-024
+  text: 你可以只是坐著，不做任何事。
+  tags: [rest, permission]
+- id: q-rest-025
+  text: 卡住的時候，離開桌子也是一種解法。
+  tags: [pause, recovery]
+- id: q-rest-026
+  text: 把今天的期待，調到你現在做得到的高度。
+  tags: [self_compassion, low_energy]
+- id: q-rest-027
+  text: 沒力氣的日子，喝口水也算照顧自己。
+  tags: [kindness, low_energy]
+- id: q-rest-028
+  text: 創作是長跑，不是每一步都要衝刺。
+  tags: [slow, patience]
+- id: q-rest-029
+  text: 允許自己今天只完成一件小事。
+  tags: [permission, gentle]
+- id: q-rest-030
+  text: 你的價值，不是用今天的產量算的。
+  tags: [self_compassion, kindness]
+- id: q-rest-031
+  text: 撐不住的時候，先坐下，別逞強。
+  tags: [rest, recovery]
+- id: q-rest-032
+  text: 有時候最好的下一步，是先睡飽。
+  tags: [rest, recovery]
+- id: q-rest-033
+  text: 情緒低的時候，別急著趕自己上路。
+  tags: [low_energy, gentle]
+- id: q-rest-034
+  text: 停一下，不會讓你變成一個懶惰的人。
+  tags: [pause, self_compassion]
+- id: q-rest-035
+  text: 今天做少一點，明天才有力氣繼續。
+  tags: [rest, patience]
+- id: q-rest-036
+  text: 你不欠這個世界一份每日進度。
+  tags: [permission, self_compassion]
+- id: q-rest-037
+  text: 疲倦的手，先放下筆也沒關係。
+  tags: [rest, gentle]
+- id: q-rest-038
+  text: 慢下來的日子，讓你看見平常看不見的東西。
+  tags: [slow, patience]
+- id: q-rest-039
+  text: 對自己嚴格久了，也該換一次寬容。
+  tags: [self_compassion, kindness]
+- id: q-rest-040
+  text: 今天不是低潮，只是你需要一點安靜。
+  tags: [low_energy, gentle]
+- id: q-rest-041
+  text: 你可以把待辦清單，留到明天再看。
+  tags: [pause, permission]
+- id: q-rest-042
+  text: 恢復也是工作的一部分，不是偷懶。
+  tags: [recovery, rest]
+- id: q-rest-043
+  text: 有些日子，把自己餵飽就是全部的成就。
+  tags: [kindness, low_energy]
+- id: q-rest-044
+  text: 走走停停，也是一種前進的方式。
+  tags: [slow, patience]
+- id: q-rest-045
+  text: 不逼自己的今天，是在保護以後的你。
+  tags: [self_compassion, recovery]
+- id: q-rest-046
+  text: 累了就休息，這句話對你也成立。
+  tags: [rest, permission]
+- id: q-rest-047
+  text: 允許自己有做不好的一天。
+  tags: [permission, self_compassion]
+- id: q-rest-048
+  text: 今天的空白，是為了明天有話可說。
+  tags: [pause, patience]
+- id: q-rest-049
+  text: 你的節奏，不必跟任何人一樣。
+  tags: [slow, kindness]
+- id: q-rest-050
+  text: 沒動力的時候，別把它當成罪。
+  tags: [low_energy, self_compassion]
+- id: q-rest-051
+  text: 有時候放空，是腦袋在整理。
+  tags: [pause, recovery]
+- id: q-rest-052
+  text: 今天只要不放棄自己，就夠了。
+  tags: [gentle, self_compassion]
+- id: q-rest-053
+  text: 疲憊的時候，別再對自己說重話。
+  tags: [kindness, low_energy]
+- id: q-rest-054
+  text: 停下來看看風景，也是創作的一環。
+  tags: [pause, slow]
+- id: q-rest-055
+  text: 你不必把每一分鐘都填滿。
+  tags: [rest, permission]
+- id: q-rest-056
+  text: 修復自己的時間，值得被留白。
+  tags: [recovery, rest]
+- id: q-rest-057
+  text: 今天做得少，是因為你已經很努力了。
+  tags: [self_compassion, kindness]
+- id: q-rest-058
+  text: 慢工不是懶，是給細節時間。
+  tags: [slow, patience]
+- id: q-rest-059
+  text: 允許自己今天不那麼像個創作者。
+  tags: [permission, gentle]
+- id: q-rest-060
+  text: 低能量不是缺點，是需要充電的訊號。
+  tags: [low_energy, recovery]
+- id: q-rest-061
+  text: 想休息就休息，不用等到撐不住。
+  tags: [rest, permission]
+- id: q-rest-062
+  text: 你今天的溫柔，會在明天回報你。
+  tags: [kindness, recovery]
+- id: q-rest-063
+  text: 卡關的時候，先照顧人，再照顧作品。
+  tags: [self_compassion, pause]
+- id: q-rest-064
+  text: 有一種前進，叫做先停下來。
+  tags: [pause, slow]
+- id: q-rest-065
+  text: 今天沒有新東西，也沒有關係。
+  tags: [permission, gentle]
+- id: q-rest-066
+  text: 累到不想創作，也是身體的誠實。
+  tags: [low_energy, self_compassion]
+- id: q-rest-067
+  text: 讓自己軟一天，不會塌掉。
+  tags: [gentle, rest]
+- id: q-rest-068
+  text: 你可以慢，可以停，可以重來。
+  tags: [slow, patience]
+- id: q-rest-069
+  text: 疲憊時的休息，是最划算的投資。
+  tags: [rest, recovery]
+- id: q-rest-070
+  text: 別把休息，算進罪惡感的帳裡。
+  tags: [permission, self_compassion]
+- id: q-rest-071
+  text: 今天的你，不必贏過昨天的你。
+  tags: [self_compassion, gentle]
+- id: q-rest-072
+  text: 有些日子，只需要陪自己安靜地過。
+  tags: [rest, kindness]
+- id: q-rest-073
+  text: 不知道要做什麼，就先什麼都不做。
+  tags: [pause, permission]
+- id: q-rest-074
+  text: 電量低的時候，走得慢一點也對。
+  tags: [low_energy, slow]
+- id: q-rest-075
+  text: 你允許自己休息的樣子，很好看。
+  tags: [kindness, permission]
+- id: q-rest-076
+  text: 恢復需要時間，別催它。
+  tags: [recovery, patience]
+- id: q-rest-077
+  text: 今天沒進度，明天再開始就好。
+  tags: [pause, gentle]
+- id: q-rest-078
+  text: 對自己少一點苛責，多一點理解。
+  tags: [self_compassion, kindness]
+- id: q-rest-079
+  text: 累的時候，別問自己為什麼這麼弱。
+  tags: [low_energy, self_compassion]
+- id: q-rest-080
+  text: 停筆的日子，靈感也在暗處生長。
+  tags: [pause, patience]
+- id: q-rest-081
+  text: 你不需要一直證明自己有在做事。
+  tags: [permission, rest]
+- id: q-rest-082
+  text: 今天想躺著，就好好躺著。
+  tags: [rest, permission]
+- id: q-rest-083
+  text: 慢慢修復，比硬撐著壞掉划算。
+  tags: [recovery, slow]
+- id: q-rest-084
+  text: 一天沒做，不代表你失去了什麼。
+  tags: [pause, self_compassion]
+- id: q-rest-085
+  text: 溫柔對待疲憊的自己，不是縱容。
+  tags: [kindness, gentle]
+- id: q-rest-086
+  text: 低潮會過去，你不必用力趕它走。
+  tags: [low_energy, patience]
+- id: q-rest-087
+  text: 今天只做得到一半，那就做一半。
+  tags: [self_compassion, permission]
+- id: q-rest-088
+  text: 給自己一個不必解釋的休息日。
+  tags: [rest, permission]
+- id: q-rest-089
+  text: 走不動的時候，坐下來也是選擇。
+  tags: [pause, gentle]
+- id: q-rest-090
+  text: 你的存在，不需要靠產出來換取。
+  tags: [self_compassion, kindness]
+- id: q-rest-091
+  text: 慢下來，才聽得見自己的聲音。
+  tags: [slow, recovery]
+- id: q-rest-092
+  text: 今天沒力氣，就把明天的力氣留著。
+  tags: [low_energy, patience]
+- id: q-rest-093
+  text: 允許自己不完美地度過這一天。
+  tags: [permission, self_compassion]
+- id: q-rest-094
+  text: 累了就靠一下，沒有人會怪你。
+  tags: [rest, kindness]
+- id: q-rest-095
+  text: 停下不是懦弱，是懂得保存自己。
+  tags: [pause, recovery]
+- id: q-rest-096
+  text: 有時最勇敢的事，是承認自己累了。
+  tags: [self_compassion, low_energy]
+- id: q-rest-097
+  text: 今天什麼都沒做，你依然值得被喜歡。
+  tags: [kindness, permission]
+- id: q-rest-098
+  text: 慢慢走，路一樣會到。
+  tags: [slow, patience]
+- id: q-rest-099
+  text: 疲倦時，先別急著找答案。
+  tags: [low_energy, gentle]
+- id: q-rest-100
+  text: 你可以把今天，就當成休息日。
+  tags: [rest, permission]
+- id: q-rest-101
+  text: 空著的一天，也是生活的一部分。
+  tags: [pause, gentle]
+- id: q-rest-102
+  text: 對自己好一點，你值得這份好。
+  tags: [kindness, self_compassion]
+- id: q-rest-103
+  text: 低能量的日子，做點簡單的就好。
+  tags: [low_energy, slow]
+- id: q-rest-104
+  text: 恢復不是浪費時間，是在補回自己。
+  tags: [recovery, rest]
+- id: q-rest-105
+  text: 今天的休息，是給未來的你留餘力。
+  tags: [rest, patience]
+- id: q-rest-106
+  text: 不必逼自己開心，難過也可以。
+  tags: [self_compassion, gentle]
+- id: q-rest-107
+  text: 你已經做得夠多了，今天可以停。
+  tags: [pause, kindness]
+- id: q-rest-108
+  text: 讓自己慢一點，世界不會塌。
+  tags: [slow, permission]
+- id: q-rest-109
+  text: 累的時候，別跟自己較勁。
+  tags: [low_energy, self_compassion]
+- id: q-rest-110
+  text: 今天的空白，是明天的呼吸。
+  tags: [pause, recovery]
+- id: q-rest-111
+  text: 你不需要每天都變得更好。
+  tags: [permission, gentle]
+- id: q-rest-112
+  text: 給疲憊一點空間，它才會慢慢退。
+  tags: [recovery, patience]
+- id: q-rest-113
+  text: 今天先照顧自己，作品可以等。
+  tags: [self_compassion, pause]
+- id: q-rest-114
+  text: 沒有靈感時，發呆也是允許的。
+  tags: [pause, permission]
+- id: q-rest-115
+  text: 你的疲憊，值得被溫柔對待。
+  tags: [kindness, low_energy]
+- id: q-rest-116
+  text: 走累了，蹲下綁鞋帶也算休息。
+  tags: [rest, gentle]
+- id: q-rest-117
+  text: 今天不逼自己，明天才走得動。
+  tags: [recovery, patience]
+- id: q-rest-118
+  text: 停下來喘口氣，不是半途而廢。
+  tags: [pause, self_compassion]
+- id: q-rest-119
+  text: 允許自己，今天只想耍廢。
+  tags: [permission, rest]
+- id: q-rest-120
+  text: 慢慢來的東西，往往更耐看。
+  tags: [slow, patience]
+- id: q-rest-121
+  text: 你不是懶，你只是需要休息。
+  tags: [self_compassion, low_energy]
+- id: q-rest-122
+  text: 今天做不完的，交給明天的你。
+  tags: [pause, patience]
+- id: q-rest-123
+  text: 對自己溫柔一次，當作練習。
+  tags: [kindness, gentle]
+- id: q-rest-124
+  text: 累到不想說話的日子，也很正常。
+  tags: [low_energy, self_compassion]
+- id: q-rest-125
+  text: 你可以停在這裡，明天再繼續。
+  tags: [pause, permission]
+- id: q-rest-126
+  text: 恢復期的你，一樣值得驕傲。
+  tags: [recovery, kindness]
+- id: q-rest-127
+  text: 今天慢一點，是為了走得更遠。
+  tags: [slow, patience]
+- id: q-rest-128
+  text: 不想面對的事，今天可以先放著。
+  tags: [pause, gentle]
+- id: q-rest-129
+  text: 你不必時時刻刻都在成長。
+  tags: [permission, self_compassion]
+- id: q-rest-130
+  text: 疲憊的日子，一杯熱茶也是照顧。
+  tags: [kindness, rest]
+- id: q-rest-131
+  text: 停下腳步，不代表你在後退。
+  tags: [pause, patience]
+- id: q-rest-132
+  text: 今天低落，不是你的錯。
+  tags: [low_energy, self_compassion]
+- id: q-rest-133
+  text: 允許自己，慢慢地回到狀態。
+  tags: [recovery, slow]
+- id: q-rest-134
+  text: 你值得一個什麼都不趕的早晨。
+  tags: [rest, permission]
+- id: q-rest-135
+  text: 累了就停，不用等到崩潰。
+  tags: [pause, self_compassion]
+- id: q-rest-136
+  text: 對自己說：這樣就很好了。
+  tags: [kindness, gentle]
+- id: q-rest-137
+  text: 沒動力的今天，也是你的一天。
+  tags: [low_energy, permission]
+- id: q-rest-138
+  text: 恢復的路上，別催促自己。
+  tags: [recovery, patience]
+- id: q-rest-139
+  text: 今天想安靜，就給自己安靜。
+  tags: [rest, gentle]
+- id: q-rest-140
+  text: 慢下來，才不會把自己用壞。
+  tags: [slow, recovery]
+- id: q-rest-141
+  text: 你可以先休息，再談努力。
+  tags: [rest, permission]
+- id: q-rest-142
+  text: 今天的疲憊，明天會被睡眠帶走一些。
+  tags: [recovery, patience]
+- id: q-rest-143
+  text: 不必為了低潮，責怪自己。
+  tags: [low_energy, self_compassion]
+- id: q-rest-144
+  text: 停一停，讓心追上腳步。
+  tags: [pause, slow]
+- id: q-rest-145
+  text: 你今天的樣子，已經足夠了。
+  tags: [kindness, self_compassion]
+- id: q-rest-146
+  text: 允許自己有一段什麼都不產出的時間。
+  tags: [permission, rest]
+- id: q-rest-147
+  text: 累的時候，退一步比硬撐聰明。
+  tags: [recovery, gentle]
+- id: q-rest-148
+  text: 今天沒開工，靈感也還在。
+  tags: [pause, patience]
+- id: q-rest-149
+  text: 對疲憊的自己，多一點耐心。
+  tags: [kindness, low_energy]
+- id: q-rest-150
+  text: 慢慢地過，也是一種認真。
+  tags: [slow, gentle]
+- id: q-rest-151
+  text: 你不需要一直堅強給誰看。
+  tags: [self_compassion, permission]
+- id: q-rest-152
+  text: 今天先修復自己，其他明天再說。
+  tags: [recovery, pause]
+- id: q-rest-153
+  text: 想哭就哭，那也是在釋放。
+  tags: [gentle, self_compassion]
+- id: q-rest-154
+  text: 低電量的日子，別安排太多。
+  tags: [low_energy, slow]
+- id: q-rest-155
+  text: 你可以在半路上，先坐一會兒。
+  tags: [pause, rest]
+- id: q-rest-156
+  text: 溫柔，是你今天最該做的事。
+  tags: [kindness, gentle]
+- id: q-rest-157
+  text: 今天做不到，不代表你不行。
+  tags: [self_compassion, patience]
+- id: q-rest-158
+  text: 允許進度停在昨天，今天先喘氣。
+  tags: [pause, permission]
+- id: q-rest-159
+  text: 慢慢好起來，就是最好的方向。
+  tags: [recovery, slow]
+- id: q-rest-160
+  text: 你不必把疲憊藏起來。
+  tags: [self_compassion, gentle]
+- id: q-rest-161
+  text: 今天休息夠了，明天自然想動。
+  tags: [rest, recovery]
+- id: q-rest-162
+  text: 對自己寬容，不會讓你變差。
+  tags: [kindness, self_compassion]
+- id: q-rest-163
+  text: 沒力氣創作的日子，看看別人的作品也好。
+  tags: [low_energy, slow]
+- id: q-rest-164
+  text: 停下不是結束，是換氣。
+  tags: [pause, recovery]
+- id: q-rest-165
+  text: 你的今天，不必交出漂亮的成績。
+  tags: [permission, self_compassion]
+- id: q-rest-166
+  text: 累的時候，把自己放在第一位。
+  tags: [kindness, rest]
+- id: q-rest-167
+  text: 慢一天，長遠來看什麼都不差。
+  tags: [slow, patience]
+- id: q-rest-168
+  text: 今天的低潮，會在某天悄悄退潮。
+  tags: [low_energy, recovery]
+- id: q-rest-169
+  text: 允許自己，今天只是好好活著。
+  tags: [permission, gentle]
+- id: q-rest-170
+  text: 你已經很努力撐到這裡了。
+  tags: [self_compassion, kindness]
+- id: q-rest-171
+  text: 想停就停，不用等別人允許。
+  tags: [pause, permission]
+- id: q-rest-172
+  text: 疲憊的手，也需要被握一下。
+  tags: [kindness, gentle]
+- id: q-rest-173
+  text: 今天不創作，你還是你。
+  tags: [self_compassion, permission]
+- id: q-rest-174
+  text: 慢慢走過低潮，也是一種完成。
+  tags: [recovery, patience]
+- id: q-rest-175
+  text: 讓今天，成為一個溫柔的空白。
+  tags: [rest, gentle]
+- id: q-rest-176
+  text: 你不欠自己一個完美的今天。
+  tags: [permission, self_compassion]
+- id: q-rest-177
+  text: 累了，就把世界調成靜音。
+  tags: [rest, low_energy]
+- id: q-rest-178
+  text: 恢復的每一天，都算數。
+  tags: [recovery, patience]

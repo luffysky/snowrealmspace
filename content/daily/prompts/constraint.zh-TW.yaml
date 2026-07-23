@@ -1,0 +1,712 @@
+- id: p-constraint-001
+  text: 只用圓形，做一張構圖。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-002
+  text: 用三種顏色重做你最近一張設計。少一種顏色，多一點決定。
+  tags: [constraint, color]
+  estimatedMinutes: 25
+- id: p-constraint-003
+  text: 限時十分鐘做一張海報，時間到就停，不管完成度。
+  tags: [constraint, time_limit]
+  estimatedMinutes: 10
+- id: p-constraint-004
+  text: 整張畫面只用黑與白，不准出現任何灰階。
+  tags: [constraint, minimal, color]
+  estimatedMinutes: 20
+- id: p-constraint-005
+  text: 只用直線畫一個你眼前的物件，一條曲線都不行。
+  tags: [constraint, shape]
+  estimatedMinutes: 15
+- id: p-constraint-006
+  text: 今天的作品不准用橡皮擦，也不准撤銷，錯了就順著走。
+  tags: [constraint, rules, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-007
+  text: 用一種顏色的深淺變化，畫出一顆水果。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-008
+  text: 只用三角形拼出一隻動物的樣子。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-009
+  text: 不准用主色，把平常最少用的顏色當主角，做一張圖。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-010
+  text: 限時五分鐘，畫五個不同表情，一個一分鐘。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-011
+  text: 整個畫面只准出現一個形狀，重複它、旋轉它、縮放它。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-012
+  text: 用你的非慣用手，寫下今天的一句話並裝飾它。
+  tags: [constraint, challenge, rules]
+  estimatedMinutes: 15
+- id: p-constraint-013
+  text: 不准用文字，只用符號和圖形表達今天的心情。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 20
+- id: p-constraint-014
+  text: 只用正方形，設計一個 app 的首頁畫面。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 30
+- id: p-constraint-015
+  text: 今天只准用一支筆、一種粗細，完成一張線稿。
+  tags: [constraint, minimal, limitation]
+  estimatedMinutes: 25
+- id: p-constraint-016
+  text: 把畫面切成九宮格，每一格只能放一個元素。
+  tags: [constraint, composition, rules]
+  estimatedMinutes: 20
+- id: p-constraint-017
+  text: 用兩種對比色，做一張不需要文字就看得懂的告示。
+  tags: [constraint, color, composition]
+  estimatedMinutes: 25
+- id: p-constraint-018
+  text: 限時十五分鐘，畫完窗外你看到的一切。
+  tags: [constraint, time_limit]
+  estimatedMinutes: 15
+- id: p-constraint-019
+  text: 整張圖不准出現任何直角，全部都要圓潤。
+  tags: [constraint, shape, rules]
+  estimatedMinutes: 20
+- id: p-constraint-020
+  text: 只用點，不用線也不用面，堆出一張肖像。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-021
+  text: 用灰色的五個階調，畫出一個空間的層次。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 30
+- id: p-constraint-022
+  text: 今天的作品只能用一張紙的正反面，不准第二張。
+  tags: [constraint, limitation, rules]
+  estimatedMinutes: 25
+- id: p-constraint-023
+  text: 不准用黑色描邊，讓形狀靠顏色自己分開。
+  tags: [constraint, color, rules]
+  estimatedMinutes: 25
+- id: p-constraint-024
+  text: 只用重複的橫線，做出深淺與明暗。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-025
+  text: 限時三分鐘，用最少的筆畫抓住一個人的姿態。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 10
+- id: p-constraint-026
+  text: 只用暖色，畫出一個明明很冷的場景。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-027
+  text: 整張構圖只用大中小三個圓，決定它們的位置就好。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-028
+  text: 不准用尺，徒手畫十條盡量筆直的線。
+  tags: [constraint, challenge, rules]
+  estimatedMinutes: 10
+- id: p-constraint-029
+  text: 用冷色調，設計一張夏日活動的海報。
+  tags: [constraint, color, composition]
+  estimatedMinutes: 30
+- id: p-constraint-030
+  text: 只用文字排版，不放任何圖，做一張封面。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 30
+- id: p-constraint-031
+  text: 今天只能用剪刀和紙，不准畫，拼出一個圖案。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-032
+  text: 限時二十分鐘，重畫一張你以前不滿意的舊作。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-033
+  text: 整張圖只准用兩個字級大小，把層次做出來。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 25
+- id: p-constraint-034
+  text: 只用半透明的圖層，靠重疊產生第三種顏色。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-035
+  text: 不准用曲線工具，全部用直線段拼出一個圓。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-036
+  text: 用一個正方形和它的分割，做出九種不同版面。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 30
+- id: p-constraint-037
+  text: 限時一分鐘，畫一個你此刻最想吃的東西。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 10
+- id: p-constraint-038
+  text: 只用單色線條，畫滿整張紙不留白。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-039
+  text: 不准用漸層，只用純色的塊面做出立體感。
+  tags: [constraint, color, rules]
+  estimatedMinutes: 25
+- id: p-constraint-040
+  text: 整個作品只能有一個焦點，其他全部退到背景。
+  tags: [constraint, composition, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-041
+  text: 用三種顏色，設計一個你最愛品牌的替代 logo。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-042
+  text: 只用圓角矩形，畫出一整組介面圖示。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 30
+- id: p-constraint-043
+  text: 限時十分鐘，畫五個版本的同一顆蘋果。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-044
+  text: 不准填色，只用輪廓線讓人看懂是什麼。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 20
+- id: p-constraint-045
+  text: 用同一個形狀重複一百次，讓它變成質感。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 30
+- id: p-constraint-046
+  text: 只用兩種顏色，畫一張日出。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-047
+  text: 今天的字全部手寫，不准用任何字型。
+  tags: [constraint, rules, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-048
+  text: 整張畫面只用左半邊，右半邊留白。
+  tags: [constraint, composition, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-049
+  text: 用一條不斷開的線，畫完一張臉。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 15
+- id: p-constraint-050
+  text: 只准用你手邊三種現成材料，拼一張圖。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-051
+  text: 限時三十分鐘，把一個房間畫成一個角色。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-052
+  text: 不准用綠色，畫一片森林。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-053
+  text: 整個構圖只能用對角線的方向感。
+  tags: [constraint, composition, rules]
+  estimatedMinutes: 20
+- id: p-constraint-054
+  text: 用最粗的那支筆，畫一個很小的東西。
+  tags: [constraint, challenge, minimal]
+  estimatedMinutes: 15
+- id: p-constraint-055
+  text: 只用一種標點符號，排出一整段裝飾文字。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 20
+- id: p-constraint-056
+  text: 限時十分鐘，設計一張只有一個按鈕的畫面。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 10
+- id: p-constraint-057
+  text: 不准用照片，只用色塊表現一張風景。
+  tags: [constraint, color, composition]
+  estimatedMinutes: 30
+- id: p-constraint-058
+  text: 用五個大小不同的圓，做出遠近的空間感。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-059
+  text: 今天只准橫向構圖，不准出現任何直立元素。
+  tags: [constraint, composition, rules]
+  estimatedMinutes: 20
+- id: p-constraint-060
+  text: 只用剪影，講一個完整的小故事。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 30
+- id: p-constraint-061
+  text: 用互補色的兩個顏色，畫一顆彼此爭吵的果實。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-062
+  text: 限時十五分鐘，把一首歌畫成一張抽象圖。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 15
+- id: p-constraint-063
+  text: 不准用實心的形狀，全部只能是空心輪廓。
+  tags: [constraint, shape, rules]
+  estimatedMinutes: 20
+- id: p-constraint-064
+  text: 只用一個英文字母，設計出一個圖形標誌。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-065
+  text: 用棕色系的三種深淺，畫一杯咖啡。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-066
+  text: 整張圖只准用網格上的點，不能自由落筆。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 25
+- id: p-constraint-067
+  text: 限時二十分鐘，用貼紙或膠帶做一張構成。
+  tags: [constraint, time_limit, limitation]
+  estimatedMinutes: 20
+- id: p-constraint-068
+  text: 不准用曲線，用折線畫出流動的水。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-069
+  text: 只用手機內建的一個濾鏡，拍一組三張照片。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-070
+  text: 用一個顏色加白色，調出五個層次畫一朵雲。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-071
+  text: 整個版面只准用一種對齊方式，全部靠右。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 20
+- id: p-constraint-072
+  text: 限時五分鐘，盲畫你對面的人或物，不准看紙。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-073
+  text: 只用方格紙的格子填色，畫一個像素圖案。
+  tags: [constraint, shape, rules]
+  estimatedMinutes: 25
+- id: p-constraint-074
+  text: 不准用彩色，只用鉛筆的濃淡完成一張靜物。
+  tags: [constraint, minimal, color]
+  estimatedMinutes: 30
+- id: p-constraint-075
+  text: 用三個字，設計一張標題海報，其他都是留白。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 20
+- id: p-constraint-076
+  text: 只用你今天穿的衣服顏色，配一張色票。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 15
+- id: p-constraint-077
+  text: 限時十分鐘，畫一個不存在的交通標誌。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-078
+  text: 整張圖不准出現人，但要讓人感覺剛剛有人在。
+  tags: [constraint, composition, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-079
+  text: 只用一種筆觸方向，鋪滿整個畫面。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 25
+- id: p-constraint-080
+  text: 用兩個矩形，做出十種不同的畫面關係。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 25
+- id: p-constraint-081
+  text: 不准用滿版，四邊都要留至少三公分空白。
+  tags: [constraint, composition, rules]
+  estimatedMinutes: 20
+- id: p-constraint-082
+  text: 只用圓和線，畫一台腳踏車。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-083
+  text: 限時二十五分鐘，把一句諺語畫成插圖。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-084
+  text: 今天只用單一光源，決定所有陰影落在哪。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 30
+- id: p-constraint-085
+  text: 不准用完整的圓，只能用弧線暗示圓的存在。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-086
+  text: 用黑白兩色，設計一張正負形互換的圖案。
+  tags: [constraint, color, composition]
+  estimatedMinutes: 30
+- id: p-constraint-087
+  text: 只用手邊一本書的字，剪貼出一句新的話。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-088
+  text: 限時十分鐘，畫三個版本的同一個房間平面。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-089
+  text: 不准用漂亮的顏色，故意選三個難搭的配一起。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-090
+  text: 整張構圖只能有三個元素，多一個都不行。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 20
+- id: p-constraint-091
+  text: 用一個形狀，設計出一整套餐具的外型。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-092
+  text: 只用手指沾墨，不用任何筆，畫一張圖。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-093
+  text: 限時十五分鐘，把今天的天氣畫成一個抽象記號。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 15
+- id: p-constraint-094
+  text: 不准用漸層背景，只用一個純色撐起整張圖。
+  tags: [constraint, color, rules]
+  estimatedMinutes: 20
+- id: p-constraint-095
+  text: 用五條平行線，切出一張有節奏感的版面。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-096
+  text: 只用你螢幕上現有的四種顏色，做一張拼貼。
+  tags: [constraint, color, limitation]
+  estimatedMinutes: 25
+- id: p-constraint-097
+  text: 今天所有形狀都必須對稱，不准有例外。
+  tags: [constraint, shape, rules]
+  estimatedMinutes: 25
+- id: p-constraint-098
+  text: 不准用文字說明，只用箭頭做一張流程圖。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 25
+- id: p-constraint-099
+  text: 用一支麥克筆，一鏡到底畫完一條街景。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-100
+  text: 限時三分鐘，替一個情緒選一個顏色並塗滿。
+  tags: [constraint, time_limit, color]
+  estimatedMinutes: 10
+- id: p-constraint-101
+  text: 只用重疊的三個透明圓，看它們變出幾種顏色。
+  tags: [constraint, color, shape]
+  estimatedMinutes: 20
+- id: p-constraint-102
+  text: 不准用真實比例，把小東西畫得比房子還大。
+  tags: [constraint, composition, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-103
+  text: 用單一字型、單一顏色，排一頁詩。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 25
+- id: p-constraint-104
+  text: 只用波浪線，畫出一片會動的海。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-105
+  text: 限時二十分鐘，把一個名詞畫成三種截然不同的樣子。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-106
+  text: 不准用新的素材，只用你資料夾裡的舊圖重組。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-107
+  text: 整張圖只用一種灰，靠留白決定明暗。
+  tags: [constraint, minimal, color]
+  estimatedMinutes: 20
+- id: p-constraint-108
+  text: 用正方形和三角形兩種形狀，蓋一座城市。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 30
+- id: p-constraint-109
+  text: 只准用左手邊隨手拿到的第一個顏色，畫十分鐘。
+  tags: [constraint, color, time_limit]
+  estimatedMinutes: 10
+- id: p-constraint-110
+  text: 不准畫閉合的形狀，全部保持開放的線。
+  tags: [constraint, shape, rules]
+  estimatedMinutes: 20
+- id: p-constraint-111
+  text: 用一個圓，設計十二種不同的表情符號。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-112
+  text: 只用純黑背景，讓所有元素靠亮度浮出來。
+  tags: [constraint, color, composition]
+  estimatedMinutes: 25
+- id: p-constraint-113
+  text: 限時十分鐘，畫一張只有地平線的風景。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 10
+- id: p-constraint-114
+  text: 不准用超過十筆，完成一張自畫像。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-115
+  text: 用三種材質的紙，撕貼出一張構成。
+  tags: [constraint, limitation, composition]
+  estimatedMinutes: 25
+- id: p-constraint-116
+  text: 只用大寫字母，排一張復古感的標題。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 20
+- id: p-constraint-117
+  text: 不准對齊，故意讓每個元素都歪一點，找平衡。
+  tags: [constraint, composition, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-118
+  text: 用一個顏色，畫出早中晚三種不同的光。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-119
+  text: 限時五分鐘，畫一個會讓你笑的怪東西。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-120
+  text: 只用點與點之間的連線，畫一個星座般的圖案。
+  tags: [constraint, minimal, shape]
+  estimatedMinutes: 20
+- id: p-constraint-121
+  text: 不准用完整句子，只用單字堆一張海報。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 20
+- id: p-constraint-122
+  text: 用兩種顏色的交界，畫出一張臉的輪廓。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-123
+  text: 整張圖只准用一個尺寸的圓點，靠疏密做灰階。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 30
+- id: p-constraint-124
+  text: 限時十五分鐘，把一段對話畫成無字漫畫。
+  tags: [constraint, time_limit, composition]
+  estimatedMinutes: 15
+- id: p-constraint-125
+  text: 不准用直的邊框，用手撕的邊當畫面邊界。
+  tags: [constraint, challenge, composition]
+  estimatedMinutes: 20
+- id: p-constraint-126
+  text: 用單一形狀，做出一整組品牌識別的雛形。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-127
+  text: 只用冷色的三階，畫一個下雨的午後。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-128
+  text: 不准畫細節，只用大塊面抓住一個場景的氣氛。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-129
+  text: 限時二十分鐘，用一個表情包重畫一幅名畫。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-130
+  text: 只用垂直的元素，排一張很高很瘦的長圖。
+  tags: [constraint, composition, rules]
+  estimatedMinutes: 25
+- id: p-constraint-131
+  text: 用一種顏色的線，纏繞出一個立體的球感。
+  tags: [constraint, color, shape]
+  estimatedMinutes: 25
+- id: p-constraint-132
+  text: 不准用電腦，全程手作完成今天的練習。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-133
+  text: 只用三個圓角矩形，排一張名片。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 20
+- id: p-constraint-134
+  text: 限時十分鐘，替一個沒有名字的顏色取名並畫它。
+  tags: [constraint, time_limit, color]
+  estimatedMinutes: 10
+- id: p-constraint-135
+  text: 不准用陰影，只靠形狀重疊表現前後關係。
+  tags: [constraint, composition, rules]
+  estimatedMinutes: 25
+- id: p-constraint-136
+  text: 用黑紙白筆，反過來畫一張平常的素描。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-137
+  text: 只用一半的畫面，剩下一半當作故意的空。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 20
+- id: p-constraint-138
+  text: 不准用超過三種粗細的線，畫一張建築立面。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 30
+- id: p-constraint-139
+  text: 用一個問號的形狀，長出一整張插畫。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-140
+  text: 限時五分鐘，畫下你閉眼時看到的顏色。
+  tags: [constraint, time_limit, color]
+  estimatedMinutes: 10
+- id: p-constraint-141
+  text: 只用手邊的一種食物，排一張有設計感的照片。
+  tags: [constraint, limitation, composition]
+  estimatedMinutes: 20
+- id: p-constraint-142
+  text: 不准用滿的顏色，全部降到最淡，畫一張輕的圖。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-143
+  text: 用五個相同的三角形，排出一個會轉的錯覺。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 25
+- id: p-constraint-144
+  text: 今天只准用一個動作重複的筆觸，做一整面質感。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 25
+- id: p-constraint-145
+  text: 限時三十分鐘，把一個字拆解重組成新的字符。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-146
+  text: 不准用背景，讓主體漂在純白裡也站得住。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 20
+- id: p-constraint-147
+  text: 用兩個顏色輪流，畫一條漸變的長條。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 15
+- id: p-constraint-148
+  text: 只用圓形和一條線，做一個時鐘的圖示。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 15
+- id: p-constraint-149
+  text: 不准用現成筆刷，自己做一個再畫五分鐘。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-150
+  text: 用單色，畫一張讓人感覺很吵的圖。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-151
+  text: 限時十分鐘，把一個聲音畫成一條線。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 10
+- id: p-constraint-152
+  text: 只准用一個方向的斜線，鋪出整張陰影。
+  tags: [constraint, minimal, rules]
+  estimatedMinutes: 20
+- id: p-constraint-153
+  text: 不准用超過五個字，設計一張活動主視覺。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 30
+- id: p-constraint-154
+  text: 用一個六邊形，鋪滿整張紙不留縫。
+  tags: [constraint, shape, rules]
+  estimatedMinutes: 20
+- id: p-constraint-155
+  text: 限時二十五分鐘，把一種味道畫成一張抽象圖。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-156
+  text: 不准用手繪，只用現成幾何圖形拼出一張臉。
+  tags: [constraint, shape, limitation]
+  estimatedMinutes: 25
+- id: p-constraint-157
+  text: 用三種顏色，畫一張只給色盲也看得懂的圖表。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-158
+  text: 只用一種形狀的陰影，暗示整個光線方向。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 25
+- id: p-constraint-159
+  text: 限時五分鐘，畫一個你今天路過但忘了細看的東西。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 10
+- id: p-constraint-160
+  text: 不准用超過兩個圖層，完成一張數位插畫。
+  tags: [constraint, limitation, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-161
+  text: 用純線稿，不上色，講完一個晚上的故事。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 30
+- id: p-constraint-162
+  text: 只用四方連續的重複單位，設計一張包裝紙。
+  tags: [constraint, rules, composition]
+  estimatedMinutes: 30
+- id: p-constraint-163
+  text: 不准把主角放中間，故意擠到角落找張力。
+  tags: [constraint, composition, challenge]
+  estimatedMinutes: 20
+- id: p-constraint-164
+  text: 用一個顏色加黑白，畫一張老照片的感覺。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 25
+- id: p-constraint-165
+  text: 限時十分鐘，替一個抽象詞畫一個具體符號。
+  tags: [constraint, time_limit, minimal]
+  estimatedMinutes: 10
+- id: p-constraint-166
+  text: 只用同一個字重複排列，做出一張圖像。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 25
+- id: p-constraint-167
+  text: 不准用超過三個顏色，重新配一張你喜歡的截圖。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-168
+  text: 用弧線和直線各一種，畫一座橋。
+  tags: [constraint, shape, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-169
+  text: 限時十五分鐘，把一個夢的片段畫成一格。
+  tags: [constraint, time_limit, challenge]
+  estimatedMinutes: 15
+- id: p-constraint-170
+  text: 不准用飽和色，只用灰濁的顏色畫一個熱鬧場景。
+  tags: [constraint, color, challenge]
+  estimatedMinutes: 30
+- id: p-constraint-171
+  text: 只用畫面的四個角落，中間全部留空。
+  tags: [constraint, composition, minimal]
+  estimatedMinutes: 20
+- id: p-constraint-172
+  text: 用一個橢圓，變出十個不同的日常物件。
+  tags: [constraint, shape, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-173
+  text: 不准用尺標與參考線，徒手排一張對稱版面。
+  tags: [constraint, rules, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-174
+  text: 限時三分鐘，只用五個色塊拼出今天的心情。
+  tags: [constraint, time_limit, color]
+  estimatedMinutes: 10
+- id: p-constraint-175
+  text: 只用單一線寬，畫一張有輕重層次的地圖。
+  tags: [constraint, minimal, composition]
+  estimatedMinutes: 30
+- id: p-constraint-176
+  text: 不准用具象的東西，只用抽象形狀表達安靜。
+  tags: [constraint, minimal, challenge]
+  estimatedMinutes: 25
+- id: p-constraint-177
+  text: 用三個相同大小的方塊，做出九種平衡的排法。
+  tags: [constraint, shape, composition]
+  estimatedMinutes: 25
+- id: p-constraint-178
+  text: 低能量的一天，就用一個顏色塗滿一張紙，這樣就好。
+  tags: [constraint, color, minimal]
+  estimatedMinutes: 10

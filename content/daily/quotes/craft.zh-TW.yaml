@@ -1,0 +1,525 @@
+- id: q-craft-001
+  text: 留白不是還沒完成，是完成的一部分。
+  tags: [design, whitespace]
+- id: q-craft-002
+  text: 你選的顏色會比你想像的更常被看見。
+  tags: [color, design]
+- id: q-craft-003
+  text: 一個好的排版，是讓人不會注意到排版。
+  tags: [typography, layout]
+- id: q-craft-004
+  text: 對齊一次，比裝飾十次更讓人安心。
+  tags: [layout, detail]
+- id: q-craft-005
+  text: 今天只調一個間距也算數。
+  tags: [detail, craft]
+- id: q-craft-006
+  text: 灰色不是沒有顏色，是很有耐心的顏色。
+  tags: [color, simplicity]
+- id: q-craft-007
+  text: 字級之間的跳躍，決定了讀者眼睛怎麼呼吸。
+  tags: [typography, layout]
+- id: q-craft-008
+  text: 減一個元素，往往比加一個更難。
+  tags: [simplicity, design]
+- id: q-craft-009
+  text: 邊界留一點餘地，內容才站得穩。
+  tags: [whitespace, layout]
+- id: q-craft-010
+  text: 對比不是吵架，是讓重點被聽見。
+  tags: [contrast, design]
+- id: q-craft-011
+  text: 質感常常藏在你沒打算給人看的背面。
+  tags: [texture, detail]
+- id: q-craft-012
+  text: 好的構圖會替眼睛先安排好路線。
+  tags: [composition, layout]
+- id: q-craft-013
+  text: 兩個顏色吵不完的時候，試試中間放一點白。
+  tags: [color, whitespace]
+- id: q-craft-014
+  text: 圓角的弧度，也是一種語氣。
+  tags: [detail, design]
+- id: q-craft-015
+  text: 今天畫不動的話，整理圖層也是進度。
+  tags: [craft, detail]
+- id: q-craft-016
+  text: 字距太擠時，讀者會不自覺屏住呼吸。
+  tags: [typography, detail]
+- id: q-craft-017
+  text: 一致，是最不起眼卻最有力的設計。
+  tags: [design, simplicity]
+- id: q-craft-018
+  text: 陰影不是為了立體，是為了讓東西有重量。
+  tags: [detail, texture]
+- id: q-craft-019
+  text: 把最重要的放大一點，其他就會自動安靜。
+  tags: [contrast, composition]
+- id: q-craft-020
+  text: 網格是自由的骨架，不是牢籠。
+  tags: [layout, composition]
+- id: q-craft-021
+  text: 顏色會累，太飽和的畫面看久了會疲倦。
+  tags: [color, simplicity]
+- id: q-craft-022
+  text: 留白多一點，話反而說得更清楚。
+  tags: [whitespace, simplicity]
+- id: q-craft-023
+  text: 一個字型只做一件事就夠好了。
+  tags: [typography, simplicity]
+- id: q-craft-024
+  text: 細節不是完美主義，是替使用者著想的方式。
+  tags: [detail, design]
+- id: q-craft-025
+  text: 材質給人的第一印象，往往在手還沒碰到之前。
+  tags: [texture, design]
+- id: q-craft-026
+  text: 版面像餐桌，擺得下不代表要全擺上去。
+  tags: [layout, simplicity]
+- id: q-craft-027
+  text: 你反覆猶豫的那個間距，多半是對的。
+  tags: [detail, craft]
+- id: q-craft-028
+  text: 讓標題和內文有距離，段落才有呼吸。
+  tags: [typography, whitespace]
+- id: q-craft-029
+  text: 顏色搭不起來時，先問它們的明度合不合。
+  tags: [color, contrast]
+- id: q-craft-030
+  text: 對齊到像素，是溫柔的一種。
+  tags: [detail, layout]
+- id: q-craft-031
+  text: 好設計不喊叫，它只是剛好在對的位置。
+  tags: [design, simplicity]
+- id: q-craft-032
+  text: 一張圖要留白，眼睛才有地方休息。
+  tags: [whitespace, composition]
+- id: q-craft-033
+  text: 粗細對比，比顏色更早被眼睛讀到。
+  tags: [contrast, typography]
+- id: q-craft-034
+  text: 今天不追求完成，只把一個邊修順就好。
+  tags: [craft, detail]
+- id: q-craft-035
+  text: 同一個灰，在不同背景上是不同的心情。
+  tags: [color, contrast]
+- id: q-craft-036
+  text: 排版的節奏，其實跟音樂很像。
+  tags: [typography, composition]
+- id: q-craft-037
+  text: 圖示畫得再細，也要在很小的時候仍認得出來。
+  tags: [detail, simplicity]
+- id: q-craft-038
+  text: 留白是設計師替讀者買的一點餘裕。
+  tags: [whitespace, design]
+- id: q-craft-039
+  text: 材質對了，塑膠也能看起來很珍貴。
+  tags: [texture, design]
+- id: q-craft-040
+  text: 不確定要加什麼時，先試試拿掉一個。
+  tags: [simplicity, design]
+- id: q-craft-041
+  text: 顏色的比例，比顏色本身更決定氣氛。
+  tags: [color, composition]
+- id: q-craft-042
+  text: 一條分隔線能做的事，常常一段留白也能做。
+  tags: [whitespace, layout]
+- id: q-craft-043
+  text: 字型的個性，藏在你最少注意的標點裡。
+  tags: [typography, detail]
+- id: q-craft-044
+  text: 對齊帶來的秩序，人感覺得到卻說不出來。
+  tags: [layout, detail]
+- id: q-craft-045
+  text: 今天只想動一點點，那就從調色盤開始。
+  tags: [color, craft]
+- id: q-craft-046
+  text: 對比拉開了，弱的地方才能真的弱下來。
+  tags: [contrast, composition]
+- id: q-craft-047
+  text: 好的間距不是規則，是你眼睛認得的舒服。
+  tags: [detail, whitespace]
+- id: q-craft-048
+  text: 顏色少一點，畫面就多一點力氣。
+  tags: [color, simplicity]
+- id: q-craft-049
+  text: 一個介面的溫度，藏在圓角與動態裡。
+  tags: [detail, design]
+- id: q-craft-050
+  text: 構圖不是把東西放好，是決定先看哪裡。
+  tags: [composition, layout]
+- id: q-craft-051
+  text: 字太多的時候，最好的排版是刪字。
+  tags: [typography, simplicity]
+- id: q-craft-052
+  text: 質感是很多小決定累積出來的結果。
+  tags: [texture, craft]
+- id: q-craft-053
+  text: 留白會呼吸，塞滿的版面會喘。
+  tags: [whitespace, layout]
+- id: q-craft-054
+  text: 主色只要一個，其他都是它的鄰居。
+  tags: [color, simplicity]
+- id: q-craft-055
+  text: 讓邊距一致，比讓它們好看更重要。
+  tags: [layout, detail]
+- id: q-craft-056
+  text: 細節做到位的東西，摸起來會不一樣。
+  tags: [detail, texture]
+- id: q-craft-057
+  text: 對比是明暗的事，不只是深淺的事。
+  tags: [contrast, color]
+- id: q-craft-058
+  text: 版面歪一點沒關係，先讓它成形再修。
+  tags: [layout, craft]
+- id: q-craft-059
+  text: 好字型會退到後面，讓內容站到前面。
+  tags: [typography, simplicity]
+- id: q-craft-060
+  text: 留白不是浪費空間，是保護重點。
+  tags: [whitespace, design]
+- id: q-craft-061
+  text: 顏色會說話，先聽它想說什麼再決定用不用。
+  tags: [color, design]
+- id: q-craft-062
+  text: 一個好圖示，是一句話濃縮成一個形狀。
+  tags: [detail, simplicity]
+- id: q-craft-063
+  text: 對齊不是強迫症，是替眼睛省力。
+  tags: [layout, detail]
+- id: q-craft-064
+  text: 今天沒靈感，重看一次自己三年前的作品也好。
+  tags: [craft, design]
+- id: q-craft-065
+  text: 質感騙不了人，粗糙的地方總會被摸到。
+  tags: [texture, detail]
+- id: q-craft-066
+  text: 太多重點就是沒有重點。
+  tags: [contrast, simplicity]
+- id: q-craft-067
+  text: 行距鬆一點，長文才讀得下去。
+  tags: [typography, whitespace]
+- id: q-craft-068
+  text: 顏色搭配像交朋友，明度接近的比較合得來。
+  tags: [color, contrast]
+- id: q-craft-069
+  text: 構圖的重心偏一點，畫面反而更有動感。
+  tags: [composition, layout]
+- id: q-craft-070
+  text: 把裝飾拿掉之後還站得住，那才是好設計。
+  tags: [simplicity, design]
+- id: q-craft-071
+  text: 一點點漸層，能讓平面的東西有了空氣。
+  tags: [texture, color]
+- id: q-craft-072
+  text: 留白的位置，決定視線停在哪裡。
+  tags: [whitespace, composition]
+- id: q-craft-073
+  text: 字型混搭最多兩種，第三種通常是災難。
+  tags: [typography, simplicity]
+- id: q-craft-074
+  text: 細節不是給評審看的，是給每天用的人。
+  tags: [detail, design]
+- id: q-craft-075
+  text: 深色不一定是黑，帶一點藍會更耐看。
+  tags: [color, detail]
+- id: q-craft-076
+  text: 版面的空氣感，來自你捨得留下的空。
+  tags: [whitespace, layout]
+- id: q-craft-077
+  text: 對比做對了，弱視的人也能看清楚。
+  tags: [contrast, design]
+- id: q-craft-078
+  text: 今天只想收尾一個小角落，那就收好那一個。
+  tags: [craft, detail]
+- id: q-craft-079
+  text: 質感是慢工，急不出來。
+  tags: [texture, craft]
+- id: q-craft-080
+  text: 一個好標題，字級大不如位置對。
+  tags: [typography, composition]
+- id: q-craft-081
+  text: 顏色越少，你越需要把每一個用對。
+  tags: [color, simplicity]
+- id: q-craft-082
+  text: 對齊線是隱形的，但秩序是看得見的。
+  tags: [layout, detail]
+- id: q-craft-083
+  text: 留白讓昂貴的東西看起來更昂貴。
+  tags: [whitespace, design]
+- id: q-craft-084
+  text: 圓角與直角，是兩種不同的邀請。
+  tags: [detail, design]
+- id: q-craft-085
+  text: 好的間距系統，是一套你只需決定一次的規則。
+  tags: [layout, craft]
+- id: q-craft-086
+  text: 對比不夠時，別急著加顏色，先拉開明度。
+  tags: [contrast, color]
+- id: q-craft-087
+  text: 材質給畫面一種你說不清但感覺得到的真實。
+  tags: [texture, design]
+- id: q-craft-088
+  text: 字重換一階，語氣就換一種。
+  tags: [typography, contrast]
+- id: q-craft-089
+  text: 版面留下的空，是給讀者思考的地方。
+  tags: [whitespace, layout]
+- id: q-craft-090
+  text: 一個顏色好不好，要看它旁邊放了什麼。
+  tags: [color, contrast]
+- id: q-craft-091
+  text: 細節不會被誇獎，但少了會被察覺。
+  tags: [detail, craft]
+- id: q-craft-092
+  text: 構圖三分，勝過置中一片死板。
+  tags: [composition, layout]
+- id: q-craft-093
+  text: 簡單不是空洞，是把複雜藏得很好。
+  tags: [simplicity, design]
+- id: q-craft-094
+  text: 今天調不出感覺，就先把畫面收乾淨。
+  tags: [craft, simplicity]
+- id: q-craft-095
+  text: 陰影的方向要一致，光才有個來處。
+  tags: [detail, texture]
+- id: q-craft-096
+  text: 標點與空格，也是排版的一部分。
+  tags: [typography, detail]
+- id: q-craft-097
+  text: 留白不用理由，密集才需要。
+  tags: [whitespace, simplicity]
+- id: q-craft-098
+  text: 顏色的飽和度，是畫面的音量。
+  tags: [color, contrast]
+- id: q-craft-099
+  text: 對齊到最後一個像素，是給自己看的誠實。
+  tags: [detail, layout]
+- id: q-craft-100
+  text: 好設計耐看，因為它不急著討好。
+  tags: [design, simplicity]
+- id: q-craft-101
+  text: 質感的秘密，常常在轉角那一小段弧。
+  tags: [texture, detail]
+- id: q-craft-102
+  text: 字距、行距、段距，是排版的三種呼吸。
+  tags: [typography, whitespace]
+- id: q-craft-103
+  text: 構圖留一條路，眼睛才知道往哪走。
+  tags: [composition, layout]
+- id: q-craft-104
+  text: 兩個很像的灰，其實差很多。
+  tags: [color, detail]
+- id: q-craft-105
+  text: 對比是設計裡最誠實的一種強調。
+  tags: [contrast, design]
+- id: q-craft-106
+  text: 今天做一點就好，明天的你會謝謝今天。
+  tags: [craft, design]
+- id: q-craft-107
+  text: 版面對不齊時，通常是間距沒有系統。
+  tags: [layout, detail]
+- id: q-craft-108
+  text: 少即是多，前提是你知道要少掉什麼。
+  tags: [simplicity, design]
+- id: q-craft-109
+  text: 一個好按鈕，看起來就像可以被按。
+  tags: [detail, design]
+- id: q-craft-110
+  text: 留白替沉默的地方，保留了力量。
+  tags: [whitespace, composition]
+- id: q-craft-111
+  text: 顏色的溫度，比色相更先被感覺到。
+  tags: [color, design]
+- id: q-craft-112
+  text: 字型會影響人相不相信你寫的內容。
+  tags: [typography, design]
+- id: q-craft-113
+  text: 材質讓一個平面，有了可以想像的觸感。
+  tags: [texture, detail]
+- id: q-craft-114
+  text: 構圖的平衡，不是對稱，是感覺得剛好。
+  tags: [composition, design]
+- id: q-craft-115
+  text: 對比若處處都強，就等於處處都弱。
+  tags: [contrast, simplicity]
+- id: q-craft-116
+  text: 邊距是設計替內容留的一圈安靜。
+  tags: [whitespace, layout]
+- id: q-craft-117
+  text: 今天沒力氣重畫，換個顏色也能換個心情。
+  tags: [color, craft]
+- id: q-craft-118
+  text: 細節做得夠多，作品自己會替你說話。
+  tags: [detail, craft]
+- id: q-craft-119
+  text: 好排版讓長文變短，壞排版讓短文變長。
+  tags: [typography, layout]
+- id: q-craft-120
+  text: 顏色不是越多越熱鬧，常常越多越吵。
+  tags: [color, simplicity]
+- id: q-craft-121
+  text: 對齊有時只差一格，但差別是整個世界。
+  tags: [layout, detail]
+- id: q-craft-122
+  text: 留白讓一張臉，在人群裡被看見。
+  tags: [whitespace, composition]
+- id: q-craft-123
+  text: 質感需要光，先想清楚光從哪來。
+  tags: [texture, detail]
+- id: q-craft-124
+  text: 簡單的東西最難，因為藏不住任何錯。
+  tags: [simplicity, craft]
+- id: q-craft-125
+  text: 一個標題與內文的層級，就是一種引導。
+  tags: [typography, composition]
+- id: q-craft-126
+  text: 對比不只在顏色，也在大小與疏密。
+  tags: [contrast, composition]
+- id: q-craft-127
+  text: 今天先存個檔，明天再決定要不要繼續。
+  tags: [craft, design]
+- id: q-craft-128
+  text: 顏色搭一整天搭不好，隔天看一眼就通了。
+  tags: [color, craft]
+- id: q-craft-129
+  text: 版面像房間，動線順了住起來才舒服。
+  tags: [layout, composition]
+- id: q-craft-130
+  text: 細節是你替看不見的人做的體貼。
+  tags: [detail, design]
+- id: q-craft-131
+  text: 留白多，不代表懶，代表你有所取捨。
+  tags: [whitespace, simplicity]
+- id: q-craft-132
+  text: 字型的行高，比字型本身更影響閱讀。
+  tags: [typography, whitespace]
+- id: q-craft-133
+  text: 材質的粗細，決定一個東西親不親人。
+  tags: [texture, design]
+- id: q-craft-134
+  text: 構圖先定大塊，細節之後自然會找到位置。
+  tags: [composition, craft]
+- id: q-craft-135
+  text: 一點暖色，就能把冷調的畫面救回來。
+  tags: [color, contrast]
+- id: q-craft-136
+  text: 對齊做好，作品就已經完成了一半的專業。
+  tags: [layout, detail]
+- id: q-craft-137
+  text: 好設計不是被記住，是被自然地用著。
+  tags: [design, simplicity]
+- id: q-craft-138
+  text: 留白讓每個元素，都有自己的舞台。
+  tags: [whitespace, composition]
+- id: q-craft-139
+  text: 顏色的意義會隨文化改變，別忘了看場合。
+  tags: [color, design]
+- id: q-craft-140
+  text: 細節像縫線，好不好，翻過來就知道。
+  tags: [detail, texture]
+- id: q-craft-141
+  text: 字級只用三種，畫面就有了清楚的層級。
+  tags: [typography, layout]
+- id: q-craft-142
+  text: 對比是替眼睛指路的路標。
+  tags: [contrast, composition]
+- id: q-craft-143
+  text: 今天調一個圓角就好，明天再調下一個。
+  tags: [detail, craft]
+- id: q-craft-144
+  text: 質感不是加上去的，是打磨出來的。
+  tags: [texture, craft]
+- id: q-craft-145
+  text: 版面越乾淨，越藏不住位置的錯。
+  tags: [layout, simplicity]
+- id: q-craft-146
+  text: 留白是設計最貴、也最容易被砍的東西。
+  tags: [whitespace, design]
+- id: q-craft-147
+  text: 顏色互相靠近時，會偷偷改變彼此。
+  tags: [color, contrast]
+- id: q-craft-148
+  text: 好圖示在黑白時也要成立，顏色只是加分。
+  tags: [detail, simplicity]
+- id: q-craft-149
+  text: 構圖的空與滿，是一組要一起呼吸的節奏。
+  tags: [composition, whitespace]
+- id: q-craft-150
+  text: 字型選對了，話還沒說完就先有了語氣。
+  tags: [typography, design]
+- id: q-craft-151
+  text: 對比拉開之後，安靜的地方才顯得珍貴。
+  tags: [contrast, whitespace]
+- id: q-craft-152
+  text: 今天畫得不順，把參考圖再看一遍也是練習。
+  tags: [craft, design]
+- id: q-craft-153
+  text: 材質的反光，是它想告訴你的表面故事。
+  tags: [texture, detail]
+- id: q-craft-154
+  text: 版面的邊距一致，人就會覺得可靠。
+  tags: [layout, detail]
+- id: q-craft-155
+  text: 顏色調到剛好那一刻，你自己會知道。
+  tags: [color, craft]
+- id: q-craft-156
+  text: 簡單是把選項替使用者先做完了。
+  tags: [simplicity, design]
+- id: q-craft-157
+  text: 留白之間，也有輕重與遠近。
+  tags: [whitespace, composition]
+- id: q-craft-158
+  text: 一個細節做得溫柔，整個作品就柔軟了。
+  tags: [detail, craft]
+- id: q-craft-159
+  text: 對比不是製造衝突，是讓層次清楚。
+  tags: [contrast, layout]
+- id: q-craft-160
+  text: 字距在大標題上，每一格都看得出來。
+  tags: [typography, detail]
+- id: q-craft-161
+  text: 構圖先問視線從哪進來，再問往哪離開。
+  tags: [composition, layout]
+- id: q-craft-162
+  text: 今天狀態不好，就修圖層命名也算整理。
+  tags: [craft, detail]
+- id: q-craft-163
+  text: 質感是設計在低聲說：這是用心做的。
+  tags: [texture, craft]
+- id: q-craft-164
+  text: 顏色越純，越需要留白來襯它。
+  tags: [color, whitespace]
+- id: q-craft-165
+  text: 對齊的秩序，是一種安靜的專業。
+  tags: [layout, simplicity]
+- id: q-craft-166
+  text: 好設計不搶功勞，它讓內容成為主角。
+  tags: [design, simplicity]
+- id: q-craft-167
+  text: 一個好的間距，讓緊湊也能顯得從容。
+  tags: [whitespace, layout]
+- id: q-craft-168
+  text: 字型的灰度，決定整頁的第一印象。
+  tags: [typography, contrast]
+- id: q-craft-169
+  text: 材質與顏色一起看，才知道對不對味。
+  tags: [texture, color]
+- id: q-craft-170
+  text: 構圖不用滿，留一角給想像。
+  tags: [composition, whitespace]
+- id: q-craft-171
+  text: 細節是慢慢累積的信任。
+  tags: [detail, craft]
+- id: q-craft-172
+  text: 對比讓弱的更弱，強的地方才真的亮。
+  tags: [contrast, composition]
+- id: q-craft-173
+  text: 今天只想微調，那就把一個顏色調到滿意。
+  tags: [color, craft]
+- id: q-craft-174
+  text: 留白是你替眼睛準備的一張椅子。
+  tags: [whitespace, design]
+- id: q-craft-175
+  text: 好排版，是讓人讀完卻沒察覺被引導過。
+  tags: [typography, layout]

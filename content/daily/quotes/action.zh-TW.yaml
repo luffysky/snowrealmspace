@@ -1,0 +1,528 @@
+- id: q-action-001
+  text: 先做出來，再做好。
+  tags: [action, momentum]
+- id: q-action-002
+  text: 你今天不需要做出最好的版本，只需要做出下一個版本。
+  tags: [progress, small_steps]
+- id: q-action-003
+  text: 收藏很容易，做出來很難。今天做一點。
+  tags: [action, procrastination]
+- id: q-action-004
+  text: 選一個你一直想做但沒開始的東西，只做封面。
+  tags: [starting, small_steps]
+- id: q-action-005
+  text: 開始不用等準備好，準備好常常是開始之後才發生的。
+  tags: [starting, courage]
+- id: q-action-006
+  text: 把腦中那個模糊的東西，先寫下一句話就好。
+  tags: [starting, small_steps]
+- id: q-action-007
+  text: 十分鐘也算數，重點是門被推開了。
+  tags: [momentum, small_steps]
+- id: q-action-008
+  text: 完美是最容易讓人停在原地的藉口。
+  tags: [procrastination, finishing]
+- id: q-action-009
+  text: 今天低能量沒關係，做最小的那一步就好。
+  tags: [self_compassion, small_steps]
+- id: q-action-010
+  text: 你不是缺靈感，你只是還沒動手。
+  tags: [procrastination, action]
+- id: q-action-011
+  text: 草稿很醜是正常的，那是它該有的樣子。
+  tags: [progress, self_compassion]
+- id: q-action-012
+  text: 先開一個空白檔案，命名，儲存。這也是開始。
+  tags: [starting, small_steps]
+- id: q-action-013
+  text: 想很久的那件事，今天只做五分鐘。
+  tags: [procrastination, small_steps]
+- id: q-action-014
+  text: 做出一個爛的，好過想像一個完美的。
+  tags: [action, progress]
+- id: q-action-015
+  text: 你可以邊做邊想，不必先想清楚才動。
+  tags: [starting, momentum]
+- id: q-action-016
+  text: 把第一步拆到不可能失敗的大小。
+  tags: [small_steps, starting]
+- id: q-action-017
+  text: 動起來之後，方向會慢慢清楚。
+  tags: [momentum, progress]
+- id: q-action-018
+  text: 今天先做能做的，剩下的明天再說。
+  tags: [progress, self_compassion]
+- id: q-action-019
+  text: 一個做完的小東西，勝過十個想完的大計畫。
+  tags: [finishing, action]
+- id: q-action-020
+  text: 卡住的時候，把題目改小一號。
+  tags: [focus, small_steps]
+- id: q-action-021
+  text: 你不需要有把握，只需要先試一下。
+  tags: [courage, starting]
+- id: q-action-022
+  text: 靈感是動手的副產品，不是前提。
+  tags: [action, starting]
+- id: q-action-023
+  text: 先擺上一個佔位符，之後再替換。
+  tags: [starting, progress]
+- id: q-action-024
+  text: 把「有一天」換成「今天做十分鐘」。
+  tags: [procrastination, small_steps]
+- id: q-action-025
+  text: 完成一次，比完美一次更能教會你。
+  tags: [finishing, progress]
+- id: q-action-026
+  text: 今天只要比昨天多走一格就夠了。
+  tags: [progress, small_steps]
+- id: q-action-027
+  text: 別等心情對了，動手常常會把心情帶來。
+  tags: [momentum, starting]
+- id: q-action-028
+  text: 先做出一個能被批評的東西。
+  tags: [action, courage]
+- id: q-action-029
+  text: 把想法從腦裡搬出來，它才會開始長大。
+  tags: [starting, progress]
+- id: q-action-030
+  text: 慢慢做也是做，停下來想像不是。
+  tags: [momentum, action]
+- id: q-action-031
+  text: 今天做一件，明天的你會謝謝你。
+  tags: [progress, momentum]
+- id: q-action-032
+  text: 開始最難的部分，是坐下來的那一刻。
+  tags: [starting, procrastination]
+- id: q-action-033
+  text: 你可以先做最想做的那塊，順序不重要。
+  tags: [starting, focus]
+- id: q-action-034
+  text: 把大題目切成一口能吃下的份量。
+  tags: [small_steps, focus]
+- id: q-action-035
+  text: 不確定沒關係，先做出一個版本再看。
+  tags: [courage, progress]
+- id: q-action-036
+  text: 今天允許自己做得普通。
+  tags: [self_compassion, progress]
+- id: q-action-037
+  text: 先動筆的那個人，會比完美主義者早到。
+  tags: [action, procrastination]
+- id: q-action-038
+  text: 把「要做很多」縮成「現在做這一個」。
+  tags: [focus, small_steps]
+- id: q-action-039
+  text: 你不必一次做完，只要不停在起點。
+  tags: [momentum, progress]
+- id: q-action-040
+  text: 先做出來，它才有機會變好。
+  tags: [action, progress]
+- id: q-action-041
+  text: 開始得爛，總比沒開始好。
+  tags: [starting, courage]
+- id: q-action-042
+  text: 想法留在腦裡不會失敗，但也不會誕生。
+  tags: [action, procrastination]
+- id: q-action-043
+  text: 今天先把工具打開，這就是勝利。
+  tags: [starting, small_steps]
+- id: q-action-044
+  text: 你在等的那個完美時機，就是現在的樣子。
+  tags: [starting, procrastination]
+- id: q-action-045
+  text: 做一半也留著，它是明天的起點。
+  tags: [progress, momentum]
+- id: q-action-046
+  text: 把注意力放在下一步，不是整座山。
+  tags: [focus, small_steps]
+- id: q-action-047
+  text: 先做出粗胚，細節之後再雕。
+  tags: [progress, action]
+- id: q-action-048
+  text: 今天不想大動，就整理一個小角落。
+  tags: [self_compassion, small_steps]
+- id: q-action-049
+  text: 你不需要全部想通，只需要先走一步。
+  tags: [starting, courage]
+- id: q-action-050
+  text: 動手會帶來清晰，猶豫只會帶來更多猶豫。
+  tags: [momentum, decision]
+- id: q-action-051
+  text: 先寫下最爛的第一句，後面就順了。
+  tags: [starting, momentum]
+- id: q-action-052
+  text: 把「等我準備好」換成「我邊做邊準備」。
+  tags: [starting, procrastination]
+- id: q-action-053
+  text: 一個小小的完成，會養出下一個。
+  tags: [finishing, momentum]
+- id: q-action-054
+  text: 今天只求開頭，結尾交給以後的自己。
+  tags: [starting, small_steps]
+- id: q-action-055
+  text: 別把力氣花在想像失敗，先做再說。
+  tags: [courage, action]
+- id: q-action-056
+  text: 做出來的第一版本來就會不像樣。
+  tags: [progress, self_compassion]
+- id: q-action-057
+  text: 你可以隨時重來，但要先有一版能重來。
+  tags: [action, progress]
+- id: q-action-058
+  text: 把宏大的夢，換成今天能碰的一角。
+  tags: [small_steps, focus]
+- id: q-action-059
+  text: 先做能做的，別被還不能做的絆住。
+  tags: [progress, focus]
+- id: q-action-060
+  text: 開始的門檻，永遠比你想的低。
+  tags: [starting, procrastination]
+- id: q-action-061
+  text: 今天做一點點，也是在往前。
+  tags: [progress, small_steps]
+- id: q-action-062
+  text: 卡住就換一個最簡單的部分先做。
+  tags: [focus, momentum]
+- id: q-action-063
+  text: 你不用有信心才開始，開始會給你信心。
+  tags: [courage, starting]
+- id: q-action-064
+  text: 把「總有一天」變成「這個下午」。
+  tags: [procrastination, action]
+- id: q-action-065
+  text: 先做出一個能拿給人看的東西。
+  tags: [finishing, courage]
+- id: q-action-066
+  text: 想得再美，也要先落地成一行字。
+  tags: [action, starting]
+- id: q-action-067
+  text: 今天累的話，做十分之一就好。
+  tags: [self_compassion, small_steps]
+- id: q-action-068
+  text: 完成不必偉大，只要真的做完。
+  tags: [finishing, progress]
+- id: q-action-069
+  text: 別等靈感敲門，先坐下等它路過。
+  tags: [starting, action]
+- id: q-action-070
+  text: 做出一個瑕疵品，也比空白紙有價值。
+  tags: [action, progress]
+- id: q-action-071
+  text: 你只需要對今天的第一步負責。
+  tags: [small_steps, focus]
+- id: q-action-072
+  text: 把計畫收起來，先做出第一塊。
+  tags: [action, procrastination]
+- id: q-action-073
+  text: 先做出來，會比一直討論它更有進展。
+  tags: [action, momentum]
+- id: q-action-074
+  text: 今天的目標，可以只是「不放棄」。
+  tags: [self_compassion, momentum]
+- id: q-action-075
+  text: 起步慢沒關係，只要真的起步了。
+  tags: [starting, progress]
+- id: q-action-076
+  text: 把恐懼拆開看，往往只剩下一個小動作。
+  tags: [courage, small_steps]
+- id: q-action-077
+  text: 先做，錯了再改，這比不做快多了。
+  tags: [action, progress]
+- id: q-action-078
+  text: 你可以做得很小，但別做得很晚。
+  tags: [procrastination, small_steps]
+- id: q-action-079
+  text: 今天把想做的事，寫進行事曆一個時段。
+  tags: [decision, starting]
+- id: q-action-080
+  text: 一步一步，本來就是唯一的走法。
+  tags: [small_steps, progress]
+- id: q-action-081
+  text: 先做出來，再談要不要給人看。
+  tags: [action, courage]
+- id: q-action-082
+  text: 別讓「還不夠好」擋住「先存起來」。
+  tags: [procrastination, progress]
+- id: q-action-083
+  text: 今天做一件很小的事，就當作暖身。
+  tags: [small_steps, momentum]
+- id: q-action-084
+  text: 你不必等靈感齊全，先動一根手指。
+  tags: [starting, action]
+- id: q-action-085
+  text: 把大計畫的第一格塗滿，就開始了。
+  tags: [starting, small_steps]
+- id: q-action-086
+  text: 做完一件小事，會鬆開卡住的自己。
+  tags: [finishing, momentum]
+- id: q-action-087
+  text: 今天先開個頭，別要求自己收尾。
+  tags: [starting, self_compassion]
+- id: q-action-088
+  text: 想法值不值得做，做了才知道。
+  tags: [action, decision]
+- id: q-action-089
+  text: 別把完美當標準，把完成當標準。
+  tags: [finishing, progress]
+- id: q-action-090
+  text: 先做出一個能改的東西，改比生更容易。
+  tags: [action, progress]
+- id: q-action-091
+  text: 你今天只要往那個方向動一下就好。
+  tags: [small_steps, momentum]
+- id: q-action-092
+  text: 猶豫時，選最小的那個行動先做。
+  tags: [decision, small_steps]
+- id: q-action-093
+  text: 先做出一個開頭，剩下會自己找到路。
+  tags: [starting, momentum]
+- id: q-action-094
+  text: 今天把一個念頭，變成一個檔案。
+  tags: [action, starting]
+- id: q-action-095
+  text: 別等大塊時間，五分鐘也能推進。
+  tags: [small_steps, procrastination]
+- id: q-action-096
+  text: 做出來的東西會回頭教你怎麼做更好。
+  tags: [progress, action]
+- id: q-action-097
+  text: 你不需要看見全程，只要看見下一步。
+  tags: [focus, small_steps]
+- id: q-action-098
+  text: 先讓它存在，再讓它變好。
+  tags: [action, progress]
+- id: q-action-099
+  text: 今天做不動就休息，明天的門仍開著。
+  tags: [self_compassion, momentum]
+- id: q-action-100
+  text: 把「我不會」暫時換成「我先試試」。
+  tags: [courage, starting]
+- id: q-action-101
+  text: 先做出來，才知道自己其實會。
+  tags: [courage, action]
+- id: q-action-102
+  text: 今天只挑一件事做，別想清單。
+  tags: [focus, decision]
+- id: q-action-103
+  text: 起步的重量，做了就會減輕。
+  tags: [starting, momentum]
+- id: q-action-104
+  text: 別讓收藏夾替你完成想像中的作品。
+  tags: [procrastination, action]
+- id: q-action-105
+  text: 先做出草圖，好不好之後再說。
+  tags: [starting, progress]
+- id: q-action-106
+  text: 你可以做得慢，但別讓它一直是零。
+  tags: [progress, momentum]
+- id: q-action-107
+  text: 今天讓一個想法，走出腦袋一步。
+  tags: [starting, action]
+- id: q-action-108
+  text: 完成的東西不完美，但它是真的。
+  tags: [finishing, progress]
+- id: q-action-109
+  text: 把「以後再做」的清單，選一項今天碰。
+  tags: [procrastination, focus]
+- id: q-action-110
+  text: 先動手，思路會在動作裡浮現。
+  tags: [momentum, action]
+- id: q-action-111
+  text: 你不必解決全部，只要處理眼前這塊。
+  tags: [focus, small_steps]
+- id: q-action-112
+  text: 今天做一點，不需要理由，也不需要很多。
+  tags: [small_steps, self_compassion]
+- id: q-action-113
+  text: 先做出來的人，不一定最強，但最早到。
+  tags: [action, momentum]
+- id: q-action-114
+  text: 別把準備當成拖延的漂亮名字。
+  tags: [procrastination, action]
+- id: q-action-115
+  text: 今天把那個一直放著的檔案打開看看。
+  tags: [starting, momentum]
+- id: q-action-116
+  text: 做一個原型，勝過描述一個構想。
+  tags: [action, progress]
+- id: q-action-117
+  text: 你只要開始，就已經超過了昨天。
+  tags: [starting, progress]
+- id: q-action-118
+  text: 把巨大的目標，換成今天的一小格。
+  tags: [small_steps, focus]
+- id: q-action-119
+  text: 先做，別排練還沒發生的失敗。
+  tags: [courage, action]
+- id: q-action-120
+  text: 今天做出一句、一筆、一格，都算。
+  tags: [small_steps, progress]
+- id: q-action-121
+  text: 想開始的心情，就是可以開始的訊號。
+  tags: [starting, courage]
+- id: q-action-122
+  text: 別追完美的第一步，追真的踏出去。
+  tags: [starting, procrastination]
+- id: q-action-123
+  text: 先做出來，再決定要不要繼續。
+  tags: [action, decision]
+- id: q-action-124
+  text: 今天做的那一點，是明天的地基。
+  tags: [progress, small_steps]
+- id: q-action-125
+  text: 卡住不是停下的理由，是換方法的訊號。
+  tags: [momentum, focus]
+- id: q-action-126
+  text: 你可以害怕，然後還是動手。
+  tags: [courage, action]
+- id: q-action-127
+  text: 先讓它糟糕地存在，再慢慢救它。
+  tags: [progress, self_compassion]
+- id: q-action-128
+  text: 今天不逼自己完成，只邀自己開始。
+  tags: [starting, self_compassion]
+- id: q-action-129
+  text: 把「該做」變成「現在做這一步」。
+  tags: [focus, procrastination]
+- id: q-action-130
+  text: 做出來的，才有資格被修改。
+  tags: [action, progress]
+- id: q-action-131
+  text: 你今天做的每一小步，都在幫未來鋪路。
+  tags: [progress, momentum]
+- id: q-action-132
+  text: 先做眼前這件，別提前煩惱後面十件。
+  tags: [focus, small_steps]
+- id: q-action-133
+  text: 開始不需要儀式，需要的只是動一下。
+  tags: [starting, action]
+- id: q-action-134
+  text: 今天做一半，比今天全想像更靠近完成。
+  tags: [progress, action]
+- id: q-action-135
+  text: 別讓「還沒想好」變成永遠不開始。
+  tags: [procrastination, starting]
+- id: q-action-136
+  text: 先做出來，讓它替你把話說完。
+  tags: [action, finishing]
+- id: q-action-137
+  text: 你可以先做最有趣的那部分。
+  tags: [starting, focus]
+- id: q-action-138
+  text: 今天的動作再小，也把數字從零推走了。
+  tags: [momentum, small_steps]
+- id: q-action-139
+  text: 想做就先做十分鐘，之後再決定要不要停。
+  tags: [starting, momentum]
+- id: q-action-140
+  text: 完成一件，會比開始十件更讓你踏實。
+  tags: [finishing, focus]
+- id: q-action-141
+  text: 別為第一版設高標，它只是起點。
+  tags: [progress, self_compassion]
+- id: q-action-142
+  text: 先做出來，答案常常藏在成品裡。
+  tags: [action, decision]
+- id: q-action-143
+  text: 今天做能做的那一點，就已足夠。
+  tags: [self_compassion, progress]
+- id: q-action-144
+  text: 把想法變成動作，它才不會蒸發。
+  tags: [action, starting]
+- id: q-action-145
+  text: 你不必今天登頂，只要開始上坡。
+  tags: [starting, small_steps]
+- id: q-action-146
+  text: 先做，路是走出來的不是想出來的。
+  tags: [momentum, action]
+- id: q-action-147
+  text: 今天只要不讓計畫停在紙上。
+  tags: [action, procrastination]
+- id: q-action-148
+  text: 做一個能被丟掉的原型，很自由。
+  tags: [action, courage]
+- id: q-action-149
+  text: 別等全部條件到齊，先用手邊的做。
+  tags: [starting, progress]
+- id: q-action-150
+  text: 你今天踏出的那步，會記得你踏過。
+  tags: [starting, momentum]
+- id: q-action-151
+  text: 先做出一版，比反覆修改想像更省力。
+  tags: [action, progress]
+- id: q-action-152
+  text: 今天做一點，是對想法最溫柔的對待。
+  tags: [small_steps, self_compassion]
+- id: q-action-153
+  text: 把猶豫換成一個很小的實驗。
+  tags: [decision, small_steps]
+- id: q-action-154
+  text: 先做出來的東西，會告訴你下一步。
+  tags: [progress, momentum]
+- id: q-action-155
+  text: 你不必準備完美，只要準備開始。
+  tags: [starting, courage]
+- id: q-action-156
+  text: 今天做的雖然小，卻是真的存在。
+  tags: [progress, small_steps]
+- id: q-action-157
+  text: 別把想像的難度，當成真正的難度。
+  tags: [courage, procrastination]
+- id: q-action-158
+  text: 先動手一次，勝過在心裡演練十次。
+  tags: [action, momentum]
+- id: q-action-159
+  text: 今天挑最卡的一件，只推它一公分。
+  tags: [small_steps, focus]
+- id: q-action-160
+  text: 你可以做得不夠好，只要開始得夠早。
+  tags: [starting, progress]
+- id: q-action-161
+  text: 先讓草稿存在，靈感才有地方停。
+  tags: [starting, action]
+- id: q-action-162
+  text: 今天做一件事到底，勝過樣樣半途。
+  tags: [finishing, focus]
+- id: q-action-163
+  text: 把「等等再說」換成「先做一分鐘」。
+  tags: [procrastination, small_steps]
+- id: q-action-164
+  text: 先做出來，你會比想像中更快上手。
+  tags: [action, courage]
+- id: q-action-165
+  text: 今天的一小步，明天不會嫌它太小。
+  tags: [progress, momentum]
+- id: q-action-166
+  text: 別讓完美當守門員，讓完成先進門。
+  tags: [finishing, procrastination]
+- id: q-action-167
+  text: 你只需要先做那個最不需要勇氣的動作。
+  tags: [small_steps, courage]
+- id: q-action-168
+  text: 今天把想很久的事，做出一個縮小版。
+  tags: [action, small_steps]
+- id: q-action-169
+  text: 先開始，動能會在半路來接你。
+  tags: [momentum, starting]
+- id: q-action-170
+  text: 做出來，然後就會知道該怎麼繼續。
+  tags: [action, progress]
+- id: q-action-171
+  text: 今天做的這一點，就是最好的開始。
+  tags: [starting, progress]
+- id: q-action-172
+  text: 別讓念頭只是念頭，給它一個動作。
+  tags: [action, starting]
+- id: q-action-173
+  text: 你可以先做糟，慢慢做好，別先做完美。
+  tags: [progress, procrastination]
+- id: q-action-174
+  text: 今天把第一塊拼上，圖案就開始成形。
+  tags: [starting, momentum]
+- id: q-action-175
+  text: 先做，未完成也是一種真實的前進。
+  tags: [progress, action]
+- id: q-action-176
+  text: 你今天願意開始，就已經很好了。
+  tags: [self_compassion, starting]

@@ -1,0 +1,787 @@
+# 每日創作提示 — 「實驗與玩」＋「記錄與給自己」
+# 繁體中文（台灣用語）。允許低能量的日子。
+# play 類：p-play-NNN；reflect 類：p-reflect-NNN
+
+# ── 實驗與玩 ──────────────────────────────
+- id: p-play-001
+  text: 把今天聽到的一首歌，用一個顏色代表它。
+  tags: [play, synesthesia]
+  estimatedMinutes: 5
+- id: p-play-002
+  text: 把三個不相關的東西放在同一張畫面上，不用解釋。
+  tags: [play, collage, random]
+  estimatedMinutes: 8
+- id: p-play-003
+  text: 閉上眼睛，用手指在紙上亂畫十秒，再看看它像什麼。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-004
+  text: 幫現在的心情調一杯不存在的飲料，寫下它的顏色和味道。
+  tags: [play, synesthesia]
+  estimatedMinutes: 6
+- id: p-play-005
+  text: 隨手拍一張你平常不會拍的醜東西，就這樣留著。
+  tags: [play, random]
+  estimatedMinutes: 3
+- id: p-play-006
+  text: 把窗外的聲音想像成一種質地，是粗的還是滑的？
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-007
+  text: 用手邊五樣東西排出一個表情，拍下來。
+  tags: [play, collage]
+  estimatedMinutes: 7
+- id: p-play-008
+  text: 隨機翻開一本書，指一個字，用它造一句沒道理的話。
+  tags: [play, random, experiment]
+  estimatedMinutes: 5
+- id: p-play-009
+  text: 幫今天取一個顏色的名字，像油漆罐上那種。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-010
+  text: 把一個日常動作放慢十倍去做，感覺哪裡不一樣。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-011
+  text: 收集三種不同的白色，並排看它們其實不一樣。
+  tags: [play, experiment]
+  estimatedMinutes: 6
+- id: p-play-012
+  text: 用注音或表情符號，把一首歌的旋律「畫」出來。
+  tags: [play, synesthesia]
+  estimatedMinutes: 8
+- id: p-play-013
+  text: 把冰箱裡的東西擺成一幅靜物畫，拍一張。
+  tags: [play, collage]
+  estimatedMinutes: 6
+- id: p-play-014
+  text: 隨便選一個數字，去做那個數字有關的一件小事。
+  tags: [play, random]
+  estimatedMinutes: 5
+- id: p-play-015
+  text: 用非慣用手寫下自己的名字，看它變成誰。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-016
+  text: 幫此刻的天氣配一段假的旁白，念出來。
+  tags: [play, random]
+  estimatedMinutes: 4
+- id: p-play-017
+  text: 把兩首完全不同的歌各聽十秒，想像它們是一對朋友。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-018
+  text: 撕一張紙，把撕出來的形狀貼進畫面當成一座山。
+  tags: [play, collage]
+  estimatedMinutes: 7
+- id: p-play-019
+  text: 用手機相簿隨機滑到一張照片，替它編一個假的故事。
+  tags: [play, random]
+  estimatedMinutes: 6
+- id: p-play-020
+  text: 把一個情緒畫成一條線，快樂是什麼形狀的線？
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-021
+  text: 找三個圓形的東西排一排，只因為它們都是圓的。
+  tags: [play, collage]
+  estimatedMinutes: 5
+- id: p-play-022
+  text: 亂哼一段沒有歌詞的旋律，錄下十秒就好。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-023
+  text: 把「星期三」想像成一種味道，是什麼味道？
+  tags: [play, synesthesia]
+  estimatedMinutes: 3
+- id: p-play-024
+  text: 用桌上的雜物排出你名字的第一個字。
+  tags: [play, collage]
+  estimatedMinutes: 8
+- id: p-play-025
+  text: 隨便選一個路人（或角色），猜他手機裡最新的一張照片。
+  tags: [play, random]
+  estimatedMinutes: 5
+- id: p-play-026
+  text: 把今天的疲累畫成一隻虛構的動物。
+  tags: [play, synesthesia]
+  estimatedMinutes: 7
+- id: p-play-027
+  text: 拿兩個顏色的筆，同時各握一手一起亂畫。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-028
+  text: 幫你現在坐的椅子取一個很正式的名字。
+  tags: [play, random]
+  estimatedMinutes: 2
+- id: p-play-029
+  text: 把三張不同來源的照片拼在一起，做成一張假明信片。
+  tags: [play, collage]
+  estimatedMinutes: 10
+- id: p-play-030
+  text: 用聲音模仿一種天氣，錄下來自己聽。
+  tags: [play, experiment, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-031
+  text: 把手機字型或桌布換成你平常絕不會選的那種。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-032
+  text: 隨機挑一個顏色，一整天留意它出現在哪裡。
+  tags: [play, experiment]
+  estimatedMinutes: 10
+- id: p-play-033
+  text: 把一句廣告詞改成完全相反的意思。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-034
+  text: 用五個表情符號說完你的一整天，不准用字。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-035
+  text: 找一個影子，把它的形狀描下來當成一幅畫。
+  tags: [play, experiment]
+  estimatedMinutes: 6
+- id: p-play-036
+  text: 把兩種不搭的食物擺在一起，只為了看它們的顏色。
+  tags: [play, collage]
+  estimatedMinutes: 5
+- id: p-play-037
+  text: 幫「安靜」這個感覺選一首背景音樂。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-038
+  text: 隨手把三個名詞連成一個新產品的名字。
+  tags: [play, random, experiment]
+  estimatedMinutes: 5
+- id: p-play-039
+  text: 用手邊的東西堆一座越高越好的小塔，拍下來。
+  tags: [play, experiment]
+  estimatedMinutes: 6
+- id: p-play-040
+  text: 把今天的天空顏色，用食物來形容。
+  tags: [play, synesthesia]
+  estimatedMinutes: 3
+- id: p-play-041
+  text: 隨機打開地圖，把手指落點的地名念三遍。
+  tags: [play, random]
+  estimatedMinutes: 3
+- id: p-play-042
+  text: 用膠帶在桌上貼出一個看不懂的圖案。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-043
+  text: 把一段對話裡的名詞全部換成「香蕉」，念出來。
+  tags: [play, random]
+  estimatedMinutes: 4
+- id: p-play-044
+  text: 收集三個聲音（水、風扇、腳步），排成一段節奏。
+  tags: [play, experiment, synesthesia]
+  estimatedMinutes: 7
+- id: p-play-045
+  text: 把此刻的情緒畫成天氣預報的圖示。
+  tags: [play, synesthesia]
+  estimatedMinutes: 5
+- id: p-play-046
+  text: 用一張紙折出一個你沒折過的形狀，不查教學。
+  tags: [play, experiment]
+  estimatedMinutes: 8
+- id: p-play-047
+  text: 把冰箱磁鐵、鑰匙、耳機排成一個小小星系。
+  tags: [play, collage]
+  estimatedMinutes: 6
+- id: p-play-048
+  text: 隨便選一種動物，用它的視角描述你的房間一句話。
+  tags: [play, random]
+  estimatedMinutes: 5
+- id: p-play-049
+  text: 把「無聊」這個詞畫成一個logo。
+  tags: [play, experiment]
+  estimatedMinutes: 7
+- id: p-play-050
+  text: 用嘴巴模仿三種樂器，錄成一段十秒的樂團。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-051
+  text: 幫窗邊的光影拍一張，假裝它是一幅名畫。
+  tags: [play, collage]
+  estimatedMinutes: 4
+- id: p-play-052
+  text: 把兩個成語各拆一半，拼成一個新成語。
+  tags: [play, experiment, random]
+  estimatedMinutes: 5
+- id: p-play-053
+  text: 用手指沾水，在桌上畫一個會蒸發的作品。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-054
+  text: 隨機挑三個emoji，把它們變成一個故事的開頭。
+  tags: [play, random]
+  estimatedMinutes: 6
+- id: p-play-055
+  text: 把今天的心跳想像成一種鼓的節奏，打在桌上。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-056
+  text: 找一塊布或紙，把它揉成一個表情。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-057
+  text: 用不同顏色的筆，把同一個字寫十次都不一樣。
+  tags: [play, experiment]
+  estimatedMinutes: 6
+- id: p-play-058
+  text: 把「明天」想像成一個房間，裡面有什麼家具？
+  tags: [play, synesthesia]
+  estimatedMinutes: 5
+- id: p-play-059
+  text: 隨手撿一個小東西，替它辦一場迷你攝影展。
+  tags: [play, collage]
+  estimatedMinutes: 8
+- id: p-play-060
+  text: 把一首慢歌用兩倍速聽，看它變成誰。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-061
+  text: 用陰影和手，在牆上做出一個沒看過的形狀。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-062
+  text: 把桌上東西按顏色排成彩虹的順序。
+  tags: [play, collage]
+  estimatedMinutes: 6
+- id: p-play-063
+  text: 幫此刻的沉默配一個狀聲詞。
+  tags: [play, synesthesia]
+  estimatedMinutes: 3
+- id: p-play-064
+  text: 隨機翻歌單，把第一句歌詞當成今天的籤詩。
+  tags: [play, random]
+  estimatedMinutes: 3
+- id: p-play-065
+  text: 用一枝筆不離開紙，一筆畫完你的臉。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-066
+  text: 把三種水果的名字組成一個假國家的名字。
+  tags: [play, random, experiment]
+  estimatedMinutes: 4
+- id: p-play-067
+  text: 收集今天看到最藍的三樣東西，拍成一組。
+  tags: [play, collage, experiment]
+  estimatedMinutes: 7
+- id: p-play-068
+  text: 把一個煩惱畫成一團線，越亂越好，然後放著。
+  tags: [play, synesthesia]
+  estimatedMinutes: 5
+- id: p-play-069
+  text: 用身邊的聲音玩一分鐘節奏，敲桌子、彈手指都行。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-070
+  text: 幫「早上」和「深夜」各選一個顏色，看它們有多遠。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-071
+  text: 把兩張截圖拼在一起，做出一個荒謬的畫面。
+  tags: [play, collage]
+  estimatedMinutes: 8
+- id: p-play-072
+  text: 隨便指一個物品，替它寫一句浮誇的產品標語。
+  tags: [play, random]
+  estimatedMinutes: 5
+- id: p-play-073
+  text: 用眼睛跟著房間裡一條線走到底，看它去了哪。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-074
+  text: 把今天的自己畫成一個天氣符號。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-075
+  text: 找三個會發光的東西，把它們拍成一組夜景。
+  tags: [play, collage]
+  estimatedMinutes: 7
+- id: p-play-076
+  text: 把一句英文歌詞故意用很怪的中文直翻。
+  tags: [play, experiment, random]
+  estimatedMinutes: 5
+- id: p-play-077
+  text: 用手邊材料做一個沒有用途的小物件。
+  tags: [play, experiment]
+  estimatedMinutes: 10
+- id: p-play-078
+  text: 幫「累」這個字設計一個手勢。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-079
+  text: 隨機挑一個年份，想像那年的你在做什麼。
+  tags: [play, random]
+  estimatedMinutes: 5
+- id: p-play-080
+  text: 把一段影片靜音，替它配上完全不對的口白。
+  tags: [play, experiment]
+  estimatedMinutes: 6
+- id: p-play-081
+  text: 用三個顏色的貼紙或筆點，做出一個星座。
+  tags: [play, collage]
+  estimatedMinutes: 5
+- id: p-play-082
+  text: 把「希望」的感覺翻譯成一個聲音，發出來。
+  tags: [play, synesthesia]
+  estimatedMinutes: 3
+- id: p-play-083
+  text: 找一個對稱的東西，故意把它拍歪。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-084
+  text: 隨手把三個路牌或招牌的字組成一句話。
+  tags: [play, collage, random]
+  estimatedMinutes: 5
+- id: p-play-085
+  text: 用手比出一個框，把眼前最無聊的一角框成作品。
+  tags: [play, experiment]
+  estimatedMinutes: 3
+- id: p-play-086
+  text: 把今天吃的東西按你喜歡的程度排成一條線。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-087
+  text: 幫一個聲音（門聲、鍵盤聲）配一個顏色。
+  tags: [play, synesthesia]
+  estimatedMinutes: 4
+- id: p-play-088
+  text: 用便利貼在牆上拼一個抽象的形狀。
+  tags: [play, collage]
+  estimatedMinutes: 8
+- id: p-play-089
+  text: 把一個房間物品當成外星文物，寫下考古筆記一句。
+  tags: [play, random, experiment]
+  estimatedMinutes: 6
+- id: p-play-090
+  text: 用嘴唇哼出你現在心情的旋律，長短隨意。
+  tags: [play, synesthesia]
+  estimatedMinutes: 3
+- id: p-play-091
+  text: 把兩個不同季節的照片放在一起看。
+  tags: [play, collage]
+  estimatedMinutes: 5
+- id: p-play-092
+  text: 隨機決定：接下來十分鐘只看紅色的東西。
+  tags: [play, experiment, random]
+  estimatedMinutes: 10
+- id: p-play-093
+  text: 用手邊的線或繩排出一個字。
+  tags: [play, experiment]
+  estimatedMinutes: 5
+- id: p-play-094
+  text: 把今天最沒意義的一個瞬間拍下來，鄭重收藏。
+  tags: [play, random]
+  estimatedMinutes: 3
+- id: p-play-095
+  text: 幫「星期一早上」寫一段三秒的主題曲，哼出來。
+  tags: [play, synesthesia, experiment]
+  estimatedMinutes: 4
+- id: p-play-096
+  text: 把桌上三樣東西當成樂團成員，各給一個角色。
+  tags: [play, random]
+  estimatedMinutes: 5
+- id: p-play-097
+  text: 用一種顏色形容你現在的呼吸。
+  tags: [play, synesthesia]
+  estimatedMinutes: 2
+- id: p-play-098
+  text: 找一個裂痕或污漬，把它想像成一張地圖。
+  tags: [play, experiment]
+  estimatedMinutes: 4
+- id: p-play-099
+  text: 把兩個app圖示的顏色配在一起，看順不順眼。
+  tags: [play, experiment, collage]
+  estimatedMinutes: 4
+- id: p-play-100
+  text: 用三個動作編一段只有你懂的小舞步。
+  tags: [play, experiment]
+  estimatedMinutes: 6
+
+# ── 記錄與給自己 ──────────────────────────
+- id: p-reflect-001
+  text: 寫一句話給一年後打開這個空間的自己。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-002
+  text: 記下今天腦中閃過、但沒說出口的一個想法。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-003
+  text: 寫下今天讓你嘴角動了一下的一件小事。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 3
+- id: p-reflect-004
+  text: 給累壞的自己寫一張只有一句話的請假單。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-005
+  text: 記下一個你最近重複想起的畫面，不用說為什麼。
+  tags: [reflect, memory]
+  estimatedMinutes: 5
+- id: p-reflect-006
+  text: 寫下今天你對自己說過最溫柔的一句話。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-007
+  text: 列出三件此刻沒有壞掉的東西，哪怕很小。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-008
+  text: 寫給五年前的自己一句你現在才懂的話。
+  tags: [reflect, memory]
+  estimatedMinutes: 5
+- id: p-reflect-009
+  text: 記下今天一個你想留住、但會忘記的細節。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-010
+  text: 幫今天下一個標題，像一集影集那樣。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-011
+  text: 寫下一件你今天替自己做到的小事。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-012
+  text: 記下現在窗外的樣子，當作寄給未來的一張明信片。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-013
+  text: 寫下一個你想再去一次的地方，和一個原因。
+  tags: [reflect, memory]
+  estimatedMinutes: 4
+- id: p-reflect-014
+  text: 給今天的心情打個分數，再寫一行為什麼。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-015
+  text: 寫下一個你一直沒告訴任何人的小願望。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-016
+  text: 記下今天有誰讓你覺得被理解，哪怕只是一瞬間。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-017
+  text: 寫一句話，讓明天早上的自己會想笑。
+  tags: [reflect, future_self, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-018
+  text: 記下今天你放下的一件事，不管有沒有完成。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-019
+  text: 寫下一段最近常在腦中重播的對話。
+  tags: [reflect, memory]
+  estimatedMinutes: 5
+- id: p-reflect-020
+  text: 列出三個此刻圍繞著你的聲音。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-021
+  text: 寫給下週某個累的自己，一句提前的安慰。
+  tags: [reflect, future_self, self_care]
+  estimatedMinutes: 4
+- id: p-reflect-022
+  text: 記下一個你今天學到、但很小的事。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-023
+  text: 寫下你現在身上最放鬆的那個部位。
+  tags: [reflect, self_care]
+  estimatedMinutes: 2
+- id: p-reflect-024
+  text: 記下一句今天聽到、想收進口袋的話。
+  tags: [reflect, memory]
+  estimatedMinutes: 3
+- id: p-reflect-025
+  text: 寫下一個你希望明年還記得的今天的感覺。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-026
+  text: 列出三件今天雖然普通、但你其實喜歡的事。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-027
+  text: 給還沒睡的自己寫一句晚安。
+  tags: [reflect, self_care]
+  estimatedMinutes: 2
+- id: p-reflect-028
+  text: 記下一個今天讓你分心很久的念頭。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-029
+  text: 寫下童年一個突然想起的味道或聲音。
+  tags: [reflect, memory]
+  estimatedMinutes: 5
+- id: p-reflect-030
+  text: 幫此刻的自己拍一張心情自拍，只用文字描述。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-031
+  text: 寫下一件你想在這個空間慢慢養大的東西。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-032
+  text: 記下今天你的身體最想要的一件事。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-033
+  text: 寫下一個你最近沒說謝謝、但想謝的對象。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-034
+  text: 記下今天最安靜的那一分鐘，你在哪裡。
+  tags: [reflect, memory]
+  estimatedMinutes: 4
+- id: p-reflect-035
+  text: 寫一句只給自己看、不必好聽的真心話。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-036
+  text: 列出三個你想在這一季試試看的小念頭。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-037
+  text: 記下今天一個你差點忽略的好運。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-038
+  text: 寫下你現在最想靠近、和最想遠離的一樣東西。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-039
+  text: 記下一段最近讓你安心的日常片刻。
+  tags: [reflect, memory, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-040
+  text: 寫給生日那天的自己一句話，不管還有多久。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-041
+  text: 今天很低能量的話，就只寫一個字形容它。
+  tags: [reflect, self_care]
+  estimatedMinutes: 2
+- id: p-reflect-042
+  text: 記下一個你一直想做、卻總是延後的小事。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-043
+  text: 寫下今天窗外的天空，用來對照未來某天。
+  tags: [reflect, future_self, memory]
+  estimatedMinutes: 4
+- id: p-reflect-044
+  text: 列出三樣今天陪著你的東西，向它們道個謝。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-045
+  text: 記下一個你今天忍住沒做、後來慶幸的決定。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-046
+  text: 寫下一句想在難過時翻出來看的話。
+  tags: [reflect, self_care, future_self]
+  estimatedMinutes: 4
+- id: p-reflect-047
+  text: 記下最近一次你笑到出聲是為了什麼。
+  tags: [reflect, memory, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-048
+  text: 寫下今天你最想按下暫停的那一刻。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-049
+  text: 給正在讀這行字的自己，寫一句肯定。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-050
+  text: 記下一個你想帶進明天的心情或念頭。
+  tags: [reflect, future_self]
+  estimatedMinutes: 3
+- id: p-reflect-051
+  text: 寫下最近讓你覺得「還好有它」的一樣東西。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-052
+  text: 記下今天你身邊光線最好的那個角落。
+  tags: [reflect, memory]
+  estimatedMinutes: 3
+- id: p-reflect-053
+  text: 寫一段給未來某個失眠夜的自己的話。
+  tags: [reflect, future_self, self_care]
+  estimatedMinutes: 5
+- id: p-reflect-054
+  text: 列出三件你今天原諒了自己的事。
+  tags: [reflect, self_care]
+  estimatedMinutes: 4
+- id: p-reflect-055
+  text: 記下一個最近反覆出現在夢裡的東西。
+  tags: [reflect, memory]
+  estimatedMinutes: 4
+- id: p-reflect-056
+  text: 寫下今天一句你脫口而出、自己也意外的話。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-057
+  text: 幫這一週選一個代表色，寫下原因。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-058
+  text: 記下一件你今天為別人做、卻沒說的小事。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-059
+  text: 寫下你希望半年後的自己已經放下的一件事。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-060
+  text: 記下此刻手邊最順手、最常用的一樣東西。
+  tags: [reflect, journaling, memory]
+  estimatedMinutes: 3
+- id: p-reflect-061
+  text: 寫一句今天想對身體說的道歉或謝謝。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-062
+  text: 記下一個你今天路過、卻停下來看的東西。
+  tags: [reflect, memory]
+  estimatedMinutes: 3
+- id: p-reflect-063
+  text: 寫下你現在最想被誰抱一下，不必寄出去。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-064
+  text: 列出三個此刻讓你安心的小小確定。
+  tags: [reflect, gratitude, self_care]
+  estimatedMinutes: 4
+- id: p-reflect-065
+  text: 記下一段你希望以後翻到會鼻酸的今天。
+  tags: [reflect, future_self, memory]
+  estimatedMinutes: 5
+- id: p-reflect-066
+  text: 寫下今天你最想重來一次的三十秒。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-067
+  text: 幫今天的自己寫一句四個字的評語。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-068
+  text: 記下最近一次你覺得時間過得剛剛好的時候。
+  tags: [reflect, memory, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-069
+  text: 寫給明年今天的自己一個小小的預言。
+  tags: [reflect, future_self]
+  estimatedMinutes: 4
+- id: p-reflect-070
+  text: 記下你現在正穿的衣服，未來會想起這一天嗎。
+  tags: [reflect, memory]
+  estimatedMinutes: 3
+- id: p-reflect-071
+  text: 寫下一個你今天沒力氣做、也沒關係的事。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-072
+  text: 記下今天最像你的一個瞬間。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-073
+  text: 寫下三件你今天沒有做、但很想做的事。
+  tags: [reflect, journaling, future_self]
+  estimatedMinutes: 4
+- id: p-reflect-074
+  text: 記下一段你想珍藏的、關於某個人的小細節。
+  tags: [reflect, memory, gratitude]
+  estimatedMinutes: 5
+- id: p-reflect-075
+  text: 寫一句話，替今天畫下句點。
+  tags: [reflect, journaling]
+  estimatedMinutes: 3
+- id: p-reflect-076
+  text: 記下此刻你最想喝的一杯什麼，去泡一杯也行。
+  tags: [reflect, self_care]
+  estimatedMinutes: 5
+- id: p-reflect-077
+  text: 寫下一個你想在這裡慢慢說給自己聽的故事開頭。
+  tags: [reflect, journaling, future_self]
+  estimatedMinutes: 6
+- id: p-reflect-078
+  text: 記下今天讓你分不清是累還是滿足的那個時刻。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-079
+  text: 列出三個你今天用到、卻視為理所當然的能力。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-080
+  text: 寫下你希望未來的自己別忘記的一種味道。
+  tags: [reflect, future_self, memory]
+  estimatedMinutes: 4
+- id: p-reflect-081
+  text: 記下今天你替自己爭取到的一點點時間。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-082
+  text: 寫下一句你最近很想聽別人對你說的話。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-083
+  text: 記下一個你今天覺得世界還算溫柔的瞬間。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-084
+  text: 寫給正在改變中的自己一句不催促的話。
+  tags: [reflect, self_care, future_self]
+  estimatedMinutes: 4
+- id: p-reflect-085
+  text: 記下今天你眼睛停留最久的一個東西。
+  tags: [reflect, memory]
+  estimatedMinutes: 3
+- id: p-reflect-086
+  text: 寫下一件你想在心裡替自己鼓掌的小事。
+  tags: [reflect, self_care, gratitude]
+  estimatedMinutes: 3
+- id: p-reflect-087
+  text: 記下一個今天沒發生、但你很慶幸沒發生的事。
+  tags: [reflect, gratitude]
+  estimatedMinutes: 4
+- id: p-reflect-088
+  text: 寫下你此刻對「家」這個字的第一個畫面。
+  tags: [reflect, memory]
+  estimatedMinutes: 4
+- id: p-reflect-089
+  text: 記下今天你花最多時間的一件事，值得嗎。
+  tags: [reflect, journaling]
+  estimatedMinutes: 4
+- id: p-reflect-090
+  text: 寫一句你想留給下一個生日的自己的話。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-091
+  text: 記下今天一個你其實過得去、沒那麼糟的時刻。
+  tags: [reflect, self_care]
+  estimatedMinutes: 3
+- id: p-reflect-092
+  text: 寫下最近一次你替自己感到驕傲，是為了什麼。
+  tags: [reflect, gratitude, self_care]
+  estimatedMinutes: 4
+- id: p-reflect-093
+  text: 記下此刻房間裡最舊的一樣東西和它的故事。
+  tags: [reflect, memory]
+  estimatedMinutes: 5
+- id: p-reflect-094
+  text: 寫下你希望這個空間長大後，第一個記得的今天。
+  tags: [reflect, future_self]
+  estimatedMinutes: 5
+- id: p-reflect-095
+  text: 記下今天你想對自己說的最後一句話，然後休息。
+  tags: [reflect, self_care, journaling]
+  estimatedMinutes: 3

@@ -1,0 +1,902 @@
+# 速寫與低門檻 — 1 到 5 分鐘的極輕量任務
+# 給沒能量、忙碌、或想暖身的日子
+
+- id: p-quick-001
+  text: 畫一條線，不用有意義。
+  tags: [quick, low_effort]
+  estimatedMinutes: 1
+
+- id: p-quick-002
+  text: 打開一個空白檔案，隨便放三個形狀，就關掉。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-003
+  text: 選一個字型，只打你的名字，看看喜不喜歡。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-004
+  text: 在紙上點十個點，然後把它們連起來。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-005
+  text: 畫一個圓，畫到你覺得夠圓為止。
+  tags: [quick, warmup]
+  estimatedMinutes: 1
+
+- id: p-quick-006
+  text: 隨手寫下你現在聽到的一個聲音。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-007
+  text: 用三種灰色填滿一個小方塊。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-008
+  text: 畫一個你今天用過的東西的輪廓。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-009
+  text: 挑一個顏色，說出它讓你想到什麼。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-010
+  text: 在畫布角落簽個名，其他都空著。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-011
+  text: 畫一朵雲，隨便什麼形狀都行。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-012
+  text: 寫一個字，把它放大到佔滿整頁。
+  tags: [quick, single_step]
+  estimatedMinutes: 2
+
+- id: p-quick-013
+  text: 用筆畫滿一整排斜線，感受手的節奏。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-014
+  text: 找一個圓形物品，描它的邊。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-015
+  text: 畫兩個重疊的圈，把交集塗黑。
+  tags: [quick, low_effort]
+  estimatedMinutes: 1
+
+- id: p-quick-016
+  text: 想一個顏色，用它畫一筆就好。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-017
+  text: 在紙上寫一個問號，不用回答。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-018
+  text: 畫一顆星星，你自己的畫法。
+  tags: [quick, sketch]
+  estimatedMinutes: 1
+
+- id: p-quick-019
+  text: 隨便選兩個字，把它們放在一起看。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-020
+  text: 用手指在桌上畫一個看不見的圖案。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-021
+  text: 畫一條波浪線，讓它一路蜿蜒到頁尾。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-022
+  text: 挑一張舊照片，只看三秒鐘。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-023
+  text: 在空白處畫一個門，不用畫房子。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-024
+  text: 用同一個顏色畫五種不同的線。
+  tags: [quick, warmup]
+  estimatedMinutes: 3
+
+- id: p-quick-025
+  text: 寫下你今天看到的第一個顏色。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-026
+  text: 畫一個表情，眼睛跟嘴巴就夠了。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-027
+  text: 把一張紙對折三次，看看摺痕。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-028
+  text: 畫一座很小的山，小到一筆完成。
+  tags: [quick, sketch]
+  estimatedMinutes: 1
+
+- id: p-quick-029
+  text: 選一個 emoji，用筆把它畫出來。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-030
+  text: 在角落畫一隻小螞蟻。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-031
+  text: 隨便塗一團顏色，不要想它是什麼。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-032
+  text: 畫一格漫畫的空框，先不用填。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-033
+  text: 寫一個你喜歡的聲詞，像「叮」或「嗡」。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-034
+  text: 畫三根不一樣長的線，排成一排。
+  tags: [quick, warmup]
+  estimatedMinutes: 1
+
+- id: p-quick-035
+  text: 用鉛筆最輕的力道畫一個影子。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-036
+  text: 畫一顆水滴，讓它看起來要掉下來。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-037
+  text: 隨便挑一個形狀，重複畫三次。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-038
+  text: 在紙的正中央點一個點，就停。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-039
+  text: 畫一把椅子，只要能看出是椅子。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-040
+  text: 寫下一個你今天沒說出口的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-041
+  text: 用線條畫出「快」的感覺。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-042
+  text: 畫一個窗戶，外面留白就好。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-043
+  text: 把你的名字倒過來寫一次。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-044
+  text: 選兩個顏色，讓它們在紙上碰一下。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-045
+  text: 畫一條路，通到哪裡都可以。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-046
+  text: 在便利貼上畫一個笑臉，貼在螢幕邊。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-047
+  text: 用最粗的筆畫一個句號。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-048
+  text: 畫一個你早餐吃的東西。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-049
+  text: 寫一句只有三個字的話。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-050
+  text: 畫一個螺旋，從中心轉出去。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-051
+  text: 隨手畫一片葉子的葉脈。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-052
+  text: 選一個字，把它拆成筆畫慢慢寫。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-053
+  text: 畫一個氣球，線斷掉的那種。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-054
+  text: 在紙上畫一個箭頭，指向窗外。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-055
+  text: 用三筆畫完一隻貓的臉。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-056
+  text: 隨便寫一個數字，把它畫成圖案。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-057
+  text: 畫一個杯子，裡面裝什麼由你決定。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-058
+  text: 用點描的方式填一個小圓。
+  tags: [quick, low_effort]
+  estimatedMinutes: 3
+
+- id: p-quick-059
+  text: 畫一條魚，一筆勾出身體。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-060
+  text: 寫下一個你喜歡的觸感，像「軟」。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-061
+  text: 畫一個月亮，缺一角也沒關係。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-062
+  text: 把一個圓分成四等份，塗一份。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-063
+  text: 隨便畫一朵花，花瓣幾片都行。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-064
+  text: 用筆畫一段虛線，像縫線一樣。
+  tags: [quick, warmup]
+  estimatedMinutes: 1
+
+- id: p-quick-065
+  text: 畫一個房子的外框，門窗省略。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-066
+  text: 寫一個字，然後把它圈起來。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-067
+  text: 畫一朵蘑菇，胖一點的那種。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-068
+  text: 用兩種顏色畫一個格子。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-069
+  text: 畫一顆愛心，歪的也可以。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-070
+  text: 在紙角畫一個小小的太陽。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-071
+  text: 隨手畫一段樓梯，幾階都行。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-072
+  text: 寫下你手邊物品的第一個字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-073
+  text: 畫一支雨傘，撐開的樣子。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-074
+  text: 用一條線把整頁分成兩半。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-075
+  text: 畫一個信封，不用寫地址。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-076
+  text: 隨便選一個顏色，塗滿指甲大小的面積。
+  tags: [quick, low_effort]
+  estimatedMinutes: 1
+
+- id: p-quick-077
+  text: 畫一隻鳥，停在一根線上。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-078
+  text: 寫一個疊字，像「慢慢」或「亮亮」。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-079
+  text: 畫一個鑰匙的形狀。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-080
+  text: 在方格裡畫一個對角線。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-081
+  text: 畫一顆種子，還沒發芽的樣子。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-082
+  text: 選一個字型，把「你好」打出來看看。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-083
+  text: 畫一朵浪花，捲起來的那筆。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-084
+  text: 用筆隨便亂繞一團線，就停手。
+  tags: [quick, low_effort]
+  estimatedMinutes: 1
+
+- id: p-quick-085
+  text: 畫一個時鐘，指針指幾點你決定。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-086
+  text: 寫一個你今天沒用到的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-087
+  text: 畫一顆蘋果，咬一口的更好。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-088
+  text: 用短線畫出下雨的感覺。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-089
+  text: 畫一個帽子，任何款式都行。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-090
+  text: 在紙上寫一個驚嘆號，用力一點。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-091
+  text: 畫兩座並排的小三角形山。
+  tags: [quick, sketch]
+  estimatedMinutes: 1
+
+- id: p-quick-092
+  text: 選一個顏色，說它是什麼味道。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-093
+  text: 畫一根蠟燭，火焰畫一小撇。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-094
+  text: 把「今天」兩個字寫得很慢。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-095
+  text: 畫一個袋子，鼓鼓的樣子。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-096
+  text: 用一筆畫一個無限符號。
+  tags: [quick, warmup]
+  estimatedMinutes: 1
+
+- id: p-quick-097
+  text: 畫一片吐司，方方的那塊。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-098
+  text: 隨手在角落畫三個小圈圈。
+  tags: [quick, low_effort]
+  estimatedMinutes: 1
+
+- id: p-quick-099
+  text: 畫一隻手，五根手指張開。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-100
+  text: 寫下一個讓你安心的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-101
+  text: 畫一個郵票的鋸齒邊框。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-102
+  text: 用直尺畫三條平行線。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-103
+  text: 畫一顆糖果，包裝紙擰起來。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-104
+  text: 選一個字型，只打一個標點符號。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-105
+  text: 畫一朵小草，從地上冒出來。
+  tags: [quick, sketch]
+  estimatedMinutes: 1
+
+- id: p-quick-106
+  text: 用筆尖點滿一小片，像撒胡椒。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-107
+  text: 畫一個瓶子，瓶蓋畫上去。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-108
+  text: 寫一個你覺得好看的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-109
+  text: 畫一朵煙火，往四面散開。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-110
+  text: 在紙上畫一個大大的加號。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-111
+  text: 畫一顆蛋，橢圓就好。
+  tags: [quick, sketch]
+  estimatedMinutes: 1
+
+- id: p-quick-112
+  text: 隨便選一個詞，畫一個它的圖示。
+  tags: [quick, playful]
+  estimatedMinutes: 3
+
+- id: p-quick-113
+  text: 畫一段圍籬，幾根柱子都行。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-114
+  text: 用鉛筆把一個角落塗到最黑。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-115
+  text: 畫一支湯匙的側面。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-116
+  text: 寫一個字，把它變成一張臉。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-117
+  text: 畫一朵雪花，六個角就好。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-118
+  text: 在頁面上寫一個很小的「嗨」。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-119
+  text: 畫一個書本，闔起來的樣子。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-120
+  text: 用一條曲線把兩個點連起來。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-121
+  text: 畫一頂皇冠，尖尖的那種。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-122
+  text: 選一個顏色，說它像哪個季節。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-123
+  text: 畫一台小車，方框加兩個輪子。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-124
+  text: 隨手畫一個問號跟一個句號並排。
+  tags: [quick, low_effort]
+  estimatedMinutes: 1
+
+- id: p-quick-125
+  text: 畫一顆牙齒，白白一顆。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-126
+  text: 寫一個象聲詞，像「啪」或「咚」。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-127
+  text: 畫一個燈泡，裡面畫一條絲。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-128
+  text: 用兩筆畫出一個勾。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-129
+  text: 畫一朵仙人掌，插幾根刺。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-130
+  text: 選一個字型，把今天的日期打出來。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-131
+  text: 畫一個音符，尾巴甩一下。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-132
+  text: 在紙上畫滿一排小三角形。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-133
+  text: 畫一顆骰子，點數自己選。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-134
+  text: 寫下一個聽起來很圓的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-135
+  text: 畫一把梳子，畫幾根齒。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-136
+  text: 用一個圓加一條線畫個棒棒糖。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-137
+  text: 畫一片羽毛，中間一條桿。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-138
+  text: 隨便畫一個看不懂的符號。
+  tags: [quick, playful]
+  estimatedMinutes: 1
+
+- id: p-quick-139
+  text: 畫一個小島，一棵樹就夠。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-140
+  text: 寫一個字，只用直線寫。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-141
+  text: 畫一個鈴鐺，下面畫個小圓。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-142
+  text: 用同一筆畫出三座相連的山。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-143
+  text: 畫一顆桃子，中間畫一道縫。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-144
+  text: 在角落寫一個很小的數字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-145
+  text: 畫一支釣竿，線垂下去。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-146
+  text: 用兩個圓畫一副眼鏡。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-147
+  text: 畫一朵棉花糖般的雲。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-148
+  text: 選一個顏色，塗一條細細的邊。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-149
+  text: 畫一個信箱，插一封信。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-150
+  text: 寫一個你喜歡的注音符號。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-151
+  text: 畫一片西瓜，畫幾顆籽。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-152
+  text: 用直線畫一個階梯狀的圖形。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-153
+  text: 畫一個氣泡，圓圓浮起來。
+  tags: [quick, sketch]
+  estimatedMinutes: 1
+
+- id: p-quick-154
+  text: 在紙中間畫一個小小的門把。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-155
+  text: 畫一支冰淇淋，甜筒加一球。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-156
+  text: 用波浪線畫出海面。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-157
+  text: 畫一顆鈕扣，中間兩個孔。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-158
+  text: 隨便寫一個字，把它塗成陰影。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-159
+  text: 畫一頂帳篷，三角形加一根柱。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-160
+  text: 寫下一個現在窗外的東西。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-161
+  text: 畫一朵四葉草，找那第四片。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-162
+  text: 用一個橢圓畫一個盤子。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-163
+  text: 畫一支麥克風，圓頭加握把。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-164
+  text: 選一個字型，把「雪」字放到最大。
+  tags: [quick, tiny]
+  estimatedMinutes: 2
+
+- id: p-quick-165
+  text: 畫一顆水母，觸手隨便垂。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-166
+  text: 在紙上畫一段點點連成的路。
+  tags: [quick, warmup]
+  estimatedMinutes: 2
+
+- id: p-quick-167
+  text: 畫一個風箏，加一條尾巴。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-168
+  text: 寫一個你今天想丟掉的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-169
+  text: 畫一個甜甜圈，中間留個洞。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-170
+  text: 用一筆從左畫到右，不抬筆。
+  tags: [quick, single_step]
+  estimatedMinutes: 1
+
+- id: p-quick-171
+  text: 畫一顆松果，一層層的鱗片。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-172
+  text: 選一個顏色，把它塗成一個心情。
+  tags: [quick, playful]
+  estimatedMinutes: 2
+
+- id: p-quick-173
+  text: 畫一台相機，鏡頭畫個圓。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-174
+  text: 隨手畫一個很小的旗子。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-175
+  text: 畫一朵蒲公英，吹散幾顆種子。
+  tags: [quick, sketch]
+  estimatedMinutes: 3
+
+- id: p-quick-176
+  text: 在角落畫一個小小的箭靶。
+  tags: [quick, low_effort]
+  estimatedMinutes: 2
+
+- id: p-quick-177
+  text: 畫一隻蝸牛，殼畫個螺旋。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-178
+  text: 寫一個你最近學到的字。
+  tags: [quick, tiny]
+  estimatedMinutes: 1
+
+- id: p-quick-179
+  text: 畫一個購物袋，提把兩條線。
+  tags: [quick, sketch]
+  estimatedMinutes: 2
+
+- id: p-quick-180
+  text: 用三個圓疊出一個雪人。
+  tags: [quick, single_step]
+  estimatedMinutes: 2

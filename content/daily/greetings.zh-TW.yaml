@@ -1,0 +1,555 @@
+morning:
+  - id: g-morning-001
+    text: 早安。
+  - id: g-morning-002
+    text: 早安，慢慢來。
+  - id: g-morning-003
+    text: 新的一天開始了。
+  - id: g-morning-004
+    text: 早，回來看看。
+  - id: g-morning-005
+    text: 早安，今天也是好天氣。
+  - id: g-morning-006
+    text: 早晨好。
+  - id: g-morning-007
+    text: 早，睡得還好嗎。
+  - id: g-morning-008
+    text: 早安，先深呼吸一下。
+  - id: g-morning-009
+    text: 一天才剛開始。
+  - id: g-morning-010
+    text: 早，這裡等你坐一會兒。
+  - id: g-morning-011
+    text: 早安，今天的空間換了新背景。
+    requiresBackgroundChanged: true
+  - id: g-morning-012
+    text: 早，泡杯茶再開始吧。
+  - id: g-morning-013
+    text: 早晨的光正好。
+  - id: g-morning-014
+    text: 早安，不用著急。
+  - id: g-morning-015
+    text: 早，先看看窗外。
+  - id: g-morning-016
+    text: 新的一天，慢慢來。
+  - id: g-morning-017
+    text: 早安，願你今天輕鬆。
+  - id: g-morning-018
+    text: 早，這裡一切照舊。
+  - id: g-morning-019
+    text: 早晨好，先喝口水。
+  - id: g-morning-020
+    text: 早，今天想做點什麼呢。
+  - id: g-morning-021
+    text: 早安，天亮了。
+  - id: g-morning-022
+    text: 早，背景換上了新的樣子。
+    requiresBackgroundChanged: true
+  - id: g-morning-023
+    text: 早晨，適合安靜地開始。
+  - id: g-morning-024
+    text: 早安，一步一步就好。
+  - id: g-morning-025
+    text: 早，坐下來歇一會兒。
+  - id: g-morning-026
+    text: 早安，今天由你決定節奏。
+  - id: g-morning-027
+    text: 早，空氣是新的。
+  - id: g-morning-028
+    text: 早晨好，慢慢醒。
+  - id: g-morning-029
+    text: 早，隨你想怎麼開始。
+  - id: g-morning-030
+    text: 早安，今天也在這裡。
+  - id: g-morning-031
+    text: 早，先曬曬太陽。
+  - id: g-morning-032
+    text: 新的早晨。
+  - id: g-morning-033
+    text: 早安，什麼都不趕。
+  - id: g-morning-034
+    text: 早，回來坐坐。
+  - id: g-morning-035
+    text: 早晨的空間安安靜靜。
+  - id: g-morning-036
+    text: 早安，今天想從哪裡開始。
+  - id: g-morning-037
+    text: 早，天色剛好。
+  - id: g-morning-038
+    text: 早安，先讓自己清醒。
+  - id: g-morning-039
+    text: 早，今天換了新背景。
+    requiresBackgroundChanged: true
+  - id: g-morning-040
+    text: 早晨好，這裡很安穩。
+  - id: g-morning-041
+    text: 早，慢慢來得及。
+  - id: g-morning-042
+    text: 早安，願今天平順。
+  - id: g-morning-043
+    text: 早，先做點喜歡的事。
+  - id: g-morning-044
+    text: 早晨，屬於你的時間。
+  - id: g-morning-045
+    text: 早安，你來了。
+  - id: g-morning-046
+    text: 早，喝完這杯再說。
+  - id: g-morning-047
+    text: 早安，天氣看起來不錯。
+  - id: g-morning-048
+    text: 早，今天也照自己的步調。
+  - id: g-morning-049
+    text: 早晨好，先舒展一下。
+  - id: g-morning-050
+    text: 早，這裡永遠有位子。
+  - id: g-morning-051
+    text: 早安，新的一頁。
+  - id: g-morning-052
+    text: 早，光線灑進來了。
+  - id: g-morning-053
+    text: 早晨，適合慢慢想事情。
+  - id: g-morning-054
+    text: 早安，別急著趕。
+  - id: g-morning-055
+    text: 早，今天先從小事開始。
+  - id: g-morning-056
+    text: 早安，一切都還早。
+  - id: g-morning-057
+    text: 早，坐下來喘口氣。
+  - id: g-morning-058
+    text: 早晨好，這裡很清爽。
+  - id: g-morning-059
+    text: 早，今天的你想做什麼都行。
+  - id: g-morning-060
+    text: 早安，願你有力氣。
+  - id: g-morning-061
+    text: 早，慢一點也沒關係。
+  - id: g-morning-062
+    text: 早晨，靜靜地打個招呼。
+  - id: g-morning-063
+    text: 早安，這一天是你的。
+  - id: g-morning-064
+    text: 早，先看看今天的空間。
+  - id: g-morning-065
+    text: 早安，好好開始這一天。
+  - id: g-morning-066
+    text: 早，這裡在。
+  - id: g-morning-067
+    text: 早晨好，隨意坐坐。
+
+afternoon:
+  - id: g-afternoon-001
+    text: 午安。
+  - id: g-afternoon-002
+    text: 午安，回來看看。
+  - id: g-afternoon-003
+    text: 下午好。
+  - id: g-afternoon-004
+    text: 午安，歇一會兒吧。
+  - id: g-afternoon-005
+    text: 下午了，喝口水。
+  - id: g-afternoon-006
+    text: 午安，過得還好嗎。
+  - id: g-afternoon-007
+    text: 下午好，坐下來喘口氣。
+  - id: g-afternoon-008
+    text: 午安，這裡很安靜。
+  - id: g-afternoon-009
+    text: 下午的陽光正暖。
+  - id: g-afternoon-010
+    text: 午安，慢慢來。
+  - id: g-afternoon-011
+    text: 下午好，背景換了新的樣子。
+    requiresBackgroundChanged: true
+  - id: g-afternoon-012
+    text: 午安，忙的話就歇一下。
+  - id: g-afternoon-013
+    text: 下午，適合放慢一點。
+  - id: g-afternoon-014
+    text: 午安，你來了。
+  - id: g-afternoon-015
+    text: 下午好，先深呼吸。
+  - id: g-afternoon-016
+    text: 午安，這裡等你坐坐。
+  - id: g-afternoon-017
+    text: 下午了，別太緊繃。
+  - id: g-afternoon-018
+    text: 午安，隨意休息一下。
+  - id: g-afternoon-019
+    text: 下午好，一切都好嗎。
+  - id: g-afternoon-020
+    text: 午安，喝杯茶吧。
+  - id: g-afternoon-021
+    text: 下午，光線斜斜的。
+  - id: g-afternoon-022
+    text: 午安，今天換了新背景。
+    requiresBackgroundChanged: true
+  - id: g-afternoon-023
+    text: 下午好，這裡照舊。
+  - id: g-afternoon-024
+    text: 午安，坐下來看看。
+  - id: g-afternoon-025
+    text: 下午了，別忘了休息。
+  - id: g-afternoon-026
+    text: 午安，願你不太累。
+  - id: g-afternoon-027
+    text: 下午好，慢慢過。
+  - id: g-afternoon-028
+    text: 午安，回來歇歇腳。
+  - id: g-afternoon-029
+    text: 下午，適合發個呆。
+  - id: g-afternoon-030
+    text: 午安，這時候最好放鬆。
+  - id: g-afternoon-031
+    text: 下午好，隨你想做什麼。
+  - id: g-afternoon-032
+    text: 午安，過一半了。
+  - id: g-afternoon-033
+    text: 下午，記得喝水。
+  - id: g-afternoon-034
+    text: 午安，這裡很平靜。
+  - id: g-afternoon-035
+    text: 下午好，坐一會兒再走。
+  - id: g-afternoon-036
+    text: 午安，今天怎麼樣。
+  - id: g-afternoon-037
+    text: 下午，慢慢地就好。
+  - id: g-afternoon-038
+    text: 午安，別把自己逼太緊。
+  - id: g-afternoon-039
+    text: 下午好，換了張新背景。
+    requiresBackgroundChanged: true
+  - id: g-afternoon-040
+    text: 午安，這裡一直都在。
+  - id: g-afternoon-041
+    text: 下午了，伸個懶腰。
+  - id: g-afternoon-042
+    text: 午安，隨意坐坐。
+  - id: g-afternoon-043
+    text: 下午好，天色還亮。
+  - id: g-afternoon-044
+    text: 午安，願你午後輕鬆。
+  - id: g-afternoon-045
+    text: 下午，適合安靜一下。
+  - id: g-afternoon-046
+    text: 午安，回來透口氣。
+  - id: g-afternoon-047
+    text: 下午好，先歇著。
+  - id: g-afternoon-048
+    text: 午安，今天辛苦了。
+  - id: g-afternoon-049
+    text: 下午，光影正好。
+  - id: g-afternoon-050
+    text: 午安，這裡有位子。
+  - id: g-afternoon-051
+    text: 下午好，慢下來看看。
+  - id: g-afternoon-052
+    text: 午安，喘口氣吧。
+  - id: g-afternoon-053
+    text: 下午，屬於你的時光。
+  - id: g-afternoon-054
+    text: 午安，隨心就好。
+  - id: g-afternoon-055
+    text: 下午好，這時候最安穩。
+  - id: g-afternoon-056
+    text: 午安，別忘了照顧自己。
+  - id: g-afternoon-057
+    text: 下午，坐著發個呆也好。
+  - id: g-afternoon-058
+    text: 午安，你在就好。
+  - id: g-afternoon-059
+    text: 下午好，慢慢過這一天。
+  - id: g-afternoon-060
+    text: 午安，暖暖的午後。
+  - id: g-afternoon-061
+    text: 下午，這裡靜靜等你。
+  - id: g-afternoon-062
+    text: 午安，先放鬆一下肩膀。
+  - id: g-afternoon-063
+    text: 下午好，一切慢慢來。
+  - id: g-afternoon-064
+    text: 午安，回來坐坐。
+  - id: g-afternoon-065
+    text: 下午了，記得歇口氣。
+  - id: g-afternoon-066
+    text: 午安，這裡很好。
+  - id: g-afternoon-067
+    text: 下午好，隨意看看。
+
+evening:
+  - id: g-evening-001
+    text: 晚上好。
+  - id: g-evening-002
+    text: 今天過得如何。
+  - id: g-evening-003
+    text: 傍晚了，回來看看。
+  - id: g-evening-004
+    text: 晚上好，坐下來歇歇。
+  - id: g-evening-005
+    text: 天色暗下來了。
+  - id: g-evening-006
+    text: 晚上好，今天辛苦了。
+  - id: g-evening-007
+    text: 傍晚，慢慢放鬆。
+  - id: g-evening-008
+    text: 晚上好，喝口水吧。
+  - id: g-evening-009
+    text: 一天快過完了。
+  - id: g-evening-010
+    text: 晚上好，這裡很安靜。
+  - id: g-evening-011
+    text: 傍晚的光柔柔的。
+  - id: g-evening-012
+    text: 晚上好，今天換了新背景。
+    requiresBackgroundChanged: true
+  - id: g-evening-013
+    text: 傍晚了，先歇一會兒。
+  - id: g-evening-014
+    text: 晚上好，你回來了。
+  - id: g-evening-015
+    text: 天黑之前，坐坐吧。
+  - id: g-evening-016
+    text: 晚上好，過得還好嗎。
+  - id: g-evening-017
+    text: 傍晚，適合慢下來。
+  - id: g-evening-018
+    text: 晚上好，別太累。
+  - id: g-evening-019
+    text: 一天到了尾聲。
+  - id: g-evening-020
+    text: 晚上好，這裡等你。
+  - id: g-evening-021
+    text: 傍晚，燈慢慢亮起來。
+  - id: g-evening-022
+    text: 晚上好，背景換了樣子。
+    requiresBackgroundChanged: true
+  - id: g-evening-023
+    text: 傍晚了，深呼吸一下。
+  - id: g-evening-024
+    text: 晚上好，坐著看看天色。
+  - id: g-evening-025
+    text: 今天怎麼樣。
+  - id: g-evening-026
+    text: 晚上好，願你放鬆。
+  - id: g-evening-027
+    text: 傍晚，慢慢過。
+  - id: g-evening-028
+    text: 晚上好，回來透口氣。
+  - id: g-evening-029
+    text: 天色正好，坐一會兒。
+  - id: g-evening-030
+    text: 晚上好，這裡照舊。
+  - id: g-evening-031
+    text: 傍晚，適合安靜地待著。
+  - id: g-evening-032
+    text: 晚上好，先歇著吧。
+  - id: g-evening-033
+    text: 一天結束前，來坐坐。
+  - id: g-evening-034
+    text: 晚上好，今天過去了。
+  - id: g-evening-035
+    text: 傍晚的空間很平靜。
+  - id: g-evening-036
+    text: 晚上好，慢慢來。
+  - id: g-evening-037
+    text: 天色暗了，記得休息。
+  - id: g-evening-038
+    text: 晚上好，你在就好。
+  - id: g-evening-039
+    text: 傍晚，換了張新背景。
+    requiresBackgroundChanged: true
+  - id: g-evening-040
+    text: 晚上好，這裡一直都在。
+  - id: g-evening-041
+    text: 傍晚了，放鬆一下肩膀。
+  - id: g-evening-042
+    text: 晚上好，隨意坐坐。
+  - id: g-evening-043
+    text: 天邊有點暖色。
+  - id: g-evening-044
+    text: 晚上好，願你今晚輕鬆。
+  - id: g-evening-045
+    text: 傍晚，適合喘口氣。
+  - id: g-evening-046
+    text: 晚上好，回來看看空間。
+  - id: g-evening-047
+    text: 一天辛苦了，坐吧。
+  - id: g-evening-048
+    text: 晚上好，這時候最安穩。
+  - id: g-evening-049
+    text: 傍晚，光影慢慢淡去。
+  - id: g-evening-050
+    text: 晚上好，別把事扛太久。
+  - id: g-evening-051
+    text: 天色晚了，來歇腳。
+  - id: g-evening-052
+    text: 晚上好，慢慢收尾這一天。
+  - id: g-evening-053
+    text: 傍晚，屬於你的時光。
+  - id: g-evening-054
+    text: 晚上好，隨心就好。
+  - id: g-evening-055
+    text: 今天過完了，坐一下。
+  - id: g-evening-056
+    text: 晚上好，記得吃點東西。
+  - id: g-evening-057
+    text: 傍晚，靜靜地打個招呼。
+  - id: g-evening-058
+    text: 晚上好，這裡很好。
+  - id: g-evening-059
+    text: 天黑了，慢慢過。
+  - id: g-evening-060
+    text: 晚上好，回來坐坐。
+  - id: g-evening-061
+    text: 傍晚，願你放下一點。
+  - id: g-evening-062
+    text: 晚上好，先讓自己歇著。
+  - id: g-evening-063
+    text: 天色轉暗，這裡很暖。
+  - id: g-evening-064
+    text: 晚上好，今天到這裡就好。
+  - id: g-evening-065
+    text: 傍晚了，隨意看看。
+  - id: g-evening-066
+    text: 晚上好，你回來就好。
+  - id: g-evening-067
+    text: 天暗了，坐著休息一下。
+
+night:
+  - id: g-night-001
+    text: 這麼晚還在。
+  - id: g-night-002
+    text: 夜深了，慢慢來就好。
+  - id: g-night-003
+    text: 深夜也是屬於你的時間。
+  - id: g-night-004
+    text: 夜深了。
+  - id: g-night-005
+    text: 這麼晚了，放輕鬆。
+  - id: g-night-006
+    text: 夜裡很安靜。
+  - id: g-night-007
+    text: 深夜，這裡陪著你。
+  - id: g-night-008
+    text: 夜深了，別太操心。
+  - id: g-night-009
+    text: 這麼晚，坐一會兒吧。
+  - id: g-night-010
+    text: 夜色很柔。
+  - id: g-night-011
+    text: 深夜好。
+  - id: g-night-012
+    text: 夜裡，慢慢地待著。
+  - id: g-night-013
+    text: 這麼晚還醒著。
+  - id: g-night-014
+    text: 夜深了，讓自己鬆一鬆。
+  - id: g-night-015
+    text: 深夜，這裡很平靜。
+  - id: g-night-016
+    text: 夜裡的空間安安靜靜。
+  - id: g-night-017
+    text: 這麼晚，記得歇一歇。
+  - id: g-night-018
+    text: 夜深了，你來了。
+  - id: g-night-019
+    text: 深夜，適合放空。
+  - id: g-night-020
+    text: 夜色正深，慢慢來。
+  - id: g-night-021
+    text: 這麼晚，這裡陪你坐坐。
+  - id: g-night-022
+    text: 夜裡，背景換了樣子。
+    requiresBackgroundChanged: true
+  - id: g-night-023
+    text: 深夜好，別急著睡也沒關係。
+  - id: g-night-024
+    text: 夜深了，深呼吸一下。
+  - id: g-night-025
+    text: 這麼晚，願你安穩。
+  - id: g-night-026
+    text: 夜裡很輕，很靜。
+  - id: g-night-027
+    text: 深夜，隨意待著就好。
+  - id: g-night-028
+    text: 夜深了，這裡一直都在。
+  - id: g-night-029
+    text: 這麼晚還亮著燈。
+  - id: g-night-030
+    text: 夜色安靜，坐坐吧。
+  - id: g-night-031
+    text: 深夜，讓心慢下來。
+  - id: g-night-032
+    text: 夜裡，願你放鬆。
+  - id: g-night-033
+    text: 這麼晚，別想太多了。
+  - id: g-night-034
+    text: 夜深了，換了張新背景。
+    requiresBackgroundChanged: true
+  - id: g-night-035
+    text: 深夜好，這裡很安穩。
+  - id: g-night-036
+    text: 夜裡，靜靜地陪你。
+  - id: g-night-037
+    text: 這麼晚，慢慢喘口氣。
+  - id: g-night-038
+    text: 夜色很深，很溫柔。
+  - id: g-night-039
+    text: 深夜，隨你想做什麼。
+  - id: g-night-040
+    text: 夜深了，讓自己歇著。
+  - id: g-night-041
+    text: 這麼晚，這裡有盞燈。
+  - id: g-night-042
+    text: 夜裡，什麼都可以放下。
+  - id: g-night-043
+    text: 深夜好，願你心安。
+  - id: g-night-044
+    text: 夜深了，慢慢放鬆。
+  - id: g-night-045
+    text: 這麼晚還在這裡。
+  - id: g-night-046
+    text: 夜色靜靜地落下。
+  - id: g-night-047
+    text: 深夜，這裡陪你到最後。
+  - id: g-night-048
+    text: 夜裡，別讓自己太緊。
+  - id: g-night-049
+    text: 這麼晚，坐著喘口氣。
+  - id: g-night-050
+    text: 夜深了，願你睡得安穩。
+  - id: g-night-051
+    text: 深夜，換上了新背景。
+    requiresBackgroundChanged: true
+  - id: g-night-052
+    text: 夜裡很安心。
+  - id: g-night-053
+    text: 這麼晚，慢慢地待著。
+  - id: g-night-054
+    text: 夜色柔柔的，別急。
+  - id: g-night-055
+    text: 深夜好，這裡很暖。
+  - id: g-night-056
+    text: 夜深了，讓肩膀鬆下來。
+  - id: g-night-057
+    text: 這麼晚還醒著，陪陪你。
+  - id: g-night-058
+    text: 夜裡，靜下來就好。
+  - id: g-night-059
+    text: 深夜，願你被好好照顧。
+  - id: g-night-060
+    text: 夜深了，這裡很靜。
+  - id: g-night-061
+    text: 這麼晚，慢慢呼吸。
+  - id: g-night-062
+    text: 夜色深了，放鬆吧。
+  - id: g-night-063
+    text: 深夜，這裡陪你坐著。
+  - id: g-night-064
+    text: 夜裡，一切都可以慢慢來。
+  - id: g-night-065
+    text: 這麼晚，願你安心。
+  - id: g-night-066
+    text: 夜深了，好好休息。
+  - id: g-night-067
+    text: 深夜好，靜靜陪你。

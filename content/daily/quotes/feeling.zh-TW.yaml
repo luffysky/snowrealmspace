@@ -1,0 +1,497 @@
+# 情緒與陪伴 — 每日語錄（繁體中文／台灣用語）
+# 主題：情緒、孤獨、安靜的陪伴、自我對話、心情起伏、被理解、獨處的價值
+- id: q-feeling-001
+  text: 有些話畫得出來，說不出來。
+  tags: [emotion, expression]
+- id: q-feeling-002
+  text: 心情不好也可以創作，只是會慢一點。
+  tags: [mood, emotion]
+- id: q-feeling-003
+  text: 一個人做東西，不等於孤單。
+  tags: [solitude, alone]
+- id: q-feeling-004
+  text: 今天沒力氣，就讓手輕輕地動就好。
+  tags: [mood, quiet]
+- id: q-feeling-005
+  text: 情緒來的時候，先讓它坐一下，不急著趕走。
+  tags: [emotion, quiet]
+- id: q-feeling-006
+  text: 不是每種難過都需要理由。
+  tags: [emotion, feeling]
+- id: q-feeling-007
+  text: 安靜也是一種在場。
+  tags: [quiet, companionship]
+- id: q-feeling-008
+  text: 你可以只是坐著，什麼都不做。
+  tags: [quiet, solitude]
+- id: q-feeling-009
+  text: 說不清楚的感覺，先給它一個顏色。
+  tags: [expression, emotion]
+- id: q-feeling-010
+  text: 低潮的日子，把標準降一點，人會鬆一點。
+  tags: [mood, feeling]
+- id: q-feeling-011
+  text: 獨處不是缺了誰，是留一點空間給自己。
+  tags: [solitude, alone]
+- id: q-feeling-012
+  text: 有些心情，寫下來就輕了一半。
+  tags: [expression, mood]
+- id: q-feeling-013
+  text: 不必時時刻刻都好起來。
+  tags: [emotion, feeling]
+- id: q-feeling-014
+  text: 難過的時候，畫面可以比話語更誠實。
+  tags: [expression, emotion]
+- id: q-feeling-015
+  text: 一個人吃飯，也可以吃得很認真。
+  tags: [solitude, quiet]
+- id: q-feeling-016
+  text: 情緒起伏是正常的，不是你哪裡壞了。
+  tags: [mood, emotion]
+- id: q-feeling-017
+  text: 想被理解，是很自然的事。
+  tags: [understanding, feeling]
+- id: q-feeling-018
+  text: 累了就停，不用先跟誰報備。
+  tags: [mood, self_talk]
+- id: q-feeling-019
+  text: 有時候，安靜比安慰更有用。
+  tags: [quiet, companionship]
+- id: q-feeling-020
+  text: 你今天的樣子，也算數。
+  tags: [feeling, understanding]
+- id: q-feeling-021
+  text: 心裡的話，先說給自己聽。
+  tags: [self_talk, expression]
+- id: q-feeling-022
+  text: 慢下來，不代表停下來。
+  tags: [mood, quiet]
+- id: q-feeling-023
+  text: 一個人的時候，情緒比較有空間伸展。
+  tags: [solitude, emotion]
+- id: q-feeling-024
+  text: 難以形容的東西，往往最真。
+  tags: [expression, feeling]
+- id: q-feeling-025
+  text: 不想笑的時候，不必勉強笑。
+  tags: [emotion, self_talk]
+- id: q-feeling-026
+  text: 有些陪伴，是不說話的那種。
+  tags: [companionship, quiet]
+- id: q-feeling-027
+  text: 把今天的心情放這裡，不會不見。
+  tags: [mood, expression]
+- id: q-feeling-028
+  text: 孤獨和自由，有時候長得很像。
+  tags: [solitude, alone]
+- id: q-feeling-029
+  text: 情緒沒有對錯，只有需不需要被看見。
+  tags: [emotion, understanding]
+- id: q-feeling-030
+  text: 你不需要每天都很滿。
+  tags: [mood, feeling]
+- id: q-feeling-031
+  text: 想哭的時候，讓它流完，比忍著省事。
+  tags: [emotion, self_talk]
+- id: q-feeling-032
+  text: 一個人待著，也是在陪自己。
+  tags: [solitude, companionship]
+- id: q-feeling-033
+  text: 說出口的只是一小部分，剩下的都在心裡。
+  tags: [expression, feeling]
+- id: q-feeling-034
+  text: 今天做一點點，也是往前。
+  tags: [mood, quiet]
+- id: q-feeling-035
+  text: 難過不必解釋給誰聽。
+  tags: [emotion, alone]
+- id: q-feeling-036
+  text: 安靜的房間，也能裝下很多想法。
+  tags: [quiet, solitude]
+- id: q-feeling-037
+  text: 被理解一次，力氣就回來一些。
+  tags: [understanding, feeling]
+- id: q-feeling-038
+  text: 心情像天氣，會過去，也會再來。
+  tags: [mood, emotion]
+- id: q-feeling-039
+  text: 你可以慢慢跟自己說話。
+  tags: [self_talk, quiet]
+- id: q-feeling-040
+  text: 不是所有情緒都要立刻處理。
+  tags: [emotion, feeling]
+- id: q-feeling-041
+  text: 一個人的安靜，不是空的。
+  tags: [solitude, quiet]
+- id: q-feeling-042
+  text: 畫不出來的時候，先寫幾個字也行。
+  tags: [expression, mood]
+- id: q-feeling-043
+  text: 有些日子只要撐過去，就已經很好。
+  tags: [mood, feeling]
+- id: q-feeling-044
+  text: 情緒需要出口，不一定需要觀眾。
+  tags: [emotion, expression]
+- id: q-feeling-045
+  text: 你願意留下來坐一會兒，就夠了。
+  tags: [companionship, quiet]
+- id: q-feeling-046
+  text: 難受的感覺，也是你的一部分。
+  tags: [emotion, understanding]
+- id: q-feeling-047
+  text: 獨處久了，會慢慢聽見自己的聲音。
+  tags: [solitude, self_talk]
+- id: q-feeling-048
+  text: 心情低的時候，做小事最實在。
+  tags: [mood, feeling]
+- id: q-feeling-049
+  text: 不必假裝沒事，這裡不看戲。
+  tags: [emotion, self_talk]
+- id: q-feeling-050
+  text: 安靜地待著，也是一種休息。
+  tags: [quiet, solitude]
+- id: q-feeling-051
+  text: 有些話說得太快，反而不準。
+  tags: [expression, feeling]
+- id: q-feeling-052
+  text: 你可以先照顧自己，再照顧作品。
+  tags: [self_talk, mood]
+- id: q-feeling-053
+  text: 一個人的時候，情緒不必修飾。
+  tags: [solitude, emotion]
+- id: q-feeling-054
+  text: 想不出來，就先放著，別逼自己。
+  tags: [mood, self_talk]
+- id: q-feeling-055
+  text: 陪伴不一定要熱鬧。
+  tags: [companionship, quiet]
+- id: q-feeling-056
+  text: 情緒過去以後，通常會留下一點什麼。
+  tags: [emotion, feeling]
+- id: q-feeling-057
+  text: 被看懂的那一刻，很珍貴。
+  tags: [understanding, feeling]
+- id: q-feeling-058
+  text: 今天不想動筆，就看看以前畫的。
+  tags: [mood, quiet]
+- id: q-feeling-059
+  text: 孤單的時候，做點手邊的小事會穩一些。
+  tags: [alone, mood]
+- id: q-feeling-060
+  text: 心裡亂的時候，讓線條先亂一下也沒關係。
+  tags: [emotion, expression]
+- id: q-feeling-061
+  text: 一個人不代表沒人懂你。
+  tags: [alone, understanding]
+- id: q-feeling-062
+  text: 安靜不是冷淡，是給彼此空間。
+  tags: [quiet, companionship]
+- id: q-feeling-063
+  text: 你的心情，值得被慢慢說完。
+  tags: [expression, feeling]
+- id: q-feeling-064
+  text: 累的時候，把作品放一邊，先放過自己。
+  tags: [mood, self_talk]
+- id: q-feeling-065
+  text: 有些情緒需要時間，不是需要答案。
+  tags: [emotion, feeling]
+- id: q-feeling-066
+  text: 獨處是跟自己好好相處的機會。
+  tags: [solitude, self_talk]
+- id: q-feeling-067
+  text: 不開心也可以很認真。
+  tags: [mood, emotion]
+- id: q-feeling-068
+  text: 說出來會好一點，但不說也沒關係。
+  tags: [expression, self_talk]
+- id: q-feeling-069
+  text: 一個人的安靜午後，也能長出東西。
+  tags: [solitude, quiet]
+- id: q-feeling-070
+  text: 心情起伏，是活著的證據。
+  tags: [mood, feeling]
+- id: q-feeling-071
+  text: 你不用向誰證明自己過得好。
+  tags: [self_talk, emotion]
+- id: q-feeling-072
+  text: 有些難過，畫著畫著就淡了。
+  tags: [emotion, expression]
+- id: q-feeling-073
+  text: 想靜一靜，是很合理的需要。
+  tags: [quiet, solitude]
+- id: q-feeling-074
+  text: 被理解，不必透過解釋很多。
+  tags: [understanding, feeling]
+- id: q-feeling-075
+  text: 今天的低落，不會定義明天。
+  tags: [mood, emotion]
+- id: q-feeling-076
+  text: 一個人待著，也可以很溫柔地對自己。
+  tags: [solitude, self_talk]
+- id: q-feeling-077
+  text: 情緒不用整理得很整齊。
+  tags: [emotion, feeling]
+- id: q-feeling-078
+  text: 安靜的時候，心裡的聲音會清楚一點。
+  tags: [quiet, self_talk]
+- id: q-feeling-079
+  text: 難過的時候，動作放慢是對的。
+  tags: [mood, emotion]
+- id: q-feeling-080
+  text: 你可以只把感覺放下，不必解釋。
+  tags: [expression, alone]
+- id: q-feeling-081
+  text: 陪伴有時候只是留一盞燈。
+  tags: [companionship, quiet]
+- id: q-feeling-082
+  text: 心情不穩的日子，別急著做決定。
+  tags: [mood, self_talk]
+- id: q-feeling-083
+  text: 一個人的空間，可以很滿也可以很空。
+  tags: [solitude, alone]
+- id: q-feeling-084
+  text: 有些感受，適合先放著發酵。
+  tags: [emotion, feeling]
+- id: q-feeling-085
+  text: 想被懂，不是軟弱。
+  tags: [understanding, emotion]
+- id: q-feeling-086
+  text: 今天畫得不好，也是今天的你。
+  tags: [mood, self_talk]
+- id: q-feeling-087
+  text: 安靜地陪自己走一段，也算走過了。
+  tags: [solitude, companionship]
+- id: q-feeling-088
+  text: 情緒說到底，是需要被承接，不是被修正。
+  tags: [emotion, understanding]
+- id: q-feeling-089
+  text: 你不必今天就想通所有事。
+  tags: [self_talk, feeling]
+- id: q-feeling-090
+  text: 難以言喻的心情，也值得被記下。
+  tags: [expression, mood]
+- id: q-feeling-091
+  text: 一個人的夜晚，可以很安靜地過。
+  tags: [solitude, quiet]
+- id: q-feeling-092
+  text: 有些日子，能起床就已經盡力了。
+  tags: [mood, feeling]
+- id: q-feeling-093
+  text: 情緒像潮水，退了還會再來，也會再退。
+  tags: [emotion, mood]
+- id: q-feeling-094
+  text: 說給自己聽的話，也要溫柔一點。
+  tags: [self_talk, quiet]
+- id: q-feeling-095
+  text: 被理解的感覺，不用很大聲。
+  tags: [understanding, quiet]
+- id: q-feeling-096
+  text: 想休息的時候，就好好休息。
+  tags: [mood, self_talk]
+- id: q-feeling-097
+  text: 一個人也能把日子過得細緻。
+  tags: [solitude, alone]
+- id: q-feeling-098
+  text: 有些話畫成圖，比說出來安全。
+  tags: [expression, emotion]
+- id: q-feeling-099
+  text: 心情下沉時，抓住一件小事就好。
+  tags: [mood, feeling]
+- id: q-feeling-100
+  text: 安靜地存在，也是一種力量。
+  tags: [quiet, solitude]
+- id: q-feeling-101
+  text: 你的難過，不需要跟別人比大小。
+  tags: [emotion, understanding]
+- id: q-feeling-102
+  text: 獨處時，情緒終於可以不用表演。
+  tags: [solitude, emotion]
+- id: q-feeling-103
+  text: 今天做不到的，明天再說。
+  tags: [mood, self_talk]
+- id: q-feeling-104
+  text: 陪伴不是填滿，是不打擾地在旁邊。
+  tags: [companionship, quiet]
+- id: q-feeling-105
+  text: 有些感覺沒有名字，但確實存在。
+  tags: [emotion, feeling]
+- id: q-feeling-106
+  text: 想一個人靜一靜，不需要理由。
+  tags: [solitude, quiet]
+- id: q-feeling-107
+  text: 被懂的時候，肩膀會自己鬆下來。
+  tags: [understanding, feeling]
+- id: q-feeling-108
+  text: 心情差的時候，先喝口水也好。
+  tags: [mood, self_talk]
+- id: q-feeling-109
+  text: 一個人畫畫，是跟自己說話的方式。
+  tags: [solitude, self_talk]
+- id: q-feeling-110
+  text: 情緒不必藏，這裡沒有人催你。
+  tags: [emotion, quiet]
+- id: q-feeling-111
+  text: 說不出來就先不說，感覺會等你。
+  tags: [expression, self_talk]
+- id: q-feeling-112
+  text: 今天只想發呆，也是可以的。
+  tags: [mood, quiet]
+- id: q-feeling-113
+  text: 孤單的時候，做出來的東西也很誠實。
+  tags: [alone, emotion]
+- id: q-feeling-114
+  text: 安靜地待一會兒，心會慢慢歸位。
+  tags: [quiet, feeling]
+- id: q-feeling-115
+  text: 你不必時時被人看見才算存在。
+  tags: [solitude, understanding]
+- id: q-feeling-116
+  text: 有些情緒，畫完就放下了。
+  tags: [emotion, expression]
+- id: q-feeling-117
+  text: 低能量的日子，也有它的節奏。
+  tags: [mood, feeling]
+- id: q-feeling-118
+  text: 一個人不代表要撐住所有事。
+  tags: [alone, self_talk]
+- id: q-feeling-119
+  text: 心裡的聲音，值得你聽完。
+  tags: [self_talk, understanding]
+- id: q-feeling-120
+  text: 想靜靜地待著，不是逃避。
+  tags: [solitude, quiet]
+- id: q-feeling-121
+  text: 難過來了，就讓它待到它想走。
+  tags: [emotion, feeling]
+- id: q-feeling-122
+  text: 今天不想見人，也很正常。
+  tags: [alone, mood]
+- id: q-feeling-123
+  text: 陪伴可以很淡，但一直都在。
+  tags: [companionship, quiet]
+- id: q-feeling-124
+  text: 有些心事，適合對著紙說。
+  tags: [expression, self_talk]
+- id: q-feeling-125
+  text: 情緒起伏不是你的錯。
+  tags: [mood, emotion]
+- id: q-feeling-126
+  text: 一個人的時候，也可以很自在。
+  tags: [solitude, alone]
+- id: q-feeling-127
+  text: 被理解不必很多，一句剛好的話就夠。
+  tags: [understanding, feeling]
+- id: q-feeling-128
+  text: 今天很鈍也沒關係，感覺不會消失。
+  tags: [mood, emotion]
+- id: q-feeling-129
+  text: 安靜的陪伴，不需要一直說話。
+  tags: [companionship, quiet]
+- id: q-feeling-130
+  text: 心情要說出來以前，先讓它成形。
+  tags: [expression, emotion]
+- id: q-feeling-131
+  text: 你可以不勇敢，只是誠實地待著。
+  tags: [self_talk, feeling]
+- id: q-feeling-132
+  text: 獨處的價值，是把自己找回來。
+  tags: [solitude, self_talk]
+- id: q-feeling-133
+  text: 有些難過會退潮，記得等它退。
+  tags: [emotion, mood]
+- id: q-feeling-134
+  text: 一個人靜靜地做事，也很踏實。
+  tags: [solitude, quiet]
+- id: q-feeling-135
+  text: 想休息就休息，作品不會跑掉。
+  tags: [mood, self_talk]
+- id: q-feeling-136
+  text: 被看見的感覺，會慢慢暖起來。
+  tags: [understanding, feeling]
+- id: q-feeling-137
+  text: 情緒不會因為你忽略它就消失。
+  tags: [emotion, feeling]
+- id: q-feeling-138
+  text: 安靜的時候，心裡其實很忙。
+  tags: [quiet, self_talk]
+- id: q-feeling-139
+  text: 你今天願意打開這裡，已經很好。
+  tags: [companionship, mood]
+- id: q-feeling-140
+  text: 有些感受要獨處才長得出來。
+  tags: [solitude, emotion]
+- id: q-feeling-141
+  text: 心情不好，就把線條放輕。
+  tags: [mood, expression]
+- id: q-feeling-142
+  text: 一個人也能把安靜過得很滿。
+  tags: [solitude, quiet]
+- id: q-feeling-143
+  text: 難以說出口的，不代表不重要。
+  tags: [expression, feeling]
+- id: q-feeling-144
+  text: 情緒是訊息，不是敵人。
+  tags: [emotion, understanding]
+- id: q-feeling-145
+  text: 今天只完成一半，也是完成。
+  tags: [mood, self_talk]
+- id: q-feeling-146
+  text: 想靜下來的時候，就讓周圍安靜。
+  tags: [quiet, solitude]
+- id: q-feeling-147
+  text: 被誤解的時候，先回來聽自己。
+  tags: [understanding, self_talk]
+- id: q-feeling-148
+  text: 一個人做東西，也是在陪自己度過。
+  tags: [solitude, companionship]
+- id: q-feeling-149
+  text: 心裡的起伏，畫下來就有了形狀。
+  tags: [emotion, expression]
+- id: q-feeling-150
+  text: 低潮不是終點，只是這一段慢了。
+  tags: [mood, feeling]
+- id: q-feeling-151
+  text: 安靜地陪自己吃頓飯，也是照顧。
+  tags: [solitude, self_talk]
+- id: q-feeling-152
+  text: 有些情緒說出來會走味，就先留著。
+  tags: [emotion, expression]
+- id: q-feeling-153
+  text: 你不必表現得很好，才配得上休息。
+  tags: [self_talk, mood]
+- id: q-feeling-154
+  text: 一個人的時候，最容易聽見真心話。
+  tags: [solitude, self_talk]
+- id: q-feeling-155
+  text: 被理解的渴望，人人都有。
+  tags: [understanding, feeling]
+- id: q-feeling-156
+  text: 今天做不動，就讓自己過得輕一點。
+  tags: [mood, self_talk]
+- id: q-feeling-157
+  text: 安靜也會說話，只是聲音很小。
+  tags: [quiet, emotion]
+- id: q-feeling-158
+  text: 難過的時候，慢慢畫，比逼自己好。
+  tags: [emotion, mood]
+- id: q-feeling-159
+  text: 一個人不吵不鬧，也能過得很完整。
+  tags: [solitude, alone]
+- id: q-feeling-160
+  text: 想被陪的時候，坐下來就好，不用開口。
+  tags: [companionship, quiet]
+- id: q-feeling-161
+  text: 心情有陰有晴，兩種都是你。
+  tags: [mood, feeling]
+- id: q-feeling-162
+  text: 有些話留在心裡，也是一種完整。
+  tags: [expression, self_talk]
+- id: q-feeling-163
+  text: 獨處時的安靜，會慢慢變成底氣。
+  tags: [solitude, quiet]
+- id: q-feeling-164
+  text: 情緒沒被看見，不代表它不真。
+  tags: [emotion, understanding]
+- id: q-feeling-165
+  text: 今天累了，就把明天的份留給明天。
+  tags: [mood, self_talk]
