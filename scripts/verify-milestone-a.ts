@@ -19,6 +19,12 @@ const { createAdminClient } = await import('@snowrealm/db/server')
 const APP = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
 const MAILPIT = 'http://127.0.0.1:54324'
 
+// 站台密碼閘門：進站要先過。驗證腳本代表「已過閘門的瀏覽器」，
+// 所以每個請求都帶上閘門 cookie，否則會被導去 /gate 而測不到 auth 流程。
+// token 見 apps/web/lib/gate.ts（GATE_COOKIE / GATE_TOKEN）。
+const GATE = 'sr-gate=granted-2607'
+const withGate = (cookie?: string): string => (cookie ? `${GATE}; ${cookie}` : GATE)
+
 const results: { step: string; ok: boolean; detail?: string }[] = []
 function record(step: string, ok: boolean, detail?: string) {
   results.push(detail === undefined ? { step, ok } : { step, ok, detail })
@@ -34,7 +40,10 @@ record('建立邀請', Boolean(invite.token), email)
 
 // ── 2. 未受邀的 email 不能取得 space ──────────────────────
 {
-  const res = await fetch(`${APP}/auth/callback?code=bogus-code`, { redirect: 'manual' })
+  const res = await fetch(`${APP}/auth/callback?code=bogus-code`, {
+    redirect: 'manual',
+    headers: { cookie: GATE },
+  })
   const location = res.headers.get('location') ?? ''
   record(
     '無效 code 被拒絕並導回登入頁',
@@ -114,7 +123,8 @@ record('magic link 驗證通過並取得授權碼', Boolean(code), code ? '' : r
 // ── 6. 走完 callback：佈建 space ─────────────────────────
 // 帶上 cookie jar（含 code verifier），模擬瀏覽器點連結後的請求。
 function cookieHeader(): string {
-  return [...jar.entries()].map(([k, v]) => `${k}=${v}`).join('; ')
+  const session = [...jar.entries()].map(([k, v]) => `${k}=${v}`).join('; ')
+  return withGate(session || undefined)
 }
 
 {
@@ -154,8 +164,9 @@ function cookieHeader(): string {
 }
 
 // ── 6c. 未登入者存取 /home 會被導回登入頁 ────────────────
+// 帶閘門 cookie 但不帶 session：測的是「過了閘門、但未登入」→ 應導 /login。
 {
-  const res = await fetch(`${APP}/home`, { redirect: 'manual' })
+  const res = await fetch(`${APP}/home`, { redirect: 'manual', headers: { cookie: GATE } })
   const loc = res.headers.get('location') ?? ''
   record('未登入者被導回 /login', loc.includes('/login'), loc || `HTTP ${res.status}`)
 }
@@ -288,7 +299,7 @@ for (const [table, label] of [
   const vres = await fetch(link2, { redirect: 'manual' })
   const code2 = new URL(vres.headers.get('location') ?? '', APP).searchParams.get('code')
 
-  const cookie2 = [...jar2.entries()].map(([k, v]) => `${k}=${v}`).join('; ')
+  const cookie2 = withGate([...jar2.entries()].map(([k, v]) => `${k}=${v}`).join('; ') || undefined)
 
   // 第二次沒有帶 invite —— 已經是成員了，應該直接放行
   const cb = await fetch(`${APP}/auth/callback?code=${code2}&next=/home`, {
@@ -307,7 +318,9 @@ for (const [table, label] of [
   {
     const res = await fetch(`${APP}/home`, {
       redirect: 'manual',
-      headers: { cookie: [...jar2.entries()].map(([k, v]) => `${k}=${v}`).join('; ') },
+      headers: {
+        cookie: withGate([...jar2.entries()].map(([k, v]) => `${k}=${v}`).join('; ') || undefined),
+      },
     })
     record('重新登入後可存取 /home', res.status === 200, `HTTP ${res.status}`)
   }
