@@ -229,8 +229,8 @@ test.describe('Home 版面（格線，桌機／平板）', () => {
     await page.getByRole('button', { name: '編輯版面' }).click()
 
     // Q6：不做假按鈕 —— 沒實作的一定是停用狀態。
-    // 用「驚喜盒」當例子（daily_card 在 Milestone E 已實作，不再是好例子）。
-    await expect(page.getByRole('button', { name: '驚喜盒', exact: true })).toBeDisabled()
+    // 用「Agent 訊息」當例子（daily_card / surprise_box 在 Milestone E 已實作，不再是好例子）。
+    await expect(page.getByRole('button', { name: 'Agent 訊息', exact: true })).toBeDisabled()
   })
 
   test('縮到手機寬度時改用單欄，不出現格線', async ({ page, invited }) => {

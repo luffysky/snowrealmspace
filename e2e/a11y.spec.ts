@@ -77,17 +77,22 @@ test.describe('鍵盤操作 @a11y', () => {
   test('登入表單可完全用鍵盤完成', async ({ page }) => {
     await page.goto('/login')
 
-    await page.keyboard.press('Tab')
-    const focused = await page.evaluate(() => document.activeElement?.tagName)
-    expect(focused).toBe('INPUT')
+    // 主流程是帳號密碼：帳號欄可聚焦、可輸入
+    const account = page.locator('#pw-account')
+    await account.focus()
+    expect(await page.evaluate(() => document.activeElement?.id)).toBe('pw-account')
+    await page.keyboard.type('keyboard-test')
 
-    await page.keyboard.type('keyboard-test@e2e.local')
+    // Tab 到密碼欄
     await page.keyboard.press('Tab')
+    expect(
+      await page.evaluate(() => (document.activeElement as HTMLInputElement | null)?.name),
+    ).toBe('password')
+    await page.keyboard.type('keyboard-pass-123')
 
-    const buttonFocused = await page.evaluate(
-      () => document.activeElement?.tagName === 'BUTTON',
-    )
-    expect(buttonFocused).toBe(true)
+    // 密碼欄後面是可鍵盤操作的「顯示密碼」眼睛按鈕
+    await page.keyboard.press('Tab')
+    expect(await page.evaluate(() => document.activeElement?.tagName)).toBe('BUTTON')
   })
 
   test('focus 有可見的外框（ADR-011）', async ({ page }) => {

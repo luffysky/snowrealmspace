@@ -25,6 +25,8 @@ test.describe('邀請與登入', () => {
 
   test('未受邀的 email 無法取得空間', async ({ page }) => {
     await page.goto('/login')
+    // magic link 表單收在「用 Email 登入連結」摺疊區裡（主流程改帳號密碼）
+    await page.getByText('用 Email 登入連結').click()
     await page.getByLabel('Email').fill(`stranger-${Date.now()}@e2e.local`)
     await page.getByRole('button', { name: '寄送登入連結' }).click()
 
@@ -59,6 +61,7 @@ test.describe('邀請與登入', () => {
     // 第二次登入不需要邀請連結
     await clearMailbox()
     await page.goto('/login')
+    await page.getByText('用 Email 登入連結').click()
     await page.getByLabel('Email').fill(invited.email)
     await page.getByRole('button', { name: '寄送登入連結' }).click()
     await expect(page.getByRole('main').getByRole('status')).toContainText('登入連結已寄到', {

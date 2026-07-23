@@ -103,3 +103,5 @@ export {
   type SpaceContext,
   type SelectInput,
 } from './daily-select.js'
+
+export { passwordStrength, PASSWORD_MIN_LENGTH, type PasswordStrength } from './password.js'

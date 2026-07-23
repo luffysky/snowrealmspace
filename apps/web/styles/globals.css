@@ -167,6 +167,32 @@ h3 {
   margin-bottom: var(--sr-space-2);
 }
 
+/* 密碼欄位的顯示/隱藏眼睛。點擊區至少 44px（WCAG 2.2）。 */
+.sr-eye {
+  position: absolute;
+  inset-inline-end: 4px;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--sr-text-secondary);
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+}
+.sr-eye:hover {
+  color: var(--sr-text-primary);
+}
+.sr-eye:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .sr-muted {
   color: var(--sr-text-secondary);
   font-size: var(--sr-text-sm);

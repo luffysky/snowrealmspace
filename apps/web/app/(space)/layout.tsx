@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import { requireActiveSpace } from '@/lib/auth/session'
+import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { getFlags } from '@/lib/flags'
+import { accountHasRecovery } from '@/lib/auth/recovery'
+import { BindingReminder } from '@/components/BindingReminder'
 import {
   compileThemeToCssText,
   themeDataAttributes,
@@ -24,6 +26,10 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   const { space, role } = await requireActiveSpace()
   const flags = await getFlags(space.id)
   const db = await getDb()
+
+  // 沒有救援方式的帳號才提醒綁定（綁了就不再出現）
+  const user = await getUser()
+  const needsRecovery = user ? !(await accountHasRecovery(user.id, user.email)) : false
 
   // ── 套用中的主題 ──
   let definition: ThemeDefinition = defaultThemeDefinition()
@@ -115,7 +121,10 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         </div>
       </header>
 
-      <main className="sr-main">{children}</main>
+      <main className="sr-main">
+        {needsRecovery && <BindingReminder />}
+        {children}
+      </main>
 
       {process.env.NODE_ENV === 'development' && (
         <footer className="sr-main" style={{ paddingTop: 0 }}>

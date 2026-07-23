@@ -218,6 +218,66 @@ export async function registerWithPassword(
   redirect('/settings/account?welcome=1')
 }
 
+/**
+ * 忘記密碼 —— 申請重設連結。
+ *
+ * 只有「真正的 email 帳號」能自動重設：使用者名稱帳號（合成 email）沒有信箱可寄。
+ * 一律回相同訊息，避免變成「哪些帳號存在」的查詢介面（帳號枚舉）。
+ * 這也是為什麼要在進站時就引導綁定 email／Google／LINE。
+ */
+export async function requestPasswordReset(
+  _prev: AuthActionState,
+  formData: FormData,
+): Promise<AuthActionState> {
+  const raw = String(formData.get('email') ?? '')
+    .trim()
+    .toLowerCase()
+  const isRealEmail =
+    raw.includes('@') && emailSchema.safeParse(raw).success && !raw.endsWith(`@${USERNAME_DOMAIN}`)
+
+  if (isRealEmail) {
+    const callback = new URL('/auth/callback', appUrl())
+    callback.searchParams.set('next', '/reset-password')
+    const db = await getDb()
+    // 失敗也不透露（避免枚舉）
+    await db.auth.resetPasswordForEmail(raw, { redirectTo: callback.toString() }).catch(() => {})
+  }
+
+  return {
+    status: 'sent',
+    message:
+      '如果這個帳號可以用 email 重設密碼，重設連結已寄出（1 小時內有效）。' +
+      '沒有綁定 email 的帳號，請改用已綁定的 Google／LINE 登入。',
+  }
+}
+
+/**
+ * 重設密碼 —— 使用者從重設連結回來、已建立 recovery session 後，設定新密碼。
+ */
+export async function resetPassword(
+  _prev: AuthActionState,
+  formData: FormData,
+): Promise<AuthActionState> {
+  const parsed = passwordSchema.safeParse(formData.get('password'))
+  if (!parsed.success) {
+    return { status: 'error', message: parsed.error.issues[0]?.message ?? '密碼太短' }
+  }
+
+  const db = await getDb()
+  const {
+    data: { user },
+  } = await db.auth.getUser()
+  if (!user) {
+    return { status: 'error', message: '重設連結已失效，請重新申請。' }
+  }
+
+  const { error } = await db.auth.updateUser({ password: parsed.data })
+  if (error) {
+    return { status: 'error', message: '更新密碼失敗，請重新申請重設。' }
+  }
+  redirect('/home')
+}
+
 export async function signOut(): Promise<never> {
   const db = await getDb()
   await db.auth.signOut()

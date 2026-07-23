@@ -1,7 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import { useActionState, useState } from 'react'
 import { signInWithPassword, registerWithPassword, type AuthActionState } from '../actions'
+import { PasswordField } from '../PasswordField'
+import { PasswordStrengthMeter } from '../PasswordStrengthMeter'
 
 const initial: AuthActionState = { status: 'idle' }
 
@@ -13,6 +16,7 @@ const initial: AuthActionState = { status: 'idle' }
  */
 export function PasswordAuth({ next }: { next: string }) {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin')
+  const [password, setPassword] = useState('')
   const action = mode === 'signin' ? signInWithPassword : registerWithPassword
   const [state, formAction, pending] = useActionState(action, initial)
 
@@ -41,37 +45,43 @@ export function PasswordAuth({ next }: { next: string }) {
         <input type="hidden" name="next" value={next} />
 
         <div>
-          <label className="sr-label" htmlFor="pw-email">
+          <label className="sr-label" htmlFor="pw-account">
             帳號
           </label>
           <input
             className="sr-input"
-            id="pw-email"
+            id="pw-account"
             name="email"
             type="text"
             autoComplete="username"
             required
-            placeholder={mode === 'signup' ? '取一個帳號' : '帳號'}
+            pattern={mode === 'signup' ? '[A-Za-z0-9_.@\\-]{3,254}' : undefined}
+            placeholder={mode === 'signup' ? '取一個帳號（3–30 字，英數與 _ . -）' : '帳號'}
             disabled={pending}
           />
         </div>
 
-        <div>
-          <label className="sr-label" htmlFor="pw-password">
-            密碼
-          </label>
-          <input
-            className="sr-input"
-            id="pw-password"
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-1)' }}>
+          <PasswordField
             name="password"
-            type="password"
+            label="密碼"
             autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
-            required
             minLength={mode === 'signup' ? 8 : undefined}
             placeholder={mode === 'signup' ? '至少 8 個字' : '密碼'}
             disabled={pending}
+            value={password}
+            onChange={setPassword}
           />
+          {mode === 'signup' && <PasswordStrengthMeter password={password} />}
         </div>
+
+        {mode === 'signin' && (
+          <p style={{ margin: 0, textAlign: 'right' }}>
+            <Link href="/forgot" className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
+              忘記密碼？
+            </Link>
+          </p>
+        )}
 
         {state.status === 'error' && state.message && (
           <p className="sr-message sr-message-error" role="alert">
@@ -86,7 +96,8 @@ export function PasswordAuth({ next }: { next: string }) {
 
       {mode === 'signup' && (
         <p className="sr-muted" style={{ marginTop: 'var(--sr-space-2)', marginBottom: 0 }}>
-          帳號＋密碼就能註冊，不需要 email。註冊後可綁定 Google 或 LINE。
+          帳號＋密碼就能註冊，不需要 email。進去後會提醒你綁定 email／Google／LINE，
+          這樣忘記密碼才有辦法找回。
         </p>
       )}
     </div>
