@@ -50,6 +50,16 @@ const serverSchema = z.object({
   CLOUDFLARE_AI_TOKEN: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
 
+  // 第三方登入（13-third-party-auth.md §8）。
+  // 全部 optional：沒設就在設定頁顯示為「尚未設定」並停用，
+  // 而不是讓整個 app 起不來 —— 這是可選功能，不是必要相依。
+  GOOGLE_OAUTH_CLIENT_ID: z.string().optional(),
+  GOOGLE_OAUTH_CLIENT_SECRET: z.string().optional(),
+  LINE_LOGIN_CHANNEL_ID: z.string().optional(),
+  LINE_LOGIN_CHANNEL_SECRET: z.string().optional(),
+  /** 必須與 LINE Console 設定的完全一致，多一個斜線就會被拒。 */
+  LINE_LOGIN_REDIRECT_URI: z.string().url().optional(),
+
   FIGMA_CLIENT_ID: z.string().optional(),
   FIGMA_CLIENT_SECRET: z.string().optional(),
   FIGMA_WEBHOOK_SECRET: z.string().optional(),

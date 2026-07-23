@@ -1018,3 +1018,73 @@ input[type='range'] {
     contain-intrinsic-size: auto 200px;
   }
 }
+
+/* ── 第三方登入（13-third-party-auth.md §7）────────────── */
+
+/*
+ * 「或使用」分隔線。用 ::before/::after 畫線而不是額外的 <hr>，
+ * 讓文字與線永遠對齊，且螢幕閱讀器只會讀到文字。
+ */
+.sr-divider-label {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-3);
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+  margin: var(--sr-space-4) 0;
+}
+.sr-divider-label::before,
+.sr-divider-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sr-border);
+}
+
+/*
+ * OAuth 按鈕是 <a> 而非 <button>（OAuth 必須整頁導向），
+ * 所以要自己補上 block 排版與置中。
+ * min-height 48px 滿足 WCAG 2.2 target size（最低 44）。
+ */
+.sr-button-oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  text-decoration: none;
+  text-align: center;
+}
+
+/*
+ * LINE 品牌綠 #06C755 對白色文字約 2.5:1 —— 不到 AA 的 4.5:1。
+ * §7 的處理方式：不把它當文字底色，改成邊框 + 前景色，
+ * 文字仍用一般前景色，對比由主題保證。
+ */
+.sr-button-line {
+  background: transparent;
+  color: var(--sr-text-primary);
+  border: 2px solid #06c755;
+}
+
+/* ── 清單列（設定頁的已綁定登入方式）──────────────────── */
+.sr-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+}
+.sr-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sr-space-4);
+  padding: var(--sr-space-3) var(--sr-space-4);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius-sm);
+  background: var(--sr-surface);
+  /* 窄螢幕上按鈕不可被擠出容器，否則整頁會被撐寬（見 90-build-log.md） */
+  flex-wrap: wrap;
+}

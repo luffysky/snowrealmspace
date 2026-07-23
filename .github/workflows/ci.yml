@@ -125,6 +125,24 @@ jobs:
             exit 1
           fi
 
+      # 原本是獨立的 worker job。合併進來的理由：
+      # supabase start 在 runner 上要 2–4 分鐘，兩個 job 就是兩份等待，
+      # 而 queue 往返本身只需要幾秒。
+      - name: 啟動 worker 並驗證 job 往返
+        run: |
+          pnpm --filter @snowrealm/worker start > /tmp/worker.log 2>&1 &
+          for i in $(seq 1 30); do
+            grep -q '就緒' /tmp/worker.log && break
+            sleep 2
+          done
+          cat /tmp/worker.log
+          pnpm tsx scripts/queue-ping.ts
+
+      - name: 排程已註冊（ADR-008：cron 由 pg-boss 管）
+        run: |
+          grep -q 'maintenance.queue-health' /tmp/worker.log
+          grep -q 'maintenance.storage-gc' /tmp/worker.log
+
   # ── E2E + 無障礙 ──────────────────────────────────────
   e2e:
     name: E2E + 無障礙
@@ -186,6 +204,21 @@ jobs:
       - name: Build（正式產物）
         run: pnpm build
 
+      # ⚠️ worker 必須跑著，否則 asset.process 永遠不會執行：
+      # 沒有色票 → /api/themes/from-image 一直回 retryable → 主題生成的測試逾時。
+      # 本機開發時 worker 通常另開一個終端跑著，CI 沒有那個「順便」，
+      # 一定要明寫出來。
+      - name: 啟動 worker（背景）
+        run: |
+          pnpm --filter @snowrealm/worker start > /tmp/worker.log 2>&1 &
+          echo $! > /tmp/worker.pid
+          # 等 worker 真的接上佇列，而不是盲目 sleep
+          for i in $(seq 1 30); do
+            grep -q '就緒' /tmp/worker.log && break
+            sleep 2
+          done
+          tail -5 /tmp/worker.log
+
       # Playwright 的 webServer 會自行 build 並啟動 :3100（獨立 distDir），
       # 與 dev server 完全隔離。見 playwright.config.ts。
       - name: E2E（桌機）
@@ -193,6 +226,10 @@ jobs:
 
       - name: E2E（行動裝置）
         run: pnpm exec playwright test --project=mobile
+
+      - name: Worker 日誌（失敗時用來判斷是不是 job 沒跑）
+        if: failure()
+        run: tail -100 /tmp/worker.log || true
 
       - name: 閉環驗證
         run: |
@@ -208,25 +245,3 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
-
-  # ── Worker 能啟動並消費 job ────────────────────────────
-  worker:
-    name: Queue 往返
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm exec supabase start -x studio,imgproxy,pooler,realtime,vector
-      - run: pnpm db:migrate
-
-      - name: 啟動 worker 並驗證 job 往返
-        run: |
-          pnpm --filter @snowrealm/worker dev &
-          sleep 15
-          pnpm tsx scripts/queue-ping.ts

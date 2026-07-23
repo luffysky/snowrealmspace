@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { updatePrivacySettings } from './actions'
+import Link from 'next/link'
 import { PrivacyToggles } from './PrivacyToggles'
 
 export const metadata: Metadata = { title: 'Settings — SnowRealm Space' }
@@ -20,6 +21,16 @@ export default async function SettingsPage() {
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>設定</h1>
         <p className="sr-muted">{user?.email}</p>
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>登入方式</h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          可以綁定 Google 或 LINE，之後用它們登入的是同一個帳號。
+        </p>
+        <Link className="sr-button sr-button-secondary" href="/settings/account">
+          管理登入方式
+        </Link>
       </section>
 
       <section className="sr-card">

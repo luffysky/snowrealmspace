@@ -7,6 +7,7 @@ import {
   joinExistingSpace,
 } from '@snowrealm/db/provisioning'
 import { createAdminClient } from '@snowrealm/db/server'
+import { syncFromAuthIdentities } from '@snowrealm/db/identities'
 import { emitEvent, audit } from '@snowrealm/analytics'
 import { toSpaceRole } from '@snowrealm/shared-types'
 
@@ -46,6 +47,11 @@ export async function GET(request: NextRequest) {
     .maybeSingle()
 
   if (existingMembership) {
+    // 用 Google 登入時 auth.identities 可能剛新增一筆，把投影表補上。
+    // 失敗不阻擋登入 —— 這只是設定頁的顯示資料。
+    await syncFromAuthIdentities(user.id).catch((err: unknown) => {
+      console.error('[auth/callback] 身分同步失敗', err)
+    })
     return NextResponse.redirect(new URL(next, url.origin))
   }
 
@@ -92,6 +98,10 @@ export async function GET(request: NextRequest) {
     }
 
     await markInviteAccepted(invite.id, user.id)
+
+    // 新帳號也要有一筆 email 身分，否則「至少保留一種登入方式」
+    // 的計數會從 0 開始，綁了 Google 之後就能把自己鎖在外面。
+    await syncFromAuthIdentities(user.id).catch(() => {})
 
     await audit({
       spaceId,

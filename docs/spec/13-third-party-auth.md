@@ -291,12 +291,35 @@ Feature: 第三方登入
 
 ## 11. 排期
 
-| 階段 | 內容 |
-|---|---|
-| **Milestone A–E** | 不做。只有 magic link |
-| **V1 前置** | 網域上線、隱私權政策頁、`user_identities` migration |
-| **V1** | Google 登入（Supabase 原生，成本低） |
-| **V1.1** | LINE 登入（自建流程） |
-| **V2** | LINE 通知 channel（複用登入時取得的 line_user_id） |
+> ⚠️ 這份排期已被使用者的要求推翻。**綁定功能已實作完成**，
+> 原因是「先用 email 註冊、之後綁 Google/LINE」比「一開始就用第三方註冊」
+> 少掉整個註冊閘門的問題 —— §4 那個孤兒使用者的陷阱在綁定情境下不存在，
+> 因為使用者早就通過邀請閘門了。
+
+| 階段 | 內容 | 狀態 |
+|---|---|---|
+| `user_identities` + `oauth_transactions` migration | `0013` | ✅ |
+| 設定頁綁定 / 解綁（含「至少保留一種」保護） | `/settings/account` | ✅ |
+| Google 綁定（Supabase `linkIdentity`） | `/api/auth/link/google` | ✅ 待憑證 |
+| LINE 綁定 + 登入（自建 OAuth） | `/api/auth/line/*` | ✅ 待憑證 |
+| Google 登入 | `/api/auth/oauth/google` | ✅ 待憑證 |
+| 隱私權政策頁 | 兩家審核前置 | ⬜ |
+| Google Cloud / LINE Console 申請 | 需正式網域 | ⬜ **需要人做** |
+| LINE 通知 channel | 複用 `line_user_id` | ⬜ V2 |
+
+### 「待憑證」是什麼意思
+
+程式碼完整、型別通過、RLS 有測試。缺的只有 `GOOGLE_OAUTH_CLIENT_ID`
+與 `LINE_LOGIN_CHANNEL_ID` 這類外部帳號憑證。
+沒設時按鈕會停用並說明原因，不是壞掉。
+
+### 實作與原規劃的差異
+
+| 規劃 | 實際 | 為什麼 |
+|---|---|---|
+| §2.1 用 `signInWithIdToken({provider:'oidc'})` | admin `generateLink` + `verifyOtp` | supabase-js 沒有通用 oidc provider，LINE 也不在支援清單。改用官方給自訂 provider 的路徑 |
+| §2.1 自己驗 id_token 簽章 | 委託 LINE 的 `/oauth2/v2.1/verify` | 少一份要輪替的 JWKS 快取；該端點同時檢查簽章、aud、iss、過期 |
+| state/nonce 存 httpOnly cookie | 存 `oauth_transactions` 表 | cookie 由使用者持有可被竄改；DB 才能保證「只能用一次」（條件式 update 達成原子性） |
+| §5 自動合併同 email 帳號 | **不做自動合併**，只做手動綁定 | 自動合併的風險全在「provider 的 email 到底驗證了沒」；手動綁定不需要回答這個問題 —— 使用者本人已經登入了 |
 
 先做 Google 的理由：Supabase 原生支援，可用來驗證「邀請閘門 + 帳號合併 + 孤兒 GC」這三個機制。這些機制在 LINE 上是一樣的，等 Google 跑順了再接 LINE，風險小得多。

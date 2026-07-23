@@ -8,7 +8,10 @@
   "exports": {
     ".": "./src/index.ts",
     "./server": "./src/server.ts",
-    "./provisioning": "./src/provisioning.ts"
+    "./provisioning": "./src/provisioning.ts",
+    "./identities": "./src/identities.ts",
+    "./line-oauth": "./src/line-oauth.ts",
+    "./session-mint": "./src/session-mint.ts"
   },
   "scripts": {
     "lint": "eslint src",

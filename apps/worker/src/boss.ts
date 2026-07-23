@@ -49,6 +49,9 @@ export async function stopBoss(): Promise<void> {
 export const QUEUES = {
   ping: 'ping',
   assetProcess: 'asset.process',
+  // 維護類（由 schedules.ts 週期觸發）
+  queueHealth: 'maintenance.queue-health',
+  storageGc: 'maintenance.storage-gc',
 } as const
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES]
@@ -56,4 +59,6 @@ export type QueueName = (typeof QUEUES)[keyof typeof QUEUES]
 export type JobPayloads = {
   ping: { message: string; spaceId?: string }
   'asset.process': { assetId: string; spaceId: string }
+  'maintenance.queue-health': Record<string, never>
+  'maintenance.storage-gc': Record<string, never>
 }

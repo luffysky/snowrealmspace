@@ -7,6 +7,8 @@ config({ path: '../../.env' })
 const { startBoss, stopBoss, QUEUES } = await import('./boss.js')
 const { handlePing } = await import('./handlers/ping.js')
 const { handleAssetProcess } = await import('./handlers/asset-process.js')
+const { handleQueueHealth, handleStorageGc } = await import('./handlers/maintenance.js')
+const { registerSchedules } = await import('./schedules.js')
 
 /**
  * Worker 進程。
@@ -26,6 +28,15 @@ async function main() {
   // 08-jobs-events.md §2.2：併發 4、重試 3 次
   await boss.createQueue(QUEUES.assetProcess)
   await boss.work(QUEUES.assetProcess, { batchSize: 1 }, handleAssetProcess)
+
+  await boss.createQueue(QUEUES.queueHealth)
+  await boss.work(QUEUES.queueHealth, { batchSize: 1 }, handleQueueHealth)
+
+  await boss.createQueue(QUEUES.storageGc)
+  await boss.work(QUEUES.storageGc, { batchSize: 1 }, handleStorageGc)
+
+  // ADR-008：排程由 pg-boss 自己管，不依賴平台的 Cron
+  await registerSchedules(boss)
 
   console.log(`[worker] 就緒。監聽佇列：${Object.values(QUEUES).join('、')}`)
 

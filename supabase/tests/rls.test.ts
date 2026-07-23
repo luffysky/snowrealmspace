@@ -163,6 +163,73 @@ describe('activity_events append-only', () => {
   })
 })
 
+/**
+ * user_identities 的隔離鍵是 user_id 而不是 space_id（ADR-006 的例外，
+ * 已記在 check-rls.ts 的 REQUIRED_RLS_WITHOUT_SPACE_ID）。
+ * 那是刻意的：登入方式屬於人，一個人可以在多個 space。
+ * 正因為是例外，更需要證明它真的隔離得住。
+ */
+describe('RLS：登入方式（user_identities）', () => {
+  beforeAll(async () => {
+    const admin = adminDb()
+    for (const actor of [alice, bob]) {
+      await admin.from('user_identities').upsert(
+        {
+          user_id: actor.userId,
+          provider: 'line',
+          provider_uid: `line-${actor.userId}`,
+          display_name: `${actor.userId} 的 LINE`,
+        } as never,
+        { onConflict: 'provider,provider_uid' },
+      )
+    }
+  })
+
+  it('Alice 讀得到自己的登入方式', async () => {
+    const { data } = await alice.db.from('user_identities').select('user_id, provider')
+    expect(data?.some((r) => r.user_id === alice.userId)).toBe(true)
+  })
+
+  it('Alice 讀不到 Bob 的登入方式', async () => {
+    const { data, error } = await alice.db
+      .from('user_identities')
+      .select('user_id')
+      .eq('user_id', bob.userId)
+
+    expect(error).toBeNull()
+    expect(data).toEqual([])
+  })
+
+  it('Alice 無法把身分插進 Bob 的帳號', async () => {
+    const { error } = await alice.db.from('user_identities').insert({
+      user_id: bob.userId,
+      provider: 'google',
+      provider_uid: 'stolen-google-sub',
+    } as never)
+
+    // 沒有 insert policy → 一律拒絕
+    expect(error).not.toBeNull()
+  })
+
+  it('同一個第三方帳號不可綁到兩個使用者', async () => {
+    const admin = adminDb()
+    const { error } = await admin.from('user_identities').insert({
+      user_id: bob.userId,
+      provider: 'line',
+      provider_uid: `line-${alice.userId}`, // Alice 已經綁走的
+    } as never)
+
+    // unique (provider, provider_uid) —— 這條約束是帳號接管的最後一道防線
+    expect(error).not.toBeNull()
+    expect(error?.code).toBe('23505')
+  })
+
+  it('oauth_transactions 對一般使用者完全不可讀', async () => {
+    const { data } = await alice.db.from('oauth_transactions').select('state')
+    expect(data ?? []).toEqual([])
+  })
+})
+
 describe('RLS 覆蓋率', () => {
   it('每張帶 space_id 的表都有 policy', async () => {
     const admin = adminDb()

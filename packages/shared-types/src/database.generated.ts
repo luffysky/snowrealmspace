@@ -713,6 +713,42 @@ export type Database = {
           },
         ]
       }
+      oauth_transactions: {
+        Row: {
+          consumed_at: string | null
+          created_at: string
+          expires_at: string
+          intent: string
+          nonce: string
+          provider: string
+          redirect_to: string | null
+          state: string
+          user_id: string | null
+        }
+        Insert: {
+          consumed_at?: string | null
+          created_at?: string
+          expires_at?: string
+          intent: string
+          nonce: string
+          provider: string
+          redirect_to?: string | null
+          state: string
+          user_id?: string | null
+        }
+        Update: {
+          consumed_at?: string | null
+          created_at?: string
+          expires_at?: string
+          intent?: string
+          nonce?: string
+          provider?: string
+          redirect_to?: string | null
+          state?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -1130,6 +1166,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_identities: {
+        Row: {
+          avatar_url: string | null
+          display_name: string | null
+          email: string | null
+          id: string
+          last_used_at: string | null
+          line_user_id: string | null
+          linked_at: string
+          provider: string
+          provider_uid: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          last_used_at?: string | null
+          line_user_id?: string | null
+          linked_at?: string
+          provider: string
+          provider_uid: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          last_used_at?: string | null
+          line_user_id?: string | null
+          linked_at?: string
+          provider?: string
+          provider_uid?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       widget_definitions: {
         Row: {

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { LoginForm } from './LoginForm'
+import { ThirdPartyLogin } from './ThirdPartyLogin'
+import { lineConfig } from '@snowrealm/db/line-oauth'
 
 export const metadata: Metadata = { title: '登入 — SnowRealm Space' }
 
@@ -24,6 +26,11 @@ export default async function LoginPage({
           inviteToken={first(params['invite'])}
           next={first(params['next']) ?? '/home'}
           error={first(params['error'])}
+        />
+        <ThirdPartyLogin
+          googleAvailable={Boolean(process.env['GOOGLE_OAUTH_CLIENT_ID'])}
+          lineAvailable={lineConfig() !== null}
+          next={first(params['next']) ?? '/home'}
         />
       </div>
     </main>

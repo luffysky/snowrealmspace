@@ -64,6 +64,13 @@ test.describe('無障礙 @a11y', () => {
     const results = await scan(page)
     expect(blocking(results.violations), format(results.violations)).toEqual([])
   })
+
+  test('登入方式', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.goto('/settings/account')
+    const results = await scan(page)
+    expect(blocking(results.violations), format(results.violations)).toEqual([])
+  })
 })
 
 test.describe('鍵盤操作 @a11y', () => {
