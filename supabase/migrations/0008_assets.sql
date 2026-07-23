@@ -120,5 +120,9 @@ drop policy if exists "member reads renditions" on asset_renditions;
 create policy "member reads renditions" on asset_renditions
   for select using (is_space_member(space_id));
 
+-- Postgres 沒有 `create trigger if not exists`，必須先 drop。
+-- 少了這行，migration 就不是冪等的 —— 而 `supabase start` 會先自動
+-- 套用一次 supabase/migrations/，我們的 migrate 腳本再套用一次就會炸。
+drop trigger if exists assets_touch on assets;
 create trigger assets_touch before update on assets
   for each row execute function public.touch_updated_at();

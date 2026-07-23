@@ -95,7 +95,12 @@ drop policy if exists "anyone reads widget defs" on widget_definitions;
 create policy "anyone reads widget defs" on widget_definitions
   for select using (enabled = true);
 
+-- Postgres 沒有 `create trigger if not exists`，必須先 drop。
+-- 少了這行 migration 就不是冪等的 —— `supabase start` 會先自動套用一次
+-- supabase/migrations/，我們的 migrate 腳本再套用一次就會炸。
+drop trigger if exists layouts_touch on layouts;
 create trigger layouts_touch before update on layouts
   for each row execute function public.touch_updated_at();
+drop trigger if exists widget_instances_touch on widget_instances;
 create trigger widget_instances_touch before update on widget_instances
   for each row execute function public.touch_updated_at();

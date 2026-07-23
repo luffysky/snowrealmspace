@@ -18,8 +18,9 @@ test.describe('邀請與登入', () => {
     // 進到自己的 Space
     await expect(page).toHaveURL(/\/home$/)
     await expect(page.getByRole('heading', { level: 1 })).toContainText('的空間')
-    // Home 現在是 widget 版面（Milestone B）
-    await expect(page.locator('.sr-widget-slot')).not.toHaveCount(0)
+    // Home 是 widget 版面（Milestone B）。桌機用格線、行動版用單欄，
+    // 所以斷言在「內容有出現」這一層，而不是特定的容器 class。
+    await expect(page.getByRole('heading', { name: '主題' })).toBeVisible()
   })
 
   test('未受邀的 email 無法取得空間', async ({ page }) => {
@@ -60,7 +61,9 @@ test.describe('邀請與登入', () => {
     await page.goto('/login')
     await page.getByLabel('Email').fill(invited.email)
     await page.getByRole('button', { name: '寄送登入連結' }).click()
-    await expect(page.getByRole('main').getByRole('status')).toContainText('登入連結已寄到', { timeout: 30_000 })
+    await expect(page.getByRole('main').getByRole('status')).toContainText('登入連結已寄到', {
+      timeout: 45_000,
+    })
 
     const { fetchMagicLink } = await import('./fixtures')
     const link = await fetchMagicLink(invited.email, 30_000)

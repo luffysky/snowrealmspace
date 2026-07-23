@@ -4,6 +4,11 @@
  * 不用 Supabase CLI 的理由：CLI 需要 Docker 起本地 stack，而我們的 migration
  * 也要能對 hosted Supabase 執行。直接跑 SQL 讓兩種情境用同一條路徑。
  *
+ * ⚠️ `supabase start` **會自己先套用一次** supabase/migrations/。
+ * 因此每個 migration 都必須真正冪等 —— 這支腳本會再套用一次。
+ * 特別注意 Postgres 沒有 `create trigger if not exists`，
+ * 必須寫成 `drop trigger if exists ...; create trigger ...`。
+ *
  * 用法：
  *   pnpm db:migrate            套用所有未套用的 migration
  *   pnpm db:migrate --reset    先 drop public schema 再全部重跑（僅限非 production）

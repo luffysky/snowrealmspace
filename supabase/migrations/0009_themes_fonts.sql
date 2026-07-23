@@ -125,5 +125,9 @@ create policy "anyone reads enabled fonts" on fonts for select using (enabled = 
 drop policy if exists "anyone reads font pairs" on font_pairs;
 create policy "anyone reads font pairs" on font_pairs for select using (enabled = true);
 
+-- Postgres 沒有 `create trigger if not exists`，必須先 drop。
+-- 少了這行 migration 就不是冪等的 —— `supabase start` 會先自動套用一次
+-- supabase/migrations/，我們的 migrate 腳本再套用一次就會炸。
+drop trigger if exists themes_touch on themes;
 create trigger themes_touch before update on themes
   for each row execute function public.touch_updated_at();

@@ -7,7 +7,15 @@ import { test, expect, signInThroughUi } from './fixtures'
  * 06-widget-contract.md §8：鍵盤必須能完成全部拖曳操作。
  */
 
-test.describe('Home 版面', () => {
+/**
+ * 格線只存在於桌機與平板。
+ * 06-widget-contract.md §1：**行動版不使用格線**，是單欄垂直排序 ——
+ * 在 375px 寬度上拖曳 12 欄格線本質上不可用。
+ * 所以這一組測試在 mobile 專案要跳過，行動版有自己的一組。
+ */
+test.describe('Home 版面（格線，桌機／平板）', () => {
+  test.skip(({ isMobile }) => Boolean(isMobile), '行動版不使用格線')
+
   test('第一次進來就有預設區塊', async ({ page, invited }) => {
     await signInThroughUi(page, invited)
 
@@ -129,7 +137,7 @@ test.describe('Home 版面', () => {
     await expect(page.getByRole('button', { name: '每日卡片' })).toBeDisabled()
   })
 
-  test('行動裝置改用單欄，不出現格線', async ({ page, invited }) => {
+  test('縮到手機寬度時改用單欄，不出現格線', async ({ page, invited }) => {
     await signInThroughUi(page, invited)
     await page.setViewportSize({ width: 390, height: 800 })
     await page.reload()
@@ -140,7 +148,48 @@ test.describe('Home 版面', () => {
   })
 })
 
+test.describe('Home 版面（行動版單欄）', () => {
+  test.skip(({ isMobile }) => !isMobile, '這一組只驗行動版')
+
+  test('用單欄堆疊而非格線', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+
+    await expect(page.locator('.sr-mobile-stack')).toBeVisible()
+    await expect(page.locator('.sr-widget-grid')).toHaveCount(0)
+    await expect(page.getByText(/目前是手機版面/)).toBeVisible()
+  })
+
+  test('預設區塊仍然看得到', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+
+    await expect(page.getByRole('heading', { name: '主題' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: '背景' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: '隨手記' })).toBeVisible()
+  })
+
+  test('不顯示拖曳把手（行動版不支援拖曳）', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.getByRole('button', { name: '編輯版面' }).click()
+
+    await expect(page.locator('.sr-widget-handle')).toHaveCount(0)
+    await expect(page.locator('.sr-widget-resize')).toHaveCount(0)
+  })
+
+  test('版面不會產生水平溢位', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+
+    // 溢位會讓行動瀏覽器縮小整頁，所有點擊座標偏移
+    const sizes = await page.evaluate(() => ({
+      doc: document.documentElement.scrollWidth,
+      view: document.documentElement.clientWidth,
+    }))
+    expect(sizes.doc).toBeLessThanOrEqual(sizes.view)
+  })
+})
+
 test.describe('Widget 無障礙 @a11y', () => {
+  test.skip(({ isMobile }) => Boolean(isMobile), '編輯把手只存在於格線版面')
+
   test('編輯模式沒有嚴重的無障礙問題', async ({ page, invited }) => {
     await signInThroughUi(page, invited)
     await page.getByRole('button', { name: '編輯版面' }).click()

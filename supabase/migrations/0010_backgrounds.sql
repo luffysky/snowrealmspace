@@ -126,7 +126,12 @@ drop policy if exists "member manages playlist items" on background_playlist_ite
 create policy "member manages playlist items" on background_playlist_items
   for all using (is_space_member(space_id)) with check (is_space_member(space_id));
 
+-- Postgres 沒有 `create trigger if not exists`，必須先 drop。
+-- 少了這行 migration 就不是冪等的 —— `supabase start` 會先自動套用一次
+-- supabase/migrations/，我們的 migrate 腳本再套用一次就會炸。
+drop trigger if exists bg_items_touch on background_items;
 create trigger bg_items_touch before update on background_items
   for each row execute function public.touch_updated_at();
+drop trigger if exists bg_playlists_touch on background_playlists;
 create trigger bg_playlists_touch before update on background_playlists
   for each row execute function public.touch_updated_at();
