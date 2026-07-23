@@ -51,6 +51,8 @@ export {
 
 export { PRESET_THEMES, DEFAULT_THEME, defaultThemeDefinition, NEUTRAL } from './presets.js'
 
+export { deriveDarkTheme } from './dark-mode.js'
+
 export { extractPalette, buildThemesFromPalette, type Palette } from './palette.js'
 
 export {

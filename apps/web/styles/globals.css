@@ -193,6 +193,17 @@ h3 {
   cursor: default;
 }
 
+/* 只有圖示的方形按鈕（如深淺色切換）。維持 44px 觸控區。 */
+.sr-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
 .sr-muted {
   color: var(--sr-text-secondary);
   font-size: var(--sr-text-sm);

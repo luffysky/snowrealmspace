@@ -1,14 +1,18 @@
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { getFlags } from '@/lib/flags'
 import { accountHasRecovery } from '@/lib/auth/recovery'
 import { BindingReminder } from '@/components/BindingReminder'
+import { ThemeModeToggle } from '@/components/ThemeModeToggle'
+import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 import {
   compileThemeToCssText,
   themeDataAttributes,
   themeDefinitionSchema,
   defaultThemeDefinition,
+  deriveDarkTheme,
   type ThemeDefinition,
 } from '@snowrealm/theme-engine'
 import { resolveThemeFonts } from '@/lib/theme/server-fonts'
@@ -56,11 +60,19 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   }
 
   /*
+   * 深／淺色模式（選項 A）：任何主題都能切暗色版。
+   * 從 cookie 讀模式，SSR 首屏就用對的顏色，不閃。暗色由 deriveDarkTheme 推導
+   * （保留主題色相與個性，只翻明暗）。
+   */
+  const mode = parseMode((await cookies()).get(MODE_COOKIE)?.value)
+  const effective = mode === 'dark' ? deriveDarkTheme(definition) : definition
+
+  /*
    * SSR 時就把主題寫進 <style>，避免首屏閃一下預設色再換成使用者的主題。
    * 之後的切換由 applyThemeToDom 直接改 :root 的 style（不經過 React）。
    */
-  const themeCss = compileThemeToCssText(definition, ':root')
-  const dataAttrs = themeDataAttributes(definition)
+  const themeCss = compileThemeToCssText(effective, ':root')
+  const dataAttrs = themeDataAttributes(effective)
 
   /*
    * 字體同樣在 SSR 解析。客戶端載入的話首屏會先用系統字體畫一次再換，
@@ -112,6 +124,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         </nav>
 
         <div className="sr-nav-end">
+          <ThemeModeToggle initialMode={mode} lightDef={definition} />
           <span className="sr-muted">{role === 'owner' ? '擁有者' : role}</span>
           <form action={signOut}>
             <button className="sr-button sr-button-secondary" type="submit">
