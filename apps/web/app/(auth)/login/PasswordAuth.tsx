@@ -42,16 +42,16 @@ export function PasswordAuth({ next }: { next: string }) {
 
         <div>
           <label className="sr-label" htmlFor="pw-email">
-            Email
+            帳號
           </label>
           <input
             className="sr-input"
             id="pw-email"
             name="email"
-            type="email"
-            autoComplete="email"
+            type="text"
+            autoComplete="username"
             required
-            placeholder="you@example.com"
+            placeholder={mode === 'signup' ? 'email 或使用者名稱' : '帳號'}
             disabled={pending}
           />
         </div>
@@ -86,7 +86,7 @@ export function PasswordAuth({ next }: { next: string }) {
 
       {mode === 'signup' && (
         <p className="sr-muted" style={{ marginTop: 'var(--sr-space-2)', marginBottom: 0 }}>
-          註冊後會引導你綁定 Google 或 LINE，之後用哪種登入都是同一個帳號。
+          可以只用使用者名稱＋密碼註冊（不必 email）。註冊後會引導你綁定 Google 或 LINE。
         </p>
       )}
     </div>
