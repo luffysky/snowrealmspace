@@ -1,0 +1,30 @@
+{
+  "name": "@snowrealm/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@snowrealm/analytics": "workspace:*",
+    "@snowrealm/db": "workspace:*",
+    "@snowrealm/shared-types": "workspace:*",
+    "@snowrealm/storage": "workspace:*",
+    "dotenv": "^16.4.7",
+    "pg-boss": "^10.1.6",
+    "sharp": "^0.34.5",
+    "@snowrealm/theme-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

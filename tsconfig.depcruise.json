@@ -1,0 +1,10 @@
+{
+  "//": "只給 dependency-cruiser 用。它需要能解析 apps/web 的 @/* 別名，否則 apps/web 內的 import 全數無法解析，分層規則會靜默失效。",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["apps/web/*"]
+    }
+  }
+}

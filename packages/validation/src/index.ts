@@ -1,0 +1,58 @@
+/**
+ * 前後端共用的 zod schema。
+ * 見 docs/spec/04-api-contract.md。
+ */
+export {
+  uuidSchema,
+  emailSchema,
+  slugSchema,
+  hexColorSchema,
+  paginationSchema,
+  type Pagination,
+} from './common.js'
+
+export {
+  ALLOWED_MIME,
+  ALL_ALLOWED_MIME,
+  LIMITS,
+  kindForMime,
+  limitForMime,
+  uploadIntentSchema,
+  assetListQuerySchema,
+  assetPatchSchema,
+  sniffMimeType,
+  mimeMatches,
+  type AssetKind,
+  type UploadIntentInput,
+} from './assets.js'
+
+export {
+  themeCreateSchema,
+  themePatchSchema,
+  themeFromImageSchema,
+  themeImportSchema,
+  contrastCheckSchema,
+  type ThemeCreateInput,
+  type ThemePatchInput,
+} from './themes.js'
+
+export {
+  backgroundTypeSchema,
+  gradientSpecSchema,
+  backgroundCreateSchema,
+  backgroundPatchSchema,
+  playModeSchema,
+  transitionSchema,
+  ALPHA_TRANSITIONS,
+  scheduleSchema,
+  playlistCreateSchema,
+  playlistPatchSchema,
+  playlistItemsSchema,
+  reorderSchema,
+  type BackgroundCreateInput,
+  type PlaylistCreateInput,
+  type GradientSpec,
+  type ScheduleSpec,
+} from './backgrounds.js'
+
+export { localHour, localDate, slotForHour, seededIndex } from './schedule.js'
