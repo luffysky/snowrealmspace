@@ -105,13 +105,19 @@ export class R2StorageAdapter implements StorageAdapter {
     return streamToBytes(res.Body)
   }
 
-  async put(input: { key: string; body: Uint8Array; contentType: string }): Promise<void> {
+  async put(input: {
+    key: string
+    body: Uint8Array
+    contentType: string
+    cacheControl?: string
+  }): Promise<void> {
     await client().send(
       new PutObjectCommand({
         Bucket: bucket(),
         Key: input.key,
         Body: input.body,
         ContentType: input.contentType,
+        ...(input.cacheControl ? { CacheControl: input.cacheControl } : {}),
       }),
     )
   }

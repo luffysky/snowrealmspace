@@ -30,7 +30,10 @@
     "e2e:server": "pnpm e2e:build && pnpm e2e:start",
     "e2e:build": "cross-env NEXT_DIST_DIR=.next-e2e NEXT_PUBLIC_APP_URL=http://localhost:3100 dotenv -e .env.local -- pnpm --filter @snowrealm/web exec next build",
     "e2e:start": "cross-env NEXT_DIST_DIR=.next-e2e NEXT_PUBLIC_APP_URL=http://localhost:3100 dotenv -e .env.local -- pnpm --filter @snowrealm/web exec next start -p 3100",
-    "ports:free": "tsx scripts/free-ports.ts"
+    "ports:free": "tsx scripts/free-ports.ts",
+    "fonts:download": "tsx scripts/download-fonts.ts",
+    "fonts:build": "tsx scripts/build-fonts.ts",
+    "fonts:upload": "dotenv -e .env.local -- tsx scripts/upload-fonts.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
@@ -43,8 +46,10 @@
     "@snowrealm/theme-engine": "workspace:^",
     "@snowrealm/validation": "workspace:^",
     "@snowrealm/widget-engine": "workspace:^",
+    "@types/adm-zip": "^0.5.8",
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "2",
+    "adm-zip": "^0.6.0",
     "cross-env": "^10.1.0",
     "dependency-cruiser": "^18.1.0",
     "dotenv": "^16.4.7",
@@ -54,6 +59,7 @@
     "postgres": "^3.4.5",
     "prettier": "^3.4.2",
     "sharp": "^0.34.5",
+    "subset-font": "^2.5.0",
     "supabase": "^2.109.1",
     "tsx": "^4.19.2",
     "turbo": "^2.3.3",

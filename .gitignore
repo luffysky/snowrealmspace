@@ -17,3 +17,8 @@ test-results/
 # Supabase CLI 的暫存資料（每次 start/diff 都會變動）
 supabase/.temp/
 supabase/.branches/
+
+# 字體原始檔與分片產物。單套 6-16 MB，全部約 250 MB。
+# 用 pnpm fonts:download / fonts:build 重新產生。
+assets/fonts/
+assets/fonts-build/

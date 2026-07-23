@@ -52,3 +52,30 @@ export {
 export { PRESET_THEMES, DEFAULT_THEME, defaultThemeDefinition, NEUTRAL } from './presets.js'
 
 export { extractPalette, buildThemesFromPalette, type Palette } from './palette.js'
+
+export {
+  buildFontFamily,
+  compileFontVars,
+  buildFontFaceCss,
+  diffFontUsage,
+  firstScreenBudget,
+  type ResolvedFont,
+  type FontRole,
+  type FontAssignment,
+  type FontSubset,
+  type FontFaceSpec,
+} from './fonts.js'
+
+export {
+  ZH_HANT_SLICES,
+  LATIN_SLICES,
+  CJK_CORE_CHARS,
+  FIRST_SCREEN_BUDGET,
+  zhHantSlices,
+  slicesForScripts,
+  budgetForScripts,
+  pairingFirstScreenBytes,
+  formatUnicodeRange,
+  parseUnicodeRange,
+  type UnicodeSlice,
+} from './unicode-ranges.js'

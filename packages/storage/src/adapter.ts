@@ -41,8 +41,19 @@ export interface StorageAdapter {
   /** 讀取物件內容。worker 產生縮圖 / 偵測 MIME 時使用。 */
   get(key: string): Promise<Uint8Array>
 
-  /** 直接上傳（worker 寫入衍生檔時使用，不經過 signed URL）。 */
-  put(input: { key: string; body: Uint8Array; contentType: string }): Promise<void>
+  /**
+   * 直接上傳（worker 寫入衍生檔、字體分片上傳時使用，不經過 signed URL）。
+   *
+   * `cacheControl` 只給**內容不會變**的物件用（檔名含雜湊或版本）。
+   * 使用者上傳的檔案不要設 immutable —— 那會讓刪除後的舊內容
+   * 留在 CDN 與瀏覽器快取裡一年。
+   */
+  put(input: {
+    key: string
+    body: Uint8Array
+    contentType: string
+    cacheControl?: string
+  }): Promise<void>
 
   /** 刪除單一物件。刪除不存在的 key 不算錯誤（冪等）。 */
   delete(key: string): Promise<void>
