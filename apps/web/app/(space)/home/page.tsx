@@ -22,14 +22,23 @@ export default async function HomePage() {
     { activityTracking: settings.activity_tracking },
   )
 
-  let { data: layout } = await db
+  // 先讀使用中的版面 id
+  const { data: spaceRow } = await db
+    .from('spaces')
+    .select('active_layout_id')
+    .eq('id', space.id)
+    .maybeSingle()
+
+  // 全部版面（給切換器用）。使用中的那個連同 widget 一起載入。
+  const { data: allLayouts } = await db
     .from('layouts')
-    .select('id, widget_instances(*)')
+    .select('id, name, widget_instances(*)')
     .eq('space_id', space.id)
     .is('deleted_at', null)
     .order('created_at', { ascending: true })
-    .limit(1)
-    .maybeSingle()
+
+  let layout =
+    allLayouts?.find((l) => l.id === spaceRow?.active_layout_id) ?? allLayouts?.[0] ?? null
 
   /*
    * 第一次進來時建立預設版面。
@@ -69,10 +78,12 @@ export default async function HomePage() {
 
       const reloaded = await db
         .from('layouts')
-        .select('id, widget_instances(*)')
+        .select('id, name, widget_instances(*)')
         .eq('id', created.id)
         .maybeSingle()
       layout = reloaded.data
+      // 剛建立的版面要進 allLayouts，否則首次進來切換器是空的
+      if (reloaded.data) allLayouts?.push(reloaded.data)
     }
   }
 
@@ -94,6 +105,8 @@ export default async function HomePage() {
           layoutId={layout.id}
           initialWidgets={(layout.widget_instances ?? []) as unknown as WidgetInstanceRow[]}
           available={available}
+          layouts={(allLayouts ?? []).map((l) => ({ id: l.id, name: l.name }))}
+          activeLayoutId={layout.id}
         />
       ) : (
         <section className="sr-card">

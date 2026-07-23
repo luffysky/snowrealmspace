@@ -79,3 +79,10 @@ export {
   parseUnicodeRange,
   type UnicodeSlice,
 } from './unicode-ranges.js'
+
+export {
+  GLASS_BUDGET,
+  glassBudgetFor,
+  assignGlass,
+  type GlassBreakpoint,
+} from './glass-budget.js'

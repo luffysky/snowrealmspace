@@ -24,8 +24,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,css,md,json}\"",
     "check:deps": "depcruise --config .dependency-cruiser.cjs packages apps",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "tsx scripts/free-ports.ts 3100 && playwright test --project=chromium",
-    "test:e2e:mobile": "tsx scripts/free-ports.ts 3100 && playwright test --project=mobile",
+    "test:e2e": "tsx scripts/free-ports.ts 3100 && playwright test --project=chromium --grep-invert @visual",
+    "test:e2e:mobile": "tsx scripts/free-ports.ts 3100 && playwright test --project=mobile --grep-invert @visual",
     "test:a11y": "tsx scripts/free-ports.ts 3100 && playwright test --project=chromium --grep @a11y",
     "e2e:server": "pnpm e2e:build && pnpm e2e:start",
     "e2e:build": "cross-env NEXT_DIST_DIR=.next-e2e NEXT_PUBLIC_APP_URL=http://localhost:3100 dotenv -e .env.local -- pnpm --filter @snowrealm/web exec next build",
@@ -33,7 +33,8 @@
     "ports:free": "tsx scripts/free-ports.ts",
     "fonts:download": "tsx scripts/download-fonts.ts",
     "fonts:build": "tsx scripts/build-fonts.ts",
-    "fonts:upload": "dotenv -e .env.local -- tsx scripts/upload-fonts.ts"
+    "fonts:upload": "dotenv -e .env.local -- tsx scripts/upload-fonts.ts",
+    "test:visual": "tsx scripts/free-ports.ts 3100 && cross-env VISUAL=1 playwright test --project=chromium --grep @visual"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

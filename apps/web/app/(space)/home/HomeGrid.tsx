@@ -1,6 +1,7 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import {
   GRID,
   breakpointForWidth,
@@ -10,6 +11,7 @@ import {
 import { WidgetGrid } from '@/components/widgets/WidgetGrid'
 import { WidgetRenderer, hasImplementation } from '@/components/widgets/registry'
 import { WidgetSettings } from './WidgetSettings'
+import { useGlassBudget } from '@/lib/theme/use-glass-budget'
 
 export type WidgetInstanceRow = {
   id: string
@@ -30,6 +32,8 @@ export type AvailableWidget = {
   description: string
 }
 
+export type LayoutSummary = { id: string; name: string }
+
 function toGridItems(
   rows: WidgetInstanceRow[],
   breakpoint: 'desktop' | 'tablet',
@@ -48,11 +52,15 @@ export function HomeGrid({
   layoutId,
   initialWidgets,
   available,
+  layouts,
+  activeLayoutId,
 }: {
   spaceId: string
   layoutId: string
   initialWidgets: WidgetInstanceRow[]
   available: AvailableWidget[]
+  layouts: LayoutSummary[]
+  activeLayoutId: string
 }) {
   const [widgets, setWidgets] = useState(initialWidgets)
   const [breakpoint, setBreakpoint] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
@@ -60,6 +68,73 @@ export function HomeGrid({
   const [notice, setNotice] = useState<string | null>(null)
   // 目前打開設定面板的 widget id
   const [settingsFor, setSettingsFor] = useState<string | null>(null)
+  const router = useRouter()
+
+  /**
+   * 切換 / 新增 / 改名 / 刪除版面。
+   *
+   * 切換後用 router.refresh() 重新載入 —— 版面內容是伺服器端渲染的
+   * （page.tsx 依 active_layout_id 載入 widget），前端沒有另一個版面的
+   * widget 資料，硬在前端切會顯示錯的內容。
+   */
+  async function switchLayout(id: string) {
+    if (id === activeLayoutId) return
+    try {
+      await api(`/api/layouts/${id}`, { method: 'PATCH', body: JSON.stringify({ activate: true }) })
+      router.refresh()
+    } catch (err) {
+      setNotice(err instanceof Error ? err.message : '無法切換版面。')
+    }
+  }
+
+  async function createLayout() {
+    const name = prompt('新版面的名稱？', `版面 ${layouts.length + 1}`)
+    if (!name) return
+    try {
+      const created = (await api('/api/layouts', {
+        method: 'POST',
+        body: JSON.stringify({ name }),
+      })) as { id: string }
+      // 新版面建立後直接切過去
+      await api(`/api/layouts/${created.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ activate: true }),
+      })
+      router.refresh()
+    } catch (err) {
+      setNotice(err instanceof Error ? err.message : '無法建立版面。')
+    }
+  }
+
+  async function renameLayout() {
+    const current = layouts.find((l) => l.id === activeLayoutId)
+    const name = prompt('版面名稱？', current?.name ?? '')
+    if (!name || name === current?.name) return
+    try {
+      await api(`/api/layouts/${activeLayoutId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ name }),
+      })
+      router.refresh()
+    } catch (err) {
+      setNotice(err instanceof Error ? err.message : '無法改名。')
+    }
+  }
+
+  async function deleteLayout() {
+    if (layouts.length <= 1) {
+      setNotice('這是最後一個版面，不能刪除。')
+      return
+    }
+    const current = layouts.find((l) => l.id === activeLayoutId)
+    if (!confirm(`確定刪除版面「${current?.name}」嗎？裡面的區塊排列會一起刪掉。`)) return
+    try {
+      await api(`/api/layouts/${activeLayoutId}`, { method: 'DELETE' })
+      router.refresh()
+    } catch (err) {
+      setNotice(err instanceof Error ? err.message : '無法刪除。')
+    }
+  }
 
   // 依視窗寬度決定斷點
   useEffect(() => {
@@ -201,6 +276,11 @@ export function HomeGrid({
 
   const visible = widgets.filter((w) => !w.hidden)
 
+  // 毛玻璃數量上限（05-theme-tokens.md §2）。容器內超過預算的 widget
+  // 會被降級為 solid，優先保留視窗內的。
+  const gridContainerRef = useRef<HTMLDivElement>(null)
+  useGlassBudget(gridContainerRef, breakpoint, visible.length)
+
   const renderWidget = (id: string) => {
     const row = visible.find((w) => w.id === id)
     if (!row) return null
@@ -217,22 +297,60 @@ export function HomeGrid({
 
   return (
     <div className="sr-stack">
-      <div className="sr-row" style={{ justifyContent: 'space-between' }}>
-        <button
-          type="button"
-          className="sr-button sr-button-secondary"
-          onClick={() => setEditing((v) => !v)}
-          aria-pressed={editing}
-        >
-          {editing ? '完成編輯' : '編輯版面'}
-        </button>
+      <div className="sr-row" style={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
+        <div className="sr-row">
+          <button
+            type="button"
+            className="sr-button sr-button-secondary"
+            onClick={() => setEditing((v) => !v)}
+            aria-pressed={editing}
+          >
+            {editing ? '完成編輯' : '編輯版面'}
+          </button>
 
-        {editing && breakpoint !== 'mobile' && (
-          <span className="sr-muted">
-            拖曳右上角的把手移動，或用方向鍵；Shift 加方向鍵調整大小
-          </span>
+          {/* 版面切換器。多套版面時才顯示 —— 只有一套時沒有東西可切。 */}
+          {layouts.length > 1 && (
+            <label className="sr-row" style={{ gap: 'var(--sr-space-2)' }}>
+              <span className="sr-visually-hidden">選擇版面</span>
+              <select
+                className="sr-input"
+                aria-label="選擇版面"
+                value={activeLayoutId}
+                onChange={(e) => void switchLayout(e.target.value)}
+                style={{ maxWidth: 200 }}
+              >
+                {layouts.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
+
+        {editing && (
+          <div className="sr-row">
+            <button type="button" className="sr-button sr-button-secondary" onClick={() => void createLayout()}>
+              新增版面
+            </button>
+            <button type="button" className="sr-button sr-button-secondary" onClick={() => void renameLayout()}>
+              版面改名
+            </button>
+            {layouts.length > 1 && (
+              <button type="button" className="sr-asset-delete" onClick={() => void deleteLayout()}>
+                刪除此版面
+              </button>
+            )}
+          </div>
         )}
       </div>
+
+      {editing && breakpoint !== 'mobile' && (
+        <p className="sr-muted" style={{ margin: 0 }}>
+          拖曳右上角的把手移動，或用方向鍵；Shift 加方向鍵調整大小。每套版面各自記住排列。
+        </p>
+      )}
 
       {notice && (
         <p className="sr-message sr-message-error" role="alert">
@@ -264,30 +382,35 @@ export function HomeGrid({
         </section>
       )}
 
-      {visible.length === 0 ? (
-        <section className="sr-card">
-          <p className="sr-muted" style={{ marginBottom: 0 }}>
-            這個版面還是空的。按「編輯版面」加入區塊。
-          </p>
-        </section>
-      ) : breakpoint === 'mobile' ? (
-        // 行動版是單欄排序，不使用格線（06-widget-contract.md §1）
-        <div className="sr-mobile-stack">
-          {[...visible]
-            .sort((a, b) => (a.position?.mobile?.order ?? 0) - (b.position?.mobile?.order ?? 0))
-            .map((w) => (
-              <div key={w.id}>{renderWidget(w.id)}</div>
-            ))}
-        </div>
-      ) : (
-        <WidgetGrid
-          items={toGridItems(visible, breakpoint)}
-          breakpoint={breakpoint}
-          editing={editing}
-          onCommit={commit}
-          renderItem={(item) => renderWidget(item.id)}
-        />
-      )}
+      <div ref={gridContainerRef}>
+        {visible.length === 0 ? (
+          <section className="sr-card">
+            <p className="sr-muted" style={{ marginBottom: 0 }}>
+              這個版面還是空的。按「編輯版面」加入區塊。
+            </p>
+          </section>
+        ) : breakpoint === 'mobile' ? (
+          // 行動版是單欄排序，不使用格線（06-widget-contract.md §1）。
+          // 外層仍用 .sr-widget-slot，毛玻璃預算的偵測才涵蓋得到行動版。
+          <div className="sr-mobile-stack">
+            {[...visible]
+              .sort((a, b) => (a.position?.mobile?.order ?? 0) - (b.position?.mobile?.order ?? 0))
+              .map((w) => (
+                <div key={w.id} className="sr-widget-slot">
+                  {renderWidget(w.id)}
+                </div>
+              ))}
+          </div>
+        ) : (
+          <WidgetGrid
+            items={toGridItems(visible, breakpoint)}
+            breakpoint={breakpoint}
+            editing={editing}
+            onCommit={commit}
+            renderItem={(item) => renderWidget(item.id)}
+          />
+        )}
+      </div>
 
       {/*
         設定區塊。列出**所有** widget（含已隱藏的）——

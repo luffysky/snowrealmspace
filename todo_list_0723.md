@@ -95,9 +95,9 @@
 - [x] ~~blur_fade / zoom_fade 轉場動畫~~
 - [x] ~~Widget config 編輯面板（從 zod schema 自動生成）~~
 - [x] ~~Widget 隱藏 / 鎖定的 UI~~
-- [ ] Layout preset 多套版面切換（表支援，UI 只用第一個）
-- [ ] 毛玻璃數量上限（桌機 12 / 手機 6）
-- [ ] Visual regression 測試
+- [x] ~~Layout preset 多套版面切換（切換器 + 新增/改名/刪除，載入使用中版面）~~
+- [x] ~~毛玻璃數量上限（桌機 12 / 手機 6，IntersectionObserver 優先保留視窗內）~~
+- [x] ~~Visual regression 測試（opt-in @visual，不進主 CI，已 mutation 驗證會失敗）~~
 
 ### B4. 品質閘門
 

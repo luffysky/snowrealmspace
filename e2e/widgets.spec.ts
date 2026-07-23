@@ -129,6 +129,43 @@ test.describe('Home 版面（格線，桌機／平板）', () => {
     await expect(page.locator('.sr-widget-slot')).toHaveCount(initial)
   })
 
+  test('可以新增版面、切換，兩套版面各自獨立', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.getByRole('button', { name: '編輯版面' }).click()
+
+    const initialSlots = await page.locator('.sr-widget-slot').count()
+    expect(initialSlots).toBeGreaterThan(0)
+
+    // 新增版面會用 prompt 問名稱 —— 先掛好對話框處理
+    page.once('dialog', (dialog) => void dialog.accept('第二版面'))
+    await page.getByRole('button', { name: '新增版面' }).click()
+
+    // 切到新版面後（router.refresh 重載），會出現版面切換器
+    await expect(page.getByLabel('選擇版面')).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByLabel('選擇版面')).toHaveValue(/.+/)
+
+    // 新版面是全新的，也會帶入預設區塊（不是空白）
+    await expect(page.locator('.sr-widget-slot').first()).toBeVisible()
+
+    // 切回第一個版面
+    const options = await page.getByLabel('選擇版面').locator('option').all()
+    expect(options.length).toBe(2)
+    const firstValue = await options[0]!.getAttribute('value')
+    await page.getByLabel('選擇版面').selectOption(firstValue!)
+
+    // 切換後仍看得到區塊（版面內容隨切換重載）
+    await expect(page.locator('.sr-widget-slot').first()).toBeVisible({ timeout: 15_000 })
+  })
+
+  test('不能刪除最後一個版面', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.getByRole('button', { name: '編輯版面' }).click()
+
+    // 只有一個版面時，刪除按鈕不該出現（切換器也不出現）
+    await expect(page.getByRole('button', { name: '刪除此版面' })).toHaveCount(0)
+    await expect(page.getByLabel('選擇版面')).toHaveCount(0)
+  })
+
   test('可以調整區塊設定，重新載入後保留', async ({ page, invited }) => {
     await signInThroughUi(page, invited)
     await page.getByRole('button', { name: '編輯版面' }).click()

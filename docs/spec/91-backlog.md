@@ -15,7 +15,7 @@
 | Milestone | 狀態 | 完成度 |
 |---|---|---|
 | A — Foundation | ✅ 完成 | 100% |
-| B — Visual Personalization | 🚧 進行中 | **約 92%** |
+| B — Visual Personalization | 🚧 進行中 | **約 98%**（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ⬜ 未開始 | 0% |
 | D — AI Core | ⬜ 未開始 | 0% |
 | E — Daily Loop | ⬜ 未開始 | 0% |
