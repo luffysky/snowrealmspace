@@ -18,7 +18,7 @@
 | B — Visual Personalization | 🚧 進行中 | **約 98%**（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ⬜ 未開始 | 0% |
 | D — AI Core | ⬜ 未開始 | 0% |
-| E — Daily Loop | ⬜ 未開始 | 0% |
+| E — Daily Loop | 🚧 內容完成 | 內容池 100%，runtime 未做 |
 | F — Integration | ⬜ 未開始 | 0% |
 | 跨 Milestone：隱私與刪除 | 🚧 部分 | 約 40% |
 

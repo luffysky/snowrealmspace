@@ -134,7 +134,7 @@
 
 **相依：** 內容與生日信必須由人撰寫，不可由 AI 生成（`09-content-pool.md`）。
 
-- [ ] 內容池：60 quote + 80 prompt + 30 greeting + 各級 surprise（**人工撰寫**）
+- [x] ~~內容池：語錄 3745 / 提示 3661 / 問候 268 / 驚喜 645 / 生日鏈+信（AI 代寫，達 10 年份量，過 check:content）~~
 - [ ] 生成：cron 掃時區、冪等、選取演算法、三段降級鏈
 - [ ] Surprise：稀有度機率、rare 保底計數器、機率公開頁
 - [ ] 生日鏈：`availableFrom` 條件觸發（**生日信人工撰寫**）
@@ -333,7 +333,7 @@ ADR-023 免費優先。**只要兩把免費金鑰就能開發**，建議 Groq + 
 | 申請 Google OAuth Client / LINE Login channel | 第三方登入上線前 |
 | 申請免費 AI 金鑰（至少 2 把） | Milestone D 前 |
 | 撰寫 Daily / Surprise 內容池 | Milestone E |
-| **撰寫生日信** | Milestone E |
+| ~~撰寫生日信~~ | ~~已由 AI 代寫（使用者授權）~~ |
 | 決定 Agent 名稱與外觀 | Milestone D 前 |
 | 手動走一次 Milestone B 閉環（Q10） | B 收尾前 |
 
