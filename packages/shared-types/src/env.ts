@@ -9,6 +9,10 @@ const base64_32Bytes = z
   .string()
   .refine((v) => Buffer.from(v, 'base64').length === 32, '必須是 32 bytes 的 base64（用 openssl rand -base64 32 產生）')
 
+/** 空字串視為未設定。Zeabur 等平台會把未填的變數傳成 ''，不是 undefined。 */
+const emptyToUndef = <T extends z.ZodTypeAny>(schema: T) =>
+  z.preprocess((v) => (v === '' ? undefined : v), schema)
+
 /** 伺服器端才可讀的變數。絕不可出現在 client bundle。 */
 const serverSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
@@ -16,16 +20,21 @@ const serverSchema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   DATABASE_URL: z.string().min(1),
 
-  R2_ACCOUNT_ID: z.string().min(1),
-  R2_ACCESS_KEY_ID: z.string().min(1),
-  R2_SECRET_ACCESS_KEY: z.string().min(1),
-  R2_BUCKET: z.string().min(1),
-  R2_PUBLIC_BASE_URL: z.string().url().optional(),
+  /**
+   * R2 儲存全部 optional —— 沒設定時 app 仍能啟動與登入/註冊，
+   * 只有真正用到上傳/背景圖時才會清楚報「R2 尚未設定」（見 packages/storage/r2.ts）。
+   * 這是可選功能，不該讓整個 app 起不來（同 OAuth 的處理）。
+   */
+  R2_ACCOUNT_ID: emptyToUndef(z.string().min(1).optional()),
+  R2_ACCESS_KEY_ID: emptyToUndef(z.string().min(1).optional()),
+  R2_SECRET_ACCESS_KEY: emptyToUndef(z.string().min(1).optional()),
+  R2_BUCKET: emptyToUndef(z.string().min(1).optional()),
+  R2_PUBLIC_BASE_URL: emptyToUndef(z.string().url().optional()),
   /**
    * 覆寫 R2 端點。本機開發指向 S3 相容的本地服務；production 留空以使用真正的 R2。
    * 有這個選項才能在不申請 Cloudflare 帳號的情況下跑完整流程。
    */
-  R2_ENDPOINT: z.string().url().optional(),
+  R2_ENDPOINT: emptyToUndef(z.string().url().optional()),
   R2_REGION: z.string().default('auto'),
   /** 部分 S3 相容服務不支援 virtual-host 定址，需要 path-style。 */
   R2_FORCE_PATH_STYLE: z

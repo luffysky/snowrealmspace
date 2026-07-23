@@ -16,25 +16,38 @@ const DOWNLOAD_URL_TTL_SECONDS = 900 // ADR-022：15 分鐘
 
 let cachedClient: S3Client | null = null
 
+/**
+ * R2 未設定時清楚報錯，而不是靜默失敗（CLAUDE.md）。
+ * env 層讓 R2 全 optional（app 才能在沒 R2 時啟動與登入），
+ * 但真的要動用儲存時，就必須有完整設定。
+ */
+const R2_UNSET =
+  'R2 儲存尚未設定：需要 R2_ACCESS_KEY_ID / R2_SECRET_ACCESS_KEY / R2_BUCKET 與 R2_ACCOUNT_ID（或 R2_ENDPOINT）。上傳與背景圖功能要先設定 Cloudflare R2 才能使用。'
+
 function client(): S3Client {
   if (cachedClient) return cachedClient
   const env = serverEnv()
+  const accessKeyId = env.R2_ACCESS_KEY_ID
+  const secretAccessKey = env.R2_SECRET_ACCESS_KEY
+  const endpoint = env.R2_ENDPOINT ?? (env.R2_ACCOUNT_ID ? `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com` : null)
+  if (!accessKeyId || !secretAccessKey || !endpoint) {
+    throw new Error(R2_UNSET)
+  }
   cachedClient = new S3Client({
     region: env.R2_REGION,
     // R2_ENDPOINT 讓本機開發可以指向 S3 相容的本地服務，
     // 不必為了跑起專案去申請 Cloudflare 帳號（11-engineering-setup.md §12）。
-    endpoint: env.R2_ENDPOINT ?? `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    endpoint,
     forcePathStyle: env.R2_FORCE_PATH_STYLE,
-    credentials: {
-      accessKeyId: env.R2_ACCESS_KEY_ID,
-      secretAccessKey: env.R2_SECRET_ACCESS_KEY,
-    },
+    credentials: { accessKeyId, secretAccessKey },
   })
   return cachedClient
 }
 
 function bucket(): string {
-  return serverEnv().R2_BUCKET
+  const b = serverEnv().R2_BUCKET
+  if (!b) throw new Error(R2_UNSET)
+  return b
 }
 
 async function streamToBytes(body: unknown): Promise<Uint8Array> {
