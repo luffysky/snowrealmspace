@@ -151,4 +151,42 @@ test.describe('背景無障礙 @a11y', () => {
       blocking.map((v) => `[${v.impact}] ${v.id}: ${v.help}`).join('\n'),
     ).toEqual([])
   })
+
+  test('時段排程：設定 UI 出現、重疊被擋、儲存後保留', async ({ page, invited }) => {
+    await signInThroughUi(page, invited)
+    await page.goto('/studio/background')
+
+    // 兩張漸層背景，才有東西可以分配到不同時段
+    await page.getByRole('button', { name: '加入漸層背景' }).click()
+    await expect(page.getByRole('main').getByRole('status')).toContainText('已加入漸層背景')
+    await page.getByRole('button', { name: '加入漸層背景' }).click()
+
+    await page.getByLabel('新播放清單的名稱').fill('時段測試')
+    await page.getByRole('button', { name: '建立播放清單' }).click()
+    await page.getByLabel('加入背景').selectOption({ index: 1 })
+
+    // 切到「依時段」→ 排程編輯器要出現（先前完全沒有這個介面）
+    await page.getByLabel('播放方式').selectOption('time_of_day')
+    await page.getByRole('button', { name: '新增時段' }).click()
+    await expect(page.locator('.sr-schedule-slot')).toHaveCount(1)
+
+    // 第一個時段設成 0–12（此時沒有其他時段，會被存下）
+    const slots = page.locator('.sr-schedule-slot')
+    await slots.nth(0).getByLabel('從').selectOption('0')
+    await slots.nth(0).getByLabel('到').selectOption('12')
+
+    // 加第二個時段，最後一步故意做成與第一個重疊 → 必須即時擋下並說明。
+    // （重疊的變更會被拒絕不儲存，所以錯誤訊息一定是最後這個動作留下的）
+    await page.getByRole('button', { name: '新增時段' }).click()
+    await slots.nth(1).getByLabel('從').selectOption('6')
+    // role=alert 會同時匹配 Next 的路由播報器，要指定錯誤訊息本身
+    await expect(page.locator('.sr-message-error')).toContainText('同時屬於兩個時段')
+
+    // 重新整理後仍是「依時段」，且存下來的是**不重疊**的那個狀態
+    // （新增時段時的有效值有存，最後那個重疊的改動被拒絕沒存）
+    await page.reload()
+    await expect(page.getByLabel('播放方式')).toHaveValue('time_of_day')
+    await expect(page.locator('.sr-schedule-slot')).toHaveCount(2)
+    await expect(page.locator('.sr-message-error')).toHaveCount(0)
+  })
 })

@@ -56,3 +56,18 @@ export {
 } from './backgrounds.js'
 
 export { localHour, localDate, slotForHour, seededIndex } from './schedule.js'
+
+export { parseVideoDuration, type VideoMetadata } from './video-metadata.js'
+
+export {
+  CLIENT_ROTATED,
+  needsClientRotation,
+  intervalMsFor,
+  perLoginIndex,
+  nextIndex,
+  validateSlots,
+  hoursIn,
+  uncoveredHours,
+  type PlayMode,
+  type Slot,
+} from './playback.js'

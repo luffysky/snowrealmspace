@@ -20,7 +20,8 @@
     "pg-boss": "^10.1.6",
     "sharp": "^0.34.5",
     "@snowrealm/theme-engine": "workspace:*",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "@snowrealm/validation": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

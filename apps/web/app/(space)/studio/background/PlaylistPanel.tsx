@@ -2,8 +2,17 @@
 
 import { useCallback, useState } from 'react'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
+import { ScheduleEditor } from './ScheduleEditor'
+import type { Slot } from '@snowrealm/validation'
 
 export type PlaylistItemRow = { id: string; position: number; background_item_id: string }
+
+export type ScheduleSlot = {
+  startHour: number
+  endHour: number
+  backgroundItemId: string
+  label?: string
+}
 
 export type Playlist = {
   id: string
@@ -12,6 +21,7 @@ export type Playlist = {
   interval_seconds: number
   transition: string
   transition_ms: number
+  schedule: { slots?: ScheduleSlot[] } | null
   is_active: boolean
   background_playlist_items: PlaylistItemRow[]
 }
@@ -21,6 +31,8 @@ const PLAY_MODES: { value: string; label: string; description: string }[] = [
   { value: 'random', label: '隨機', description: '每天隨機挑一張，當天不變' },
   { value: 'daily', label: '每日切換', description: '每天換一張' },
   { value: 'per_login', label: '每次登入', description: '每次進來換一張' },
+  { value: 'hourly', label: '每小時', description: '每小時換一張' },
+  { value: 'time_of_day', label: '依時段', description: '不同時間顯示不同背景' },
 ]
 
 const TRANSITION_LABELS: Record<string, string> = {
@@ -134,13 +146,13 @@ export function PlaylistPanel({
     }
   }
 
-  async function patch(playlistId: string, body: Record<string, unknown>) {
+  async function patch(playlistId: string, body: Record<string, unknown>, reloadAfter = true) {
     try {
       await api(`/api/background-playlists/${playlistId}`, {
         method: 'PATCH',
         body: JSON.stringify(body),
       })
-      await reload()
+      if (reloadAfter) await reload()
     } catch (err) {
       onStatus(err instanceof Error ? err.message : '更新失敗。', true)
     }
@@ -269,6 +281,19 @@ export function PlaylistPanel({
                   onChange={(e) =>
                     void patch(playlist.id, { intervalSeconds: Number(e.target.value) })
                   }
+                />
+              </div>
+            )}
+
+            {playlist.play_mode === 'time_of_day' && (
+              <div className="sr-field">
+                <ScheduleEditor
+                  slots={(playlist.schedule?.slots ?? []) as Slot[]}
+                  backgrounds={backgrounds.map((bg) => ({
+                    id: bg.id,
+                    label: bg.name ?? '未命名背景',
+                  }))}
+                  onChange={(slots) => void patch(playlist.id, { schedule: { slots } }, false)}
                 />
               </div>
             )}

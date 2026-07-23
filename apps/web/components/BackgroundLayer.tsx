@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { intervalMsFor, needsClientRotation, nextIndex, perLoginIndex } from '@snowrealm/validation'
 
 /**
  * 背景渲染層。
@@ -42,6 +43,29 @@ export type BackgroundState = {
   transitionMs: number
   playMode: string
   intervalSeconds: number
+  items: BackgroundItem[]
+}
+
+const SESSION_KEY = 'sr-bg-load-count'
+
+/**
+ * 決定這次載入從哪一張開始。
+ *
+ * per_login：每次「開啟頁面」換一張，但同一分頁重新整理不換
+ * （用 sessionStorage 計數，重新整理不歸零、關掉分頁才清）。
+ * 其餘模式：從伺服器解析的 current 開始。
+ */
+function initialIndex(state: BackgroundState): number {
+  if (state.playMode !== 'per_login' || state.items.length === 0) {
+    return Math.max(0, state.items.findIndex((i) => i.id === state.current?.id))
+  }
+
+  if (typeof window === 'undefined') return 0
+  const raw = window.sessionStorage.getItem(SESSION_KEY)
+  const count = raw ? Number(raw) : 0
+  // 只在這個分頁第一次載入時 +1；重新整理會讀到已經 +1 過的值
+  if (raw === null) window.sessionStorage.setItem(SESSION_KEY, String(count + 1))
+  return perLoginIndex(count, state.items.length)
 }
 
 function filterFor(item: BackgroundItem): string {
@@ -209,18 +233,68 @@ export function BackgroundLayer({
   const [paused, setPaused] = useState(false)
   const [hasVideo, setHasVideo] = useState(false)
 
+  // 目前顯示的索引。輪播模式會定時往前推。
+  const [index, setIndex] = useState(() => (state ? initialIndex(state) : 0))
+  // 轉場期間同時掛著上一張，讓它淡出
+  const [leaving, setLeaving] = useState<{ item: BackgroundItem; key: number } | null>(null)
+  const renderKey = useRef(0)
+
+  const items = state?.items ?? []
+  const rotate = state ? needsClientRotation(state.playMode) && items.length > 1 : false
+  const intervalMs = state ? intervalMsFor(state.playMode, state.intervalSeconds) : null
+
+  // ── 定時輪播 ──
+  useEffect(() => {
+    if (!rotate || intervalMs === null || paused) return
+
+    const timer = setInterval(() => {
+      setIndex((prev) => {
+        const current = items[prev]
+        if (current) {
+          renderKey.current += 1
+          setLeaving({ item: current, key: renderKey.current })
+        }
+        return nextIndex(prev, items.length)
+      })
+    }, intervalMs)
+
+    return () => clearInterval(timer)
+  }, [rotate, intervalMs, paused, items])
+
+  // 轉場結束後卸載離場的那一張，避免一直堆疊在 DOM
+  useEffect(() => {
+    if (!leaving || !state) return
+    const timer = setTimeout(() => setLeaving(null), state.transitionMs + 100)
+    return () => clearTimeout(timer)
+  }, [leaving, state])
+
   if (!state?.current) return null
 
-  const item = state.current
+  const item = items[index] ?? state.current
+  const upcoming = items[nextIndex(index, items.length)] ?? state.next
 
   return (
-    <div className="sr-bg-layer" data-transition={state.transition}>
-      <BackgroundMedia
-        spaceId={spaceId}
-        item={item}
-        paused={paused}
-        onVideoPresent={setHasVideo}
-      />
+    <div
+      className="sr-bg-layer"
+      data-transition={state.transition}
+      style={{ ['--sr-bg-transition-ms' as string]: `${state.transitionMs}ms` }}
+    >
+      {/* 離場的舊背景：只在轉場期間存在 */}
+      {leaving && (
+        <div className="sr-bg-slot" data-state="leave" key={`leave-${leaving.key}`}>
+          <BackgroundMedia spaceId={spaceId} item={leaving.item} paused onVideoPresent={() => {}} />
+        </div>
+      )}
+
+      {/* 目前背景。key 綁定 item.id，換張時 React 會重掛 → 觸發入場動畫 */}
+      <div className="sr-bg-slot" data-state="enter" key={`enter-${item.id}`}>
+        <BackgroundMedia
+          spaceId={spaceId}
+          item={item}
+          paused={paused}
+          onVideoPresent={setHasVideo}
+        />
+      </div>
 
       {item.overlay_opacity > 0 && (
         <div
@@ -229,14 +303,12 @@ export function BackgroundLayer({
         />
       )}
 
-      {/*
-        v1.0 §12.6：僅預載下一張。用 link[rel=prefetch] 而非隱藏的 <img>，
-        避免瀏覽器把它當成需要立即解碼的內容。
-      */}
-      {state.next && <PreloadNext spaceId={spaceId} item={state.next} />}
+      {/* v1.0 §12.6：僅預載下一張 */}
+      {upcoming && <PreloadNext spaceId={spaceId} item={upcoming} />}
 
-      {/* WCAG 2.2 Pause, Stop, Hide：自動播放的內容必須能被停止 */}
-      {hasVideo && (
+      {/* WCAG 2.2 Pause, Stop, Hide：自動播放的內容必須能被停止。
+          輪播本身也是自動播放的動態，所以有影片或會輪播時都顯示。 */}
+      {(hasVideo || rotate) && (
         <button
           type="button"
           className="sr-bg-pause"

@@ -16,6 +16,13 @@ export type ResolvedBackground = {
   transitionMs: number
   playMode: string
   intervalSeconds: number
+  /**
+   * 完整的、已排序的項目清單。
+   * sequence / hourly / per_login 模式的前端輪播需要它 ——
+   * 只給 current / next 的話，前端切到第三張時就沒有資料了。
+   * single 模式為單一元素。
+   */
+  items: Record<string, unknown>[]
 }
 
 
@@ -77,11 +84,18 @@ export async function resolveCurrentBackground(
           current: match.item,
           next: null,
           switchAt: switchAt.toISOString(),
+          items: entries.map((e) => e.item!),
         }
       }
     }
     // 沒有對應的 slot：退回第一張，而不是空白
-    return { ...base, current: entries[0]!.item, next: entries[1]?.item ?? null, switchAt: null }
+    return {
+      ...base,
+      current: entries[0]!.item,
+      next: entries[1]?.item ?? null,
+      switchAt: null,
+      items: entries.map((e) => e.item!),
+    }
   }
 
   // ── 每日 / 隨機：以當地日期為種子，同一天內穩定 ──
@@ -97,6 +111,7 @@ export async function resolveCurrentBackground(
       current: entries[index]!.item,
       next: entries[nextIndex]?.item ?? null,
       switchAt: playlist.play_mode === 'daily' ? tomorrow.toISOString() : null,
+      items: entries.map((e) => e.item!),
     }
   }
 
@@ -107,5 +122,6 @@ export async function resolveCurrentBackground(
     // v1.0 §12.6：僅預載下一張
     next: entries[1]?.item ?? null,
     switchAt: null,
+    items: entries.map((e) => e.item!),
   }
 }

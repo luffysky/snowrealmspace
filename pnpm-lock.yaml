@@ -180,6 +180,9 @@ importers:
       '@snowrealm/theme-engine':
         specifier: workspace:*
         version: link:../../packages/theme-engine
+      '@snowrealm/validation':
+        specifier: workspace:*
+        version: link:../../packages/validation
       dotenv:
         specifier: ^16.4.7
         version: 16.6.1

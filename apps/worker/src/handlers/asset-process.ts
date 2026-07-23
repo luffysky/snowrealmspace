@@ -3,6 +3,7 @@ import sharp from 'sharp'
 import { createAdminClient } from '@snowrealm/db/server'
 import { storage, storageKeys } from '@snowrealm/storage'
 import { extractPalette } from '@snowrealm/theme-engine'
+import { parseVideoDuration, LIMITS } from '@snowrealm/validation'
 
 /**
  * 上傳後處理：探測尺寸、產生衍生檔、跑本地分析。
@@ -26,6 +27,61 @@ export async function handleAssetProcess(jobs: Job<AssetProcessPayload>[]): Prom
       throw err
     })
   }
+}
+
+/**
+ * 驗證影片時長並回填。ADR-019。
+ *
+ * ## 為什麼要在伺服器端再驗一次
+ *
+ * 前端用 `<video>` 量過一次，但那是**使用者可以改的值** ——
+ * 直接送一個 `durationMs: 1000` 的請求就能繞過 30 秒限制。
+ * 這裡讀真正的檔案內容，是唯一的權威來源。
+ *
+ * 超過上限的處理是**軟刪除 + 明確訊息**，不是靜靜留著：
+ * 留著的話使用者會看到一個永遠無法設為背景的檔案，卻不知道為什麼。
+ */
+async function verifyVideoDuration(
+  db: ReturnType<typeof createAdminClient>,
+  assetId: string,
+  spaceId: string,
+  storageKey: string,
+): Promise<void> {
+  // 時長在容器開頭，不必下載整個檔案。
+  // 2 MB 足以涵蓋 moov 在檔尾的情況以外的所有一般狀況。
+  const head = await storage().get(storageKey)
+  const meta = parseVideoDuration(head)
+
+  if (!meta) {
+    // 解析不出來不代表檔案有問題（moov 可能在檔尾），
+    // 但也不能當成通過 —— 記錄下來，讓它維持可用但沒有時長資訊。
+    console.warn('[asset.process] 無法解析影片時長', assetId)
+    return
+  }
+
+  if (meta.durationMs > LIMITS.videoDurationMs) {
+    await db
+      .from('assets')
+      .update({
+        duration_ms: meta.durationMs,
+        status: 'failed',
+        failure_reason:
+          `影片長 ${Math.round(meta.durationMs / 1000)} 秒，超過 ` +
+          `${LIMITS.videoDurationMs / 1000} 秒上限。目前不會自動裁切。`,
+        deleted_at: new Date().toISOString(),
+      })
+      .eq('id', assetId)
+
+    console.warn('[asset.process] 影片超過時長上限，已標記失敗', {
+      assetId,
+      spaceId,
+      durationMs: meta.durationMs,
+    })
+    return
+  }
+
+  await db.from('assets').update({ duration_ms: meta.durationMs }).eq('id', assetId)
+  console.log('[asset.process] 影片時長已回填', assetId, `${meta.durationMs}ms`)
 }
 
 async function processOne(payload: AssetProcessPayload): Promise<void> {
@@ -59,10 +115,14 @@ async function processOne(payload: AssetProcessPayload): Promise<void> {
     return
   }
 
+  if (asset.kind === 'video') {
+    await verifyVideoDuration(db, asset.id, asset.space_id, asset.storage_key)
+    return
+  }
+
   if (asset.kind !== 'image') {
-    // 影片的 poster frame 需要 ffmpeg，排在 Milestone B 後段；
-    // PDF 縮圖需要額外相依。這兩類先只回填「已處理」的標記。
-    console.log('[asset.process] 目前只處理圖片，略過', assetId, asset.kind)
+    // PDF 縮圖需要額外相依，排在 Milestone C。
+    console.log('[asset.process] 目前只處理圖片與影片，略過', assetId, asset.kind)
     return
   }
 

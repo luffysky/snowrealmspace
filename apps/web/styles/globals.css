@@ -726,21 +726,98 @@ input[type='range'] {
   pointer-events: none;
 }
 
+/*
+ * 背景輪播用兩層堆疊：舊的淡出、新的淡入。
+ * 單層直接換 src 會在載入新圖時閃一下空白 —— 那比不做轉場還難看。
+ */
+.sr-bg-slot {
+  position: absolute;
+  inset: 0;
+}
+
 .sr-bg-media {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
-  animation: sr-bg-in var(--sr-duration-base) var(--sr-ease);
+}
+
+/*
+ * 三種轉場（v1.0 §12.5）。時長由 --sr-bg-transition-ms 決定，
+ * 由 BackgroundLayer 依播放清單設定寫入。
+ *
+ * 全部只動 opacity / filter / transform —— 這三個屬性走合成器，
+ * 不觸發 layout 與 paint。換成動畫 width 或 background-image 會掉幀。
+ */
+.sr-bg-slot[data-state='enter'] .sr-bg-media {
+  animation: sr-bg-in var(--sr-bg-transition-ms, 600ms) var(--sr-ease) both;
+}
+.sr-bg-slot[data-state='leave'] .sr-bg-media {
+  animation: sr-bg-out var(--sr-bg-transition-ms, 600ms) var(--sr-ease) both;
+}
+
+.sr-bg-layer[data-transition='blur_fade'] .sr-bg-slot[data-state='enter'] .sr-bg-media {
+  animation-name: sr-bg-in-blur;
+}
+.sr-bg-layer[data-transition='blur_fade'] .sr-bg-slot[data-state='leave'] .sr-bg-media {
+  animation-name: sr-bg-out-blur;
+}
+
+.sr-bg-layer[data-transition='zoom_fade'] .sr-bg-slot[data-state='enter'] .sr-bg-media {
+  animation-name: sr-bg-in-zoom;
+}
+.sr-bg-layer[data-transition='zoom_fade'] .sr-bg-slot[data-state='leave'] .sr-bg-media {
+  animation-name: sr-bg-out-zoom;
 }
 
 @keyframes sr-bg-in {
-  from {
-    opacity: 0;
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes sr-bg-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/*
+ * blur 的起點刻意不大（12px）。更大的值在行動裝置上會讓
+ * 合成器來不及處理整個視窗大小的模糊，反而變成掉幀的來源。
+ */
+@keyframes sr-bg-in-blur {
+  from { opacity: 0; filter: blur(12px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+@keyframes sr-bg-out-blur {
+  from { opacity: 1; filter: blur(0); }
+  to   { opacity: 0; filter: blur(12px); }
+}
+
+/* 縮放幅度也小 —— 大幅縮放會讓邊緣露出底色 */
+@keyframes sr-bg-in-zoom {
+  from { opacity: 0; transform: scale(1.06); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes sr-bg-out-zoom {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.97); }
+}
+
+/*
+ * reduced-motion：轉場只留最短的淡入淡出，不做位移與模糊。
+ * 完全移除轉場會讓畫面「跳」，那對前庭敏感的人同樣不舒服 ——
+ * WCAG 要的是減少動態，不是零動態。
+ */
+@media (prefers-reduced-motion: reduce) {
+  .sr-bg-slot[data-state='enter'] .sr-bg-media,
+  .sr-bg-slot[data-state='leave'] .sr-bg-media,
+  .sr-bg-layer[data-transition='blur_fade'] .sr-bg-slot .sr-bg-media,
+  .sr-bg-layer[data-transition='zoom_fade'] .sr-bg-slot .sr-bg-media {
+    animation-name: sr-bg-in;
+    animation-duration: 120ms !important;
   }
-  to {
-    opacity: 1;
+  .sr-bg-slot[data-state='leave'] .sr-bg-media {
+    animation-name: sr-bg-out;
   }
 }
 
@@ -1112,4 +1189,28 @@ input[type='range'] {
 
 .sr-field + .sr-field {
   margin-top: var(--sr-space-5);
+}
+
+/* ── 時段排程編輯器 ─────────────────────────────────────── */
+.sr-schedule-slots {
+  list-style: none;
+  margin: 0 0 var(--sr-space-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+}
+.sr-schedule-slot {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sr-space-2);
+  flex-wrap: wrap;
+}
+.sr-schedule-hour {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-1);
+}
+.sr-schedule-hour .sr-input {
+  width: auto;
 }
