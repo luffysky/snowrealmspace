@@ -25,6 +25,7 @@ export type LocalFeatures = {
     averageSaturation?: number
     averageLightness?: number
     isDark?: boolean
+    textZoneLuminance?: number | null
   }
   dimensions?: { width?: number | null; height?: number | null; aspectRatio?: number | null }
 }
@@ -47,6 +48,7 @@ export type FeatureComparison = {
     whitespaceDelta: number | null
     saturationDelta: number | null
     lightnessDelta: number | null
+    textZoneLuminanceDelta: number | null
     isDarkChanged: boolean | null
   }
 }
@@ -92,6 +94,7 @@ export function compareLocalFeatures(a: LocalFeatures, b: LocalFeatures): Featur
       whitespaceDelta: numDelta(pa.whitespaceRatio, pb.whitespaceRatio),
       saturationDelta: numDelta(pa.averageSaturation, pb.averageSaturation),
       lightnessDelta: numDelta(pa.averageLightness, pb.averageLightness),
+      textZoneLuminanceDelta: numDelta(pa.textZoneLuminance, pb.textZoneLuminance),
       isDarkChanged:
         typeof pa.isDark === 'boolean' && typeof pb.isDark === 'boolean'
           ? pa.isDark !== pb.isDark

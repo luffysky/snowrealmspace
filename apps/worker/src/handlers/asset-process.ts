@@ -211,10 +211,25 @@ async function analyzeLocally(source: Uint8Array): Promise<Record<string, unknow
 
   const palette = extractPalette(new Uint8Array(small.data), 5)
 
-  // 留白比例：接近純白/純黑且低飽和的像素佔比
+  // 留白比例：接近純白/純黑且低飽和的像素佔比。
+  // textZoneLuminance：中央水平帶（文字常落點）的 WCAG 相對亮度，供設計分析
+  // 判斷該處文字需深或淺色。純計算、可重現（ADR-012）。
   const { data, info } = small
+  const width = info.width
+  const height = info.height
+  const total = width * height
+  const bandTop = Math.floor(height / 3)
+  const bandBottom = Math.ceil((height * 2) / 3)
+
+  // sRGB → 線性（WCAG 相對亮度用）
+  const lin = (c: number): number => {
+    const s = c / 255
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)
+  }
+
   let flat = 0
-  const total = info.width * info.height
+  let bandLumSum = 0
+  let bandCount = 0
   for (let i = 0; i + 3 < data.length; i += 4) {
     const r = data[i]!
     const g = data[i + 1]!
@@ -222,7 +237,15 @@ async function analyzeLocally(source: Uint8Array): Promise<Record<string, unknow
     const max = Math.max(r, g, b)
     const min = Math.min(r, g, b)
     if (max - min < 18 && (max > 235 || max < 20)) flat++
+
+    const row = Math.floor(i / 4 / width)
+    if (row >= bandTop && row < bandBottom) {
+      bandLumSum += 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+      bandCount++
+    }
   }
+
+  const textZoneLuminance = bandCount > 0 ? Math.round((bandLumSum / bandCount) * 1000) / 1000 : null
 
   return {
     colors: {
@@ -239,6 +262,8 @@ async function analyzeLocally(source: Uint8Array): Promise<Record<string, unknow
       averageSaturation: palette.stats.averageSaturation,
       averageLightness: palette.stats.averageLightness,
       isDark: palette.stats.isDark,
+      // 中央帶亮度：> 0.5 適合深色文字、< 0.5 適合淺色文字
+      textZoneLuminance,
     },
   }
 }

@@ -43,6 +43,14 @@ describe('compareLocalFeatures', () => {
     expect(r.stats.isDarkChanged).toBe(true)
   })
 
+  it('計算 textZoneLuminance 差異（中央帶亮度變化）', () => {
+    const r = compareLocalFeatures(
+      { composition: { textZoneLuminance: 0.2 } },
+      { composition: { textZoneLuminance: 0.75 } },
+    )
+    expect(r.stats.textZoneLuminanceDelta).toBe(0.55)
+  })
+
   it('缺欄位時對應差異為 null，不拋錯', () => {
     const r = compareLocalFeatures({}, {})
     expect(r.dimensions.widthDelta).toBeNull()
