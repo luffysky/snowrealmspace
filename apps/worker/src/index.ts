@@ -9,7 +9,9 @@ const { handlePing } = await import('./handlers/ping.js')
 const { handleAssetProcess } = await import('./handlers/asset-process.js')
 const { handleEventProject } = await import('./handlers/event-project.js')
 const { handleDailyGenerate, handleInsightWeekly } = await import('./handlers/daily-cron.js')
-const { handleQueueHealth, handleStorageGc } = await import('./handlers/maintenance.js')
+const { handleQueueHealth, handleStorageGc, handleSpacePurge } = await import(
+  './handlers/maintenance.js'
+)
 const { registerSchedules } = await import('./schedules.js')
 
 /**
@@ -46,6 +48,9 @@ async function main() {
 
   await boss.createQueue(QUEUES.storageGc)
   await boss.work(QUEUES.storageGc, { batchSize: 1 }, handleStorageGc)
+
+  await boss.createQueue(QUEUES.spacePurge)
+  await boss.work(QUEUES.spacePurge, { batchSize: 1 }, handleSpacePurge)
 
   // ADR-008：排程由 pg-boss 自己管，不依賴平台的 Cron
   await registerSchedules(boss)

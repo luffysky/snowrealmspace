@@ -2711,6 +2711,7 @@ export type Database = {
       }
       is_space_member: { Args: { target_space_id: string }; Returns: boolean }
       is_space_owner: { Args: { target_space_id: string }; Returns: boolean }
+      purge_space: { Args: { target_space_id: string }; Returns: undefined }
       reorder_playlist_items: {
         Args: { ordered_ids: string[]; target_playlist_id: string }
         Returns: undefined

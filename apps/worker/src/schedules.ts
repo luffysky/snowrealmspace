@@ -57,6 +57,12 @@ export const SCHEDULES: ScheduleSpec[] = [
     tz: 'UTC',
     description: '清理逾期的 pending 上傳與軟刪除滿 30 天的檔案',
   },
+  {
+    queue: QUEUES.spacePurge,
+    cron: '30 3 * * *',
+    tz: 'UTC',
+    description: '永久清除軟刪除滿 7 天寬限期的 space（R2 先於 DB）',
+  },
   // Milestone E 會加入：
   //   daily.generate   每小時，挑出當地 04:00 的 space
   //   insight.weekly   每小時，挑出當地週一 09:00 的 space

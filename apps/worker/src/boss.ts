@@ -57,6 +57,8 @@ export const QUEUES = {
   // 維護類（由 schedules.ts 週期觸發）
   queueHealth: 'maintenance.queue-health',
   storageGc: 'maintenance.storage-gc',
+  // 軟刪除滿寬限期的 space 的永久清除（R2 先於 DB）
+  spacePurge: 'maintenance.space-purge',
 } as const
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES]
@@ -69,4 +71,5 @@ export type JobPayloads = {
   'insight.weekly': Record<string, never>
   'maintenance.queue-health': Record<string, never>
   'maintenance.storage-gc': Record<string, never>
+  'maintenance.space-purge': Record<string, never>
 }

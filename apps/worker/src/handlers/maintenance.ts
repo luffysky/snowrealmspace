@@ -130,3 +130,77 @@ export async function handleStorageGc(_jobs: Job<unknown>[]): Promise<void> {
     console.log(`[storage-gc] 清理逾期上傳 ${stale?.length ?? 0}、永久刪除 ${purged}`)
   }
 }
+
+/** 刪除 space 的寬限期（天）。軟刪除滿這麼久才永久清除，期間可還原。 */
+export const SPACE_PURGE_GRACE_DAYS = 7
+
+/**
+ * 永久清除已軟刪除滿寬限期的 space。10-acceptance.md 隱私與刪除。
+ *
+ * 刪除順序 **R2 先、DB 後**（與 storage-gc 同理）：
+ * 先刪掉這個 space 所有 asset 與 rendition 的 R2 物件，全部成功後才 hard-delete
+ * space 資料列——外鍵 on delete cascade 會連帶清掉 members / assets / backgrounds…
+ * 若有任何 R2 物件沒刪成功就保留資料列，下次再試（刪除不存在的物件是冪等的），
+ * 絕不讓 storage_key 隨 DB 一起消失、變成永遠計費的孤兒。
+ */
+export async function handleSpacePurge(_jobs: Job<unknown>[]): Promise<void> {
+  const db = createAdminClient()
+  const store = storage()
+
+  const purgeBefore = new Date(
+    Date.now() - SPACE_PURGE_GRACE_DAYS * 24 * 60 * 60 * 1000,
+  ).toISOString()
+
+  const { data: spaces } = await db
+    .from('spaces')
+    .select('id, name')
+    .not('deleted_at', 'is', null)
+    .lt('deleted_at', purgeBefore)
+    .limit(20)
+
+  let purged = 0
+
+  for (const space of spaces ?? []) {
+    // 這個 space 的所有 asset 位元組（含 rendition）—— 位元組只存在這兩張表（ADR-005）
+    const { data: assets } = await db
+      .from('assets')
+      .select('id, storage_key')
+      .eq('space_id', space.id)
+
+    const assetIds = (assets ?? []).map((a) => a.id)
+    let renditionKeys: string[] = []
+    if (assetIds.length > 0) {
+      const { data: renditions } = await db
+        .from('asset_renditions')
+        .select('storage_key')
+        .in('asset_id', assetIds)
+      renditionKeys = (renditions ?? []).map((r) => r.storage_key)
+    }
+
+    const keys = [...(assets ?? []).map((a) => a.storage_key), ...renditionKeys]
+
+    if (keys.length > 0) {
+      const { failed } = await store.deleteMany(keys)
+      if (failed.length > 0) {
+        // 有物件沒刪成功就先不刪 DB，下次再試 —— 否則 storage_key 就永遠遺失了
+        console.error('[space-purge] 部分物件刪除失敗，保留 space', space.id, failed)
+        continue
+      }
+    }
+
+    // R2 已淨空，才永久刪 space（cascade 連帶清掉所有子表）。
+    // 走 purge_space() SECURITY DEFINER：軟刪除的 parent 在 RLS 下對 cascade 的
+    // RI 檢查不可見，直接 delete 會報 "RI query gave unexpected result"（見 0029）。
+    const { error } = await db.rpc('purge_space', { target_space_id: space.id })
+    if (error) {
+      console.error('[space-purge] 刪除 space 資料列失敗', space.id, error.message)
+      continue
+    }
+    purged++
+    console.log(`[space-purge] 已永久刪除 space ${space.id}（${keys.length} 個物件）`)
+  }
+
+  if (purged > 0) {
+    console.log(`[space-purge] 本輪永久刪除 ${purged} 個 space`)
+  }
+}

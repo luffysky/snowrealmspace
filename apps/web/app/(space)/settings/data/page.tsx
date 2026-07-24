@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
+import { DangerZone } from '../DangerZone'
 
 export const metadata: Metadata = { title: '資料地圖 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -95,13 +96,7 @@ export default async function DataMapPage() {
         </ul>
       </section>
 
-      <section className="sr-card">
-        <h2 className="sr-section-title">刪除整個空間 / 帳號</h2>
-        <p className="sr-muted">
-          刪除整個空間與帳號（含 7 天寬限、匯出）尚未開放 —— 需要先完成雲端儲存（R2）與背景清理服務的設定。
-          在那之前，你可以逐項刪除上面的資料。這是刻意的：寧可誠實說「還沒做」，也不擺一個做不到的按鈕。
-        </p>
-      </section>
+      <DangerZone spaceId={space.id} spaceName={space.name} />
     </div>
   )
 }

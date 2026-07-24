@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { getDb } from '@/lib/supabase/server'
 import { getUser } from '@/lib/auth/session'
@@ -201,4 +202,88 @@ export async function updateAgentSettings(
   await emitEvent('settings.changed', input.spaceId, user.id, { keys: ['agent_proactive'] })
   revalidatePath('/settings')
   return { status: 'saved', message: '已儲存。' }
+}
+
+const deleteSpaceSchema = z
+  .object({ spaceId: z.string().uuid(), confirmName: z.string() })
+  .strict()
+
+/**
+ * 刪除這個空間（10-acceptance.md 隱私與刪除）。
+ *
+ * 這是「軟刪除 + 7 天寬限」：立刻設 deleted_at，空間馬上進不去，
+ * 但位元組與資料要等 space-purge job（滿 7 天）才永久清除，期間可還原。
+ * 需要輸入空間名稱二次確認，避免誤刪。走 RLS：只有 owner 的 update 會成功。
+ */
+export async function deleteSpace(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const parsed = deleteSpaceSchema.safeParse({
+    spaceId: formData.get('spaceId'),
+    confirmName: (formData.get('confirmName') as string | null)?.trim() ?? '',
+  })
+  if (!parsed.success) return { status: 'error', message: '輸入格式不正確。' }
+  const { spaceId, confirmName } = parsed.data
+
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+
+  const db = await getDb()
+  // owner 讀得到自己的 space（0028 policy）；比對名稱做二次確認
+  const { data: space } = await db
+    .from('spaces')
+    .select('name')
+    .eq('id', spaceId)
+    .is('deleted_at', null)
+    .maybeSingle()
+  if (!space) return { status: 'error', message: '找不到這個空間，或它已在刪除中。' }
+  if (confirmName !== space.name) {
+    return { status: 'error', message: '輸入的名稱不符，請完整輸入空間名稱以確認。' }
+  }
+
+  const { error } = await db
+    .from('spaces')
+    .update({ deleted_at: new Date().toISOString() })
+    .eq('id', spaceId)
+    .is('deleted_at', null)
+  if (error) return { status: 'error', message: '沒有權限刪除，或操作失敗。' }
+
+  // 稽核：刪除是不可逆的重大操作，一定要留紀錄
+  await audit({
+    spaceId,
+    actorId: user.id,
+    action: 'space.deleted',
+    entityType: 'space',
+    entityId: spaceId,
+    after: { graceDays: 7 },
+  })
+  revalidatePath('/settings')
+  redirect('/invite?state=space-deleted')
+}
+
+/**
+ * 在寬限期內還原已軟刪除的空間。清掉 deleted_at，space-purge 就不會清它。
+ */
+export async function restoreSpace(spaceId: string): Promise<{ ok: boolean; message?: string }> {
+  const user = await getUser()
+  if (!user) return { ok: false, message: '請先登入。' }
+  const db = await getDb()
+  const { data, error } = await db
+    .from('spaces')
+    .update({ deleted_at: null })
+    .eq('id', spaceId)
+    .not('deleted_at', 'is', null)
+    .select('id')
+    .maybeSingle()
+  if (error || !data) return { ok: false, message: '還原失敗，或已超過寬限期被清除。' }
+  await audit({
+    spaceId,
+    actorId: user.id,
+    action: 'space.restored',
+    entityType: 'space',
+    entityId: spaceId,
+  })
+  revalidatePath('/')
+  return { ok: true }
 }

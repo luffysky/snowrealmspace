@@ -939,6 +939,11 @@ input[type='range'] {
   cursor: pointer;
 }
 
+/* 危險區域（刪除整個空間）：用 danger token 標示邊界，不寫死顏色 */
+.sr-danger-zone {
+  border-color: var(--sr-danger);
+}
+
 /* ── Background Studio ────────────────────────────── */
 
 /* 裁切工具的框與把手：這是工具 chrome（遮罩／選取框），需要與任意底圖對比，

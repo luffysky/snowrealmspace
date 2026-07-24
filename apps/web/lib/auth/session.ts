@@ -55,6 +55,8 @@ export const getActiveSpace = cache(async (): Promise<ActiveSpace | null> => {
     .from('spaces')
     .select('id, name, slug, timezone, privacy')
     .eq('id', membership.space_id)
+    // 軟刪除（等待寬限期清除）的 space 視同不存在 —— 不能再進去
+    .is('deleted_at', null)
     .maybeSingle()
 
   if (!space) return null
