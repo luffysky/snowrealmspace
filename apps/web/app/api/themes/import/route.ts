@@ -28,20 +28,33 @@ export const POST = handler(async (request: NextRequest) => {
 
   // 字體降級：匯入檔引用的字體若本地沒有，換成同分類預設並告知使用者
   const definition = structuredClone(payload.definition)
-  const requestedSlugs = [
+  const requestedFonts = [
     definition.typography.headingFontId,
     definition.typography.bodyFontId,
     definition.typography.uiFontId,
     definition.typography.monoFontId,
   ].filter((v): v is string => Boolean(v))
 
-  const { data: availableFonts } = await ctx.db
-    .from('fonts')
-    .select('slug')
-    .in('slug', requestedSlugs)
-    .eq('enabled', true)
+  // fontId 可能是 slug（預設主題）或 uuid（Theme Studio/配對主題）。兩種都要查，
+  // 否則自訂字體主題匯入時，UUID 對不到 slug → 字體被誤判「不存在」全換成預設。
+  const isUuid = (v: string) =>
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)
+  const uuids = requestedFonts.filter(isUuid)
+  const slugs = requestedFonts.filter((v) => !isUuid(v))
 
-  const available = new Set((availableFonts ?? []).map((f) => f.slug))
+  let fontQuery = ctx.db.from('fonts').select('id, slug').eq('enabled', true)
+  const orParts = [
+    uuids.length > 0 ? `id.in.(${uuids.join(',')})` : null,
+    slugs.length > 0 ? `slug.in.(${slugs.join(',')})` : null,
+  ].filter((v): v is string => Boolean(v))
+  if (orParts.length > 0) fontQuery = fontQuery.or(orParts.join(','))
+  const { data: availableFonts } = await fontQuery
+
+  const available = new Set<string>()
+  for (const f of availableFonts ?? []) {
+    available.add(f.slug)
+    if (f.id) available.add(f.id)
+  }
   const substituted: { requested: string; usedInstead: string }[] = []
 
   const fallbacks: Record<string, string> = {

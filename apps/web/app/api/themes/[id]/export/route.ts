@@ -30,10 +30,19 @@ export const GET = handler(
       definition.typography?.['monoFontId'],
     ].filter((v): v is string => Boolean(v))
 
-    const { data: fonts } = await ctx.db
-      .from('fonts')
-      .select('id, family, slug')
-      .in('slug', fontIds)
+    // fontId 可能是 slug 或 uuid（同 import）——兩種都查，否則自訂字體主題的
+    // fontRefs 永遠是空的。
+    const isUuid = (v: string) =>
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)
+    const uuids = fontIds.filter(isUuid)
+    const slugs = fontIds.filter((v) => !isUuid(v))
+    let fq = ctx.db.from('fonts').select('id, family, slug')
+    const orParts = [
+      uuids.length > 0 ? `id.in.(${uuids.join(',')})` : null,
+      slugs.length > 0 ? `slug.in.(${slugs.join(',')})` : null,
+    ].filter((v): v is string => Boolean(v))
+    if (orParts.length > 0) fq = fq.or(orParts.join(','))
+    const { data: fonts } = orParts.length > 0 ? await fq : { data: [] }
 
     const payload = {
       format: 'snowrealm-theme' as const,

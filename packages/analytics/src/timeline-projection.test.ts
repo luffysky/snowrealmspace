@@ -41,9 +41,15 @@ describe('projectRow', () => {
     expect(projectRow(row({ event_type: 'space.opened' }))).toBeNull()
   })
 
-  it('asset.uploaded 用 entity_id 當封面', () => {
-    const r = projectRow(row({ event_type: 'asset.uploaded', entity_id: 'a1' }))
-    expect(r?.cover_asset_id).toBe('a1')
+  it('asset.uploaded 封面取自 properties.assetId（emit 實際放這裡，非 entity_id）', () => {
+    // 這是真實 emit 的形狀：assetId 在 properties，entity_id 為 null
+    const real = projectRow(
+      row({ event_type: 'asset.uploaded', entity_id: null, properties: { assetId: 'a1' } }),
+    )
+    expect(real?.cover_asset_id).toBe('a1')
+    // 只有 entity_id、沒有 properties.assetId → 封面應為 null（不是真實形狀）
+    const wrong = projectRow(row({ event_type: 'asset.uploaded', entity_id: 'a1' }))
+    expect(wrong?.cover_asset_id).toBeNull()
   })
 
   it('surprise 只投影 rare 以上', () => {

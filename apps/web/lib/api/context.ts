@@ -44,6 +44,16 @@ export async function resolveContext(): Promise<ContextResult> {
 
   if (!membership) return { ok: false, reason: 'forbidden' }
 
+  // 軟刪除（等待寬限期清除）的 space 不可再操作 —— 與 session 的 getActiveSpace 一致，
+  // 否則使用者刪了空間、被導去 /invite，卻還能透過 API 繼續在裡面寫東西。
+  const { data: space } = await db
+    .from('spaces')
+    .select('id')
+    .eq('id', spaceId)
+    .is('deleted_at', null)
+    .maybeSingle()
+  if (!space) return { ok: false, reason: 'forbidden' }
+
   return {
     ok: true,
     ctx: { db, userId: user.id, spaceId, role: toSpaceRole(membership.role) },

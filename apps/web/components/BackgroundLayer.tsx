@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { intervalMsFor, needsClientRotation, nextIndex, perLoginIndex } from '@snowrealm/validation'
 
 /**
@@ -358,6 +359,7 @@ export function BackgroundLayer({
   const upcoming = items[nextIndex(index, items.length)] ?? state.next
 
   return (
+    <>
     <div
       className="sr-bg-layer"
       data-transition={state.transition}
@@ -392,20 +394,29 @@ export function BackgroundLayer({
 
       {/* v1.0 §12.6：僅預載下一張 */}
       {upcoming && <PreloadNext spaceId={spaceId} item={upcoming} />}
-
-      {/* WCAG 2.2 Pause, Stop, Hide：自動播放的內容必須能被停止。
-          輪播本身也是自動播放的動態，所以有影片或會輪播時都顯示。 */}
-      {(hasVideo || rotate) && (
-        <button
-          type="button"
-          className="sr-bg-pause"
-          onClick={() => setPaused((v) => !v)}
-          aria-pressed={paused}
-        >
-          {paused ? '播放背景' : '暫停背景'}
-        </button>
-      )}
     </div>
+
+    {/* WCAG 2.2 Pause, Stop, Hide：暫停鈕必須「可點」。
+        它不能放在 .sr-bg-layer 裡——那層是 z-index:-1 的堆疊脈絡，
+        按鈕會被畫在內容底下、視窗一窄就被 .sr-main 蓋住點不到。
+        用 portal 掛到 body，脫離背景層。 */}
+    {(hasVideo || rotate) && (
+      <PausePortal paused={paused} onToggle={() => setPaused((v) => !v)} />
+    )}
+    </>
+  )
+}
+
+/** 暫停鈕：portal 到 body，脫離 z-index:-1 的背景層才點得到。 */
+function PausePortal({ paused, onToggle }: { paused: boolean; onToggle: () => void }) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  if (!mounted) return null
+  return createPortal(
+    <button type="button" className="sr-bg-pause" onClick={onToggle} aria-pressed={paused}>
+      {paused ? '播放背景' : '暫停背景'}
+    </button>,
+    document.body,
   )
 }
 

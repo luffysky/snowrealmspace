@@ -59,9 +59,11 @@ export const PROJECTED: Record<string, Rule> = {
     title: (p) => `完成了「${str(p.name)}」`,
     projectId: (p) => (typeof p.projectId === 'string' ? p.projectId : null),
   },
+  // 封面讀 properties.assetId（emit 把 asset id 放這裡，entity_id 是 null）——
+  // 原本讀 entity_id 導致每張「新增了作品」卡片封面都是 null。
   'asset.uploaded': {
     title: () => '新增了作品',
-    cover: (row) => row.entity_id,
+    cover: (row) => (typeof row.properties.assetId === 'string' ? row.properties.assetId : null),
     throttleMinutes: 60,
     groupTitle: (n) => `新增了 ${n} 個作品`,
   },

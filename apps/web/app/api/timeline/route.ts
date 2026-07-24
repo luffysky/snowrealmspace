@@ -30,6 +30,9 @@ export const GET = handler(async (request: NextRequest) => {
     .select(COLUMNS)
     .eq('space_id', ctx.spaceId)
     .is('deleted_at', null)
+    // 明確排除隱藏事件：不能只靠 RLS —— owner 的 "manages timeline" policy 是 FOR ALL，
+    // SELECT 也套用且與 member 讀取 OR 合併，會讓 owner（禮物情境的主要使用者）看到隱藏事件。
+    .neq('visibility', 'hidden')
     .order('occurred_at', { ascending: false })
     .limit(fetchLimit)
 
