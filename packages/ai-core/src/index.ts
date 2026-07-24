@@ -114,3 +114,14 @@ export {
   renderContextSuffix,
   buildAgentSystemPrompt,
 } from './agent-prompt.js'
+
+export {
+  type Permission,
+  type AgentToolDefinition,
+  AGENT_TOOLS,
+  FORBIDDEN_TOOL_PATTERNS,
+  assertNoForbiddenTools,
+  getToolByName,
+  needsConfirmation,
+  toProviderTools,
+} from './agent-tools.js'
