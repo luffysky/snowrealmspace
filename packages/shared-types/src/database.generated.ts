@@ -101,6 +101,291 @@ export type Database = {
           },
         ]
       }
+      ai_daily_quota: {
+        Row: {
+          free_calls: number
+          local_date: string
+          paid_calls: number
+          space_id: string
+          vision_calls: number
+        }
+        Insert: {
+          free_calls?: number
+          local_date: string
+          paid_calls?: number
+          space_id: string
+          vision_calls?: number
+        }
+        Update: {
+          free_calls?: number
+          local_date?: string
+          paid_calls?: number
+          space_id?: string
+          vision_calls?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_daily_quota_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_models: {
+        Row: {
+          context_window: number | null
+          cost_input_per_1m: number
+          cost_output_per_1m: number
+          created_at: string
+          description: string | null
+          display_name: string
+          id: string
+          is_active: boolean
+          is_free: boolean
+          metadata: Json
+          model_name: string
+          notes: string | null
+          provider: string
+          sort_order: number
+          supports_streaming: boolean
+          supports_tools: boolean
+          supports_vision: boolean
+          updated_at: string
+        }
+        Insert: {
+          context_window?: number | null
+          cost_input_per_1m?: number
+          cost_output_per_1m?: number
+          created_at?: string
+          description?: string | null
+          display_name: string
+          id?: string
+          is_active?: boolean
+          is_free?: boolean
+          metadata?: Json
+          model_name: string
+          notes?: string | null
+          provider: string
+          sort_order?: number
+          supports_streaming?: boolean
+          supports_tools?: boolean
+          supports_vision?: boolean
+          updated_at?: string
+        }
+        Update: {
+          context_window?: number | null
+          cost_input_per_1m?: number
+          cost_output_per_1m?: number
+          created_at?: string
+          description?: string | null
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          is_free?: boolean
+          metadata?: Json
+          model_name?: string
+          notes?: string | null
+          provider?: string
+          sort_order?: number
+          supports_streaming?: boolean
+          supports_tools?: boolean
+          supports_vision?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ai_provider_keys: {
+        Row: {
+          api_key_encrypted: string
+          budget_reset_at: string
+          enabled: boolean
+          id: string
+          last_error: string | null
+          last_ok_at: string | null
+          monthly_budget_usd: number | null
+          provider: string
+          updated_at: string
+          used_this_month_usd: number
+        }
+        Insert: {
+          api_key_encrypted: string
+          budget_reset_at: string
+          enabled?: boolean
+          id?: string
+          last_error?: string | null
+          last_ok_at?: string | null
+          monthly_budget_usd?: number | null
+          provider: string
+          updated_at?: string
+          used_this_month_usd?: number
+        }
+        Update: {
+          api_key_encrypted?: string
+          budget_reset_at?: string
+          enabled?: boolean
+          id?: string
+          last_error?: string | null
+          last_ok_at?: string | null
+          monthly_budget_usd?: number | null
+          provider?: string
+          updated_at?: string
+          used_this_month_usd?: number
+        }
+        Relationships: []
+      }
+      ai_response_cache: {
+        Row: {
+          context_hash: string
+          created_at: string
+          embedding: string | null
+          expires_at: string
+          hit_count: number
+          id: string
+          prompt_hash: string
+          response_text: string
+          scope: string
+          space_id: string | null
+          usage_key: string
+        }
+        Insert: {
+          context_hash: string
+          created_at?: string
+          embedding?: string | null
+          expires_at: string
+          hit_count?: number
+          id?: string
+          prompt_hash: string
+          response_text: string
+          scope?: string
+          space_id?: string | null
+          usage_key: string
+        }
+        Update: {
+          context_hash?: string
+          created_at?: string
+          embedding?: string | null
+          expires_at?: string
+          hit_count?: number
+          id?: string
+          prompt_hash?: string
+          response_text?: string
+          scope?: string
+          space_id?: string | null
+          usage_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_response_cache_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_usage_log: {
+        Row: {
+          attempts: number
+          cache_hit: string | null
+          cache_read_tokens: number
+          cache_write_tokens: number
+          cost_usd: number
+          created_at: string
+          degraded: boolean
+          error: string | null
+          escalated: boolean
+          fell_back: boolean
+          id: string
+          is_free: boolean
+          latency_ms: number | null
+          model: string
+          provider: string
+          space_id: string | null
+          tokens_input: number
+          tokens_output: number
+          usage_key: string
+        }
+        Insert: {
+          attempts?: number
+          cache_hit?: string | null
+          cache_read_tokens?: number
+          cache_write_tokens?: number
+          cost_usd?: number
+          created_at?: string
+          degraded?: boolean
+          error?: string | null
+          escalated?: boolean
+          fell_back?: boolean
+          id?: string
+          is_free: boolean
+          latency_ms?: number | null
+          model: string
+          provider: string
+          space_id?: string | null
+          tokens_input?: number
+          tokens_output?: number
+          usage_key: string
+        }
+        Update: {
+          attempts?: number
+          cache_hit?: string | null
+          cache_read_tokens?: number
+          cache_write_tokens?: number
+          cost_usd?: number
+          created_at?: string
+          degraded?: boolean
+          error?: string | null
+          escalated?: boolean
+          fell_back?: boolean
+          id?: string
+          is_free?: boolean
+          latency_ms?: number | null
+          model?: string
+          provider?: string
+          space_id?: string | null
+          tokens_input?: number
+          tokens_output?: number
+          usage_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_usage_log_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_usage_models: {
+        Row: {
+          candidates: Json
+          enabled: boolean
+          model_name: string
+          updated_at: string
+          updated_by: string | null
+          usage_key: string
+        }
+        Insert: {
+          candidates?: Json
+          enabled?: boolean
+          model_name: string
+          updated_at?: string
+          updated_by?: string | null
+          usage_key: string
+        }
+        Update: {
+          candidates?: Json
+          enabled?: boolean
+          model_name?: string
+          updated_at?: string
+          updated_by?: string | null
+          usage_key?: string
+        }
+        Relationships: []
+      }
       asset_renditions: {
         Row: {
           asset_id: string

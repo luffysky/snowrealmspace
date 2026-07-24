@@ -35,6 +35,9 @@ const SERVICE_ROLE_ONLY = new Set([
   // OAuth 的 state / nonce。只在 callback 由 service role 讀寫，
   // 使用者連自己那筆都不需要看到，讓他看到反而擴大攻擊面。
   'oauth_transactions',
+  // AI 回應快取：有 space_id 但僅 service role（跨 space 快取隔離是隱私要求，
+  // 12-ai-model-routing.md §5.3）。RLS 開、零 policy = 全拒絕。
+  'ai_response_cache',
 ])
 
 /** 租戶表本身、純參考資料、系統表：允許沒有 space_id 欄位。 */
