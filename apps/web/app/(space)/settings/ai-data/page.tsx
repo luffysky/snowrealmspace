@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
+import { isSiteAdmin } from '@/lib/auth/site-admin'
 
 export const metadata: Metadata = { title: 'AI 資料聲明 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -22,6 +23,7 @@ export default async function AiDataPage() {
       .eq('space_id', space.id)
       .is('deleted_at', null),
   ])
+  const siteAdmin = await isSiteAdmin()
 
   return (
     <div className="sr-stack">
@@ -65,6 +67,20 @@ export default async function AiDataPage() {
           </Link>
         </p>
       </section>
+
+      {siteAdmin && (
+        <section className="sr-card">
+          <h2 className="sr-section-title">站台管理</h2>
+          <p className="sr-muted" style={{ marginTop: 0 }}>
+            管理各家 AI provider 金鑰（加密存 DB，Zeabur 只需一把 <code>AI_KEY_ENCRYPTION_SECRET</code>）。
+          </p>
+          <p style={{ margin: 0 }}>
+            <Link href="/admin/ai-keys" className="sr-link">
+              AI 金鑰管理後台 →
+            </Link>
+          </p>
+        </section>
+      )}
     </div>
   )
 }

@@ -91,6 +91,14 @@ export {
 } from './keys.js'
 
 export {
+  type KeyTestResult,
+  type ProviderMeta,
+  testProviderKey,
+  maskKey,
+  PROVIDER_META,
+} from './key-test.js'
+
+export {
   type UsageCompletion,
   type ModelCallResult,
   type UsageLogEntry,
