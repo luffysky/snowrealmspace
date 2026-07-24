@@ -131,3 +131,14 @@ export {
   type SnapshotCreateInput,
   type SnapshotCompareInput,
 } from './design.js'
+
+export {
+  TIMELINE_VIEWS,
+  TIMELINE_VISIBILITY,
+  timelineListQuerySchema,
+  timelinePatchSchema,
+  type TimelineView,
+  type TimelineVisibility,
+  type TimelineListQuery,
+  type TimelinePatchInput,
+} from './timeline.js'

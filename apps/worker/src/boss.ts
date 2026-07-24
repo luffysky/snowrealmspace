@@ -49,6 +49,8 @@ export async function stopBoss(): Promise<void> {
 export const QUEUES = {
   ping: 'ping',
   assetProcess: 'asset.process',
+  // Timeline 投影（由 schedules.ts 週期觸發；ADR-013）
+  eventProject: 'event.project',
   // 維護類（由 schedules.ts 週期觸發）
   queueHealth: 'maintenance.queue-health',
   storageGc: 'maintenance.storage-gc',
@@ -59,6 +61,7 @@ export type QueueName = (typeof QUEUES)[keyof typeof QUEUES]
 export type JobPayloads = {
   ping: { message: string; spaceId?: string }
   'asset.process': { assetId: string; spaceId: string }
+  'event.project': Record<string, never>
   'maintenance.queue-health': Record<string, never>
   'maintenance.storage-gc': Record<string, never>
 }

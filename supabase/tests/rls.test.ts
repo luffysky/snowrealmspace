@@ -145,7 +145,7 @@ describe('activity_events append-only', () => {
 
     expect(before).toBeTruthy()
 
-    // 即使用 service role，RULE 也會讓 update / delete 變成 no-op
+    // 0020 後：內容欄位由 trigger pin 住，改不動；delete 仍以 RULE 全擋。
     await admin
       .from('activity_events')
       .update({ event_type: 'tampered' })
@@ -160,6 +160,30 @@ describe('activity_events append-only', () => {
 
     expect(after?.id).toBe(before!.id)
     expect(after?.event_type).toBe(before!.event_type)
+  })
+
+  it('projected_at 可被投影 job 更新（0020 的 trigger 放行此欄位）', async () => {
+    const admin = adminDb()
+    const { data: ev } = await admin
+      .from('activity_events')
+      .insert({
+        space_id: alice.spaceId,
+        actor_id: alice.userId,
+        event_type: 'project.created',
+        properties: { name: 'x', projectId: null },
+      })
+      .select('id')
+      .single()
+
+    const now = new Date().toISOString()
+    await admin.from('activity_events').update({ projected_at: now }).eq('id', ev!.id)
+
+    const { data: after } = await admin
+      .from('activity_events')
+      .select('projected_at')
+      .eq('id', ev!.id)
+      .single()
+    expect(after?.projected_at).not.toBeNull()
   })
 })
 

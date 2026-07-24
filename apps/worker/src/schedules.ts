@@ -26,6 +26,12 @@ export type ScheduleSpec = {
 
 export const SCHEDULES: ScheduleSpec[] = [
   {
+    queue: QUEUES.eventProject,
+    cron: '* * * * *',
+    tz: 'UTC',
+    description: '把 activity_events 投影到 timeline_events（ADR-013，每分鐘批次）',
+  },
+  {
     queue: QUEUES.queueHealth,
     cron: '*/5 * * * *',
     tz: 'UTC',

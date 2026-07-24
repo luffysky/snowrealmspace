@@ -7,6 +7,7 @@ config({ path: '../../.env' })
 const { startBoss, stopBoss, QUEUES } = await import('./boss.js')
 const { handlePing } = await import('./handlers/ping.js')
 const { handleAssetProcess } = await import('./handlers/asset-process.js')
+const { handleEventProject } = await import('./handlers/event-project.js')
 const { handleQueueHealth, handleStorageGc } = await import('./handlers/maintenance.js')
 const { registerSchedules } = await import('./schedules.js')
 
@@ -28,6 +29,10 @@ async function main() {
   // 08-jobs-events.md §2.2：併發 4、重試 3 次
   await boss.createQueue(QUEUES.assetProcess)
   await boss.work(QUEUES.assetProcess, { batchSize: 1 }, handleAssetProcess)
+
+  // Timeline 投影（ADR-013）。併發 1，靠 source_event_id unique 保冪等。
+  await boss.createQueue(QUEUES.eventProject)
+  await boss.work(QUEUES.eventProject, { batchSize: 1 }, handleEventProject)
 
   await boss.createQueue(QUEUES.queueHealth)
   await boss.work(QUEUES.queueHealth, { batchSize: 1 }, handleQueueHealth)
