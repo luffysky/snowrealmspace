@@ -96,6 +96,19 @@ export default async function DataMapPage() {
         </ul>
       </section>
 
+      <section className="sr-card">
+        <h2 className="sr-section-title">匯出我的資料</h2>
+        <p className="sr-muted" style={{ marginTop: 0 }}>
+          把這個空間的資料與設定（主題、背景、專案、作品、時間軸、記憶、回顧、通知、檔案清單…）
+          下載成一份可讀、可再匯入的 JSON。檔案本身的位元組不在裡面，可到 Library 逐一下載。
+        </p>
+        <p style={{ margin: 0 }}>
+          <a href="/api/account/export" className="sr-button sr-button-secondary" download>
+            下載 JSON 匯出
+          </a>
+        </p>
+      </section>
+
       <DangerZone spaceId={space.id} spaceName={space.name} />
     </div>
   )
