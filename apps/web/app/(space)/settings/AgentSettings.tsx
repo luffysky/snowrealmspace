@@ -16,13 +16,37 @@ export function AgentSettings({
 }: {
   spaceId: string
   canEdit: boolean
-  initial: { agentProactive: string; quietStart: string; quietEnd: string }
+  initial: { agentProactive: string; agentTone: string; quietStart: string; quietEnd: string }
 }) {
   const [state, formAction, pending] = useActionState(updateAgentSettings, initial)
+  const TONES = ['warm', 'gentle', 'professional', 'playful', 'concise']
+  const tone = TONES.includes(init.agentTone) ? init.agentTone : 'warm'
 
   return (
     <form action={formAction} className="sr-stack" style={{ gap: 'var(--sr-space-4)' }}>
       <input type="hidden" name="spaceId" value={spaceId} />
+
+      <div>
+        <label className="sr-label" htmlFor="agentTone">
+          語氣
+        </label>
+        <select
+          id="agentTone"
+          name="agentTone"
+          className="sr-input"
+          defaultValue={tone}
+          disabled={!canEdit || pending}
+        >
+          <option value="warm">溫暖 —— 像個懂你的朋友</option>
+          <option value="gentle">輕柔 —— 放鬆、慢慢說</option>
+          <option value="professional">專業 —— 精準、直接、少寒暄</option>
+          <option value="playful">俏皮 —— 活潑、帶點幽默</option>
+          <option value="concise">極簡 —— 只講重點</option>
+        </select>
+        <p className="sr-muted" style={{ marginTop: 'var(--sr-space-2)', marginBottom: 0, fontSize: 'var(--sr-text-sm)' }}>
+          影響 Agent 對話與主動訊息的說話方式。安全底線不變。
+        </p>
+      </div>
 
       <div>
         <label className="sr-label" htmlFor="agentProactive">

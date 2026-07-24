@@ -81,6 +81,7 @@ export default async function SettingsPage() {
           canEdit={role === 'owner'}
           initial={{
             agentProactive: settings.agent_proactive,
+            agentTone: settings.agent_tone,
             quietStart: (settings.quiet_hours_start ?? '').slice(0, 5),
             quietEnd: (settings.quiet_hours_end ?? '').slice(0, 5),
           }}

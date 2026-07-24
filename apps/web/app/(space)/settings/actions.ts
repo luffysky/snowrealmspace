@@ -163,6 +163,7 @@ const agentSchema = z
   .object({
     spaceId: z.string().uuid(),
     agentProactive: z.enum(['off', 'important_only', 'daily']),
+    agentTone: z.enum(['warm', 'gentle', 'professional', 'playful', 'concise']),
     quietStart: timeOrEmpty,
     quietEnd: timeOrEmpty,
   })
@@ -179,6 +180,7 @@ export async function updateAgentSettings(
   const parsed = agentSchema.safeParse({
     spaceId: formData.get('spaceId'),
     agentProactive: formData.get('agentProactive'),
+    agentTone: formData.get('agentTone'),
     quietStart: formData.get('quietStart') ?? '',
     quietEnd: formData.get('quietEnd') ?? '',
   })
@@ -194,6 +196,7 @@ export async function updateAgentSettings(
     .from('space_settings')
     .update({
       agent_proactive: input.agentProactive,
+      agent_tone: input.agentTone,
       quiet_hours_start: input.quietStart || null,
       quiet_hours_end: input.quietEnd || null,
     })
@@ -201,7 +204,7 @@ export async function updateAgentSettings(
 
   if (error) return { status: 'error', message: '沒有權限修改，或儲存失敗。' }
 
-  await emitEvent('settings.changed', input.spaceId, user.id, { keys: ['agent_proactive'] })
+  await emitEvent('settings.changed', input.spaceId, user.id, { keys: ['agent_proactive', 'agent_tone'] })
   revalidatePath('/settings')
   return { status: 'saved', message: '已儲存。' }
 }
