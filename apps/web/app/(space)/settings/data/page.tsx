@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { requireActiveSpace } from '@/lib/auth/session'
+import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { DangerZone } from '../DangerZone'
 
@@ -34,6 +34,7 @@ async function countOf(
 
 export default async function DataMapPage() {
   const { space } = await requireActiveSpace()
+  const user = await getUser()
   const db = await getDb()
 
   const [assets, projects, works, themes, backgrounds, timeline, insights, notifications] =
@@ -109,7 +110,7 @@ export default async function DataMapPage() {
         </p>
       </section>
 
-      <DangerZone spaceId={space.id} spaceName={space.name} />
+      <DangerZone spaceId={space.id} spaceName={space.name} userEmail={user?.email ?? null} />
     </div>
   )
 }

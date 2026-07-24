@@ -6,6 +6,8 @@ import { z } from 'zod'
 import { getDb } from '@/lib/supabase/server'
 import { getUser } from '@/lib/auth/session'
 import { emitEvent, audit } from '@snowrealm/analytics'
+import { createAdminClient } from '@snowrealm/db/server'
+import { storage } from '@snowrealm/storage'
 
 const privacySchema = z
   .object({
@@ -260,6 +262,86 @@ export async function deleteSpace(
   })
   revalidatePath('/settings')
   redirect('/invite?state=space-deleted')
+}
+
+/**
+ * 永久清除一個 space 的位元組與資料（R2 先於 DB），供刪除帳號用。
+ * 與 worker 的 handleSpacePurge 同一套順序；這裡是同步、立即版（不等寬限）。
+ */
+async function purgeSpaceNow(admin: ReturnType<typeof createAdminClient>, spaceId: string) {
+  const store = storage()
+  const { data: assets } = await admin.from('assets').select('id, storage_key').eq('space_id', spaceId)
+  const assetIds = (assets ?? []).map((a) => a.id)
+  let renditionKeys: string[] = []
+  if (assetIds.length > 0) {
+    const { data: r } = await admin
+      .from('asset_renditions')
+      .select('storage_key')
+      .in('asset_id', assetIds)
+    renditionKeys = (r ?? []).map((x) => x.storage_key)
+  }
+  const keys = [...(assets ?? []).map((a) => a.storage_key), ...renditionKeys]
+  if (keys.length > 0) {
+    const { failed } = await store.deleteMany(keys)
+    if (failed.length > 0) throw new Error(`R2 有 ${failed.length} 個物件未刪除`)
+  }
+  // 標記軟刪除（purge_space 的護欄要求）再永久刪（cascade + 放行 append-only）
+  await admin.from('spaces').update({ deleted_at: new Date().toISOString() }).eq('id', spaceId)
+  const { error } = await admin.rpc('purge_space', { target_space_id: spaceId })
+  if (error) throw new Error(error.message)
+}
+
+/**
+ * 刪除整個帳號（10-acceptance.md 隱私與刪除）。
+ *
+ * 帳號刪除是**立即且不可逆**（auth.users 一旦刪就回不來，寬限沒有意義）。
+ * 流程：先永久清除本人名下所有 space（R2 先於 DB），再刪 auth.users。
+ * 名下 space 先清掉，刪 user 時就不會再 cascade 到有 append-only 規則的 activity_events；
+ * 他在別人 space 留下的事件則由 FK 的 ON DELETE SET NULL 匿名化（0031 放行）。
+ *
+ * 需要輸入 email 二次確認。用 service role（帳號生命週期，rule 10 容許）。
+ */
+export async function deleteAccount(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const confirmEmail = (formData.get('confirmEmail') as string | null)?.trim() ?? ''
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+  if (!user.email || confirmEmail.toLowerCase() !== user.email.toLowerCase()) {
+    return { status: 'error', message: '輸入的 email 不符，請輸入你的登入 email 以確認。' }
+  }
+
+  const admin = createAdminClient()
+
+  // 本人名下（owner）的所有 space
+  const { data: owned } = await admin.from('spaces').select('id').eq('owner_id', user.id)
+
+  try {
+    for (const s of owned ?? []) {
+      await purgeSpaceNow(admin, s.id)
+    }
+  } catch (err) {
+    console.error('[delete-account] 清除 space 失敗', err)
+    return { status: 'error', message: '清除空間資料時失敗，帳號未刪除，請稍後再試。' }
+  }
+
+  await audit({
+    spaceId: null,
+    actorId: user.id,
+    action: 'account.deleted',
+    entityType: 'user',
+    entityId: user.id,
+    after: { spacesPurged: (owned ?? []).length },
+  })
+
+  const { error } = await admin.auth.admin.deleteUser(user.id)
+  if (error) {
+    console.error('[delete-account] 刪除 auth 使用者失敗', error.message)
+    return { status: 'error', message: '刪除帳號失敗，請稍後再試或聯絡我們。' }
+  }
+
+  redirect('/login?state=account-deleted')
 }
 
 /**
