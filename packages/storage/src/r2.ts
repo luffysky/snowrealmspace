@@ -6,6 +6,8 @@ import {
   DeleteObjectCommand,
   DeleteObjectsCommand,
   ListObjectsV2Command,
+  PutBucketCorsCommand,
+  GetBucketCorsCommand,
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { serverEnv } from '@snowrealm/shared-types'
@@ -40,6 +42,11 @@ function client(): S3Client {
     endpoint,
     forcePathStyle: env.R2_FORCE_PATH_STYLE,
     credentials: { accessKeyId, secretAccessKey },
+    // @aws-sdk v3.729+ 預設會在 PutObject 加上 x-amz-sdk-checksum-algorithm，
+    // 這個 header 會被算進預簽 URL 的簽章，但瀏覽器直傳時不會送 → R2 回 403。
+    // 改回「只有操作真的需要才算 checksum」，讓瀏覽器直傳的預簽 PUT 能通過。
+    requestChecksumCalculation: 'WHEN_REQUIRED',
+    responseChecksumValidation: 'WHEN_REQUIRED',
   })
   return cachedClient
 }
@@ -198,4 +205,31 @@ export function storage(): StorageAdapter {
 /** 測試用：注入替身。 */
 export function setStorageAdapter(adapter: StorageAdapter | null): void {
   cachedAdapter = adapter
+}
+
+/**
+ * 設定 bucket 的 CORS，讓瀏覽器可以直傳（預簽 PUT）與直讀（預簽 GET）。
+ * 上傳是「瀏覽器 → R2 直傳」的跨網域請求，沒設 CORS 會在 preflight 就被擋，
+ * 前端只看到「網路中斷」。由 scripts/setup-r2-cors.ts 呼叫。
+ */
+export async function setBucketCors(origins: string[]): Promise<string[]> {
+  await client().send(
+    new PutBucketCorsCommand({
+      Bucket: bucket(),
+      CORSConfiguration: {
+        CORSRules: [
+          {
+            AllowedOrigins: origins,
+            AllowedMethods: ['PUT', 'GET', 'HEAD'],
+            AllowedHeaders: ['*'],
+            ExposeHeaders: ['ETag'],
+            MaxAgeSeconds: 3600,
+          },
+        ],
+      },
+    }),
+  )
+  // 回讀確認真的寫進去（不靜默成功）
+  const check = await client().send(new GetBucketCorsCommand({ Bucket: bucket() }))
+  return check.CORSRules?.[0]?.AllowedOrigins ?? []
 }

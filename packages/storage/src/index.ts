@@ -5,4 +5,4 @@ export {
   storageKeys,
 } from './adapter.js'
 
-export { R2StorageAdapter, storage, setStorageAdapter } from './r2.js'
+export { R2StorageAdapter, storage, setStorageAdapter, setBucketCors } from './r2.js'
