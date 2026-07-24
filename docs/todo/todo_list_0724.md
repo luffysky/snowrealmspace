@@ -14,7 +14,7 @@
 | A — Foundation | ✅ 完成 | 100% |
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ✅ 幾乎完成 | C1–C7 全數完成（地基/Projects/Library/作品+版本比較/Timeline/from-image/隱私刪除組）；剩空間整體刪除（需 R2+worker） |
-| D — AI Core | ⬜ 未開始 | 0%（需 AI 金鑰） |
+| D — AI Core | 🚧 基礎完成 | ai-core 路由層（純核心+編排，93+10 測試）+ 資料層 0023 完成；callAI/completeForUsage/Agent 需金鑰接續 |
 | E — Daily Loop | ✅ 幾乎完成 | 內容池/每日卡片/驚喜盒+保底+收藏/生日鏈/主動訊息/Insight/通知全通；剩 cron 掃時區、weekly_recap 推播、Insight 的 LLM 升級（需 D） |
 | F — Integration | ⬜ 未開始 | 0% |
 | 部署 / 帳號 | 🚧 進行中 | 站台閘門、密碼註冊、hosted 建表已通；SMTP/R2/worker 待設 |
@@ -124,14 +124,20 @@
 
 ---
 
-## 🅳 Milestone D — AI Core（未開始，最大一塊）
+## 🅳 Milestone D — AI Core（基礎完成，需金鑰接續）
 
-- [ ] `packages/ai-core`：providers（九家）、router、resolve-usage、cache、keys
-- [ ] 斷路器、低信心偵測、候選鏈升級
-- [ ] `ai_usage_log`、免費/付費分開計
-- [ ] Agent system prompt、context builder、SSE 串流
-- [ ] 五分類 + `clampStatement` 後處理
+- [x] ~~`packages/ai-core` 純核心：usage-keys、providers（9家/3協定/endpoint/名稱解析/
+      surrogate清理/計費/cache marker）、errors（isQuotaOrTransient/looksLowConfidence）、
+      circuit-breaker、candidates（排序/升級/濾付費）、cache-key、default-candidates（93 測試）~~
+- [x] ~~`runCandidateChain` 編排演算法：fallback/升級一次/缺金鑰跳過/真錯直接拋/degraded（§11 端到端 10 測試）~~
+- [x] ~~migration 0023：ai_models/provider_keys/usage_models/usage_log/daily_quota/response_cache + RLS~~
+- [x] ~~ESLint 禁直接 import AI 廠商 SDK（本就存在，ai-core 已豁免）~~
+- [ ] 🔴 **callAI/streamAI HTTP client**（3 協定）+ keys.ts（DB→env→null）—— 需 AI 金鑰才能端到端驗
+- [ ] 🔴 **completeForUsage 全整合**：預算閘門 + 快取查寫 + ai_usage_log 寫入（接 runCandidateChain）
+- [ ] 🔴 ai_models/ai_usage_models seed（實際模型清單）
+- [ ] Agent system prompt、context builder、SSE 串流、五分類 + `clampStatement`
 - [ ] 10 個 tool、Memory（提案→批准、pgvector）、設計分析（light/deep）
+- [ ] 額度閘門免費/付費分開、`degraded` UI（快速模式提示）
 
 ---
 
@@ -151,6 +157,14 @@
 - [ ] 帳號匯出（zip）、AI 資料聲明頁、資料地圖頁
 
 ---
+
+## 媒體 / 主題增強（🆕 Luffy 0724 追加，已完成）
+
+- [x] ~~起始主題 4 → 12 套（森/暮/海/墨/蜜/薰衣草/珊瑚），全過 AA~~
+- [x] ~~背景：單色（兩同色停漸層）+ 漸層顏色編輯器（色停 picker + 角度）~~
+- [x] ~~單檔上限 50MB → 500MB（ADR-022 偏離）；影片 mp4/webm/ogg/mov + audio kind~~
+- [x] ~~影片可選聲音（ADR-019 偏離）：muted 使用者可控，首次手勢解除靜音~~
+- [x] ~~背景音樂：space 選 audio + nav 播放器（手動播放遵守 autoplay 政策）+ 設定頁~~
 
 ## 深淺色切換（🆕 Luffy 0724 提出）
 
