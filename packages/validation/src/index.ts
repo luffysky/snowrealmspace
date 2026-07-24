@@ -162,3 +162,5 @@ export {
   type PrinciplePatchInput,
   type PrincipleReorderInput,
 } from './principles.js'
+
+export { agentChatSchema, type AgentChatInput } from './agent.js'

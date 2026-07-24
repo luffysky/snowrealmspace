@@ -2153,3 +2153,47 @@ input[type='range'] {
 .sr-datamap-row p {
   margin: var(--sr-space-1) 0;
 }
+
+/* ── Agent 對話（Milestone D）──────────────────────────── */
+.sr-chat-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-3);
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: var(--sr-space-2);
+}
+.sr-chat-msg {
+  display: flex;
+}
+.sr-chat-user {
+  justify-content: flex-end;
+}
+.sr-chat-assistant {
+  justify-content: flex-start;
+}
+.sr-chat-bubble {
+  max-width: min(80%, 640px);
+  padding: var(--sr-space-2) var(--sr-space-3);
+  border-radius: var(--sr-radius);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.sr-chat-user .sr-chat-bubble {
+  background: var(--sr-accent);
+  color: var(--sr-on-accent, #fff);
+}
+.sr-chat-assistant .sr-chat-bubble {
+  background: var(--sr-surface-alt);
+  color: var(--sr-text-primary);
+  border: var(--sr-border-width) solid var(--sr-border);
+}
+.sr-chat-input-row {
+  display: flex;
+  gap: var(--sr-space-2);
+  align-items: flex-end;
+}
+.sr-chat-input-row textarea {
+  flex: 1;
+  resize: vertical;
+}

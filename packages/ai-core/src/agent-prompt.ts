@@ -60,6 +60,8 @@ export type AgentContext = {
   } | null
   currentProject?: { name: string; status: string; description?: string | null } | null
   memories?: string[]
+  /** 使用者的設計原則（Luffy 追加）—— 讓建議貼合這個人的品味。 */
+  principles?: string[]
   recentActivity?: { occurredAt: string; description: string }[]
   availableTools?: { name: string; description: string; requiresConfirmation: boolean }[]
   memoryEnabled: boolean
@@ -107,6 +109,12 @@ export function renderContextSuffix(ctx: AgentContext): string {
   if (ctx.currentProject) {
     const p = ctx.currentProject
     parts.push(`\n### 目前專案\n${p.name}（狀態：${p.status}）${p.description ? `\n${p.description}` : ''}`)
+  }
+
+  if (ctx.principles?.length) {
+    parts.push(
+      `\n### 使用者的設計原則\n${ctx.principles.map((p) => `- ${p}`).join('\n')}\n給設計相關建議時，優先貼合這些原則，而不是通用說法。`,
+    )
   }
 
   if (ctx.memoryEnabled && ctx.memories?.length) {
