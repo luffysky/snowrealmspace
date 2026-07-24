@@ -36,7 +36,14 @@
 - 🔴 **Q10 手動走查** — 人實際點過 Milestone B 一輪（主題/背景/字體/版面）。
 - 🔴 **台北黑體字檔** — 沒有穩定下載網址，需人工下載放 `assets/fonts/taipei-sans-tc/`（其餘 12 套已自動化）。
 - 🔴 **AI 金鑰**（Milestone D 才需要）— 至少兩把免費（建議 Groq + Google Gemini）。
-- 🔴 **內容決定** — Agent 名字/外觀（D 前）；生日鏈第 5 環「一年後」要放什麼（已有 AI 代寫版，可換）。
+- 🔴 **Figma app 憑證**（Milestone F）— `FIGMA_CLIENT_ID` / `FIGMA_CLIENT_SECRET` / `FIGMA_WEBHOOK_SECRET`，redirect URI 用正式網域。
+- 🔴 **Google / LINE 登入憑證**（程式碼已完成，只差憑證；沒設按鈕會停用不會壞）— 由 0723 沿用：
+      - Google Cloud Console → OAuth consent screen + Client ID → `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`（並在 Supabase → Auth → Providers 開啟）
+      - LINE Login channel → `LINE_LOGIN_CHANNEL_ID` / `LINE_LOGIN_CHANNEL_SECRET` / `LINE_LOGIN_REDIRECT_URI`（callback URL 要完全一致）
+      - LINE email 權限申請（需說明用途）
+      - **隱私權政策頁**（Google/LINE 審核前置）
+- 🔴 **內容決定** — Agent 名字/外觀（D 前）；生日鏈第 5 環「一年後」要放什麼（已有 AI 代寫版，可換）；
+      **正式產品名稱**（公開發布前，程式碼用 `snowrealm` 前綴、品牌走 i18n）。背景音樂已完成（可選）。
 
 ---
 
@@ -58,7 +65,10 @@
 - [ ] Sentry / 監控（`queue-health` 目前只 log，沒告警管道）
 - [ ] `/api/health` 全綠（等 R2 + worker）
 - [ ] preview 與 production 用不同 Supabase / R2 bucket
+- [ ] preview 不設付費 AI 金鑰 → 自動全走免費模型，PR 不產生帳單
+- [ ] Next `output: 'standalone'`（縮小映像檔，首次部署以正確性優先，之後再開）
 - [ ] lefthook git hooks
+- [ ] 小技術債（0723 沿用）：`packages/db` 未列規格 §53（已記 build log）、migration 編號與規格 §0 規劃不同（按 Milestone 順序建立）
 - [ ] E2E/a11y 在 CI 一直 churn — Luffy 要求暫停跑；日後要重新穩定（gate 全域 setup、
       環境對齊）再開。目前改靠 typecheck/單元/RLS/直連 DB 驗證。
 
