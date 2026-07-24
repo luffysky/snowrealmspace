@@ -75,11 +75,14 @@ export default async function AiDataPage() {
             管理各家 AI provider 金鑰（加密存 DB，Zeabur 只需一把 <code>AI_KEY_ENCRYPTION_SECRET</code>）。
           </p>
           <p style={{ margin: 0, display: 'flex', gap: 'var(--sr-space-4)', flexWrap: 'wrap' }}>
+            <Link href="/admin" className="sr-link">
+              管理後台 →
+            </Link>
             <Link href="/admin/ai-keys" className="sr-link">
-              AI 金鑰管理後台 →
+              AI 金鑰 →
             </Link>
             <Link href="/admin/ai/usage" className="sr-link">
-              AI 用量與成本 →
+              AI 用量 →
             </Link>
           </p>
         </section>
