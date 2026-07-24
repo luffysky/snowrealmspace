@@ -13,7 +13,7 @@
 |---|---|---|
 | A — Foundation | ✅ 完成 | 100% |
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
-| C — Creative Core | ⬜ 未開始 | 0% |
+| C — Creative Core | 🚧 進行中 | ~30%（C1 地基 + C2 Projects 完成；C3 Library 起） |
 | D — AI Core | ⬜ 未開始 | 0%（需 AI 金鑰） |
 | E — Daily Loop | ✅ 幾乎完成 | 內容池/每日卡片/驚喜盒+保底+收藏/生日鏈/主動訊息/Insight/通知全通；剩 cron 掃時區、weekly_recap 推播、Insight 的 LLM 升級（需 D） |
 | F — Integration | ⬜ 未開始 | 0% |
@@ -97,15 +97,25 @@
 
 ---
 
-## 🅲 Milestone C — Creative Core（未開始）
+## 🅲 Milestone C — Creative Core（進行中）
 
-- [ ] Project CRUD、狀態、封面、tag、活動時間
-- [ ] `design_files` + `design_snapshots` 建表與 API
-- [ ] Library 篩選、pg_trgm 搜尋、Asset actions（13 種）
-- [ ] 軟刪除 + 30 天寬限 + `asset.purge` job
-- [ ] 版本比較：並排 / 疊圖 / 滑桿
-- [ ] Timeline：`event.project` job、投影規則、四種檢視
-- [ ] 本地分析擴充：對比檢查、留白比例、textZoneLuminance
+> 拆成 7 個閉環 phase，依相依性推進：C1 地基 → C2 Projects → C3 Library →
+> C4 design/snapshot+版本比較 → C5 Timeline → C6 from-image 收尾 → C7 隱私刪除組。
+
+- [x] ~~**C1 地基**：migration 0017（projects/design_files/design_snapshots/design_insights/
+      design_connections/provider_webhooks）+ 0018（timeline_events）+ 0019（assets 加
+      is_favorite/archived_at/tags + pg_trgm 檔名索引）。RLS 30→37 表、跨 space 隔離測試、
+      on delete restrict、型別重生。19 migration 從零 reset 綠~~
+- [x] ~~**C2 Project CRUD**：projectCreate/Patch/ListQuery schema（13 測試）；
+      GET/POST/PATCH/DELETE `/api/projects`（狀態事件、軟刪不刪作品）；
+      `/projects` UI（建立/編輯/狀態篩選/標籤/封面縮圖/四態）+ nav 入口 + CSS token~~
+- [ ] **C3 Library 升級**：篩選（kind/project/tag/日期）、pg_trgm 搜尋、
+      Asset actions（改名 ✓、刪除 ✓、建主題 ✓ 已有；補 tag/收藏/封存/移動/指派專案/設背景）
+- [ ] **C4** `design_files`+`design_snapshots` API（從 asset 建作品、快照）+ 版本比較（並排/疊圖/滑桿）
+- [ ] **C5 Timeline**：`event.project` job、投影規則+節流、三檢視（時序/專案/On This Day）、編輯/可見性/刪除
+- [ ] **C6 from-image 收尾**：驗證 3 變體、可重現（同圖同結果）、textPrimary 對背景 ≥4.5、p95<3s
+- [ ] **C7 隱私刪除組**（規格要求 C 結束前完成）：asset 引用檢查刪除 ✓ 已有；補 snapshot 刪除、insight 刪除 ✓
+- [ ] 本地分析擴充：對比檢查、留白比例、textZoneLuminance（C4/C6）
 
 ---
 
