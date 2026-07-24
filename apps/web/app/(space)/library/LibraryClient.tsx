@@ -134,6 +134,22 @@ export function LibraryClient({
       const u = await patchAsset(a, { originalFilename: name.trim() })
       if (u) applyLocal(u)
     },
+    onCreateWork: async (a) => {
+      const title = window.prompt('作品標題', a.original_filename ?? '')
+      if (title === null || !title.trim()) return
+      const res = await fetch('/api/design/files', {
+        method: 'POST',
+        headers: patchHeaders,
+        body: JSON.stringify({ assetId: a.id, title: title.trim() }),
+      })
+      if (!res.ok) {
+        const body: unknown = await res.json().catch(() => null)
+        const msg = (body as { error?: { message?: string } } | null)?.error?.message ?? '建立失敗。'
+        setNotice(`✕ ${msg}`)
+        return
+      }
+      setNotice('已建立作品，可到「作品」頁管理版本與比較。')
+    },
   }
 
   async function handleDelete(asset: AssetRow, cascade = false) {

@@ -118,3 +118,16 @@ export {
   type ProjectPatchInput,
   type ProjectListQuery,
 } from './projects.js'
+
+export {
+  designFileCreateSchema,
+  designFilePatchSchema,
+  designFileListQuerySchema,
+  snapshotCreateSchema,
+  snapshotCompareSchema,
+  type DesignFileCreateInput,
+  type DesignFilePatchInput,
+  type DesignFileListQuery,
+  type SnapshotCreateInput,
+  type SnapshotCompareInput,
+} from './design.js'

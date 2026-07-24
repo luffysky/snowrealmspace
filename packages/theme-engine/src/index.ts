@@ -88,3 +88,11 @@ export {
   assignGlass,
   type GlassBreakpoint,
 } from './glass-budget.js'
+
+export {
+  compareLocalFeatures,
+  colorDistance,
+  type LocalFeatures,
+  type FeatureComparison,
+  type ColorDiff,
+} from './compare.js'

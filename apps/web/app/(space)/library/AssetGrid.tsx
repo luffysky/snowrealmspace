@@ -52,6 +52,7 @@ export type AssetActions = {
   onToggleArchive: (a: AssetRow) => void
   onEditTags: (a: AssetRow) => void
   onRename: (a: AssetRow) => void
+  onCreateWork: (a: AssetRow) => void
 }
 
 function AssetTile({
@@ -121,6 +122,11 @@ function AssetTile({
         <button type="button" onClick={() => actions.onEditTags(asset)}>
           標籤
         </button>
+        {asset.kind === 'image' && (
+          <button type="button" onClick={() => actions.onCreateWork(asset)}>
+            設為作品
+          </button>
+        )}
         <button type="button" onClick={() => actions.onToggleArchive(asset)}>
           {archived ? '取消封存' : '封存'}
         </button>

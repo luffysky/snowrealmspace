@@ -2005,3 +2005,85 @@ input[type='range'] {
 .sr-project-cover-empty {
   border: var(--sr-border-width) dashed var(--sr-border);
 }
+
+/* ── Works / 版本比較（Milestone C4）──────────────────── */
+.sr-works-layout {
+  display: grid;
+  grid-template-columns: minmax(min(100%, 220px), 280px) 1fr;
+  gap: var(--sr-space-4);
+  align-items: start;
+}
+@media (max-width: 767px) {
+  .sr-works-layout {
+    grid-template-columns: 1fr;
+  }
+}
+.sr-works-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+}
+.sr-works-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+  width: 100%;
+  padding: var(--sr-space-2);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius-sm);
+  background: var(--sr-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.sr-works-item-active {
+  border-color: var(--sr-accent);
+  background: var(--sr-surface-alt);
+}
+.sr-works-item img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: var(--sr-radius-sm);
+  flex-shrink: 0;
+}
+.sr-compare-side {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--sr-space-3);
+}
+.sr-compare-side figure {
+  margin: 0;
+}
+.sr-compare-side img,
+.sr-compare-stack img {
+  width: 100%;
+  border-radius: var(--sr-radius-sm);
+  display: block;
+}
+.sr-compare-stack {
+  position: relative;
+}
+.sr-compare-stack img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: contain;
+}
+.sr-compare-stack img:first-of-type {
+  position: relative; /* 第一張撐開容器高度 */
+}
+.sr-compare-stack input[type='range'] {
+  position: absolute;
+  bottom: var(--sr-space-2);
+  left: var(--sr-space-3);
+  right: var(--sr-space-3);
+  width: calc(100% - var(--sr-space-3) * 2);
+  z-index: 2;
+}
+.sr-diff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--sr-space-3);
+}

@@ -95,6 +95,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
     { href: '/studio/background', label: 'Background' },
     { href: '/library', label: 'Library' },
     { href: '/projects', label: 'Projects' },
+    { href: '/works', label: 'Works' },
     { href: '/settings', label: 'Settings' },
   ]
 

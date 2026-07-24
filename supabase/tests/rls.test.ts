@@ -302,6 +302,21 @@ describe('RLS：Creative Core（Milestone C）', () => {
     expect(error).not.toBeNull()
   })
 
+  it('Alice 可在自己 space 建立 design_file（POST /api/design/files 的路徑）', async () => {
+    const { data, error } = await alice.db
+      .from('design_files')
+      .insert({
+        space_id: alice.spaceId,
+        created_by: alice.userId,
+        provider: 'upload',
+        title: '我的海報',
+      })
+      .select('id, title')
+      .single()
+    expect(error).toBeNull()
+    expect(data?.title).toBe('我的海報')
+  })
+
   it('design_snapshots 沒有成員 INSERT policy（版本不可偽造）', async () => {
     // 即使在自己的 space，成員也不能直接建 snapshot —— 只能走 service role。
     const { data: aliceFile } = await adminDb()
