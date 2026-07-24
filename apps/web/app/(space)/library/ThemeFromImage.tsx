@@ -45,6 +45,7 @@ export function ThemeFromImage({
 
   useEffect(() => {
     let cancelled = false
+    let timer: ReturnType<typeof setTimeout> | null = null
     setDrafts(null)
     setError(null)
     setWaiting(false)
@@ -66,9 +67,16 @@ export function ThemeFromImage({
         const err = (body as { error?: { message?: string; details?: { retryable?: boolean } } } | null)
           ?.error
 
-        if (err?.details?.retryable && attempt < 26) {
-          setWaiting(true)
-          setTimeout(() => void load(attempt + 1), 1500)
+        if (err?.details?.retryable) {
+          if (attempt < 26) {
+            setWaiting(true)
+            timer = setTimeout(() => void load(attempt + 1), 1500)
+            return
+          }
+          // 等了約 40 秒還沒好 —— 不要再顯示「請稍等」把使用者無限吊著。
+          // 幾乎都是背景處理（worker）沒在跑，asset.process 一直沒把 local_features 算出來。
+          setWaiting(false)
+          setError('圖片分析一直沒有完成（通常是背景處理服務尚未啟動）。請稍後再試，或請管理員確認 worker 服務是否在運行。')
           return
         }
 
@@ -86,6 +94,7 @@ export function ThemeFromImage({
     void load()
     return () => {
       cancelled = true
+      if (timer) clearTimeout(timer)
     }
   }, [spaceId, asset.id])
 

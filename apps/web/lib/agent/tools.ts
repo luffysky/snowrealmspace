@@ -30,7 +30,7 @@ type Handler = (
 const HANDLERS: Record<string, Handler> = {
   save_memory_proposal: async (ctx, admin, input) => {
     // 提案（approved=false）—— ADR-014：Agent 不得直接 approved
-    const { data } = await admin
+    const { data, error } = await admin
       .from('memories')
       .insert({
         space_id: ctx.spaceId,
@@ -44,11 +44,13 @@ const HANDLERS: Record<string, Handler> = {
       })
       .select('id')
       .single()
-    return { output: { memoryId: data?.id, pending: true } }
+    // 寫入失敗必須拋錯，讓 runAction 標成 failed —— 不能回報假成功（靜默失敗是 bug）
+    if (error || !data) throw new Error(`儲存記憶提案失敗：${error?.message ?? '未知錯誤'}`)
+    return { output: { memoryId: data.id, pending: true } }
   },
 
   create_project: async (ctx, admin, input) => {
-    const { data } = await admin
+    const { data, error } = await admin
       .from('projects')
       .insert({
         space_id: ctx.spaceId,
@@ -60,7 +62,8 @@ const HANDLERS: Record<string, Handler> = {
       })
       .select('id')
       .single()
-    return { output: { projectId: data?.id }, undo: { projectId: data?.id } }
+    if (error || !data) throw new Error(`建立專案失敗：${error?.message ?? '未知錯誤'}`)
+    return { output: { projectId: data.id }, undo: { projectId: data.id } }
   },
 
   apply_theme: async (ctx, admin, input) => {
@@ -79,7 +82,11 @@ const HANDLERS: Record<string, Handler> = {
       .eq('space_id', ctx.spaceId)
       .maybeSingle()
     if (!theme) throw new Error('找不到指定的主題')
-    await admin.from('spaces').update({ active_theme_id: themeId }).eq('id', ctx.spaceId)
+    const { error: applyErr } = await admin
+      .from('spaces')
+      .update({ active_theme_id: themeId })
+      .eq('id', ctx.spaceId)
+    if (applyErr) throw new Error(`套用主題失敗：${applyErr.message}`)
     return { output: { applied: themeId }, undo: { previousThemeId: before?.active_theme_id ?? null } }
   },
 
@@ -99,7 +106,12 @@ const HANDLERS: Record<string, Handler> = {
       undoBefore.push({ id, tags: a.tags ?? [] })
       const next =
         mode === 'replace' ? tags : Array.from(new Set([...(a.tags ?? []), ...tags]))
-      await admin.from('assets').update({ tags: next }).eq('id', id).eq('space_id', ctx.spaceId)
+      const { error: tagErr } = await admin
+        .from('assets')
+        .update({ tags: next })
+        .eq('id', id)
+        .eq('space_id', ctx.spaceId)
+      if (tagErr) throw new Error(`更新標籤失敗：${tagErr.message}`)
     }
     return { output: { tagged: undoBefore.length }, undo: { previous: undoBefore } }
   },

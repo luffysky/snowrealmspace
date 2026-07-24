@@ -61,11 +61,12 @@ export function NotificationBell() {
   async function markAllRead() {
     setUnread(0)
     setItems((xs) => xs.map((n) => ({ ...n, readAt: n.readAt ?? new Date().toISOString() })))
+    // 失敗就從伺服器重讀，別讓畫面顯示已讀但實際沒記到（樂觀更新要能回滾）
     await fetch('/api/notifications', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ action: 'read_all' }),
-    }).catch(() => {})
+    }).catch(() => void load())
   }
 
   async function markOne(id: string) {
@@ -75,7 +76,7 @@ export function NotificationBell() {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ action: 'read', id }),
-    }).catch(() => {})
+    }).catch(() => void load())
   }
 
   return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL } from '@snowrealm/theme-engine'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
@@ -126,12 +126,20 @@ export function BackgroundStudio({
   }
 
   async function updateBackground(id: string, patch: Record<string, unknown>) {
-    const updated = (await api(`/api/backgrounds/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(patch),
-    })) as BackgroundItem
-    setBackgrounds((prev) => prev.map((b) => (b.id === id ? updated : b)))
-    setEditing((prev) => (prev?.id === id ? updated : prev))
+    try {
+      const updated = (await api(`/api/backgrounds/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(patch),
+      })) as BackgroundItem
+      setBackgrounds((prev) => prev.map((b) => (b.id === id ? updated : b)))
+      setEditing((prev) => (prev?.id === id ? updated : prev))
+    } catch (err) {
+      // 靜默失敗是 bug：調整沒存到卻讓預覽照舊顯示，重載就消失。
+      // 明確告知，並把畫面拉回伺服器的真實值（丟棄這次沒存成功的編輯）。
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '調整沒有存到。' })
+      const server = backgrounds.find((b) => b.id === id)
+      if (server) setEditing((prev) => (prev?.id === id ? server : prev))
+    }
   }
 
   async function removeBackground(id: string) {
@@ -271,15 +279,26 @@ export function BackgroundStudio({
 function BackgroundThumb({ spaceId, item }: { spaceId: string; item: BackgroundItem }) {
   const [url, setUrl] = useState<string | null>(null)
 
-  useState(() => {
-    if (!item.asset_id) return
+  // 用 useEffect（不是 useState 初始化器）才不會在 render 期間發副作用、
+  // StrictMode 下不會雙跑；asset 換了會重抓，卸載會取消。
+  useEffect(() => {
+    if (!item.asset_id) {
+      setUrl(null)
+      return
+    }
+    let cancelled = false
     void fetch(`/api/assets/${item.asset_id}/url?rendition=thumbnail`, {
       headers: { 'x-space-id': spaceId },
     })
       .then((r) => (r.ok ? r.json() : null))
-      .then((b: { data?: { url: string } } | null) => setUrl(b?.data?.url ?? null))
+      .then((b: { data?: { url: string } } | null) => {
+        if (!cancelled) setUrl(b?.data?.url ?? null)
+      })
       .catch(() => {})
-  })
+    return () => {
+      cancelled = true
+    }
+  }, [spaceId, item.asset_id])
 
   if (item.type === 'gradient' && item.gradient_spec) {
     const stops = item.gradient_spec.stops
