@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
   }))
 
   return (
-    <div className="sr-stack">
+    <div className="sr-stack" data-tour="projects">
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>專案</h1>
         <p className="sr-muted">

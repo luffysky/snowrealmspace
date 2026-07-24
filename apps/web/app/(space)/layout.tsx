@@ -130,7 +130,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
       <header className="sr-nav">
         <strong style={{ fontSize: 'var(--sr-text-lg)' }}>{space.name}</strong>
 
-        <nav aria-label="主導覽" className="sr-nav-links">
+        <nav aria-label="主導覽" className="sr-nav-links" data-tour="nav">
           {nav.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
@@ -146,7 +146,9 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
             volume={audioSettings?.background_audio_volume ?? 0.5}
           />
           <NotificationBell />
-          <ThemeModeToggle initialMode={mode} lightDef={definition} />
+          <span data-tour="theme-toggle">
+            <ThemeModeToggle initialMode={mode} lightDef={definition} />
+          </span>
           <span className="sr-muted">{role === 'owner' ? '擁有者' : role}</span>
           <form action={signOut}>
             <button className="sr-button sr-button-secondary" type="submit">

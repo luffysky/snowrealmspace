@@ -52,15 +52,37 @@ const SECTIONS: Section[] = [
     key: 'home',
     label: '首頁與每日',
     intro: '首頁是可自由排版的儀表板，每天還有問候、語錄、驚喜盒。',
+    tour: 'home',
     steps: [
-      { title: '排版', body: '進編輯模式可拖曳、縮放小工具，排成你喜歡的樣子。' },
+      { title: '排版', body: '進編輯模式可拖曳、縮放小工具，排成你喜歡的樣子（拖曳會跟著游標）。' },
       { title: '每日卡片', body: '每天會有問候與語錄；打開驚喜盒可能開到稀有的收藏。' },
+    ],
+  },
+  {
+    key: 'timeline',
+    label: '時間軸',
+    intro: '你在空間裡的重要動作會投影成時間軸。',
+    tour: 'timeline',
+    steps: [
+      { title: '檢視', body: '可切換不同檢視（依時間、當日回顧…）。' },
+      { title: '整理', body: '每一筆都能隱藏或刪除。' },
+    ],
+  },
+  {
+    key: 'projects',
+    label: '專案',
+    intro: '把相關作品收進專案一起管理。',
+    tour: 'projects',
+    steps: [
+      { title: '建立', body: '建專案、改狀態、加標籤、設封面。' },
+      { title: '刪除', body: '刪專案不會刪作品，只解除歸屬。' },
     ],
   },
   {
     key: 'ai',
     label: 'AI 與記憶',
     intro: 'AI 助理與記憶預設關閉，完全由你決定要不要開。',
+    tour: 'agent',
     steps: [
       { title: '開啟', body: '到「設定 → 隱私」開啟 AI 分析或記憶。' },
       { title: '對話', body: '在 Agent 頁與助理對話；它只看得到你當次提供的內容。' },

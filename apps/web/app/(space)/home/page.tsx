@@ -102,7 +102,13 @@ export default async function HomePage() {
       </section>
 
       {/* 生日主角（Nami）看到生日鏈；其餘使用者看到溫暖的歡迎信 */}
-      {settings.is_birthday_recipient ? <BirthdayChain /> : <WelcomeLetter spaceName={space.name} />}
+      <div data-tour="home-grid">
+        {settings.is_birthday_recipient ? (
+          <BirthdayChain />
+        ) : (
+          <WelcomeLetter spaceName={space.name} />
+        )}
+      </div>
 
       {layout ? (
         <HomeGrid

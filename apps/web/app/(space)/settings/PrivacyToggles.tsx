@@ -56,7 +56,7 @@ export function PrivacyToggles({
   ]
 
   return (
-    <form action={formAction} className="sr-stack">
+    <form action={formAction} className="sr-stack" data-tour="privacy-toggles">
       <input type="hidden" name="spaceId" value={spaceId} />
 
       <fieldset style={{ border: 'none', padding: 0, margin: 0 }} disabled={!canEdit || pending}>

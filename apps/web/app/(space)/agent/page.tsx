@@ -39,7 +39,7 @@ export default async function AgentPage() {
   }
 
   return (
-    <div className="sr-stack">
+    <div className="sr-stack" data-tour="agent-chat">
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Agent</h1>
         <p className="sr-muted">

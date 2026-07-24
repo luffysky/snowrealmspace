@@ -28,7 +28,7 @@ export default async function TimelinePage() {
   const projectLabels: ProjectLabel[] = (projects ?? []).map((p) => ({ id: p.id, name: p.name }))
 
   return (
-    <div className="sr-stack">
+    <div className="sr-stack" data-tour="timeline">
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>時間軸</h1>
         <p className="sr-muted">
