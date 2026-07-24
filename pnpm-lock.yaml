@@ -21,6 +21,9 @@ importers:
       '@playwright/test':
         specifier: ^1.61.1
         version: 1.61.1
+      '@snowrealm/ai-core':
+        specifier: workspace:^
+        version: link:packages/ai-core
       '@snowrealm/analytics':
         specifier: workspace:^
         version: link:packages/analytics
@@ -108,6 +111,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@snowrealm/ai-core':
+        specifier: workspace:*
+        version: link:../../packages/ai-core
       '@snowrealm/analytics':
         specifier: workspace:*
         version: link:../../packages/analytics

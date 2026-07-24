@@ -2364,6 +2364,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      increment_ai_quota: {
+        Args: { p_is_free: boolean; p_local_date: string; p_space_id: string }
+        Returns: undefined
+      }
       is_space_member: { Args: { target_space_id: string }; Returns: boolean }
       is_space_owner: { Args: { target_space_id: string }; Returns: boolean }
       reorder_playlist_items: {
