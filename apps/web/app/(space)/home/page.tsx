@@ -6,6 +6,7 @@ import { WIDGET_REGISTRY, GRID, defaultLayoutItems, getWidgetDefinition } from '
 import { createAdminClient } from '@snowrealm/db/server'
 import { HomeGrid, type WidgetInstanceRow, type AvailableWidget } from './HomeGrid'
 import BirthdayChain from '@/components/widgets/impl/BirthdayChainWidget'
+import { WelcomeLetter } from '@/components/WelcomeLetter'
 
 export const metadata: Metadata = { title: 'Home — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -100,8 +101,8 @@ export default async function HomePage() {
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{space.name}</h1>
       </section>
 
-      {/* 生日鏈：這個空間的核心禮物，全寬呈現在版面之上 */}
-      <BirthdayChain />
+      {/* 生日主角（Nami）看到生日鏈；其餘使用者看到溫暖的歡迎信 */}
+      {settings.is_birthday_recipient ? <BirthdayChain /> : <WelcomeLetter spaceName={space.name} />}
 
       {layout ? (
         <HomeGrid

@@ -2189,6 +2189,7 @@ export type Database = {
           background_audio_volume: number
           created_at: string
           daily_enabled: boolean
+          is_birthday_recipient: boolean
           memory_enabled: boolean
           motion_preference: string
           provider_data_enabled: boolean
@@ -2215,6 +2216,7 @@ export type Database = {
           background_audio_volume?: number
           created_at?: string
           daily_enabled?: boolean
+          is_birthday_recipient?: boolean
           memory_enabled?: boolean
           motion_preference?: string
           provider_data_enabled?: boolean
@@ -2241,6 +2243,7 @@ export type Database = {
           background_audio_volume?: number
           created_at?: string
           daily_enabled?: boolean
+          is_birthday_recipient?: boolean
           memory_enabled?: boolean
           motion_preference?: string
           provider_data_enabled?: boolean
