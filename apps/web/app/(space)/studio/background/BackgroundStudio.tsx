@@ -166,7 +166,7 @@ export function BackgroundStudio({
         </p>
       )}
 
-      <section className="sr-card">
+      <section className="sr-card" data-tour="bg-add">
         <h2 className="sr-section-title">加入背景</h2>
 
         {imageAssets.length === 0 ? (

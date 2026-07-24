@@ -7,6 +7,7 @@ import { accountHasRecovery } from '@/lib/auth/recovery'
 import { BindingReminder } from '@/components/BindingReminder'
 import { ThemeModeToggle } from '@/components/ThemeModeToggle'
 import { NotificationBell } from '@/components/NotificationBell'
+import { SiteFooter } from '@/components/SiteFooter'
 import { BackgroundMusic } from '@/components/BackgroundMusic'
 import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 import {
@@ -159,6 +160,10 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         {needsRecovery && <BindingReminder />}
         {children}
       </main>
+
+      <div className="sr-main" style={{ paddingTop: 0 }}>
+        <SiteFooter />
+      </div>
 
       {process.env.NODE_ENV === 'development' && (
         <footer className="sr-main" style={{ paddingTop: 0 }}>

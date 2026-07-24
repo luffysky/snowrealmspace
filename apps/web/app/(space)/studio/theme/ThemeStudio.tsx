@@ -205,7 +205,7 @@ export function ThemeStudio({
   }
 
   return (
-    <div className="sr-studio">
+    <div className="sr-studio" data-tour="theme-studio">
       {/* ── 左：控制 ── */}
       <div className="sr-studio-controls sr-stack">
         <section className="sr-card">

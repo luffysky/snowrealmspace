@@ -304,12 +304,14 @@ export function LibraryClient({
         </p>
       )}
 
-      <Uploader spaceId={spaceId} onUploaded={() => void refresh()} />
+      <div data-tour="uploader">
+        <Uploader spaceId={spaceId} onUploaded={() => void refresh()} />
+      </div>
 
       {/* ── 篩選列 ─────────────────────────────────── */}
       <div className="sr-card sr-stack" style={{ gap: 'var(--sr-space-3)' }}>
         {/* 資料夾 */}
-        <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }} data-tour="folders">
           <div className="sr-chip-row" role="group" aria-label="依資料夾篩選">
             <button
               type="button"
@@ -394,7 +396,7 @@ export function LibraryClient({
 
         {/* 標籤分類：目前檔案用到的標籤，點一下就篩選 */}
         {tagsInView.length > 0 && (
-          <div className="sr-chip-row" role="group" aria-label="依標籤篩選">
+          <div className="sr-chip-row" role="group" aria-label="依標籤篩選" data-tour="tag-filter">
             {tag.trim() && (
               <button type="button" className="sr-chip sr-chip-active" onClick={() => setTag('')}>
                 #{tag} ✕

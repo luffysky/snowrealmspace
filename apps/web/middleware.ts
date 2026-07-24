@@ -15,7 +15,11 @@ export async function middleware(request: NextRequest) {
   // ── 站台密碼閘門（尚未對外開放）────────────────────────────
   // 沒通過閘門的人只能看到 /gate 與其 API。通過後才進入正常流程。
   const passedGate = request.cookies.get(GATE_COOKIE)?.value === GATE_TOKEN
-  const isGatePath = pathname === '/gate' || pathname.startsWith('/api/gate')
+  // 隱私政策/使用條款公開（不需通過閘門）：OAuth 審核（Google/LINE）要求隱私政策
+  // 可公開存取，註冊流程也要能連到這兩頁。（/guide 是站內說明，仍在閘門後。）
+  const isPublicInfo = pathname === '/privacy' || pathname === '/terms'
+  const isGatePath =
+    pathname === '/gate' || pathname.startsWith('/api/gate') || isPublicInfo
   // 外部端點不受站台閘門限制：provider webhook（外部呼叫、無 cookie，04-api-contract §0）
   // 與健康檢查。這些自行驗簽章/授權。
   const isPublicEndpoint =

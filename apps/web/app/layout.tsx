@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { DEFAULT_THEME } from '@/lib/theme-defaults'
+import { TutorialHost } from '@/components/tutorial/TutorialController'
+import { CookieConsent } from '@/components/CookieConsent'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -16,7 +18,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant-TW">
-      <body>{children}</body>
+      <body>
+        {children}
+        <TutorialHost />
+        <CookieConsent />
+      </body>
     </html>
   )
 }

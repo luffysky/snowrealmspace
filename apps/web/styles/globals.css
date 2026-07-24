@@ -944,6 +944,86 @@ input[type='range'] {
   border-color: var(--sr-danger);
 }
 
+/* ── 互動教學（spotlight） ────────────────────────── */
+.sr-tour {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+.sr-tour-dim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+/* 打亮框：box-shadow 撐出無限大暗遮罩、中間留亮。pointer-events:none → 亮區照常可操作 */
+.sr-tour-hole {
+  position: fixed;
+  border-radius: var(--sr-radius-sm, 8px);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
+  outline: 2px solid var(--sr-primary);
+  outline-offset: 2px;
+  transition:
+    top 0.25s var(--sr-ease, ease),
+    left 0.25s var(--sr-ease, ease),
+    width 0.25s var(--sr-ease, ease),
+    height 0.25s var(--sr-ease, ease);
+}
+.sr-tour-tip {
+  position: fixed;
+  width: 340px;
+  max-width: calc(100vw - 24px);
+  background: var(--sr-surface-opaque);
+  color: var(--sr-text-primary);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius, 16px);
+  box-shadow: var(--sr-shadow-lg);
+  padding: var(--sr-space-4);
+  pointer-events: auto;
+  z-index: 1001;
+}
+.sr-tour-tip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--sr-space-2);
+}
+
+/* ── 頁尾 ─────────────────────────────────────────── */
+.sr-footer {
+  margin-top: var(--sr-space-12);
+  padding: var(--sr-space-6) var(--sr-space-4);
+  border-top: 1px solid var(--sr-border);
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+}
+.sr-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2) var(--sr-space-4);
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Cookie 同意橫幅 ──────────────────────────────── */
+.sr-cookie {
+  position: fixed;
+  left: var(--sr-space-4);
+  right: var(--sr-space-4);
+  bottom: var(--sr-space-4);
+  z-index: 900;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--sr-space-4);
+  background: var(--sr-surface-opaque);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius, 16px);
+  box-shadow: var(--sr-shadow-lg);
+}
+.sr-legal {
+  padding: var(--sr-space-8) var(--sr-space-4);
+}
+
 /* ── Background Studio ────────────────────────────── */
 
 /* 裁切工具的框與把手：這是工具 chrome（遮罩／選取框），需要與任意底圖對比，

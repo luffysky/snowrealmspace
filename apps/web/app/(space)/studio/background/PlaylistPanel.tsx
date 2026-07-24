@@ -174,7 +174,7 @@ export function PlaylistPanel({
     )
 
   return (
-    <section className="sr-card">
+    <section className="sr-card" data-tour="bg-playlists">
       <h2 className="sr-section-title">幻燈片</h2>
 
       {playlists.length === 0 && (

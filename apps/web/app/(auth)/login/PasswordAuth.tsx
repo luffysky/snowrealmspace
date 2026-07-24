@@ -20,6 +20,7 @@ export function PasswordAuth({ next }: { next: string }) {
   const [password, setPassword] = useState('')
   const [account, setAccount] = useState('')
   const [remember, setRemember] = useState(true)
+  const [agreed, setAgreed] = useState(false)
   const action = mode === 'signin' ? signInWithPassword : registerWithPassword
   const [state, formAction, pending] = useActionState(action, initial)
 
@@ -118,13 +119,38 @@ export function PasswordAuth({ next }: { next: string }) {
           </p>
         )}
 
+        {mode === 'signup' && (
+          <label className="sr-choice sr-choice-inline" style={{ alignItems: 'flex-start' }}>
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              required
+            />
+            <span>
+              我已閱讀並同意{' '}
+              <Link href="/privacy" className="sr-link" target="_blank">
+                隱私政策
+              </Link>{' '}
+              與{' '}
+              <Link href="/terms" className="sr-link" target="_blank">
+                使用條款
+              </Link>
+            </span>
+          </label>
+        )}
+
         {state.status === 'error' && state.message && (
           <p className="sr-message sr-message-error" role="alert">
             ✕ {state.message}
           </p>
         )}
 
-        <button type="submit" className="sr-button" disabled={pending}>
+        <button
+          type="submit"
+          className="sr-button"
+          disabled={pending || (mode === 'signup' && !agreed)}
+        >
           {pending ? '處理中…' : mode === 'signin' ? '登入' : '註冊並進入'}
         </button>
       </form>
