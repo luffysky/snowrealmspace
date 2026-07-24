@@ -70,3 +70,23 @@ export {
   type RunResult,
   runCandidateChain,
 } from './router.js'
+
+export {
+  type AIContentBlock,
+  type AIMessage,
+  type ToolDefinition,
+  type ToolCall,
+  type AICompletionRequest,
+  type AICompletionResponse,
+} from './types.js'
+
+export { callAI } from './client.js'
+
+export {
+  type UsageCompletion,
+  type ModelCallResult,
+  type UsageLogEntry,
+  type CompleteDeps,
+  type CompleteOptions,
+  completeForUsage,
+} from './complete.js'
