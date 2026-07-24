@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { useActionState, useState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { signInWithPassword, registerWithPassword, type AuthActionState } from '../actions'
 import { PasswordField } from '../PasswordField'
 import { PasswordStrengthMeter } from '../PasswordStrengthMeter'
 
 const initial: AuthActionState = { status: 'idle' }
+const REMEMBER_KEY = 'sr-remember-account'
 
 /**
  * 帳號密碼登入 / 註冊。
@@ -17,8 +18,24 @@ const initial: AuthActionState = { status: 'idle' }
 export function PasswordAuth({ next }: { next: string }) {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin')
   const [password, setPassword] = useState('')
+  const [account, setAccount] = useState('')
+  const [remember, setRemember] = useState(true)
   const action = mode === 'signin' ? signInWithPassword : registerWithPassword
   const [state, formAction, pending] = useActionState(action, initial)
+
+  // 記住帳號：存在瀏覽器 localStorage，下次自動帶入。
+  // 只記帳號、不記密碼——密碼交給瀏覽器內建的密碼管理員（autocomplete）保存才安全，
+  // 明文密碼放 localStorage 一旦被 XSS 讀到就全洩。
+  useEffect(() => {
+    const saved = window.localStorage.getItem(REMEMBER_KEY)
+    if (saved) setAccount(saved)
+    else setRemember(false)
+  }, [])
+
+  function persistAccount() {
+    if (remember && account.trim()) window.localStorage.setItem(REMEMBER_KEY, account.trim())
+    else window.localStorage.removeItem(REMEMBER_KEY)
+  }
 
   return (
     <div style={{ marginTop: 'var(--sr-space-4)' }}>
@@ -41,7 +58,12 @@ export function PasswordAuth({ next }: { next: string }) {
         </button>
       </div>
 
-      <form action={formAction} className="sr-stack" style={{ gap: 'var(--sr-space-3)' }}>
+      <form
+        action={formAction}
+        onSubmit={persistAccount}
+        className="sr-stack"
+        style={{ gap: 'var(--sr-space-3)' }}
+      >
         <input type="hidden" name="next" value={next} />
 
         <div>
@@ -55,11 +77,24 @@ export function PasswordAuth({ next }: { next: string }) {
             type="text"
             autoComplete="username"
             required
+            value={account}
+            onChange={(e) => setAccount(e.target.value)}
             pattern={mode === 'signup' ? '[A-Za-z0-9_.@\\-]{3,254}' : undefined}
             placeholder={mode === 'signup' ? '取一個帳號（3–30 字，英數與 _ . -）' : '帳號'}
             disabled={pending}
           />
         </div>
+
+        {mode === 'signin' && (
+          <label className="sr-choice sr-choice-inline">
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+            />
+            記住帳號（密碼由瀏覽器的密碼管理員保存）
+          </label>
+        )}
 
         <div className="sr-stack" style={{ gap: 'var(--sr-space-1)' }}>
           <PasswordField
