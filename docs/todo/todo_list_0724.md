@@ -102,7 +102,7 @@
 - [x] ~~AI 金鑰管理 `/admin/ai-keys`（各家加密存 DB、測試、啟用/移除）~~
 - [ ] **AI 模型管理** `/admin/ai/models`（ai_models CRUD：啟用/停用、成本、vision/tools 標記、新增退役）
 - [ ] **候選鏈管理** `/admin/ai/usage-models`（每個 usage key 的候選鏈與順序、role 調整）
-- [ ] **AI 用量／成本儀表板** `/admin/ai/usage`（ai_usage_log：總成本、per-usage/per-day、免費vs付費、escalate 率、cache 命中）
+- [x] ~~**AI 用量／成本儀表板** `/admin/ai/usage`（總成本、免費vs付費、escalate/fallback/degraded/cache 率、依 provider/usage 拆分）~~
 - [ ] **每日額度設定**（免費/付費上限，目前寫死 300/20）
 - [ ] **回應快取** `/admin/ai/cache`（命中率、清空、per-usage）
 - [ ] **內容審核關鍵字**（FORBIDDEN_PATTERNS 可後台編輯）
