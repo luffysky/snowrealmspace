@@ -133,6 +133,11 @@ export default async function SettingsPage() {
             記憶中心：查看、編輯、刪除 Agent 記得的事 →
           </Link>
         </p>
+        <p style={{ marginTop: 'var(--sr-space-2)', marginBottom: 0 }}>
+          <Link href="/settings/ai-data" className="sr-link">
+            AI 資料聲明：AI 用了什麼、送去哪、留下什麼 →
+          </Link>
+        </p>
       </section>
 
       <section className="sr-card">

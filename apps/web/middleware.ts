@@ -16,6 +16,13 @@ export async function middleware(request: NextRequest) {
   // 沒通過閘門的人只能看到 /gate 與其 API。通過後才進入正常流程。
   const passedGate = request.cookies.get(GATE_COOKIE)?.value === GATE_TOKEN
   const isGatePath = pathname === '/gate' || pathname.startsWith('/api/gate')
+  // 外部端點不受站台閘門限制：provider webhook（外部呼叫、無 cookie，04-api-contract §0）
+  // 與健康檢查。這些自行驗簽章/授權。
+  const isPublicEndpoint =
+    pathname.startsWith('/api/webhooks/') || pathname === '/api/health'
+  if (isPublicEndpoint) {
+    return NextResponse.next({ request })
+  }
   if (!passedGate && !isGatePath) {
     const url = request.nextUrl.clone()
     url.pathname = '/gate'

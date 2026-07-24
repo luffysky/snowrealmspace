@@ -33,6 +33,9 @@ importers:
       '@snowrealm/db':
         specifier: workspace:^
         version: link:packages/db
+      '@snowrealm/provider-core':
+        specifier: workspace:^
+        version: link:packages/provider-core
       '@snowrealm/shared-types':
         specifier: workspace:^
         version: link:packages/shared-types
@@ -126,6 +129,9 @@ importers:
       '@snowrealm/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@snowrealm/provider-core':
+        specifier: workspace:*
+        version: link:../../packages/provider-core
       '@snowrealm/shared-types':
         specifier: workspace:*
         version: link:../../packages/shared-types
@@ -277,6 +283,15 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.47.10
         version: 2.110.8
+    devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
+  packages/provider-core:
     devDependencies:
       typescript:
         specifier: ^5.7.2
