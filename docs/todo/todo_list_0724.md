@@ -14,9 +14,9 @@
 | A — Foundation | ✅ 完成 | 100% |
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ✅ 幾乎完成 | C1–C7 全數完成（地基/Projects/Library/作品+版本比較/Timeline/from-image/隱私刪除組）；剩空間整體刪除（需 R2+worker） |
-| D — AI Core | 🚧 基礎完成 | ai-core 路由層（純核心+編排，93+10 測試）+ 資料層 0023 完成；callAI/completeForUsage/Agent 需金鑰接續 |
-| E — Daily Loop | ✅ 幾乎完成 | 內容池/每日卡片/驚喜盒+保底+收藏/生日鏈/主動訊息/Insight/通知全通；剩 cron 掃時區、weekly_recap 推播、Insight 的 LLM 升級（需 D） |
-| F — Integration | ⬜ 未開始 | 0% |
+| D — AI Core | 🚧 大幅完成 | 路由層+對話+工具+記憶全備（113 ai-core 測試）；剩對話產生回應需金鑰、vision/串流 |
+| E — Daily Loop | ✅ 完成 | cron 掃時區+weekly recap 補齊；剩 Insight LLM 升級（需金鑰） |
+| F — Integration | 🚧 骨架 | adapter/capabilities/webhook 冪等完成；OAuth/sync 需 Figma 憑證 |
 | 部署 / 帳號 | 🚧 進行中 | 站台閘門、密碼註冊、hosted 建表已通；SMTP/R2/worker 待設 |
 
 ---
@@ -76,6 +76,15 @@
 
 ---
 
+## 🅕 Milestone F — Integration（骨架起）
+
+- [x] ~~`@snowrealm/provider-core`：ProviderCapabilities（前端只顯示支援、禁 Coming Soon）、
+      DesignProviderAdapter 介面、FigmaAdapter、HMAC 簽章驗證、webhook 冪等（12 測試）~~
+- [x] ~~GET /api/integrations（capability matrix）+ POST /api/webhooks/:provider（驗簽+冪等+快回 200）~~
+- [x] ~~middleware 豁免 /api/webhooks/*（外部呼叫）~~
+- [ ] 🔴 **Figma app 憑證**（client id/secret）→ OAuth connect/callback、figma.sync job 才能實作
+- [ ] 🔴 worker 部署（sync job 要跑）
+
 ## 🅴 Milestone E — Daily Loop
 
 - [x] ~~內容池：語錄 3745 / 提示 3661 / 問候 268 / 驚喜 645 / 生日鏈+信（AI 代寫，10 年份量）~~
@@ -91,9 +100,9 @@
 - [x] ~~Notification：in-app 鈴鐺、分類、已讀、一鍵關閉、Quiet hours（設定頁）~~
 - [x] ~~Agent 訊息 widget 實作（進 Home 觸發主動訊息、顯示最新一則）~~
 - [x] ~~深淺色切換（選項 A：任何主題自動算暗色版、nav 日/月鈕、cookie 記住）~~
-- [ ] cron 掃時區主動生成（目前是「開啟時若當天沒有就生成」，夠用但非完整方案）
-- [ ] Weekly Recap 專屬通知（目前回顧在 /insights，未主動推 weekly_recap 通知）
-- [ ] Insight 升級 inference/suggestion/creative（需 D 的 LLM）
+- [x] ~~cron 掃時區主動生成（daily-engine 共享套件 + worker daily-cron handler，每小時掃、當地 04:00 生成）~~
+- [x] ~~Weekly Recap 專屬通知（當地週一 09:00 生成回顧 + weekly_recap 通知，冪等）~~
+- [ ] Insight 升級 inference/suggestion/creative（需 D 的 LLM，即金鑰）
 
 ---
 
@@ -137,10 +146,14 @@
 - [x] ~~**buildCompleteDeps** 接真 Supabase + migration 0024 額度累計函式 + seed（9 模型/18 用途）~~
 - [x] ~~**五分類 clampStatement**（fact/metric/inference 證據強制、inference≤0.85、丟無效保其餘）~~
 - [x] ~~整合驗證 verify-d-routing：無金鑰時候選鏈/預算/跳過/誠實失敗全對~~
-- [ ] 🔴 **設定 AI 金鑰**（Groq + Gemini 兩把免費）→ Agent 對話才能真的跑（基礎全備）
-- [ ] Agent system prompt、context builder、SSE 串流、UI 五分類視覺區別
-- [ ] 10 個 tool、Memory（提案→批准、pgvector）、設計分析（light/deep）
-- [ ] 把 Insight/daily/greeting 接上 completeForUsage（有金鑰才升級，無則現行規則式）
+- [ ] 🔴 **設定 AI 金鑰**（Groq + Gemini 兩把免費）→ Agent 對話才能真的產生回應（基礎全備）
+- [x] ~~Agent system prompt + context builder（主題/記憶/原則/活動/選取作品，反幻覺分支）~~
+- [x] ~~Agent 對話 UI（/agent，訊息氣泡、無金鑰優雅降級保留輸入、degraded 提示）~~
+- [x] ~~10 tool 註冊表 + 執行流程（agent_actions 生命週期、確認閘門、24h undo；verify-d-tools 驗證）~~
+- [x] ~~Memory（提案→批准、Memory Center、ADR-014 雙重防護）~~
+- [ ] SSE 串流、UI 五分類視覺區別（文字對話已可用，串流待金鑰調校）
+- [ ] 設計分析 light/deep（vision，需金鑰）；把 Insight/greeting 接 completeForUsage（graceful）
+- [ ] embedding 記憶語意檢索 + 對話歷史摘要（需金鑰）
 
 ---
 
