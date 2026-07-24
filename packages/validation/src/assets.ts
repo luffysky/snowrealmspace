@@ -137,25 +137,28 @@ export function sniffMimeType(head: Uint8Array): string | null {
   if (startsWith(0x47, 0x49, 0x46, 0x38)) return 'image/gif'
   if (startsWith(0x25, 0x50, 0x44, 0x46)) return 'application/pdf'
 
-  // RIFF....WEBP
-  if (
-    startsWith(0x52, 0x49, 0x46, 0x46) &&
-    b[8] === 0x57 &&
-    b[9] === 0x45 &&
-    b[10] === 0x42 &&
-    b[11] === 0x50
-  ) {
-    return 'image/webp'
+  // RIFF：WEBP（圖片）或 WAVE（音訊）—— 同樣 RIFF 容器，看第 8~11 byte 區分
+  if (startsWith(0x52, 0x49, 0x46, 0x46)) {
+    if (b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50) return 'image/webp'
+    if (b[8] === 0x57 && b[9] === 0x41 && b[10] === 0x56 && b[11] === 0x45) return 'audio/wav'
   }
 
-  // ISO-BMFF：....ftyp
+  // MP3：ID3 標籤，或 MPEG frame sync（0xFFEx/0xFFFx）
+  if (startsWith(0x49, 0x44, 0x33)) return 'audio/mpeg'
+  if (b[0] === 0xff && ((b[1] ?? 0) & 0xe0) === 0xe0) return 'audio/mpeg'
+
+  // Ogg 容器（可能承載音訊或視訊；magic bytes 分不出，交給 mimeMatches 家族等價）
+  if (startsWith(0x4f, 0x67, 0x67, 0x53)) return 'audio/ogg'
+
+  // ISO-BMFF：....ftyp。brand 分辨 avif（圖）/ m4a（音）/ 其餘當 mp4（視訊容器）
   if (b[4] === 0x66 && b[5] === 0x74 && b[6] === 0x79 && b[7] === 0x70) {
     const brand = String.fromCharCode(b[8] ?? 0, b[9] ?? 0, b[10] ?? 0, b[11] ?? 0)
     if (brand.startsWith('avif') || brand.startsWith('avis')) return 'image/avif'
+    if (brand.startsWith('M4A') || brand.startsWith('M4B')) return 'audio/mp4'
     return 'video/mp4'
   }
 
-  // EBML（WebM / Matroska）
+  // EBML（WebM / Matroska）—— 同樣分不出音訊/視訊，交給 mimeMatches 家族等價
   if (startsWith(0x1a, 0x45, 0xdf, 0xa3)) return 'video/webm'
 
   return null
@@ -167,6 +170,13 @@ export function sniffMimeType(head: Uint8Array): string | null {
  */
 export function mimeMatches(claimed: string, sniffed: string): boolean {
   if (claimed === sniffed) return true
-  const jpeg = new Set(['image/jpeg', 'image/jpg'])
-  return jpeg.has(claimed) && jpeg.has(sniffed)
+  // magic bytes 只認得「容器」，認不出同容器裡是音訊還是視訊。
+  // 同容器家族視為相符，由 client 宣稱的 audio/video 標示為準。
+  const families: Set<string>[] = [
+    new Set(['image/jpeg', 'image/jpg']),
+    new Set(['video/mp4', 'audio/mp4']), // ISO-BMFF
+    new Set(['video/webm', 'audio/webm']), // EBML
+    new Set(['video/ogg', 'audio/ogg']), // Ogg
+  ]
+  return families.some((f) => f.has(claimed) && f.has(sniffed))
 }

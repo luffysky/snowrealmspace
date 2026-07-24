@@ -83,10 +83,20 @@ export const POST = handler(
       return await reject('unsupported', '不支援的檔案類型。')
     }
 
+    // sniff 認得容器但分不出音訊/視訊：同容器家族且 client 宣稱音訊時，保留宣稱值
+    // （否則 audio/webm 會被覆寫成 video/webm，與 kind='audio' 不一致）。
+    // 其餘一律用 sniff 出的規範值覆寫 client（防謊報，例如 image/jpg → image/jpeg）。
+    const canonicalMime =
+      asset.mime_type !== sniffed &&
+      mimeMatches(asset.mime_type, sniffed) &&
+      kindForMime(asset.mime_type) === 'audio'
+        ? asset.mime_type
+        : sniffed
+
     // ── 通過。標記就緒並排入處理 ──
     const { error: updateError } = await admin
       .from('assets')
-      .update({ status: 'ready', mime_type: sniffed })
+      .update({ status: 'ready', mime_type: canonicalMime })
       .eq('id', id)
 
     if (updateError) {

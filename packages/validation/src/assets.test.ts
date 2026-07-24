@@ -57,14 +57,24 @@ describe('sniffMimeType', () => {
     expect(sniffMimeType(new Uint8Array(0))).toBeNull()
   })
 
-  it('RIFF 但不是 WEBP 時不誤判', () => {
-    // RIFF....WAVE
+  it('RIFF + WAVE 判為 wav（背景音樂）', () => {
     const wav = bytes(0x52, 0x49, 0x46, 0x46, 0, 0, 0, 0, 0x57, 0x41, 0x56, 0x45)
-    expect(sniffMimeType(wav)).toBeNull()
+    expect(sniffMimeType(wav)).toBe('audio/wav')
   })
 
-  it('ftyp 但非 avif 的 brand 判為 mp4', () => {
-    const mp4v2 = bytes(0, 0, 0, 0x18, 0x66, 0x74, 0x79, 0x70, 0x6d, 0x70, 0x34, 0x32)
+  it('mp3：ID3 標籤與 frame sync 都判為 audio/mpeg', () => {
+    expect(sniffMimeType(bytes(0x49, 0x44, 0x33, 0x03, 0, 0))).toBe('audio/mpeg') // "ID3"
+    expect(sniffMimeType(bytes(0xff, 0xfb, 0x90, 0x00))).toBe('audio/mpeg') // frame sync
+  })
+
+  it('Ogg 容器判為 audio/ogg', () => {
+    expect(sniffMimeType(bytes(0x4f, 0x67, 0x67, 0x53))).toBe('audio/ogg') // "OggS"
+  })
+
+  it('ftyp brand M4A 判為 audio/mp4，其餘 brand 判為 video/mp4', () => {
+    const m4a = bytes(0, 0, 0, 0x18, 0x66, 0x74, 0x79, 0x70, 0x4d, 0x34, 0x41, 0x20) // "M4A "
+    expect(sniffMimeType(m4a)).toBe('audio/mp4')
+    const mp4v2 = bytes(0, 0, 0, 0x18, 0x66, 0x74, 0x79, 0x70, 0x6d, 0x70, 0x34, 0x32) // "mp42"
     expect(sniffMimeType(mp4v2)).toBe('video/mp4')
   })
 })
@@ -79,9 +89,16 @@ describe('mimeMatches', () => {
     expect(mimeMatches('image/jpeg', 'image/jpg')).toBe(true)
   })
 
+  it('同容器家族的音訊/視訊互通（sniff 只認容器）', () => {
+    expect(mimeMatches('audio/mp4', 'video/mp4')).toBe(true) // m4a 在 ISO-BMFF 容器
+    expect(mimeMatches('audio/webm', 'video/webm')).toBe(true) // webm 音訊
+    expect(mimeMatches('audio/ogg', 'video/ogg')).toBe(true)
+  })
+
   it('不同類型不通過', () => {
     expect(mimeMatches('video/mp4', 'image/png')).toBe(false)
     expect(mimeMatches('image/png', 'image/webp')).toBe(false)
+    expect(mimeMatches('audio/mpeg', 'video/mp4')).toBe(false) // 不同容器
   })
 })
 

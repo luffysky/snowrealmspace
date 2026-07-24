@@ -45,6 +45,37 @@ async function main() {
     const { spaceId: expiredId } = await provisionSpaceForUser({ userId: uA.user.id, email: emailA })
     const { spaceId: freshId } = await provisionSpaceForUser({ userId: uB.user.id, email: emailB })
 
+    // 種一個 asset + design_snapshot：這樣「刪 space cascade 撞上
+    // design_snapshots.asset_id FK」的路徑才真的被走到（0032 前這會讓 purge 失敗，
+    // 舊版 verify 因為沒建 asset 而漏掉——正是「假安全的檢查」）。
+    const { data: asset, error: aErr } = await admin
+      .from('assets')
+      .insert({
+        space_id: expiredId,
+        kind: 'image',
+        mime_type: 'image/png',
+        bytes: 123,
+        checksum: `purge-test-${stamp}`,
+        storage_key: `test/purge-${stamp}.png`,
+        status: 'ready',
+      })
+      .select('id')
+      .single()
+    if (aErr || !asset) throw new Error(`建立測試 asset 失敗：${aErr?.message}`)
+    const { data: df, error: dfErr } = await admin
+      .from('design_files')
+      .insert({ space_id: expiredId, title: '測試作品' })
+      .select('id')
+      .single()
+    if (dfErr || !df) throw new Error(`建立測試 design_file 失敗：${dfErr?.message}`)
+    const { error: dsErr } = await admin.from('design_snapshots').insert({
+      space_id: expiredId,
+      design_file_id: df.id,
+      asset_id: asset.id,
+      checksum: `snap-${stamp}`,
+    })
+    if (dsErr) throw new Error(`建立測試 design_snapshot 失敗：${dsErr.message}`)
+
     // expired：軟刪除滿 8 天（超過 7 天寬限）
     const eightDaysAgo = new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
     await admin.from('spaces').update({ deleted_at: eightDaysAgo }).eq('id', expiredId)
