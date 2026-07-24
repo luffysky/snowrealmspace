@@ -98,3 +98,12 @@ export {
   type CompleteOptions,
   completeForUsage,
 } from './complete.js'
+
+export {
+  type StatementCategory,
+  type Statement,
+  INFERENCE_MAX_CONFIDENCE,
+  InvalidStatementError,
+  clampStatement,
+  clampStatements,
+} from './statements.js'
