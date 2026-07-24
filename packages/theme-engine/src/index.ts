@@ -96,3 +96,9 @@ export {
   type FeatureComparison,
   type ColorDiff,
 } from './compare.js'
+
+export {
+  draftsFromLocalFeatures,
+  type LocalFeaturesInput,
+  type ThemeDraft,
+} from './from-features.js'

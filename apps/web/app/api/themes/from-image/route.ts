@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { themeFromImageSchema } from '@snowrealm/validation'
-import { buildThemesFromPalette, analyzeTheme, NEUTRAL, type Palette } from '@snowrealm/theme-engine'
+import { draftsFromLocalFeatures, analyzeTheme, type LocalFeaturesInput } from '@snowrealm/theme-engine'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 
@@ -39,45 +39,32 @@ export const POST = handler(async (request: NextRequest) => {
   if (!asset) return fail('NOT_FOUND', '找不到這張圖片。')
   if (asset.kind !== 'image') return fail('UNPROCESSABLE', '只能從圖片生成主題。')
 
-  const features = asset.local_features as { colors?: Partial<Palette> & { palette?: unknown } } | null
-  const colors = features?.colors
+  const baseName =
+    input.baseName ?? (stripExtension(asset.original_filename ?? '') || '從圖片')
 
-  if (!colors?.dominant) {
+  const generated = draftsFromLocalFeatures(
+    asset.local_features as LocalFeaturesInput | null,
+    baseName,
+    input.variants,
+  )
+
+  if (!generated) {
     /*
-     * 分析尚未完成。不編一個假的色票，但也不能只丟一個死錯誤 ——
+     * 分析尚未完成（沒有主色）。不編一個假的色票，但也不能只丟一個死錯誤 ——
      * 使用者剛上傳完就點「生成主題」是最自然的操作。
      * 標記 retryable 讓前端知道這是等待而非失敗，可以自己輪詢。
      */
     return fail('UNPROCESSABLE', '這張圖片還在分析中，請稍等幾秒。', { retryable: true })
   }
 
-  const palette: Palette = {
-    dominant: colors.dominant,
-    secondary: colors.secondary ?? colors.dominant,
-    accent: colors.accent ?? colors.dominant,
-    darkest: colors.darkest ?? NEUTRAL.nearBlack,
-    lightest: colors.lightest ?? NEUTRAL.white,
-    swatches: (colors.palette as { color: string; weight: number }[] | undefined) ?? [],
-    stats: {
-      colorCount: 0,
-      averageSaturation: 0,
-      averageLightness: 0,
-      isDark: false,
-    },
-  }
+  // a11yReport 在儲存時才需要，這裡一併附上讓前端能立即顯示對比狀態
+  const drafts = generated.drafts.map(({ variant, definition }) => ({
+    variant,
+    definition,
+    a11yReport: analyzeTheme(definition),
+  }))
 
-  const baseName =
-    input.baseName ?? (stripExtension(asset.original_filename ?? '') || '從圖片')
-
-  const drafts = buildThemesFromPalette(palette, baseName)
-    .slice(0, input.variants)
-    .map(({ definition, variant }) => ({
-      variant,
-      definition,
-      a11yReport: analyzeTheme(definition),
-    }))
-
-  return ok({ assetId: asset.id, palette, drafts })
+  return ok({ assetId: asset.id, palette: generated.palette, drafts })
 })
 
 function stripExtension(filename: string): string {

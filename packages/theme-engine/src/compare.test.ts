@@ -31,10 +31,10 @@ describe('compareLocalFeatures', () => {
     expect(r.dimensions.aspectRatioDelta).toBe(0.4)
   })
 
-  it('計算顏色距離與統計差異', () => {
+  it('計算顏色距離與統計差異（巢狀結構，對齊 asset.process）', () => {
     const r = compareLocalFeatures(
-      { dominant: '#000000', averageLightness: 0.2, isDark: true },
-      { dominant: '#ffffff', averageLightness: 0.8, isDark: false },
+      { colors: { dominant: '#000000' }, composition: { averageLightness: 0.2, isDark: true } },
+      { colors: { dominant: '#ffffff' }, composition: { averageLightness: 0.8, isDark: false } },
     )
     expect(r.colors.dominant.distance).toBe(100)
     expect(r.colors.dominant.from).toBe('#000000')
