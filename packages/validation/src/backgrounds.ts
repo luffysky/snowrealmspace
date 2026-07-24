@@ -53,6 +53,9 @@ const presentationFields = {
   cropY: z.number().min(0).max(100).default(0),
   cropW: z.number().min(0).max(100).default(100),
   cropH: z.number().min(0).max(100).default(100),
+  // 疊加場景（雪/雨/櫻花…）：任何背景之上都能疊一層。
+  sceneId: z.string().max(40).nullable().optional(),
+  sceneDensity: z.number().min(0.1).max(3).default(1),
 }
 
 /** 裁切矩形不得超出邊界（起點 + 寬 ≤ 100）。給 create/patch 兩邊共用。 */
@@ -136,6 +139,8 @@ export const backgroundPatchSchema = z
     cropY: z.number().min(0).max(100).optional(),
     cropW: z.number().min(0).max(100).optional(),
     cropH: z.number().min(0).max(100).optional(),
+    sceneId: z.string().max(40).nullable().optional(),
+    sceneDensity: z.number().min(0.1).max(3).optional(),
     gradientSpec: gradientSpecSchema.optional(),
   })
   .strict()

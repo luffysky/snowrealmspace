@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { intervalMsFor, needsClientRotation, nextIndex, perLoginIndex } from '@snowrealm/validation'
+import { ProceduralScene } from './ProceduralScene'
 
 /**
  * 背景渲染層。
@@ -40,6 +41,9 @@ export type BackgroundItem = {
   crop_y: number
   crop_w: number
   crop_h: number
+  procedural_id: string | null
+  scene_id: string | null
+  scene_density: number
   gradient_spec: {
     kind: 'linear' | 'radial'
     angle: number
@@ -283,6 +287,11 @@ function BackgroundMedia({
     return <div className="sr-bg-media" style={{ background: css ?? undefined, filter: filterFor(item) || undefined }} />
   }
 
+  // 獨立動態背景（內建場景當底）
+  if (item.type === 'procedural') {
+    return <ProceduralScene sceneId={item.procedural_id} paused={paused} />
+  }
+
   if (!url) return <div className="sr-bg-media sr-bg-loading" />
 
   if (isPlayingVideo) {
@@ -381,6 +390,16 @@ export function BackgroundLayer({
           onVideoPresent={setHasVideo}
         />
       </div>
+
+      {/* 疊加場景：任何背景之上都能疊一層內建動態場景（雪/雨/櫻花…） */}
+      {item.scene_id && (
+        <ProceduralScene
+          sceneId={item.scene_id}
+          density={item.scene_density}
+          overlay
+          paused={paused}
+        />
+      )}
 
       {item.overlay_opacity > 0 && (
         <div

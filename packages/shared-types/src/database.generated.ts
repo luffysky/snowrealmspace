@@ -805,6 +805,8 @@ export type Database = {
           position_y: number
           procedural_id: string | null
           saturation: number
+          scene_density: number
+          scene_id: string | null
           space_id: string
           type: string
           updated_at: string
@@ -839,6 +841,8 @@ export type Database = {
           position_y?: number
           procedural_id?: string | null
           saturation?: number
+          scene_density?: number
+          scene_id?: string | null
           space_id: string
           type: string
           updated_at?: string
@@ -873,6 +877,8 @@ export type Database = {
           position_y?: number
           procedural_id?: string | null
           saturation?: number
+          scene_density?: number
+          scene_id?: string | null
           space_id?: string
           type?: string
           updated_at?: string

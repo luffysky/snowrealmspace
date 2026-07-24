@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL } from '@snowrealm/theme-engine'
+import { DYNAMIC_SCENES, STATIC_SCENES, getScene } from '@/lib/scenes'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { BackgroundEditor } from './BackgroundEditor'
 import { PlaylistPanel, backgroundLabel, type Playlist } from './PlaylistPanel'
@@ -64,6 +65,21 @@ export function BackgroundStudio({
       setBackgrounds((prev) => [created, ...prev])
       setEditing(created)
       setStatus({ kind: 'ok', message: type === 'video' ? '已加入影片背景。' : '已加入背景。' })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
+    }
+  }
+
+  async function addScene(sceneId: string) {
+    try {
+      const scene = getScene(sceneId)
+      const created = (await api('/api/backgrounds', {
+        method: 'POST',
+        body: JSON.stringify({ type: 'procedural', proceduralId: sceneId, name: scene?.label ?? '動態背景' }),
+      })) as BackgroundItem
+      setBackgrounds((prev) => [created, ...prev])
+      setEditing(created)
+      setStatus({ kind: 'ok', message: `已加入動態背景「${scene?.label ?? ''}」。` })
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
     }
@@ -218,6 +234,43 @@ export function BackgroundStudio({
             加入漸層背景
           </button>
         </div>
+
+        {/* 內建動態背景（場景） */}
+        <label className="sr-label" htmlFor="scene-picker" style={{ marginTop: 'var(--sr-space-4)' }}>
+          內建動態背景（雪／雨／櫻花…）
+        </label>
+        <div className="sr-row">
+          <select
+            id="scene-picker"
+            className="sr-input"
+            defaultValue=""
+            onChange={(e) => {
+              if (e.target.value) {
+                void addScene(e.target.value)
+                e.target.value = ''
+              }
+            }}
+          >
+            <option value="">選一個動態背景…</option>
+            <optgroup label="動態">
+              {DYNAMIC_SCENES.map((sc) => (
+                <option key={sc.id} value={sc.id}>
+                  {sc.label}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="靜態">
+              {STATIC_SCENES.map((sc) => (
+                <option key={sc.id} value={sc.id}>
+                  {sc.label}
+                </option>
+              ))}
+            </optgroup>
+          </select>
+        </div>
+        <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
+          場景也可以「疊」在你的圖片/漸層背景上——到下方調整面板的「疊加場景」選。
+        </p>
       </section>
 
       <section className="sr-card">
@@ -299,6 +352,11 @@ function BackgroundThumb({ spaceId, item }: { spaceId: string; item: BackgroundI
       cancelled = true
     }
   }, [spaceId, item.asset_id])
+
+  if (item.type === 'procedural') {
+    const scene = getScene(item.procedural_id)
+    return <span className="sr-bg-thumb" aria-hidden="true" style={{ background: scene?.base }} />
+  }
 
   if (item.type === 'gradient' && item.gradient_spec) {
     const stops = item.gradient_spec.stops

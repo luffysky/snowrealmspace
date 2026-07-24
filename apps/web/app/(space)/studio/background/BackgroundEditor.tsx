@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { glassStyle, mediaTransform } from '@/components/BackgroundLayer'
+import { ProceduralScene } from '@/components/ProceduralScene'
+import { DYNAMIC_SCENES } from '@/lib/scenes'
 
 /**
  * 單一背景的呈現設定。
@@ -291,6 +293,40 @@ export function BackgroundEditor({
             )}
           </fieldset>
 
+          {/* 疊加場景：在這個背景之上疊一層內建動態場景 */}
+          <fieldset className="sr-fieldset">
+            <legend className="sr-label">疊加場景</legend>
+            <div className="sr-field">
+              <select
+                className="sr-input"
+                aria-label="疊加場景"
+                value={local.scene_id ?? ''}
+                onChange={(e) =>
+                  set({ scene_id: e.target.value || null }, { sceneId: e.target.value || null })
+                }
+              >
+                <option value="">無</option>
+                {DYNAMIC_SCENES.map((sc) => (
+                  <option key={sc.id} value={sc.id}>
+                    {sc.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {local.scene_id && (
+              <Slider
+                id="scene-density"
+                label="密度"
+                min={0.1}
+                max={3}
+                step={0.1}
+                value={local.scene_density}
+                hint="場景粒子的多寡"
+                onChange={(v) => set({ scene_density: v }, { sceneDensity: v })}
+              />
+            )}
+          </fieldset>
+
           {/* 裁切：只對圖片/影片有意義，漸層沒有可裁的來源 */}
           {(local.type === 'image' || local.type === 'video') && local.asset_id && (
             <fieldset className="sr-fieldset">
@@ -508,7 +544,9 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
   return (
     <div className="sr-bg-live">
       <div className="sr-bg-live-media" aria-hidden="true" style={{ overflow: 'hidden' }}>
-        {gradient ? (
+        {item.type === 'procedural' ? (
+          <ProceduralScene sceneId={item.procedural_id} />
+        ) : gradient ? (
           <div style={{ inset: 0, position: 'absolute', background: gradient, filter }} />
         ) : url ? (
           <img
@@ -522,6 +560,10 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
             }}
           />
         ) : null}
+        {/* 疊加場景預覽 */}
+        {item.scene_id && (
+          <ProceduralScene sceneId={item.scene_id} density={item.scene_density} overlay />
+        )}
         {item.overlay_opacity > 0 && (
           <div
             style={{

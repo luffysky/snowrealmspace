@@ -28,6 +28,8 @@ const FIELD_MAP: Record<string, string> = {
   cropY: 'crop_y',
   cropW: 'crop_w',
   cropH: 'crop_h',
+  sceneId: 'scene_id',
+  sceneDensity: 'scene_density',
   gradientSpec: 'gradient_spec',
 }
 

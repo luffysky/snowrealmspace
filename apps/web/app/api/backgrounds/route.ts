@@ -97,6 +97,8 @@ export const POST = handler(async (request: NextRequest) => {
       crop_y: input.cropY,
       crop_w: input.cropW,
       crop_h: input.cropH,
+      scene_id: input.sceneId ?? null,
+      scene_density: input.sceneDensity,
       gradient_spec: (input.gradientSpec ?? null) as never,
       procedural_id: input.proceduralId ?? null,
     })
