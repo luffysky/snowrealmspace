@@ -12,7 +12,18 @@ const SECTIONS: { group: string; items: { href: string; label: string; desc: str
     items: [
       { href: '/admin/ai-keys', label: 'AI 金鑰', desc: '各家 provider 金鑰（加密存 DB）' },
       { href: '/admin/ai/models', label: 'AI 模型', desc: '啟用/免費/串流·工具·視覺標記' },
+      { href: '/admin/ai/candidates', label: '候選鏈', desc: '各用途主模型與 fallback 順序' },
       { href: '/admin/ai/usage', label: 'AI 用量與成本', desc: '免費vs付費、升級/fallback/cache 率' },
+      { href: '/admin/ai/quota', label: '每日額度', desc: '各 space 每日呼叫計數' },
+      { href: '/admin/ai/cache', label: '回應快取', desc: '命中率與 scope（跨 space 隔離）' },
+    ],
+  },
+  {
+    group: 'Agent 與內容',
+    items: [
+      { href: '/admin/agent-actions', label: 'Agent 動作', desc: '工具呼叫紀錄與失敗' },
+      { href: '/admin/content', label: '內容池', desc: '主動訊息／每日一句／驚喜文案' },
+      { href: '/admin/flags', label: 'Feature Flags', desc: '全域旗標即時切換 + space 覆寫' },
     ],
   },
   {
@@ -50,7 +61,7 @@ export default async function AdminHome() {
       ))}
 
       <p className="sr-muted" style={{ marginTop: 'var(--sr-space-4)' }}>
-        規劃中：候選鏈管理、每日額度、回應快取、內容池、Feature flags、Agent 動作、Space/使用者管理。
+        規劃中：Space／使用者管理。
       </p>
     </main>
   )
