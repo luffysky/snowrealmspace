@@ -107,3 +107,10 @@ export {
   clampStatement,
   clampStatements,
 } from './statements.js'
+
+export {
+  AGENT_SYSTEM_PREFIX,
+  type AgentContext,
+  renderContextSuffix,
+  buildAgentSystemPrompt,
+} from './agent-prompt.js'
