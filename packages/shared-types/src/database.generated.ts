@@ -1268,6 +1268,53 @@ export type Database = {
           },
         ]
       }
+      design_principles: {
+        Row: {
+          body: string | null
+          category: string | null
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          id: string
+          position: number
+          space_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body?: string | null
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          id?: string
+          position?: number
+          space_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string | null
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          id?: string
+          position?: number
+          space_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "design_principles_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       design_snapshots: {
         Row: {
           asset_id: string

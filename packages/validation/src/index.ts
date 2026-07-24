@@ -153,3 +153,12 @@ export {
   type MemoryPatchInput,
   type MemoryListQuery,
 } from './memory.js'
+
+export {
+  principleCreateSchema,
+  principlePatchSchema,
+  principleReorderSchema,
+  type PrincipleCreateInput,
+  type PrinciplePatchInput,
+  type PrincipleReorderInput,
+} from './principles.js'
