@@ -1859,3 +1859,107 @@ input[type='range'] {
   .sr-surprise-reveal .sr-surprise-glow,
   .sr-chain-text { animation-duration: 1ms; }
 }
+
+/* ── Projects（Milestone C）────────────────────────────── */
+
+.sr-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+}
+
+.sr-form-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: var(--sr-space-3);
+}
+
+.sr-button-danger {
+  background: transparent;
+  color: var(--sr-danger);
+  border: var(--sr-border-width) solid var(--sr-danger);
+}
+.sr-button-danger:hover {
+  background: var(--sr-danger);
+  color: var(--sr-on-accent, #fff);
+}
+
+/* Chips：狀態篩選與標籤 */
+.sr-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+  align-items: center;
+}
+.sr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sr-space-1);
+  min-height: 32px;
+  padding: 0 var(--sr-space-3);
+  border-radius: 999px;
+  border: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface-alt);
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+  cursor: pointer;
+}
+.sr-chip-active {
+  background: var(--sr-accent);
+  color: var(--sr-on-accent, #fff);
+  border-color: var(--sr-accent);
+}
+.sr-chip-tag {
+  cursor: default;
+}
+
+/* 狀態徽章 */
+.sr-badge-idea {
+  background: var(--sr-surface-alt);
+  color: var(--sr-text-secondary);
+}
+.sr-badge-active {
+  background: var(--sr-accent);
+  color: var(--sr-on-accent, #fff);
+}
+.sr-badge-paused {
+  background: transparent;
+  color: var(--sr-text-secondary);
+  border: var(--sr-border-width) solid var(--sr-border);
+}
+.sr-badge-completed {
+  background: var(--sr-success);
+  color: var(--sr-on-accent, #fff);
+}
+.sr-badge-archived {
+  background: transparent;
+  color: var(--sr-text-secondary);
+  border: var(--sr-border-width) dashed var(--sr-border);
+}
+
+/* 專案卡片格線 */
+.sr-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: var(--sr-space-4);
+}
+.sr-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-3);
+}
+.sr-project-cover {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--sr-radius-sm);
+  overflow: hidden;
+  background: var(--sr-surface-alt);
+}
+.sr-project-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sr-project-cover-empty {
+  border: var(--sr-border-width) dashed var(--sr-border);
+}

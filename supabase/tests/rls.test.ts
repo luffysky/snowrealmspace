@@ -258,6 +258,43 @@ describe('RLS：Creative Core（Milestone C）', () => {
     expect(error).not.toBeNull()
   })
 
+  // 成功路徑：POST/PATCH/DELETE /api/projects 用的是受 RLS 約束的 ctx.db，
+  // 這裡直接走同一條路徑證明 API↔DB 接得起來（E2E 已移除，改由此把關）。
+  it('Alice 可在自己的 space 完成 project 建立→更新→軟刪（route 路徑）', async () => {
+    const { data: created, error: insErr } = await alice.db
+      .from('projects')
+      .insert({ space_id: alice.spaceId, created_by: alice.userId, name: '海報系列', status: 'idea' })
+      .select('id, status')
+      .single()
+    expect(insErr).toBeNull()
+    expect(created?.status).toBe('idea')
+
+    const { data: updated, error: updErr } = await alice.db
+      .from('projects')
+      .update({ status: 'active', tags: ['海報'] })
+      .eq('id', created!.id)
+      .eq('space_id', alice.spaceId)
+      .select('status, tags')
+      .single()
+    expect(updErr).toBeNull()
+    expect(updated?.status).toBe('active')
+    expect(updated?.tags).toEqual(['海報'])
+
+    // 軟刪：projects policy 不含 deleted_at 過濾（依 spec），
+    // 可見性由 route 的 .is('deleted_at', null) 負責 —— 這裡照 route 的查法斷言。
+    await alice.db
+      .from('projects')
+      .update({ deleted_at: new Date().toISOString() })
+      .eq('id', created!.id)
+      .eq('space_id', alice.spaceId)
+    const { data: afterDelete } = await alice.db
+      .from('projects')
+      .select('id')
+      .eq('id', created!.id)
+      .is('deleted_at', null)
+    expect(afterDelete).toEqual([])
+  })
+
   it('Alice 無法在 Bob 的 space 建立 design_file', async () => {
     const { error } = await alice.db
       .from('design_files')

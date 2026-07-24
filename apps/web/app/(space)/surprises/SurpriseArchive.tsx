@@ -40,7 +40,7 @@ export function SurpriseArchive({
         <p className="sr-muted" style={{ marginBottom: 0 }}>
           保底：連續 {pityThreshold} 盒沒開到「稀有」以上，下一盒就保證是稀有。
           目前已連續 <strong>{drought}</strong> / {pityThreshold} 盒。
-          {drought >= pityThreshold - 3 && drought < pityThreshold && '　快保底了！'}
+          {drought >= pityThreshold - 3 && drought < pityThreshold && '\u3000快保底了！'}
         </p>
       </section>
 
@@ -54,7 +54,7 @@ export function SurpriseArchive({
         <>
           <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
             <p className="sr-muted" style={{ margin: 0 }}>
-              收集了 {items.length} 則{favCount > 0 ? `　·　★ ${favCount} 則收藏` : ''}
+              收集了 {items.length} 則{favCount > 0 ? `\u3000·\u3000★ ${favCount} 則收藏` : ''}
             </p>
             {favCount > 0 && (
               <button

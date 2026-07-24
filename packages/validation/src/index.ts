@@ -105,3 +105,14 @@ export {
 } from './daily-select.js'
 
 export { passwordStrength, PASSWORD_MIN_LENGTH, type PasswordStrength } from './password.js'
+
+export {
+  PROJECT_STATUSES,
+  projectCreateSchema,
+  projectPatchSchema,
+  projectListQuerySchema,
+  type ProjectStatus,
+  type ProjectCreateInput,
+  type ProjectPatchInput,
+  type ProjectListQuery,
+} from './projects.js'
