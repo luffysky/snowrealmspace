@@ -29,6 +29,7 @@ const SECTIONS: { group: string; items: { href: string; label: string; desc: str
   {
     group: '系統與稽核',
     items: [
+      { href: '/admin/spaces', label: 'Space／使用者', desc: '空間、擁有者、成員、使用者總覽' },
       { href: '/admin/system', label: '系統健康', desc: 'job 佇列、卡住的工作、儲存用量' },
       { href: '/admin/audit', label: '稽核日誌', desc: '誰改了什麼（audit_logs）' },
     ],
@@ -60,9 +61,6 @@ export default async function AdminHome() {
         </section>
       ))}
 
-      <p className="sr-muted" style={{ marginTop: 'var(--sr-space-4)' }}>
-        規劃中：Space／使用者管理。
-      </p>
     </main>
   )
 }
