@@ -18,7 +18,8 @@
 - **AI 後台**：`/admin/ai-keys`（金鑰）、`/admin/ai/models`（模型）、`/admin/ai/candidates`（候選鏈）、
   `/admin/ai/usage`（用量成本）、`/admin/ai/quota`（每日額度）、`/admin/ai/cache`（回應快取）
 - **Agent/內容/系統後台**：`/admin/agent-actions`、`/admin/content`（內容池）、
-  `/admin/flags`（Feature Flags 即時切換）、`/admin/system`、`/admin/audit`
+  `/admin/flags`（Feature Flags 即時切換）、`/admin/spaces`（Space／使用者）、`/admin/system`、`/admin/audit`
+- **Lottie 動畫背景**：5 個自製向量動畫（CC0），lottie-web 懶載入、省流量/減動態降級
 - **Agent 語氣**：設定頁可選 warm/gentle/professional/playful/concise → 注入對話與主動訊息（參考 AI 島 persona）
 - **修 bug**：多 agent 全專案排查修了 ~15 個 runtime bug（音訊上傳全壞、背景存檔靜默失敗、
   暫停鈕手機點不到、Agent 工具假成功…）＋ 修 R2 上傳 CORS 診斷 ＋ 修 CI mailpit 綁埠
@@ -27,8 +28,8 @@
 
 ## 🟩 我接著會做（不用等你，照序）
 
-1. ~~管理後台其餘頁~~ ✅ 完成（AI 模型/候選鏈/額度/快取/Agent 動作/內容池/Feature flags/系統/稽核）；
-   僅剩 **Space／使用者管理** 待做
+1. ~~管理後台其餘頁~~ ✅ **全數完成**（AI 模型/候選鏈/額度/快取/Agent 動作/內容池/Feature flags/
+   系統/稽核/**Space／使用者管理**）
 2. ~~Lottie 背景~~ ✅ 完成：5 個自製動畫（CC0/專案自有）+ lottie-web(light) 懶載入播放層，
    已接背景 Studio/預覽/縮圖；reduced-motion/省流量降級。以 jsdom+真實播放器逐格驗證過。
    **需你跑 `pnpm db:migrate` 套 0037 到 hosted**（加 type=lottie + lottie_id 欄）
