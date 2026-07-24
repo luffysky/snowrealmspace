@@ -49,6 +49,9 @@ export function WidgetGrid({
   const containerRef = useRef<HTMLDivElement>(null)
   const [live, setLive] = useState<GridItem[]>(items)
   const [drag, setDrag] = useState<DragState>(null)
+  // 拖曳中被抓起的區塊相對「已吸附格位」的殘差像素位移 —— 讓它跟著游標走（§9 跟手），
+  // 而不是一格一格跳。放開時清零，吸附到最終格位。
+  const [residual, setResidual] = useState({ x: 0, y: 0 })
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [announcement, setAnnouncement] = useState('')
   const rafRef = useRef<number | null>(null)
@@ -90,29 +93,44 @@ export function WidgetGrid({
       // 佈局計算放進 rAF，避免每個 pointermove 都同步重算（§9）
       rafRef.current = requestAnimationFrame(() => {
         const cw = columnWidth()
-        const dx = Math.round((event.clientX - drag!.startX) / (cw + config.gap))
-        const dy = Math.round((event.clientY - drag!.startY) / (config.rowHeight + config.gap))
+        const rawDx = event.clientX - drag!.startX
+        const rawDy = event.clientY - drag!.startY
+        const dx = Math.round(rawDx / (cw + config.gap))
+        const dy = Math.round(rawDy / (config.rowHeight + config.gap))
 
-        setLive((current) => {
-          const next: GridItem[] | null =
-            drag!.mode === 'move'
-              ? applyMove(current, drag!.id, {
-                  x: Math.max(0, drag!.origin.x + dx),
-                  y: Math.max(0, drag!.origin.y + dy),
-                })
-              : applyMove(current, drag!.id, {
-                  w: Math.max(1, drag!.origin.w + dx),
-                  h: Math.max(1, drag!.origin.h + dy),
-                })
-          const resolved = next ?? current
-          liveRef.current = resolved
-          return resolved
-        })
+        // 從最新佈局算出吸附後的結果（純函式，不在 updater 內）
+        const current = liveRef.current
+        const next: GridItem[] | null =
+          drag!.mode === 'move'
+            ? applyMove(current, drag!.id, {
+                x: Math.max(0, drag!.origin.x + dx),
+                y: Math.max(0, drag!.origin.y + dy),
+              })
+            : applyMove(current, drag!.id, {
+                w: Math.max(1, drag!.origin.w + dx),
+                h: Math.max(1, drag!.origin.h + dy),
+              })
+        const resolved = next ?? current
+        liveRef.current = resolved
+        setLive(resolved)
+
+        // 跟手：被抓起的區塊在「已吸附格位」之外，補上剩餘的像素位移，
+        // 讓它連續跟著游標而不是一格一格跳（放開時清零 → 吸附）。
+        if (drag!.mode === 'move') {
+          const moved = resolved.find((i) => i.id === drag!.id)
+          const appliedDx = moved ? moved.x - drag!.origin.x : 0
+          const appliedDy = moved ? moved.y - drag!.origin.y : 0
+          setResidual({
+            x: rawDx - appliedDx * (cw + config.gap),
+            y: rawDy - appliedDy * (config.rowHeight + config.gap),
+          })
+        }
       })
     }
 
     function onPointerUp() {
       setDrag(null)
+      setResidual({ x: 0, y: 0 })
       // 只在放開時送出一次（§2.4）。從 ref 讀，不在 updater 內做副作用。
       onCommit(liveRef.current)
     }
@@ -259,6 +277,14 @@ export function WidgetGrid({
               gridColumn: `${item.x + 1} / span ${item.w}`,
               gridRow: `${item.y + 1} / span ${item.h}`,
               minHeight: item.h * config.rowHeight + (item.h - 1) * config.gap,
+              // 被抓起的區塊：跟手位移 + 疊到最上層 + 拖曳中不要有過場動畫
+              ...(drag?.id === item.id && drag.mode === 'move'
+                ? {
+                    transform: `translate(${residual.x}px, ${residual.y}px)`,
+                    zIndex: 20,
+                    transition: 'none',
+                  }
+                : {}),
             }}
           >
             {editing && !item.locked && (
