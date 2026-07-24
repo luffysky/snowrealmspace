@@ -52,10 +52,15 @@ describe('projectRow', () => {
     expect(wrong?.cover_asset_id).toBeNull()
   })
 
-  it('surprise 只投影 rare 以上', () => {
+  it('surprise 只投影 rare 以上（用真實稀有度詞彙）', () => {
     expect(projectRow(row({ event_type: 'surprise.unlocked', properties: { rarity: 'common' } }))).toBeNull()
+    expect(projectRow(row({ event_type: 'surprise.unlocked', properties: { rarity: 'uncommon' } }))).toBeNull()
+    // special / anniversary 是真正最稀有的，必須被投影（原本 epic/legendary 詞彙下會被漏掉）
     expect(
-      projectRow(row({ event_type: 'surprise.unlocked', properties: { rarity: 'legendary' } })),
+      projectRow(row({ event_type: 'surprise.unlocked', properties: { rarity: 'anniversary' } })),
+    ).not.toBeNull()
+    expect(
+      projectRow(row({ event_type: 'surprise.unlocked', properties: { rarity: 'special' } })),
     ).not.toBeNull()
   })
 })

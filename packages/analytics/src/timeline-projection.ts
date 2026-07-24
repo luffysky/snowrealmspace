@@ -48,7 +48,9 @@ type Rule = {
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '')
 
-const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary']
+// 必須與 daily-engine 的 Rarity 一致。原本寫成 epic/legendary（不存在的詞彙），
+// 導致真正最稀有的 special / anniversary 反而被排除在時間軸外。
+const RARITY_ORDER = ['common', 'uncommon', 'rare', 'special', 'anniversary']
 
 export const PROJECTED: Record<string, Rule> = {
   'project.created': {
