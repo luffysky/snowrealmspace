@@ -26,7 +26,9 @@
 
 - [ ] 把 `@snowrealm/ai-core` 抽成**獨立 HTTP AI Router 服務**（不是 npm 套件）
   - [ ] 端點：completeForUsage、串流、vision；沿用候選鏈 + 熔斷器 + 免費優先
-  - [ ] Provider/模型/金鑰集中管理（已有 `/admin/ai-keys` 後台當雛形）
+  - [ ] Provider/模型/金鑰集中管理（Space 後台已有較完整雛形：`/admin/ai-keys` 金鑰、
+        `/admin/ai/models` 模型、`/admin/ai/candidates` 候選鏈、`/admin/ai/usage` 用量、
+        `/admin/ai/quota` 額度、`/admin/ai/cache` 快取 —— 抽 Router 服務時可沿用這套 UI）
   - [ ] 依成本與難度自動切換模型（憲章 §AI Router）
 - [ ] **AI Dot ledger 服務**（與 Z 幣共用同一個雙分錄帳本，兩種帳戶）
   - [ ] append-only、餘額 = 加總、扣款**冪等**（同一次 AI 呼叫不重複扣）

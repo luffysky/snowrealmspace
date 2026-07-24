@@ -1,4 +1,4 @@
-# SnowRealm Space 待辦總表（2026-07-24 · 現行主檔）
+# SnowRealm Space 待辦總表（2026-07-24 建，2026-07-25 更新 · 現行主檔）
 
 > 本檔＝目前**未完成**待辦主檔。0723 及更早的完成劃線見 `todo_list_0723.md`（不刪、當歷史）。
 > 圖例：⬜ 未做 · 🚧 進行中（部分完成）· 🔴 需 Luffy 本人操作 · 🆕 新想法/參考 · ＊ 原則/約束。
@@ -14,7 +14,8 @@
 | A — Foundation | ✅ 完成 | 100% |
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ✅ 幾乎完成 | C1–C7 全數完成（地基/Projects/Library/作品+版本比較/Timeline/from-image/隱私刪除組）；剩空間整體刪除（需 R2+worker） |
-| D — AI Core | 🚧 大幅完成 | 路由層+對話+工具+記憶全備（113 ai-core 測試）；剩對話產生回應需金鑰、vision/串流 |
+| D — AI Core | 🚧 大幅完成 | 路由層+對話+工具+記憶+語氣全備（113+ ai-core 測試）；剩對話產生回應需金鑰、vision/串流 |
+| 管理後台 | ✅ 頁面全補齊 | AI 金鑰/模型/候選鏈/用量/額度/快取 + Agent 動作/內容池/Flags/Space·使用者/系統/稽核（唯讀為主，編輯項見清單） |
 | E — Daily Loop | ✅ 完成 | cron 掃時區+weekly recap 補齊；剩 Insight LLM 升級（需金鑰） |
 | F — Integration | 🚧 骨架 | adapter/capabilities/webhook 冪等完成；OAuth/sync 需 Figma 憑證 |
 | 部署 / 帳號 | 🚧 進行中 | 站台閘門、密碼註冊、hosted 建表已通；SMTP/R2/worker 待設 |
@@ -28,14 +29,10 @@
 - 🔴 **Resend 寄件人網域** — SMTP 已連上，但 `Error sending confirmation email` 是因寄件人在沙盒。
       把 auth 服務的 `GOTRUE_SMTP_ADMIN_EMAIL` 設成 `service@snowrealm.pet`（已驗證網域）→ 重啟 auth。
       設好後 magic link 登入才對外可用（**帳號密碼登入已可用、不受此影響**）。
-- 🔴 **Cloudflare R2** — 建 private bucket `snowrealmspace`、建 R2 API Token，
-      在 web 服務設 `R2_ACCOUNT_ID` / `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` / `R2_BUCKET`，
-      `R2_REGION=auto`、**移除** `R2_FORCE_PATH_STYLE`、`R2_ENDPOINT` 留空。設好上傳/背景圖才會通。
-- 🔴 **R2 bucket CORS**（否則上傳一律「網路中斷」）— 瀏覽器直傳 R2 是跨網域，bucket 要設 CORS。
-      到 Cloudflare → R2 → bucket `snowrealmspace` → Settings → CORS policy 貼上允許
-      `https://snowrealm-space.snowrealm.pet` + `http://localhost:3000` 的 PUT/GET/HEAD、Expose ETag
-      （`pnpm tsx scripts/setup-r2-cors.ts` 會印出可直接貼的 JSON；用 Admin token 則能自動寫入）。
-- 🔴 **部署 worker 服務** — `apps/worker/Dockerfile`，不可休眠。沒它背景圖處理、排程 GC 不會跑（`/api/health` 的 queue 會是紅的）。
+- [x] ~~**Cloudflare R2** — env（account/key/bucket）已設好（Luffy「env 跟 r2 都用好了」）~~
+- [x] ~~**R2 bucket CORS** — 已貼 CORS policy，瀏覽器直傳可通~~
+- [x] ~~**部署 worker 服務** — 已啟動（背景圖處理/場景/排程都靠它）~~
+- [x] ~~**hosted migrations** — 已套到 **0037**（含 Lottie `type`/`lottie_id`）；每加 DB 欄跑 `pnpm db:migrate`~~
 - 🔴 **JWT secret** — Zeabur Supabase 仍用 demo 預設 secret（key 的 iss=supabase-demo）。**正式對外前必換**，換完重新產 anon/service key 更新 env。
 - 🔴 **Q10 手動走查** — 人實際點過 Milestone B 一輪（主題/背景/字體/版面）。
 - 🔴 **台北黑體字檔** — 沒有穩定下載網址，需人工下載放 `assets/fonts/taipei-sans-tc/`（其餘 12 套已自動化）。
@@ -96,28 +93,29 @@
 
 ## 🛠 站台管理後台（`/admin/*`，站台管理員身份）
 
-> 照 ai 島架構逐步擴充。身份走 `lib/auth/site-admin`（多 signal）。已完成：AI 金鑰管理。
+> 照 ai 島架構逐步擴充。身份走 `lib/auth/site-admin`（多 signal）。
+> **0725：其餘頁全數補齊。** 唯讀檢視為主（誠實：檢視 vs 編輯分清楚，見各項備註）。
 
 **AI 管理**（表都建好了）
 - [x] ~~AI 金鑰管理 `/admin/ai-keys`（各家加密存 DB、測試、啟用/移除）~~
-- [ ] **AI 模型管理** `/admin/ai/models`（ai_models CRUD：啟用/停用、成本、vision/tools 標記、新增退役）
-- [ ] **候選鏈管理** `/admin/ai/usage-models`（每個 usage key 的候選鏈與順序、role 調整）
-- [x] ~~**AI 用量／成本儀表板** `/admin/ai/usage`（總成本、免費vs付費、escalate/fallback/degraded/cache 率、依 provider/usage 拆分）~~
-- [ ] **每日額度設定**（免費/付費上限，目前寫死 300/20）
-- [ ] **回應快取** `/admin/ai/cache`（命中率、清空、per-usage）
+- [x] ~~**AI 模型管理** `/admin/ai/models`（啟用/停用、免費、串流·工具·視覺標記，PATCH）~~
+- [x] ~~**候選鏈檢視** `/admin/ai/candidates`（每個 usage key 主模型 + fallback 序）~~ 〔唯讀；編輯待做〕
+- [x] ~~**AI 用量／成本儀表板** `/admin/ai/usage`（總成本、免費vs付費、escalate/fallback/degraded/cache 率）~~
+- [x] ~~**每日額度檢視** `/admin/ai/quota`（各 space 免費/付費/視覺計數）~~ 〔唯讀；上限設定仍寫死 300/20，待做〕
+- [x] ~~**回應快取檢視** `/admin/ai/cache`（命中率、scope、過期狀態）~~ 〔命中率 view；清空/per-usage 待做〕
 - [ ] **內容審核關鍵字**（FORBIDDEN_PATTERNS 可後台編輯）
 
 **系統／營運**
-- [ ] **Feature flags 管理**（全站/ per-space 開關，目前只能改 DB）
-- [ ] **系統健康儀表板**（queue health、job_records、storage 用量、/api/health 匯總、cron 上次執行）
-- [ ] **稽核日誌檢視** `/admin/audit`（audit_logs 篩選/搜尋）
-- [ ] **Agent 動作檢視** `/admin/agent-actions`（待確認、已執行、可 undo 的清單）
+- [x] ~~**Feature flags 管理** `/admin/flags`（全域旗標即時切換 PATCH + 樂觀更新/回滾；space 覆寫唯讀）~~
+- [x] ~~**系統健康儀表板** `/admin/system`（job_records 佇列統計、失敗清單、空間/檔案數）~~
+- [x] ~~**稽核日誌檢視** `/admin/audit`（audit_logs）~~
+- [x] ~~**Agent 動作檢視** `/admin/agent-actions`（工具呼叫紀錄、失敗、需確認標記）~~
 - [ ] **站台管理員角色**（目前靠 env allowlist；可加 DB role 授予/撤銷，如 ai 島 owner/admin/support）
 - [ ] **整合/webhook 狀態**（provider_webhooks 收件記錄、connection 健康）
 
 **內容／空間**
-- [ ] **內容池管理**（content_items 檢視/新增/審核每日內容、生日鏈編輯）
-- [ ] **Space/使用者管理**（列出 spaces、佈建狀態、用量、孤兒帳號修復）
+- [x] ~~**內容池檢視** `/admin/content`（content_items 依 kind 分組、啟用/權重/稀有度）~~ 〔唯讀；新增/審核/生日鏈編輯待做〕
+- [x] ~~**Space/使用者管理** `/admin/spaces`（列出 spaces/擁有者/成員數/隱私/狀態 + 使用者/登入方式）~~ 〔唯讀；佈建/孤兒修復待做〕
 
 ## 🅕 Milestone F — Integration（骨架起）
 
@@ -194,6 +192,8 @@
 - [x] ~~Agent 對話 UI（/agent，訊息氣泡、無金鑰優雅降級保留輸入、degraded 提示）~~
 - [x] ~~10 tool 註冊表 + 執行流程（agent_actions 生命週期、確認閘門、24h undo；verify-d-tools 驗證）~~
 - [x] ~~Memory（提案→批准、Memory Center、ADR-014 雙重防護）~~
+- [x] ~~**Agent 語氣**（參考 AI 島 persona）：settings 選 warm/gentle/professional/playful/concise
+      → space_settings.agent_tone → renderContextSuffix 注入；未知值不注入。3 反向測試~~
 - [ ] SSE 串流、UI 五分類視覺區別（文字對話已可用，串流待金鑰調校）
 - [ ] 設計分析 light/deep（vision，需金鑰）；把 Insight/greeting 接 completeForUsage（graceful）
 - [ ] embedding 記憶語意檢索 + 對話歷史摘要（需金鑰）
@@ -223,6 +223,10 @@
 - [x] ~~單檔上限 50MB → 500MB（ADR-022 偏離）；影片 mp4/webm/ogg/mov + audio kind~~
 - [x] ~~影片可選聲音（ADR-019 偏離）：muted 使用者可控，首次手勢解除靜音~~
 - [x] ~~背景音樂：space 選 audio + nav 播放器（手動播放遵守 autoplay 政策）+ 設定頁~~
+- [x] ~~**內建動態場景**約 50 個（canvas 粒子，可疊加/密度可調）+ 獨立動態背景~~
+- [x] ~~**漸層編輯器**（線性/放射/多點網狀，點選定位色點）+ 幻燈片即時生效~~
+- [x] ~~**Lottie 動畫背景** 5 個自製（CC0/專案自有），lottie-web light 懶載入、reduced-motion/省流量降級；
+      0037 加 type=lottie+lottie_id。以 jsdom+真實播放器逐格驗證（抓到並修 keyframe 缺 i/o 把手 bug）~~
 
 ## 深淺色切換（🆕 Luffy 0724 提出）
 
