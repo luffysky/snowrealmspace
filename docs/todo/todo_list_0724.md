@@ -157,9 +157,7 @@
 
 ---
 
-## 🅵 Milestone F — Integration（未開始）
-
-- [ ] Figma OAuth、capability matrix、webhook 冪等、同步 job
+> Milestone F 進度見上方「🅕 Milestone F — Integration（骨架起）」。
 
 ---
 
