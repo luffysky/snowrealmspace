@@ -45,9 +45,10 @@ export type BackgroundItem = {
   scene_id: string | null
   scene_density: number
   gradient_spec: {
-    kind: 'linear' | 'radial'
+    kind: 'linear' | 'radial' | 'mesh'
     angle: number
-    stops: { color: string; position: number }[]
+    stops?: { color: string; position: number }[]
+    points?: { x: number; y: number; color: string }[]
   } | null
 }
 
@@ -140,14 +141,26 @@ export function glassStyle(item: BackgroundItem): React.CSSProperties | null {
   }
 }
 
-function gradientCss(item: BackgroundItem): string | null {
+export function gradientCss(item: BackgroundItem): string | null {
   const spec = item.gradient_spec
   if (!spec) return null
-  const stops = spec.stops
+
+  // 網狀（多點放射）：每個點一層 radial-gradient 到透明，疊在第一點的顏色底上
+  if (spec.kind === 'mesh') {
+    const pts = spec.points ?? []
+    if (pts.length === 0) return null
+    const layers = pts
+      .map((p) => `radial-gradient(circle at ${p.x}% ${p.y}%, ${p.color} 0%, transparent 55%)`)
+      .join(', ')
+    return `${layers}, ${pts[0]!.color}`
+  }
+
+  const stops = (spec.stops ?? [])
     .slice()
     .sort((a, b) => a.position - b.position)
     .map((s) => `${s.color} ${s.position}%`)
     .join(', ')
+  if (!stops) return null
   return spec.kind === 'linear'
     ? `linear-gradient(${spec.angle}deg, ${stops})`
     : `radial-gradient(circle at ${item.position_x}% ${item.position_y}%, ${stops})`

@@ -1,10 +1,12 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL } from '@snowrealm/theme-engine'
 import { DYNAMIC_SCENES, STATIC_SCENES, getScene } from '@/lib/scenes'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
+import { gradientCss } from '@/components/BackgroundLayer'
 import { BackgroundEditor } from './BackgroundEditor'
 import { PlaylistPanel, backgroundLabel, type Playlist } from './PlaylistPanel'
 
@@ -27,6 +29,7 @@ export function BackgroundStudio({
   initialPlaylists: Playlist[]
   imageAssets: AssetOption[]
 }) {
+  const router = useRouter()
   const [backgrounds, setBackgrounds] = useState(initialBackgrounds)
   const [playlists, setPlaylists] = useState(initialPlaylists)
   const [editing, setEditing] = useState<BackgroundItem | null>(null)
@@ -163,6 +166,7 @@ export function BackgroundStudio({
       await api(`/api/backgrounds/${id}`, { method: 'DELETE' })
       setBackgrounds((prev) => prev.filter((b) => b.id !== id))
       setEditing((prev) => (prev?.id === id ? null : prev))
+      router.refresh() // 刪掉的若正是目前顯示的背景，頁面即時退回其他背景
       setStatus({ kind: 'ok', message: '已移除。' })
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '移除失敗。' })
@@ -359,15 +363,8 @@ function BackgroundThumb({ spaceId, item }: { spaceId: string; item: BackgroundI
   }
 
   if (item.type === 'gradient' && item.gradient_spec) {
-    const stops = item.gradient_spec.stops
-      .map((s) => `${s.color} ${s.position}%`)
-      .join(', ')
     return (
-      <span
-        className="sr-bg-thumb"
-        aria-hidden="true"
-        style={{ background: `linear-gradient(${item.gradient_spec.angle}deg, ${stops})` }}
-      />
+      <span className="sr-bg-thumb" aria-hidden="true" style={{ background: gradientCss(item) ?? undefined }} />
     )
   }
 

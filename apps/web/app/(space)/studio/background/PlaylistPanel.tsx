@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { ScheduleEditor } from './ScheduleEditor'
 import type { Slot } from '@snowrealm/validation'
@@ -56,6 +57,7 @@ export function PlaylistPanel({
   onChange: (next: Playlist[]) => void
   onStatus: (message: string, isError?: boolean) => void
 }) {
+  const router = useRouter()
   const [creating, setCreating] = useState(false)
   const [newName, setNewName] = useState('我的幻燈片')
 
@@ -162,7 +164,9 @@ export function PlaylistPanel({
     try {
       await api(`/api/background-playlists/${playlistId}/activate`, { method: 'POST' })
       await reload()
-      onStatus('已啟用。回到 Home 就會看到。')
+      // 即時生效：重跑 server layout → 背景層拿到新的 active 狀態，不用重整整頁
+      router.refresh()
+      onStatus('已啟用，背景已即時切換。')
     } catch (err) {
       onStatus(err instanceof Error ? err.message : '啟用失敗。', true)
     }

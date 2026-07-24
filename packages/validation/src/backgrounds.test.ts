@@ -122,6 +122,26 @@ describe('gradientSpecSchema', () => {
     ]
     expect(gradientSpecSchema.safeParse({ kind: 'linear', angle: 400, stops }).success).toBe(false)
   })
+
+  it('mesh：需要 points（至少一個），不看 stops', () => {
+    expect(gradientSpecSchema.safeParse({ kind: 'mesh' }).success).toBe(false)
+    expect(
+      gradientSpecSchema.safeParse({ kind: 'mesh', points: [{ x: 30, y: 40, color: '#ffaacc' }] }).success,
+    ).toBe(true)
+  })
+
+  it('mesh：point 座標與顏色要合法', () => {
+    expect(
+      gradientSpecSchema.safeParse({ kind: 'mesh', points: [{ x: 120, y: 40, color: '#ffaacc' }] }).success,
+    ).toBe(false)
+    expect(
+      gradientSpecSchema.safeParse({ kind: 'mesh', points: [{ x: 30, y: 40, color: 'pink' }] }).success,
+    ).toBe(false)
+  })
+
+  it('linear/radial 仍要求至少兩個 stops', () => {
+    expect(gradientSpecSchema.safeParse({ kind: 'linear', stops: [{ color: '#ffffff', position: 0 }] }).success).toBe(false)
+  })
 })
 
 describe('playlistCreateSchema', () => {

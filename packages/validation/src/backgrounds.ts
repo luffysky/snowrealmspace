@@ -9,22 +9,36 @@ import { NEUTRAL } from '@snowrealm/theme-engine'
 
 export const backgroundTypeSchema = z.enum(['image', 'video', 'gradient', 'procedural'])
 
-/** 漸層規格。只接受結構化資料，不接受 CSS 字串 —— 那會是注入管道。 */
+const hexColor = z.string().regex(/^#[0-9a-fA-F]{6}$/, '必須是 #RRGGBB')
+
+/**
+ * 漸層規格。只接受結構化資料，不接受 CSS 字串 —— 那會是注入管道。
+ *   linear/radial：用 stops（色停）。
+ *   mesh：多點放射（點選位置、一點一色），用 points。
+ */
 export const gradientSpecSchema = z
   .object({
-    kind: z.enum(['linear', 'radial']),
+    kind: z.enum(['linear', 'radial', 'mesh']),
     angle: z.number().min(0).max(360).default(180),
     stops: z
-      .array(
-        z.object({
-          color: z.string().regex(/^#[0-9a-fA-F]{6}$/, '必須是 #RRGGBB'),
-          position: z.number().min(0).max(100),
-        }),
-      )
-      .min(2)
-      .max(6),
+      .array(z.object({ color: hexColor, position: z.number().min(0).max(100) }))
+      .max(8)
+      .optional(),
+    points: z
+      .array(z.object({ x: z.number().min(0).max(100), y: z.number().min(0).max(100), color: hexColor }))
+      .max(8)
+      .optional(),
   })
   .strict()
+  .superRefine((v, ctx) => {
+    if (v.kind === 'mesh') {
+      if (!v.points || v.points.length < 1) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['points'], message: '網狀漸層需要至少一個色點' })
+      }
+    } else if (!v.stops || v.stops.length < 2) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['stops'], message: '漸層需要至少兩個色停' })
+    }
+  })
 
 const presentationFields = {
   name: z.string().trim().max(80).nullable().optional(),

@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
-import { glassStyle, mediaTransform } from '@/components/BackgroundLayer'
+import { glassStyle, mediaTransform, gradientCss } from '@/components/BackgroundLayer'
 import { ProceduralScene } from '@/components/ProceduralScene'
 import { DYNAMIC_SCENES } from '@/lib/scenes'
+import { NEUTRAL } from '@snowrealm/theme-engine'
 
 /**
  * 單一背景的呈現設定。
@@ -167,43 +168,10 @@ export function BackgroundEditor({
           </div>
 
           {local.type === 'gradient' && local.gradient_spec && (
-            <fieldset className="sr-fieldset">
-              <legend className="sr-label">顏色</legend>
-              <div className="sr-row">
-                {local.gradient_spec.stops.map((stop, i) => (
-                  <input
-                    key={i}
-                    type="color"
-                    className="sr-color-swatch"
-                    aria-label={`色停 ${i + 1}`}
-                    value={stop.color}
-                    onChange={(e) => {
-                      const spec = structuredClone(local.gradient_spec!)
-                      spec.stops[i]!.color = e.target.value
-                      set({ gradient_spec: spec }, { gradientSpec: spec })
-                    }}
-                  />
-                ))}
-              </div>
-              <label className="sr-label" htmlFor="bg-grad-angle">
-                角度 {local.gradient_spec.angle}°
-              </label>
-              <input
-                id="bg-grad-angle"
-                type="range"
-                min={0}
-                max={360}
-                value={local.gradient_spec.angle}
-                onChange={(e) => {
-                  const spec = structuredClone(local.gradient_spec!)
-                  spec.angle = Number(e.target.value)
-                  set({ gradient_spec: spec }, { gradientSpec: spec })
-                }}
-              />
-              <p className="sr-muted" style={{ marginTop: 'var(--sr-space-1)', marginBottom: 0 }}>
-                兩個色停設成同一色就是純單色。
-              </p>
-            </fieldset>
+            <GradientEditor
+              spec={local.gradient_spec}
+              onChange={(s) => set({ gradient_spec: s }, { gradientSpec: s })}
+            />
           )}
 
           {local.type === 'video' && (
@@ -497,6 +465,188 @@ function clamp(v: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, v))
 }
 
+type GSpec = NonNullable<BackgroundItem['gradient_spec']>
+
+// 新色點的預設色取自目前主題（--sr-* token），而非寫死調色盤——與空間協調且不違反 token 規則。
+const THEME_VARS = ['--sr-primary', '--sr-secondary', '--sr-accent', '--sr-success', '--sr-warning', '--sr-danger']
+function themeColorAt(i: number): string {
+  if (typeof window === 'undefined') return NEUTRAL.nearBlack
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue(THEME_VARS[i % THEME_VARS.length]!)
+    .trim()
+  return /^#[0-9a-fA-F]{6}$/.test(value) ? value : NEUTRAL.nearBlack
+}
+
+/**
+ * 漸層編輯器：線性 / 放射（用色停，可增減）、網狀（多點放射——點選預覽加點，一點一色）。
+ */
+function GradientEditor({ spec, onChange }: { spec: GSpec; onChange: (s: GSpec) => void }) {
+  const boxRef = useRef<HTMLDivElement>(null)
+  const stops = spec.stops ?? []
+  const points = spec.points ?? []
+
+  function meshCss(): string {
+    if (points.length === 0) return NEUTRAL.nearBlack
+    const layers = points
+      .map((p) => `radial-gradient(circle at ${p.x}% ${p.y}%, ${p.color} 0%, transparent 55%)`)
+      .join(', ')
+    return `${layers}, ${points[0]!.color}`
+  }
+
+  function changeKind(k: GSpec['kind']) {
+    if (k === 'mesh') {
+      const pts =
+        points.length > 0
+          ? points
+          : stops.length > 0
+            ? stops.slice(0, 8).map((s, i) => ({ x: 20 + (i % 4) * 20, y: 30 + Math.floor(i / 4) * 30, color: s.color }))
+            : [
+                { x: 30, y: 35, color: themeColorAt(0) },
+                { x: 70, y: 65, color: themeColorAt(1) },
+              ]
+      onChange({ ...structuredClone(spec), kind: k, points: pts })
+    } else {
+      const sp =
+        stops.length >= 2
+          ? stops
+          : points.length >= 2
+            ? points.slice(0, 6).map((p, i) => ({ color: p.color, position: Math.round((i / (points.length - 1)) * 100) }))
+            : [
+                { color: themeColorAt(0), position: 0 },
+                { color: themeColorAt(1), position: 100 },
+              ]
+      onChange({ ...structuredClone(spec), kind: k, stops: sp })
+    }
+  }
+
+  function setStops(next: { color: string; position: number }[]) {
+    onChange({ ...structuredClone(spec), stops: next })
+  }
+  function setPoints(next: { x: number; y: number; color: string }[]) {
+    onChange({ ...structuredClone(spec), points: next })
+  }
+
+  function addPointAt(e: React.MouseEvent) {
+    if (points.length >= 8) return
+    const rect = boxRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const x = clamp(((e.clientX - rect.left) / rect.width) * 100, 0, 100)
+    const y = clamp(((e.clientY - rect.top) / rect.height) * 100, 0, 100)
+    setPoints([...points, { x: Math.round(x), y: Math.round(y), color: themeColorAt(points.length) }])
+  }
+
+  return (
+    <fieldset className="sr-fieldset">
+      <legend className="sr-label">漸層</legend>
+      <div className="sr-chip-row" role="group" aria-label="漸層種類">
+        {(['linear', 'radial', 'mesh'] as const).map((k) => (
+          <button
+            key={k}
+            type="button"
+            className={`sr-chip${spec.kind === k ? ' sr-chip-active' : ''}`}
+            onClick={() => changeKind(k)}
+          >
+            {k === 'linear' ? '線性' : k === 'radial' ? '放射' : '網狀（多點）'}
+          </button>
+        ))}
+      </div>
+
+      {spec.kind !== 'mesh' ? (
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+          {spec.kind === 'linear' && (
+            <>
+              <label className="sr-label" htmlFor="bg-grad-angle">
+                角度 {spec.angle}°
+              </label>
+              <input
+                id="bg-grad-angle"
+                type="range"
+                min={0}
+                max={360}
+                value={spec.angle}
+                onChange={(e) => onChange({ ...structuredClone(spec), angle: Number(e.target.value) })}
+              />
+            </>
+          )}
+          {stops.map((stop, i) => (
+            <div key={i} className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+              <input
+                type="color"
+                className="sr-color-swatch"
+                aria-label={`色停 ${i + 1} 顏色`}
+                value={stop.color}
+                onChange={(e) => setStops(stops.map((s, j) => (j === i ? { ...s, color: e.target.value } : s)))}
+              />
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={stop.position}
+                aria-label={`色停 ${i + 1} 位置`}
+                style={{ flex: 1 }}
+                onChange={(e) => setStops(stops.map((s, j) => (j === i ? { ...s, position: Number(e.target.value) } : s)))}
+              />
+              {stops.length > 2 && (
+                <button type="button" className="sr-chip" onClick={() => setStops(stops.filter((_, j) => j !== i))}>
+                  ✕
+                </button>
+              )}
+            </div>
+          ))}
+          {stops.length < 8 && (
+            <button
+              type="button"
+              className="sr-button sr-button-secondary"
+              onClick={() => setStops([...stops, { color: stops[stops.length - 1]?.color ?? NEUTRAL.white, position: 50 }])}
+            >
+              ＋ 加一個顏色
+            </button>
+          )}
+          <p className="sr-muted" style={{ margin: 0 }}>放射漸層的中心用上方的「位置」控制。</p>
+        </div>
+      ) : (
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+          <div
+            ref={boxRef}
+            onClick={addPointAt}
+            className="sr-crop-wrap"
+            style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', background: meshCss(), borderRadius: 'var(--sr-radius-sm, 6px)', cursor: 'crosshair', overflow: 'hidden' }}
+          >
+            {points.map((p, i) => (
+              <span
+                key={i}
+                className="sr-mesh-point"
+                aria-hidden="true"
+                style={{ left: `${p.x}%`, top: `${p.y}%`, background: p.color }}
+              />
+            ))}
+          </div>
+          <p className="sr-muted" style={{ margin: 0 }}>點一下上面加一個色點（一點一色，最多 8 個）。</p>
+          {points.map((p, i) => (
+            <div key={i} className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+              <input
+                type="color"
+                className="sr-color-swatch"
+                aria-label={`色點 ${i + 1}`}
+                value={p.color}
+                onChange={(e) => setPoints(points.map((q, j) => (j === i ? { ...q, color: e.target.value } : q)))}
+              />
+              <span className="sr-muted" style={{ flex: 1, fontSize: 'var(--sr-text-sm)' }}>
+                第 {i + 1} 點（{Math.round(p.x)}%, {Math.round(p.y)}%）
+              </span>
+              {points.length > 1 && (
+                <button type="button" className="sr-chip" onClick={() => setPoints(points.filter((_, j) => j !== i))}>
+                  ✕
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </fieldset>
+  )
+}
+
 function isCropped(item: BackgroundItem): boolean {
   return item.crop_x > 0 || item.crop_y > 0 || item.crop_w < 100 || item.crop_h < 100
 }
@@ -532,12 +682,7 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
     .filter(Boolean)
     .join(' ')
 
-  const gradient =
-    item.type === 'gradient' && item.gradient_spec
-      ? `linear-gradient(${item.gradient_spec.angle}deg, ${item.gradient_spec.stops
-          .map((s) => `${s.color} ${s.position}%`)
-          .join(', ')})`
-      : null
+  const gradient = item.type === 'gradient' ? gradientCss(item) : null
 
   const glass = glassStyle(item)
 

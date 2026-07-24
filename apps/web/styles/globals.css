@@ -1036,6 +1036,18 @@ input[type='range'] {
   touch-action: none;
 }
 
+/* 網狀漸層的色點標記：白邊高對比工具 chrome（同裁切框，固定黑白不隨主題） */
+.sr-mesh-point {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
 .sr-crop-handle {
   position: absolute;
   /* 放在框內角，避免被容器的 overflow:hidden 裁掉 */
