@@ -35,7 +35,11 @@
 - 🔴 **JWT secret** — Zeabur Supabase 仍用 demo 預設 secret（key 的 iss=supabase-demo）。**正式對外前必換**，換完重新產 anon/service key 更新 env。
 - 🔴 **Q10 手動走查** — 人實際點過 Milestone B 一輪（主題/背景/字體/版面）。
 - 🔴 **台北黑體字檔** — 沒有穩定下載網址，需人工下載放 `assets/fonts/taipei-sans-tc/`（其餘 12 套已自動化）。
-- 🔴 **AI 金鑰**（Milestone D 才需要）— 至少兩把免費（建議 Groq + Google Gemini）。
+- 🔴 **AI 金鑰**（Milestone D）— **改為後台管理**（照 ai 島）：
+      - Zeabur web 只需設**一把** `AI_KEY_ENCRYPTION_SECRET`（base64 的 32 bytes，master 加密金鑰）
+      - 各家 provider 金鑰到網站 **`/admin/ai-keys`** 貼上（會先測試才加密存 DB），不放 Zeabur env
+      - 至少 Groq + Gemini 兩把免費（後台有取得連結）；設好 Agent 對話就能運作
+      - 站台管理員身份：email `luffysky00@gmail.com`（或 `OWNER_EMAILS`/`OWNER_USER_IDS` env）
 - 🔴 **Figma app 憑證**（Milestone F）— `FIGMA_CLIENT_ID` / `FIGMA_CLIENT_SECRET` / `FIGMA_WEBHOOK_SECRET`，redirect URI 用正式網域。
 - 🔴 **Google / LINE 登入憑證**（程式碼已完成，只差憑證；沒設按鈕會停用不會壞）— 由 0723 沿用：
       - Google Cloud Console → OAuth consent screen + Client ID → `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`（並在 Supabase → Auth → Providers 開啟）
