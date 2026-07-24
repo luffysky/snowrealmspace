@@ -41,7 +41,7 @@ export const GET = handler(async (request: NextRequest) => {
     Object.fromEntries(request.nextUrl.searchParams),
   )
   if (!parsed.success) return failValidation(parsed.error)
-  const { kind, q, tag, favorite, archived, projectId, limit, cursor } = parsed.data
+  const { kind, q, tag, favorite, archived, projectId, folder, limit, cursor } = parsed.data
 
   // 依專案過濾：資產透過 design_files 連結到專案。先查該專案有哪些 asset。
   let projectAssetIds: string[] | null = null
@@ -66,7 +66,7 @@ export const GET = handler(async (request: NextRequest) => {
   let query = ctx.db
     .from('assets')
     .select(
-      'id, kind, mime_type, bytes, width, height, original_filename, status, is_favorite, archived_at, tags, created_at',
+      'id, kind, mime_type, bytes, width, height, original_filename, status, is_favorite, archived_at, tags, folder_id, created_at',
     )
     .eq('space_id', ctx.spaceId)
     .is('deleted_at', null)
@@ -81,6 +81,8 @@ export const GET = handler(async (request: NextRequest) => {
   if (favorite === true) query = query.eq('is_favorite', true)
   if (archived === 'exclude') query = query.is('archived_at', null)
   else if (archived === 'only') query = query.not('archived_at', 'is', null)
+  if (folder === 'none') query = query.is('folder_id', null)
+  else if (folder) query = query.eq('folder_id', folder)
   if (projectAssetIds) query = query.in('id', projectAssetIds)
 
   if (cursor) {

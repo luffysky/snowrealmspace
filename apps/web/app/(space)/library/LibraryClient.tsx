@@ -8,6 +8,9 @@ import { ThemeFromImage } from './ThemeFromImage'
 
 type KindFilter = 'all' | 'image' | 'video' | 'pdf'
 type ArchivedFilter = 'exclude' | 'only'
+type Folder = { id: string; name: string; count: number }
+/** 'all' 全部、'none' 未分類、或某個 folder id。 */
+type FolderFilter = 'all' | 'none' | string
 
 const KIND_LABEL: Record<KindFilter, string> = {
   all: '全部',
@@ -35,9 +38,22 @@ export function LibraryClient({
   const [tag, setTag] = useState('')
   const [favorite, setFavorite] = useState(false)
   const [archived, setArchived] = useState<ArchivedFilter>('exclude')
+  const [folderFilter, setFolderFilter] = useState<FolderFilter>('all')
+  const [folders, setFolders] = useState<Folder[]>([])
 
   const headers = { 'x-space-id': spaceId }
   const patchHeaders = { ...headers, 'content-type': 'application/json' }
+
+  const loadFolders = useCallback(async () => {
+    const res = await fetch('/api/folders', { headers })
+    if (!res.ok) return
+    const body = (await res.json()) as { data: Folder[] }
+    setFolders(body.data)
+  }, [spaceId])
+
+  useEffect(() => {
+    void loadFolders()
+  }, [loadFolders])
 
   const buildQuery = useCallback(() => {
     const p = new URLSearchParams({ limit: '60', archived })
@@ -45,8 +61,9 @@ export function LibraryClient({
     if (q.trim()) p.set('q', q.trim())
     if (tag.trim()) p.set('tag', tag.trim())
     if (favorite) p.set('favorite', 'true')
+    if (folderFilter !== 'all') p.set('folder', folderFilter)
     return p.toString()
-  }, [kind, q, tag, favorite, archived])
+  }, [kind, q, tag, favorite, archived, folderFilter])
 
   const refresh = useCallback(async () => {
     setLoading(true)
@@ -95,13 +112,68 @@ export function LibraryClient({
 
   function applyLocal(updated: AssetRow) {
     setAssets((prev) => {
-      // 封存/取消封存後，若與目前篩選不符就從清單移除
+      // 變更後若與目前篩選不符就從清單移除（封存、收藏、資料夾）
       const stillMatches =
         archived === 'only' ? updated.archived_at !== null : updated.archived_at === null
       const favMatches = !favorite || updated.is_favorite
-      if (!stillMatches || !favMatches) return prev.filter((a) => a.id !== updated.id)
+      const folderMatches =
+        folderFilter === 'all'
+          ? true
+          : folderFilter === 'none'
+            ? updated.folder_id === null
+            : updated.folder_id === folderFilter
+      if (!stillMatches || !favMatches || !folderMatches) return prev.filter((a) => a.id !== updated.id)
       return prev.map((a) => (a.id === updated.id ? updated : a))
     })
+  }
+
+  async function createFolder(name: string): Promise<Folder | null> {
+    const res = await fetch('/api/folders', {
+      method: 'POST',
+      headers: patchHeaders,
+      body: JSON.stringify({ name }),
+    })
+    if (!res.ok) {
+      setNotice('✕ 建立資料夾失敗。')
+      return null
+    }
+    const body = (await res.json()) as { data: Folder }
+    setFolders((prev) => [...prev, body.data].sort((a, b) => a.name.localeCompare(b.name)))
+    return body.data
+  }
+
+  async function newFolderPrompt() {
+    const name = window.prompt('新資料夾名稱', '')
+    if (name === null || !name.trim()) return
+    const created = await createFolder(name.trim())
+    if (created) setNotice(`已建立資料夾「${created.name}」。`)
+  }
+
+  async function renameFolder(f: Folder) {
+    const name = window.prompt('資料夾新名稱', f.name)
+    if (name === null || !name.trim()) return
+    const res = await fetch(`/api/folders/${f.id}`, {
+      method: 'PATCH',
+      headers: patchHeaders,
+      body: JSON.stringify({ name: name.trim() }),
+    })
+    if (!res.ok) {
+      setNotice('✕ 改名失敗。')
+      return
+    }
+    await loadFolders()
+  }
+
+  async function deleteFolder(f: Folder) {
+    if (!window.confirm(`刪除資料夾「${f.name}」？裡面的檔案會移回未分類，不會被刪除。`)) return
+    const res = await fetch(`/api/folders/${f.id}`, { method: 'DELETE', headers })
+    if (!res.ok) {
+      setNotice('✕ 刪除失敗。')
+      return
+    }
+    if (folderFilter === f.id) setFolderFilter('all')
+    await loadFolders()
+    void refresh()
   }
 
   const actions: AssetActions = {
@@ -150,6 +222,45 @@ export function LibraryClient({
       }
       setNotice('已建立作品，可到「作品」頁管理版本與比較。')
     },
+    onMoveToFolder: async (a) => {
+      const lines = [
+        '移到哪個資料夾？輸入編號：',
+        '0. 未分類（移出）',
+        ...folders.map((f, i) => `${i + 1}. ${f.name}`),
+        '',
+        '或直接輸入新資料夾名稱來建立並移入',
+      ]
+      const raw = window.prompt(lines.join('\n'), '')
+      if (raw === null) return
+      const trimmed = raw.trim()
+      if (trimmed === '') return
+
+      let folderId: string | null = null
+      if (/^\d+$/.test(trimmed)) {
+        const num = Number(trimmed)
+        if (num === 0) folderId = null
+        else {
+          const f = folders[num - 1]
+          if (!f) {
+            setNotice('✕ 沒有這個編號。')
+            return
+          }
+          folderId = f.id
+        }
+      } else {
+        const created = await createFolder(trimmed)
+        if (!created) return
+        folderId = created.id
+      }
+
+      const u = await patchAsset(a, { folderId })
+      if (u) {
+        applyLocal(u)
+        void loadFolders()
+        setNotice(folderId ? '已移到資料夾。' : '已移出資料夾。')
+      }
+    },
+    onTagClick: (t) => setTag(t),
   }
 
   async function handleDelete(asset: AssetRow, cascade = false) {
@@ -182,6 +293,9 @@ export function LibraryClient({
     setNotice('已刪除。30 天內都還可以復原。')
   }
 
+  // 目前檢視中用到的標籤（去重、排序），供「點一下就篩選」的分類 chips
+  const tagsInView = Array.from(new Set(assets.flatMap((a) => a.tags))).sort().slice(0, 30)
+
   return (
     <div className="sr-stack">
       {notice && (
@@ -194,6 +308,56 @@ export function LibraryClient({
 
       {/* ── 篩選列 ─────────────────────────────────── */}
       <div className="sr-card sr-stack" style={{ gap: 'var(--sr-space-3)' }}>
+        {/* 資料夾 */}
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+          <div className="sr-chip-row" role="group" aria-label="依資料夾篩選">
+            <button
+              type="button"
+              className={`sr-chip${folderFilter === 'all' ? ' sr-chip-active' : ''}`}
+              onClick={() => setFolderFilter('all')}
+            >
+              全部
+            </button>
+            <button
+              type="button"
+              className={`sr-chip${folderFilter === 'none' ? ' sr-chip-active' : ''}`}
+              onClick={() => setFolderFilter('none')}
+            >
+              未分類
+            </button>
+            {folders.map((f) => (
+              <button
+                key={f.id}
+                type="button"
+                className={`sr-chip${folderFilter === f.id ? ' sr-chip-active' : ''}`}
+                onClick={() => setFolderFilter(f.id)}
+              >
+                📁 {f.name} {f.count > 0 && <span className="sr-muted">({f.count})</span>}
+              </button>
+            ))}
+            <button type="button" className="sr-chip" onClick={() => void newFolderPrompt()}>
+              ＋ 新增資料夾
+            </button>
+          </div>
+          {/* 選了某個資料夾時，提供改名/刪除 */}
+          {folderFilter !== 'all' &&
+            folderFilter !== 'none' &&
+            (() => {
+              const f = folders.find((x) => x.id === folderFilter)
+              if (!f) return null
+              return (
+                <div className="sr-chip-row">
+                  <button type="button" className="sr-chip" onClick={() => void renameFolder(f)}>
+                    改名「{f.name}」
+                  </button>
+                  <button type="button" className="sr-chip" onClick={() => void deleteFolder(f)}>
+                    刪除資料夾
+                  </button>
+                </div>
+              )
+            })()}
+        </div>
+
         <div className="sr-chip-row" role="group" aria-label="依類型篩選">
           {(Object.keys(KIND_LABEL) as KindFilter[]).map((k) => (
             <button
@@ -227,6 +391,24 @@ export function LibraryClient({
             />
           </label>
         </div>
+
+        {/* 標籤分類：目前檔案用到的標籤，點一下就篩選 */}
+        {tagsInView.length > 0 && (
+          <div className="sr-chip-row" role="group" aria-label="依標籤篩選">
+            {tag.trim() && (
+              <button type="button" className="sr-chip sr-chip-active" onClick={() => setTag('')}>
+                #{tag} ✕
+              </button>
+            )}
+            {tagsInView
+              .filter((t) => t !== tag.trim())
+              .map((t) => (
+                <button key={t} type="button" className="sr-chip sr-chip-tag" onClick={() => setTag(t)}>
+                  #{t}
+                </button>
+              ))}
+          </div>
+        )}
 
         <div className="sr-chip-row">
           <button

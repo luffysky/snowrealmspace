@@ -28,6 +28,7 @@ const MEMBER_READABLE = [
   'space_settings',
   'agent_profiles',
   'activity_events',
+  'folders',
 ] as const
 
 describe('RLS：跨 space 隔離', () => {

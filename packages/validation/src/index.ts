@@ -20,6 +20,8 @@ export {
   uploadIntentSchema,
   assetListQuerySchema,
   assetPatchSchema,
+  folderCreateSchema,
+  folderPatchSchema,
   sniffMimeType,
   mimeMatches,
   type AssetKind,

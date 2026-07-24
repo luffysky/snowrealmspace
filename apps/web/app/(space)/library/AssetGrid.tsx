@@ -13,6 +13,7 @@ export type AssetRow = {
   is_favorite: boolean
   archived_at: string | null
   tags: string[]
+  folder_id: string | null
   created_at: string
 }
 
@@ -53,6 +54,8 @@ export type AssetActions = {
   onEditTags: (a: AssetRow) => void
   onRename: (a: AssetRow) => void
   onCreateWork: (a: AssetRow) => void
+  onMoveToFolder: (a: AssetRow) => void
+  onTagClick: (tag: string) => void
 }
 
 function AssetTile({
@@ -108,9 +111,15 @@ function AssetTile({
       {asset.tags.length > 0 && (
         <div className="sr-chip-row sr-asset-tags">
           {asset.tags.map((t) => (
-            <span key={t} className="sr-chip sr-chip-tag">
+            <button
+              key={t}
+              type="button"
+              className="sr-chip sr-chip-tag"
+              onClick={() => actions.onTagClick(t)}
+              title={`只看標籤 #${t}`}
+            >
               #{t}
-            </span>
+            </button>
           ))}
         </div>
       )}
@@ -121,6 +130,9 @@ function AssetTile({
         </button>
         <button type="button" onClick={() => actions.onEditTags(asset)}>
           標籤
+        </button>
+        <button type="button" onClick={() => actions.onMoveToFolder(asset)}>
+          資料夾
         </button>
         {asset.kind === 'image' && (
           <button type="button" onClick={() => actions.onCreateWork(asset)}>

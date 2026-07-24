@@ -47,12 +47,28 @@ export const PATCH = handler(
       is_favorite?: boolean
       archived_at?: string | null
       tags?: string[]
+      folder_id?: string | null
     }
     const patch: AssetMetaUpdate = {}
     if (input.originalFilename !== undefined) patch.original_filename = input.originalFilename
     if (input.isFavorite !== undefined) patch.is_favorite = input.isFavorite
     if (input.archived !== undefined) patch.archived_at = input.archived ? new Date().toISOString() : null
     if (input.tags !== undefined) patch.tags = input.tags
+    if (input.folderId !== undefined) {
+      // 目標資料夾必須屬於同一個 space —— FK 不檢查 space，靠 RLS 讀取確認，
+      // 否則使用者可把自己的檔案指向別人 space 的資料夾（跨 space 資料汙染）。
+      if (input.folderId !== null) {
+        const { data: folder } = await ctx.db
+          .from('folders')
+          .select('id')
+          .eq('id', input.folderId)
+          .eq('space_id', ctx.spaceId)
+          .is('deleted_at', null)
+          .maybeSingle()
+        if (!folder) return fail('NOT_FOUND', '找不到這個資料夾。')
+      }
+      patch.folder_id = input.folderId
+    }
 
     const { data, error } = await ctx.db
       .from('assets')
@@ -60,7 +76,7 @@ export const PATCH = handler(
       .eq('id', id)
       .eq('space_id', ctx.spaceId)
       .is('deleted_at', null)
-      .select('id, original_filename, is_favorite, archived_at, tags')
+      .select('id, original_filename, is_favorite, archived_at, tags, folder_id')
       .maybeSingle()
 
     if (error) return fail('INTERNAL', '無法更新。')

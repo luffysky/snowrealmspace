@@ -642,6 +642,7 @@ export type Database = {
           deleted_at: string | null
           duration_ms: number | null
           failure_reason: string | null
+          folder_id: string | null
           height: number | null
           id: string
           is_favorite: boolean
@@ -665,6 +666,7 @@ export type Database = {
           deleted_at?: string | null
           duration_ms?: number | null
           failure_reason?: string | null
+          folder_id?: string | null
           height?: number | null
           id?: string
           is_favorite?: boolean
@@ -688,6 +690,7 @@ export type Database = {
           deleted_at?: string | null
           duration_ms?: number | null
           failure_reason?: string | null
+          folder_id?: string | null
           height?: number | null
           id?: string
           is_favorite?: boolean
@@ -703,6 +706,13 @@ export type Database = {
           width?: number | null
         }
         Relationships: [
+          {
+            foreignKeyName: "assets_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "folders"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "assets_space_id_fkey"
             columns: ["space_id"]
@@ -1430,6 +1440,44 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      folders: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          id: string
+          name: string
+          space_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          id?: string
+          name: string
+          space_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          id?: string
+          name?: string
+          space_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "folders_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       font_pairs: {
         Row: {

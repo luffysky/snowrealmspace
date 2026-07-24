@@ -48,6 +48,15 @@ async function main() {
     // 種一個 asset + design_snapshot：這樣「刪 space cascade 撞上
     // design_snapshots.asset_id FK」的路徑才真的被走到（0032 前這會讓 purge 失敗，
     // 舊版 verify 因為沒建 asset 而漏掉——正是「假安全的檢查」）。
+    // 資料夾 + 把 asset 放進去：驗「刪 space cascade 時，assets.folder_id → folders
+    // 的 ON DELETE SET NULL 不會卡住 purge」（0033）。
+    const { data: folder, error: fErr } = await admin
+      .from('folders')
+      .insert({ space_id: expiredId, name: '測試資料夾' })
+      .select('id')
+      .single()
+    if (fErr || !folder) throw new Error(`建立測試 folder 失敗：${fErr?.message}`)
+
     const { data: asset, error: aErr } = await admin
       .from('assets')
       .insert({
@@ -58,6 +67,7 @@ async function main() {
         checksum: `purge-test-${stamp}`,
         storage_key: `test/purge-${stamp}.png`,
         status: 'ready',
+        folder_id: folder.id,
       })
       .select('id')
       .single()

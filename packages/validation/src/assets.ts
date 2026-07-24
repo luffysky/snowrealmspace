@@ -98,6 +98,8 @@ export const assetListQuerySchema = z
     archived: z.enum(['exclude', 'only', 'include']).default('exclude'),
     /** 依專案過濾（透過 design_files 連結；C4 起生效）。 */
     projectId: z.string().uuid().optional(),
+    /** 依資料夾過濾：uuid = 該資料夾；'none' = 未分類；不給 = 全部。 */
+    folder: z.union([z.string().uuid(), z.literal('none')]).optional(),
     limit: z.coerce.number().int().min(1).max(100).default(30),
     cursor: z.string().optional(),
   })
@@ -115,9 +117,20 @@ export const assetPatchSchema = z
       .max(20)
       .transform((tags) => Array.from(new Set(tags.map((t) => t.toLowerCase()))))
       .optional(),
+    /** 移到資料夾：uuid = 目標資料夾；null = 移出（未分類）。 */
+    folderId: z.string().uuid().nullable().optional(),
   })
   .strict()
   .refine((v) => Object.keys(v).length > 0, { message: '沒有要更新的欄位' })
+
+/** 資料夾（Library 分類）。 */
+export const folderCreateSchema = z
+  .object({ name: z.string().trim().min(1).max(60) })
+  .strict()
+
+export const folderPatchSchema = z
+  .object({ name: z.string().trim().min(1).max(60) })
+  .strict()
 
 export type AssetListQuery = z.infer<typeof assetListQuerySchema>
 export type AssetPatchInput = z.infer<typeof assetPatchSchema>

@@ -14,7 +14,7 @@ export default async function LibraryPage() {
   const { data } = await db
     .from('assets')
     .select(
-      'id, kind, mime_type, bytes, width, height, original_filename, is_favorite, archived_at, tags, created_at',
+      'id, kind, mime_type, bytes, width, height, original_filename, is_favorite, archived_at, tags, folder_id, created_at',
     )
     .eq('space_id', space.id)
     .eq('status', 'ready')
