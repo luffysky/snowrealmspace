@@ -95,8 +95,37 @@ export async function sendMagicLink(
 
   return {
     status: 'sent',
-    message: `登入連結已寄到 ${email}。連結 1 小時內有效。`,
+    message: `登入連結已寄到 ${email}。連結 1 小時內有效，或用信中的 6 位數代碼登入。`,
   }
+}
+
+const codeSchema = z.string().trim().regex(/^\d{6}$/, '請輸入 6 位數代碼')
+
+/**
+ * 用 email 裡的 6 位數代碼登入（跨裝置用：例如電腦沒登 email，用手機收到的代碼在電腦登入）。
+ * 主要服務已有帳號的使用者；新使用者的空間佈建仍走 magic link 的 /auth/callback。
+ */
+export async function verifyEmailCode(
+  _prev: AuthActionState,
+  formData: FormData,
+): Promise<AuthActionState> {
+  const emailParsed = emailSchema.safeParse(formData.get('email'))
+  const codeParsed = codeSchema.safeParse(formData.get('code'))
+  const next = (formData.get('next') as string | null)?.trim() || '/home'
+  if (!emailParsed.success) return { status: 'error', message: 'Email 格式不正確。' }
+  if (!codeParsed.success) return { status: 'error', message: '請輸入 6 位數代碼。' }
+
+  const db = await getDb()
+  const { data, error } = await db.auth.verifyOtp({
+    email: emailParsed.data,
+    token: codeParsed.data,
+    type: 'email',
+  })
+  if (error || !data.user) {
+    return { status: 'error', message: '代碼錯誤或已過期，請重新索取。' }
+  }
+
+  redirect(next)
 }
 
 const passwordSchema = z.string().min(8, '密碼至少 8 個字')

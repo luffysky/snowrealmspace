@@ -247,6 +247,12 @@ otp_expiry = 3600
 # admin_email = "admin@email.com"
 # sender_name = "Admin"
 
+# 美化的登入信（magic link + 6 位數代碼）。本機用這個模板；
+# hosted GoTrue 改用 env：GOTRUE_MAILER_TEMPLATES_MAGIC_LINK 指向這份 HTML 的公開網址。
+[auth.email.template.magic_link]
+subject = "登入 SnowRealm Space"
+content_path = "./supabase/templates/magic_link.html"
+
 # Uncomment to customize email template
 # [auth.email.template.invite]
 # subject = "You have been invited"
