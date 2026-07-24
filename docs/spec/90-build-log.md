@@ -291,3 +291,48 @@ worker 一直在另一個終端跑著，CI 沒有那個「順便」。
 .env.local 指向 hosted 時跑 test:rls / E2E，會把 @rls-test.local /
 @e2e.local 的假使用者建到正式 Supabase。已寫 cleanup-test-users.ts 清理。
 教訓：跑測試前務必確認 .env.local 指向本機，或用獨立的測試專案。
+
+---
+
+## Milestone C（2026-07-24）
+
+### 0020：append-only rule 換成「只 pin 內容」的 trigger（解 Timeline 投影游標）
+
+Timeline 投影（ADR-013）要把已投影的 activity_event 標記 `projected_at`，
+但 0004 的 `on update do instead nothing` RULE 擋掉所有 update，連 projected_at 都寫不進去。
+
+改法：drop 掉 blanket update rule，換成 BEFORE UPDATE trigger `activity_events_content_guard`，
+把**內容欄位**（space_id/actor_id/event_type/entity_*/properties/occurred_at）一律還原成 old，
+只放行 projected_at。delete 仍以 RULE 全擋（append-only 內容不可竄改的保證不變）。
+RLS 測試新增「projected_at 可更新」一條，原「內容不可竄改」一條仍綠。
+
+**與上面「刪除使用者」known bug 的關係：** trigger 目前也 pin 住 `actor_id`，
+所以刪 auth.users 時 FK 的 SET NULL 仍會被還原。**帳號刪除實作時**，
+trigger 要改成「允許 actor_id 變 null（FK 匿名化），但不允許改成其他非 null 值」。
+帳號刪除尚未實作（需 R2 + worker），先記錄。
+
+### 0021：timeline source_event_id 從部分索引改非部分 unique
+
+投影 job 用 `upsert(onConflict: 'source_event_id')` 保冪等，但 0018 的唯一索引是
+部分索引（`where source_event_id is not null`），ON CONFLICT 無法對部分索引做欄位推斷 →
+upsert 失敗。改成非部分 unique index（Postgres 預設多個 NULL 相異，手動建立、
+無 source 的 timeline 仍可多筆）。verify-c5-timeline.ts 直連 DB 確認投影+節流+冪等。
+
+### ADR-022 偏離：單檔上限 50MB → 500MB（Luffy 指示）
+
+Luffy 要「影片所有格式 500MB 以下」。原 `assets_bytes_limit` CHECK = 52428800（50MB，ADR-022）。
+改 CHECK 為 524288000（500MB），validation `LIMITS.video` 同步放寬，並移除 30 秒時長硬限
+（背景影片不轉碼、直接播，長度不再是問題）。space 配額仍 5GB。
+上傳走 signed PUT 單次（R2 單 PUT 上限 5GB，500MB 沒問題）。
+
+### ADR-019 偏離：背景影片可選聲音（Luffy 指示）
+
+原 ADR-019：背景影片恆靜音（`muted: true`）。Luffy 要「影片可以選要不要聲音」。
+`background_items.muted` 改成使用者可控。**注意瀏覽器 autoplay 政策**：有聲音的自動播放
+會被瀏覽器擋，需使用者手勢才能出聲 —— UI 提供靜音/取消靜音控制，預設靜音自動播，
+使用者點一下才開聲。
+
+### 背景音樂（Luffy 追加）
+
+space 可選擇性加一段背景音樂（audio asset）。同樣受 autoplay 政策約束：
+不自動出聲，提供播放/暫停控制，使用者主動開。存在 space_settings，預設無。

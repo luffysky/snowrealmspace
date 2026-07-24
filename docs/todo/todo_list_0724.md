@@ -13,7 +13,7 @@
 |---|---|---|
 | A — Foundation | ✅ 完成 | 100% |
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
-| C — Creative Core | 🚧 進行中 | ~30%（C1 地基 + C2 Projects 完成；C3 Library 起） |
+| C — Creative Core | ✅ 幾乎完成 | C1–C7 全數完成（地基/Projects/Library/作品+版本比較/Timeline/from-image/隱私刪除組）；剩空間整體刪除（需 R2+worker） |
 | D — AI Core | ⬜ 未開始 | 0%（需 AI 金鑰） |
 | E — Daily Loop | ✅ 幾乎完成 | 內容池/每日卡片/驚喜盒+保底+收藏/生日鏈/主動訊息/Insight/通知全通；剩 cron 掃時區、weekly_recap 推播、Insight 的 LLM 升級（需 D） |
 | F — Integration | ⬜ 未開始 | 0% |
@@ -109,13 +109,18 @@
 - [x] ~~**C2 Project CRUD**：projectCreate/Patch/ListQuery schema（13 測試）；
       GET/POST/PATCH/DELETE `/api/projects`（狀態事件、軟刪不刪作品）；
       `/projects` UI（建立/編輯/狀態篩選/標籤/封面縮圖/四態）+ nav 入口 + CSS token~~
-- [ ] **C3 Library 升級**：篩選（kind/project/tag/日期）、pg_trgm 搜尋、
-      Asset actions（改名 ✓、刪除 ✓、建主題 ✓ 已有；補 tag/收藏/封存/移動/指派專案/設背景）
-- [ ] **C4** `design_files`+`design_snapshots` API（從 asset 建作品、快照）+ 版本比較（並排/疊圖/滑桿）
-- [ ] **C5 Timeline**：`event.project` job、投影規則+節流、三檢視（時序/專案/On This Day）、編輯/可見性/刪除
-- [ ] **C6 from-image 收尾**：驗證 3 變體、可重現（同圖同結果）、textPrimary 對背景 ≥4.5、p95<3s
-- [ ] **C7 隱私刪除組**（規格要求 C 結束前完成）：asset 引用檢查刪除 ✓ 已有；補 snapshot 刪除、insight 刪除 ✓
-- [ ] 本地分析擴充：對比檢查、留白比例、textZoneLuminance（C4/C6）
+- [x] ~~**C3 Library 升級**：篩選（kind/tag/收藏/封存）+ pg_trgm 檔名搜尋 +
+      asset actions（改名/刪除/建主題/tag/收藏/封存/設為作品）~~
+- [x] ~~**C4** design_files+design_snapshots API（從 asset 建作品、快照、去重）+
+      版本比較（並排/疊圖/滑桿 + compareLocalFeatures 數值差異）+ /works UI~~
+- [x] ~~**C5 Timeline**：event.project job（投影規則+節流+冪等）、0020 append-only trigger、
+      三檢視、編輯/隱藏/刪除、/timeline UI~~
+- [x] ~~**C6 from-image 收尾**：3 變體/可重現/textPrimary≥4.5 已測；抽 draftsFromLocalFeatures
+      並修 C4 compare 巢狀結構 bug~~
+- [x] ~~**C7 隱私刪除組**：引用檢查涵蓋 design_snapshot（不可 cascade）/project 封面/timeline 封面；
+      資料地圖頁 /settings/data~~
+- [ ] 空間/帳號整體刪除（7 天寬限、匯出、R2 先於 DB）—— 需 R2 + worker，誠實延後
+- [ ] 本地分析擴充：對比檢查、留白比例（已有 whitespaceRatio）、textZoneLuminance
 
 ---
 

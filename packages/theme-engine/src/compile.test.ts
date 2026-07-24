@@ -149,7 +149,7 @@ describe('computeA11yFallback（ADR-011 §3.3）', () => {
 })
 
 describe('analyzeTheme', () => {
-  it('四套內建主題全部通過 AA', () => {
+  it('所有內建主題全部通過 AA', () => {
     for (const theme of PRESET_THEMES) {
       const report = analyzeTheme(theme)
       expect(report.passesAA, `${theme.name} 不合格：${report.failing.join('、')}`).toBe(true)
