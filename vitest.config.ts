@@ -30,6 +30,13 @@ export default defineConfig({
         'packages/storage/src/r2.ts',
         'packages/analytics/src/emit.ts',
         'packages/analytics/src/audit.ts',
+        // daily-engine 的生成模組是 DB 重的整合邏輯，行為靠 verify-e-cron 直連驗證
+        // （原本在 apps/web/lib 也不計覆蓋率），不靠單元測試的 mock。shared.ts 是純的，照常計。
+        'packages/daily-engine/src/service.ts',
+        'packages/daily-engine/src/proactive.ts',
+        'packages/daily-engine/src/surprise.ts',
+        'packages/daily-engine/src/chain.ts',
+        'packages/daily-engine/src/insights.ts',
       ],
       thresholds: {
         // 全域下限
