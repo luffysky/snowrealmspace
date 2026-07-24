@@ -79,16 +79,40 @@ export const assetListQuerySchema = z
   .object({
     kind: z.enum(['image', 'video', 'pdf', 'audio', 'font', 'document']).optional(),
     q: z.string().max(120).optional(),
+    /** 標籤過濾（單一標籤，小寫）。 */
+    tag: z.string().trim().min(1).max(30).toLowerCase().optional(),
+    /** 只看收藏。 */
+    favorite: z
+      .enum(['true', 'false'])
+      .optional()
+      .transform((v) => (v === undefined ? undefined : v === 'true')),
+    /** 封存的顯示策略：預設排除、only 只看封存、include 全都看。 */
+    archived: z.enum(['exclude', 'only', 'include']).default('exclude'),
+    /** 依專案過濾（透過 design_files 連結；C4 起生效）。 */
+    projectId: z.string().uuid().optional(),
     limit: z.coerce.number().int().min(1).max(100).default(30),
     cursor: z.string().optional(),
   })
   .strict()
 
+/** 整理用 metadata 更新。位元組事實不可改（ADR-005），只改顯示與整理欄位。 */
 export const assetPatchSchema = z
   .object({
-    originalFilename: z.string().min(1).max(255),
+    originalFilename: z.string().trim().min(1).max(255).optional(),
+    isFavorite: z.boolean().optional(),
+    /** true = 封存、false = 取消封存 */
+    archived: z.boolean().optional(),
+    tags: z
+      .array(z.string().trim().min(1).max(30))
+      .max(20)
+      .transform((tags) => Array.from(new Set(tags.map((t) => t.toLowerCase()))))
+      .optional(),
   })
   .strict()
+  .refine((v) => Object.keys(v).length > 0, { message: '沒有要更新的欄位' })
+
+export type AssetListQuery = z.infer<typeof assetListQuerySchema>
+export type AssetPatchInput = z.infer<typeof assetPatchSchema>
 
 /**
  * 檔案內容的 magic bytes 偵測。

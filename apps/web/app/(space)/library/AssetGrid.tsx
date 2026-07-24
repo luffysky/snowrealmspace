@@ -10,6 +10,9 @@ export type AssetRow = {
   width: number | null
   height: number | null
   original_filename: string | null
+  is_favorite: boolean
+  archived_at: string | null
+  tags: string[]
   created_at: string
 }
 
@@ -42,29 +45,48 @@ function useSignedUrl(spaceId: string, assetId: string, rendition: string) {
   return url
 }
 
+export type AssetActions = {
+  onSelect: (a: AssetRow) => void
+  onDelete: (a: AssetRow) => void
+  onToggleFavorite: (a: AssetRow) => void
+  onToggleArchive: (a: AssetRow) => void
+  onEditTags: (a: AssetRow) => void
+  onRename: (a: AssetRow) => void
+}
+
 function AssetTile({
   spaceId,
   asset,
   selected,
-  onSelect,
-  onDelete,
+  actions,
 }: {
   spaceId: string
   asset: AssetRow
   selected: boolean
-  onSelect: () => void
-  onDelete: () => void
+  actions: AssetActions
 }) {
   const url = useSignedUrl(spaceId, asset.id, 'thumbnail')
   const processing = asset.kind === 'image' && asset.width === null
   const name = asset.original_filename ?? '未命名'
+  const archived = asset.archived_at !== null
 
   return (
     <li className="sr-asset-tile">
       <button
         type="button"
+        className="sr-asset-fav"
+        onClick={() => actions.onToggleFavorite(asset)}
+        aria-pressed={asset.is_favorite}
+        aria-label={asset.is_favorite ? `取消收藏 ${name}` : `收藏 ${name}`}
+        title={asset.is_favorite ? '取消收藏' : '收藏'}
+      >
+        {asset.is_favorite ? '★' : '☆'}
+      </button>
+
+      <button
+        type="button"
         className="sr-asset-button"
-        onClick={onSelect}
+        onClick={() => actions.onSelect(asset)}
         aria-pressed={selected}
         aria-label={`${name}${asset.kind === 'image' ? '，可用來生成主題' : ''}`}
       >
@@ -82,14 +104,35 @@ function AssetTile({
         {processing && <span className="sr-muted">處理中…</span>}
       </button>
 
-      <button
-        type="button"
-        className="sr-asset-delete"
-        onClick={onDelete}
-        aria-label={`刪除 ${name}`}
-      >
-        刪除
-      </button>
+      {asset.tags.length > 0 && (
+        <div className="sr-chip-row sr-asset-tags">
+          {asset.tags.map((t) => (
+            <span key={t} className="sr-chip sr-chip-tag">
+              #{t}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div className="sr-asset-actions">
+        <button type="button" onClick={() => actions.onRename(asset)}>
+          改名
+        </button>
+        <button type="button" onClick={() => actions.onEditTags(asset)}>
+          標籤
+        </button>
+        <button type="button" onClick={() => actions.onToggleArchive(asset)}>
+          {archived ? '取消封存' : '封存'}
+        </button>
+        <button
+          type="button"
+          className="sr-asset-delete"
+          onClick={() => actions.onDelete(asset)}
+          aria-label={`刪除 ${name}`}
+        >
+          刪除
+        </button>
+      </div>
     </li>
   )
 }
@@ -98,23 +141,25 @@ export function AssetGrid({
   spaceId,
   assets,
   selectedId,
-  onSelect,
-  onDelete,
+  actions,
+  loading,
 }: {
   spaceId: string
   assets: AssetRow[]
   selectedId: string | null
-  onSelect: (asset: AssetRow) => void
-  onDelete: (asset: AssetRow) => void
+  actions: AssetActions
+  loading: boolean
 }) {
   return (
     <section className="sr-card">
       <h2 className="sr-section-title">你的檔案</h2>
 
-      {assets.length === 0 ? (
-        <p className="sr-muted">
-          還沒有任何檔案。上傳一張圖，就可以用它生成一套主題。
+      {loading ? (
+        <p className="sr-muted" aria-live="polite">
+          載入中…
         </p>
+      ) : assets.length === 0 ? (
+        <p className="sr-muted">符合條件的檔案是空的。換個篩選，或上傳一張新的圖。</p>
       ) : (
         <ul className="sr-asset-grid">
           {assets.map((asset) => (
@@ -123,8 +168,7 @@ export function AssetGrid({
               spaceId={spaceId}
               asset={asset}
               selected={asset.id === selectedId}
-              onSelect={() => onSelect(asset)}
-              onDelete={() => onDelete(asset)}
+              actions={actions}
             />
           ))}
         </ul>

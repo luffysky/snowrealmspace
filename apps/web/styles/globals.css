@@ -715,6 +715,48 @@ input[type='range'] {
   cursor: pointer;
 }
 
+/* Asset tile 上的整理操作（Milestone C3）*/
+.sr-asset-tile {
+  position: relative;
+}
+.sr-asset-fav {
+  position: absolute;
+  top: var(--sr-space-2);
+  right: var(--sr-space-2);
+  z-index: 1;
+  min-width: 32px;
+  min-height: 32px;
+  border: none;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sr-surface-opaque) 70%, transparent);
+  color: var(--sr-accent);
+  font-size: var(--sr-text-lg);
+  line-height: 1;
+  cursor: pointer;
+}
+.sr-asset-tags {
+  gap: var(--sr-space-1);
+}
+.sr-asset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-1);
+}
+.sr-asset-actions button {
+  font: inherit;
+  font-size: var(--sr-text-sm);
+  min-height: 32px;
+  padding: var(--sr-space-1) var(--sr-space-2);
+  border: 1px solid var(--sr-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sr-text-secondary);
+  cursor: pointer;
+}
+.sr-asset-actions .sr-asset-delete {
+  margin-left: auto;
+}
+
 .sr-palette-chip {
   width: 44px;
   height: 44px;

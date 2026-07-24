@@ -5,6 +5,8 @@ import {
   kindForMime,
   limitForMime,
   uploadIntentSchema,
+  assetPatchSchema,
+  assetListQuerySchema,
   LIMITS,
   ALL_ALLOWED_MIME,
 } from './assets.js'
@@ -185,5 +187,48 @@ describe('白名單本身', () => {
       expect(kindForMime(mime), mime).not.toBeNull()
       expect(limitForMime(mime), mime).not.toBeNull()
     }
+  })
+})
+
+describe('assetPatchSchema（整理 metadata）', () => {
+  it('接受單一欄位：收藏', () => {
+    expect(assetPatchSchema.parse({ isFavorite: true }).isFavorite).toBe(true)
+  })
+
+  it('空 patch 被拒', () => {
+    expect(assetPatchSchema.safeParse({}).success).toBe(false)
+  })
+
+  it('標籤轉小寫並去重', () => {
+    expect(assetPatchSchema.parse({ tags: ['A', 'a', 'B'] }).tags).toEqual(['a', 'b'])
+  })
+
+  it('封存旗標可為 boolean', () => {
+    expect(assetPatchSchema.parse({ archived: true }).archived).toBe(true)
+  })
+
+  it('拒絕多餘欄位（strict，防改到位元組事實）', () => {
+    expect(assetPatchSchema.safeParse({ isFavorite: true, bytes: 999 }).success).toBe(false)
+    expect(assetPatchSchema.safeParse({ storage_key: 'x' }).success).toBe(false)
+  })
+})
+
+describe('assetListQuerySchema（篩選）', () => {
+  it('archived 預設排除', () => {
+    expect(assetListQuerySchema.parse({}).archived).toBe('exclude')
+  })
+
+  it('favorite 由字串轉 boolean', () => {
+    expect(assetListQuerySchema.parse({ favorite: 'true' }).favorite).toBe(true)
+    expect(assetListQuerySchema.parse({ favorite: 'false' }).favorite).toBe(false)
+    expect(assetListQuerySchema.parse({}).favorite).toBeUndefined()
+  })
+
+  it('tag 轉小寫', () => {
+    expect(assetListQuerySchema.parse({ tag: 'Poster' }).tag).toBe('poster')
+  })
+
+  it('projectId 必須是 uuid', () => {
+    expect(assetListQuerySchema.safeParse({ projectId: 'nope' }).success).toBe(false)
   })
 })

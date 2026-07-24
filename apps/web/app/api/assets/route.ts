@@ -41,12 +41,33 @@ export const GET = handler(async (request: NextRequest) => {
     Object.fromEntries(request.nextUrl.searchParams),
   )
   if (!parsed.success) return failValidation(parsed.error)
-  const { kind, q, limit, cursor } = parsed.data
+  const { kind, q, tag, favorite, archived, projectId, limit, cursor } = parsed.data
+
+  // 依專案過濾：資產透過 design_files 連結到專案。先查該專案有哪些 asset。
+  let projectAssetIds: string[] | null = null
+  if (projectId) {
+    const { data: files } = await ctx.db
+      .from('design_files')
+      .select('snapshots:design_snapshots(asset_id)')
+      .eq('space_id', ctx.spaceId)
+      .eq('project_id', projectId)
+      .is('deleted_at', null)
+    projectAssetIds = Array.from(
+      new Set(
+        (files ?? []).flatMap((f) =>
+          ((f as { snapshots?: { asset_id: string }[] }).snapshots ?? []).map((s) => s.asset_id),
+        ),
+      ),
+    )
+    if (projectAssetIds.length === 0) return ok([], { page: { hasMore: false, nextCursor: null } })
+  }
 
   // 受 RLS 約束的 client：查詢結果本身就只含這個 space 的資料
   let query = ctx.db
     .from('assets')
-    .select('id, kind, mime_type, bytes, width, height, original_filename, status, created_at')
+    .select(
+      'id, kind, mime_type, bytes, width, height, original_filename, status, is_favorite, archived_at, tags, created_at',
+    )
     .eq('space_id', ctx.spaceId)
     .is('deleted_at', null)
     .eq('status', 'ready')
@@ -56,6 +77,11 @@ export const GET = handler(async (request: NextRequest) => {
 
   if (kind) query = query.eq('kind', kind)
   if (q) query = query.ilike('original_filename', `%${q}%`)
+  if (tag) query = query.contains('tags', [tag])
+  if (favorite === true) query = query.eq('is_favorite', true)
+  if (archived === 'exclude') query = query.is('archived_at', null)
+  else if (archived === 'only') query = query.not('archived_at', 'is', null)
+  if (projectAssetIds) query = query.in('id', projectAssetIds)
 
   if (cursor) {
     const decoded = decodeCursor(cursor)

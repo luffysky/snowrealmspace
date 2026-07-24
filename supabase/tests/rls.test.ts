@@ -332,6 +332,35 @@ describe('RLS：Creative Core（Milestone C）', () => {
     expect(error).not.toBeNull()
   })
 
+  it('Alice 可更新自己 asset 的整理 metadata（收藏/封存/標籤，PATCH 路徑）', async () => {
+    const { data: asset } = await adminDb()
+      .from('assets')
+      .insert({
+        space_id: alice.spaceId,
+        created_by: alice.userId,
+        kind: 'image',
+        mime_type: 'image/png',
+        bytes: 20,
+        checksum: `meta-${Date.now()}`,
+        storage_key: `alice/meta-${Date.now()}.png`,
+        status: 'ready',
+      })
+      .select('id')
+      .single()
+
+    const { data: updated, error } = await alice.db
+      .from('assets')
+      .update({ is_favorite: true, tags: ['海報'], archived_at: new Date().toISOString() })
+      .eq('id', asset!.id)
+      .eq('space_id', alice.spaceId)
+      .select('is_favorite, tags, archived_at')
+      .single()
+    expect(error).toBeNull()
+    expect(updated?.is_favorite).toBe(true)
+    expect(updated?.tags).toEqual(['海報'])
+    expect(updated?.archived_at).not.toBeNull()
+  })
+
   it('刪除被 snapshot 引用的 asset 被 DB 擋下（on delete restrict）', async () => {
     // service role 硬刪也會被 FK restrict 擋 —— 強制走「先檢查引用」的刪除流程。
     const { error } = await adminDb().from('assets').delete().eq('id', bobAssetId)

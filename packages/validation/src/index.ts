@@ -24,6 +24,8 @@ export {
   mimeMatches,
   type AssetKind,
   type UploadIntentInput,
+  type AssetListQuery,
+  type AssetPatchInput,
 } from './assets.js'
 
 export {

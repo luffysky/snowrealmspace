@@ -38,14 +38,29 @@ export const PATCH = handler(
     const body: unknown = await request.json().catch(() => null)
     const parsed = assetPatchSchema.safeParse(body)
     if (!parsed.success) return failValidation(parsed.error)
+    const input = parsed.data
 
-    // assets 是不可變的（ADR-005），只有顯示用的檔名可改
+    // 位元組事實不可變（ADR-005）；這裡只改顯示與整理用的 metadata：
+    // 檔名、收藏、封存、標籤。
+    type AssetMetaUpdate = {
+      original_filename?: string
+      is_favorite?: boolean
+      archived_at?: string | null
+      tags?: string[]
+    }
+    const patch: AssetMetaUpdate = {}
+    if (input.originalFilename !== undefined) patch.original_filename = input.originalFilename
+    if (input.isFavorite !== undefined) patch.is_favorite = input.isFavorite
+    if (input.archived !== undefined) patch.archived_at = input.archived ? new Date().toISOString() : null
+    if (input.tags !== undefined) patch.tags = input.tags
+
     const { data, error } = await ctx.db
       .from('assets')
-      .update({ original_filename: parsed.data.originalFilename })
+      .update(patch)
       .eq('id', id)
       .eq('space_id', ctx.spaceId)
-      .select('id, original_filename')
+      .is('deleted_at', null)
+      .select('id, original_filename, is_favorite, archived_at, tags')
       .maybeSingle()
 
     if (error) return fail('INTERNAL', '無法更新。')

@@ -13,10 +13,13 @@ export default async function LibraryPage() {
 
   const { data } = await db
     .from('assets')
-    .select('id, kind, mime_type, bytes, width, height, original_filename, created_at')
+    .select(
+      'id, kind, mime_type, bytes, width, height, original_filename, is_favorite, archived_at, tags, created_at',
+    )
     .eq('space_id', space.id)
     .eq('status', 'ready')
     .is('deleted_at', null)
+    .is('archived_at', null)
     .order('created_at', { ascending: false })
     .limit(60)
 
