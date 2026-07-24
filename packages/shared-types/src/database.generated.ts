@@ -56,6 +56,144 @@ export type Database = {
           },
         ]
       }
+      agent_actions: {
+        Row: {
+          confirmed_at: string | null
+          confirmed_by: string | null
+          created_at: string
+          error: string | null
+          id: string
+          input: Json
+          message_id: string | null
+          output: Json | null
+          requires_confirmation: boolean
+          space_id: string
+          status: string
+          tool_name: string
+          undo_payload: Json | null
+          undone_at: string | null
+        }
+        Insert: {
+          confirmed_at?: string | null
+          confirmed_by?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          input: Json
+          message_id?: string | null
+          output?: Json | null
+          requires_confirmation?: boolean
+          space_id: string
+          status?: string
+          tool_name: string
+          undo_payload?: Json | null
+          undone_at?: string | null
+        }
+        Update: {
+          confirmed_at?: string | null
+          confirmed_by?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          input?: Json
+          message_id?: string | null
+          output?: Json | null
+          requires_confirmation?: boolean
+          space_id?: string
+          status?: string
+          tool_name?: string
+          undo_payload?: Json | null
+          undone_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_actions_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "agent_messages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_actions_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_messages: {
+        Row: {
+          blocks: Json
+          content: string | null
+          context_refs: Json
+          created_at: string
+          error: string | null
+          escalated: boolean
+          id: string
+          is_free: boolean | null
+          latency_ms: number | null
+          model_used: string | null
+          provider: string | null
+          role: string
+          space_id: string
+          thread_id: string
+          tokens_input: number | null
+          tokens_output: number | null
+        }
+        Insert: {
+          blocks?: Json
+          content?: string | null
+          context_refs?: Json
+          created_at?: string
+          error?: string | null
+          escalated?: boolean
+          id?: string
+          is_free?: boolean | null
+          latency_ms?: number | null
+          model_used?: string | null
+          provider?: string | null
+          role: string
+          space_id: string
+          thread_id: string
+          tokens_input?: number | null
+          tokens_output?: number | null
+        }
+        Update: {
+          blocks?: Json
+          content?: string | null
+          context_refs?: Json
+          created_at?: string
+          error?: string | null
+          escalated?: boolean
+          id?: string
+          is_free?: boolean | null
+          latency_ms?: number | null
+          model_used?: string | null
+          provider?: string | null
+          role?: string
+          space_id?: string
+          thread_id?: string
+          tokens_input?: number | null
+          tokens_output?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_messages_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "agent_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agent_profiles: {
         Row: {
           avatar_asset_id: string | null
@@ -96,6 +234,60 @@ export type Database = {
             foreignKeyName: "agent_profiles_space_id_fkey"
             columns: ["space_id"]
             isOneToOne: true
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_threads: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          id: string
+          last_message_at: string
+          mode: string
+          project_id: string | null
+          space_id: string
+          summary: string | null
+          title: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          id?: string
+          last_message_at?: string
+          mode?: string
+          project_id?: string | null
+          space_id: string
+          summary?: string | null
+          title?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          id?: string
+          last_message_at?: string
+          mode?: string
+          project_id?: string | null
+          space_id?: string
+          summary?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_threads_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_threads_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
             referencedRelation: "spaces"
             referencedColumns: ["id"]
           },
@@ -1429,6 +1621,81 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "layouts_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      memories: {
+        Row: {
+          approved: boolean
+          confidence: number
+          content: string
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          embedding: string | null
+          expires_at: string | null
+          id: string
+          rejected_at: string | null
+          sensitivity: string
+          source_id: string | null
+          source_message_id: string | null
+          source_type: string
+          space_id: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          approved?: boolean
+          confidence?: number
+          content: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          embedding?: string | null
+          expires_at?: string | null
+          id?: string
+          rejected_at?: string | null
+          sensitivity?: string
+          source_id?: string | null
+          source_message_id?: string | null
+          source_type: string
+          space_id: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          approved?: boolean
+          confidence?: number
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          embedding?: string | null
+          expires_at?: string | null
+          id?: string
+          rejected_at?: string | null
+          sensitivity?: string
+          source_id?: string | null
+          source_message_id?: string | null
+          source_type?: string
+          space_id?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "memories_source_message_id_fkey"
+            columns: ["source_message_id"]
+            isOneToOne: false
+            referencedRelation: "agent_messages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "memories_space_id_fkey"
             columns: ["space_id"]
             isOneToOne: false
             referencedRelation: "spaces"

@@ -142,3 +142,14 @@ export {
   type TimelineListQuery,
   type TimelinePatchInput,
 } from './timeline.js'
+
+export {
+  MEMORY_SENSITIVITY,
+  memoryCreateSchema,
+  memoryPatchSchema,
+  memoryListQuerySchema,
+  type MemorySensitivity,
+  type MemoryCreateInput,
+  type MemoryPatchInput,
+  type MemoryListQuery,
+} from './memory.js'

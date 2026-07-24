@@ -128,6 +128,11 @@ export default async function SettingsPage() {
             資料地圖：看看這個空間存了什麼、怎麼刪 →
           </Link>
         </p>
+        <p style={{ marginTop: 'var(--sr-space-2)', marginBottom: 0 }}>
+          <Link href="/settings/memory" className="sr-link">
+            記憶中心：查看、編輯、刪除 Agent 記得的事 →
+          </Link>
+        </p>
       </section>
 
       <section className="sr-card">

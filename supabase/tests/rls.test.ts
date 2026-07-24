@@ -427,6 +427,55 @@ describe('RLS：Creative Core（Milestone C）', () => {
 })
 
 /**
+ * Memory（ADR-014）：僅 owner 可讀寫；Agent 產生的記憶不得直接 approved。
+ */
+describe('RLS：Memory（ADR-014）', () => {
+  it('Alice（owner）可建立與讀取自己的記憶', async () => {
+    const { error } = await alice.db.from('memories').insert({
+      space_id: alice.spaceId,
+      created_by: alice.userId,
+      type: 'note',
+      content: '喜歡暖色',
+      source_type: 'user_explicit',
+      approved: true,
+    })
+    expect(error).toBeNull()
+    const { data } = await alice.db.from('memories').select('content').eq('space_id', alice.spaceId)
+    expect(data?.some((m) => m.content === '喜歡暖色')).toBe(true)
+  })
+
+  it('Bob 讀不到 Alice 的記憶（跨 space 隔離）', async () => {
+    const { data } = await bob.db.from('memories').select('id').eq('space_id', alice.spaceId)
+    expect(data ?? []).toEqual([])
+  })
+
+  it('ADR-014：agent_summary 記憶且 created_by 為 null 不得 approved（DB constraint）', async () => {
+    const { error } = await adminDb().from('memories').insert({
+      space_id: alice.spaceId,
+      created_by: null,
+      type: 'inferred',
+      content: '越權的自動記憶',
+      source_type: 'agent_summary',
+      approved: true, // 違反 memory_approval_check
+    })
+    expect(error).not.toBeNull()
+    expect(error?.code).toBe('23514') // check_violation
+  })
+
+  it('agent_summary 提案（approved=false）可建立', async () => {
+    const { error } = await adminDb().from('memories').insert({
+      space_id: alice.spaceId,
+      created_by: null,
+      type: 'inferred',
+      content: 'Agent 的提案',
+      source_type: 'agent_summary',
+      approved: false,
+    })
+    expect(error).toBeNull()
+  })
+})
+
+/**
  * user_identities 的隔離鍵是 user_id 而不是 space_id（ADR-006 的例外，
  * 已記在 check-rls.ts 的 REQUIRED_RLS_WITHOUT_SPACE_ID）。
  * 那是刻意的：登入方式屬於人，一個人可以在多個 space。
