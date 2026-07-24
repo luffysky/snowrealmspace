@@ -29,6 +29,7 @@ export type BackgroundItem = {
   overlay_color: string
   overlay_opacity: number
   loop: boolean
+  muted: boolean
   gradient_spec: {
     kind: 'linear' | 'radial'
     angle: number
@@ -186,6 +187,32 @@ function BackgroundMedia({
     return () => document.removeEventListener('visibilitychange', sync)
   }, [isPlayingVideo, paused])
 
+  // 聲音（ADR-019 偏離）：一律先靜音自動播放（瀏覽器 autoplay 政策要求），
+  // 若使用者選了「要聲音」（item.muted === false），在第一個使用者手勢時解除靜音。
+  // 沒有這個手勢，有聲音的自動播放會被瀏覽器直接擋掉、整支影片不動。
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    if (!isPlayingVideo || item.muted) return
+
+    const unmute = () => {
+      const v = videoRef.current
+      if (v) {
+        v.muted = false
+        void v.play().catch(() => {})
+      }
+      document.removeEventListener('pointerdown', unmute)
+      document.removeEventListener('keydown', unmute)
+    }
+    document.addEventListener('pointerdown', unmute, { once: true })
+    document.addEventListener('keydown', unmute, { once: true })
+    return () => {
+      document.removeEventListener('pointerdown', unmute)
+      document.removeEventListener('keydown', unmute)
+    }
+  }, [isPlayingVideo, item.muted, item.id])
+
   const style: React.CSSProperties = {
     filter: filterFor(item) || undefined,
     objectFit: item.fit === 'original' ? 'none' : item.fit,
@@ -207,7 +234,7 @@ function BackgroundMedia({
         className="sr-bg-media"
         style={style}
         src={url}
-        // ADR-019：一律靜音、內嵌播放
+        // 先靜音自動播（autoplay 政策）；item.muted===false 時由 effect 於首次手勢解除靜音
         muted
         playsInline
         loop={item.loop}

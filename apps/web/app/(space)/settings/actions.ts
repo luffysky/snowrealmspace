@@ -18,6 +18,57 @@ const privacySchema = z
 
 export type SettingsActionState = { status: 'idle' | 'saved' | 'error'; message?: string }
 
+const bgAudioSchema = z
+  .object({
+    spaceId: z.string().uuid(),
+    enabled: z.boolean(),
+    assetId: z.string().uuid().nullable(),
+    volume: z.coerce.number().min(0).max(1),
+  })
+  .strict()
+
+/**
+ * 背景音樂（Luffy 追加）。空間可選一段 audio，使用者自己決定要不要開。
+ * 受 autoplay 政策約束：不自動出聲，播放器提供手動播放控制。
+ */
+export async function updateBackgroundAudio(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const rawAsset = (formData.get('assetId') as string | null)?.trim() || null
+  const parsed = bgAudioSchema.safeParse({
+    spaceId: formData.get('spaceId'),
+    enabled: formData.get('enabled') === 'on' || formData.get('enabled') === 'true',
+    assetId: rawAsset,
+    volume: formData.get('volume') ?? '0.5',
+  })
+  if (!parsed.success) {
+    return { status: 'error', message: parsed.error.issues[0]?.message ?? '輸入格式不正確。' }
+  }
+  const input = parsed.data
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+
+  const db = await getDb()
+  // 開啟卻沒選音樂 → 視為關閉，避免播放器空轉
+  const enabled = input.enabled && input.assetId !== null
+  const { error } = await db
+    .from('space_settings')
+    .update({
+      background_audio_enabled: enabled,
+      background_audio_asset_id: input.assetId,
+      background_audio_volume: input.volume,
+    })
+    .eq('space_id', input.spaceId)
+
+  if (error) return { status: 'error', message: '沒有權限修改，或儲存失敗。' }
+
+  await emitEvent('settings.changed', input.spaceId, user.id, { keys: ['background_audio'] })
+  revalidatePath('/settings')
+  revalidatePath('/home')
+  return { status: 'saved', message: '已儲存。' }
+}
+
 /**
  * 更新隱私設定。
  *

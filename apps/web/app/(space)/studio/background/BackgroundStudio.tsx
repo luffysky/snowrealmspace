@@ -95,6 +95,33 @@ export function BackgroundStudio({
     }
   }
 
+  async function addSolid() {
+    try {
+      // 單色 = 兩個相同色停的漸層（渲染即為純色），不必新增資料型別。
+      const [from] = readThemeGradientSeed()
+      const created = (await api('/api/backgrounds', {
+        method: 'POST',
+        body: JSON.stringify({
+          type: 'gradient',
+          name: '單色',
+          gradientSpec: {
+            kind: 'linear',
+            angle: 0,
+            stops: [
+              { color: from, position: 0 },
+              { color: from, position: 100 },
+            ],
+          },
+        }),
+      })) as BackgroundItem
+      setBackgrounds((prev) => [created, ...prev])
+      setEditing(created)
+      setStatus({ kind: 'ok', message: '已加入單色背景。到調整面板可換顏色。' })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
+    }
+  }
+
   async function updateBackground(id: string, patch: Record<string, unknown>) {
     const updated = (await api(`/api/backgrounds/${id}`, {
       method: 'PATCH',
@@ -163,14 +190,22 @@ export function BackgroundStudio({
           </>
         )}
 
-        <button
-          type="button"
-          className="sr-button sr-button-secondary"
-          onClick={() => void addGradient()}
-          style={{ marginTop: 'var(--sr-space-4)' }}
-        >
-          加入漸層背景
-        </button>
+        <div className="sr-btn-row" style={{ marginTop: 'var(--sr-space-4)' }}>
+          <button
+            type="button"
+            className="sr-button sr-button-secondary"
+            onClick={() => void addSolid()}
+          >
+            加入單色背景
+          </button>
+          <button
+            type="button"
+            className="sr-button sr-button-secondary"
+            onClick={() => void addGradient()}
+          >
+            加入漸層背景
+          </button>
+        </div>
       </section>
 
       <section className="sr-card">

@@ -18,6 +18,7 @@ const FIELD_MAP: Record<string, string> = {
   overlayColor: 'overlay_color',
   overlayOpacity: 'overlay_opacity',
   loop: 'loop',
+  muted: 'muted',
   gradientSpec: 'gradient_spec',
 }
 

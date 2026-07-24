@@ -3,7 +3,7 @@ import sharp from 'sharp'
 import { createAdminClient } from '@snowrealm/db/server'
 import { storage, storageKeys } from '@snowrealm/storage'
 import { extractPalette } from '@snowrealm/theme-engine'
-import { parseVideoDuration, LIMITS } from '@snowrealm/validation'
+import { parseVideoDuration } from '@snowrealm/validation'
 
 /**
  * 上傳後處理：探測尺寸、產生衍生檔、跑本地分析。
@@ -44,7 +44,6 @@ export async function handleAssetProcess(jobs: Job<AssetProcessPayload>[]): Prom
 async function verifyVideoDuration(
   db: ReturnType<typeof createAdminClient>,
   assetId: string,
-  spaceId: string,
   storageKey: string,
 ): Promise<void> {
   // 時長在容器開頭，不必下載整個檔案。
@@ -59,27 +58,8 @@ async function verifyVideoDuration(
     return
   }
 
-  if (meta.durationMs > LIMITS.videoDurationMs) {
-    await db
-      .from('assets')
-      .update({
-        duration_ms: meta.durationMs,
-        status: 'failed',
-        failure_reason:
-          `影片長 ${Math.round(meta.durationMs / 1000)} 秒，超過 ` +
-          `${LIMITS.videoDurationMs / 1000} 秒上限。目前不會自動裁切。`,
-        deleted_at: new Date().toISOString(),
-      })
-      .eq('id', assetId)
-
-    console.warn('[asset.process] 影片超過時長上限，已標記失敗', {
-      assetId,
-      spaceId,
-      durationMs: meta.durationMs,
-    })
-    return
-  }
-
+  // 500MB 偏離（Luffy）：背景影片不轉碼、直接播，不再有時長硬限。
+  // 只回填時長供 UI 顯示。
   await db.from('assets').update({ duration_ms: meta.durationMs }).eq('id', assetId)
   console.log('[asset.process] 影片時長已回填', assetId, `${meta.durationMs}ms`)
 }
@@ -116,7 +96,7 @@ async function processOne(payload: AssetProcessPayload): Promise<void> {
   }
 
   if (asset.kind === 'video') {
-    await verifyVideoDuration(db, asset.id, asset.space_id, asset.storage_key)
+    await verifyVideoDuration(db, asset.id, asset.storage_key)
     return
   }
 

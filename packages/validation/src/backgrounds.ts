@@ -39,6 +39,9 @@ const presentationFields = {
   overlayColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).default(NEUTRAL.black),
   overlayOpacity: z.number().min(0).max(1).default(0),
   loop: z.boolean().default(true),
+  // ADR-019 偏離（Luffy）：背景影片可選聲音。預設仍靜音（autoplay 政策要求），
+  // 使用者要出聲需在播放時手動取消靜音。
+  muted: z.boolean().default(true),
 }
 
 export const backgroundCreateSchema = z
@@ -89,6 +92,7 @@ export const backgroundPatchSchema = z
     overlayColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
     overlayOpacity: z.number().min(0).max(1).optional(),
     loop: z.boolean().optional(),
+    muted: z.boolean().optional(),
     gradientSpec: gradientSpecSchema.optional(),
   })
   .strict()

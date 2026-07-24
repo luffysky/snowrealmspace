@@ -159,6 +159,73 @@ export function BackgroundEditor({
               }
             />
           </div>
+
+          {local.type === 'gradient' && local.gradient_spec && (
+            <fieldset className="sr-fieldset">
+              <legend className="sr-label">顏色</legend>
+              <div className="sr-row">
+                {local.gradient_spec.stops.map((stop, i) => (
+                  <input
+                    key={i}
+                    type="color"
+                    className="sr-color-swatch"
+                    aria-label={`色停 ${i + 1}`}
+                    value={stop.color}
+                    onChange={(e) => {
+                      const spec = structuredClone(local.gradient_spec!)
+                      spec.stops[i]!.color = e.target.value
+                      set({ gradient_spec: spec }, { gradientSpec: spec })
+                    }}
+                  />
+                ))}
+              </div>
+              <label className="sr-label" htmlFor="bg-grad-angle">
+                角度 {local.gradient_spec.angle}°
+              </label>
+              <input
+                id="bg-grad-angle"
+                type="range"
+                min={0}
+                max={360}
+                value={local.gradient_spec.angle}
+                onChange={(e) => {
+                  const spec = structuredClone(local.gradient_spec!)
+                  spec.angle = Number(e.target.value)
+                  set({ gradient_spec: spec }, { gradientSpec: spec })
+                }}
+              />
+              <p className="sr-muted" style={{ marginTop: 'var(--sr-space-1)', marginBottom: 0 }}>
+                兩個色停設成同一色就是純單色。
+              </p>
+            </fieldset>
+          )}
+
+          {local.type === 'video' && (
+            <fieldset className="sr-fieldset">
+              <legend className="sr-label">影片</legend>
+              <label className="sr-choice sr-choice-inline">
+                <input
+                  type="checkbox"
+                  checked={!local.muted}
+                  onChange={(e) => set({ muted: !e.target.checked }, { muted: !e.target.checked })}
+                />
+                播放聲音
+              </label>
+              <label className="sr-choice sr-choice-inline">
+                <input
+                  type="checkbox"
+                  checked={local.loop}
+                  onChange={(e) => set({ loop: e.target.checked }, { loop: e.target.checked })}
+                />
+                循環播放
+              </label>
+              {!local.muted && (
+                <p className="sr-muted" style={{ marginTop: 'var(--sr-space-1)', marginBottom: 0 }}>
+                  瀏覽器規定：有聲音的影片要等你在頁面上點一下才會出聲，這是正常的。
+                </p>
+              )}
+            </fieldset>
+          )}
         </div>
       </div>
     </section>

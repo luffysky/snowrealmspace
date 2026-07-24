@@ -9,25 +9,31 @@ import { z } from 'zod'
 
 export const ALLOWED_MIME = {
   image: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif'],
-  video: ['video/mp4', 'video/webm'],
+  // 瀏覽器原生可播的容器；quicktime(.mov) 多數桌機瀏覽器可播 H.264。
+  video: ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'],
+  // 背景音樂用。mpeg=.mp3、mp4=.m4a
+  audio: ['audio/mpeg', 'audio/ogg', 'audio/wav', 'audio/webm', 'audio/mp4'],
   pdf: ['application/pdf'],
 } as const
 
 export const ALL_ALLOWED_MIME: readonly string[] = [
   ...ALLOWED_MIME.image,
   ...ALLOWED_MIME.video,
+  ...ALLOWED_MIME.audio,
   ...ALLOWED_MIME.pdf,
 ]
 
-/** ADR-022 的配額。 */
+/**
+ * 配額。ADR-022 偏離（Luffy 指示）：單檔上限拉到 500MB，讓背景影片能用。
+ * 背景影片不轉碼、直接播，所以不再有時長硬限。space 總量仍 5GB。
+ */
 export const LIMITS = {
   image: 25 * 1024 * 1024,
-  video: 20 * 1024 * 1024,
+  video: 500 * 1024 * 1024,
+  audio: 500 * 1024 * 1024,
   pdf: 50 * 1024 * 1024,
   spaceTotal: 5 * 1024 * 1024 * 1024,
   batchFiles: 20,
-  /** ADR-019：Alpha 不轉碼，超過就拒絕 */
-  videoDurationMs: 30_000,
 } as const
 
 export type AssetKind = 'image' | 'video' | 'pdf' | 'audio' | 'font' | 'document'
@@ -35,6 +41,7 @@ export type AssetKind = 'image' | 'video' | 'pdf' | 'audio' | 'font' | 'document
 export function kindForMime(mime: string): AssetKind | null {
   if ((ALLOWED_MIME.image as readonly string[]).includes(mime)) return 'image'
   if ((ALLOWED_MIME.video as readonly string[]).includes(mime)) return 'video'
+  if ((ALLOWED_MIME.audio as readonly string[]).includes(mime)) return 'audio'
   if ((ALLOWED_MIME.pdf as readonly string[]).includes(mime)) return 'pdf'
   return null
 }
@@ -44,6 +51,7 @@ export function limitForMime(mime: string): number | null {
   if (!kind) return null
   if (kind === 'image') return LIMITS.image
   if (kind === 'video') return LIMITS.video
+  if (kind === 'audio') return LIMITS.audio
   if (kind === 'pdf') return LIMITS.pdf
   return null
 }

@@ -7,6 +7,7 @@ import { accountHasRecovery } from '@/lib/auth/recovery'
 import { BindingReminder } from '@/components/BindingReminder'
 import { ThemeModeToggle } from '@/components/ThemeModeToggle'
 import { NotificationBell } from '@/components/NotificationBell'
+import { BackgroundMusic } from '@/components/BackgroundMusic'
 import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 import {
   compileThemeToCssText,
@@ -35,6 +36,13 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   // 沒有救援方式的帳號才提醒綁定（綁了就不再出現）
   const user = await getUser()
   const needsRecovery = user ? !(await accountHasRecovery(user.id, user.email)) : false
+
+  // 背景音樂設定（Luffy 追加）
+  const { data: audioSettings } = await db
+    .from('space_settings')
+    .select('background_audio_enabled, background_audio_asset_id, background_audio_volume')
+    .eq('space_id', space.id)
+    .maybeSingle()
 
   // ── 套用中的主題 ──
   let definition: ThemeDefinition = defaultThemeDefinition()
@@ -128,6 +136,12 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         </nav>
 
         <div className="sr-nav-end">
+          <BackgroundMusic
+            spaceId={space.id}
+            enabled={audioSettings?.background_audio_enabled ?? false}
+            assetId={audioSettings?.background_audio_asset_id ?? null}
+            volume={audioSettings?.background_audio_volume ?? 0.5}
+          />
           <NotificationBell />
           <ThemeModeToggle initialMode={mode} lightDef={definition} />
           <span className="sr-muted">{role === 'owner' ? '擁有者' : role}</span>

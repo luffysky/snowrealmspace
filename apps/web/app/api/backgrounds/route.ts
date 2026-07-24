@@ -86,8 +86,8 @@ export const POST = handler(async (request: NextRequest) => {
       overlay_color: input.overlayColor,
       overlay_opacity: input.overlayOpacity,
       loop: input.loop,
-      // ADR-019：影片背景一律靜音，不給使用者選擇
-      muted: true,
+      // ADR-019 偏離（Luffy）：影片可選聲音；預設仍靜音（autoplay 政策）
+      muted: input.muted,
       gradient_spec: (input.gradientSpec ?? null) as never,
       procedural_id: input.proceduralId ?? null,
     })

@@ -72,11 +72,17 @@ describe('backgroundCreateSchema', () => {
     ).toBe(false)
   })
 
-  it('拒絕多餘欄位', () => {
+  it('拒絕多餘欄位（strict）', () => {
     expect(
-      backgroundCreateSchema.safeParse({ type: 'image', assetId, muted: false }).success,
-      'muted 由伺服器強制為 true（ADR-019），不接受客戶端指定',
+      backgroundCreateSchema.safeParse({ type: 'image', assetId, bogusField: 1 }).success,
     ).toBe(false)
+  })
+
+  it('muted 可由客戶端指定（ADR-019 偏離：影片可選聲音）', () => {
+    const r = backgroundCreateSchema.parse({ type: 'video', assetId, muted: false })
+    expect(r.muted).toBe(false)
+    // 預設仍靜音（autoplay 政策）
+    expect(backgroundCreateSchema.parse({ type: 'video', assetId }).muted).toBe(true)
   })
 })
 

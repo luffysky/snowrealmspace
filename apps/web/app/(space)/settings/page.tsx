@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace, getUser } from '@/lib/auth/session'
+import { getDb } from '@/lib/supabase/server'
 import { updatePrivacySettings } from './actions'
 import Link from 'next/link'
 import { PrivacyToggles } from './PrivacyToggles'
 import { AgentSettings } from './AgentSettings'
+import { BackgroundMusicSettings, type AudioOption } from './BackgroundMusicSettings'
 
 export const metadata: Metadata = { title: 'Settings — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -16,6 +18,21 @@ export const dynamic = 'force-dynamic'
 export default async function SettingsPage() {
   const { space, settings, role } = await requireActiveSpace()
   const user = await getUser()
+
+  const db = await getDb()
+  const { data: audioAssets } = await db
+    .from('assets')
+    .select('id, original_filename')
+    .eq('space_id', space.id)
+    .eq('kind', 'audio')
+    .eq('status', 'ready')
+    .is('deleted_at', null)
+    .order('created_at', { ascending: false })
+    .limit(100)
+  const audioOptions: AudioOption[] = (audioAssets ?? []).map((a) => ({
+    id: a.id,
+    label: a.original_filename ?? '未命名音訊',
+  }))
 
   return (
     <div className="sr-stack">
@@ -65,6 +82,25 @@ export default async function SettingsPage() {
             agentProactive: settings.agent_proactive,
             quietStart: (settings.quiet_hours_start ?? '').slice(0, 5),
             quietEnd: (settings.quiet_hours_end ?? '').slice(0, 5),
+          }}
+        />
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>
+          背景音樂
+        </h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          想要的話，可以幫這個空間配一段背景音樂。要不要放、放哪一首，都由你決定。
+        </p>
+        <BackgroundMusicSettings
+          spaceId={space.id}
+          canEdit={role === 'owner'}
+          audioOptions={audioOptions}
+          initial={{
+            enabled: settings.background_audio_enabled ?? false,
+            assetId: settings.background_audio_asset_id ?? null,
+            volume: settings.background_audio_volume ?? 0.5,
           }}
         />
       </section>

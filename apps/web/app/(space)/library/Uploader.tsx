@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useRef, useState } from 'react'
-import { ALL_ALLOWED_MIME, LIMITS, limitForMime, kindForMime } from '@snowrealm/validation'
+import { ALL_ALLOWED_MIME, LIMITS, limitForMime } from '@snowrealm/validation'
 
 /**
  * 上傳。實作 02-domain-model.md §5.1 的三段流程。
@@ -21,37 +21,6 @@ export type UploadState = {
 }
 
 /** SHA-256，用於去重。在瀏覽器算好再送，伺服器不必重算。 */
-/**
- * 用 <video> 量時長。
- *
- * 量不出來時回 null 而不是 0 —— 0 會通過上限檢查。
- * 回 null 的情況（瀏覽器不支援該 codec、檔案損毀）交給伺服器端判斷，
- * 那裡是權威來源。
- */
-async function probeDuration(file: File): Promise<number | null> {
-  return new Promise((resolve) => {
-    const url = URL.createObjectURL(file)
-    const video = document.createElement('video')
-    video.preload = 'metadata'
-
-    const done = (value: number | null) => {
-      URL.revokeObjectURL(url)
-      video.remove()
-      resolve(value)
-    }
-
-    video.onloadedmetadata = () => {
-      const seconds = video.duration
-      done(Number.isFinite(seconds) && seconds > 0 ? Math.round(seconds * 1000) : null)
-    }
-    video.onerror = () => done(null)
-    // 壞掉的檔案可能永遠不觸發任何事件，不能無限等
-    setTimeout(() => done(null), 10_000)
-
-    video.src = url
-  })
-}
-
 async function sha256Hex(file: File): Promise<string> {
   const buffer = await file.arrayBuffer()
   const digest = await crypto.subtle.digest('SHA-256', buffer)
@@ -104,21 +73,8 @@ export function Uploader({
         return
       }
 
-      // ADR-019：Alpha 不轉碼，超過 30 秒直接拒絕。
-      // 這裡量只是為了**快速回饋** —— 伺服器端會自己解析容器再驗一次，
-      // 因為這個值是使用者可以改的（見 packages/validation/src/video-metadata.ts）。
-      if (kindForMime(file.type) === 'video') {
-        const duration = await probeDuration(file)
-        if (duration !== null && duration > LIMITS.videoDurationMs) {
-          patch(id, {
-            status: 'failed',
-            message:
-              `影片長 ${Math.round(duration / 1000)} 秒，超過 ` +
-              `${LIMITS.videoDurationMs / 1000} 秒上限。目前不會自動裁切。`,
-          })
-          return
-        }
-      }
+      // 500MB 偏離（Luffy）：背景影片不轉碼、直接播，不再有時長硬限，
+      // 只受單檔 500MB 上限約束（上面已擋）。
 
       try {
         const checksum = await sha256Hex(file)
@@ -275,7 +231,7 @@ export function Uploader({
           aria-label="選擇要上傳的檔案"
         />
         <p className="sr-muted" style={{ marginBottom: 0 }}>
-          圖片最大 {Math.round(LIMITS.image / 1024 / 1024)} MB、影片{' '}
+          圖片最大 {Math.round(LIMITS.image / 1024 / 1024)} MB、影片／音樂{' '}
           {Math.round(LIMITS.video / 1024 / 1024)} MB、PDF{' '}
           {Math.round(LIMITS.pdf / 1024 / 1024)} MB
         </p>

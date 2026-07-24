@@ -1504,6 +1504,9 @@ export type Database = {
           agent_tone: string
           agent_visible: boolean
           ai_analysis_enabled: boolean
+          background_audio_asset_id: string | null
+          background_audio_enabled: boolean
+          background_audio_volume: number
           created_at: string
           daily_enabled: boolean
           memory_enabled: boolean
@@ -1527,6 +1530,9 @@ export type Database = {
           agent_tone?: string
           agent_visible?: boolean
           ai_analysis_enabled?: boolean
+          background_audio_asset_id?: string | null
+          background_audio_enabled?: boolean
+          background_audio_volume?: number
           created_at?: string
           daily_enabled?: boolean
           memory_enabled?: boolean
@@ -1550,6 +1556,9 @@ export type Database = {
           agent_tone?: string
           agent_visible?: boolean
           ai_analysis_enabled?: boolean
+          background_audio_asset_id?: string | null
+          background_audio_enabled?: boolean
+          background_audio_volume?: number
           created_at?: string
           daily_enabled?: boolean
           memory_enabled?: boolean
@@ -1566,6 +1575,13 @@ export type Database = {
           weather_enabled?: boolean
         }
         Relationships: [
+          {
+            foreignKeyName: "space_settings_background_audio_asset_id_fkey"
+            columns: ["background_audio_asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "space_settings_space_id_fkey"
             columns: ["space_id"]
