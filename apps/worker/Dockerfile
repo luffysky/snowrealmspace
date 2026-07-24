@@ -26,6 +26,8 @@ FROM base AS deps
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY apps/web/package.json                 apps/web/
 COPY apps/worker/package.json              apps/worker/
+# 所有 workspace 套件的 package.json 都要在——否則 --frozen-lockfile 對不上、
+# 且缺的套件（如 daily-engine）不會被建立 symlink，worker 執行時 ERR_MODULE_NOT_FOUND。
 COPY packages/shared-types/package.json    packages/shared-types/
 COPY packages/validation/package.json      packages/validation/
 COPY packages/db/package.json              packages/db/
@@ -33,6 +35,9 @@ COPY packages/storage/package.json         packages/storage/
 COPY packages/analytics/package.json       packages/analytics/
 COPY packages/theme-engine/package.json    packages/theme-engine/
 COPY packages/widget-engine/package.json   packages/widget-engine/
+COPY packages/daily-engine/package.json    packages/daily-engine/
+COPY packages/ai-core/package.json         packages/ai-core/
+COPY packages/provider-core/package.json   packages/provider-core/
 RUN pnpm install --frozen-lockfile
 
 FROM base AS runner

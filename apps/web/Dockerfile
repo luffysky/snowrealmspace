@@ -27,6 +27,9 @@ COPY packages/storage/package.json         packages/storage/
 COPY packages/analytics/package.json       packages/analytics/
 COPY packages/theme-engine/package.json    packages/theme-engine/
 COPY packages/widget-engine/package.json   packages/widget-engine/
+COPY packages/daily-engine/package.json    packages/daily-engine/
+COPY packages/ai-core/package.json         packages/ai-core/
+COPY packages/provider-core/package.json   packages/provider-core/
 RUN pnpm install --frozen-lockfile
 
 # ── 建置 ────────────────────────────────────────────────
