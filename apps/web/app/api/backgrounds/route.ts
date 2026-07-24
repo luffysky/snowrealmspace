@@ -101,6 +101,7 @@ export const POST = handler(async (request: NextRequest) => {
       scene_density: input.sceneDensity,
       gradient_spec: (input.gradientSpec ?? null) as never,
       procedural_id: input.proceduralId ?? null,
+      lottie_id: input.lottieId ?? null,
     })
     .select('*')
     .single()

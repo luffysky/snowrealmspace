@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { glassStyle, mediaTransform, gradientCss } from '@/components/BackgroundLayer'
 import { ProceduralScene } from '@/components/ProceduralScene'
+import { LottieBackground } from '@/components/LottieBackground'
 import { DYNAMIC_SCENES } from '@/lib/scenes'
 import { NEUTRAL } from '@snowrealm/theme-engine'
 
@@ -691,6 +692,8 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
       <div className="sr-bg-live-media" aria-hidden="true" style={{ overflow: 'hidden' }}>
         {item.type === 'procedural' ? (
           <ProceduralScene sceneId={item.procedural_id} />
+        ) : item.type === 'lottie' ? (
+          <LottieBackground lottieId={item.lottie_id} />
         ) : gradient ? (
           <div style={{ inset: 0, position: 'absolute', background: gradient, filter }} />
         ) : url ? (

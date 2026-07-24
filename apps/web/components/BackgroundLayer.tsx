@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { intervalMsFor, needsClientRotation, nextIndex, perLoginIndex } from '@snowrealm/validation'
 import { ProceduralScene } from './ProceduralScene'
+import { LottieBackground } from './LottieBackground'
 
 /**
  * 背景渲染層。
@@ -18,7 +19,7 @@ import { ProceduralScene } from './ProceduralScene'
 export type BackgroundItem = {
   id: string
   name: string | null
-  type: 'image' | 'video' | 'gradient' | 'procedural'
+  type: 'image' | 'video' | 'gradient' | 'procedural' | 'lottie'
   asset_id: string | null
   fit: 'cover' | 'contain' | 'original'
   position_x: number
@@ -42,6 +43,7 @@ export type BackgroundItem = {
   crop_w: number
   crop_h: number
   procedural_id: string | null
+  lottie_id: string | null
   scene_id: string | null
   scene_density: number
   gradient_spec: {
@@ -303,6 +305,11 @@ function BackgroundMedia({
   // 獨立動態背景（內建場景當底）
   if (item.type === 'procedural') {
     return <ProceduralScene sceneId={item.procedural_id} paused={paused} />
+  }
+
+  // 內建 Lottie 向量動畫背景
+  if (item.type === 'lottie') {
+    return <LottieBackground lottieId={item.lottie_id} paused={paused} />
   }
 
   if (!url) return <div className="sr-bg-media sr-bg-loading" />

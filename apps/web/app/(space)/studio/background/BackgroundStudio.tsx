@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL } from '@snowrealm/theme-engine'
 import { DYNAMIC_SCENES, STATIC_SCENES, getScene } from '@/lib/scenes'
+import { LOTTIE_SCENES, getLottieScene } from '@/lib/lottie-scenes'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { gradientCss } from '@/components/BackgroundLayer'
 import { BackgroundEditor } from './BackgroundEditor'
@@ -83,6 +84,21 @@ export function BackgroundStudio({
       setBackgrounds((prev) => [created, ...prev])
       setEditing(created)
       setStatus({ kind: 'ok', message: `已加入動態背景「${scene?.label ?? ''}」。` })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
+    }
+  }
+
+  async function addLottie(lottieId: string) {
+    try {
+      const scene = getLottieScene(lottieId)
+      const created = (await api('/api/backgrounds', {
+        method: 'POST',
+        body: JSON.stringify({ type: 'lottie', lottieId, name: scene?.label ?? 'Lottie 背景' }),
+      })) as BackgroundItem
+      setBackgrounds((prev) => [created, ...prev])
+      setEditing(created)
+      setStatus({ kind: 'ok', message: `已加入 Lottie 背景「${scene?.label ?? ''}」。` })
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
     }
@@ -275,6 +291,34 @@ export function BackgroundStudio({
         <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
           場景也可以「疊」在你的圖片/漸層背景上——到下方調整面板的「疊加場景」選。
         </p>
+
+        {/* 內建 Lottie 向量動畫背景 */}
+        <label className="sr-label" htmlFor="lottie-picker" style={{ marginTop: 'var(--sr-space-4)' }}>
+          內建 Lottie 動畫背景（向量、平滑）
+        </label>
+        <div className="sr-row">
+          <select
+            id="lottie-picker"
+            className="sr-input"
+            defaultValue=""
+            onChange={(e) => {
+              if (e.target.value) {
+                void addLottie(e.target.value)
+                e.target.value = ''
+              }
+            }}
+          >
+            <option value="">選一個 Lottie 背景…</option>
+            {LOTTIE_SCENES.map((sc) => (
+              <option key={sc.id} value={sc.id}>
+                {sc.label} —— {sc.mood}
+              </option>
+            ))}
+          </select>
+        </div>
+        <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
+          本專案自製、可自由使用（CC0）。省流量或減少動態偏好時只顯示靜態第一格。
+        </p>
       </section>
 
       <section className="sr-card">
@@ -360,6 +404,11 @@ function BackgroundThumb({ spaceId, item }: { spaceId: string; item: BackgroundI
   if (item.type === 'procedural') {
     const scene = getScene(item.procedural_id)
     return <span className="sr-bg-thumb" aria-hidden="true" style={{ background: scene?.base }} />
+  }
+
+  if (item.type === 'lottie') {
+    const scene = getLottieScene(item.lottie_id)
+    return <span className="sr-bg-thumb" aria-hidden="true" style={{ background: scene?.bg }} />
   }
 
   if (item.type === 'gradient' && item.gradient_spec) {

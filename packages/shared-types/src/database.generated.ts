@@ -797,6 +797,7 @@ export type Database = {
           gradient_spec: Json | null
           id: string
           loop: boolean
+          lottie_id: string | null
           muted: boolean
           name: string | null
           overlay_color: string
@@ -833,6 +834,7 @@ export type Database = {
           gradient_spec?: Json | null
           id?: string
           loop?: boolean
+          lottie_id?: string | null
           muted?: boolean
           name?: string | null
           overlay_color?: string
@@ -869,6 +871,7 @@ export type Database = {
           gradient_spec?: Json | null
           id?: string
           loop?: boolean
+          lottie_id?: string | null
           muted?: boolean
           name?: string | null
           overlay_color?: string

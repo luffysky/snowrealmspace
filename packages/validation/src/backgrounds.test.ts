@@ -46,6 +46,13 @@ describe('backgroundCreateSchema', () => {
     ).toBe(true)
   })
 
+  it('Lottie 背景需要 lottieId', () => {
+    expect(backgroundCreateSchema.safeParse({ type: 'lottie' }).success).toBe(false)
+    expect(
+      backgroundCreateSchema.safeParse({ type: 'lottie', lottieId: 'soft-aurora' }).success,
+    ).toBe(true)
+  })
+
   it('套用合理的預設值', () => {
     const parsed = backgroundCreateSchema.parse({ type: 'image', assetId })
     expect(parsed.fit).toBe('cover')

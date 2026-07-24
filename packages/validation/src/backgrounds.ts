@@ -7,7 +7,7 @@ import { NEUTRAL } from '@snowrealm/theme-engine'
  * ADR-005：background_item 不存位元組，只存「把某個 asset 當背景呈現」的設定。
  */
 
-export const backgroundTypeSchema = z.enum(['image', 'video', 'gradient', 'procedural'])
+export const backgroundTypeSchema = z.enum(['image', 'video', 'gradient', 'procedural', 'lottie'])
 
 const hexColor = z.string().regex(/^#[0-9a-fA-F]{6}$/, '必須是 #RRGGBB')
 
@@ -100,6 +100,7 @@ export const backgroundCreateSchema = z
     assetId: z.string().uuid().nullable().optional(),
     gradientSpec: gradientSpecSchema.nullable().optional(),
     proceduralId: z.string().max(60).nullable().optional(),
+    lottieId: z.string().max(60).nullable().optional(),
     ...presentationFields,
   })
   .strict()
@@ -124,6 +125,13 @@ export const backgroundCreateSchema = z
         code: z.ZodIssueCode.custom,
         path: ['proceduralId'],
         message: '程式動畫背景必須指定類型',
+      })
+    }
+    if (val.type === 'lottie' && !val.lottieId) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['lottieId'],
+        message: 'Lottie 背景必須指定動畫',
       })
     }
     refineCropBounds(val, ctx)
