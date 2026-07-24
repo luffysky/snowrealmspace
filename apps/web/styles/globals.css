@@ -958,10 +958,11 @@ input[type='range'] {
 
 .sr-crop-handle {
   position: absolute;
-  right: -8px;
-  bottom: -8px;
-  width: 16px;
-  height: 16px;
+  /* 放在框內角，避免被容器的 overflow:hidden 裁掉 */
+  right: 3px;
+  bottom: 3px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #fff;
   border: 2px solid #000;

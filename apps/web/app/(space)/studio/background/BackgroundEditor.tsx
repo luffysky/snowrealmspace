@@ -25,10 +25,13 @@ export function BackgroundEditor({
   onClose: () => void
 }) {
   const [local, setLocal] = useState(item)
+  // 裁切預設收起，除非這個背景本來就有裁切；不佔版面也不會「一開就卡在裁切」
+  const [showCrop, setShowCrop] = useState(() => isCropped(item))
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     setLocal(item)
+    setShowCrop(isCropped(item))
   }, [item])
 
   useEffect(() => {
@@ -292,7 +295,25 @@ export function BackgroundEditor({
           {(local.type === 'image' || local.type === 'video') && local.asset_id && (
             <fieldset className="sr-fieldset">
               <legend className="sr-label">裁切</legend>
-              <CropEditor spaceId={spaceId} item={local} onChange={set} />
+              <label className="sr-choice sr-choice-inline">
+                <input
+                  type="checkbox"
+                  checked={showCrop}
+                  onChange={(e) => {
+                    const on = e.target.checked
+                    setShowCrop(on)
+                    // 關閉裁切＝還原成整張
+                    if (!on && isCropped(local)) {
+                      set(
+                        { crop_x: 0, crop_y: 0, crop_w: 100, crop_h: 100 },
+                        { cropX: 0, cropY: 0, cropW: 100, cropH: 100 },
+                      )
+                    }
+                  }}
+                />
+                裁切這張圖片
+              </label>
+              {showCrop && <CropEditor spaceId={spaceId} item={local} onChange={set} />}
             </fieldset>
           )}
         </div>
@@ -383,7 +404,18 @@ function CropEditor({
 
   return (
     <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
-      <div className="sr-crop-wrap" style={{ position: 'relative', width: '100%', userSelect: 'none' }}>
+      {/* overflow:hidden 很重要：裁切框的暗遮罩用 box-shadow 撐超大，
+          沒有這層 clip 會蓋滿整個頁面、把其他控制項都遮在暗幕後面 */}
+      <div
+        className="sr-crop-wrap"
+        style={{
+          position: 'relative',
+          width: '100%',
+          userSelect: 'none',
+          overflow: 'hidden',
+          borderRadius: 'var(--sr-radius-sm, 6px)',
+        }}
+      >
         {url ? (
           <img
             src={url}
@@ -427,6 +459,10 @@ function CropEditor({
 
 function clamp(v: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, v))
+}
+
+function isCropped(item: BackgroundItem): boolean {
+  return item.crop_x > 0 || item.crop_y > 0 || item.crop_w < 100 || item.crop_h < 100
 }
 
 function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem }) {
