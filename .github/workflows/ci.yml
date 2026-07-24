@@ -97,7 +97,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: 啟動 Supabase
-        run: pnpm exec supabase start -x studio,imgproxy,pooler,realtime,vector
+        run: pnpm exec supabase start -x studio,imgproxy,supavisor,realtime,vector,mailpit
 
       - name: 套用 migration
         run: pnpm db:migrate
@@ -164,7 +164,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: 啟動 Supabase
-        run: pnpm exec supabase start -x studio,imgproxy,pooler,realtime,vector
+        run: pnpm exec supabase start -x studio,imgproxy,supavisor,realtime,vector
 
       - name: 準備資料庫
         run: |

@@ -22,3 +22,4 @@ supabase/.branches/
 # 用 pnpm fonts:download / fonts:build 重新產生。
 assets/fonts/
 assets/fonts-build/
+docs/errlog.md
