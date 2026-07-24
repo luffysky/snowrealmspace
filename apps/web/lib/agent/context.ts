@@ -34,7 +34,7 @@ export async function buildAgentContext(
 
   const { data: settings } = await db
     .from('space_settings')
-    .select('memory_enabled')
+    .select('memory_enabled, agent_tone')
     .eq('space_id', ctx.spaceId)
     .maybeSingle()
 
@@ -121,6 +121,7 @@ export async function buildAgentContext(
     timezone,
     spaceName: space?.name ?? 'Space',
     currentRoute: opts.route ?? '/home',
+    tone: settings?.agent_tone ?? null,
     activeTheme,
     selectedSnapshot,
     memories,

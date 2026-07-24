@@ -73,6 +73,22 @@ describe('renderContextSuffix — 反幻覺分支', () => {
   })
 })
 
+describe('renderContextSuffix — 語氣', () => {
+  it('有設定語氣 → 注入對應的聲音', () => {
+    const s = renderContextSuffix(ctx({ tone: 'playful' }))
+    expect(s).toContain('這次的語氣')
+    expect(s).toContain('俏皮')
+  })
+  it('沒設定語氣 → 不注入語氣段', () => {
+    const s = renderContextSuffix(ctx({ tone: null }))
+    expect(s).not.toContain('這次的語氣')
+  })
+  it('未知語氣值 → 不注入（不炸）', () => {
+    const s = renderContextSuffix(ctx({ tone: 'nonexistent' }))
+    expect(s).not.toContain('這次的語氣')
+  })
+})
+
 describe('renderContextSuffix — 記憶開關', () => {
   it('記憶關閉 → 明確禁止提議/引用，且不列記憶', () => {
     const s = renderContextSuffix(ctx({ memoryEnabled: false, memories: ['不該出現'] }))

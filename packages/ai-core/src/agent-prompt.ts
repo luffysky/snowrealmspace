@@ -45,11 +45,22 @@ export const AGENT_SYSTEM_PREFIX = `你是 SnowRealm Space 中的常駐 AI 夥�
 - 不在使用者沒問的情況下反覆提醒未完成的事。一次就好。
 - 不使用無資料支撐的斷言。`
 
+/** 使用者可選的語氣（space_settings.agent_tone）→ 這次對話的聲音。參考 ai 島的 persona。 */
+export const TONE_VOICES: Record<string, string> = {
+  warm: '語氣溫暖親切，像個懂你的朋友，但不諂媚。',
+  gentle: '語氣輕柔、放鬆，慢慢說，不急不催。',
+  professional: '語氣專業、精準、直接，少寒暄。',
+  playful: '語氣俏皮活潑，偶爾帶點幽默，但不浮誇、不裝可愛。',
+  concise: '極簡，只講重點，能一句不用兩句。',
+}
+
 export type AgentContext = {
   localTime: string
   timezone: string
   spaceName: string
   currentRoute: string
+  /** 這次對話的語氣（來自使用者設定）。 */
+  tone?: string | null
   activeTheme?: { name: string; primary: string; secondary: string } | null
   selectedSnapshot?: {
     title: string
@@ -80,6 +91,8 @@ function featureLines(features: Record<string, unknown>): string {
 /** 渲染個人化後綴（純函式，可測）。 */
 export function renderContextSuffix(ctx: AgentContext): string {
   const parts: string[] = []
+  const voice = ctx.tone ? TONE_VOICES[ctx.tone] : null
+  if (voice) parts.push(`## 這次的語氣\n${voice}\n`)
   parts.push('## 當前脈絡')
   parts.push(`時間：${ctx.localTime}（${ctx.timezone}）`)
   parts.push(`Space：${ctx.spaceName}`)
