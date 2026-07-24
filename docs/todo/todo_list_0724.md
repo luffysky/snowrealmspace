@@ -31,6 +31,10 @@
 - 🔴 **Cloudflare R2** — 建 private bucket `snowrealmspace`、建 R2 API Token，
       在 web 服務設 `R2_ACCOUNT_ID` / `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` / `R2_BUCKET`，
       `R2_REGION=auto`、**移除** `R2_FORCE_PATH_STYLE`、`R2_ENDPOINT` 留空。設好上傳/背景圖才會通。
+- 🔴 **R2 bucket CORS**（否則上傳一律「網路中斷」）— 瀏覽器直傳 R2 是跨網域，bucket 要設 CORS。
+      到 Cloudflare → R2 → bucket `snowrealmspace` → Settings → CORS policy 貼上允許
+      `https://snowrealm-space.snowrealm.pet` + `http://localhost:3000` 的 PUT/GET/HEAD、Expose ETag
+      （`pnpm tsx scripts/setup-r2-cors.ts` 會印出可直接貼的 JSON；用 Admin token 則能自動寫入）。
 - 🔴 **部署 worker 服務** — `apps/worker/Dockerfile`，不可休眠。沒它背景圖處理、排程 GC 不會跑（`/api/health` 的 queue 會是紅的）。
 - 🔴 **JWT secret** — Zeabur Supabase 仍用 demo 預設 secret（key 的 iss=supabase-demo）。**正式對外前必換**，換完重新產 anon/service key 更新 env。
 - 🔴 **Q10 手動走查** — 人實際點過 Milestone B 一輪（主題/背景/字體/版面）。
@@ -167,7 +171,7 @@
       並修 C4 compare 巢狀結構 bug~~
 - [x] ~~**C7 隱私刪除組**：引用檢查涵蓋 design_snapshot（不可 cascade）/project 封面/timeline 封面；
       資料地圖頁 /settings/data~~
-- [ ] 空間/帳號整體刪除（7 天寬限、匯出、R2 先於 DB）—— 需 R2 + worker，誠實延後
+- [x] ~~空間/帳號整體刪除（7 天寬限、匯出、R2 先於 DB）—— 見「跨里程碑：隱私與刪除」，已完成~~
 - [ ] 本地分析擴充：對比檢查、留白比例（已有 whitespaceRatio）、textZoneLuminance
 
 ---
@@ -204,10 +208,11 @@
 
 - [x] ~~刪除單一 asset / 主題 / 背景 / 播放清單~~
 - [x] ~~`storage.gc`：逾期上傳與軟刪除滿 30 天的清除~~
-- [ ] **刪除帳號 / 刪除 space（7 天寬限）** — ⚠️ 踩到 bug：`activity_events` 的
-      append-only rule 擋住 FK 的 `on delete set null`，有活動紀錄的使用者刪不掉。
-      見 `docs/spec/90-build-log.md`。修法：rule 放行 FK 觸發的 SET NULL，或刪前匿名化 actor。
-- [ ] 帳號匯出（zip）、AI 資料聲明頁、資料地圖頁
+- [x] ~~**刪除 space**（軟刪除 + 7 天寬限 + 還原 + space-purge job，R2 先於 DB；0028-0030）。
+      順帶修掉 `activity_events` 的 `DO INSTEAD NOTHING` delete rule 連 CASCADE 也擋的潛在 bug~~
+- [x] ~~**刪除帳號**（清名下 space + 刪 auth.users；跨 space 事件 actor 匿名化為 NULL）。
+      0031 讓 content_guard 放行 actor_id→NULL 但禁改成他人。verify-account-delete~~
+- [x] ~~帳號匯出（改 JSON，比 zip 更可攜/可再匯入）、AI 資料聲明頁（settings/ai-data）、資料地圖頁（settings/data）~~
 
 ---
 
