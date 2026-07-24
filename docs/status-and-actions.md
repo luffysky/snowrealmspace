@@ -15,7 +15,11 @@
 - **上手**：隱私政策/使用條款/使用說明、頁尾、Cookie 同意、**互動 spotlight 教學**（tab 分區、可略過/重看）
 - **登入**：記住帳號、magic link 6 位數代碼登入（跨裝置）、美化登入信、註冊同意條款
 - **PWA/SEO**：favicon、PWA icon、manifest、OG/meta、robots/sitemap
-- **AI 後台**：`/admin/ai-keys`（金鑰）、`/admin/ai/usage`（用量成本）
+- **AI 後台**：`/admin/ai-keys`（金鑰）、`/admin/ai/models`（模型）、`/admin/ai/candidates`（候選鏈）、
+  `/admin/ai/usage`（用量成本）、`/admin/ai/quota`（每日額度）、`/admin/ai/cache`（回應快取）
+- **Agent/內容/系統後台**：`/admin/agent-actions`、`/admin/content`（內容池）、
+  `/admin/flags`（Feature Flags 即時切換）、`/admin/system`、`/admin/audit`
+- **Agent 語氣**：設定頁可選 warm/gentle/professional/playful/concise → 注入對話與主動訊息（參考 AI 島 persona）
 - **修 bug**：多 agent 全專案排查修了 ~15 個 runtime bug（音訊上傳全壞、背景存檔靜默失敗、
   暫停鈕手機點不到、Agent 工具假成功…）＋ 修 R2 上傳 CORS 診斷 ＋ 修 CI mailpit 綁埠
 
@@ -23,9 +27,10 @@
 
 ## 🟩 我接著會做（不用等你，照序）
 
-1. **管理後台其餘頁**（照 AI 島路徑）：AI 模型管理、候選鏈、每日額度、回應快取、
-   稽核日誌、Agent 動作、系統健康、內容池、Feature flags
+1. ~~管理後台其餘頁~~ ✅ 完成（AI 模型/候選鏈/額度/快取/Agent 動作/內容池/Feature flags/系統/稽核）；
+   僅剩 **Space／使用者管理** 待做
 2. **Lottie 背景**（找免費可商用 .json 動畫來源，接一個輕量 lottie 播放層）
+   —— ⚠️ 需引入 lottie 依賴 + 外部動畫素材授權，先與你確認再動
 3. **背景樣式圖**再擴充（目前靜態場景已含格線/圓點/光斑/極光/斜紋）
 4. **設計原則/本地分析擴充**、SSE 串流、Insight LLM 升級（需金鑰）
 5. 每次功能更新同步 **README**
