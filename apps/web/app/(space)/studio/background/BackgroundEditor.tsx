@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
+import { glassStyle, mediaTransform } from '@/components/BackgroundLayer'
 
 /**
  * 單一背景的呈現設定。
@@ -226,10 +227,206 @@ export function BackgroundEditor({
               )}
             </fieldset>
           )}
+
+          {/* 霧面玻璃：疊在背景上的一層毛玻璃 */}
+          <fieldset className="sr-fieldset">
+            <legend className="sr-label">霧面玻璃</legend>
+            <label className="sr-choice sr-choice-inline">
+              <input
+                type="checkbox"
+                checked={local.glass_enabled}
+                onChange={(e) => set({ glass_enabled: e.target.checked }, { glassEnabled: e.target.checked })}
+              />
+              加上霧面玻璃
+            </label>
+            {local.glass_enabled && (
+              <>
+                <Slider
+                  id="bg-glass-blur"
+                  label="霧度"
+                  min={0}
+                  max={60}
+                  step={1}
+                  unit="px"
+                  value={local.glass_blur}
+                  hint="越大越霧，底下的背景越模糊"
+                  onChange={(v) => set({ glass_blur: v }, { glassBlur: v })}
+                />
+                <Slider
+                  id="bg-glass-opacity"
+                  label="透明度"
+                  min={0}
+                  max={1}
+                  step={0.02}
+                  value={local.glass_opacity}
+                  hint="玻璃染色的濃淡；0 是純透明，1 是全不透明"
+                  onChange={(v) => set({ glass_opacity: v }, { glassOpacity: v })}
+                />
+                <Slider
+                  id="bg-glass-radius"
+                  label="圓角"
+                  min={0}
+                  max={64}
+                  step={1}
+                  unit="px"
+                  value={local.glass_radius}
+                  onChange={(v) => set({ glass_radius: v }, { glassRadius: v })}
+                />
+                <div className="sr-field">
+                  <label className="sr-label" htmlFor="bg-glass-color">
+                    玻璃顏色
+                  </label>
+                  <input
+                    type="color"
+                    id="bg-glass-color"
+                    className="sr-color-swatch"
+                    value={local.glass_color}
+                    onChange={(e) => set({ glass_color: e.target.value }, { glassColor: e.target.value })}
+                  />
+                </div>
+              </>
+            )}
+          </fieldset>
+
+          {/* 裁切：只對圖片/影片有意義，漸層沒有可裁的來源 */}
+          {(local.type === 'image' || local.type === 'video') && local.asset_id && (
+            <fieldset className="sr-fieldset">
+              <legend className="sr-label">裁切</legend>
+              <CropEditor spaceId={spaceId} item={local} onChange={set} />
+            </fieldset>
+          )}
         </div>
       </div>
     </section>
   )
+}
+
+/**
+ * 非破壞性裁切：拖動方框選要保留的區域（移動＝拖框身，縮放＝拖右下角把手）。
+ * 只改這個背景的裁切矩形，不動 asset 位元組（ADR-005）。
+ */
+function CropEditor({
+  spaceId,
+  item,
+  onChange,
+}: {
+  spaceId: string
+  item: BackgroundItem
+  onChange: (patch: Partial<BackgroundItem>, apiPatch: Record<string, unknown>) => void
+}) {
+  const [url, setUrl] = useState<string | null>(null)
+  const boxRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!item.asset_id) return
+    let cancelled = false
+    void fetch(`/api/assets/${item.asset_id}/url?rendition=preview`, {
+      headers: { 'x-space-id': spaceId },
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((b: { data?: { url: string } } | null) => {
+        if (!cancelled) setUrl(b?.data?.url ?? null)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [spaceId, item.asset_id])
+
+  const cx = item.crop_x
+  const cy = item.crop_y
+  const cw = item.crop_w
+  const ch = item.crop_h
+
+  function commit(next: { x: number; y: number; w: number; h: number }) {
+    onChange(
+      { crop_x: next.x, crop_y: next.y, crop_w: next.w, crop_h: next.h },
+      { cropX: next.x, cropY: next.y, cropW: next.w, cropH: next.h },
+    )
+  }
+
+  // 拖曳：mode='move' 移動整框，mode='resize' 拉右下角。座標換算成容器百分比。
+  function startDrag(mode: 'move' | 'resize', e: React.PointerEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    const wrap = boxRef.current?.parentElement
+    if (!wrap) return
+    const rect = wrap.getBoundingClientRect()
+    const startX = e.clientX
+    const startY = e.clientY
+    const orig = { x: cx, y: cy, w: cw, h: ch }
+    ;(e.target as Element).setPointerCapture(e.pointerId)
+
+    const onMove = (ev: PointerEvent) => {
+      const dxPct = ((ev.clientX - startX) / rect.width) * 100
+      const dyPct = ((ev.clientY - startY) / rect.height) * 100
+      if (mode === 'move') {
+        const x = clamp(orig.x + dxPct, 0, 100 - orig.w)
+        const y = clamp(orig.y + dyPct, 0, 100 - orig.h)
+        commit({ x, y, w: orig.w, h: orig.h })
+      } else {
+        const w = clamp(orig.w + dxPct, 5, 100 - orig.x)
+        const h = clamp(orig.h + dyPct, 5, 100 - orig.y)
+        commit({ x: orig.x, y: orig.y, w, h })
+      }
+    }
+    const onUp = (ev: PointerEvent) => {
+      ;(e.target as Element).releasePointerCapture?.(ev.pointerId)
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('pointerup', onUp)
+    }
+    window.addEventListener('pointermove', onMove)
+    window.addEventListener('pointerup', onUp)
+  }
+
+  const cropped = cx > 0 || cy > 0 || cw < 100 || ch < 100
+
+  return (
+    <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+      <div className="sr-crop-wrap" style={{ position: 'relative', width: '100%', userSelect: 'none' }}>
+        {url ? (
+          <img
+            src={url}
+            alt=""
+            style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 'var(--sr-radius-sm, 6px)' }}
+          />
+        ) : (
+          <div className="sr-bg-loading" style={{ width: '100%', aspectRatio: '16 / 9' }} />
+        )}
+        {/* 保留區域外的暗遮罩用 box-shadow 撐出無限大 */}
+        <div
+          ref={boxRef}
+          className="sr-crop-box"
+          onPointerDown={(e) => startDrag('move', e)}
+          style={{ left: `${cx}%`, top: `${cy}%`, width: `${cw}%`, height: `${ch}%` }}
+        >
+          <span
+            className="sr-crop-handle"
+            onPointerDown={(e) => startDrag('resize', e)}
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+      <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm, 0.85rem)' }}>
+          {cropped ? `裁切 ${Math.round(cw)}% × ${Math.round(ch)}%` : '整張（未裁切）'}
+        </span>
+        {cropped && (
+          <button
+            type="button"
+            className="sr-button sr-button-secondary"
+            onClick={() => commit({ x: 0, y: 0, w: 100, h: 100 })}
+          >
+            重設裁切
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function clamp(v: number, lo: number, hi: number): number {
+  return Math.max(lo, Math.min(hi, v))
 }
 
 function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem }) {
@@ -270,9 +467,11 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
           .join(', ')})`
       : null
 
+  const glass = glassStyle(item)
+
   return (
     <div className="sr-bg-live">
-      <div className="sr-bg-live-media" aria-hidden="true">
+      <div className="sr-bg-live-media" aria-hidden="true" style={{ overflow: 'hidden' }}>
         {gradient ? (
           <div style={{ inset: 0, position: 'absolute', background: gradient, filter }} />
         ) : url ? (
@@ -283,7 +482,7 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
               filter,
               objectFit: item.fit === 'original' ? 'none' : item.fit,
               objectPosition: `${item.position_x}% ${item.position_y}%`,
-              transform: item.zoom !== 1 ? `scale(${item.zoom})` : undefined,
+              ...mediaTransform(item),
             }}
           />
         ) : null}
@@ -297,6 +496,7 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
             }}
           />
         )}
+        {glass && <div style={glass} />}
       </div>
 
       {/* 疊上真實的卡片與文字 —— 調背景時最重要的是「文字還讀得到嗎」 */}

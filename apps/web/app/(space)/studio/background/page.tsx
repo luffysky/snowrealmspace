@@ -30,7 +30,7 @@ export default async function BackgroundStudioPage() {
       .from('assets')
       .select('id, kind, original_filename')
       .eq('space_id', space.id)
-      .eq('kind', 'image')
+      .in('kind', ['image', 'video'])
       .eq('status', 'ready')
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
@@ -42,7 +42,7 @@ export default async function BackgroundStudioPage() {
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Background Studio</h1>
         <p className="sr-muted">
-          把圖片變成背景，調整它的樣子，再組成會自動輪播的幻燈片。
+          把圖片或影片變成背景，調整它的樣子、加霧面玻璃、裁切，再組成會自動輪播的幻燈片。
         </p>
       </section>
 

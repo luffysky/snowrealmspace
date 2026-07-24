@@ -30,6 +30,15 @@ export type BackgroundItem = {
   overlay_opacity: number
   loop: boolean
   muted: boolean
+  glass_enabled: boolean
+  glass_blur: number
+  glass_opacity: number
+  glass_radius: number
+  glass_color: string
+  crop_x: number
+  crop_y: number
+  crop_w: number
+  crop_h: number
   gradient_spec: {
     kind: 'linear' | 'radial'
     angle: number
@@ -76,6 +85,54 @@ function filterFor(item: BackgroundItem): string {
   if (item.contrast !== 1) parts.push(`contrast(${item.contrast})`)
   if (item.saturation !== 1) parts.push(`saturate(${item.saturation})`)
   return parts.join(' ')
+}
+
+/** 是否有裁切（非整張）。 */
+function isCropped(item: BackgroundItem): boolean {
+  return item.crop_x > 0 || item.crop_y > 0 || item.crop_w < 100 || item.crop_h < 100
+}
+
+/**
+ * 媒體的 transform：非破壞性裁切以 transform 呈現（把裁切矩形放大填滿容器），
+ * zoom 疊乘其上。沒裁切時就只有 zoom。transform-origin 在裁切時必須是左上角
+ * 才對得上下面的平移數學。
+ */
+export function mediaTransform(item: BackgroundItem): { transform?: string; transformOrigin?: string } {
+  if (isCropped(item)) {
+    const sx = 100 / item.crop_w
+    const sy = 100 / item.crop_h
+    const tx = -(item.crop_x / item.crop_w) * 100
+    const ty = -(item.crop_y / item.crop_h) * 100
+    return {
+      transform: `translate(${tx}%, ${ty}%) scale(${sx * item.zoom}, ${sy * item.zoom})`,
+      transformOrigin: '0 0',
+    }
+  }
+  return item.zoom !== 1 ? { transform: `scale(${item.zoom})` } : {}
+}
+
+/** #RRGGBB + 不透明度 → rgba()，讓霧面玻璃的染色用真正的 alpha，backdrop-blur 才能全效。 */
+export function hexToRgba(hex: string, alpha: number): string {
+  const m = /^#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/.exec(hex)
+  if (!m) return `rgba(255,255,255,${alpha})`
+  const r = parseInt(m[1]!, 16)
+  const g = parseInt(m[2]!, 16)
+  const b = parseInt(m[3]!, 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
+
+/** 霧面玻璃層的樣式。null = 沒開。 */
+export function glassStyle(item: BackgroundItem): React.CSSProperties | null {
+  if (!item.glass_enabled) return null
+  const blur = `blur(${item.glass_blur}px) saturate(1.4)`
+  return {
+    position: 'absolute',
+    inset: 0,
+    background: hexToRgba(item.glass_color, item.glass_opacity),
+    backdropFilter: blur,
+    WebkitBackdropFilter: blur,
+    borderRadius: `${item.glass_radius}px`,
+  }
 }
 
 function gradientCss(item: BackgroundItem): string | null {
@@ -217,7 +274,7 @@ function BackgroundMedia({
     filter: filterFor(item) || undefined,
     objectFit: item.fit === 'original' ? 'none' : item.fit,
     objectPosition: `${item.position_x}% ${item.position_y}%`,
-    transform: item.zoom !== 1 ? `scale(${item.zoom})` : undefined,
+    ...mediaTransform(item),
   }
 
   if (item.type === 'gradient') {
@@ -329,6 +386,9 @@ export function BackgroundLayer({
           style={{ background: item.overlay_color, opacity: item.overlay_opacity }}
         />
       )}
+
+      {/* 霧面玻璃層：backdrop-blur 把底下的背景＋疊色磨成毛玻璃 */}
+      {glassStyle(item) && <div className="sr-bg-glass" style={glassStyle(item)!} />}
 
       {/* v1.0 §12.6：僅預載下一張 */}
       {upcoming && <PreloadNext spaceId={spaceId} item={upcoming} />}

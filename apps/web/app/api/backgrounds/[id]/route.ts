@@ -19,6 +19,15 @@ const FIELD_MAP: Record<string, string> = {
   overlayOpacity: 'overlay_opacity',
   loop: 'loop',
   muted: 'muted',
+  glassEnabled: 'glass_enabled',
+  glassBlur: 'glass_blur',
+  glassOpacity: 'glass_opacity',
+  glassRadius: 'glass_radius',
+  glassColor: 'glass_color',
+  cropX: 'crop_x',
+  cropY: 'crop_y',
+  cropW: 'crop_w',
+  cropH: 'crop_h',
   gradientSpec: 'gradient_spec',
 }
 

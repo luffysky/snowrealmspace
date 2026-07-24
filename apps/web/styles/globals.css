@@ -941,6 +941,29 @@ input[type='range'] {
 
 /* ── Background Studio ────────────────────────────── */
 
+/* 裁切工具的框與把手：這是工具 chrome（遮罩／選取框），需要與任意底圖對比，
+   固定用黑白高對比，不隨主題。位置（left/top/width/height）由資料驅動走 inline。 */
+.sr-crop-box {
+  position: absolute;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  outline: 2px solid #fff;
+  cursor: move;
+  touch-action: none;
+}
+
+.sr-crop-handle {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #000;
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
 .sr-bg-grid {
   list-style: none;
   padding: 0;

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import {
   backgroundCreateSchema,
+  backgroundPatchSchema,
   gradientSpecSchema,
   playlistCreateSchema,
   scheduleSchema,
@@ -179,5 +180,68 @@ describe('reorderSchema', () => {
 
   it('拒絕非 uuid', () => {
     expect(reorderSchema.safeParse({ orderedItemIds: ['abc'] }).success).toBe(false)
+  })
+})
+
+describe('霧面玻璃欄位', () => {
+  it('預設關閉、有合理預設值', () => {
+    const parsed = backgroundCreateSchema.parse({ type: 'image', assetId })
+    expect(parsed.glassEnabled).toBe(false)
+    expect(parsed.glassBlur).toBe(12)
+    expect(parsed.glassOpacity).toBe(0.3)
+    expect(parsed.glassRadius).toBe(16)
+  })
+
+  it('霧度上限 60', () => {
+    expect(
+      backgroundPatchSchema.safeParse({ glassBlur: 61 }).success,
+    ).toBe(false)
+    expect(backgroundPatchSchema.safeParse({ glassBlur: 60 }).success).toBe(true)
+  })
+
+  it('玻璃顏色必須是 #RRGGBB', () => {
+    expect(backgroundPatchSchema.safeParse({ glassColor: 'white' }).success).toBe(false)
+    expect(backgroundPatchSchema.safeParse({ glassColor: '#aabbcc' }).success).toBe(true)
+  })
+})
+
+describe('裁切欄位', () => {
+  it('預設整張 0,0,100,100', () => {
+    const parsed = backgroundCreateSchema.parse({ type: 'image', assetId })
+    expect([parsed.cropX, parsed.cropY, parsed.cropW, parsed.cropH]).toEqual([0, 0, 100, 100])
+  })
+
+  it('合法的部分裁切', () => {
+    expect(
+      backgroundCreateSchema.safeParse({
+        type: 'image',
+        assetId,
+        cropX: 10,
+        cropY: 10,
+        cropW: 50,
+        cropH: 50,
+      }).success,
+    ).toBe(true)
+  })
+
+  it('裁切超出右邊界被擋（x + w > 100）', () => {
+    const r = backgroundCreateSchema.safeParse({
+      type: 'image',
+      assetId,
+      cropX: 60,
+      cropY: 0,
+      cropW: 50,
+      cropH: 100,
+    })
+    expect(r.success).toBe(false)
+  })
+
+  it('patch 四個裁切值齊全時驗邊界', () => {
+    expect(
+      backgroundPatchSchema.safeParse({ cropX: 0, cropY: 70, cropW: 100, cropH: 50 }).success,
+    ).toBe(false)
+    expect(
+      backgroundPatchSchema.safeParse({ cropX: 0, cropY: 0, cropW: 100, cropH: 100 }).success,
+    ).toBe(true)
   })
 })

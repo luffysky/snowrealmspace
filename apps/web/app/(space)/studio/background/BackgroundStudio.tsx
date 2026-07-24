@@ -54,13 +54,16 @@ export function BackgroundStudio({
 
   async function addFromAsset(assetId: string) {
     try {
+      // 型別依 asset 的 kind 而定：影片檔要建成 video 背景（否則後端會擋「這個檔案不是圖片」）
+      const asset = imageAssets.find((a) => a.id === assetId)
+      const type = asset?.kind === 'video' ? 'video' : 'image'
       const created = (await api('/api/backgrounds', {
         method: 'POST',
-        body: JSON.stringify({ type: 'image', assetId, fit: 'cover' }),
+        body: JSON.stringify({ type, assetId, fit: 'cover' }),
       })) as BackgroundItem
       setBackgrounds((prev) => [created, ...prev])
       setEditing(created)
-      setStatus({ kind: 'ok', message: '已加入背景。' })
+      setStatus({ kind: 'ok', message: type === 'video' ? '已加入影片背景。' : '已加入背景。' })
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
     }
@@ -160,12 +163,12 @@ export function BackgroundStudio({
 
         {imageAssets.length === 0 ? (
           <p className="sr-muted">
-            還沒有可用的圖片。先到 Library 上傳一張，再回來這裡。
+            還沒有可用的圖片或影片。先到 Library 上傳一個，再回來這裡。
           </p>
         ) : (
           <>
             <label className="sr-label" htmlFor="asset-picker">
-              從你的圖片選一張
+              從你的圖片或影片選一個
             </label>
             <div className="sr-row">
               <select
@@ -179,9 +182,10 @@ export function BackgroundStudio({
                   }
                 }}
               >
-                <option value="">選擇圖片…</option>
+                <option value="">選擇圖片或影片…</option>
                 {imageAssets.map((a) => (
                   <option key={a.id} value={a.id}>
+                    {a.kind === 'video' ? '🎬 ' : ''}
                     {a.original_filename ?? '未命名'}
                   </option>
                 ))}

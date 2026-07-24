@@ -90,6 +90,31 @@
 
 ---
 
+## 🛠 站台管理後台（`/admin/*`，站台管理員身份）
+
+> 照 ai 島架構逐步擴充。身份走 `lib/auth/site-admin`（多 signal）。已完成：AI 金鑰管理。
+
+**AI 管理**（表都建好了）
+- [x] ~~AI 金鑰管理 `/admin/ai-keys`（各家加密存 DB、測試、啟用/移除）~~
+- [ ] **AI 模型管理** `/admin/ai/models`（ai_models CRUD：啟用/停用、成本、vision/tools 標記、新增退役）
+- [ ] **候選鏈管理** `/admin/ai/usage-models`（每個 usage key 的候選鏈與順序、role 調整）
+- [ ] **AI 用量／成本儀表板** `/admin/ai/usage`（ai_usage_log：總成本、per-usage/per-day、免費vs付費、escalate 率、cache 命中）
+- [ ] **每日額度設定**（免費/付費上限，目前寫死 300/20）
+- [ ] **回應快取** `/admin/ai/cache`（命中率、清空、per-usage）
+- [ ] **內容審核關鍵字**（FORBIDDEN_PATTERNS 可後台編輯）
+
+**系統／營運**
+- [ ] **Feature flags 管理**（全站/ per-space 開關，目前只能改 DB）
+- [ ] **系統健康儀表板**（queue health、job_records、storage 用量、/api/health 匯總、cron 上次執行）
+- [ ] **稽核日誌檢視** `/admin/audit`（audit_logs 篩選/搜尋）
+- [ ] **Agent 動作檢視** `/admin/agent-actions`（待確認、已執行、可 undo 的清單）
+- [ ] **站台管理員角色**（目前靠 env allowlist；可加 DB role 授予/撤銷，如 ai 島 owner/admin/support）
+- [ ] **整合/webhook 狀態**（provider_webhooks 收件記錄、connection 健康）
+
+**內容／空間**
+- [ ] **內容池管理**（content_items 檢視/新增/審核每日內容、生日鏈編輯）
+- [ ] **Space/使用者管理**（列出 spaces、佈建狀態、用量、孤兒帳號修復）
+
 ## 🅕 Milestone F — Integration（骨架起）
 
 - [x] ~~`@snowrealm/provider-core`：ProviderCapabilities（前端只顯示支援、禁 Coming Soon）、

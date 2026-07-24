@@ -88,6 +88,15 @@ export const POST = handler(async (request: NextRequest) => {
       loop: input.loop,
       // ADR-019 偏離（Luffy）：影片可選聲音；預設仍靜音（autoplay 政策）
       muted: input.muted,
+      glass_enabled: input.glassEnabled,
+      glass_blur: input.glassBlur,
+      glass_opacity: input.glassOpacity,
+      glass_radius: input.glassRadius,
+      glass_color: input.glassColor,
+      crop_x: input.cropX,
+      crop_y: input.cropY,
+      crop_w: input.cropW,
+      crop_h: input.cropH,
       gradient_spec: (input.gradientSpec ?? null) as never,
       procedural_id: input.proceduralId ?? null,
     })

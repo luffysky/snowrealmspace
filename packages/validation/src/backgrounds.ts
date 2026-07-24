@@ -42,6 +42,39 @@ const presentationFields = {
   // ADR-019 偏離（Luffy）：背景影片可選聲音。預設仍靜音（autoplay 政策要求），
   // 使用者要出聲需在播放時手動取消靜音。
   muted: z.boolean().default(true),
+  // 霧面玻璃層（Luffy）：疊在背景上的一層毛玻璃面板。
+  glassEnabled: z.boolean().default(false),
+  glassBlur: z.number().min(0).max(60).default(12),
+  glassOpacity: z.number().min(0).max(1).default(0.3),
+  glassRadius: z.number().min(0).max(64).default(16),
+  glassColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).default(NEUTRAL.white),
+  // 非破壞性裁切矩形（百分比，左上角 + 寬高）。預設整張。
+  cropX: z.number().min(0).max(100).default(0),
+  cropY: z.number().min(0).max(100).default(0),
+  cropW: z.number().min(0).max(100).default(100),
+  cropH: z.number().min(0).max(100).default(100),
+}
+
+/** 裁切矩形不得超出邊界（起點 + 寬 ≤ 100）。給 create/patch 兩邊共用。 */
+function refineCropBounds(
+  val: {
+    cropX?: number | undefined
+    cropY?: number | undefined
+    cropW?: number | undefined
+    cropH?: number | undefined
+  },
+  ctx: z.RefinementCtx,
+) {
+  const x = val.cropX ?? 0
+  const y = val.cropY ?? 0
+  const w = val.cropW ?? 100
+  const h = val.cropH ?? 100
+  if (x + w > 100.0001) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['cropW'], message: '裁切超出右邊界' })
+  }
+  if (y + h > 100.0001) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['cropH'], message: '裁切超出下邊界' })
+  }
 }
 
 export const backgroundCreateSchema = z
@@ -76,6 +109,7 @@ export const backgroundCreateSchema = z
         message: '程式動畫背景必須指定類型',
       })
     }
+    refineCropBounds(val, ctx)
   })
 
 export const backgroundPatchSchema = z
@@ -93,9 +127,29 @@ export const backgroundPatchSchema = z
     overlayOpacity: z.number().min(0).max(1).optional(),
     loop: z.boolean().optional(),
     muted: z.boolean().optional(),
+    glassEnabled: z.boolean().optional(),
+    glassBlur: z.number().min(0).max(60).optional(),
+    glassOpacity: z.number().min(0).max(1).optional(),
+    glassRadius: z.number().min(0).max(64).optional(),
+    glassColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+    cropX: z.number().min(0).max(100).optional(),
+    cropY: z.number().min(0).max(100).optional(),
+    cropW: z.number().min(0).max(100).optional(),
+    cropH: z.number().min(0).max(100).optional(),
     gradientSpec: gradientSpecSchema.optional(),
   })
   .strict()
+  .superRefine((val, ctx) => {
+    // 只有四個裁切值都在同一次 patch 才好完整驗；部分 patch 交給 DB 的 bg_crop_bounds 約束擋。
+    if (
+      val.cropX !== undefined &&
+      val.cropY !== undefined &&
+      val.cropW !== undefined &&
+      val.cropH !== undefined
+    ) {
+      refineCropBounds(val, ctx)
+    }
+  })
 
 export const playModeSchema = z.enum([
   'sequential',

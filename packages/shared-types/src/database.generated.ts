@@ -773,8 +773,17 @@ export type Database = {
           contrast: number
           created_at: string
           created_by: string | null
+          crop_h: number
+          crop_w: number
+          crop_x: number
+          crop_y: number
           deleted_at: string | null
           fit: string
+          glass_blur: number
+          glass_color: string
+          glass_enabled: boolean
+          glass_opacity: number
+          glass_radius: number
           gradient_spec: Json | null
           id: string
           loop: boolean
@@ -798,8 +807,17 @@ export type Database = {
           contrast?: number
           created_at?: string
           created_by?: string | null
+          crop_h?: number
+          crop_w?: number
+          crop_x?: number
+          crop_y?: number
           deleted_at?: string | null
           fit?: string
+          glass_blur?: number
+          glass_color?: string
+          glass_enabled?: boolean
+          glass_opacity?: number
+          glass_radius?: number
           gradient_spec?: Json | null
           id?: string
           loop?: boolean
@@ -823,8 +841,17 @@ export type Database = {
           contrast?: number
           created_at?: string
           created_by?: string | null
+          crop_h?: number
+          crop_w?: number
+          crop_x?: number
+          crop_y?: number
           deleted_at?: string | null
           fit?: string
+          glass_blur?: number
+          glass_color?: string
+          glass_enabled?: boolean
+          glass_opacity?: number
+          glass_radius?: number
           gradient_spec?: Json | null
           id?: string
           loop?: boolean
