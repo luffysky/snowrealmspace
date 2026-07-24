@@ -32,6 +32,20 @@ export const SCHEDULES: ScheduleSpec[] = [
     description: '把 activity_events 投影到 timeline_events（ADR-013，每分鐘批次）',
   },
   {
+    // 每小時掃描，挑出當地 04:00 的 space（多時區）
+    queue: QUEUES.dailyGenerate,
+    cron: '0 * * * *',
+    tz: 'UTC',
+    description: '每小時掃時區，當地 04:00 的 space 生成每日卡片與主動訊息',
+  },
+  {
+    // 每小時掃描，挑出當地週一 09:00 的 space
+    queue: QUEUES.insightWeekly,
+    cron: '0 * * * *',
+    tz: 'UTC',
+    description: '每小時掃時區，當地週一 09:00 的 space 生成週回顧與 weekly_recap 通知',
+  },
+  {
     queue: QUEUES.queueHealth,
     cron: '*/5 * * * *',
     tz: 'UTC',

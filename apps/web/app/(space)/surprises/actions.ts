@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { requireActiveSpace } from '@/lib/auth/session'
-import { setSurpriseFavorite } from '@/lib/daily/surprise'
+import { setSurpriseFavorite } from '@snowrealm/daily-engine'
 
 const schema = z.object({ id: z.string().uuid(), favorited: z.boolean() })
 

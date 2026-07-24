@@ -11,17 +11,8 @@ import { createAdminClient } from '@snowrealm/db/server'
  * 不說「你很有美感」。走 service role（系統代算，寫入不開給一般成員）。
  */
 
-export type Insight = {
-  id: string
-  type: string
-  title: string
-  statement: string
-  evidence: { metric?: string; value?: number; sourceIds: string[] }
-  confidence: number
-  periodStart: string | null
-  periodEnd: string | null
-  createdAt: string
-}
+export { type Insight } from './shared.js'
+import type { Insight } from './shared.js'
 
 type EventRow = { id: string; event_type: string; occurred_at: string }
 

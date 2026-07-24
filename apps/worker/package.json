@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@snowrealm/analytics": "workspace:*",
+    "@snowrealm/daily-engine": "workspace:*",
     "@snowrealm/db": "workspace:*",
     "@snowrealm/shared-types": "workspace:*",
     "@snowrealm/storage": "workspace:*",

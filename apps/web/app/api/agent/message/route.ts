@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getDb } from '@/lib/supabase/server'
 import { requireActiveSpace, requireUser } from '@/lib/auth/session'
-import { maybeGenerateProactive } from '@/lib/daily/proactive'
+import { maybeGenerateProactive } from '@snowrealm/daily-engine'
 
 export const dynamic = 'force-dynamic'
 

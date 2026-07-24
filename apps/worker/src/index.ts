@@ -8,6 +8,7 @@ const { startBoss, stopBoss, QUEUES } = await import('./boss.js')
 const { handlePing } = await import('./handlers/ping.js')
 const { handleAssetProcess } = await import('./handlers/asset-process.js')
 const { handleEventProject } = await import('./handlers/event-project.js')
+const { handleDailyGenerate, handleInsightWeekly } = await import('./handlers/daily-cron.js')
 const { handleQueueHealth, handleStorageGc } = await import('./handlers/maintenance.js')
 const { registerSchedules } = await import('./schedules.js')
 
@@ -33,6 +34,12 @@ async function main() {
   // Timeline 投影（ADR-013）。併發 1，靠 source_event_id unique 保冪等。
   await boss.createQueue(QUEUES.eventProject)
   await boss.work(QUEUES.eventProject, { batchSize: 1 }, handleEventProject)
+
+  // 每日/每週時區掃描（08-jobs-events.md §3.1）
+  await boss.createQueue(QUEUES.dailyGenerate)
+  await boss.work(QUEUES.dailyGenerate, { batchSize: 1 }, handleDailyGenerate)
+  await boss.createQueue(QUEUES.insightWeekly)
+  await boss.work(QUEUES.insightWeekly, { batchSize: 1 }, handleInsightWeekly)
 
   await boss.createQueue(QUEUES.queueHealth)
   await boss.work(QUEUES.queueHealth, { batchSize: 1 }, handleQueueHealth)

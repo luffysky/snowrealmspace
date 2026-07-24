@@ -43,6 +43,7 @@
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.61.1",
     "@snowrealm/ai-core": "workspace:^",
+    "@snowrealm/daily-engine": "workspace:^",
     "@snowrealm/analytics": "workspace:^",
     "@snowrealm/db": "workspace:^",
     "@snowrealm/shared-types": "workspace:^",

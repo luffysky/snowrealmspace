@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import type { Insight } from '@/lib/insights/engine'
+import type { Insight } from '@snowrealm/daily-engine/shared'
 import { removeInsight } from './actions'
 
 /** 回顧清單。每筆都是「有根據的數據描述」，附證據數與可信度。 */

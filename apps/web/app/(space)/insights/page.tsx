@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { requireActiveSpace } from '@/lib/auth/session'
-import { generateInsights } from '@/lib/insights/engine'
+import { generateInsights } from '@snowrealm/daily-engine'
 
 export const metadata: Metadata = { title: '每週回顧 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'

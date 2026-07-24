@@ -11,43 +11,18 @@ import { hashToUnit } from '@snowrealm/validation'
  * 不能讓客戶端自己選稀有度）。
  */
 
-export type Rarity = 'common' | 'uncommon' | 'rare' | 'special' | 'anniversary'
-
-export type SurpriseView =
-  | { state: 'available' } // 今天還沒開
-  | {
-      state: 'opened'
-      rarity: Rarity
-      label: string
-      text: string
-      openedAt: string
-    }
-  | { state: 'empty' } // 池空了（沒 seed）
-
-/** 每日盒子的稀有度機率。special / anniversary 是條件觸發，不進每日隨機。 */
-export const DAILY_WEIGHTS: Record<string, number> = {
-  common: 64,
-  uncommon: 26,
-  rare: 10,
-}
-
-/**
- * 稀有度保底：連續開了這麼多盒都沒出 rare（或更稀有），下一盒強制 rare。
- * 期望值上 rare 約每 10 盒一次，保底把「衰到爆」的長尾砍掉，且對玩家公開。
- */
-export const PITY_THRESHOLD = 15
-
-const RARITY_LABEL: Record<Rarity, string> = {
-  common: '平凡',
-  uncommon: '少見',
-  rare: '稀有',
-  special: '特別',
-  anniversary: '週年',
-}
-
-export function rarityLabel(r: string): string {
-  return RARITY_LABEL[r as Rarity] ?? r
-}
+// 純型別與常數移到 shared.ts（client-safe）。這裡 re-export 保持既有 API。
+export {
+  type Rarity,
+  type SurpriseView,
+  type ArchivedSurprise,
+  DAILY_WEIGHTS,
+  PITY_THRESHOLD,
+  rarityLabel,
+} from './shared.js'
+// 內部使用（re-export 不建立本地 binding）
+import { DAILY_WEIGHTS, PITY_THRESHOLD } from './shared.js'
+import type { Rarity, SurpriseView, ArchivedSurprise } from './shared.js'
 
 function localDate(timeZone: string, now = new Date()): string {
   const fmt = new Intl.DateTimeFormat('en-CA', {
@@ -151,15 +126,6 @@ export async function openSurprise(spaceId: string, timeZone: string): Promise<S
     text: picked.text,
     openedAt: new Date().toISOString(),
   }
-}
-
-export type ArchivedSurprise = {
-  id: string
-  rarity: Rarity
-  label: string
-  text: string
-  openedAt: string
-  favorited: boolean
 }
 
 /** 收藏頁：所有開過的驚喜，最新在前。 */

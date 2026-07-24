@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getDb } from '@/lib/supabase/server'
 import { requireActiveSpace } from '@/lib/auth/session'
-import { getTodayContent } from '@/lib/daily/service'
+import { getTodayContent } from '@snowrealm/daily-engine'
 
 export const dynamic = 'force-dynamic'
 

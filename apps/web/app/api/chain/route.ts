@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { requireActiveSpace } from '@/lib/auth/session'
-import { getChainState } from '@/lib/daily/chain'
+import { getChainState } from '@snowrealm/daily-engine'
 
 export const dynamic = 'force-dynamic'
 

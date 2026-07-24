@@ -27,6 +27,9 @@ importers:
       '@snowrealm/analytics':
         specifier: workspace:^
         version: link:packages/analytics
+      '@snowrealm/daily-engine':
+        specifier: workspace:^
+        version: link:packages/daily-engine
       '@snowrealm/db':
         specifier: workspace:^
         version: link:packages/db
@@ -117,6 +120,9 @@ importers:
       '@snowrealm/analytics':
         specifier: workspace:*
         version: link:../../packages/analytics
+      '@snowrealm/daily-engine':
+        specifier: workspace:*
+        version: link:../../packages/daily-engine
       '@snowrealm/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -178,6 +184,9 @@ importers:
       '@snowrealm/analytics':
         specifier: workspace:*
         version: link:../../packages/analytics
+      '@snowrealm/daily-engine':
+        specifier: workspace:*
+        version: link:../../packages/daily-engine
       '@snowrealm/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -233,6 +242,22 @@ importers:
       '@snowrealm/shared-types':
         specifier: workspace:*
         version: link:../shared-types
+    devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
+  packages/daily-engine:
+    dependencies:
+      '@snowrealm/db':
+        specifier: workspace:*
+        version: link:../db
+      '@snowrealm/validation':
+        specifier: workspace:*
+        version: link:../validation
     devDependencies:
       typescript:
         specifier: ^5.7.2

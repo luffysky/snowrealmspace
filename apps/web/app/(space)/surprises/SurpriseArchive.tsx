@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import Link from 'next/link'
-import { rarityLabel, type ArchivedSurprise } from '@/lib/daily/surprise'
+import { rarityLabel, type ArchivedSurprise } from '@snowrealm/daily-engine/shared'
 import { toggleSurpriseFavorite } from './actions'
 
 type Odds = { rarity: string; percent: number }[]

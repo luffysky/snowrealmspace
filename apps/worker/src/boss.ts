@@ -51,6 +51,9 @@ export const QUEUES = {
   assetProcess: 'asset.process',
   // Timeline 投影（由 schedules.ts 週期觸發；ADR-013）
   eventProject: 'event.project',
+  // 每日/每週時區掃描（08-jobs-events.md §3.1）
+  dailyGenerate: 'daily.generate',
+  insightWeekly: 'insight.weekly',
   // 維護類（由 schedules.ts 週期觸發）
   queueHealth: 'maintenance.queue-health',
   storageGc: 'maintenance.storage-gc',
@@ -62,6 +65,8 @@ export type JobPayloads = {
   ping: { message: string; spaceId?: string }
   'asset.process': { assetId: string; spaceId: string }
   'event.project': Record<string, never>
+  'daily.generate': Record<string, never>
+  'insight.weekly': Record<string, never>
   'maintenance.queue-health': Record<string, never>
   'maintenance.storage-gc': Record<string, never>
 }

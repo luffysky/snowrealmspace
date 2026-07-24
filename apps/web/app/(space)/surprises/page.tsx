@@ -6,7 +6,7 @@ import {
   rareDrought,
   DAILY_WEIGHTS,
   PITY_THRESHOLD,
-} from '@/lib/daily/surprise'
+} from '@snowrealm/daily-engine'
 import { SurpriseArchive } from './SurpriseArchive'
 
 export const metadata: Metadata = { title: '驚喜收藏 — SnowRealm Space' }
