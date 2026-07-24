@@ -83,6 +83,14 @@ export {
 export { callAI } from './client.js'
 
 export {
+  encryptKey,
+  decryptKey,
+  envKeyName,
+  createKeyResolver,
+  type KeyResolverDeps,
+} from './keys.js'
+
+export {
   type UsageCompletion,
   type ModelCallResult,
   type UsageLogEntry,
