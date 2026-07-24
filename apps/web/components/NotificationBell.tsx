@@ -18,6 +18,7 @@ const CATEGORY_LABEL: Record<string, string> = {
   agent: 'Agent',
   weekly_recap: '回顧',
   milestone: '里程碑',
+  birthday: '生日',
   processing_done: '處理完成',
   sync_success: '同步',
   sync_failed: '同步失敗',

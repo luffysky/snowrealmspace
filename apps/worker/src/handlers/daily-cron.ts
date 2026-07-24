@@ -15,41 +15,91 @@ import { getTodayContent, maybeGenerateProactive, generateInsights } from '@snow
  */
 const DAILY_HOUR = 4
 const WEEKLY_HOUR = 9
+const BIRTHDAY_HOUR = 9
 const WEEKLY_WEEKDAY = 'Mon'
 
 type SpaceRow = { id: string; timezone: string; owner_id: string }
+type SpaceWithBirthday = SpaceRow & {
+  space_settings: {
+    birthday_month: number | null
+    birthday_day: number | null
+    birthday_greeted_year: number | null
+  } | null
+}
 
-/** 用 Intl 取某時區的當地小時與星期（三字母）。 */
-function localParts(timeZone: string, now: Date): { hour: number; weekday: string } {
+/** 用 Intl 取某時區的當地小時、星期（三字母）、年月日。 */
+function localParts(
+  timeZone: string,
+  now: Date,
+): { hour: number; weekday: string; year: number; month: number; day: number } {
   const fmt = new Intl.DateTimeFormat('en-US', {
     timeZone,
     hour: '2-digit',
     hour12: false,
     weekday: 'short',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
   })
   const parts = fmt.formatToParts(now)
-  const hourStr = parts.find((p) => p.type === 'hour')?.value ?? '0'
-  const weekday = parts.find((p) => p.type === 'weekday')?.value ?? ''
-  // '24' → 0（某些環境午夜回 24）
-  const hour = Number(hourStr) % 24
-  return { hour, weekday }
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? ''
+  const hour = Number(get('hour') || '0') % 24
+  return {
+    hour,
+    weekday: get('weekday'),
+    year: Number(get('year') || '0'),
+    month: Number(get('month') || '0'),
+    day: Number(get('day') || '0'),
+  }
 }
 
 export async function handleDailyGenerate(_jobs: Job<unknown>[]): Promise<void> {
   const admin = createAdminClient()
-  const { data: spaces } = await admin.from('spaces').select('id, timezone, owner_id').is('deleted_at', null)
+  const { data: spaces } = await admin
+    .from('spaces')
+    .select(
+      'id, timezone, owner_id, space_settings(birthday_month, birthday_day, birthday_greeted_year)',
+    )
+    .is('deleted_at', null)
   const now = new Date()
   let generated = 0
 
-  for (const s of (spaces ?? []) as SpaceRow[]) {
-    const { hour } = localParts(s.timezone, now)
-    if (hour !== DAILY_HOUR) continue
-    try {
-      await getTodayContent(s.id, s.timezone)
-      if (s.owner_id) await maybeGenerateProactive(s.id, s.owner_id, s.timezone)
-      generated++
-    } catch (e) {
-      console.error('[daily.generate] 失敗', s.id, (e as Error).message)
+  for (const s of (spaces ?? []) as SpaceWithBirthday[]) {
+    const { hour, month, day, year } = localParts(s.timezone, now)
+
+    if (hour === DAILY_HOUR) {
+      try {
+        await getTodayContent(s.id, s.timezone)
+        if (s.owner_id) await maybeGenerateProactive(s.id, s.owner_id, s.timezone)
+        generated++
+      } catch (e) {
+        console.error('[daily.generate] 失敗', s.id, (e as Error).message)
+      }
+    }
+
+    // 生日祝福：有填生日、當地 09:00、今天是生日、今年還沒祝過 → 寄一則祝福通知
+    const bd = s.space_settings
+    if (
+      hour === BIRTHDAY_HOUR &&
+      bd?.birthday_month === month &&
+      bd?.birthday_day === day &&
+      bd?.birthday_greeted_year !== year
+    ) {
+      try {
+        await admin.from('notifications').insert({
+          space_id: s.id,
+          category: 'birthday',
+          title: '生日快樂！🎂',
+          body: '今天是你的日子。願這一年，你在這個小小空間裡，也過得溫暖、被好好接住。🤍',
+        } as never)
+        await admin
+          .from('space_settings')
+          .update({ birthday_greeted_year: year })
+          .eq('space_id', s.id)
+        console.log('[daily.generate] 生日祝福已送', s.id)
+      } catch (e) {
+        console.error('[daily.generate] 生日祝福失敗', s.id, (e as Error).message)
+      }
     }
   }
   console.log(`[daily.generate] 掃描 ${(spaces ?? []).length} space，當地 04:00 生成 ${generated} 個`)

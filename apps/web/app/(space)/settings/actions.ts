@@ -206,6 +206,49 @@ export async function updateAgentSettings(
   return { status: 'saved', message: '已儲存。' }
 }
 
+const birthdaySchema = z
+  .object({
+    spaceId: z.string().uuid(),
+    // 空字串 = 清除（不填）
+    month: z.coerce.number().int().min(1).max(12).nullable(),
+    day: z.coerce.number().int().min(1).max(31).nullable(),
+  })
+  .strict()
+
+/**
+ * 生日（選填，只存月/日不存年）。有填 → 生日當天寄祝福；清空 → 不寄。
+ */
+export async function updateBirthday(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const rawMonth = (formData.get('month') as string | null)?.trim() || null
+  const rawDay = (formData.get('day') as string | null)?.trim() || null
+  const parsed = birthdaySchema.safeParse({
+    spaceId: formData.get('spaceId'),
+    month: rawMonth,
+    day: rawDay,
+  })
+  if (!parsed.success) return { status: 'error', message: '請填有效的月與日，或都留空。' }
+  const { spaceId, month, day } = parsed.data
+  // 要嘛都填、要嘛都空
+  if ((month === null) !== (day === null)) {
+    return { status: 'error', message: '月與日要一起填，或一起留空。' }
+  }
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+
+  const db = await getDb()
+  const { error } = await db
+    .from('space_settings')
+    .update({ birthday_month: month, birthday_day: day })
+    .eq('space_id', spaceId)
+  if (error) return { status: 'error', message: '沒有權限修改，或儲存失敗。' }
+
+  revalidatePath('/settings')
+  return { status: 'saved', message: month ? '已記住你的生日。' : '已清除生日。' }
+}
+
 const deleteSpaceSchema = z
   .object({ spaceId: z.string().uuid(), confirmName: z.string() })
   .strict()

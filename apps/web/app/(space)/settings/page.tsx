@@ -4,6 +4,7 @@ import { getDb } from '@/lib/supabase/server'
 import { updatePrivacySettings } from './actions'
 import Link from 'next/link'
 import { PrivacyToggles } from './PrivacyToggles'
+import { BirthdayForm } from './BirthdayForm'
 import { AgentSettings } from './AgentSettings'
 import { BackgroundMusicSettings, type AudioOption } from './BackgroundMusicSettings'
 
@@ -102,6 +103,18 @@ export default async function SettingsPage() {
             assetId: settings.background_audio_asset_id ?? null,
             volume: settings.background_audio_volume ?? 0.5,
           }}
+        />
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>個人資料</h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          生日是選填的。填了，生日當天會收到一則小小的祝福。
+        </p>
+        <BirthdayForm
+          spaceId={space.id}
+          month={settings.birthday_month}
+          day={settings.birthday_day}
         />
       </section>
 

@@ -106,7 +106,7 @@ export default async function HomePage() {
         {settings.is_birthday_recipient ? (
           <BirthdayChain />
         ) : (
-          <WelcomeLetter spaceName={space.name} />
+          <WelcomeLetter spaceName={space.name} seed={space.id} />
         )}
       </div>
 
