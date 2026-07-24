@@ -61,3 +61,12 @@ export {
 export { normalizeQuestion, SEMANTIC_CACHE_THRESHOLD } from './cache-key.js'
 
 export { DEFAULT_CANDIDATES } from './default-candidates.js'
+
+export {
+  type AttemptResult,
+  type CandidateOutcome,
+  type RunDeps,
+  type RunOptions,
+  type RunResult,
+  runCandidateChain,
+} from './router.js'
