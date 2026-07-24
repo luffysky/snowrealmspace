@@ -132,12 +132,15 @@
 - [x] ~~`runCandidateChain` 編排演算法：fallback/升級一次/缺金鑰跳過/真錯直接拋/degraded（§11 端到端 10 測試）~~
 - [x] ~~migration 0023：ai_models/provider_keys/usage_models/usage_log/daily_quota/response_cache + RLS~~
 - [x] ~~ESLint 禁直接 import AI 廠商 SDK（本就存在，ai-core 已豁免）~~
-- [ ] 🔴 **callAI/streamAI HTTP client**（3 協定）+ keys.ts（DB→env→null）—— 需 AI 金鑰才能端到端驗
-- [ ] 🔴 **completeForUsage 全整合**：預算閘門 + 快取查寫 + ai_usage_log 寫入（接 runCandidateChain）
-- [ ] 🔴 ai_models/ai_usage_models seed（實際模型清單）
-- [ ] Agent system prompt、context builder、SSE 串流、五分類 + `clampStatement`
+- [x] ~~**callAI**（3 協定 HTTP client）+ keys.ts（AES-256-GCM，DB→env→null）—— 74 測試~~
+- [x] ~~**completeForUsage 全整合**：預算閘門 + 快取 + ai_usage_log + degraded（DI，mock 測試）~~
+- [x] ~~**buildCompleteDeps** 接真 Supabase + migration 0024 額度累計函式 + seed（9 模型/18 用途）~~
+- [x] ~~**五分類 clampStatement**（fact/metric/inference 證據強制、inference≤0.85、丟無效保其餘）~~
+- [x] ~~整合驗證 verify-d-routing：無金鑰時候選鏈/預算/跳過/誠實失敗全對~~
+- [ ] 🔴 **設定 AI 金鑰**（Groq + Gemini 兩把免費）→ Agent 對話才能真的跑（基礎全備）
+- [ ] Agent system prompt、context builder、SSE 串流、UI 五分類視覺區別
 - [ ] 10 個 tool、Memory（提案→批准、pgvector）、設計分析（light/deep）
-- [ ] 額度閘門免費/付費分開、`degraded` UI（快速模式提示）
+- [ ] 把 Insight/daily/greeting 接上 completeForUsage（有金鑰才升級，無則現行規則式）
 
 ---
 
