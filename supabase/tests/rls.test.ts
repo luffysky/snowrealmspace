@@ -164,6 +164,164 @@ describe('activity_events append-only', () => {
 })
 
 /**
+ * Milestone C 的新表：projects / design_files / design_snapshots /
+ * design_insights / timeline_events。ADR-017：每張帶 space_id 的表都要證明隔離。
+ *
+ * 這裡刻意用 admin 種入 Bob 的真實資料，再用 Alice 的受 RLS client 斷言，
+ * 避免「表是空的所以查詢當然回空陣列」這種假通過。
+ */
+describe('RLS：Creative Core（Milestone C）', () => {
+  let bobAssetId: string
+  let bobFileId: string
+
+  beforeAll(async () => {
+    const admin = adminDb()
+
+    // Bob 的專案
+    await admin.from('projects').insert({
+      space_id: bob.spaceId,
+      created_by: bob.userId,
+      name: 'Bob 的私密專案',
+    })
+
+    // Bob 的一張 asset（design_snapshot 的 FK 需要）
+    const { data: asset } = await admin
+      .from('assets')
+      .insert({
+        space_id: bob.spaceId,
+        created_by: bob.userId,
+        kind: 'image',
+        mime_type: 'image/png',
+        bytes: 1234,
+        checksum: `bobsum-${Date.now()}`,
+        storage_key: `bob/${Date.now()}.png`,
+        status: 'ready',
+      })
+      .select('id')
+      .single()
+    bobAssetId = asset!.id
+
+    // Bob 的作品 + 版本快照
+    const { data: file } = await admin
+      .from('design_files')
+      .insert({
+        space_id: bob.spaceId,
+        created_by: bob.userId,
+        provider: 'upload',
+        title: 'Bob 的作品',
+      })
+      .select('id')
+      .single()
+    bobFileId = file!.id
+
+    await admin.from('design_snapshots').insert({
+      space_id: bob.spaceId,
+      design_file_id: bobFileId,
+      asset_id: bobAssetId,
+      checksum: `bobsnap-${Date.now()}`,
+    })
+
+    // Bob 的 timeline 投影
+    await admin.from('timeline_events').insert({
+      space_id: bob.spaceId,
+      event_type: 'project.created',
+      title: 'Bob 建立了專案',
+      occurred_at: new Date().toISOString(),
+    })
+
+    // Alice 自己的專案（證明正向可讀）
+    await admin.from('projects').insert({
+      space_id: alice.spaceId,
+      created_by: alice.userId,
+      name: 'Alice 的專案',
+    })
+  })
+
+  it('Alice 讀得到自己的 project', async () => {
+    const { data } = await alice.db.from('projects').select('name').eq('space_id', alice.spaceId)
+    expect(data?.map((r) => r.name)).toContain('Alice 的專案')
+  })
+
+  it.each(['projects', 'design_files', 'design_snapshots', 'timeline_events'] as const)(
+    '%s：Alice 查不到任何 Bob 的列',
+    async (table) => {
+      const { data, error } = await alice.db.from(table).select('space_id').eq('space_id', bob.spaceId)
+      expect(error).toBeNull()
+      expect(data).toEqual([])
+    },
+  )
+
+  it('Alice 無法在 Bob 的 space 建立 project', async () => {
+    const { error } = await alice.db
+      .from('projects')
+      .insert({ space_id: bob.spaceId, name: '越權' })
+    expect(error).not.toBeNull()
+  })
+
+  it('Alice 無法在 Bob 的 space 建立 design_file', async () => {
+    const { error } = await alice.db
+      .from('design_files')
+      .insert({ space_id: bob.spaceId, provider: 'upload', title: '越權' })
+    expect(error).not.toBeNull()
+  })
+
+  it('design_snapshots 沒有成員 INSERT policy（版本不可偽造）', async () => {
+    // 即使在自己的 space，成員也不能直接建 snapshot —— 只能走 service role。
+    const { data: aliceFile } = await adminDb()
+      .from('design_files')
+      .insert({ space_id: alice.spaceId, created_by: alice.userId, provider: 'upload', title: 'x' })
+      .select('id')
+      .single()
+    const { data: aliceAsset } = await adminDb()
+      .from('assets')
+      .insert({
+        space_id: alice.spaceId,
+        kind: 'image',
+        mime_type: 'image/png',
+        bytes: 10,
+        checksum: `asum-${Date.now()}`,
+        storage_key: `alice/${Date.now()}.png`,
+        status: 'ready',
+      })
+      .select('id')
+      .single()
+
+    const { error } = await alice.db.from('design_snapshots').insert({
+      space_id: alice.spaceId,
+      design_file_id: aliceFile!.id,
+      asset_id: aliceAsset!.id,
+      checksum: `snap-${Date.now()}`,
+    })
+    expect(error).not.toBeNull()
+  })
+
+  it('刪除被 snapshot 引用的 asset 被 DB 擋下（on delete restrict）', async () => {
+    // service role 硬刪也會被 FK restrict 擋 —— 強制走「先檢查引用」的刪除流程。
+    const { error } = await adminDb().from('assets').delete().eq('id', bobAssetId)
+    expect(error).not.toBeNull()
+    expect(error?.code).toBe('23503') // foreign_key_violation
+  })
+
+  it('timeline：owner 讀得到自己隱藏的投影（供管理／取消隱藏）', async () => {
+    // visibility=hidden 的過濾寫在 "member reads" policy，作用於未來的 guest 角色；
+    // owner 透過 "owner manages timeline" policy 仍看得到全部，這是刻意的 ——
+    // 否則 owner 一旦隱藏就再也管理不到。Birthday Alpha 只有 owner。
+    await adminDb().from('timeline_events').insert({
+      space_id: alice.spaceId,
+      event_type: 'test.hidden',
+      title: '隱藏的事件',
+      occurred_at: new Date().toISOString(),
+      visibility: 'hidden',
+    })
+    const { data } = await alice.db
+      .from('timeline_events')
+      .select('title, visibility')
+      .eq('space_id', alice.spaceId)
+    expect(data?.some((r) => r.title === '隱藏的事件' && r.visibility === 'hidden')).toBe(true)
+  })
+})
+
+/**
  * user_identities 的隔離鍵是 user_id 而不是 space_id（ADR-006 的例外，
  * 已記在 check-rls.ts 的 REQUIRED_RLS_WITHOUT_SPACE_ID）。
  * 那是刻意的：登入方式屬於人，一個人可以在多個 space。

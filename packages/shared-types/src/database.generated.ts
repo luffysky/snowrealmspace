@@ -157,6 +157,7 @@ export type Database = {
       }
       assets: {
         Row: {
+          archived_at: string | null
           bytes: number
           checksum: string
           created_at: string
@@ -166,6 +167,7 @@ export type Database = {
           failure_reason: string | null
           height: number | null
           id: string
+          is_favorite: boolean
           kind: string
           local_features: Json
           mime_type: string
@@ -173,10 +175,12 @@ export type Database = {
           space_id: string
           status: string
           storage_key: string
+          tags: string[]
           updated_at: string
           width: number | null
         }
         Insert: {
+          archived_at?: string | null
           bytes: number
           checksum: string
           created_at?: string
@@ -186,6 +190,7 @@ export type Database = {
           failure_reason?: string | null
           height?: number | null
           id?: string
+          is_favorite?: boolean
           kind: string
           local_features?: Json
           mime_type: string
@@ -193,10 +198,12 @@ export type Database = {
           space_id: string
           status?: string
           storage_key: string
+          tags?: string[]
           updated_at?: string
           width?: number | null
         }
         Update: {
+          archived_at?: string | null
           bytes?: number
           checksum?: string
           created_at?: string
@@ -206,6 +213,7 @@ export type Database = {
           failure_reason?: string | null
           height?: number | null
           id?: string
+          is_favorite?: boolean
           kind?: string
           local_features?: Json
           mime_type?: string
@@ -213,6 +221,7 @@ export type Database = {
           space_id?: string
           status?: string
           storage_key?: string
+          tags?: string[]
           updated_at?: string
           width?: number | null
         }
@@ -586,6 +595,263 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "daily_items_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      design_connections: {
+        Row: {
+          access_token_encrypted: string | null
+          created_at: string
+          expires_at: string | null
+          external_account_id: string | null
+          external_account_label: string | null
+          id: string
+          last_error: string | null
+          last_synced_at: string | null
+          provider: string
+          refresh_token_encrypted: string | null
+          scopes: string[]
+          space_id: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          access_token_encrypted?: string | null
+          created_at?: string
+          expires_at?: string | null
+          external_account_id?: string | null
+          external_account_label?: string | null
+          id?: string
+          last_error?: string | null
+          last_synced_at?: string | null
+          provider: string
+          refresh_token_encrypted?: string | null
+          scopes?: string[]
+          space_id: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          access_token_encrypted?: string | null
+          created_at?: string
+          expires_at?: string | null
+          external_account_id?: string | null
+          external_account_label?: string | null
+          id?: string
+          last_error?: string | null
+          last_synced_at?: string | null
+          provider?: string
+          refresh_token_encrypted?: string | null
+          scopes?: string[]
+          space_id?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "design_connections_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      design_files: {
+        Row: {
+          connection_id: string | null
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          description: string | null
+          external_id: string | null
+          id: string
+          last_error: string | null
+          last_synced_at: string | null
+          project_id: string | null
+          provider: string
+          source_url: string | null
+          space_id: string
+          sync_status: string
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          description?: string | null
+          external_id?: string | null
+          id?: string
+          last_error?: string | null
+          last_synced_at?: string | null
+          project_id?: string | null
+          provider?: string
+          source_url?: string | null
+          space_id: string
+          sync_status?: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          description?: string | null
+          external_id?: string | null
+          id?: string
+          last_error?: string | null
+          last_synced_at?: string | null
+          project_id?: string | null
+          provider?: string
+          source_url?: string | null
+          space_id?: string
+          sync_status?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "design_files_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "design_connections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "design_files_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "design_files_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      design_insights: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          model_used: string | null
+          snapshot_id: string | null
+          space_id: string
+          statements: Json
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          model_used?: string | null
+          snapshot_id?: string | null
+          space_id: string
+          statements?: Json
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          model_used?: string | null
+          snapshot_id?: string | null
+          space_id?: string
+          statements?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "design_insights_snapshot_id_fkey"
+            columns: ["snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "design_snapshots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "design_insights_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      design_snapshots: {
+        Row: {
+          asset_id: string
+          checksum: string
+          created_at: string
+          design_file_id: string
+          document_asset_id: string | null
+          external_version_id: string | null
+          extracted_features: Json
+          id: string
+          space_id: string
+          vision_features: Json
+        }
+        Insert: {
+          asset_id: string
+          checksum: string
+          created_at?: string
+          design_file_id: string
+          document_asset_id?: string | null
+          external_version_id?: string | null
+          extracted_features?: Json
+          id?: string
+          space_id: string
+          vision_features?: Json
+        }
+        Update: {
+          asset_id?: string
+          checksum?: string
+          created_at?: string
+          design_file_id?: string
+          document_asset_id?: string | null
+          external_version_id?: string | null
+          extracted_features?: Json
+          id?: string
+          space_id?: string
+          vision_features?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "design_snapshots_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "design_snapshots_design_file_id_fkey"
+            columns: ["design_file_id"]
+            isOneToOne: false
+            referencedRelation: "design_files"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "design_snapshots_document_asset_id_fkey"
+            columns: ["document_asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "design_snapshots_space_id_fkey"
             columns: ["space_id"]
             isOneToOne: false
             referencedRelation: "spaces"
@@ -1000,6 +1266,107 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      projects: {
+        Row: {
+          cover_asset_id: string | null
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          description: string | null
+          id: string
+          last_activity_at: string
+          name: string
+          space_id: string
+          status: string
+          tags: string[]
+          updated_at: string
+        }
+        Insert: {
+          cover_asset_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          description?: string | null
+          id?: string
+          last_activity_at?: string
+          name: string
+          space_id: string
+          status?: string
+          tags?: string[]
+          updated_at?: string
+        }
+        Update: {
+          cover_asset_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          description?: string | null
+          id?: string
+          last_activity_at?: string
+          name?: string
+          space_id?: string
+          status?: string
+          tags?: string[]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_cover_asset_id_fkey"
+            columns: ["cover_asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "projects_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      provider_webhooks: {
+        Row: {
+          connection_id: string | null
+          external_event_id: string
+          id: string
+          payload: Json
+          processed_at: string | null
+          provider: string
+          received_at: string
+          signature_ok: boolean
+        }
+        Insert: {
+          connection_id?: string | null
+          external_event_id: string
+          id?: string
+          payload: Json
+          processed_at?: string | null
+          provider: string
+          received_at?: string
+          signature_ok: boolean
+        }
+        Update: {
+          connection_id?: string | null
+          external_event_id?: string
+          id?: string
+          payload?: Json
+          processed_at?: string | null
+          provider?: string
+          received_at?: string
+          signature_ok?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_webhooks_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "design_connections"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       schema_migrations: {
         Row: {
@@ -1444,6 +1811,89 @@ export type Database = {
           },
           {
             foreignKeyName: "themes_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      timeline_events: {
+        Row: {
+          body: string | null
+          cover_asset_id: string | null
+          created_at: string
+          deleted_at: string | null
+          entity_id: string | null
+          entity_type: string | null
+          event_type: string
+          id: string
+          occurred_at: string
+          project_id: string | null
+          source_event_id: string | null
+          space_id: string
+          title: string
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          body?: string | null
+          cover_asset_id?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          entity_id?: string | null
+          entity_type?: string | null
+          event_type: string
+          id?: string
+          occurred_at: string
+          project_id?: string | null
+          source_event_id?: string | null
+          space_id: string
+          title: string
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          body?: string | null
+          cover_asset_id?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          entity_id?: string | null
+          entity_type?: string | null
+          event_type?: string
+          id?: string
+          occurred_at?: string
+          project_id?: string | null
+          source_event_id?: string | null
+          space_id?: string
+          title?: string
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "timeline_events_cover_asset_id_fkey"
+            columns: ["cover_asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "timeline_events_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "timeline_events_source_event_id_fkey"
+            columns: ["source_event_id"]
+            isOneToOne: false
+            referencedRelation: "activity_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "timeline_events_space_id_fkey"
             columns: ["space_id"]
             isOneToOne: false
             referencedRelation: "spaces"
