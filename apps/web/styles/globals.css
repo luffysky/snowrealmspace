@@ -2318,3 +2318,59 @@ input[type='range'] {
   flex: 1;
   resize: vertical;
 }
+
+/* ══ 斷點方案（統一參考） ══════════════════════════
+   ⌚ 手錶 ≤340 · 📱 手機 341–599 · 平板 600–1023 · 筆電 1024–1439 · 🖥 桌機 ≥1440
+   所有裝置都顧橫/直式：短高度橫式另外處理。 */
+
+/* ⌚ 手錶（≤340px）：極窄的驚喜模式。只在超窄裝置生效，不影響一般尺寸。 */
+@media (max-width: 340px) {
+  :root {
+    --sr-scale-body: 0.9;
+  }
+  .sr-main {
+    padding: var(--sr-space-3) var(--sr-space-2);
+  }
+  .sr-nav {
+    padding: var(--sr-space-2);
+  }
+  .sr-nav-links {
+    gap: 2px;
+  }
+  .sr-card {
+    padding: var(--sr-space-3);
+    border-radius: var(--sr-radius-sm);
+  }
+  .sr-btn-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .sr-form-cols {
+    grid-template-columns: 1fr;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+}
+
+/* 短高度橫式（手機/手錶橫放、可折疊筆電翻轉）：省垂直空間、確保能捲、
+   避免「置中滿高」把內容推出畫面。只在矮又橫時生效。 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .sr-center {
+    align-items: flex-start;
+    min-height: auto;
+    padding-top: var(--sr-space-4);
+    padding-bottom: var(--sr-space-4);
+  }
+  .sr-notif-panel {
+    max-height: 82vh;
+  }
+  .sr-tour-tip {
+    max-height: 82vh;
+    overflow: auto;
+  }
+  .sr-cookie {
+    max-height: 60vh;
+    overflow: auto;
+  }
+}
