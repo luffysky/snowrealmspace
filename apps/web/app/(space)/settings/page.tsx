@@ -86,6 +86,12 @@ export default async function SettingsPage() {
           }}
           action={updatePrivacySettings}
         />
+
+        <p style={{ marginTop: 'var(--sr-space-4)', marginBottom: 0 }}>
+          <Link href="/settings/data" className="sr-link">
+            資料地圖：看看這個空間存了什麼、怎麼刪 →
+          </Link>
+        </p>
       </section>
 
       <section className="sr-card">

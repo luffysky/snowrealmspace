@@ -2127,3 +2127,29 @@ input[type='range'] {
   color: var(--sr-text-secondary);
   cursor: pointer;
 }
+
+/* ── 資料地圖（Milestone C7）──────────────────────────── */
+.sr-link {
+  color: var(--sr-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sr-datamap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-4);
+}
+.sr-datamap-row > div {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+}
+.sr-datamap-row .sr-badge {
+  margin-left: 0;
+}
+.sr-datamap-row p {
+  margin: var(--sr-space-1) 0;
+}

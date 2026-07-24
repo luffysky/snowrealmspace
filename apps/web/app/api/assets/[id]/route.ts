@@ -99,6 +99,16 @@ export const DELETE = handler(
     }
 
     const references = await findReferences(admin, ctx.spaceId, id)
+    const blocking = references.filter((r) => !r.cascadable)
+
+    // 不可 cascade 的引用（作品版本）永遠擋下 —— 即使帶 cascade=true。
+    // 使用者必須先到「作品」移除相關版本，才不會誤刪掉某件作品的歷史。
+    if (blocking.length > 0) {
+      return fail('HAS_REFERENCES', '這個檔案是某件作品的版本，請先到「作品」移除該版本。', {
+        references: blocking,
+        blocking: true,
+      })
+    }
 
     if (references.length > 0 && !cascade) {
       return fail('HAS_REFERENCES', '這個檔案還在別的地方被使用。', {
@@ -107,12 +117,22 @@ export const DELETE = handler(
     }
 
     if (cascade) {
+      const now = new Date().toISOString()
       for (const ref of references) {
         if (ref.type === 'background_item') {
-          await admin.from('background_items').update({ deleted_at: new Date().toISOString() }).eq('id', ref.id)
+          await admin.from('background_items').update({ deleted_at: now }).eq('id', ref.id)
         }
         if (ref.type === 'theme') {
           await admin.from('themes').update({ source_asset_id: null }).eq('id', ref.id)
+        }
+        if (ref.type === 'project_cover') {
+          await admin.from('projects').update({ cover_asset_id: null }).eq('id', ref.id)
+        }
+        if (ref.type === 'timeline') {
+          await admin.from('timeline_events').update({ cover_asset_id: null }).eq('id', ref.id)
+        }
+        if (ref.type === 'agent_avatar') {
+          await admin.from('agent_profiles').update({ avatar_asset_id: null }).eq('space_id', ref.id)
         }
       }
     }
