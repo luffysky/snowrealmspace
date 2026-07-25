@@ -1,0 +1,22 @@
+# Git hooks（lefthook）。把既有品質閘門接到 commit / push。
+# 快的放 pre-commit、慢的放 pre-push，避免每次 commit 都等太久。
+#
+# Windows + pnpm 裝在使用者目錄：hook 執行時需要 pnpm 在 PATH。
+# 若 hook 報「pnpm: command not found」，先 `export PATH="$HOME/.npm-global:$PATH"`
+# 或用 `git commit --no-verify` 暫時跳過（不建議常態跳）。
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: secrets
+      run: pnpm check:secrets
+    - name: lint
+      run: pnpm lint
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: typecheck
+      run: pnpm typecheck
+    - name: deps
+      run: pnpm check:deps
