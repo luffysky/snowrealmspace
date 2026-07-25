@@ -21,9 +21,34 @@ function confidenceLabel(type: string, confidence: number): string {
 }
 
 /** 回顧清單。每筆都是「有根據的描述」，標明分類、附證據數與可信度。 */
-export function InsightList({ initial }: { initial: Insight[] }) {
+export function InsightList({ initial, spaceId }: { initial: Insight[]; spaceId: string }) {
   const [items, setItems] = useState(initial)
   const [pending, startTransition] = useTransition()
+  const [aiBusy, setAiBusy] = useState(false)
+  const [aiMsg, setAiMsg] = useState<string | null>(null)
+
+  async function generate() {
+    setAiBusy(true)
+    setAiMsg(null)
+    try {
+      const res = await fetch('/api/insights/generate', { method: 'POST', headers: { 'x-space-id': spaceId } })
+      const body = (await res.json().catch(() => null)) as { data?: { added?: number; message?: string }; error?: { message?: string } } | null
+      if (!res.ok) {
+        setAiMsg(body?.error?.message ?? 'AI 生成失敗。')
+        return
+      }
+      const added = body?.data?.added ?? 0
+      if (added > 0) {
+        window.location.reload() // 取回含新建議的完整清單
+      } else {
+        setAiMsg(body?.data?.message ?? 'AI 這次沒有新的建議。')
+      }
+    } catch {
+      setAiMsg('網路錯誤，請重試。')
+    } finally {
+      setAiBusy(false)
+    }
+  }
 
   function remove(id: string) {
     const before = items
@@ -34,18 +59,32 @@ export function InsightList({ initial }: { initial: Insight[] }) {
     })
   }
 
+  const toolbar = (
+    <div className="sr-row" style={{ justifyContent: 'flex-end', alignItems: 'center', flexWrap: 'wrap', marginBottom: 'var(--sr-space-3)' }}>
+      {aiMsg && <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>{aiMsg}</span>}
+      <button type="button" className="sr-button sr-button-secondary" onClick={() => void generate()} disabled={aiBusy}>
+        {aiBusy ? 'AI 想想…' : '✨ AI 深入回顧'}
+      </button>
+    </div>
+  )
+
   if (items.length === 0) {
     return (
-      <section className="sr-card sr-empty">
-        <p className="sr-muted" style={{ margin: 0 }}>
-          這個週期還沒有足夠的活動可以回顧。多用幾天，換個主題、上傳點東西，再回來看看。
-        </p>
-      </section>
+      <div>
+        {toolbar}
+        <section className="sr-card sr-empty">
+          <p className="sr-muted" style={{ margin: 0 }}>
+            這個週期還沒有足夠的活動可以回顧。多用幾天，換個主題、上傳點東西，再回來看看。
+          </p>
+        </section>
+      </div>
     )
   }
 
   return (
-    <div className="sr-insight-grid">
+    <div>
+      {toolbar}
+      <div className="sr-insight-grid">
       {items.map((it) => {
         const meta = TYPE_META[it.type] ?? { label: it.type, icon: '•' }
         return (
@@ -80,6 +119,7 @@ export function InsightList({ initial }: { initial: Insight[] }) {
           </article>
         )
       })}
+      </div>
     </div>
   )
 }

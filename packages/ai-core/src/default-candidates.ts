@@ -66,6 +66,7 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
   daily_prompt: [
     { model: 'mistral:mistral-small-latest', role: 'primary' },
     { model: 'cerebras:llama-3.3-70b', role: 'fallback' },
+    { model: 'groq:llama-3.3-70b-versatile', role: 'fallback' },
   ],
   greeting: [
     { model: 'groq:llama-3.3-70b-versatile', role: 'primary' },
@@ -78,10 +79,12 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
   insight_phrasing: [
     { model: 'mistral:mistral-small-latest', role: 'primary' },
     { model: 'cerebras:llama-3.3-70b', role: 'fallback' },
+    { model: 'groq:llama-3.3-70b-versatile', role: 'fallback' },
   ],
   weekly_recap: [
     { model: 'cerebras:llama-3.3-70b', role: 'primary' },
     { model: 'mistral:mistral-small-latest', role: 'fallback' },
+    { model: 'groq:llama-3.3-70b-versatile', role: 'fallback' },
   ],
   asset_tagging: [
     { model: 'groq:llama-3.3-70b-versatile', role: 'primary' },
