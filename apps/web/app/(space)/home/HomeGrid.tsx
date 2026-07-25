@@ -138,6 +138,25 @@ export function HomeGrid({
     }
   }
 
+  async function resetLayout() {
+    if (
+      !(await confirm({
+        title: '還原預設版面',
+        message: '會清掉目前這個版面的排列，重新放回一組預設區塊。這個動作無法復原，確定嗎？',
+        danger: true,
+        confirmText: '還原預設',
+      }))
+    )
+      return
+    try {
+      await api(`/api/layouts/${layoutId}/reset`, { method: 'POST' })
+      // 同一個版面 id、widget 清單整批換掉 → 直接重載入取得乾淨狀態
+      window.location.reload()
+    } catch (err) {
+      setNotice(err instanceof Error ? err.message : '還原失敗。')
+    }
+  }
+
   // 依視窗寬度決定斷點
   useEffect(() => {
     const update = () => setBreakpoint(breakpointForWidth(window.innerWidth))
@@ -338,6 +357,9 @@ export function HomeGrid({
             </button>
             <button type="button" className="sr-button sr-button-secondary" onClick={() => void renameLayout()}>
               版面改名
+            </button>
+            <button type="button" className="sr-button sr-button-secondary" onClick={() => void resetLayout()}>
+              還原預設
             </button>
             {layouts.length > 1 && (
               <button type="button" className="sr-asset-delete" onClick={() => void deleteLayout()}>
