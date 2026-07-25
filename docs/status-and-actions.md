@@ -21,9 +21,13 @@
 - **PWA/SEO**：favicon、PWA icon、manifest、OG/meta、robots/sitemap
 - **AI 後台**：`/admin/ai-keys`（金鑰）、`/admin/ai/models`（模型）、`/admin/ai/candidates`（候選鏈）、
   `/admin/ai/usage`（用量成本）、`/admin/ai/quota`（每日額度）、`/admin/ai/cache`（回應快取）
-- **Agent/內容/系統後台**：`/admin/agent-actions`、`/admin/content`（內容池）、
-  `/admin/flags`（Feature Flags 即時切換）、`/admin/spaces`（Space／使用者）、`/admin/system`、`/admin/audit`、
-  `/admin/ai/cache`（**可清除**：清過期／全部清空）
+- **Agent/內容/系統後台**：`/admin/agent-actions`、`/admin/content`（內容池，可審核）、
+  `/admin/content-filters`（安全字樣附加）、`/admin/flags`（Feature Flags 即時切換）、
+  `/admin/spaces`、`/admin/system`、`/admin/audit`、`/admin/ai/cache`（可清除）、
+  `/admin/ai/quota`（上限可設）、`/admin/ai/candidates`（可編輯）
+- **後台平台化（ERP/CRM 雛形）**：AdminShell 側邊欄＋回前台＋Dashboard；`/admin/users`（角色/特權）＋
+  `/admin/users/[id]`（使用者 360）＋`/admin/resources`（各空間資源成本帳）。後台可藏在 `ADMIN_SEGMENT` 隨機碼後
+- **站台角色**：owner（Luffy）/admin（Nami）/member + 特權（免費用全站資源，已接 AI 額度閘門）
 - **Lottie 動畫背景**：5 個自製向量動畫（CC0），lottie-web 懶載入、省流量/減動態降級
 - **Agent 語氣**：設定頁可選 warm/gentle/professional/playful/concise → 注入對話與主動訊息（參考 AI 島 persona）
 - **修 bug**：多 agent 全專案排查修了 ~15 個 runtime bug（音訊上傳全壞、背景存檔靜默失敗、
@@ -49,7 +53,7 @@
 | 事項 | 怎麼做 |
 |---|---|
 | **啟動 Zeabur worker** | 已完成 ✅（上傳處理/場景/排程都靠它） |
-| **hosted migrations** | 每次我加 DB 欄位就跑 `pnpm db:migrate`（目前已到 **0038**，含 widget_notes（隨手記）） |
+| **hosted migrations** | 每次我加 DB 欄位就跑 `pnpm db:migrate`（目前已到 **0041**（widget_notes / ai_quota_config / content_filter_patterns / site_roles）） |
 | **R2 bucket CORS** | 已貼 ✅（上傳才通） |
 | **Zeabur `auth` 服務網址** | 設 `GOTRUE_SITE_URL`／`GOTRUE_URI_ALLOW_LIST`／`API_EXTERNAL_URL` 為正式網域 → 修 magic link 8080 |
 | **Resend 寄件人網域** | `service@snowrealm.pet` 驗證 → magic link email 才寄得出 |

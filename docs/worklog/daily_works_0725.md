@@ -109,3 +109,36 @@ Luffy：「繼續往 Bucket A 清單做」。
 站台管理員 DB 角色、整合狀態頁、回應快取 per-usage 失效、本地設計分析擴充（對比/文字區亮度）、
 主動訊息改時區 cron、Insight 軟刪除 upsert、lefthook、Next standalone、91-backlog 重新盤點、
 widget projectId 選擇器、lib 單元測試補強。
+
+---
+
+## 🔥 續 3：線上事故 + 站台角色/後台平台化（0725 深夜）
+
+### 線上全站 500 事故（我造成、已修）
+- **根因**：隨手記路由 `api/widgets/[instanceId]/note` 與既有 `[id]` 用了不同 slug 名 →
+  `next start` 啟動即拋「You cannot use different slug names」→ Zeabur 容器 crash-loop → **全站 500**。
+- **為何漏掉**：`next build` 綠、只有 `next start` 抓；且 **Zeabur push 自動部署**，一推就掛。
+- **修復**：改名 `[id]`，並**改用 `next start` 驗證**（不只 build）。之後每個路由/中介層改動都 next start 實測。
+- 已寫進記憶 `next-start-and-zeabur-autodeploy`。順帶發現 `pnpm test`(turbo) 是空跑、真測試是 `test:coverage`。
+- 同場修 CI：`check:rls` 把 ai_quota_config/content_filter_patterns（全域設定表）加進 allowlist。
+
+### 站台角色 + 特權
+- `profiles` 加 `site_role`(owner/admin/member) + `privileged`（0041）。checkSiteAdmin 改讀 DB 角色 + env 保險絲。
+- 綁定：Luffy=owner、Nami=admin，皆特權。**特權接進 AI 額度閘門**（buildCompleteDeps 收 userId → 不擋）。
+
+### 後台平台化（參照 AI 島 → ERP/CRM 雛形）
+- **AdminShell**：後台自己的側邊欄（分組）+「← 回前台」+ 手機抽屜；整層 checkSiteAdmin。
+- **Dashboard**（/admin）：8 張真實 KPI 卡。
+- **CRM**：`/admin/users` 可調角色/特權 + `/admin/users/[id]` 使用者 360 詳情。
+- **ERP**：`/admin/resources` 各空間儲存/AI 用量成本帳（合計、排序）。
+- **內容安全字樣**：FORBIDDEN_PATTERNS 附加層（0040）。**回應快取清除**、**額度上限可設**、**候選鏈編輯**、**內容池審核**。
+- **後台隨機碼**：env `ADMIN_SEGMENT` → `/<碼>/admin`，裸 /admin 404（防掃描 + 角色閘門雙層）。
+
+### 前台 + 內容
+- **響應式導覽**（側邊欄/漢堡/時間差）、**隨手記存 DB**（+載入/儲存失敗區分）、**67 場景**、
+  **每日回顧頁** `/daily`、**公開頁頂列**、**個人資料顯示 UUID**。
+- **生日首訊重寫**：chain-birthday-00 拿掉「為你做的」壓力感（yaml + 線上 DB）。生日主角設為 Nami（7/24）。
+
+### 待你
+- Zeabur 設 `ADMIN_SEGMENT` 啟用後台密路徑；貼 AI 金鑰後特權免費才驗得到。
+- 隨手記若仍「讀不到雲端」→ 硬重整清 PWA 快取；否則給我 Network 狀態碼。
