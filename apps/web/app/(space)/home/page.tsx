@@ -118,14 +118,19 @@ export default async function HomePage() {
       </section>
 
       {/*
-        生日當天：不管是誰，都看到信封生日卡（點開有動畫）。
-        其餘日子：生日主角（Nami）看生日鏈；其他人看溫暖歡迎信。
+        壽星（生日主角）：信封卡留在 Home 等她親手打開＋收藏；收藏後才移到驚喜收藏頁，
+          之後 Home 改看生日鏈。
+        其他人：生日當天看信封卡（可保存）；其餘日子看溫暖歡迎信。
       */}
       <div data-tour="home-grid">
-        {isBirthdayToday ? (
+        {settings.is_birthday_recipient ? (
+          settings.birthday_card_collected_at ? (
+            <BirthdayChain />
+          ) : (
+            <EnvelopeCard {...birthdayCardFor(space.id)} savable collectable spaceId={space.id} />
+          )
+        ) : isBirthdayToday ? (
           <EnvelopeCard {...birthdayCardFor(space.id)} savable />
-        ) : settings.is_birthday_recipient ? (
-          <BirthdayChain />
         ) : (
           <WelcomeLetter spaceName={space.name} seed={space.id} />
         )}

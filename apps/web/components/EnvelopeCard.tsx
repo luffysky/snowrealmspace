@@ -13,14 +13,22 @@ export function EnvelopeCard({
   title,
   lines,
   savable = false,
+  collectable = false,
+  spaceId,
 }: {
   title: string
   lines: string[]
   /** 顯示「再看一次／保存成圖片」。常駐版（驚喜收藏）開啟；Home 當天版預設關閉。 */
   savable?: boolean
+  /** 顯示「收進驚喜收藏」——壽星在 Home 親手收藏，收完這張卡改於驚喜收藏頁常駐。 */
+  collectable?: boolean
+  /** collectable 時必填：呼叫收藏 API 用的 x-space-id。 */
+  spaceId?: string
 }) {
   const [stage, setStage] = useState<'sealed' | 'opening' | 'reading'>('sealed')
   const [saved, setSaved] = useState(false)
+  const [collected, setCollected] = useState(false)
+  const [collecting, setCollecting] = useState(false)
   const timer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
@@ -40,6 +48,20 @@ export function EnvelopeCard({
   function reseal() {
     window.clearTimeout(timer.current)
     setStage('sealed')
+  }
+
+  async function collect() {
+    if (!spaceId || collecting || collected) return
+    setCollecting(true)
+    try {
+      const res = await fetch('/api/birthday-card/collect', {
+        method: 'POST',
+        headers: { 'x-space-id': spaceId },
+      })
+      if (res.ok) setCollected(true)
+    } finally {
+      setCollecting(false)
+    }
   }
 
   function save() {
@@ -68,15 +90,29 @@ export function EnvelopeCard({
           </p>
         ))}
 
-        {savable && stage === 'reading' && (
-          <div className="sr-env-actions">
-            <button type="button" className="sr-button sr-button-secondary" onClick={reseal}>
-              再看一次 ✉️
-            </button>
-            <button type="button" className="sr-button" onClick={save}>
-              {saved ? '已保存 ✓' : '保存成圖片'}
-            </button>
-          </div>
+        {stage === 'reading' && (savable || collectable) && (
+          <>
+            {collected && (
+              <p className="sr-env-collected" role="status">
+                已收進驚喜收藏 💝 之後在「驚喜收藏」隨時再打開。
+              </p>
+            )}
+            <div className="sr-env-actions">
+              <button type="button" className="sr-button sr-button-secondary" onClick={reseal}>
+                再看一次 ✉️
+              </button>
+              {savable && (
+                <button type="button" className="sr-button sr-button-secondary" onClick={save}>
+                  {saved ? '已保存 ✓' : '保存成圖片'}
+                </button>
+              )}
+              {collectable && !collected && (
+                <button type="button" className="sr-button" onClick={() => void collect()} disabled={collecting}>
+                  {collecting ? '收藏中…' : '收進驚喜收藏 💝'}
+                </button>
+              )}
+            </div>
+          </>
         )}
       </article>
 

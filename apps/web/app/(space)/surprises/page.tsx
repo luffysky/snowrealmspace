@@ -15,11 +15,14 @@ export const metadata: Metadata = { title: '驚喜收藏 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function SurprisesPage() {
-  const { space } = await requireActiveSpace()
+  const { space, settings } = await requireActiveSpace()
   const [items, drought] = await Promise.all([
     listOpenedSurprises(space.id),
     rareDrought(space.id),
   ])
+
+  // 生日卡：壽星在 Home 親手收藏後，才常駐這裡（等她自己收藏了再放進來）。
+  const cardCollected = settings.birthday_card_collected_at != null
 
 
   const total = Object.values(DAILY_WEIGHTS).reduce((a, b) => a + b, 0)
@@ -37,13 +40,15 @@ export default async function SurprisesPage() {
         </p>
       </section>
 
-      <section className="sr-stack">
-        <h2 className="sr-section-title">你的生日卡 🎂</h2>
-        <p className="sr-muted" style={{ margin: 0 }}>
-          這張卡一直在這裡，想它的時候隨時再打開一次，也可以保存成圖片留著。
-        </p>
-        <EnvelopeCard {...birthdayCardFor(space.id)} savable />
-      </section>
+      {cardCollected && (
+        <section className="sr-stack">
+          <h2 className="sr-section-title">你的生日卡 🎂</h2>
+          <p className="sr-muted" style={{ margin: 0 }}>
+            這張卡一直在這裡，想它的時候隨時再打開一次，也可以保存成圖片留著。
+          </p>
+          <EnvelopeCard {...birthdayCardFor(space.id)} savable />
+        </section>
+      )}
 
       <SurpriseArchive
         items={items}

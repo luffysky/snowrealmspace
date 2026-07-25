@@ -180,7 +180,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
       <DialogProvider>
         <SpaceShell
           spaceName={space.name}
-          roleLabel={role === 'owner' ? '擁有者' : role}
+          roleLabel={{ owner: '管理員', collaborator: '協作者', guest: '訪客' }[role] ?? role}
           nav={nav}
           adminHref={adminHref}
           actions={actions}

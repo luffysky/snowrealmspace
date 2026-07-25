@@ -2931,6 +2931,12 @@ input[type='range'] {
   justify-content: center;
   margin-top: var(--sr-space-4);
 }
+.sr-env-collected {
+  margin: var(--sr-space-4) 0 0;
+  text-align: center;
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-secondary);
+}
 /* 信封本體：置中疊在信紙位置上 */
 .sr-env-envelope {
   position: absolute;

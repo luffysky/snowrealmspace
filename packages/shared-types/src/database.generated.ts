@@ -2511,6 +2511,7 @@ export type Database = {
           background_audio_asset_id: string | null
           background_audio_enabled: boolean
           background_audio_volume: number
+          birthday_card_collected_at: string | null
           birthday_day: number | null
           birthday_greeted_year: number | null
           birthday_month: number | null
@@ -2542,6 +2543,7 @@ export type Database = {
           background_audio_asset_id?: string | null
           background_audio_enabled?: boolean
           background_audio_volume?: number
+          birthday_card_collected_at?: string | null
           birthday_day?: number | null
           birthday_greeted_year?: number | null
           birthday_month?: number | null
@@ -2573,6 +2575,7 @@ export type Database = {
           background_audio_asset_id?: string | null
           background_audio_enabled?: boolean
           background_audio_volume?: number
+          birthday_card_collected_at?: string | null
           birthday_day?: number | null
           birthday_greeted_year?: number | null
           birthday_month?: number | null
