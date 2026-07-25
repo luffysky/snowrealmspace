@@ -75,6 +75,7 @@ export function A11yPanel({
       </button>
 
       {expanded && (
+        <div style={{ overflowX: 'auto' }}>
         <table className="sr-table">
           <caption className="sr-visually-hidden">所有顏色組合的對比檢查結果</caption>
           <thead>
@@ -102,6 +103,7 @@ export function A11yPanel({
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </section>
   )

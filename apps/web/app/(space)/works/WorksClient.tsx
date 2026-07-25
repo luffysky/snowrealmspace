@@ -239,8 +239,8 @@ function WorkDetail({
 
   return (
     <section className="sr-card sr-stack sr-work-detail">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--sr-space-2)' }}>
-        <h2 style={{ fontSize: 'var(--sr-text-lg)' }}>{file.title}</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', minWidth: 0, overflowWrap: 'anywhere' }}>{file.title}</h2>
         <div className="sr-btn-row">
           <button className="sr-button sr-button-secondary" type="button" onClick={onAddVersion}>
             新增版本

@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { cache } from 'react'
 import { getDb } from '@/lib/supabase/server'
+import { readSessionIdentity } from '@/lib/auth/identity'
 import { toSpaceRole, type Tables } from '@snowrealm/shared-types'
 
 export type ActiveSpace = {
@@ -17,11 +18,9 @@ export type SessionUser = { id: string; email: string | null }
  */
 export const getUser = cache(async (): Promise<SessionUser | null> => {
   const db = await getDb()
-  const {
-    data: { user },
-  } = await db.auth.getUser()
-  if (!user) return null
-  return { id: user.id, email: user.email ?? null }
+  const identity = await readSessionIdentity(db)
+  if (!identity) return null
+  return { id: identity.id, email: identity.email }
 })
 
 export async function requireUser(): Promise<SessionUser> {

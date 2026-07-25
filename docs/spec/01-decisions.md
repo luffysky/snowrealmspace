@@ -681,3 +681,48 @@ Flag 為 false 時，相關的**路由必須回 404、API 必須回 404**，不�
 | 18 | 作品分析是否包含 WCAG | ADR-011 | 包含，本地演算法計算 |
 | 19 | 是否支援影片背景 | ADR-019 | 支援，有硬限制 |
 | 20 | 公開 Portfolio Route | Deferred | V2 |
+
+---
+
+## ADR-024 SnowRealm SSO／身份（Space 當 OIDC client，已驗證 email 綁定）
+
+**日期：** 2026-07-26　**狀態：** 已決定，未實作（發證方 `snowrealm-id` 尚未建立）
+
+### 背景
+平台架構定案（見 `docs/platform.md`）：不把 Space 變成平台，而是**平台另搭**——
+`snowrealm.pet` 當入口、`snowrealm-id` 當中立 OIDC 發證方，各產品保留自己的網址與 DB，
+以聯邦式 SSO 串起來。ADR-003 當初決定「Supabase Auth 獨立、不沿用 SnowRealm Account」，
+本 ADR 是它在平台化之後的接續與覆寫。
+
+### 決定
+1. **Space 成為 `snowrealm-id` 的 OIDC client。** 身份的真相來源移到 `snowrealm-id`（email＋Google＋LINE）。
+2. **綁定以「明確綁定」為主、「已驗證 email」為輔**（對齊 `platform.md` 最終設計、坑#1）：
+   - **主路徑（權威）：明確綁定**——使用者登入 Space 後主動點「綁定 SnowRealm ID」→ SSO 驗證 → 連結。
+     跨 email 也可靠，`link_method='explicit'`。
+   - **輔路徑（便利，非唯一依據）：已驗證 email 自動比對**——首次 SSO 時若**已驗證** email 剛好對到唯一一個
+     既有帳號，才提示/自動連結，`link_method='verified_email'`。email 不能當唯一判準（可能不同信箱、會變更）。
+   - 對不上 → 建新帳號，或到設定頁手動綁定。
+3. **現有 Supabase Auth（magic link）保留為備援**，漸進遷移（絞殺式），不硬切。
+4. **身份存取一律走薄介面**（`lib/auth/identity.ts`），feature code 不直接碰 `supabase.auth`，
+   未來把來源從 Supabase Auth 換成 SnowRealm SSO 只改這一處。
+
+### 不可違反的資安規則
+**只有 email 已驗證且相符才自動綁定。** 若不驗證，任何人用他人 email 註冊 snowrealm-id，
+首次 SSO 即可接管既有產品帳號（經典 SSO account-takeover）。email 對不上時**不自動綁**，
+改由設定頁提供「手動連結帳號」（需雙邊各自驗證）。
+
+### Schema（先備、後啟用，已於 0051 落地）
+- `profiles.snowrealm_id text unique`（nullable）—— 對應發證方 `sub`；發證方上線前保持 null。
+- `profiles.snowrealm_linked_at` / `snowrealm_link_method`（'explicit' | 'verified_email'）—— 綁定方式可稽核。
+- 綁定與稽核走既有 `audit_logs`（action `account.linked`）。全域「一 snowrealm_id ↔ 多產品帳號」的
+  `identity_links` 表屬 snowrealm-id 專案，不在 Space。
+
+### 解綁（坑#3）
+解綁牽涉 Z 幣／AI Dot／SnowRealm+／作品權利 → 等於資產歸屬變動。所以解綁必須：**重新驗證＋冷卻期＋留 audit＋
+有資產時禁止直接解綁**，且**軟解綁（標記 inactive、保留紀錄）**，不硬刪 link（link 是資產歸屬的 provenance）。
+
+### 後果
+- 上線順序：立 `snowrealm-id` → Space 當第一個 client（owner=Luffy／admin=Nami 先測）→ 其他產品 → 入口頁。
+- 各產品 URL 不變（聯邦，不搬家）。
+- 覆寫 ADR-003 的「Supabase Auth 獨立」：Supabase Auth 降為 Space 的本地帳號儲存＋備援登入，
+  真相來源改為 snowrealm-id。

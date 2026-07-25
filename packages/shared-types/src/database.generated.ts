@@ -2187,6 +2187,9 @@ export type Database = {
           locale: string
           privileged: boolean
           site_role: string
+          snowrealm_id: string | null
+          snowrealm_link_method: string | null
+          snowrealm_linked_at: string | null
           timezone: string
           updated_at: string
         }
@@ -2198,6 +2201,9 @@ export type Database = {
           locale?: string
           privileged?: boolean
           site_role?: string
+          snowrealm_id?: string | null
+          snowrealm_link_method?: string | null
+          snowrealm_linked_at?: string | null
           timezone?: string
           updated_at?: string
         }
@@ -2209,6 +2215,9 @@ export type Database = {
           locale?: string
           privileged?: boolean
           site_role?: string
+          snowrealm_id?: string | null
+          snowrealm_link_method?: string | null
+          snowrealm_linked_at?: string | null
           timezone?: string
           updated_at?: string
         }

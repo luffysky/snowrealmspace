@@ -160,6 +160,34 @@ export function ThemeStudio({
     setStatus({ kind: 'idle' })
   }
 
+  // 匯出走 fetch（帶 x-space-id）再觸發下載——用 <a download> 會少了 header、
+  // resolveContext 失敗回 401，下載到的是錯誤 JSON 而不是主題檔。
+  async function handleExport() {
+    if (!editingId) return
+    try {
+      const res = await fetch(`/api/themes/${editingId}/export`, {
+        headers: { 'x-space-id': spaceId },
+      })
+      if (!res.ok) {
+        setStatus({ kind: 'error', message: '匯出失敗，請稍後再試。' })
+        return
+      }
+      const blob = await res.blob()
+      const cd = res.headers.get('content-disposition') ?? ''
+      const match = cd.match(/filename="?([^"]+)"?/)
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = match?.[1] ?? `theme-${editingId}.json`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch {
+      setStatus({ kind: 'error', message: '匯出失敗，請稍後再試。' })
+    }
+  }
+
   function loadPreset(preset: ThemeDefinition) {
     setDraft(structuredClone(preset))
     setName(preset.name)
@@ -337,13 +365,13 @@ export function ThemeStudio({
               還原預設
             </button>
             {editingId && (
-              <a
+              <button
                 className="sr-button sr-button-secondary"
-                href={`/api/themes/${editingId}/export`}
-                download
+                type="button"
+                onClick={() => void handleExport()}
               >
                 匯出 JSON
-              </a>
+              </button>
             )}
             <label className="sr-button sr-button-secondary" style={{ cursor: 'pointer' }}>
               匯入 JSON

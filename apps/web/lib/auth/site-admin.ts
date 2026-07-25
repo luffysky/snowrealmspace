@@ -1,4 +1,5 @@
 import { getDb } from '@/lib/supabase/server'
+import { readSessionIdentity } from '@/lib/auth/identity'
 import { createAdminClient } from '@snowrealm/db/server'
 
 /**
@@ -33,15 +34,12 @@ export type SiteAdminResult =
 
 export async function checkSiteAdmin(): Promise<SiteAdminResult> {
   const db = await getDb()
-  const {
-    data: { user },
-  } = await db.auth.getUser()
-  if (!user) return { ok: false, reason: 'unauthenticated' }
+  const identity = await readSessionIdentity(db)
+  if (!identity) return { ok: false, reason: 'unauthenticated' }
 
-  const email = (user.email ?? '').toLowerCase()
-  const username = String(
-    (user.user_metadata as { username?: string } | null)?.username ?? '',
-  ).toLowerCase()
+  const user = { id: identity.id, email: identity.email }
+  const email = (identity.email ?? '').toLowerCase()
+  const username = (identity.username ?? '').toLowerCase()
 
   // 1) DB 角色（用 service role 讀，避免 profiles 的 RLS 影響判定）
   let dbRole: 'owner' | 'admin' | 'member' | null = null

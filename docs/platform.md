@@ -354,3 +354,276 @@ snowrealm.pet          平台入口（啟動器＋帳號頁），品牌 SnowReal
 4. 最後做 **snowrealm.pet** 入口頁（只是聚合，最不急）。
 
 > 這解掉了上面那個張力：Space 維持私密親密；公開／社群／市集全在外層的 snowrealm.pet。私密是預設，平台是 opt-in 外層。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+這個方向**很合理，而且比硬把所有產品帳號立刻合併安全很多**。你其實是在做一個「漸進式統一身份」：
+
+> **SnowRealm ID 負責辨認「你是誰」；各產品帳號保留「你在這個產品裡是誰」。**
+
+這正好符合你文件裡的絞殺式收斂原則，不需要一刀把七套帳號系統砍掉重寫。
+
+## 我會這樣設計
+
+```text
+SnowRealm ID
+global_user_id: sr_xxx
+
+├── AI 島帳號
+│   └── local_user_id: ai_xxx
+├── Space 帳號
+│   └── local_user_id: sp_xxx
+├── Insight 帳號
+│   └── local_user_id: in_xxx
+├── 毛行天下帳號
+│   └── local_user_id: pet_xxx
+└── 其他產品帳號
+```
+
+中間放一張綁定表：
+
+```text
+identity_links
+
+id
+snowrealm_user_id
+product_key
+product_user_id
+linked_at
+link_method
+status
+```
+
+例如：
+
+```text
+sr_123
+AI_ISLAND
+ai_user_789
+```
+
+這樣 SnowRealm ID 不用立刻接管各產品所有資料，只要先知道：
+
+> 這個 AI 島帳號、這個 Space 帳號、這個毛行天下帳號，其實是同一個人。
+
+## 這樣做的好處
+
+### 1. 不必強迫重做所有帳號系統
+
+每個產品原本的：
+
+* profile
+* 權限
+* 偏好
+* 歷史資料
+* 會員狀態
+
+都可以先保留。
+
+SnowRealm ID 只處理：
+
+* 登入
+* 身份確認
+* 帳號綁定
+* 全域 user id
+* 全域權益查詢
+
+### 2. 舊使用者比較好遷移
+
+舊用戶登入產品後，可以看到：
+
+> 綁定 SnowRealm ID
+
+而不是突然被迫重設帳號、密碼、資料。
+
+### 3. 可以逐產品接入
+
+先接：
+
+1. Space
+2. AI 島
+3. Insight
+4. 其他產品
+
+不用等七個產品都完成才上線。
+
+### 4. 適合你現在的多技術棧
+
+你文件裡已經定調，共用能力應走 **HTTP API + 薄 SDK**，因為有 Next.js、Express、FastAPI、Kotlin。SnowRealm ID 也應該照這個契約做，而不是綁死某個 npm auth 套件。
+
+---
+
+# 登入流程可以這樣
+
+## 新使用者
+
+```text
+使用 SnowRealm ID 登入
+↓
+第一次進入 AI 島
+↓
+AI 島自動建立 local account
+↓
+建立 identity_link
+```
+
+## 舊使用者
+
+```text
+先登入原本 AI 島帳號
+↓
+點「綁定 SnowRealm ID」
+↓
+SnowRealm ID 驗證
+↓
+確認兩邊身份
+↓
+建立 identity_link
+```
+
+## 已綁定使用者
+
+```text
+使用 SnowRealm ID 登入
+↓
+產品拿到 global sub
+↓
+查 identity_link
+↓
+找到 local account
+↓
+登入完成
+```
+
+---
+
+# 有三個坑要先避開
+
+## 1. 不要用 Email 當唯一綁定依據
+
+因為：
+
+* 使用者可能不同產品用不同信箱
+* Email 可能變更
+* LINE / Google 登入可能拿到不同地址
+* 同一信箱也可能出現大小寫或 provider 差異
+
+Email 只能當候選提示，不能直接自動判定是同一人。
+
+## 2. 一個產品帳號只能綁一個 SnowRealm ID
+
+資料庫要加唯一限制：
+
+```text
+UNIQUE(product_key, product_user_id)
+```
+
+同時通常也要限制：
+
+```text
+UNIQUE(snowrealm_user_id, product_key)
+```
+
+除非你未來允許一個 SnowRealm ID 在同一產品有多個角色帳號。
+
+## 3. 解綁不能太隨便
+
+一旦涉及：
+
+* Z 幣
+* AI Dot
+* SnowRealm+
+* 作品權利
+* Marketplace 收益
+
+解綁可能等於資產歸屬改變。
+
+所以解綁最好需要：
+
+* 重新驗證
+* 冷卻期
+* 留 audit log
+* 有資產時禁止直接解綁
+
+---
+
+# SnowRealm ID 最小版本只要做這些
+
+不要一開始蓋成帝國皇宮。
+
+第一版：
+
+* Email / Google / LINE 登入
+* 全域 `snowrealm_user_id`
+* 帳號綁定
+* 帳號解除綁定
+* 查詢目前綁定產品
+* Token 發放與驗證
+* 基本安全事件紀錄
+* 後台人工處理衝突
+
+之後才加：
+
+* SnowRealm+
+* Trust Level
+* AI Dot
+* Z 幣
+* 家庭或組織帳號
+* 跨產品權益
+
+## 我會幫這個概念定一句話
+
+> **SnowRealm ID 是身份錨點，不是各產品資料庫的替代品。**
+
+這個架構很適合你現在的狀態。它不是把七棟房子推掉蓋摩天樓，而是先替每棟房子接上同一張門禁卡。❄️
+
+
+
+
+
+
+
+
+
+
+
+CLAUDE想法:
+
+GPT 這套 identity 設計我幾乎全同意——而且我**這個 session 已經把 Space 這一側接好了**（識別介面＋DB 欄位＋ADR-024），等於七棟房子的第一棟已經裝好門禁卡讀卡機。下面先講我完全同意的，再講三個我會做得更狠、以及一個要 day-one 決定的。
+
+## 完全同意
+- **`identity_links` 模型、「身份錨點不是資料庫替代品」** ——這句是整份的靈魂，對。不推倒重蓋，只替每棟房子接同一張門禁卡。
+- **三個坑都對。** 尤其坑#1（email 不是唯一依據）——我原本 ADR 寫「用已驗證 email 綁定」，被這點修正了，已改成「明確綁定為主、已驗證 email 為輔」。
+- **最小 v1 範圍**（登入／全域 id／綁定解綁／查綁定／token／安全 log／後台處理衝突）——不蓋皇宮，對。
+
+## 三個我會做得更狠
+
+**1. Token 契約直接用標準 OIDC（Authorization Code + PKCE），別自創 token 格式。**
+GPT 只寫「Token 發放與驗證」，沒指定怎麼做。一定要用標準 OIDC，因為你的艦隊是 Next／Express／FastAPI／Kotlin——**標準 OIDC 每種語言都有現成 library，自創 token=每個產品自己寫驗證=又生出一套 fork**。這跟你「HTTP API＋薄 SDK」的規則是同一件事。
+
+**2. 坑#3（解綁）我會更硬：link 永不硬刪，只軟解綁。**
+`identity_links` 的 row 是「這些 Z 幣／作品是誰的」的 **provenance（歸屬證據）**。硬刪 link = 證據消失、糾紛無解。所以：`status=inactive` 保留歷史、重新驗證、冷卻期、**有資產時直接禁止解綁**。解綁是「標記」不是「刪除」。
+
+**3. 危險邏輯先在 Space 練，再碰 AI 島／insight。**
+unbind／asset-guard／衝突處理是這套最容易出事的地方。Space 現在最單純（owner=你、admin=Nami、資產少），是最安全的試驗場；AI 島／insight 有真實多用戶＋自己的經濟，別拿它們試危險邏輯。**Space 當第一個 client 不只是「好接」，是「最適合當白老鼠」。**
+
+## 一個 GPT 沒提、但要 day-one 決定的：`product_key` 註冊表
+'SPACE' / 'AI_ISLAND' / 'INSIGHT' … 誰發、怎麼命名？留**一張中央小清單**，避免兩個產品各自用不同字串指同一個自己、或撞名。trivial，但第一天就要有，否則 `identity_links.product_key` 會變一團。
+
+## 我這個 session 已經做好的 Space 側 prep（等發證方就能接）
+- **`lib/auth/identity.ts`** —— 全站唯一讀「你是誰」的地方（session.ts／context.ts／site-admin.ts 都收斂過去了）。未來把來源從 Supabase Auth 換成 SnowRealm SSO，**只改這一個檔**。
+- **`profiles.snowrealm_id` + `snowrealm_linked_at` + `snowrealm_link_method`**（migration 0051，先備不啟用，發證方上線前保持 null）。
+- **ADR-024** 把上面全部寫死成約定。
+
+→ 結論：這方向對、安全、可漸進。**Space 這一棟的讀卡機裝好了；剩下的是你開 `snowrealm-id` 專案，我就能把 Space 接成 OIDC client、把綁定/解綁流程做出來。** ❄️

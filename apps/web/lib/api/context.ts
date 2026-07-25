@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
 import { getDb } from '@/lib/supabase/server'
+import { readSessionIdentity } from '@/lib/auth/identity'
 import { toSpaceRole, type SpaceRole } from '@snowrealm/shared-types'
 import type { Db } from '@snowrealm/db/server'
 
@@ -25,9 +26,7 @@ export type ContextResult =
 export async function resolveContext(): Promise<ContextResult> {
   const db = await getDb()
 
-  const {
-    data: { user },
-  } = await db.auth.getUser()
+  const user = await readSessionIdentity(db)
   if (!user) return { ok: false, reason: 'unauthenticated' }
 
   const headerList = await headers()
@@ -63,8 +62,6 @@ export async function resolveContext(): Promise<ContextResult> {
 /** 給沒有 X-Space-Id 的端點用（例如列出使用者可存取的所有 space）。 */
 export async function resolveUser(): Promise<{ db: Db; userId: string } | null> {
   const db = await getDb()
-  const {
-    data: { user },
-  } = await db.auth.getUser()
+  const user = await readSessionIdentity(db)
   return user ? { db, userId: user.id } : null
 }

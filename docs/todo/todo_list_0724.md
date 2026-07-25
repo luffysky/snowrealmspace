@@ -295,3 +295,22 @@
 ### 平台/經濟（Bucket 3，多為「等決策」非「等程式」）
 - [ ] Trust Level（見 C）／AI Dot 帳本（見 D）／Z幣錢包（卡金流·稅）／SnowRealm+ entitlement 服務／
       Onboarding Dot 獎勵＋任務引擎／ai-core 抽成共用 HTTP AI Router（卡 SSO issuer 決策）
+
+---
+
+## 0726 續（下半場完成清單）
+
+- [x] ~~公開作品集頁 + unlisted + 分享連結~~ ✅ 每作品 private/unlisted/public（0048）、anon RLS（0049，零洩漏實測）、`/p /w`、share_links（0050）`/s` 唯讀+到期+撤銷
+- [x] ~~Email 週報（Resend）~~ ✅ 0047 opt-in + worker email helper（待 Luffy 設 RESEND_API_KEY）
+- [x] ~~隨手記 CRUD + /notes~~ ✅ notes CRUD API + 頁 + widget 改多則
+- [x] ~~帳號匯出 ZIP~~ ✅ fflate（data.json+assets.csv+README）
+- [x] ~~基礎設施：lefthook / Sentry-lite / CI-Zeabur~~ ✅（CI 早已完成；Sentry 待 DSN）
+- [x] ~~背景場景/Lottie 即時預覽格~~ ✅ 取代文字選單
+- [x] ~~平台身份 prep（ADR-024）~~ ✅ identity 介面 + `profiles.snowrealm_id`（0051）+ ADR + platform.md 看法
+- [x] ~~全專案接線審計~~ ✅ API↔DB 全清；UI↔後端修 Theme 匯出；RWD 修 2 處
+- [x] ~~UI bug：幻燈片命名 / 側邊欄 sticky / Theme 手機預覽 sticky~~ ✅
+
+### 仍待（外部/決策）
+- [ ] 開 `snowrealm-id` 專案 → Space 接 OIDC client + 綁定/解綁流程（ADR-024 已備）
+- [ ] Zeabur env：RESEND_API_KEY / RESEND_FROM / SENTRY_DSN
+- [ ] 字體檔、Figma 憑證、AI Dot 定價、visual regression（與 E2E 暫停衝突，待解除）
