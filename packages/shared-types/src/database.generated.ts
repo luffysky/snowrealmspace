@@ -56,6 +56,30 @@ export type Database = {
           },
         ]
       }
+      admin_user_notes: {
+        Row: {
+          author_id: string | null
+          body: string
+          created_at: string
+          id: string
+          subject_user_id: string
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          created_at?: string
+          id?: string
+          subject_user_id: string
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          created_at?: string
+          id?: string
+          subject_user_id?: string
+        }
+        Relationships: []
+      }
       agent_actions: {
         Row: {
           confirmed_at: string | null

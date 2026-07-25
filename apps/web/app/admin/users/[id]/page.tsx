@@ -5,6 +5,7 @@ import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
 import { UserAdminControls } from './UserAdminControls'
+import { UserNotes, type Note } from './UserNotes'
 
 export const metadata: Metadata = { title: '使用者詳情 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -30,6 +31,14 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
       admin.from('activity_events').select('event_type, occurred_at').eq('actor_id', id).order('occurred_at', { ascending: false }).limit(20),
       admin.from('activity_events').select('*', { count: 'exact', head: true }).eq('actor_id', id),
     ])
+
+  const { data: noteData } = await admin
+    .from('admin_user_notes')
+    .select('id, body, author_id, created_at')
+    .eq('subject_user_id', id)
+    .order('created_at', { ascending: false })
+    .limit(100)
+  const notes = (noteData ?? []) as Note[]
 
   const authUser = authRes?.user ?? null
   if (!authUser && !profile) {
@@ -86,6 +95,11 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
             isSelf={id === gate.userId}
           />
         </div>
+      </section>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">內部註記（CRM）</h2>
+        <UserNotes subjectUserId={id} initial={notes} />
       </section>
 
       <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
