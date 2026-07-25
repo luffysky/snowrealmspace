@@ -13,7 +13,7 @@ import type { WidgetProps } from '../types'
  * 都明白顯示，失敗用 danger 色，不假裝已存。
  */
 
-type SaveState = 'loading' | 'idle' | 'saving' | 'saved' | 'error'
+type SaveState = 'loading' | 'idle' | 'saving' | 'saved' | 'load-error' | 'save-error'
 
 export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
   const placeholder = (config as { placeholder?: string } | null)?.placeholder ?? '隨手記下…'
@@ -37,7 +37,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
         setState('idle')
       })
       .catch(() => {
-        if (alive) setState('error')
+        if (alive) setState('load-error')
       })
     return () => {
       alive = false
@@ -63,7 +63,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
         if (!res.ok) throw new Error(String(res.status))
         setState('saved')
       } catch {
-        setState('error')
+        setState('save-error')
       }
     },
     [instanceId],
@@ -84,9 +84,13 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
         ? '儲存中…'
         : state === 'saved'
           ? '已同步到雲端。'
-          : state === 'error'
-            ? '儲存失敗，請稍後再試。'
-            : '會自動存到雲端，換裝置也看得到。'
+          : state === 'load-error'
+            ? '讀不到雲端內容，請重新整理頁面再試。'
+            : state === 'save-error'
+              ? '儲存失敗，請稍後再試。'
+              : '會自動存到雲端，換裝置也看得到。'
+
+  const isError = state === 'load-error' || state === 'save-error'
 
   return (
     <div className="sr-card sr-widget">
@@ -100,7 +104,8 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
         className="sr-input sr-widget-note"
         value={text}
         placeholder={placeholder}
-        disabled={state === 'loading'}
+        // 載入失敗時鎖住，避免用未載入的空內容覆寫雲端
+        disabled={state === 'loading' || state === 'load-error'}
         onChange={(e) => onChange(e.target.value)}
         aria-describedby={`note-hint-${instanceId}`}
       />
@@ -108,7 +113,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
       <p
         className="sr-muted"
         id={`note-hint-${instanceId}`}
-        style={{ marginBottom: 0, ...(state === 'error' ? { color: 'var(--sr-danger)' } : {}) }}
+        style={{ marginBottom: 0, ...(isError ? { color: 'var(--sr-danger)' } : {}) }}
       >
         {hint}
       </p>
