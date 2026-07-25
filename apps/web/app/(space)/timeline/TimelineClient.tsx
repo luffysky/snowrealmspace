@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { TIMELINE_VIEWS, type TimelineView, type TimelineVisibility } from '@snowrealm/validation'
+import { useDialog } from '@/components/ui/DialogProvider'
 
 export type TimelineRow = {
   id: string
@@ -34,6 +35,7 @@ export function TimelineClient({
   initialEvents: TimelineRow[]
   projects: ProjectLabel[]
 }) {
+  const { confirm, prompt } = useDialog()
   const [view, setView] = useState<TimelineView>('chronological')
   const [events, setEvents] = useState<TimelineRow[]>(initialEvents)
   const [loading, setLoading] = useState(false)
@@ -79,7 +81,7 @@ export function TimelineClient({
   }
 
   async function rename(row: TimelineRow) {
-    const title = window.prompt('標題', row.title)
+    const title = await prompt({ title: '重新命名', message: '標題', defaultValue: row.title })
     if (title === null || !title.trim()) return
     await patch(row, { title: title.trim() })
   }
@@ -90,7 +92,7 @@ export function TimelineClient({
   }
 
   async function remove(row: TimelineRow) {
-    if (!window.confirm(`刪除「${row.title}」這筆時間軸？`)) return
+    if (!(await confirm({ title: '刪除', message: `刪除「${row.title}」這筆時間軸？`, danger: true, confirmText: '刪除' }))) return
     const res = await fetch(`/api/timeline/${row.id}`, { method: 'DELETE', headers })
     if (!res.ok) {
       setNotice('✕ 刪除失敗。')

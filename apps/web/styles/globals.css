@@ -439,6 +439,85 @@ h3 {
   color: var(--sr-text-primary);
 }
 
+/* 對話框（取代 window.confirm/prompt）＋ 資產選擇器 */
+.sr-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--sr-space-4);
+  background: rgb(0 0 0 / 0.45);
+  backdrop-filter: blur(2px);
+}
+.sr-dialog {
+  width: 100%;
+  max-width: 440px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--sr-surface-alt);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius);
+  box-shadow: var(--sr-shadow-lg, 0 12px 40px rgb(0 0 0 / 0.2));
+  padding: var(--sr-space-5);
+}
+.sr-dialog-title {
+  margin: 0 0 var(--sr-space-2);
+  font-size: var(--sr-text-lg);
+  font-weight: 700;
+}
+.sr-dialog-message {
+  margin: 0 0 var(--sr-space-3);
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+  white-space: pre-wrap;
+}
+.sr-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sr-space-2);
+  margin-top: var(--sr-space-4);
+}
+.sr-dialog-picker {
+  max-width: 640px;
+}
+.sr-asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--sr-space-2);
+  max-height: 50vh;
+  overflow-y: auto;
+  margin-top: var(--sr-space-3);
+}
+.sr-asset-cell {
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius-sm);
+  padding: 4px;
+  cursor: pointer;
+  background: var(--sr-surface);
+  text-align: center;
+  overflow: hidden;
+}
+.sr-asset-cell:hover {
+  border-color: var(--sr-accent);
+}
+.sr-asset-cell img {
+  width: 100%;
+  height: 68px;
+  object-fit: cover;
+  border-radius: calc(var(--sr-radius-sm) - 2px);
+  display: block;
+}
+.sr-asset-cell span {
+  display: block;
+  font-size: var(--sr-text-xs);
+  color: var(--sr-text-secondary);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* 公開資訊頁的輕量頂列（隱私/條款/說明——app 外殼之外） */
 .sr-public-topbar {
   position: sticky;

@@ -12,6 +12,7 @@ import { WidgetGrid } from '@/components/widgets/WidgetGrid'
 import { WidgetRenderer, hasImplementation } from '@/components/widgets/registry'
 import { WidgetSettings } from './WidgetSettings'
 import { useGlassBudget } from '@/lib/theme/use-glass-budget'
+import { useDialog } from '@/components/ui/DialogProvider'
 
 export type WidgetInstanceRow = {
   id: string
@@ -62,6 +63,7 @@ export function HomeGrid({
   layouts: LayoutSummary[]
   activeLayoutId: string
 }) {
+  const { confirm, prompt } = useDialog()
   const [widgets, setWidgets] = useState(initialWidgets)
   const [breakpoint, setBreakpoint] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
   const [editing, setEditing] = useState(false)
@@ -88,7 +90,7 @@ export function HomeGrid({
   }
 
   async function createLayout() {
-    const name = prompt('新版面的名稱？', `版面 ${layouts.length + 1}`)
+    const name = await prompt({ title: '新版面', message: '版面名稱', defaultValue: `版面 ${layouts.length + 1}` })
     if (!name) return
     try {
       const created = (await api('/api/layouts', {
@@ -108,7 +110,7 @@ export function HomeGrid({
 
   async function renameLayout() {
     const current = layouts.find((l) => l.id === activeLayoutId)
-    const name = prompt('版面名稱？', current?.name ?? '')
+    const name = await prompt({ title: '重新命名版面', message: '版面名稱', defaultValue: current?.name ?? '' })
     if (!name || name === current?.name) return
     try {
       await api(`/api/layouts/${activeLayoutId}`, {
@@ -127,7 +129,7 @@ export function HomeGrid({
       return
     }
     const current = layouts.find((l) => l.id === activeLayoutId)
-    if (!confirm(`確定刪除版面「${current?.name}」嗎？裡面的區塊排列會一起刪掉。`)) return
+    if (!(await confirm({ title: '刪除版面', message: `確定刪除版面「${current?.name}」嗎？裡面的區塊排列會一起刪掉。`, danger: true, confirmText: '刪除' }))) return
     try {
       await api(`/api/layouts/${activeLayoutId}`, { method: 'DELETE' })
       router.refresh()

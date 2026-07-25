@@ -21,6 +21,7 @@ import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
 import { SpaceShell } from '@/components/SpaceShell'
+import { DialogProvider } from '@/components/ui/DialogProvider'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { signOut } from '../(auth)/actions'
@@ -173,17 +174,19 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
 
       <BackgroundLayer spaceId={space.id} state={background} />
 
-      <SpaceShell
-        spaceName={space.name}
-        roleLabel={role === 'owner' ? '擁有者' : role}
-        nav={nav}
-        adminHref={adminHref}
-        actions={actions}
-        footer={footerNode}
-      >
-        {needsRecovery && <BindingReminder />}
-        {children}
-      </SpaceShell>
+      <DialogProvider>
+        <SpaceShell
+          spaceName={space.name}
+          roleLabel={role === 'owner' ? '擁有者' : role}
+          nav={nav}
+          adminHref={adminHref}
+          actions={actions}
+          footer={footerNode}
+        >
+          {needsRecovery && <BindingReminder />}
+          {children}
+        </SpaceShell>
+      </DialogProvider>
     </div>
   )
 }

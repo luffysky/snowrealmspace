@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import type { FeatureComparison } from '@snowrealm/theme-engine'
+import { useDialog } from '@/components/ui/DialogProvider'
+import { AssetPicker } from '@/components/ui/AssetPicker'
 
 export type Snapshot = { id: string; asset_id: string; created_at: string }
 export type WorkFile = {
@@ -55,6 +57,8 @@ export function WorksClient({
   const [files, setFiles] = useState<WorkFile[]>(initialFiles)
   const [selectedId, setSelectedId] = useState<string | null>(initialFiles[0]?.id ?? null)
   const [notice, setNotice] = useState<string | null>(null)
+  const [pickerFor, setPickerFor] = useState<WorkFile | null>(null)
+  const { confirm } = useDialog()
 
   const selected = files.find((f) => f.id === selectedId) ?? null
   const headers = { 'x-space-id': spaceId, 'content-type': 'application/json' }
@@ -66,21 +70,22 @@ export function WorksClient({
     setFiles(body.data)
   }
 
-  async function addVersion(file: WorkFile) {
-    const first = assetOptions[0]
-    if (!first) {
+  function addVersion(file: WorkFile) {
+    if (assetOptions.length === 0) {
       setNotice('✕ 還沒有可用的圖片，先去 Library 上傳。')
       return
     }
-    const id = window.prompt(
-      `輸入要當新版本的圖片 asset id\n（可到 Library 複製；例如最新：${first.id}）`,
-      first.id,
-    )
-    if (!id) return
+    setPickerFor(file)
+  }
+
+  async function pickVersionAsset(assetId: string) {
+    const file = pickerFor
+    setPickerFor(null)
+    if (!file) return
     const res = await fetch(`/api/design/files/${file.id}/snapshots`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ assetId: id.trim() }),
+      body: JSON.stringify({ assetId }),
     })
     const body: unknown = await res.json().catch(() => null)
     if (!res.ok) {
@@ -93,7 +98,7 @@ export function WorksClient({
   }
 
   async function deleteFile(file: WorkFile) {
-    if (!window.confirm(`刪除作品「${file.title}」？版本會一併隱藏，原始檔案保留。`)) return
+    if (!(await confirm({ title: '刪除作品', message: `刪除作品「${file.title}」？版本會一併隱藏，原始檔案保留。`, danger: true, confirmText: '刪除' }))) return
     const res = await fetch(`/api/design/files/${file.id}`, {
       method: 'DELETE',
       headers: { 'x-space-id': spaceId },
@@ -109,6 +114,13 @@ export function WorksClient({
 
   return (
     <div className="sr-stack">
+      <AssetPicker
+        open={pickerFor !== null}
+        assets={assetOptions}
+        title="選一張圖片當新版本"
+        onPick={(id) => void pickVersionAsset(id)}
+        onClose={() => setPickerFor(null)}
+      />
       {notice && (
         <p className="sr-message sr-message-info" role="status">
           {notice}
