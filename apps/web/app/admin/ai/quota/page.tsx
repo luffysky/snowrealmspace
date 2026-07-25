@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { createAdminClient } from '@snowrealm/db/server'
+import { QuotaConfigForm } from './QuotaConfigForm'
 
 export const metadata: Metadata = { title: '每日額度 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -31,6 +32,13 @@ export default async function AdminQuotaPage() {
     .limit(200)
   const rows = (data ?? []) as Row[]
 
+  const { data: cfg } = await admin
+    .from('ai_quota_config')
+    .select('free_daily_cap, paid_daily_cap')
+    .eq('id', 'global')
+    .maybeSingle()
+  const caps = { freeDailyCap: cfg?.free_daily_cap ?? 300, paidDailyCap: cfg?.paid_daily_cap ?? 20 }
+
   const todayPaid = rows.filter((r) => r.paid_calls > 0)
 
   return (
@@ -42,6 +50,8 @@ export default async function AdminQuotaPage() {
       </p>
       <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>每日額度</h1>
       <p className="sr-muted">各空間每日 AI 呼叫計數。付費呼叫（{todayPaid.length} 筆有值）值得留意。</p>
+
+      <QuotaConfigForm initial={caps} />
 
       {rows.length === 0 ? (
         <p className="sr-muted">尚無任何 AI 呼叫紀錄。</p>

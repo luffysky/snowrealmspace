@@ -427,6 +427,30 @@ export type Database = {
         }
         Relationships: []
       }
+      ai_quota_config: {
+        Row: {
+          free_daily_cap: number
+          id: string
+          paid_daily_cap: number
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          free_daily_cap?: number
+          id?: string
+          paid_daily_cap?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          free_daily_cap?: number
+          id?: string
+          paid_daily_cap?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       ai_response_cache: {
         Row: {
           context_hash: string

@@ -22,9 +22,24 @@ import { serverEnv } from '@snowrealm/shared-types'
  * 一把都沒設時所有候選被跳過、拋 AllCandidatesFailedError（誠實失敗，不假裝有答案）。
  */
 
-// 每日額度上限（§4.5、§11：付費 20 次）。免費層寬鬆。
+// 每日額度上限預設（§4.5、§11：付費 20 次）。實際值由 ai_quota_config 覆寫（後台可改）。
 const FREE_DAILY_CAP = 300
 const PAID_DAILY_CAP = 20
+
+type QuotaCaps = { free: number; paid: number }
+
+/** 讀後台設定的額度上限；沒設定或讀取失敗時退回內建預設（不擋下呼叫）。 */
+async function loadQuotaCaps(admin: Db): Promise<QuotaCaps> {
+  const { data } = await admin
+    .from('ai_quota_config')
+    .select('free_daily_cap, paid_daily_cap')
+    .eq('id', 'global')
+    .maybeSingle()
+  return {
+    free: data?.free_daily_cap ?? FREE_DAILY_CAP,
+    paid: data?.paid_daily_cap ?? PAID_DAILY_CAP,
+  }
+}
 
 type ModelInfo = { isFree: boolean; costInput: number; costOutput: number }
 
@@ -56,6 +71,7 @@ export async function buildCompleteDeps(spaceId: string, localDate: string): Pro
   const admin = createAdminClient()
   const env = serverEnv()
   const models = await loadModels(admin)
+  const caps = await loadQuotaCaps(admin)
 
   const getKey = createKeyResolver({
     encryptionSecret: env.AI_KEY_ENCRYPTION_SECRET,
@@ -95,8 +111,8 @@ export async function buildCompleteDeps(spaceId: string, localDate: string): Pro
         .eq('local_date', localDate)
         .maybeSingle()
       return {
-        freeExhausted: (data?.free_calls ?? 0) >= FREE_DAILY_CAP,
-        paidExhausted: (data?.paid_calls ?? 0) >= PAID_DAILY_CAP,
+        freeExhausted: (data?.free_calls ?? 0) >= caps.free,
+        paidExhausted: (data?.paid_calls ?? 0) >= caps.paid,
       }
     },
 
