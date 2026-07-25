@@ -23,12 +23,16 @@ export const designFileCreateSchema = z
   })
   .strict()
 
+export const WORK_VISIBILITIES = ['private', 'unlisted', 'public'] as const
+export type WorkVisibility = (typeof WORK_VISIBILITIES)[number]
+
 export const designFilePatchSchema = z
   .object({
     title: z.string().trim().min(1).max(120).optional(),
     description: z.string().trim().max(2000).nullable().optional(),
     projectId: z.string().uuid().nullable().optional(),
     tags: tagsSchema.optional(),
+    visibility: z.enum(WORK_VISIBILITIES).optional(),
   })
   .strict()
   .refine((v) => Object.keys(v).length > 0, { message: '沒有要更新的欄位' })

@@ -6,7 +6,7 @@ import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 export const dynamic = 'force-dynamic'
 
 const COLUMNS =
-  'id, title, description, provider, project_id, tags, source_url, sync_status, created_at, updated_at'
+  'id, title, description, provider, project_id, tags, source_url, sync_status, visibility, created_at, updated_at'
 
 export const GET = handler(
   async (_req: NextRequest, { params }: { params: Promise<{ id: string }> }) => {
@@ -64,12 +64,14 @@ export const PATCH = handler(
       description?: string | null
       project_id?: string | null
       tags?: string[]
+      visibility?: 'private' | 'unlisted' | 'public'
     }
     const patch: FileUpdate = {}
     if (input.title !== undefined) patch.title = input.title
     if (input.description !== undefined) patch.description = input.description
     if (input.projectId !== undefined) patch.project_id = input.projectId
     if (input.tags !== undefined) patch.tags = input.tags
+    if (input.visibility !== undefined) patch.visibility = input.visibility
 
     const { data, error } = await ctx.db
       .from('design_files')

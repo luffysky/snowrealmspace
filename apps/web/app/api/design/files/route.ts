@@ -9,7 +9,7 @@ import { createSnapshotFromAsset } from '@/lib/design/snapshots'
 export const dynamic = 'force-dynamic'
 
 const COLUMNS =
-  'id, title, description, provider, project_id, tags, source_url, sync_status, created_at, updated_at'
+  'id, title, description, provider, project_id, tags, source_url, sync_status, visibility, created_at, updated_at'
 
 export const GET = handler(async (request: NextRequest) => {
   const result = await resolveContext()

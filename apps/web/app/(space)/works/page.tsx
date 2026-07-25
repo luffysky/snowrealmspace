@@ -14,7 +14,7 @@ export default async function WorksPage() {
     db
       .from('design_files')
       .select(
-        'id, title, description, project_id, tags, created_at, updated_at, snapshots:design_snapshots(id, asset_id, created_at)',
+        'id, title, description, project_id, tags, visibility, created_at, updated_at, snapshots:design_snapshots(id, asset_id, created_at)',
       )
       .eq('space_id', space.id)
       .is('deleted_at', null)

@@ -1325,6 +1325,7 @@ export type Database = {
           tags: string[]
           title: string
           updated_at: string
+          visibility: string
         }
         Insert: {
           connection_id?: string | null
@@ -1344,6 +1345,7 @@ export type Database = {
           tags?: string[]
           title: string
           updated_at?: string
+          visibility?: string
         }
         Update: {
           connection_id?: string | null
@@ -1363,6 +1365,7 @@ export type Database = {
           tags?: string[]
           title?: string
           updated_at?: string
+          visibility?: string
         }
         Relationships: [
           {
@@ -2469,6 +2472,7 @@ export type Database = {
           updated_at: string
           weather_city: string | null
           weather_enabled: boolean
+          weekly_recap_email: boolean
         }
         Insert: {
           activity_tracking?: boolean
@@ -2499,6 +2503,7 @@ export type Database = {
           updated_at?: string
           weather_city?: string | null
           weather_enabled?: boolean
+          weekly_recap_email?: boolean
         }
         Update: {
           activity_tracking?: boolean
@@ -2529,6 +2534,7 @@ export type Database = {
           updated_at?: string
           weather_city?: string | null
           weather_enabled?: boolean
+          weekly_recap_email?: boolean
         }
         Relationships: [
           {

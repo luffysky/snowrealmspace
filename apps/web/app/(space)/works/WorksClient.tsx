@@ -12,6 +12,7 @@ export type WorkFile = {
   description: string | null
   project_id: string | null
   tags: string[]
+  visibility: 'private' | 'unlisted' | 'public'
   created_at: string
   updated_at: string
   snapshots: Snapshot[]
@@ -185,6 +186,29 @@ function WorkDetail({
   const [mode, setMode] = useState<CompareMode>('side')
   const [pos, setPos] = useState(50)
   const [comparison, setComparison] = useState<FeatureComparison | null>(null)
+  const [visibility, setVisibility] = useState(file.visibility)
+  const [visSaving, setVisSaving] = useState(false)
+  const [visErr, setVisErr] = useState<string | null>(null)
+
+  async function changeVisibility(next: 'private' | 'unlisted' | 'public') {
+    const prev = visibility
+    setVisibility(next)
+    setVisSaving(true)
+    setVisErr(null)
+    try {
+      const res = await fetch(`/api/design/files/${file.id}`, {
+        method: 'PATCH',
+        headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+        body: JSON.stringify({ visibility: next }),
+      })
+      if (!res.ok) throw new Error()
+    } catch {
+      setVisibility(prev)
+      setVisErr('改不了可見性，請重試。')
+    } finally {
+      setVisSaving(false)
+    }
+  }
 
   const snapA = snaps.find((s) => s.id === a) ?? null
   const snapB = snaps.find((s) => s.id === b) ?? null
@@ -224,6 +248,34 @@ function WorkDetail({
             刪除作品
           </button>
         </div>
+      </div>
+
+      <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center', flexWrap: 'wrap' }}>
+        <label className="sr-field" style={{ margin: 0 }}>
+          <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>可見性</span>
+          <select
+            className="sr-input"
+            value={visibility}
+            disabled={visSaving}
+            onChange={(e) => void changeVisibility(e.target.value as 'private' | 'unlisted' | 'public')}
+          >
+            <option value="private">🔒 私人（只有你）</option>
+            <option value="unlisted">🔗 有連結才看</option>
+            <option value="public">🌐 公開（列在作品集）</option>
+          </select>
+        </label>
+        <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
+          {visibility === 'public'
+            ? '會出現在你的公開作品集頁。'
+            : visibility === 'unlisted'
+              ? '不會被列出，但知道連結的人看得到。'
+              : '只有空間成員看得到。'}
+        </span>
+        {visErr && (
+          <span className="sr-muted" style={{ color: 'var(--sr-danger)', fontSize: 'var(--sr-text-sm)' }}>
+            {visErr}
+          </span>
+        )}
       </div>
 
       {snaps.length < 2 ? (
