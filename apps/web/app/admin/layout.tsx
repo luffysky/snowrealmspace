@@ -47,6 +47,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       items: [
         { href: `${ADMIN_BASE}/users`, label: '使用者管理' },
         { href: `${ADMIN_BASE}/spaces`, label: 'Space／使用者' },
+        { href: `${ADMIN_BASE}/integrations`, label: '整合狀態' },
         { href: `${ADMIN_BASE}/system`, label: '系統健康' },
         { href: `${ADMIN_BASE}/audit`, label: '稽核日誌' },
       ],

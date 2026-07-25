@@ -37,6 +37,7 @@ const SECTIONS: { group: string; items: { href: string; label: string; desc: str
       { href: '/resources', label: '資源與成本', desc: '各空間儲存／AI 用量與成本（ERP）' },
       { href: '/users', label: '使用者管理', desc: '站台角色（owner/admin/member）與特權' },
       { href: '/spaces', label: 'Space／使用者', desc: '空間、擁有者、成員、使用者總覽' },
+      { href: '/integrations', label: '整合狀態', desc: '登入方式／AI 供應商／Figma／Webhook' },
       { href: '/system', label: '系統健康', desc: 'job 佇列、卡住的工作、儲存用量' },
       { href: '/audit', label: '稽核日誌', desc: '誰改了什麼（audit_logs）' },
     ],
