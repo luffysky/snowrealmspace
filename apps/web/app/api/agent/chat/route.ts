@@ -3,6 +3,7 @@ import { agentChatSchema } from '@snowrealm/validation'
 import {
   completeForUsage,
   buildAgentSystemPrompt,
+  toProviderTools,
   QuotaExceededError,
   AllCandidatesFailedError,
   type AIMessage,
@@ -12,6 +13,7 @@ import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 import { buildAgentContext } from '@/lib/agent/context'
 import { buildCompleteDeps } from '@/lib/ai/deps'
+import { executeToolCall } from '@/lib/agent/tools'
 
 export const dynamic = 'force-dynamic'
 
@@ -92,32 +94,80 @@ export const POST = handler(async (request: NextRequest) => {
   const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
 
   try {
+    // 帶上工具 —— 模型可決定要不要動手做事（07-agent.md §5）。
     const completion = await completeForUsage(
       'agent_chat',
-      { spaceId: ctx.spaceId, system, user: historyMessages },
+      { spaceId: ctx.spaceId, system, user: historyMessages, tools: toProviderTools() },
       deps,
     )
 
-    // 存助理訊息
-    await admin.from('agent_messages').insert({
-      space_id: ctx.spaceId,
-      thread_id: threadId,
-      role: 'assistant',
-      content: completion.text,
-      model_used: completion.model,
-      provider: completion.provider,
-      is_free: completion.isFree,
-      escalated: completion.escalated,
-    })
+    let reply = completion.text
+    const actions: { tool: string; status: string; actionId?: string; reason?: string }[] = []
+
+    // 先存助理訊息（工具動作用 message_id 連回這則）
+    const { data: asstMsg } = await admin
+      .from('agent_messages')
+      .insert({
+        space_id: ctx.spaceId,
+        thread_id: threadId,
+        role: 'assistant',
+        content: completion.text,
+        model_used: completion.model,
+        provider: completion.provider,
+        is_free: completion.isFree,
+        escalated: completion.escalated,
+      })
+      .select('id')
+      .single()
+    const messageId = (asstMsg as { id: string } | null)?.id
+
+    // 執行模型呼叫的工具（需確認的 → pending，UI 再確認；其餘即時執行、24h 可復原）
+    if (completion.toolCalls?.length && messageId) {
+      for (const tc of completion.toolCalls) {
+        const outcome = await executeToolCall(ctx, tc.name, tc.arguments, messageId)
+        actions.push(
+          outcome.status === 'rejected'
+            ? { tool: tc.name, status: 'rejected', reason: outcome.reason }
+            : { tool: tc.name, status: outcome.status, actionId: outcome.actionId },
+        )
+      }
+      // 追問：讓模型用自然語言說明做了什麼（訊息型別無 tool role，用文字注入結果）
+      const summary = actions
+        .map((a) => `- ${a.tool}：${a.status === 'executed' ? '已完成' : a.status === 'pending_confirmation' ? '待你確認' : '未執行（' + (a.reason ?? '') + '）'}`)
+        .join('\n')
+      try {
+        const follow = await completeForUsage(
+          'agent_chat',
+          {
+            spaceId: ctx.spaceId,
+            system,
+            user: [
+              ...historyMessages,
+              { role: 'assistant', content: completion.text || '（我呼叫了工具）' },
+              { role: 'user', content: `工具執行結果：\n${summary}\n\n用一兩句自然、溫暖的話告訴我你做了什麼；待確認的請說要我確認。` },
+            ],
+          },
+          deps,
+        )
+        if (follow.text) {
+          reply = follow.text
+          await admin.from('agent_messages').update({ content: reply }).eq('id', messageId)
+        }
+      } catch {
+        // 追問失敗就保留原 reply，不擋
+      }
+    }
+
     await admin.from('agent_threads').update({ last_message_at: new Date().toISOString() }).eq('id', threadId)
 
     return ok({
       threadId,
-      reply: completion.text,
+      reply,
       model: completion.model,
       isFree: completion.isFree,
       escalated: completion.escalated,
       degraded: completion.degraded,
+      ...(actions.length ? { actions } : {}),
     })
   } catch (err) {
     if (err instanceof QuotaExceededError) {

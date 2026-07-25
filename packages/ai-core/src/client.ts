@@ -1,4 +1,4 @@
-import { endpointFor, protocolFor, stripLoneSurrogates } from './providers.js'
+import { endpointFor, protocolFor, splitProviderPrefix, stripLoneSurrogates } from './providers.js'
 import type {
   AICompletionRequest,
   AICompletionResponse,
@@ -33,7 +33,10 @@ function splitSystem(messages: AIMessage[]): { system: string; rest: AIMessage[]
   return { system: cleanText(system), rest }
 }
 
-export async function callAI(req: AICompletionRequest): Promise<AICompletionResponse> {
+export async function callAI(reqIn: AICompletionRequest): Promise<AICompletionResponse> {
+  // 候選鏈的 model 帶 provider 前綴（如 'groq:llama-3.3-70b'）。實際打 API 時必須用裸型號，
+  // 否則 provider 會回 404「model does not exist」。這裡統一剝掉前綴（沒有前綴也安全）。
+  const req: AICompletionRequest = { ...reqIn, model: splitProviderPrefix(reqIn.model).model }
   const doFetch = req.fetchImpl ?? fetch
   const started = Date.now()
   const protocol = protocolFor(req.provider)
