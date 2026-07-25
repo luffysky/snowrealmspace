@@ -26,9 +26,9 @@ describe('describeConfig', () => {
     expect((field as { default: string }).default).toBe('隨手記下…')
   })
 
-  it('uuid 參照欄位標為 unsupported —— 通用表單不猜這種', () => {
+  it('專案參照 uuid 欄位標為 project —— 給專用選擇器，不給文字框', () => {
     const field = describeConfig('current_project').find((f) => f.key === 'projectId')
-    expect(field?.kind).toBe('unsupported')
+    expect(field?.kind).toBe('project')
   })
 
   it('有中文標籤，沒對照時退回欄位名而不是空白', () => {
@@ -44,12 +44,9 @@ describe('describeConfig', () => {
 })
 
 describe('editableConfigFields', () => {
-  it('濾掉 unsupported 欄位', () => {
-    const all = describeConfig('current_project')
+  it('保留專案參照欄位（project 型別，不再被當 unsupported 濾掉）', () => {
     const editable = editableConfigFields('current_project')
-    expect(all.some((f) => f.kind === 'unsupported')).toBe(true)
-    // editable 的型別已排除 unsupported，用長度差確認確實濾掉了
-    expect(editable.length).toBeLessThan(all.length)
+    expect(editable.some((f) => f.key === 'projectId' && f.kind === 'project')).toBe(true)
   })
 
   it('每個 Alpha widget 至少有一個可編輯欄位', () => {

@@ -1,7 +1,9 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { editableConfigFields, type ConfigField, type WidgetId } from '@snowrealm/widget-engine'
+
+type ProjectOption = { id: string; name: string }
 
 /**
  * 單一 widget 的設定面板。從 configSchema 自動生成（config-fields.ts）。
@@ -17,6 +19,7 @@ import { editableConfigFields, type ConfigField, type WidgetId } from '@snowreal
 type EditableField = Exclude<ConfigField, { kind: 'unsupported' }>
 
 export function WidgetSettings({
+  spaceId,
   widgetName,
   definitionId,
   config,
@@ -27,6 +30,7 @@ export function WidgetSettings({
   onToggleLocked,
   onClose,
 }: {
+  spaceId: string
   widgetName: string
   definitionId: string
   config: Record<string, unknown>
@@ -41,6 +45,23 @@ export function WidgetSettings({
     () => editableConfigFields(definitionId as WidgetId),
     [definitionId],
   )
+
+  // 有專案參照欄位時才載入專案清單（給下拉選單）
+  const [projects, setProjects] = useState<ProjectOption[]>([])
+  const needsProjects = fields.some((f) => f.kind === 'project')
+  useEffect(() => {
+    if (!needsProjects) return
+    let alive = true
+    fetch('/api/projects', { headers: { 'x-space-id': spaceId } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((b: { data: ProjectOption[] }) => {
+        if (alive) setProjects(b.data ?? [])
+      })
+      .catch(() => {})
+    return () => {
+      alive = false
+    }
+  }, [needsProjects, spaceId])
 
   const [draft, setDraft] = useState<Record<string, unknown>>(() => {
     // 以 schema 預設為底，蓋上已存的值 —— 缺欄位時控制項才有初值
@@ -102,6 +123,7 @@ export function WidgetSettings({
               key={field.key}
               field={field}
               value={draft[field.key]}
+              projects={projects}
               onChange={(v) => set(field.key, v)}
             />
           ))}
@@ -128,13 +150,38 @@ export function WidgetSettings({
 function FieldControl({
   field,
   value,
+  projects,
   onChange,
 }: {
   field: EditableField
   value: unknown
+  projects: ProjectOption[]
   onChange: (value: unknown) => void
 }) {
   const id = `cfg-${field.key}`
+
+  if (field.kind === 'project') {
+    return (
+      <div className="sr-field-row">
+        <label className="sr-label" htmlFor={id}>
+          {field.label}
+        </label>
+        <select
+          id={id}
+          className="sr-input"
+          value={typeof value === 'string' ? value : ''}
+          onChange={(e) => onChange(e.target.value || null)}
+        >
+          <option value="">（不綁定）</option>
+          {projects.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    )
+  }
 
   if (field.kind === 'boolean') {
     return (

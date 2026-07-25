@@ -518,6 +518,7 @@ export function HomeGrid({
 
                   {isOpen && (
                     <WidgetSettings
+                      spaceId={spaceId}
                       widgetName={name}
                       definitionId={w.widget_definition_id}
                       config={(w.config ?? {}) as Record<string, unknown>}

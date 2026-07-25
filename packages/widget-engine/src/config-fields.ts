@@ -33,6 +33,7 @@ export type ConfigField =
     }
   | { key: string; label: string; kind: 'enum'; default: string; options: string[] }
   | { key: string; label: string; kind: 'string'; default: string; maxLength?: number }
+  | { key: string; label: string; kind: 'project'; default: string | null }
   | { key: string; label: string; kind: 'unsupported' }
 
 /** 欄位名 → 人看得懂的標籤。找不到就用欄位名，不會是空白。 */
@@ -55,6 +56,8 @@ const LABELS: Record<string, string> = {
   allowSkip: '允許切換',
   allowPause: '允許暫停',
   view: '檢視',
+  projectId: '綁定專案',
+  targetProjectId: '存到專案',
 }
 
 function labelFor(key: string): string {
@@ -125,6 +128,11 @@ function describeField(key: string, schema: z.ZodTypeAny): ConfigField {
     const checks = (inner._def as { checks?: { kind: string; value: number }[] }).checks ?? []
     // uuid / url / email 這類「有格式」的字串不是自由文字 ——
     // projectId 要用專門的選擇器，不能給一個純文字框讓人手打 uuid。
+    const isUuid = checks.some((c) => c.kind === 'uuid')
+    // uuid 且欄位名像專案參照 → 給專門的專案選擇器（不是純文字框讓人手打 uuid）
+    if (isUuid && /project/i.test(key)) {
+      return { key, label, kind: 'project', default: typeof def === 'string' ? def : null }
+    }
     const isFormatted = checks.some((c) => ['uuid', 'url', 'email', 'regex'].includes(c.kind))
     if (isFormatted) return { key, label, kind: 'unsupported' }
 
