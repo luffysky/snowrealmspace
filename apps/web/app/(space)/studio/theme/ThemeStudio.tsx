@@ -60,6 +60,9 @@ export function ThemeStudio({
   const [name, setName] = useState(draft.name)
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
   const [dirty, setDirty] = useState(false)
+  const [mood, setMood] = useState('')
+  const [moodVariants, setMoodVariants] = useState<{ variant: string; definition: ThemeDefinition }[]>([])
+  const [moodBusy, setMoodBusy] = useState(false)
 
   const previewRef = useRef<HTMLDivElement>(null)
 
@@ -196,6 +199,32 @@ export function ThemeStudio({
     setStatus({ kind: 'idle' })
   }
 
+  // AI 配色：心情 → 三套變體（本地演算法，對比保證）；點一套只換顏色，保留名稱與字型。
+  async function generateFromMood() {
+    const m = mood.trim()
+    if (!m) return
+    setMoodBusy(true)
+    setStatus({ kind: 'idle' })
+    try {
+      const data = (await api('/api/themes/from-mood', {
+        method: 'POST',
+        body: JSON.stringify({ mood: m }),
+      })) as { variants: { variant: string; definition: ThemeDefinition }[] }
+      setMoodVariants(data.variants)
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : 'AI 配色失敗。' })
+    } finally {
+      setMoodBusy(false)
+    }
+  }
+
+  function applyMoodVariant(def: ThemeDefinition) {
+    update((d) => {
+      d.colors = structuredClone(def.colors)
+      return d
+    })
+  }
+
   function handleReset() {
     const base = defaultThemeDefinition()
     setDraft(base)
@@ -287,6 +316,59 @@ export function ThemeStudio({
             <p className="sr-muted" style={{ marginBottom: 0 }}>
               有未儲存的變更。
             </p>
+          )}
+        </section>
+
+        <section className="sr-card">
+          <h2 className="sr-section-title">AI 配色</h2>
+          <p className="sr-muted" style={{ marginTop: 0 }}>
+            打一個心情或關鍵字（海洋、森林、夜晚、櫻花…），自動配一組顏色，套用後仍可微調。
+          </p>
+          <div className="sr-row">
+            <input
+              className="sr-input"
+              value={mood}
+              maxLength={40}
+              placeholder="例如：海洋、森林、夜晚…"
+              onChange={(e) => setMood(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') void generateFromMood()
+              }}
+              aria-label="配色心情關鍵字"
+            />
+            <button
+              type="button"
+              className="sr-button"
+              onClick={() => void generateFromMood()}
+              disabled={moodBusy || !mood.trim()}
+            >
+              {moodBusy ? '生成中…' : '生成'}
+            </button>
+          </div>
+          {moodVariants.length > 0 && (
+            <div className="sr-row" style={{ marginTop: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+              {moodVariants.map((v) => (
+                <button
+                  key={v.variant}
+                  type="button"
+                  className="sr-button sr-button-secondary"
+                  onClick={() => applyMoodVariant(v.definition)}
+                  title={`套用「${v.variant}」配色`}
+                >
+                  <span style={{ display: 'inline-flex', gap: 2, marginRight: 6, verticalAlign: 'middle' }}>
+                    {[v.definition.colors.primary, v.definition.colors.accent, v.definition.colors.background].map(
+                      (c, i) => (
+                        <span
+                          key={i}
+                          style={{ width: 12, height: 12, borderRadius: 3, background: c, border: '1px solid var(--sr-border)' }}
+                        />
+                      ),
+                    )}
+                  </span>
+                  {v.variant}
+                </button>
+              ))}
+            </div>
           )}
         </section>
 

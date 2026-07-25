@@ -53,7 +53,7 @@ export { PRESET_THEMES, DEFAULT_THEME, defaultThemeDefinition, NEUTRAL } from '.
 
 export { deriveDarkTheme } from './dark-mode.js'
 
-export { extractPalette, buildThemesFromPalette, type Palette } from './palette.js'
+export { extractPalette, buildThemesFromPalette, paletteFromMood, type Palette } from './palette.js'
 
 export {
   buildFontFamily,

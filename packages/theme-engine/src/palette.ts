@@ -4,6 +4,7 @@ import {
   toHex,
   adjustLightness,
   rgbToHsl,
+  hslToRgb,
   pickReadableForeground,
   type Rgb,
 } from './color.js'
@@ -265,6 +266,37 @@ export function buildThemesFromPalette(
   ]
 
   return variants.map((v) => ({ definition: v.build(), variant: v.variant }))
+}
+
+/**
+ * 由「心情/關鍵字」推一組配色（Theme Studio 的 AI 配色）。
+ * 決定性：同一個詞永遠得到同一組色相，方便重現。實際主題由 buildThemesFromPalette 保證對比。
+ */
+export function paletteFromMood(mood: string): Palette {
+  let hue = 0
+  for (const ch of mood) hue = (hue + ch.charCodeAt(0) * 7) % 360
+  const at = (h: number, s: number, l: number): string =>
+    toHex(hslToRgb({ h: ((h % 360) + 360) % 360, s, l }))
+
+  const dominant = at(hue, 0.6, 0.5)
+  const secondary = at(hue + 28, 0.5, 0.55)
+  const accent = at(hue + 165, 0.62, 0.55) // 近互補，做強調
+  const darkest = at(hue, 0.4, 0.14)
+  const lightest = at(hue, 0.28, 0.965)
+
+  return {
+    dominant,
+    secondary,
+    accent,
+    darkest,
+    lightest,
+    swatches: [
+      { color: dominant, weight: 3 },
+      { color: secondary, weight: 2 },
+      { color: accent, weight: 1 },
+    ],
+    stats: { colorCount: 3, averageSaturation: 0.57, averageLightness: 0.5, isDark: false },
+  }
 }
 
 /**
