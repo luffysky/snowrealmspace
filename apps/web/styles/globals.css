@@ -372,6 +372,22 @@ h3 {
   opacity: 0;
   width: 0;
 }
+/* 後台側邊欄的分組（純文字連結，無圖示軌道） */
+.sr-admin-navgroup + .sr-admin-navgroup {
+  margin-top: var(--sr-space-3);
+}
+.sr-admin-navgroup-title {
+  padding: var(--sr-space-2) var(--sr-space-3) 2px;
+  font-size: var(--sr-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sr-text-secondary);
+}
+.sr-admin-navlink {
+  padding-left: var(--sr-space-4);
+}
+
 /* 公開資訊頁的輕量頂列（隱私/條款/說明——app 外殼之外） */
 .sr-public-topbar {
   position: sticky;

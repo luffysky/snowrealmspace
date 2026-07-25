@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
+import { DashboardStats } from './DashboardStats'
 
 export const metadata: Metadata = { title: '管理後台 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -45,10 +46,13 @@ export default async function AdminHome() {
   if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}` : '/home')
 
   return (
-    <main style={{ maxWidth: 820, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
-      <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>管理後台</h1>
-      <p className="sr-muted">站台管理員專用。</p>
+    <main style={{ maxWidth: 980, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
+      <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Dashboard</h1>
+      <p className="sr-muted">站台總覽。數字全部來自現有資料表（無假數字）。</p>
 
+      <DashboardStats />
+
+      <h2 className="sr-section-title" style={{ marginTop: 'var(--sr-space-6)' }}>快速前往</h2>
       {SECTIONS.map((s) => (
         <section key={s.group} className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
           <h2 className="sr-section-title">{s.group}</h2>
