@@ -6,21 +6,13 @@ import { getDb } from '@/lib/supabase/server'
 import { checkInvite, provisionSpaceForUser } from '@snowrealm/db/provisioning'
 import { createAdminClient } from '@snowrealm/db/server'
 import { emitEvent } from '@snowrealm/analytics'
+import { appUrl } from '@/lib/app-url'
 
 const emailSchema = z.string().trim().toLowerCase().email('請輸入有效的 email')
 
 export type AuthActionState = {
   status: 'idle' | 'sent' | 'error'
   message?: string
-}
-
-function appUrl(): string {
-  // APP_PUBLIC_URL 是**執行期** env（不含 NEXT_PUBLIC，不在 build 時 inline）——
-  // 這裡是 server action，讀得到執行期 env。優先用它，因為 hosted 上
-  // NEXT_PUBLIC_APP_URL 是 build 時 inline 的，若 build arg 沒帶對，
-  // magic link 的 redirect_to 就會變成容器內部的 :8080。設 APP_PUBLIC_URL 可即時修正、免重建。
-  const url = process.env.APP_PUBLIC_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
-  return url.replace(/\/+$/, '')
 }
 
 /**

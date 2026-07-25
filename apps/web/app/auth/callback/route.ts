@@ -10,6 +10,7 @@ import { createAdminClient } from '@snowrealm/db/server'
 import { syncFromAuthIdentities } from '@snowrealm/db/identities'
 import { emitEvent, audit } from '@snowrealm/analytics'
 import { toSpaceRole } from '@snowrealm/shared-types'
+import { appUrl } from '@/lib/app-url'
 
 /**
  * Magic link 回呼。
@@ -23,15 +24,19 @@ export async function GET(request: NextRequest) {
   const inviteToken = url.searchParams.get('invite')
   const next = url.searchParams.get('next') ?? '/home'
 
+  // 重導一律用對外網址基底（APP_PUBLIC_URL），不用 request host ——
+  // 否則容器／代理後面會把人導到內部的 :8080。
+  const base = appUrl()
+
   if (!code) {
-    return NextResponse.redirect(new URL('/login?error=missing_code', url.origin))
+    return NextResponse.redirect(new URL('/login?error=missing_code', base))
   }
 
   const db = await getDb()
   const { data: exchanged, error: exchangeError } = await db.auth.exchangeCodeForSession(code)
 
   if (exchangeError || !exchanged.user) {
-    return NextResponse.redirect(new URL('/login?error=invalid_link', url.origin))
+    return NextResponse.redirect(new URL('/login?error=invalid_link', base))
   }
 
   const user = exchanged.user
@@ -52,19 +57,19 @@ export async function GET(request: NextRequest) {
     await syncFromAuthIdentities(user.id).catch((err: unknown) => {
       console.error('[auth/callback] 身分同步失敗', err)
     })
-    return NextResponse.redirect(new URL(next, url.origin))
+    return NextResponse.redirect(new URL(next, base))
   }
 
   // 尚無 space → 必須有有效邀請才能繼續。
   if (!inviteToken) {
     await db.auth.signOut()
-    return NextResponse.redirect(new URL('/login?error=invite_required', url.origin))
+    return NextResponse.redirect(new URL('/login?error=invite_required', base))
   }
 
   const check = await checkInvite(inviteToken, email)
   if (!check.ok) {
     await db.auth.signOut()
-    return NextResponse.redirect(new URL(`/login?error=invite_${check.reason}`, url.origin))
+    return NextResponse.redirect(new URL(`/login?error=invite_${check.reason}`, base))
   }
 
   const invite = check.invite
@@ -114,10 +119,10 @@ export async function GET(request: NextRequest) {
       userAgent: request.headers.get('user-agent') ?? undefined,
     })
 
-    return NextResponse.redirect(new URL(next, url.origin))
+    return NextResponse.redirect(new URL(next, base))
   } catch (err: unknown) {
     console.error('[auth/callback] 佈建失敗', err)
     await db.auth.signOut()
-    return NextResponse.redirect(new URL('/login?error=provisioning_failed', url.origin))
+    return NextResponse.redirect(new URL('/login?error=provisioning_failed', base))
   }
 }
