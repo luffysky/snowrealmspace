@@ -1,45 +1,92 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { WidgetProps } from '../types'
 
 /**
  * 隨手記。
  *
- * Milestone B 沒有 notes 表（那是 Milestone C 的 Project System），
- * 所以先存在瀏覽器的 localStorage。
+ * 存到 DB（widget_notes 表，走 RLS）—— 跨裝置可見。
+ * 自動存檔用防抖：停止輸入 autoSaveSeconds 秒後才送出 PUT。
  *
- * **這一點必須讓使用者知道** —— 假裝已經存到雲端，
- * 等他換一台裝置發現東西不見了，比一開始就說清楚糟得多。
+ * **狀態要誠實**（CLAUDE.md：靜默失敗是 bug）：載入中／儲存中／已同步／失敗
+ * 都明白顯示，失敗用 danger 色，不假裝已存。
  */
-export default function QuickNoteWidget({ spaceId, instanceId, config }: WidgetProps) {
+
+type SaveState = 'loading' | 'idle' | 'saving' | 'saved' | 'error'
+
+export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
   const placeholder = (config as { placeholder?: string } | null)?.placeholder ?? '隨手記下…'
-  const autoSaveSeconds = (config as { autoSaveSeconds?: number } | null)?.autoSaveSeconds ?? 5
+  const autoSaveSeconds = (config as { autoSaveSeconds?: number } | null)?.autoSaveSeconds ?? 3
 
-  const storageKey = `snowrealm:note:${spaceId}:${instanceId}`
   const [text, setText] = useState('')
-  const [saved, setSaved] = useState(false)
+  const [state, setState] = useState<SaveState>('loading')
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const loaded = useRef(false)
 
+  // 首載：從雲端讀回。
   useEffect(() => {
-    setText(window.localStorage.getItem(storageKey) ?? '')
-  }, [storageKey])
-
-  useEffect(() => {
+    let alive = true
+    setState('loading')
+    fetch(`/api/widgets/${instanceId}/note`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((json: { data?: { body?: string } }) => {
+        if (!alive) return
+        setText(json.data?.body ?? '')
+        loaded.current = true
+        setState('idle')
+      })
+      .catch(() => {
+        if (alive) setState('error')
+      })
     return () => {
-      if (timer.current) clearTimeout(timer.current)
+      alive = false
     }
-  }, [])
+  }, [instanceId])
+
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current)
+    },
+    [],
+  )
+
+  const save = useCallback(
+    async (value: string) => {
+      setState('saving')
+      try {
+        const res = await fetch(`/api/widgets/${instanceId}/note`, {
+          method: 'PUT',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ body: value }),
+        })
+        if (!res.ok) throw new Error(String(res.status))
+        setState('saved')
+      } catch {
+        setState('error')
+      }
+    },
+    [instanceId],
+  )
 
   function onChange(value: string) {
     setText(value)
-    setSaved(false)
+    if (!loaded.current) return // 還沒載回前不覆寫雲端
+    setState('idle')
     if (timer.current) clearTimeout(timer.current)
-    timer.current = setTimeout(() => {
-      window.localStorage.setItem(storageKey, value)
-      setSaved(true)
-    }, autoSaveSeconds * 1000)
+    timer.current = setTimeout(() => void save(value), autoSaveSeconds * 1000)
   }
+
+  const hint =
+    state === 'loading'
+      ? '載入中…'
+      : state === 'saving'
+        ? '儲存中…'
+        : state === 'saved'
+          ? '已同步到雲端。'
+          : state === 'error'
+            ? '儲存失敗，請稍後再試。'
+            : '會自動存到雲端，換裝置也看得到。'
 
   return (
     <div className="sr-card sr-widget">
@@ -53,12 +100,17 @@ export default function QuickNoteWidget({ spaceId, instanceId, config }: WidgetP
         className="sr-input sr-widget-note"
         value={text}
         placeholder={placeholder}
+        disabled={state === 'loading'}
         onChange={(e) => onChange(e.target.value)}
         aria-describedby={`note-hint-${instanceId}`}
       />
 
-      <p className="sr-muted" id={`note-hint-${instanceId}`} style={{ marginBottom: 0 }}>
-        {saved ? '已存在這台裝置。' : '只存在這台裝置，換裝置看不到。'}
+      <p
+        className="sr-muted"
+        id={`note-hint-${instanceId}`}
+        style={{ marginBottom: 0, ...(state === 'error' ? { color: 'var(--sr-danger)' } : {}) }}
+      >
+        {hint}
       </p>
     </div>
   )

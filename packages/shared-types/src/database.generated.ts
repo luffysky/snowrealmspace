@@ -2769,6 +2769,42 @@ export type Database = {
           },
         ]
       }
+      widget_notes: {
+        Row: {
+          body: string
+          instance_id: string
+          space_id: string
+          updated_at: string
+        }
+        Insert: {
+          body?: string
+          instance_id: string
+          space_id: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          instance_id?: string
+          space_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "widget_notes_instance_id_fkey"
+            columns: ["instance_id"]
+            isOneToOne: true
+            referencedRelation: "widget_instances"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "widget_notes_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
