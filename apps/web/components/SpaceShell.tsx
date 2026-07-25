@@ -62,6 +62,13 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M8 2v4M16 2v4M3 9h18M8 14h3" />
     </>
   ),
+  '/surprises': (
+    <>
+      <rect x="3" y="8" width="18" height="13" rx="1.5" />
+      <path d="M3 12h18M12 8v13" />
+      <path d="M12 8S9.5 3.5 7.5 5.5 10.5 8 12 8Zm0 0s2.5-4.5 4.5-2.5S13.5 8 12 8Z" />
+    </>
+  ),
   '/principles': (
     <>
       <circle cx="12" cy="12" r="9" />
