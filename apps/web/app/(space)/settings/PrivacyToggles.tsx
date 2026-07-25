@@ -23,6 +23,7 @@ export function PrivacyToggles({
     memoryEnabled: boolean
     aiAnalysisEnabled: boolean
     providerDataEnabled: boolean
+    weeklyRecapEmail: boolean
   }
   action: (prev: SettingsActionState, formData: FormData) => Promise<SettingsActionState>
 }) {
@@ -52,6 +53,12 @@ export function PrivacyToggles({
       label: '允許連接外部設計軟體',
       description: '關閉時所有既有連線會暫停，不再接收更新。',
       defaultChecked: initial.providerDataEnabled,
+    },
+    {
+      name: 'weeklyRecapEmail',
+      label: '每週回顧寄 email 給我',
+      description: '站內每週回顧一直都有；打開這個會在每週回顧產生時，順便寄一封到你的登入信箱。',
+      defaultChecked: initial.weeklyRecapEmail,
     },
   ]
 

@@ -133,6 +133,7 @@ export default async function SettingsPage() {
             memoryEnabled: settings.memory_enabled,
             aiAnalysisEnabled: settings.ai_analysis_enabled,
             providerDataEnabled: settings.provider_data_enabled,
+            weeklyRecapEmail: settings.weekly_recap_email ?? false,
           }}
           action={updatePrivacySettings}
         />

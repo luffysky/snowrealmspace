@@ -1,6 +1,7 @@
 import type { Job } from 'pg-boss'
 import { createAdminClient } from '@snowrealm/db/server'
 import { getTodayContent, maybeGenerateProactive, generateInsights } from '@snowrealm/daily-engine'
+import { sendEmail, weeklyRecapHtml } from '../email.js'
 
 /**
  * 每日與每週的時區掃描（ADR-008、08-jobs-events.md §3.1）。
@@ -153,4 +154,26 @@ async function createWeeklyRecapNotification(
     link: '/insights',
     channel: 'in_app',
   })
+
+  // 週報 email（opt-in：weekly_recap_email 為真才寄；沒設 RESEND 金鑰時 sendEmail 會誠實跳過）
+  const { data: settings } = await admin
+    .from('space_settings')
+    .select('weekly_recap_email')
+    .eq('space_id', spaceId)
+    .maybeSingle()
+  if (settings?.weekly_recap_email) {
+    const { data: userRes } = await admin.auth.admin.getUserById(userId)
+    const email = userRes?.user?.email
+    if (email) {
+      const base = process.env.APP_PUBLIC_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? ''
+      const sent = await sendEmail({
+        to: email,
+        subject: '這週的回顧來了 · SnowRealm Space',
+        html: weeklyRecapHtml(count, `${base}/insights`),
+      })
+      if (!sent.sent && sent.reason !== 'no_key') {
+        console.error('[insight.weekly] email 未寄出', spaceId, sent.reason)
+      }
+    }
+  }
 }

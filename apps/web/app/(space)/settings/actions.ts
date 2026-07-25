@@ -16,6 +16,7 @@ const privacySchema = z
     memoryEnabled: z.boolean(),
     aiAnalysisEnabled: z.boolean(),
     providerDataEnabled: z.boolean(),
+    weeklyRecapEmail: z.boolean(),
   })
   .strict()
 
@@ -89,6 +90,7 @@ export async function updatePrivacySettings(
     memoryEnabled: formData.get('memoryEnabled') === 'on',
     aiAnalysisEnabled: formData.get('aiAnalysisEnabled') === 'on',
     providerDataEnabled: formData.get('providerDataEnabled') === 'on',
+    weeklyRecapEmail: formData.get('weeklyRecapEmail') === 'on',
   })
 
   if (!parsed.success) {
@@ -103,7 +105,7 @@ export async function updatePrivacySettings(
 
   const { data: before } = await db
     .from('space_settings')
-    .select('activity_tracking, memory_enabled, ai_analysis_enabled, provider_data_enabled')
+    .select('activity_tracking, memory_enabled, ai_analysis_enabled, provider_data_enabled, weekly_recap_email')
     .eq('space_id', input.spaceId)
     .maybeSingle()
 
@@ -114,6 +116,7 @@ export async function updatePrivacySettings(
       memory_enabled: input.memoryEnabled,
       ai_analysis_enabled: input.aiAnalysisEnabled,
       provider_data_enabled: input.providerDataEnabled,
+      weekly_recap_email: input.weeklyRecapEmail,
     })
     .eq('space_id', input.spaceId)
 
@@ -127,6 +130,7 @@ export async function updatePrivacySettings(
     memory_enabled: input.memoryEnabled,
     ai_analysis_enabled: input.aiAnalysisEnabled,
     provider_data_enabled: input.providerDataEnabled,
+    weekly_recap_email: input.weeklyRecapEmail,
   }
 
   const changedKeys = before
