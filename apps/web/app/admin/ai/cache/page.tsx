@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { createAdminClient } from '@snowrealm/db/server'
+import { CacheAdminActions } from './CacheAdminActions'
 
 export const metadata: Metadata = { title: '回應快取 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -47,6 +48,8 @@ export default async function AdminCachePage() {
       <p className="sr-muted">
         共 {rows.length} 筆（顯示前 200，依命中排序），累計命中 {totalHits} 次。scope=global 才跨 space 共用。
       </p>
+
+      <CacheAdminActions />
 
       {rows.length === 0 ? (
         <p className="sr-muted">尚無快取。</p>
