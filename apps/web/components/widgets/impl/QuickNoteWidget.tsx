@@ -1,39 +1,36 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import type { WidgetProps } from '../types'
 
 /**
- * 隨手記。
- *
- * 存到 DB（widget_notes 表，走 RLS）—— 跨裝置可見。
- * 自動存檔用防抖：停止輸入 autoSaveSeconds 秒後才送出 PUT。
- *
- * **狀態要誠實**（CLAUDE.md：靜默失敗是 bug）：載入中／儲存中／已同步／失敗
- * 都明白顯示，失敗用 danger 色，不假裝已存。
+ * 隨手記（CRUD）。從單格擴充成多則筆記，存到 notes 表（走 RLS，跨裝置）。
+ * 小工具裡放「快速新增 + 最近幾則（可刪）」，完整增刪改到 /notes。
+ * 狀態誠實：載入/儲存失敗都明說，不假裝成功。
  */
 
-type SaveState = 'loading' | 'idle' | 'saving' | 'saved' | 'load-error' | 'save-error'
+type Note = { id: string; body: string; updated_at: string }
+type State = 'loading' | 'idle' | 'load-error'
 
-export default function QuickNoteWidget({ spaceId, instanceId, config }: WidgetProps) {
+const RECENT = 5
+
+export default function QuickNoteWidget({ spaceId, config }: WidgetProps) {
   const placeholder = (config as { placeholder?: string } | null)?.placeholder ?? '隨手記下…'
-  const autoSaveSeconds = (config as { autoSaveSeconds?: number } | null)?.autoSaveSeconds ?? 3
+  const [state, setState] = useState<State>('loading')
+  const [notes, setNotes] = useState<Note[]>([])
+  const [draft, setDraft] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [err, setErr] = useState<string | null>(null)
 
-  const [text, setText] = useState('')
-  const [state, setState] = useState<SaveState>('loading')
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const loaded = useRef(false)
-
-  // 首載：從雲端讀回。
   useEffect(() => {
     let alive = true
     setState('loading')
-    fetch(`/api/widgets/${instanceId}/note`, { headers: { 'x-space-id': spaceId } })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((json: { data?: { body?: string } }) => {
+    fetch('/api/notes', { headers: { 'x-space-id': spaceId } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((b: { data: Note[] }) => {
         if (!alive) return
-        setText(json.data?.body ?? '')
-        loaded.current = true
+        setNotes(b.data)
         setState('idle')
       })
       .catch(() => {
@@ -42,81 +39,94 @@ export default function QuickNoteWidget({ spaceId, instanceId, config }: WidgetP
     return () => {
       alive = false
     }
-  }, [instanceId, spaceId])
+  }, [spaceId])
 
-  useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current)
-    },
-    [],
-  )
-
-  const save = useCallback(
-    async (value: string) => {
-      setState('saving')
-      try {
-        const res = await fetch(`/api/widgets/${instanceId}/note`, {
-          method: 'PUT',
-          headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-          body: JSON.stringify({ body: value }),
-        })
-        if (!res.ok) throw new Error(String(res.status))
-        setState('saved')
-      } catch {
-        setState('save-error')
-      }
-    },
-    [instanceId, spaceId],
-  )
-
-  function onChange(value: string) {
-    setText(value)
-    if (!loaded.current) return // 還沒載回前不覆寫雲端
-    setState('idle')
-    if (timer.current) clearTimeout(timer.current)
-    timer.current = setTimeout(() => void save(value), autoSaveSeconds * 1000)
+  async function add() {
+    const body = draft.trim()
+    if (!body || busy) return
+    setBusy(true)
+    setErr(null)
+    try {
+      const res = await fetch('/api/notes', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
+        body: JSON.stringify({ body }),
+      })
+      if (!res.ok) throw new Error()
+      const b = (await res.json()) as { data: Note }
+      setNotes((prev) => [b.data, ...prev])
+      setDraft('')
+    } catch {
+      setErr('存不了，請再試一次。')
+    } finally {
+      setBusy(false)
+    }
   }
 
-  const hint =
-    state === 'loading'
-      ? '載入中…'
-      : state === 'saving'
-        ? '儲存中…'
-        : state === 'saved'
-          ? '已同步到雲端。'
-          : state === 'load-error'
-            ? '讀不到雲端內容，請重新整理頁面再試。'
-            : state === 'save-error'
-              ? '儲存失敗，請稍後再試。'
-              : '會自動存到雲端，換裝置也看得到。'
-
-  const isError = state === 'load-error' || state === 'save-error'
+  async function remove(id: string) {
+    const prev = notes
+    setNotes((p) => p.filter((n) => n.id !== id))
+    try {
+      const res = await fetch(`/api/notes/${id}`, { method: 'DELETE', headers: { 'x-space-id': spaceId } })
+      if (!res.ok) throw new Error()
+    } catch {
+      setNotes(prev)
+      setErr('刪除失敗，請重試。')
+    }
+  }
 
   return (
     <div className="sr-card sr-widget">
       <h3 className="sr-widget-title">隨手記</h3>
 
-      <label className="sr-visually-hidden" htmlFor={`note-${instanceId}`}>
-        筆記內容
-      </label>
-      <textarea
-        id={`note-${instanceId}`}
-        className="sr-input sr-widget-note"
-        value={text}
-        placeholder={placeholder}
-        // 載入失敗時鎖住，避免用未載入的空內容覆寫雲端
-        disabled={state === 'loading' || state === 'load-error'}
-        onChange={(e) => onChange(e.target.value)}
-        aria-describedby={`note-hint-${instanceId}`}
-      />
+      {state === 'load-error' ? (
+        <p className="sr-muted" style={{ color: 'var(--sr-danger)', margin: 0 }}>
+          讀不到雲端筆記，請重新整理。
+        </p>
+      ) : (
+        <>
+          <textarea
+            className="sr-input"
+            rows={2}
+            value={draft}
+            maxLength={10000}
+            placeholder={placeholder}
+            disabled={state === 'loading'}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault()
+                void add()
+              }
+            }}
+          />
+          <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
+            <Link href="/notes" className="sr-link" style={{ fontSize: 'var(--sr-text-sm)' }}>
+              看全部 / 編輯
+            </Link>
+            <button type="button" className="sr-button" style={{ padding: '2px 12px' }} onClick={() => void add()} disabled={busy || !draft.trim()}>
+              新增
+            </button>
+          </div>
 
-      <p
-        className="sr-muted"
-        id={`note-hint-${instanceId}`}
-        style={{ marginBottom: 0, ...(isError ? { color: 'var(--sr-danger)' } : {}) }}
-      >
-        {hint}
-      </p>
+          {err && <p className="sr-muted" style={{ color: 'var(--sr-danger)', margin: '4px 0 0', fontSize: 'var(--sr-text-sm)' }}>{err}</p>}
+
+          {notes.length > 0 && (
+            <ul className="sr-stack" style={{ listStyle: 'none', margin: 'var(--sr-space-2) 0 0', padding: 0, gap: '4px' }}>
+              {notes.slice(0, RECENT).map((n) => (
+                <li key={n.id} className="sr-row" style={{ gap: '4px', alignItems: 'flex-start' }}>
+                  <span style={{ flex: 1, minWidth: 0, fontSize: 'var(--sr-text-sm)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {n.body}
+                  </span>
+                  <button type="button" className="sr-button sr-button-secondary" style={{ padding: '0 6px', fontSize: 'var(--sr-text-sm)' }} onClick={() => void remove(n.id)} aria-label="刪除這則">
+                    ✕
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
+      )}
     </div>
   )
 }

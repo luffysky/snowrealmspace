@@ -186,3 +186,9 @@ export {
   type CaptureCreateInput,
   type CapturePatchInput,
 } from './widget-data.js'
+export {
+  noteCreateSchema,
+  notePatchSchema,
+  type NoteCreateInput,
+  type NotePatchInput,
+} from './notes.js'
