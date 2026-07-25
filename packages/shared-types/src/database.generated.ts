@@ -1981,6 +1981,8 @@ export type Database = {
           display_name: string | null
           id: string
           locale: string
+          privileged: boolean
+          site_role: string
           timezone: string
           updated_at: string
         }
@@ -1990,6 +1992,8 @@ export type Database = {
           display_name?: string | null
           id: string
           locale?: string
+          privileged?: boolean
+          site_role?: string
           timezone?: string
           updated_at?: string
         }
@@ -1999,6 +2003,8 @@ export type Database = {
           display_name?: string | null
           id?: string
           locale?: string
+          privileged?: boolean
+          site_role?: string
           timezone?: string
           updated_at?: string
         }
