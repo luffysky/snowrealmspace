@@ -21,6 +21,8 @@ import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
 import { SpaceShell } from '@/components/SpaceShell'
+import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { signOut } from '../(auth)/actions'
 
 /**
@@ -33,6 +35,10 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   const { space, role } = await requireActiveSpace()
   const flags = await getFlags(space.id)
   const db = await getDb()
+
+  // 站台角色（owner/admin）才看得到後台入口
+  const siteAdmin = await checkSiteAdmin()
+  const adminHref = siteAdmin.ok ? ADMIN_BASE : null
 
   // 沒有救援方式的帳號才提醒綁定（綁了就不再出現）
   const user = await getUser()
@@ -170,6 +176,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         spaceName={space.name}
         roleLabel={role === 'owner' ? '擁有者' : role}
         nav={nav}
+        adminHref={adminHref}
         actions={actions}
         footer={footerNode}
       >

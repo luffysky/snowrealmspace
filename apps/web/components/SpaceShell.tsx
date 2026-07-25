@@ -94,6 +94,7 @@ export function SpaceShell({
   spaceName,
   roleLabel,
   nav,
+  adminHref,
   actions,
   footer,
   children,
@@ -101,6 +102,7 @@ export function SpaceShell({
   spaceName: string
   roleLabel: string
   nav: NavItem[]
+  adminHref?: string | null
   actions: React.ReactNode
   footer: React.ReactNode
   children: React.ReactNode
@@ -206,6 +208,26 @@ export function SpaceShell({
             )
           })}
         </nav>
+        {adminHref && (
+          <Link href={adminHref} className="sr-nav-link sr-nav-admin" title="網站後台">
+            <svg
+              className="sr-nav-icon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6Z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            <span className="sr-nav-label">網站後台</span>
+          </Link>
+        )}
         <p className="sr-sidebar-role sr-muted">{roleLabel}</p>
       </aside>
 

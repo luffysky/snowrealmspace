@@ -372,6 +372,14 @@ h3 {
   opacity: 0;
   width: 0;
 }
+/* 後台入口：與頁面導覽用分隔線隔開，並上推到底部區 */
+.sr-nav-admin {
+  margin-top: var(--sr-space-3);
+  padding-top: var(--sr-space-3);
+  border-top: var(--sr-border-width) solid var(--sr-border);
+  color: var(--sr-text-primary);
+}
+
 .sr-sidebar-role {
   margin: auto 0 0;
   padding: var(--sr-space-3) var(--sr-space-3) 0;
