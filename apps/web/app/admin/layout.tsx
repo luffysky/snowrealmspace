@@ -35,6 +35,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     {
       group: 'Agent 與內容',
       items: [
+        { href: `${ADMIN_BASE}/conversations`, label: '對話紀錄' },
         { href: `${ADMIN_BASE}/agent-actions`, label: 'Agent 動作' },
         { href: `${ADMIN_BASE}/content`, label: '內容池' },
         { href: `${ADMIN_BASE}/content-filters`, label: '內容安全字樣' },

@@ -24,6 +24,7 @@ const SECTIONS: { group: string; items: { href: string; label: string; desc: str
   {
     group: 'Agent 與內容',
     items: [
+      { href: '/conversations', label: '對話紀錄', desc: '跨空間 AI 對話（維護用，開啟記稽核）' },
       { href: '/agent-actions', label: 'Agent 動作', desc: '工具呼叫紀錄與失敗' },
       { href: '/content', label: '內容池', desc: '主動訊息／每日一句／驚喜文案' },
       { href: '/content-filters', label: '內容安全字樣', desc: '底線 + 後台附加的過濾規則' },
