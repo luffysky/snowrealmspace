@@ -1,7 +1,8 @@
 'use client'
 
-import { forwardRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import type { ThemeDefinition } from '@snowrealm/theme-engine'
+import { applyThemeToPreview } from '@/lib/theme/apply'
 
 /**
  * 即時預覽。
@@ -16,13 +17,24 @@ import type { ThemeDefinition } from '@snowrealm/theme-engine'
  */
 export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefinition }>(
   function ThemePreview({ definition }, ref) {
+    // 預覽自己負責把 definition 寫進自己的容器 —— 不依賴父層 effect 的時序，
+    // 顏色與「卡片與質感」（圓角/材質/陰影/邊框）都會即時反映。
+    const surfaceRef = useRef<HTMLDivElement | null>(null)
+    useEffect(() => {
+      if (surfaceRef.current) applyThemeToPreview(definition, surfaceRef.current)
+    }, [definition])
+    const setRef = (el: HTMLDivElement | null) => {
+      surfaceRef.current = el
+      if (typeof ref === 'function') ref(el)
+      else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = el
+    }
     return (
       <div className="sr-preview-frame">
         <p className="sr-muted sr-preview-caption">
           即時預覽 —— 這裡的樣子就是套用後的樣子
         </p>
 
-        <div ref={ref} className="sr-preview-surface">
+        <div ref={setRef} className="sr-preview-surface">
           <div className="sr-preview-inner">
             <header className="sr-preview-header">
               <strong className="sr-preview-title">{definition.name || '未命名主題'}</strong>

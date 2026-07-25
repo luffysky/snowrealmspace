@@ -38,11 +38,15 @@
 
   --sr-scale-body: 1;
   --sr-line-height: 1.7;
+  --sr-text-xs: calc(0.75rem * var(--sr-scale-body));
   --sr-text-sm: calc(0.875rem * var(--sr-scale-body));
+  --sr-text-base: calc(1rem * var(--sr-scale-body));
   --sr-text-md: calc(1rem * var(--sr-scale-body));
   --sr-text-lg: calc(1.125rem * var(--sr-scale-body));
   --sr-text-h2: 2rem;
   --sr-text-h1: 2.5rem;
+  /* 圓角中階（主題引擎只發 sm/base/lg；補這個給用到 --sr-radius-md 的元件不變方角） */
+  --sr-radius-md: 12px;
 
   --sr-motion-intensity: 1;
   --sr-duration-fast: calc(120ms * var(--sr-motion-intensity));
@@ -53,9 +57,16 @@
   --sr-space-2: 8px;
   --sr-space-3: 12px;
   --sr-space-4: 16px;
+  --sr-space-5: 20px;
   --sr-space-6: 24px;
   --sr-space-8: 32px;
   --sr-space-12: 48px;
+}
+
+/* 空狀態卡：置中、溫暖（原本 .sr-empty 有 class 沒規則） */
+.sr-empty {
+  text-align: center;
+  padding: var(--sr-space-8) var(--sr-space-6);
 }
 
 /* ADR-011 / v1.0 §43：reduced motion 不是關閉動畫，是降到最低且移除位移 */
