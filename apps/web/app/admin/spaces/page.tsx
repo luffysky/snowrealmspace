@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
+import { OrphanRepair } from './OrphanRepair'
 
 export const metadata: Metadata = { title: 'Space／使用者 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -31,7 +32,7 @@ export default async function AdminSpacesPage() {
   if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/spaces` : '/home')
 
   const admin = createAdminClient()
-  const [{ data: spaceData }, { data: memberData }, { data: profileData }, { data: identityData }] =
+  const [{ data: spaceData }, { data: memberData }, { data: profileData }, { data: identityData }, { data: settingsData }] =
     await Promise.all([
       admin
         .from('spaces')
@@ -41,6 +42,7 @@ export default async function AdminSpacesPage() {
       admin.from('space_members').select('space_id, user_id, role').limit(2000),
       admin.from('profiles').select('id, display_name, created_at, locale').order('created_at', { ascending: false }).limit(500),
       admin.from('user_identities').select('user_id, provider, email').limit(1000),
+      admin.from('space_settings').select('space_id').limit(2000),
     ])
 
   const spaces = (spaceData ?? []) as SpaceRow[]
@@ -61,6 +63,16 @@ export default async function AdminSpacesPage() {
   const liveSpaces = spaces.filter((s) => !s.deleted_at)
   const deletedSpaces = spaces.filter((s) => s.deleted_at)
 
+  // 孤兒偵測
+  const usersWithSpace = new Set(members.map((m) => m.user_id))
+  const orphanUsers = profiles
+    .filter((p) => !usersWithSpace.has(p.id))
+    .map((p) => ({ id: p.id, name: p.display_name ?? '（未命名）' }))
+  const spacesWithSettings = new Set((settingsData ?? []).map((r) => r.space_id))
+  const orphanSpaces = liveSpaces
+    .filter((s) => !spacesWithSettings.has(s.id))
+    .map((s) => ({ id: s.id, name: s.name }))
+
   const th = { padding: 'var(--sr-space-2)', textAlign: 'left' as const }
   const td = { padding: 'var(--sr-space-2)' }
 
@@ -73,8 +85,13 @@ export default async function AdminSpacesPage() {
       </p>
       <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Space／使用者</h1>
       <p className="sr-muted">
-        {liveSpaces.length} 個使用中空間、{deletedSpaces.length} 個待清除、{profiles.length} 位使用者。唯讀。
+        {liveSpaces.length} 個使用中空間、{deletedSpaces.length} 個待清除、{profiles.length} 位使用者。
       </p>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">佈建／孤兒修復</h2>
+        <OrphanRepair users={orphanUsers} spaces={orphanSpaces} />
+      </section>
 
       <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
         <h2 className="sr-section-title">空間</h2>
