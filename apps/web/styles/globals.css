@@ -2768,6 +2768,48 @@ input[type='range'] {
   font-size: var(--sr-text-sm, 0.875rem);
 }
 
+/* 背景場景／Lottie 的即時預覽格 */
+.sr-scene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.sr-scene-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius);
+  overflow: hidden;
+  background: none;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.sr-scene-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+.sr-scene-tile:focus-visible {
+  outline: 2px solid var(--sr-accent);
+  outline-offset: 2px;
+}
+.sr-scene-tile-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #111;
+}
+.sr-scene-tile-label {
+  padding: 4px 6px;
+  font-size: var(--sr-text-sm);
+  text-align: center;
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+
 /* Agent 多模態附件 */
 .sr-chat-attachments {
   display: flex;

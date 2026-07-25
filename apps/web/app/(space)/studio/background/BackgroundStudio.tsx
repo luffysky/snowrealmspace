@@ -8,6 +8,8 @@ import { DYNAMIC_SCENES, STATIC_SCENES, getScene } from '@/lib/scenes'
 import { LOTTIE_SCENES, getLottieScene } from '@/lib/lottie-scenes'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { gradientCss } from '@/components/BackgroundLayer'
+import { ProceduralScene } from '@/components/ProceduralScene'
+import { LottieBackground } from '@/components/LottieBackground'
 import { BackgroundEditor } from './BackgroundEditor'
 import { PlaylistPanel, backgroundLabel, type Playlist } from './PlaylistPanel'
 
@@ -256,68 +258,77 @@ export function BackgroundStudio({
         </div>
 
         {/* 內建動態背景（場景） */}
-        <label className="sr-label" htmlFor="scene-picker" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <p className="sr-label" style={{ marginTop: 'var(--sr-space-4)' }}>
           內建動態背景（雪／雨／櫻花…）
-        </label>
-        <div className="sr-row">
-          <select
-            id="scene-picker"
-            className="sr-input"
-            defaultValue=""
-            onChange={(e) => {
-              if (e.target.value) {
-                void addScene(e.target.value)
-                e.target.value = ''
-              }
-            }}
-          >
-            <option value="">選一個動態背景…</option>
-            <optgroup label="動態">
-              {DYNAMIC_SCENES.map((sc) => (
-                <option key={sc.id} value={sc.id}>
-                  {sc.label}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup label="靜態">
-              {STATIC_SCENES.map((sc) => (
-                <option key={sc.id} value={sc.id}>
-                  {sc.label}
-                </option>
-              ))}
-            </optgroup>
-          </select>
+        </p>
+        <div className="sr-scene-grid" role="list" aria-label="動態場景">
+          {DYNAMIC_SCENES.map((sc) => (
+            <button
+              key={sc.id}
+              type="button"
+              role="listitem"
+              className="sr-scene-tile"
+              title={`加入「${sc.label}」`}
+              onClick={() => void addScene(sc.id)}
+            >
+              <span className="sr-scene-tile-media">
+                <ProceduralScene sceneId={sc.id} />
+              </span>
+              <span className="sr-scene-tile-label">{sc.label}</span>
+            </button>
+          ))}
         </div>
+        {STATIC_SCENES.length > 0 && (
+          <>
+            <p className="sr-label" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
+              靜態
+            </p>
+            <div className="sr-scene-grid" role="list" aria-label="靜態場景">
+              {STATIC_SCENES.map((sc) => (
+                <button
+                  key={sc.id}
+                  type="button"
+                  role="listitem"
+                  className="sr-scene-tile"
+                  title={`加入「${sc.label}」`}
+                  onClick={() => void addScene(sc.id)}
+                >
+                  <span className="sr-scene-tile-media">
+                    <ProceduralScene sceneId={sc.id} />
+                  </span>
+                  <span className="sr-scene-tile-label">{sc.label}</span>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
         <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
-          場景也可以「疊」在你的圖片/漸層背景上——到下方調整面板的「疊加場景」選。
+          點一個就加入。場景也可以「疊」在你的圖片/漸層背景上——到下方調整面板的「疊加場景」選。
         </p>
 
         {/* 內建 Lottie 向量動畫背景 */}
-        <label className="sr-label" htmlFor="lottie-picker" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <p className="sr-label" style={{ marginTop: 'var(--sr-space-4)' }}>
           內建 Lottie 動畫背景（向量、平滑）
-        </label>
-        <div className="sr-row">
-          <select
-            id="lottie-picker"
-            className="sr-input"
-            defaultValue=""
-            onChange={(e) => {
-              if (e.target.value) {
-                void addLottie(e.target.value)
-                e.target.value = ''
-              }
-            }}
-          >
-            <option value="">選一個 Lottie 背景…</option>
-            {LOTTIE_SCENES.map((sc) => (
-              <option key={sc.id} value={sc.id}>
-                {sc.label} —— {sc.mood}
-              </option>
-            ))}
-          </select>
+        </p>
+        <div className="sr-scene-grid" role="list" aria-label="Lottie 背景">
+          {LOTTIE_SCENES.map((sc) => (
+            <button
+              key={sc.id}
+              type="button"
+              role="listitem"
+              className="sr-scene-tile"
+              title={`加入「${sc.label}」（${sc.mood}）`}
+              onClick={() => void addLottie(sc.id)}
+            >
+              <span className="sr-scene-tile-media">
+                <LottieBackground lottieId={sc.id} />
+              </span>
+              <span className="sr-scene-tile-label">{sc.label}</span>
+            </button>
+          ))}
         </div>
         <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
-          本專案自製、可自由使用（CC0）。省流量或減少動態偏好時只顯示靜態第一格。
+          點一個就加入。本專案自製、可自由使用（CC0）。省流量或減少動態偏好時只顯示靜態第一格。
         </p>
       </section>
 
