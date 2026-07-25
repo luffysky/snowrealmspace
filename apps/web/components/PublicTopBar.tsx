@@ -12,7 +12,7 @@ export function PublicTopBar() {
       <Link href="/" className="sr-public-brand">
         SnowRealm
       </Link>
-      <Link href="/" className="sr-link">
+      <Link href="/" className="sr-button">
         ← 回首頁
       </Link>
     </header>

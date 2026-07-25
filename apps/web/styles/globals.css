@@ -745,6 +745,16 @@ body {
   max-width: 100%;
 }
 
+/* 隱藏捲軸（整站，仍可捲動）。Luffy 指定：前後台都不顯示 scrollbar。 */
+* {
+  scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none; /* Chromium / WebKit */
+}
+
 /* ── Theme Studio ─────────────────────────────────── */
 
 .sr-studio {
@@ -2731,6 +2741,82 @@ input[type='range'] {
 .sr-chat-input-row textarea {
   flex: 1;
   resize: vertical;
+}
+
+/* 側邊欄次要連結（使用說明/教學/隱私/條款）——推到底部 */
+.sr-sidebar-secondary {
+  margin-top: auto;
+  padding-top: var(--sr-space-3);
+  border-top: var(--sr-border-width) solid var(--sr-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sr-nav-sub {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: var(--sr-radius-sm, 8px);
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-secondary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+.sr-nav-sub:hover {
+  background: var(--sr-surface-alt);
+  color: var(--sr-text-primary);
+}
+
+/* Insight 五分類徽章（顏色一律用主題 token，icon+label 保證五類可分辨） */
+.sr-insight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--sr-text-sm);
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--sr-surface-alt);
+  border: var(--sr-border-width) solid var(--sr-border);
+  color: var(--sr-text-secondary);
+}
+.sr-insight-badge[data-type='fact'] {
+  color: var(--sr-success);
+}
+.sr-insight-badge[data-type='metric'] {
+  color: var(--sr-primary);
+}
+.sr-insight-badge[data-type='inference'] {
+  color: var(--sr-accent);
+}
+.sr-insight-badge[data-type='suggestion'] {
+  color: var(--sr-warning);
+}
+.sr-insight-badge[data-type='creative'] {
+  color: var(--sr-accent);
+  font-style: italic;
+}
+.sr-insight[data-type] {
+  border-top: 3px solid var(--sr-border);
+}
+.sr-insight[data-type='fact'] {
+  border-top-color: var(--sr-success);
+}
+.sr-insight[data-type='metric'] {
+  border-top-color: var(--sr-primary);
+}
+.sr-insight[data-type='inference'],
+.sr-insight[data-type='creative'] {
+  border-top-color: var(--sr-accent);
+}
+.sr-insight[data-type='suggestion'] {
+  border-top-color: var(--sr-warning);
 }
 
 /* 版面範本卡 */

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScrollLock } from '@/lib/use-scroll-lock'
+import { startTutorial } from '@/components/tutorial/TutorialController'
 
 /**
  * Space Shell 的互動外殼。
@@ -232,6 +233,26 @@ export function SpaceShell({
             <span className="sr-nav-label">網站後台</span>
           </Link>
         )}
+        <div className="sr-sidebar-secondary">
+          <Link href="/guide" className="sr-nav-sub" title="使用說明">
+            使用說明
+          </Link>
+          <button
+            type="button"
+            className="sr-nav-sub"
+            onClick={() => startTutorial('home')}
+            title="重新看一次互動教學"
+          >
+            ▶ 互動教學
+          </button>
+          <Link href="/privacy" className="sr-nav-sub" title="隱私政策">
+            隱私政策
+          </Link>
+          <Link href="/terms" className="sr-nav-sub" title="使用條款">
+            使用條款
+          </Link>
+        </div>
+
         <p className="sr-sidebar-role sr-muted">{roleLabel}</p>
       </aside>
 

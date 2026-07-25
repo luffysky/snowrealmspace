@@ -68,12 +68,12 @@
 - [x] ~~首頁 `/` 500 防護、lint 與 build 解耦~~
 - [x] ~~RWD 稽核：nav 加鈴鐺/日夜鈕後不破版；通知面板手機改 fixed 貼齊視窗~~
 - [x] ~~**導覽重構**（0725）：桌機可收合側邊欄（圖示軌道）、手機漢堡抽屜、時間差動畫、aria-current 高亮；取代 flex-wrap 排列~~
-- [ ] Sentry / 監控（`queue-health` 目前只 log，沒告警管道）
+- [x] ~~Sentry / 監控~~ ✅ 0726 Sentry-lite（DSN-gated，設 SENTRY_DSN 即啟用）
 - [ ] `/api/health` 全綠（等 R2 + worker）
 - [ ] preview 與 production 用不同 Supabase / R2 bucket
 - [ ] preview 不設付費 AI 金鑰 → 自動全走免費模型，PR 不產生帳單
 - [ ] Next `output: 'standalone'`（縮小映像檔，首次部署以正確性優先，之後再開）
-- [ ] lefthook git hooks
+- [x] ~~lefthook git hooks~~ ✅ 0726（pre-commit secrets+lint / pre-push typecheck+deps）
 - [ ] 小技術債（0723 沿用）：`packages/db` 未列規格 §53（已記 build log）、migration 編號與規格 §0 規劃不同（按 Milestone 順序建立）
 - [ ] E2E/a11y 在 CI 一直 churn — Luffy 要求暫停跑；日後要重新穩定（gate 全域 setup、
       環境對齊）再開。目前改靠 typecheck/單元/RLS/直連 DB 驗證。
@@ -86,7 +86,7 @@
 - [x] ~~影片時長雙層檢查、三種轉場、輪播、時段排程 UI~~
 - [x] ~~Widget 設定面板（自動生成）、隱藏、鎖定、版面切換~~
 - [x] ~~毛玻璃數量上限、視覺回歸（opt-in）~~
-- [ ] Layout preset 多套版面切換的**進階**（目前可新增/切換/改名/刪除，夠用）
+- [x] ~~Layout preset 多套版面~~ ✅ 0726：6 套範本（預設/專注/創作/每日/極簡/總覽）+ CRUD + key 修復
 - [ ] poster frame 抽取（需 ffmpeg，排到 C）
 - [ ] Visual regression 基準擴充到更多頁
 
@@ -104,7 +104,7 @@
 - [x] ~~**AI 用量／成本儀表板** `/admin/ai/usage`（總成本、免費vs付費、escalate/fallback/degraded/cache 率）~~
 - [x] ~~**每日額度檢視＋上限設定** `/admin/ai/quota`~~ ✅ 0725：新增 ai_quota_config（0039），免費/付費上限可後台改，deps.ts 改讀設定（原寫死 300/20）
 - [x] ~~**回應快取檢視** `/admin/ai/cache`（命中率、scope、過期狀態）+ 清除（清過期/全部清空）~~ 〔0725 加清除；per-usage 失效待做〕
-- [ ] **內容審核關鍵字**（FORBIDDEN_PATTERNS 可後台編輯）
+- [x] ~~內容審核關鍵字後台編輯~~ ✅ content_filter_patterns（0040）+ /admin/content-filters
 
 **系統／營運**
 - [x] ~~**Feature flags 管理** `/admin/flags`（全域旗標即時切換 PATCH + 樂觀更新/回滾；space 覆寫唯讀）~~
@@ -125,7 +125,7 @@
 - [x] ~~GET /api/integrations（capability matrix）+ POST /api/webhooks/:provider（驗簽+冪等+快回 200）~~
 - [x] ~~middleware 豁免 /api/webhooks/*（外部呼叫）~~
 - [ ] 🔴 **Figma app 憑證**（client id/secret）→ OAuth connect/callback、figma.sync job 才能實作
-- [ ] 🔴 worker 部署（sync job 要跑）
+- [x] ~~worker 部署~~ ✅（Luffy 已啟動）
 
 ## 🅴 Milestone E — Daily Loop
 
@@ -245,7 +245,7 @@
 - [ ] 測試 env 指向 hosted 會污染正式資料 — 已有 cleanup 腳本，但流程要小心
 - [ ] Insight 軟刪除後，下次 `generateInsights` 的 upsert 會更新到同一列但 `deleted_at` 仍在
       → 被刪的回顧不會自動復活（可接受；若要「刪了就不再出現該週期」則需在 upsert 前濾掉）
-- [ ] 主動訊息目前「進 Home 時觸發」；完整方案要 cron 掃時區主動產生（同每日卡片）
+- [x] ~~主動訊息改 cron 掃時區~~ ✅ 0726：收斂到 worker cron 一條路徑，Home 改只讀
 - [ ] `apps/web/lib/insights`、`lib/daily/proactive`、`lib/notifications` 尚無單元測試
       （引擎邏輯已用 `scripts/verify-milestone-e.ts` 直連 DB 驗證，但缺純函式單測）
 
@@ -266,10 +266,10 @@
 - **卡決策/外部（等 Luffy）**：公開作品集頁（對外曝光可見性模型）、訪客分享模型、Email 供應商金鑰、字體檔、Figma 憑證、Sentry DSN、AI Dot 定價。
 
 ### 近期佇列（純程式，不卡外部）
-- [ ] **B. 幹掉 window.prompt/confirm ＋ 資產選擇器 modal** ← 先做
+- [x] ~~幹掉 window.prompt/confirm + 資產選擇器 modal~~ ✅ DialogProvider + AssetPicker
       最醜：Works「新增版本」要手貼 asset UUID、WorkDetail 寫死 initialFiles[0]；
       Home 版面建立/命名、Library 資料夾/標籤/移動(數字選單)、Timeline 命名。做一個 modal + asset-picker 原語貫穿。
-- [ ] **A. 接上 Agent 工具迴圈** ← 再做（模型真的呼叫工具需金鑰驗）
+- [x] ~~接上 Agent 工具迴圈~~ ✅ 10/10 handler + 確認/24h 復原
       chat route 沒把 `tools` 傳進 `completeForUsage` → 整套工具系統是死程式。
       傳 `toProviderTools()` + 跑工具迴圈 + 補 6 個 handler：create_note / create_theme_draft /
       create_palette / add_background / compare_design_versions / create_daily_card（現有 4/10）。
