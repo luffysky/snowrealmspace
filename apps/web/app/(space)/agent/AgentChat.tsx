@@ -9,21 +9,61 @@ export type ChatMessage = {
   escalated?: boolean
 }
 
+export type ThreadSummary = { id: string; title: string | null; last_message_at: string }
+
 export function AgentChat({
   spaceId,
   initialThreadId,
   initialMessages,
+  initialThreads,
 }: {
   spaceId: string
   initialThreadId: string | null
   initialMessages: ChatMessage[]
+  initialThreads: ThreadSummary[]
 }) {
   const [threadId, setThreadId] = useState<string | null>(initialThreadId)
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
+  const [threads, setThreads] = useState<ThreadSummary[]>(initialThreads)
   const [input, setInput] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const listRef = useRef<HTMLDivElement>(null)
+
+  async function refreshThreads() {
+    try {
+      const res = await fetch('/api/agent/threads', { headers: { 'x-space-id': spaceId } })
+      if (res.ok) {
+        const body = (await res.json()) as { data: ThreadSummary[] }
+        setThreads(body.data)
+      }
+    } catch {
+      /* 忽略：清單載入失敗不影響對話 */
+    }
+  }
+
+  function newConversation() {
+    if (pending) return
+    setThreadId(null)
+    setMessages([])
+    setError(null)
+    setInput('')
+  }
+
+  async function switchTo(id: string) {
+    if (pending || id === threadId) return
+    setError(null)
+    try {
+      const res = await fetch(`/api/agent/threads/${id}`, { headers: { 'x-space-id': spaceId } })
+      if (!res.ok) throw new Error()
+      const body = (await res.json()) as { data: { threadId: string; messages: ChatMessage[] } }
+      setThreadId(body.data.threadId)
+      setMessages(body.data.messages)
+      scrollToBottom()
+    } catch {
+      setError('讀不到這個對話。')
+    }
+  }
 
   function scrollToBottom() {
     requestAnimationFrame(() => {
@@ -59,11 +99,13 @@ export function AgentChat({
       const data = (body as {
         data: { threadId: string; reply: string; escalated: boolean; degraded: boolean }
       }).data
+      const wasNew = threadId === null
       setThreadId(data.threadId)
       setMessages((prev) => [
         ...prev,
         { id: `a-${Date.now()}`, role: 'assistant', content: data.reply, escalated: data.escalated },
       ])
+      if (wasNew) void refreshThreads()
       if (data.degraded) {
         setError('本次使用快速模式（今日深入分析額度已用完，明日 00:00 重置）。')
       }
@@ -87,6 +129,28 @@ export function AgentChat({
 
   return (
     <div className="sr-card sr-stack">
+      <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center', flexWrap: 'wrap' }}>
+        <button type="button" className="sr-button sr-button-secondary" onClick={newConversation} disabled={pending}>
+          ＋ 新對話
+        </button>
+        {threads.length > 0 && (
+          <select
+            className="sr-input"
+            style={{ flex: 1, minWidth: 160, maxWidth: 320 }}
+            value={threadId ?? ''}
+            disabled={pending}
+            onChange={(e) => (e.target.value ? void switchTo(e.target.value) : newConversation())}
+          >
+            <option value="">— 新對話 —</option>
+            {threads.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.title || '（未命名對話）'}
+              </option>
+            ))}
+          </select>
+        )}
+      </div>
+
       <div ref={listRef} className="sr-chat-list" aria-live="polite">
         {messages.length === 0 ? (
           <p className="sr-muted" style={{ textAlign: 'center', padding: 'var(--sr-space-6) 0' }}>

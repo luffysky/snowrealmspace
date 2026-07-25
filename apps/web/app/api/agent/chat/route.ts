@@ -54,9 +54,11 @@ export const POST = handler(async (request: NextRequest) => {
     if (!t) threadId = null
   }
   if (!threadId) {
+    // 用第一句話當標題（截斷），對話列表才認得出來
+    const title = input.message.trim().slice(0, 40) || '新對話'
     const { data: created, error } = await admin
       .from('agent_threads')
-      .insert({ space_id: ctx.spaceId, created_by: ctx.userId, mode: 'companion' })
+      .insert({ space_id: ctx.spaceId, created_by: ctx.userId, mode: 'companion', title })
       .select('id')
       .single()
     if (error || !created) return fail('INTERNAL', '無法建立對話。')

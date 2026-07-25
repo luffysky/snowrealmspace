@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
-import { AgentChat, type ChatMessage } from './AgentChat'
+import { AgentChat, type ChatMessage, type ThreadSummary } from './AgentChat'
 
 export const metadata: Metadata = { title: 'Agent — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -10,15 +10,16 @@ export default async function AgentPage() {
   const { space } = await requireActiveSpace()
   const db = await getDb()
 
-  // 載入最近一個對話的訊息（有的話）
-  const { data: thread } = await db
+  // 對話清單 + 最近一個對話的訊息
+  const { data: threadRows } = await db
     .from('agent_threads')
-    .select('id')
+    .select('id, title, last_message_at')
     .eq('space_id', space.id)
     .is('deleted_at', null)
     .order('last_message_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
+    .limit(100)
+  const threads = (threadRows ?? []) as ThreadSummary[]
+  const thread = threads[0] ?? null
 
   let messages: ChatMessage[] = []
   if (thread) {
@@ -51,6 +52,7 @@ export default async function AgentPage() {
         spaceId={space.id}
         initialThreadId={thread?.id ?? null}
         initialMessages={messages}
+        initialThreads={threads}
       />
     </div>
   )
