@@ -6,12 +6,13 @@ import { defineConfig } from 'vitest/config'
  * 門檻依套件性質分級：純函式套件（未來的 theme-engine / widget-engine）
  * 測試成本低而回報高，門檻拉到 95%；含 I/O 的套件務實一些。
  *
- * 只涵蓋 packages/* —— apps/* 的驗證靠 E2E 與 RLS 測試，
- * 對 Server Component 追求行覆蓋率會逼出大量無意義的 mock。
+ * 覆蓋率只計 packages/* —— apps/* 的 Server Component 追求行覆蓋率會逼出大量無意義的 mock。
+ * 但 apps/web/lib 裡的**純函式**（如 widget-position 的座標解析、theme/mode）測試便宜、
+ * 回報高，照常跑（列在 test.include，但不列入 coverage.include，不受門檻壓力）。
  */
 export default defineConfig({
   test: {
-    include: ['packages/*/src/**/*.test.ts'],
+    include: ['packages/*/src/**/*.test.ts', 'apps/web/lib/**/*.test.ts'],
     exclude: ['**/node_modules/**', '**/dist/**', 'supabase/tests/**'],
     environment: 'node',
     coverage: {
