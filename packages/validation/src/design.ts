@@ -26,6 +26,15 @@ export const designFileCreateSchema = z
 export const WORK_VISIBILITIES = ['private', 'unlisted', 'public'] as const
 export type WorkVisibility = (typeof WORK_VISIBILITIES)[number]
 
+/** 分享連結：建立時可選到期天數（不給 = 永久）。 */
+export const shareCreateSchema = z
+  .object({
+    designFileId: z.string().uuid(),
+    expiresInDays: z.number().int().min(1).max(365).nullable().optional(),
+  })
+  .strict()
+export type ShareCreateInput = z.infer<typeof shareCreateSchema>
+
 export const designFilePatchSchema = z
   .object({
     title: z.string().trim().min(1).max(120).optional(),

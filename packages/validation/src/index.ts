@@ -129,11 +129,15 @@ export {
   designFileListQuerySchema,
   snapshotCreateSchema,
   snapshotCompareSchema,
+  shareCreateSchema,
+  WORK_VISIBILITIES,
   type DesignFileCreateInput,
   type DesignFilePatchInput,
   type DesignFileListQuery,
   type SnapshotCreateInput,
   type SnapshotCompareInput,
+  type ShareCreateInput,
+  type WorkVisibility,
 } from './design.js'
 
 export {

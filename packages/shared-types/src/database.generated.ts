@@ -2333,6 +2333,54 @@ export type Database = {
         }
         Relationships: []
       }
+      share_links: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          design_file_id: string
+          expires_at: string | null
+          id: string
+          revoked_at: string | null
+          space_id: string
+          token: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          design_file_id: string
+          expires_at?: string | null
+          id?: string
+          revoked_at?: string | null
+          space_id: string
+          token: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          design_file_id?: string
+          expires_at?: string | null
+          id?: string
+          revoked_at?: string | null
+          space_id?: string
+          token?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "share_links_design_file_id_fkey"
+            columns: ["design_file_id"]
+            isOneToOne: false
+            referencedRelation: "design_files"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "share_links_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       space_feature_overrides: {
         Row: {
           enabled: boolean

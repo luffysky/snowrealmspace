@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import type { FeatureComparison } from '@snowrealm/theme-engine'
 import { useDialog } from '@/components/ui/DialogProvider'
 import { AssetPicker } from '@/components/ui/AssetPicker'
+import { ShareLinksPanel } from './ShareLinksPanel'
 
 export type Snapshot = { id: string; asset_id: string; created_at: string }
 export type WorkFile = {
@@ -292,6 +293,8 @@ function WorkDetail({
           </span>
         )}
       </div>
+
+      <ShareLinksPanel spaceId={spaceId} fileId={file.id} />
 
       {snaps.length < 2 ? (
         <p className="sr-muted">
