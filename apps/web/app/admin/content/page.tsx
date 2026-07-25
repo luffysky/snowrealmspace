@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { createAdminClient } from '@snowrealm/db/server'
+import { ContentToggle } from './ContentToggle'
 
 export const metadata: Metadata = { title: '內容池 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -68,8 +69,8 @@ export default async function AdminContentPage() {
                     ·權重 {r.weight}
                     {r.rarity ? ` ·${r.rarity}` : ''}
                     {r.tags.length ? ` ·${r.tags.join('/')}` : ''}
-                    {r.enabled ? '' : ' ·停用'}
                   </span>
+                  <ContentToggle contentId={r.content_id} initialEnabled={r.enabled} />
                 </li>
               ))}
             </ul>
