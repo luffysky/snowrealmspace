@@ -1,4 +1,17 @@
-<!doctype html>
+export const dynamic = 'force-dynamic'
+
+/**
+ * 公開端點：提供 magic link 登入信的 HTML 給 hosted GoTrue 使用。
+ *
+ * hosted GoTrue 設 `GOTRUE_MAILER_TEMPLATES_MAGIC_LINK` 指向這個網址
+ * （https://<你的網域>/api/email/magic-link），GoTrue 抓取後替換 {{ .ConfirmationURL }}、
+ * {{ .Token }} 等變數再寄出。本產品的登入信就會是這個美化版，而非 GoTrue 內建的陽春版。
+ *
+ * 這是公開的（middleware 白名單）——只回一份含樣板變數的靜態 HTML，不含任何機密。
+ * 本地 Supabase 則吃 supabase/templates/magic_link.html（內容同步）。
+ */
+
+const TEMPLATE = `<!doctype html>
 <html lang="zh-Hant-TW">
   <body style="margin:0;padding:0;background:#faf3f7;font-family:'PingFang TC','Noto Sans TC','Microsoft JhengHei',system-ui,-apple-system,'Segoe UI',sans-serif;color:#3a2831;-webkit-font-smoothing:antialiased;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;">你的 SnowRealm Space 登入連結與代碼，1 小時內有效。</div>
@@ -64,4 +77,10 @@
       </tr>
     </table>
   </body>
-</html>
+</html>`
+
+export function GET() {
+  return new Response(TEMPLATE, {
+    headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300' },
+  })
+}

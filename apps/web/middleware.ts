@@ -41,7 +41,10 @@ export async function middleware(request: NextRequest) {
   // 外部端點不受站台閘門限制：provider webhook（外部呼叫、無 cookie，04-api-contract §0）
   // 與健康檢查。這些自行驗簽章/授權。
   const isPublicEndpoint =
-    pathname.startsWith('/api/webhooks/') || pathname === '/api/health'
+    pathname.startsWith('/api/webhooks/') ||
+    pathname === '/api/health' ||
+    // 登入信樣板：hosted GoTrue 會抓這個網址，不帶 cookie，不能被閘門攔
+    pathname.startsWith('/api/email/')
   if (isPublicEndpoint) {
     return NextResponse.next({ request })
   }
