@@ -72,6 +72,23 @@ export function webhookIdempotencyKey(provider: ProviderId, externalEventId: str
   return `${provider}:${externalEventId}`
 }
 
+/**
+ * Figma webhook 驗證 —— Figma 不簽章、不送 HMAC header，而是把「建立 webhook 時你自訂的
+ * passcode」原樣回傳在每則事件的 body。驗證＝比對 payload.passcode 與你設定的 secret。
+ * 見 https://www.figma.com/developers/api#webhooks-v2-endpoints（passcode 欄位）。
+ *
+ * 用 timing-safe 比較避免計時側信道。secret 未設定（空字串）時一律回 false（不驗＝不信）。
+ */
+export function verifyFigmaPasscode(payload: unknown, secret: string): boolean {
+  if (!secret) return false
+  const passcode = (payload as { passcode?: unknown })?.passcode
+  if (typeof passcode !== 'string') return false
+  const a = Buffer.from(passcode, 'utf8')
+  const b = Buffer.from(secret, 'utf8')
+  if (a.length !== b.length) return false
+  return timingSafeEqual(a, b)
+}
+
 /** Figma adapter（capability + webhook；sync 待憑證）。 */
 export class FigmaAdapter implements DesignProviderAdapter {
   readonly capabilities = FIGMA_CAPABILITIES

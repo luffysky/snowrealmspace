@@ -4,6 +4,7 @@ import {
   FIGMA_CAPABILITIES,
   capabilitiesFor,
   verifyHmacSignature,
+  verifyFigmaPasscode,
   webhookIdempotencyKey,
   FigmaAdapter,
 } from './index.js'
@@ -42,6 +43,25 @@ describe('verifyHmacSignature', () => {
   })
   it('body 被竄改則失敗', () => {
     expect(verifyHmacSignature(body + 'x', good, secret)).toBe(false)
+  })
+})
+
+describe('verifyFigmaPasscode', () => {
+  const secret = 'my-random-passcode'
+  it('body 的 passcode 相符 → 通過', () => {
+    expect(verifyFigmaPasscode({ passcode: secret, file_key: 'abc' }, secret)).toBe(true)
+  })
+  it('passcode 不符 → 拒絕', () => {
+    expect(verifyFigmaPasscode({ passcode: 'wrong' }, secret)).toBe(false)
+  })
+  it('缺 passcode → 拒絕', () => {
+    expect(verifyFigmaPasscode({ file_key: 'abc' }, secret)).toBe(false)
+  })
+  it('secret 未設定（空字串）→ 一律拒絕（不驗＝不信）', () => {
+    expect(verifyFigmaPasscode({ passcode: '' }, '')).toBe(false)
+  })
+  it('passcode 非字串 → 拒絕', () => {
+    expect(verifyFigmaPasscode({ passcode: 12345 }, secret)).toBe(false)
   })
 })
 

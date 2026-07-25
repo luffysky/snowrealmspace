@@ -1,8 +1,14 @@
 import type { NextRequest } from 'next/server'
-import { FigmaAdapter } from '@snowrealm/provider-core'
+import { FigmaAdapter, verifyFigmaPasscode } from '@snowrealm/provider-core'
 import { createAdminClient } from '@snowrealm/db/server'
+import { serverEnv } from '@snowrealm/shared-types'
 
 export const dynamic = 'force-dynamic'
+
+/** 各 provider 的 webhook 驗證方式。Figma＝比對 body 裡的 passcode（非 HMAC header）。 */
+const VERIFIERS: Record<string, (payload: unknown) => boolean> = {
+  figma: (payload) => verifyFigmaPasscode(payload, serverEnv().FIGMA_WEBHOOK_SECRET ?? ''),
+}
 
 /**
  * Provider webhook（04-api-contract.md §7、10-acceptance F）。
@@ -33,14 +39,17 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return Response.json({ ok: true, ignored: 'no-event-id' }, { status: 200 })
   }
 
+  // 驗證：Figma 把自訂 passcode 回傳在 body，比對設定的 secret（非 HMAC header）。
+  // 沒設 secret 或 passcode 不符 → signature_ok=false（記錄但不觸發後續 sync）。
+  const verifier = VERIFIERS[provider]
+  const signatureOk = verifier ? verifier(payload) : false
+
   // 冪等：unique(provider, external_event_id)。重送同事件 → 命中衝突、不重複處理。
-  const signature = request.headers.get('x-figma-signature') ?? request.headers.get('x-signature')
   const { error } = await admin.from('provider_webhooks').insert({
     provider,
     external_event_id: externalId,
     payload: payload as never,
-    // connection 尚未建立（Figma 無憑證）→ 簽章暫記為未驗證；有 connection 後改用其 secret 驗
-    signature_ok: signature !== null,
+    signature_ok: signatureOk,
   })
   if (error) {
     // 23505 = 重複事件（冪等命中）。仍回 200，讓 provider 停止重送。
