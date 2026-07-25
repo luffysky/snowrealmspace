@@ -372,20 +372,70 @@ h3 {
   opacity: 0;
   width: 0;
 }
-/* 後台側邊欄的分組（純文字連結，無圖示軌道） */
+/* 後台側邊欄的分組（可收合，純文字連結） */
 .sr-admin-navgroup + .sr-admin-navgroup {
-  margin-top: var(--sr-space-3);
+  margin-top: var(--sr-space-2);
 }
 .sr-admin-navgroup-title {
-  padding: var(--sr-space-2) var(--sr-space-3) 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sr-space-2);
+  width: 100%;
+  padding: var(--sr-space-2) var(--sr-space-3);
+  border: none;
+  border-radius: var(--sr-radius-sm);
+  background: transparent;
   font-size: var(--sr-text-xs);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--sr-text-secondary);
+  cursor: pointer;
+}
+.sr-admin-navgroup-title:hover {
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+.sr-admin-chevron {
+  flex-shrink: 0;
+  transition: transform var(--sr-duration-fast) var(--sr-ease);
+}
+.sr-admin-chevron[data-collapsed='true'] {
+  transform: rotate(-90deg);
 }
 .sr-admin-navlink {
-  padding-left: var(--sr-space-4);
+  padding-left: var(--sr-space-5);
+}
+/* 收合時若該群含目前頁，顯示一個小點提示 */
+.sr-admin-navgroup-dot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: var(--sr-accent);
+}
+
+/* Dashboard「快速前往」的卡片式連結 */
+.sr-admin-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--sr-space-4);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform var(--sr-duration-fast) var(--sr-ease),
+    border-color var(--sr-duration-fast) var(--sr-ease);
+}
+.sr-admin-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--sr-accent);
+}
+.sr-admin-card strong {
+  font-size: var(--sr-text-base, 1rem);
+  color: var(--sr-text-primary);
 }
 
 /* 公開資訊頁的輕量頂列（隱私/條款/說明——app 外殼之外） */

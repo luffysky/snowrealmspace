@@ -23,6 +23,16 @@ export function AdminShell({
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [ready, setReady] = useState(false)
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
+
+  function toggleGroup(group: string) {
+    setCollapsed((prev) => {
+      const next = new Set(prev)
+      if (next.has(group)) next.delete(group)
+      else next.add(group)
+      return next
+    })
+  }
 
   useEffect(() => setReady(true), [])
   useEffect(() => setMobileOpen(false), [pathname])
@@ -70,22 +80,50 @@ export function AdminShell({
 
       <aside id="sr-admin-sidebar" className="sr-sidebar">
         <nav aria-label="後台導覽" className="sr-sidebar-nav">
-          {groups.map((g) => (
-            <div key={g.group} className="sr-admin-navgroup">
-              <div className="sr-admin-navgroup-title">{g.group}</div>
-              {g.items.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="sr-nav-link sr-admin-navlink"
-                  aria-current={isActive(item.href) ? 'page' : undefined}
-                  style={{ '--i': i++ } as React.CSSProperties}
+          {groups.map((g) => {
+            const groupCollapsed = collapsed.has(g.group)
+            const hasActive = g.items.some((it) => isActive(it.href))
+            return (
+              <div key={g.group} className="sr-admin-navgroup">
+                <button
+                  type="button"
+                  className="sr-admin-navgroup-title"
+                  aria-expanded={!groupCollapsed}
+                  onClick={() => toggleGroup(g.group)}
                 >
-                  <span className="sr-nav-label">{item.label}</span>
-                </Link>
-              ))}
-            </div>
-          ))}
+                  <span>{g.group}</span>
+                  <svg
+                    className="sr-admin-chevron"
+                    data-collapsed={groupCollapsed ? 'true' : 'false'}
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                {!groupCollapsed &&
+                  g.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="sr-nav-link sr-admin-navlink"
+                      aria-current={isActive(item.href) ? 'page' : undefined}
+                      style={{ '--i': i++ } as React.CSSProperties}
+                    >
+                      <span className="sr-nav-label">{item.label}</span>
+                    </Link>
+                  ))}
+                {groupCollapsed && hasActive && <span className="sr-admin-navgroup-dot" aria-hidden="true" />}
+              </div>
+            )
+          })}
         </nav>
       </aside>
 

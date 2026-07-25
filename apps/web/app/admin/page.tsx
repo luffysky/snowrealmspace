@@ -56,21 +56,29 @@ export default async function AdminHome() {
 
       <h2 className="sr-section-title" style={{ marginTop: 'var(--sr-space-6)' }}>快速前往</h2>
       {SECTIONS.map((s) => (
-        <section key={s.group} className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
-          <h2 className="sr-section-title">{s.group}</h2>
-          <ul className="sr-stack" style={{ listStyle: 'none', padding: 0, margin: 0, gap: 'var(--sr-space-2)' }}>
+        <div key={s.group} style={{ marginTop: 'var(--sr-space-4)' }}>
+          <h3 className="sr-section-title" style={{ fontSize: 'var(--sr-text-sm)', color: 'var(--sr-text-secondary)' }}>
+            {s.group}
+          </h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
+              gap: 'var(--sr-space-3)',
+              marginTop: 'var(--sr-space-2)',
+            }}
+          >
             {s.items.map((it) => (
-              <li key={it.href}>
-                <Link href={`${ADMIN_BASE}${it.href}`} className="sr-link">
-                  {it.label}
-                </Link>
-                <span className="sr-muted"> — {it.desc}</span>
-              </li>
+              <Link key={it.href} href={`${ADMIN_BASE}${it.href}`} className="sr-card sr-admin-card">
+                <strong>{it.label}</strong>
+                <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
+                  {it.desc}
+                </span>
+              </Link>
             ))}
-          </ul>
-        </section>
+          </div>
+        </div>
       ))}
-
     </main>
   )
 }
