@@ -87,7 +87,25 @@ Luffy 指出手機 header 沒有漢堡、連結一整排換好幾行；桌機要
 
 - 已完成：`pnpm db:migrate`（**0038 已上 hosted**，Luffy 授權我直接跑）✅
 - 待辦：貼 AI 金鑰、RWD 實機截圖確認；對外開放前換 JWT secret、robots 改 index。
-- 剩餘 Bucket A（可純程式做，尚未動）：管理後台其餘唯讀頁改可編輯（候選鏈排序、額度設定、
-  內容池增修、Space 佈建/修復、站台管理員 DB 角色、整合狀態頁）、FORBIDDEN_PATTERNS 搬 DB 可編輯、
-  本地設計分析擴充（對比/文字區亮度）、主動訊息改時區 cron、lefthook、Next standalone、
-  91-backlog 重新盤點、widget projectId 選擇器、lib 單元測試補強。
+- 剩餘 Bucket A：見下方「續 2」後更新。
+
+---
+
+## ✅ 續 2：Bucket A — 管理後台三個「唯讀→可編輯」（0725 晚）
+
+Luffy：「繼續往 Bucket A 清單做」。
+
+- **每日額度上限可設定**：新增 `ai_quota_config` 單列全域表（0039，RLS 零 policy = service role）。
+  `deps.ts` 的 budget 改讀設定（讀取失敗退回內建 300/20，不擋呼叫）。`/admin/ai/quota` 加編輯表單
+  ＋ `PATCH /api/admin/ai-quota-config`。本地＋hosted 均已套。DB round-trip 驗證過。
+- **候選鏈可編輯**：`/admin/ai/candidates` 原本唯讀且把 `{model,role}` 物件 `String()` 成 `[object Object]`。
+  改成列出全部 18 用途、合併 DB 覆寫與 `DEFAULT_CANDIDATES` 顯示效果鏈，可 ▲▼ 調序／啟用覆寫／
+  重設回預設（`PATCH`/`DELETE /api/admin/ai-candidates`，upsert / 刪除還原）。只重排既有候選、不改 model 字串。
+- **內容池可審核**：`/admin/content` 每則加啟用/停用（樂觀更新+回滾，`PATCH /api/admin/content`）。
+  停用文案不再被主動訊息／每日內容抽中。〔新增文案/編輯權重/生日鏈編輯仍待做〕
+- 閘門全綠：typecheck / lint / check:deps(319) / check:secrets(408)。DB migration 到 **0039**。
+
+**剩餘 Bucket A**（尚未動）：FORBIDDEN_PATTERNS 搬 DB 可編輯、內容池新增/編輯、Space 佈建/孤兒修復、
+站台管理員 DB 角色、整合狀態頁、回應快取 per-usage 失效、本地設計分析擴充（對比/文字區亮度）、
+主動訊息改時區 cron、Insight 軟刪除 upsert、lefthook、Next standalone、91-backlog 重新盤點、
+widget projectId 選擇器、lib 單元測試補強。

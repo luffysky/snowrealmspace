@@ -100,9 +100,9 @@
 **AI 管理**（表都建好了）
 - [x] ~~AI 金鑰管理 `/admin/ai-keys`（各家加密存 DB、測試、啟用/移除）~~
 - [x] ~~**AI 模型管理** `/admin/ai/models`（啟用/停用、免費、串流·工具·視覺標記，PATCH）~~
-- [x] ~~**候選鏈檢視** `/admin/ai/candidates`（每個 usage key 主模型 + fallback 序）~~ 〔唯讀；編輯待做〕
+- [x] ~~**候選鏈檢視＋編輯** `/admin/ai/candidates`~~ ✅ 0725：合併 DB 覆寫＋內建預設顯示，可 ▲▼ 調序／啟用覆寫／重設回預設（PATCH/DELETE）
 - [x] ~~**AI 用量／成本儀表板** `/admin/ai/usage`（總成本、免費vs付費、escalate/fallback/degraded/cache 率）~~
-- [x] ~~**每日額度檢視** `/admin/ai/quota`（各 space 免費/付費/視覺計數）~~ 〔唯讀；上限設定仍寫死 300/20，待做〕
+- [x] ~~**每日額度檢視＋上限設定** `/admin/ai/quota`~~ ✅ 0725：新增 ai_quota_config（0039），免費/付費上限可後台改，deps.ts 改讀設定（原寫死 300/20）
 - [x] ~~**回應快取檢視** `/admin/ai/cache`（命中率、scope、過期狀態）+ 清除（清過期/全部清空）~~ 〔0725 加清除；per-usage 失效待做〕
 - [ ] **內容審核關鍵字**（FORBIDDEN_PATTERNS 可後台編輯）
 
@@ -115,7 +115,7 @@
 - [ ] **整合/webhook 狀態**（provider_webhooks 收件記錄、connection 健康）
 
 **內容／空間**
-- [x] ~~**內容池檢視** `/admin/content`（content_items 依 kind 分組、啟用/權重/稀有度）~~ 〔唯讀；新增/審核/生日鏈編輯待做〕
+- [x] ~~**內容池檢視＋審核** `/admin/content`~~ ✅ 0725：每則可啟用/停用（PATCH，樂觀更新）〔新增文案/編輯權重/生日鏈編輯仍待做〕
 - [x] ~~**Space/使用者管理** `/admin/spaces`（列出 spaces/擁有者/成員數/隱私/狀態 + 使用者/登入方式）~~ 〔唯讀；佈建/孤兒修復待做〕
 
 ## 🅕 Milestone F — Integration（骨架起）
