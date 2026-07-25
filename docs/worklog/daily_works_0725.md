@@ -60,7 +60,34 @@ Luffy。Claude 值班。
 - **設計分析（深/淺）、Agent SSE 串流、Insight LLM 升級** → 需 AI 金鑰（`/admin/ai-keys` 貼 Groq + Gemini）。
 - **全站 RWD 逐頁視覺打磨** → 需截圖，或接上瀏覽器擴充（目前擴充未連上）讓我實走。
 
+---
+
+## ✅ 續：RWD 導覽重構 + 隨手記存 DB + 場景擴充 + 快取清除（0725 下午）
+
+Luffy 指出手機 header 沒有漢堡、連結一整排換好幾行；桌機要收合側邊欄；且要展開收合動畫。
+
+- **響應式導覽（`SpaceShell.tsx`）**：抽出互動外殼 client 元件。
+  - 桌機／筆電：左側**可收合側邊欄**，展開圖示＋文字 ↔ 收合純圖示軌道（10 個自製 stroke 圖示），
+    收合狀態記 localStorage；`@property --sb` 讓 grid 欄寬平滑過渡。
+  - 手機／平板：頂列**漢堡**，側邊欄變左滑抽屜，連結逐項**時間差**淡入（`--i * 35ms`），
+    點連結／背景遮罩／Esc 皆關閉，開啟時鎖背景捲動。
+  - `usePathname` 補 `aria-current` 高亮；`prefers-reduced-motion` 與 `--sr-motion-intensity` 皆降級。
+  - 移除舊 `.sr-nav*`（flex-wrap 會撐寬 header → 行動瀏覽器縮放整頁，CLAUDE.md #5）。
+- **隨手記存 DB**：新增 `widget_notes` 表（0038，RLS by space_id，FK widget_instances 連帶清除），
+  `GET/PUT /api/widgets/[instanceId]/note` 走 getDb() 受 RLS；widget 改防抖自動存雲端，
+  狀態誠實（載入／儲存／已同步／失敗 danger 色）。**本地 + hosted 均已套並重生 types、reload schema。**
+- **場景擴充**：`lib/scenes.ts` 追加 19 個（沿用既有 behavior×shape×配色，資料驅動實際會渲染），約 48 → 67。
+- **回應快取可清除**：`/admin/ai/cache` 加清除動作（`DELETE /api/admin/ai-cache?mode=expired|all`，
+  site-admin gated，全清二次確認）。原本只能看命中率。
+- 閘門全綠：typecheck / lint / test / check:deps(313) / check:secrets(402) / check:rls(49)。
+
+---
+
 ## 📌 給 Luffy 的動作清單
 
-- 已完成：`pnpm db:migrate`（0037 已上 hosted）✅
-- 待辦：貼 AI 金鑰、RWD 截圖/接擴充；對外開放前換 JWT secret、robots 改 index。
+- 已完成：`pnpm db:migrate`（**0038 已上 hosted**，Luffy 授權我直接跑）✅
+- 待辦：貼 AI 金鑰、RWD 實機截圖確認；對外開放前換 JWT secret、robots 改 index。
+- 剩餘 Bucket A（可純程式做，尚未動）：管理後台其餘唯讀頁改可編輯（候選鏈排序、額度設定、
+  內容池增修、Space 佈建/修復、站台管理員 DB 角色、整合狀態頁）、FORBIDDEN_PATTERNS 搬 DB 可編輯、
+  本地設計分析擴充（對比/文字區亮度）、主動訊息改時區 cron、lefthook、Next standalone、
+  91-backlog 重新盤點、widget projectId 選擇器、lib 單元測試補強。

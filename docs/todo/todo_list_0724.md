@@ -67,6 +67,7 @@
 - [x] ~~內容池 8324 則灌入 hosted content_items~~
 - [x] ~~首頁 `/` 500 防護、lint 與 build 解耦~~
 - [x] ~~RWD 稽核：nav 加鈴鐺/日夜鈕後不破版；通知面板手機改 fixed 貼齊視窗~~
+- [x] ~~**導覽重構**（0725）：桌機可收合側邊欄（圖示軌道）、手機漢堡抽屜、時間差動畫、aria-current 高亮；取代 flex-wrap 排列~~
 - [ ] Sentry / 監控（`queue-health` 目前只 log，沒告警管道）
 - [ ] `/api/health` 全綠（等 R2 + worker）
 - [ ] preview 與 production 用不同 Supabase / R2 bucket
@@ -102,7 +103,7 @@
 - [x] ~~**候選鏈檢視** `/admin/ai/candidates`（每個 usage key 主模型 + fallback 序）~~ 〔唯讀；編輯待做〕
 - [x] ~~**AI 用量／成本儀表板** `/admin/ai/usage`（總成本、免費vs付費、escalate/fallback/degraded/cache 率）~~
 - [x] ~~**每日額度檢視** `/admin/ai/quota`（各 space 免費/付費/視覺計數）~~ 〔唯讀；上限設定仍寫死 300/20，待做〕
-- [x] ~~**回應快取檢視** `/admin/ai/cache`（命中率、scope、過期狀態）~~ 〔命中率 view；清空/per-usage 待做〕
+- [x] ~~**回應快取檢視** `/admin/ai/cache`（命中率、scope、過期狀態）+ 清除（清過期/全部清空）~~ 〔0725 加清除；per-usage 失效待做〕
 - [ ] **內容審核關鍵字**（FORBIDDEN_PATTERNS 可後台編輯）
 
 **系統／營運**
@@ -223,7 +224,7 @@
 - [x] ~~單檔上限 50MB → 500MB（ADR-022 偏離）；影片 mp4/webm/ogg/mov + audio kind~~
 - [x] ~~影片可選聲音（ADR-019 偏離）：muted 使用者可控，首次手勢解除靜音~~
 - [x] ~~背景音樂：space 選 audio + nav 播放器（手動播放遵守 autoplay 政策）+ 設定頁~~
-- [x] ~~**內建動態場景**約 50 個（canvas 粒子，可疊加/密度可調）+ 獨立動態背景~~
+- [x] ~~**內建動態場景**（canvas 粒子，可疊加/密度可調）+ 獨立動態背景~~ ✅ 0725 追加 19 個 → 共 67
 - [x] ~~**漸層編輯器**（線性/放射/多點網狀，點選定位色點）+ 幻燈片即時生效~~
 - [x] ~~**Lottie 動畫背景** 5 個自製（CC0/專案自有），lottie-web light 懶載入、reduced-motion/省流量降級；
       0037 加 type=lottie+lottie_id。以 jsdom+真實播放器逐格驗證（抓到並修 keyframe 缺 i/o 把手 bug）~~
@@ -240,7 +241,7 @@
 - [ ] `--sr-font-*-id` 舊註解（已解，可清）
 - [ ] widget config 的 uuid 型欄位（projectId）需專門選擇器（目前標 unsupported 跳過）
 - [ ] `apps/web/lib` 部分邏輯無單元測試（靠 E2E）
-- [ ] `QuickNoteWidget` 存 localStorage（Milestone C 有 notes 表後遷移）
+- [x] ~~`QuickNoteWidget` 存 localStorage~~ ✅ 0725 改存 widget_notes 表（0038，RLS by space_id），跨裝置可見、自動存雲端
 - [ ] 測試 env 指向 hosted 會污染正式資料 — 已有 cleanup 腳本，但流程要小心
 - [ ] Insight 軟刪除後，下次 `generateInsights` 的 upsert 會更新到同一列但 `deleted_at` 仍在
       → 被刪的回顧不會自動復活（可接受；若要「刪了就不再出現該週期」則需在 upsert 前濾掉）
