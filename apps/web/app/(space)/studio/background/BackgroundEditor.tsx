@@ -674,6 +674,7 @@ function LivePreview({ spaceId, item }: { spaceId: string; item: BackgroundItem 
     }
   }, [spaceId, item.asset_id])
 
+  // LivePreview 收到的 item 已是編輯中的草稿（BackgroundEditor 傳 item={local}），所以本來就是即時的。
   const filter = [
     item.blur > 0 ? `blur(${item.blur}px)` : '',
     item.brightness !== 1 ? `brightness(${item.brightness})` : '',

@@ -750,16 +750,28 @@ body {
 
 .sr-studio-preview {
   position: sticky;
-  top: var(--sr-space-6);
+  /* 貼在 topbar 下方，不被蓋住 */
+  top: calc(var(--topbar-h, 60px) + var(--sr-space-4));
 }
 
 @media (max-width: 1023px) {
   .sr-studio {
     grid-template-columns: 1fr;
   }
+  /* 手機：預覽移到最上方並「黏住」，往下調任何設定都看得到即時效果 */
   .sr-studio-preview {
-    position: static;
     order: -1;
+    position: sticky;
+    top: var(--topbar-h, 60px);
+    z-index: 5;
+    max-height: 42vh;
+    overflow: auto;
+    /* 底色遮住捲到下面的控制項，避免疊字 */
+    background: var(--sr-bg, var(--sr-background));
+    padding-bottom: var(--sr-space-2);
+    margin: 0 calc(-1 * var(--sr-space-2));
+    padding-left: var(--sr-space-2);
+    padding-right: var(--sr-space-2);
   }
 }
 
