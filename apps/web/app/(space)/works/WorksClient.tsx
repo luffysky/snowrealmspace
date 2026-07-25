@@ -271,8 +271,23 @@ function WorkDetail({
               ? '不會被列出，但知道連結的人看得到。'
               : '只有空間成員看得到。'}
         </span>
+        {visibility !== 'private' && (
+          <button
+            type="button"
+            className="sr-button sr-button-secondary"
+            style={{ padding: '2px 10px' }}
+            onClick={() => {
+              void navigator.clipboard
+                ?.writeText(`${window.location.origin}/w/${file.id}`)
+                .then(() => setVisErr('已複製連結。'))
+                .catch(() => setVisErr('複製失敗，請手動複製網址。'))
+            }}
+          >
+            複製連結
+          </button>
+        )}
         {visErr && (
-          <span className="sr-muted" style={{ color: 'var(--sr-danger)', fontSize: 'var(--sr-text-sm)' }}>
+          <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
             {visErr}
           </span>
         )}

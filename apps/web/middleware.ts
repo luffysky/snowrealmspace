@@ -45,7 +45,14 @@ export async function middleware(request: NextRequest) {
     pathname === '/api/health' ||
     // 登入信樣板：hosted GoTrue 會抓這個網址，不帶 cookie，不能被閘門攔
     pathname.startsWith('/api/email/')
-  if (isPublicEndpoint) {
+  // 對外分享：公開作品集 /p、單一作品 /w、分享連結 /s、公開資產簽名 /api/public。
+  // 這些是刻意對外、不在站台密碼閘門後（頁面內另用 feature flag + RLS 把關）。
+  const isPublicShare =
+    pathname.startsWith('/p/') ||
+    pathname.startsWith('/w/') ||
+    pathname.startsWith('/s/') ||
+    pathname.startsWith('/api/public/')
+  if (isPublicEndpoint || isPublicShare) {
     return NextResponse.next({ request })
   }
   if (!passedGate && !isGatePath) {

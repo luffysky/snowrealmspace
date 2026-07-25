@@ -2710,6 +2710,64 @@ input[type='range'] {
   resize: vertical;
 }
 
+/* 對外公開頁（作品集/分享） */
+.sr-public-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--sr-bg, #faf7fb);
+  color: var(--sr-text-primary, #2a2029);
+}
+.sr-public-main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 56px) clamp(16px, 4vw, 32px);
+}
+.sr-public-footer {
+  text-align: center;
+  padding: 20px;
+  border-top: var(--sr-border-width, 1px) solid var(--sr-border, #eadfe6);
+}
+.sr-public-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+}
+.sr-public-card {
+  list-style: none;
+}
+.sr-public-card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+.sr-public-card-title {
+  font-weight: 600;
+}
+.sr-public-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--sr-radius, 14px);
+  border: var(--sr-border-width, 1px) solid var(--sr-border, #eadfe6);
+  background: var(--sr-surface-alt, #f3ecf1);
+}
+.sr-public-thumb-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sr-text-muted, #9a8b95);
+  font-size: var(--sr-text-sm, 0.875rem);
+}
+
 /* Agent 多模態附件 */
 .sr-chat-attachments {
   display: flex;

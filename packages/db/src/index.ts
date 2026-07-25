@@ -2,6 +2,7 @@ export {
   createUserClient,
   createAdminClient,
   createTokenClient,
+  createPublicClient,
   type Db,
   type CookieAdapter,
 } from './server.js'

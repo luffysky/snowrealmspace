@@ -67,6 +67,20 @@ export function createAdminClient(): Db {
   return cachedAdmin
 }
 
+/**
+ * 純 anon client（無 session）。用於**對外公開頁**（作品集/分享）。
+ * 一律以 anon 角色查詢 → 受「anon 唯讀 public/unlisted」的 RLS policy 約束（0049），
+ * 不受任何殘留 cookie 影響。private 內容永遠讀不到。
+ */
+export function createPublicClient(): Db {
+  const env = serverEnv()
+  return createClient<Database>(
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    { auth: { persistSession: false, autoRefreshToken: false } },
+  )
+}
+
 /** 測試用：以特定 access token 建立受 RLS 約束的 client。 */
 export function createTokenClient(accessToken: string): Db {
   const env = serverEnv()
