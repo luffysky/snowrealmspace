@@ -104,6 +104,23 @@ export const SCENES: SceneDef[] = [
   s({ id: 'meteor', label: '流星雨', kind: 'dynamic', base: NIGHT, behavior: 'rain', shape: 'streak', colors: ['255,244,210'], density: 0.4, speed: 2.2, sizeMin: 16, sizeMax: 30 }),
   s({ id: 'glitter', label: '閃粉', kind: 'dynamic', base: DUSK, behavior: 'twinkle', shape: 'circle', colors: ['255,215,150', '255,255,255'], density: 2.4, sizeMin: 0.6, sizeMax: 1.6 }),
 
+  // ── 追加（皆用既有 behavior×shape×配色，資料驅動，實際會渲染） ──
+  s({ id: 'snow-violet', label: '紫雪', kind: 'dynamic', base: 'linear-gradient(180deg,#241a2e,#120b18)', behavior: 'fall', shape: 'circle', colors: ['220,200,255'], density: 1, speed: 0.7, sizeMin: 1, sizeMax: 2.8 }),
+  s({ id: 'snow-mint', label: '薄荷雪', kind: 'dynamic', base: 'linear-gradient(180deg,#16241f,#0a1310)', behavior: 'fall', shape: 'circle', colors: ['210,255,235'], density: 1, speed: 0.7, sizeMin: 1, sizeMax: 2.8 }),
+  s({ id: 'rain-forest', label: '林雨', kind: 'dynamic', base: FOREST, behavior: 'rain', shape: 'streak', colors: ['150,220,170'], density: 1.2, speed: 1, sizeMin: 7, sizeMax: 14 }),
+  s({ id: 'sakura-night', label: '夜櫻', kind: 'dynamic', base: 'linear-gradient(180deg,#1c1424,#0e0812)', behavior: 'petal', shape: 'petal', colors: ['255,190,215', '255,210,230'], density: 1, speed: 0.9, sizeMin: 4, sizeMax: 8 }),
+  s({ id: 'gold-leaves', label: '金葉', kind: 'dynamic', base: 'linear-gradient(180deg,#2a2010,#150f06)', behavior: 'petal', shape: 'petal', colors: ['235,190,90', '210,160,60'], density: 1.1, speed: 0.8, sizeMin: 5, sizeMax: 10 }),
+  s({ id: 'stars-warm', label: '暖星', kind: 'dynamic', base: 'radial-gradient(circle at 50% 20%,#2a2016,#0a0806)', behavior: 'twinkle', shape: 'circle', colors: ['255,230,180', '255,255,255'], density: 1.4, sizeMin: 0.6, sizeMax: 1.8 }),
+  s({ id: 'fireflies-warm', label: '暖螢', kind: 'dynamic', base: 'linear-gradient(180deg,#1a160e,#0c0a06)', behavior: 'wander', shape: 'circle', colors: ['255,220,140'], density: 0.8, speed: 0.7, sizeMin: 1.2, sizeMax: 2.6 }),
+  s({ id: 'lanterns', label: '天燈', kind: 'dynamic', base: 'linear-gradient(180deg,#1a1020,#0a0610)', behavior: 'rise', shape: 'circle', colors: ['255,190,120', '255,150,90'], density: 0.6, speed: 0.5, sizeMin: 2, sizeMax: 5 }),
+  s({ id: 'bubbles-pink', label: '粉泡', kind: 'dynamic', base: 'linear-gradient(180deg,#2a1826,#140a12)', behavior: 'rise', shape: 'ring', colors: ['255,200,225'], density: 1.2, speed: 0.9, sizeMin: 3, sizeMax: 12 }),
+  s({ id: 'confetti-pastel', label: '粉彩紙', kind: 'dynamic', base: 'linear-gradient(180deg,#1c2030,#12151f)', behavior: 'fall', shape: 'square', colors: ['255,180,200', '180,220,255', '200,255,210', '255,235,180'], density: 1.3, speed: 1.1, sizeMin: 3, sizeMax: 6 }),
+  s({ id: 'hearts-white', label: '白心', kind: 'dynamic', base: 'linear-gradient(180deg,#241a20,#120a10)', behavior: 'fall', shape: 'heart', colors: ['255,255,255', '255,220,230'], density: 0.8, speed: 0.8, sizeMin: 5, sizeMax: 10 }),
+  s({ id: 'star-fall-blue', label: '藍星墜', kind: 'dynamic', base: NIGHT, behavior: 'fall', shape: 'star', colors: ['180,210,255'], density: 0.7, speed: 1.1, sizeMin: 2, sizeMax: 4 }),
+  s({ id: 'glitter-rainbow', label: '虹彩閃粉', kind: 'dynamic', base: 'linear-gradient(180deg,#161428,#0a0814)', behavior: 'twinkle', shape: 'circle', colors: ['255,120,150', '120,200,255', '255,220,120', '160,255,180', '210,140,255'], density: 2.4, sizeMin: 0.6, sizeMax: 1.6 }),
+  s({ id: 'dust-blue', label: '藍塵', kind: 'dynamic', base: 'linear-gradient(180deg,#101826,#080d16)', behavior: 'wander', shape: 'circle', colors: ['170,205,255'], density: 1.6, speed: 0.35, sizeMin: 0.8, sizeMax: 2.2 }),
+  s({ id: 'petal-storm-white', label: '白瓣吹雪', kind: 'dynamic', base: 'linear-gradient(180deg,#eef1f8,#dfe5f0)', behavior: 'petal', shape: 'petal', colors: ['255,255,255', '235,240,255'], density: 2.2, speed: 1.2, sizeMin: 4, sizeMax: 9 }),
+
   // ── 靜態（純 CSS） ──
   { id: 'aurora', label: '極光', kind: 'static', base: 'linear-gradient(180deg,#0a1024,#0a1024), radial-gradient(60% 40% at 30% 30%,rgba(80,220,180,.35),transparent 70%), radial-gradient(55% 45% at 70% 40%,rgba(120,140,255,.30),transparent 70%), radial-gradient(50% 40% at 50% 70%,rgba(200,120,220,.25),transparent 70%)' },
   { id: 'dots', label: '圓點', kind: 'static', base: 'radial-gradient(rgba(255,255,255,.16) 1.5px, transparent 1.6px) 0 0/22px 22px, linear-gradient(180deg,#20242e,#171a22)' },
@@ -111,6 +128,10 @@ export const SCENES: SceneDef[] = [
   { id: 'diagonal', label: '斜紋', kind: 'static', base: 'repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 10px,transparent 10px 20px), linear-gradient(180deg,#222634,#14171f)' },
   { id: 'bokeh', label: '光斑', kind: 'static', base: 'radial-gradient(circle at 20% 30%,rgba(255,220,180,.25),transparent 12%), radial-gradient(circle at 70% 60%,rgba(180,200,255,.22),transparent 14%), radial-gradient(circle at 45% 80%,rgba(255,180,220,.20),transparent 12%), linear-gradient(180deg,#171a26,#0e1018)' },
   { id: 'mesh', label: '網格光暈', kind: 'static', base: 'radial-gradient(40% 50% at 20% 20%,rgba(120,200,255,.35),transparent 70%), radial-gradient(40% 50% at 80% 30%,rgba(255,150,200,.30),transparent 70%), radial-gradient(50% 50% at 50% 90%,rgba(150,255,200,.25),transparent 70%), #0d1018' },
+  { id: 'sunburst', label: '晨曦', kind: 'static', base: 'radial-gradient(circle at 50% 28%,rgba(255,220,150,.40),transparent 55%), linear-gradient(180deg,#2a1e14,#140d08)' },
+  { id: 'waves', label: '波紋', kind: 'static', base: 'repeating-linear-gradient(180deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px), linear-gradient(180deg,#12233a,#0a1420)' },
+  { id: 'nebula', label: '星雲', kind: 'static', base: 'radial-gradient(50% 40% at 25% 30%,rgba(200,120,255,.35),transparent 70%), radial-gradient(45% 40% at 75% 60%,rgba(120,180,255,.30),transparent 70%), radial-gradient(40% 40% at 50% 85%,rgba(255,140,200,.25),transparent 70%), #0a0714' },
+  { id: 'sky-day', label: '晴空', kind: 'static', base: 'radial-gradient(circle at 50% 120%,rgba(255,255,255,.35),transparent 45%), linear-gradient(180deg,#7fb4e8,#cfe6f7)' },
 ]
 
 export function getScene(id: string | null | undefined): SceneDef | null {
