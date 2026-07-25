@@ -94,7 +94,9 @@ export default async function AdminSpacesPage() {
               {spaces.map((s) => (
                 <tr key={s.id} style={{ borderTop: '1px solid var(--sr-border)', opacity: s.deleted_at ? 0.5 : 1 }}>
                   <td style={td}>
-                    {s.name}
+                    <Link href={`${ADMIN_BASE}/spaces/${s.id}`} className="sr-link">
+                      {s.name}
+                    </Link>
                     <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>
                       /{s.slug}
                     </span>

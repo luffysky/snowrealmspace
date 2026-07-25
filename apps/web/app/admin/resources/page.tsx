@@ -104,7 +104,7 @@ export default async function AdminResourcesPage() {
               {rows.map((r) => (
                 <tr key={r.id} style={{ borderTop: '1px solid var(--sr-border)' }}>
                   <td style={td}>
-                    {r.name}
+                    <Link href={`${ADMIN_BASE}/spaces/${r.id}`} className="sr-link">{r.name}</Link>
                     <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>/{r.slug}</span>
                   </td>
                   <td style={tdR}>{fmtBytes(r.bytes)}</td>
