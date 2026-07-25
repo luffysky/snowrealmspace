@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+import { captureException } from '@/lib/observability/sentry'
 
 /**
  * 統一回應格式。見 docs/spec/04-api-contract.md §0。
@@ -87,6 +88,8 @@ export function handler<T extends unknown[]>(
       return await fn(...args)
     } catch (err) {
       console.error('[api] 未預期的錯誤', err)
+      // 有設 SENTRY_DSN 才會實際上報，否則 no-op（不阻塞回應）
+      void captureException(err, { tags: { source: 'api' } })
       return fail('INTERNAL', '伺服器發生問題，請稍後再試。')
     }
   }
