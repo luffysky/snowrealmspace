@@ -173,8 +173,12 @@ export {
   moodUpsertSchema,
   goalCreateSchema,
   goalPatchSchema,
+  captureCreateSchema,
+  capturePatchSchema,
   type Mood,
   type MoodUpsertInput,
   type GoalCreateInput,
   type GoalPatchInput,
+  type CaptureCreateInput,
+  type CapturePatchInput,
 } from './widget-data.js'

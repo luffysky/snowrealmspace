@@ -33,3 +33,20 @@ export const goalPatchSchema = z
 export type MoodUpsertInput = z.infer<typeof moodUpsertSchema>
 export type GoalCreateInput = z.infer<typeof goalCreateSchema>
 export type GoalPatchInput = z.infer<typeof goalPatchSchema>
+
+/** 隨手捕捉 inbox。source 白名單防止任意字串。 */
+export const captureCreateSchema = z
+  .object({
+    body: z.string().trim().min(1, '請輸入內容').max(2000),
+    source: z.enum(['web', 'yukiboard', 'agent']).default('web'),
+  })
+  .strict()
+
+export const capturePatchSchema = z
+  .object({
+    action: z.enum(['to_note', 'archive', 'restore']),
+  })
+  .strict()
+
+export type CaptureCreateInput = z.infer<typeof captureCreateSchema>
+export type CapturePatchInput = z.infer<typeof capturePatchSchema>

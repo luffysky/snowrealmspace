@@ -1054,6 +1054,47 @@ export type Database = {
           },
         ]
       }
+      capture_inbox: {
+        Row: {
+          body: string
+          created_at: string
+          created_by: string | null
+          id: string
+          processed_at: string | null
+          source: string
+          space_id: string
+          status: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          processed_at?: string | null
+          source?: string
+          space_id: string
+          status?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          processed_at?: string | null
+          source?: string
+          space_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "capture_inbox_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       content_filter_patterns: {
         Row: {
           created_at: string
