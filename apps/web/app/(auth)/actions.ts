@@ -15,7 +15,12 @@ export type AuthActionState = {
 }
 
 function appUrl(): string {
-  return process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+  // APP_PUBLIC_URL 是**執行期** env（不含 NEXT_PUBLIC，不在 build 時 inline）——
+  // 這裡是 server action，讀得到執行期 env。優先用它，因為 hosted 上
+  // NEXT_PUBLIC_APP_URL 是 build 時 inline 的，若 build arg 沒帶對，
+  // magic link 的 redirect_to 就會變成容器內部的 :8080。設 APP_PUBLIC_URL 可即時修正、免重建。
+  const url = process.env.APP_PUBLIC_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+  return url.replace(/\/+$/, '')
 }
 
 /**
