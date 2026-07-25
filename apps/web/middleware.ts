@@ -118,5 +118,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
+  // 排除靜態資產。特別是 manifest.webmanifest、robots、sitemap：PWA/爬蟲抓這些時
+  // 通常不帶 cookie，若被閘門攔就會拿到 /gate 的 HTML → 瀏覽器解析 manifest 失敗。
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2?)$).*)',
+  ],
 }
