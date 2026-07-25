@@ -18,9 +18,9 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
     { model: 'anthropic:claude-haiku-4-5-20251001', role: 'escalate' },
   ],
   // 帶圖片的對話 —— 必須走能看圖的模型（免費優先）。文字對話用 agent_chat。
+  // 註：Groq 目前無 vision 模型（llama-3.2-vision 已停役），故不放 Groq。
   agent_chat_vision: [
     { model: 'google:gemini-2.0-flash', role: 'primary' },
-    { model: 'groq:llama-3.2-90b-vision-preview', role: 'fallback' },
     { model: 'openrouter:meta-llama/llama-3.2-11b-vision-instruct:free', role: 'fallback' },
     { model: 'anthropic:claude-haiku-4-5-20251001', role: 'escalate' },
   ],
@@ -36,7 +36,6 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
   ],
   design_vision_light: [
     { model: 'google:gemini-2.0-flash', role: 'primary' },
-    { model: 'groq:llama-3.2-90b-vision-preview', role: 'fallback' },
     { model: 'openrouter:meta-llama/llama-3.2-11b-vision-instruct:free', role: 'fallback' },
   ],
   design_vision_deep: [

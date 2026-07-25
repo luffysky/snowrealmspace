@@ -190,6 +190,33 @@ function WorkDetail({
   const [visibility, setVisibility] = useState(file.visibility)
   const [visSaving, setVisSaving] = useState(false)
   const [visErr, setVisErr] = useState<string | null>(null)
+  const [aiAnalysis, setAiAnalysis] = useState<string | null>(null)
+  const [aiBusy, setAiBusy] = useState(false)
+  const [aiErr, setAiErr] = useState<string | null>(null)
+
+  async function analyzeDesign(deep: boolean) {
+    if (!a) return // a = 目前選的版本 A 的 snapshot id
+    setAiBusy(true)
+    setAiErr(null)
+    setAiAnalysis(null)
+    try {
+      const res = await fetch('/api/design/vision', {
+        method: 'POST',
+        headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+        body: JSON.stringify({ snapshotId: a, deep }),
+      })
+      const body: unknown = await res.json().catch(() => null)
+      if (!res.ok) {
+        setAiErr((body as { error?: { message?: string } } | null)?.error?.message ?? 'AI 分析失敗。')
+        return
+      }
+      setAiAnalysis((body as { data: { analysis: string } }).data.analysis)
+    } catch {
+      setAiErr('網路錯誤，請重試。')
+    } finally {
+      setAiBusy(false)
+    }
+  }
 
   async function changeVisibility(next: 'private' | 'unlisted' | 'public') {
     const prev = visibility
@@ -295,6 +322,47 @@ function WorkDetail({
       </div>
 
       <ShareLinksPanel spaceId={spaceId} fileId={file.id} />
+
+      <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+        <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+          <strong>AI 看法</strong>
+          <div className="sr-row" style={{ gap: '4px' }}>
+            <button
+              type="button"
+              className="sr-button sr-button-secondary"
+              disabled={aiBusy || !a}
+              onClick={() => void analyzeDesign(false)}
+            >
+              {aiBusy ? '看圖中…' : '快速分析'}
+            </button>
+            <button
+              type="button"
+              className="sr-button sr-button-secondary"
+              disabled={aiBusy || !a}
+              onClick={() => void analyzeDesign(true)}
+              title="用更強的模型深入看（可能較慢）"
+            >
+              深入分析
+            </button>
+          </div>
+        </div>
+        {aiErr && (
+          <p className="sr-message sr-message-error" role="alert" style={{ margin: 0 }}>
+            {aiErr}
+          </p>
+        )}
+        {aiAnalysis && (
+          <div className="sr-card" style={{ background: 'var(--sr-surface-alt)' }}>
+            {aiAnalysis.split('\n').map((line, i) =>
+              line.trim() ? (
+                <p key={i} style={{ margin: '0 0 var(--sr-space-2)', overflowWrap: 'anywhere' }}>
+                  {line}
+                </p>
+              ) : null,
+            )}
+          </div>
+        )}
+      </div>
 
       {snaps.length < 2 ? (
         <p className="sr-muted">
