@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>離線中 — SnowRealm Space</title>
+    <style>
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body {
+        display: flex; align-items: center; justify-content: center;
+        min-height: 100dvh; padding: 24px;
+        font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+        background: #fff7fb; color: #4a2c3a;
+      }
+      @media (prefers-color-scheme: dark) {
+        body { background: #241019; color: #f3d9e4; }
+      }
+      .card {
+        max-width: 360px; text-align: center;
+        background: rgba(255,255,255,0.6); border: 1px solid #f3a7c3;
+        border-radius: 20px; padding: 32px 28px;
+        backdrop-filter: blur(8px);
+      }
+      @media (prefers-color-scheme: dark) {
+        .card { background: rgba(255,255,255,0.06); border-color: #7a3b55; }
+      }
+      .snow { font-size: 48px; line-height: 1; margin-bottom: 12px; }
+      h1 { font-size: 20px; margin: 0 0 8px; }
+      p { font-size: 14px; line-height: 1.7; opacity: 0.8; margin: 0 0 20px; }
+      button {
+        appearance: none; border: none; cursor: pointer;
+        background: #f3a7c3; color: #fff; font-size: 15px; font-weight: 600;
+        padding: 12px 24px; border-radius: 999px; min-height: 44px;
+      }
+      button:active { transform: scale(0.97); }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="snow">❄️</div>
+      <h1>暫時離線了</h1>
+      <p>你的空間需要網路才能載入。連上網後再試一次，你的一切都還在這裡等你。</p>
+      <button onclick="location.reload()">重新連線</button>
+    </div>
+  </body>
+</html>

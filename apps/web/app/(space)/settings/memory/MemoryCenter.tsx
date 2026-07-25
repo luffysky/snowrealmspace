@@ -35,6 +35,12 @@ export function MemoryCenter({
   const [notice, setNotice] = useState<string | null>(null)
   const [newContent, setNewContent] = useState('')
   const [busy, setBusy] = useState(false)
+  const [query, setQuery] = useState('')
+  const [searching, setSearching] = useState(false)
+  const [results, setResults] = useState<{
+    mode: 'semantic' | 'keyword'
+    items: { id: string; content: string; similarity: number | null }[]
+  } | null>(null)
 
   const headers = { 'x-space-id': spaceId, 'content-type': 'application/json' }
   const approved = memories.filter((m) => m.approved)
@@ -61,6 +67,31 @@ export function MemoryCenter({
     } finally {
       setBusy(false)
     }
+  }
+
+  async function search(e: React.FormEvent) {
+    e.preventDefault()
+    const q = query.trim()
+    if (!q) return
+    setSearching(true)
+    try {
+      const res = await fetch(`/api/memories/search?q=${encodeURIComponent(q)}`, { headers })
+      if (!res.ok) {
+        setNotice('✕ 檢索失敗。')
+        return
+      }
+      const body = (await res.json()) as {
+        data: { mode: 'semantic' | 'keyword'; results: { id: string; content: string; similarity: number | null }[] }
+      }
+      setResults({ mode: body.data.mode, items: body.data.results })
+    } finally {
+      setSearching(false)
+    }
+  }
+
+  function clearSearch() {
+    setQuery('')
+    setResults(null)
   }
 
   async function act(id: string, path: string, method: string): Promise<boolean> {
@@ -229,6 +260,61 @@ export function MemoryCenter({
           </button>
         </div>
       </form>
+
+      {/* 語意檢索 */}
+      {approved.length > 0 && (
+        <form className="sr-card sr-stack" onSubmit={search}>
+          <h2 className="sr-section-title">語意搜尋</h2>
+          <p className="sr-muted" style={{ margin: 0 }}>
+            用意思找，不只是關鍵字。例如搜「喜歡什麼顏色」也能找到「偏好暖色調」。
+          </p>
+          <div className="sr-btn-row" style={{ gap: 'var(--sr-space-2)' }}>
+            <input
+              className="sr-input"
+              style={{ flex: 1, minWidth: 0 }}
+              value={query}
+              maxLength={500}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="想找什麼記憶？"
+              aria-label="語意搜尋"
+            />
+            <button type="submit" className="sr-button" disabled={searching || !query.trim()}>
+              {searching ? '搜尋中…' : '搜尋'}
+            </button>
+            {results && (
+              <button type="button" className="sr-button sr-button-secondary" onClick={clearSearch}>
+                清除
+              </button>
+            )}
+          </div>
+
+          {results && (
+            <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+              <p className="sr-muted" style={{ margin: 0 }}>
+                {results.items.length === 0
+                  ? '沒有相關的記憶。'
+                  : results.mode === 'semantic'
+                    ? `語意相關的 ${results.items.length} 則：`
+                    : `關鍵字比對（未設向量金鑰）的 ${results.items.length} 則：`}
+              </p>
+              {results.items.length > 0 && (
+                <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  {results.items.map((r) => (
+                    <li key={r.id} className="sr-card" style={{ display: 'flex', gap: 'var(--sr-space-2)', alignItems: 'baseline' }}>
+                      {r.similarity !== null && (
+                        <span className="sr-chip sr-chip-tag" style={{ flexShrink: 0 }}>
+                          {Math.round(r.similarity * 100)}%
+                        </span>
+                      )}
+                      <span style={{ minWidth: 0 }}>{r.content}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+        </form>
+      )}
 
       {/* 已批准 */}
       <section className="sr-stack">

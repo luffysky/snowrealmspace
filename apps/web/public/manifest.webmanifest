@@ -1,17 +1,51 @@
 {
+  "id": "/",
   "name": "SnowRealm Space",
   "short_name": "SnowRealm",
   "description": "一個會隨你長期使用而成長的私人數位空間。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait-primary",
   "background_color": "#fff7fb",
   "theme_color": "#f3a7c3",
   "lang": "zh-Hant-TW",
+  "dir": "ltr",
+  "categories": ["lifestyle", "productivity", "personalization"],
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "首頁",
+      "short_name": "首頁",
+      "description": "回到你的空間首頁",
+      "url": "/home",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "陪伴 Agent",
+      "short_name": "陪伴",
+      "description": "和你的空間夥伴聊聊",
+      "url": "/agent",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "今日",
+      "short_name": "今日",
+      "description": "今天的卡片與提示",
+      "url": "/daily",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "靈感",
+      "short_name": "靈感",
+      "description": "看看關於你的洞察",
+      "url": "/insights",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
   ]
 }

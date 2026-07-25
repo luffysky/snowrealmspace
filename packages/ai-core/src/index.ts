@@ -83,6 +83,14 @@ export {
 export { callAI, callAIStream } from './client.js'
 
 export {
+  EMBEDDING_DIMS,
+  type EmbedRequest,
+  type EmbedResult,
+  embedText,
+  toVectorLiteral,
+} from './embed.js'
+
+export {
   encryptKey,
   decryptKey,
   envKeyName,

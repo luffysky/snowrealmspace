@@ -91,5 +91,37 @@
   需在 ai-core 加 embedding API＋寫入時嵌入＋pgvector 查詢。且 embedding 模型（google）目前額度盡，無法 live 驗。
 - **SSE 串流對話**：需動 ai-core 的 callAI 加串流＋route 回 stream＋AgentChat 讀 stream（core 變動，可用 groq 驗）。
 
-## 全域閘門
-- typecheck / lint / check:rls(58) / check:deps / check:secrets 全綠；**762 單元測試全過**。
+## 🟡 AI 批次（續 — 全清）
+### SSE 串流對話（task 33）
+- `ai-core` 加 `callAIStream`（openai 相容協定逐塊 yield delta；Anthropic/Google 不支援 → 呼叫端退非串流）。
+- `/api/agent/chat/stream`：純文字聊天走 SSE，額度先擋、挑第一個「有金鑰且可串流」的候選、
+  存助理訊息＋更新 thread；**無可串流候選或中途斷線 → graceful 退回非串流一次吐**。
+- `AgentChat`：純文字逐字顯示、首塊出現後隱藏「思考中」；**帶圖片仍走非串流 vision 路徑**。
+- **實測 Groq**：14 chunks、首塊 501ms、真串流（>1 chunk）。
+
+### 視覺解鎖（OpenAI fallback）
+- 使用者加了 OpenAI 金鑰 → 視覺候選鏈補 `openai:gpt-4o-mini`（light）／`gpt-4o`（deep）當 **fallback**，
+  只在免費的 gemini 失敗時才跑（成本低、遵「不要打太兇」）。Groq 無 vision、Gemini 額度盡的空窗由此補上。
+
+### embedding 語意檢索（task 32 — 端到端可用）
+- `ai-core` 加 `embedText`（openai `/v1/embeddings` 用 `dimensions:768`／google `embedContent` `outputDimensionality:768`）
+  ＋ `toVectorLiteral`。**固定 768 維**對齊 `memories.embedding vector(768)`，兩家模型落同一空間。
+- 候選鏈 `embedding`：openai-3-small 主、google-004 備（刪掉會遮蔽的舊 DB 覆寫）。
+- 寫入時嵌入：**approve** 與**使用者新增**記憶時即時生成向量（失敗不擋、誠實降級）。
+- 讀取：`match_memories` RPC（**security invoker → 沿用 owner-only RLS**，pgvector 餘弦距離）；
+  `/api/memories/search`（缺金鑰退回關鍵字 ILIKE）；**Memory Center 加語意搜尋框**（顯示相似度%）。
+- Agent context RAG：對話帶 `queryEmbedding` → 挑「最相關」記憶而非「最近」；無向量自動退時間序。
+- `scripts/backfill-embeddings.ts` 補歷史記憶（冪等）。
+- **實測 OpenAI**：768 維、17 tokens；backfill 1 則後 `match_memories('興趣愛好'→'喜歡暖色') sim=0.41` 命中。migration 0052 已套 hosted、types 已重生。
+- 6 個 `embed.test.ts` 單測（mock fetch，含空向量/非 2xx/anthropic 無端點）。
+
+### PWA 更新（task 34）
+- `manifest.webmanifest`：加 `id`／`categories`／`display_override`／**4 個 shortcuts**（首頁·陪伴·今日·靈感）。
+- **Service Worker**（`public/sw.js`）：導覽 network-first（**永不服務過期 HTML/chunk**，避開 CLAUDE.md 記載的 CSS 404 陷阱）、
+  僅內容雜湊的不可變資產 cache-first、API 不介入、版本升 activate 清舊 cache。
+- `public/offline.html` 主題化離線頁；`ServiceWorkerRegistrar`（**跳過 localhost**，dev 保持乾淨）。
+- depcruise 排除 `apps/web/public/`（sw.js 由瀏覽器載入、本就 orphan）。
+
+## 全域閘門（本批次收尾）
+- typecheck / lint（web＋ai-core）/ check:rls(58) / check:deps / check:secrets / build 全綠；
+  **768 單元測試全過**（+6 embed）。SSE 與 embedding 皆以真實金鑰 live 驗過。

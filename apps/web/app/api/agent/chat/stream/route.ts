@@ -16,6 +16,7 @@ import { resolveContext } from '@/lib/api/context'
 import { fail, failValidation } from '@/lib/api/respond'
 import { buildAgentContext } from '@/lib/agent/context'
 import { buildCompleteDeps } from '@/lib/ai/deps'
+import { embedForUsage } from '@/lib/ai/embed'
 
 export const dynamic = 'force-dynamic'
 
@@ -88,13 +89,19 @@ export async function POST(request: NextRequest): Promise<Response> {
     .filter((m) => m.role === 'user' || m.role === 'assistant')
     .map((m) => ({ role: m.role as 'user' | 'assistant', content: m.content ?? '' }))
 
+  const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei' }).format(new Date())
+  const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
+
+  // 語意記憶檢索：把這次訊息向量化，讓 context 挑「最相關」而非「最近」的記憶。
+  // 缺 embedding 金鑰時回 null，context 自動退回時間序（不擋對話）。
+  const queryEmbedding = await embedForUsage(input.message, deps)
+
   const agentCtx = await buildAgentContext(ctx, {
     ...(input.route ? { route: input.route } : {}),
     ...(input.selectedSnapshotId ? { selectedSnapshotId: input.selectedSnapshotId } : {}),
+    ...(queryEmbedding ? { queryEmbedding } : {}),
   })
   const system = buildAgentSystemPrompt(agentCtx)
-  const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: agentCtx.timezone }).format(new Date())
-  const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
 
   // 額度閘門（串流前先擋，才不會吐一半才發現沒額度）
   const budget = await deps.budget(ctx.spaceId)

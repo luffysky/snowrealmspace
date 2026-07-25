@@ -14,7 +14,7 @@
 | A — Foundation | ✅ 完成 | 100% |
 | B — Visual Personalization | ✅ 幾乎完成 | ~98%（剩 Q10 手動走查、台北黑體字檔） |
 | C — Creative Core | ✅ 幾乎完成 | C1–C7 全數完成（地基/Projects/Library/作品+版本比較/Timeline/from-image/隱私刪除組）；剩空間整體刪除（需 R2+worker） |
-| D — AI Core | 🚧 大幅完成 | 路由層+對話+工具+記憶+語氣全備（113+ ai-core 測試）；剩對話產生回應需金鑰、vision/串流 |
+| D — AI Core | 🚧 大幅完成 | 路由層+對話+工具+記憶+語氣+**SSE串流**+**vision**+**embedding語意檢索**全備（119 ai-core 測試）；剩對話歷史摘要、金鑰額度調校 |
 | 管理後台 | ✅ 頁面全補齊 | AI 金鑰/模型/候選鏈/用量/額度/快取 + Agent 動作/內容池/Flags/Space·使用者/系統/稽核（唯讀為主，編輯項見清單） |
 | E — Daily Loop | ✅ 完成 | cron 掃時區+weekly recap 補齊；剩 Insight LLM 升級（需金鑰） |
 | F — Integration | 🚧 骨架 | adapter/capabilities/webhook 冪等完成；OAuth/sync 需 Figma 憑證 |
@@ -195,9 +195,11 @@
 - [x] ~~Memory（提案→批准、Memory Center、ADR-014 雙重防護）~~
 - [x] ~~**Agent 語氣**（參考 AI 島 persona）：settings 選 warm/gentle/professional/playful/concise
       → space_settings.agent_tone → renderContextSuffix 注入；未知值不注入。3 反向測試~~
-- [ ] SSE 串流、UI 五分類視覺區別（文字對話已可用，串流待金鑰調校）
-- [x] ~~設計視覺分析 light/deep~~ ✅ 0726：/api/design/vision（複用多模態，graceful）+ 修停役 vision 模型
-- [ ] embedding 記憶語意檢索 + 對話歷史摘要（需金鑰）
+- [x] ~~SSE 串流~~ ✅ 0726：ai-core callAIStream + /api/agent/chat/stream + AgentChat 逐字（實測 Groq 14 chunks）
+- [x] ~~UI 五分類視覺區別~~ ✅ 0726：Insight 五分類徽章
+- [x] ~~設計視覺分析 light/deep~~ ✅ 0726：/api/design/vision（複用多模態，graceful）+ 修停役 vision 模型 + 補 OpenAI fallback
+- [x] ~~embedding 記憶語意檢索~~ ✅ 0726：ai-core embedText(768維) + match_memories RPC + approve/新增即時嵌入 + Memory Center 搜尋框 + Agent context RAG + backfill 腳本（實測 OpenAI sim=0.41 命中）
+- [ ] 對話歷史摘要（長對話壓縮，尚未做）
 
 ---
 
@@ -279,9 +281,9 @@
 
 ### 升級現有（Bucket 1）
 - [x] ~~clampStatements 五分類 UI~~ ✅ 0726：fact/metric/inference/suggestion/creative 徽章+evidence+可信度
-- [ ] SSE 串流 agent chat（`ai_models.supports_streaming` 未用）
+- [x] ~~SSE 串流 agent chat~~ ✅ 0726：/api/agent/chat/stream + AgentChat 逐字（實測 Groq）
 - [x] ~~Theme AI 配色~~ ✅ 0726：paletteFromMood 心情→三套配色（本地，不需金鑰）
-- [ ] （金鑰）embedding 記憶語意檢索、設計視覺分析（淺/深）、Insight 升級（推論/建議/創意）
+- [x] ~~embedding 記憶語意檢索、設計視覺分析（淺/深）、Insight 升級（推論/建議/創意）~~ ✅ 0726：三項全清，皆 live 驗過（OpenAI/Groq）
 - [ ] （字體檔）Font system 收尾
 
 ### 新功能（Bucket 2）
@@ -289,7 +291,7 @@
 - [x] ~~更多 widget：focus_timer / creative_streak / mood_checkin / goal_tracker / on-this-day~~
       ✅ 0726：四個新 widget（0045 mood_entries+goals）＋ on_this_day 本就可用；sync-widget-defs.ts
 - [ ] Email 週報 channel、協作/訪客分享、公開作品集頁（`feature.publicPortfolio` flag 已在）
-- [ ] （金鑰/embedding）跨庫語意搜尋（`feature.semanticSearch` flag 已在）
+- [x] ~~（embedding）記憶語意搜尋~~ ✅ 0726：/api/memories/search + match_memories RPC（跨產品跨庫版待平台整合）
 - [ ] （跨產品）寵物版 Space
 
 ### 平台/經濟（Bucket 3，多為「等決策」非「等程式」）

@@ -15,6 +15,7 @@ import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 import { buildAgentContext } from '@/lib/agent/context'
 import { buildCompleteDeps } from '@/lib/ai/deps'
+import { embedForUsage } from '@/lib/ai/embed'
 import { executeToolCall } from '@/lib/agent/tools'
 
 export const dynamic = 'force-dynamic'
@@ -131,15 +132,19 @@ export const POST = handler(async (request: NextRequest) => {
     }
   }
 
+  const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei' }).format(new Date())
+  const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
+
+  // 語意記憶檢索：向量化這次訊息，讓 context 挑最相關的記憶（缺金鑰回 null → 退時間序）。
+  const queryEmbedding = input.message ? await embedForUsage(input.message, deps) : null
+
   // 組 system prompt（含當前脈絡）
   const agentCtx = await buildAgentContext(ctx, {
     ...(input.route ? { route: input.route } : {}),
     ...(input.selectedSnapshotId ? { selectedSnapshotId: input.selectedSnapshotId } : {}),
+    ...(queryEmbedding ? { queryEmbedding } : {}),
   })
   const system = buildAgentSystemPrompt(agentCtx)
-
-  const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: agentCtx.timezone }).format(new Date())
-  const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
 
   try {
     // 帶上工具 —— 模型可決定要不要動手做事（07-agent.md §5）。

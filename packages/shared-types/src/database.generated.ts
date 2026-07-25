@@ -3140,6 +3140,19 @@ export type Database = {
       }
       is_space_member: { Args: { target_space_id: string }; Returns: boolean }
       is_space_owner: { Args: { target_space_id: string }; Returns: boolean }
+      match_memories: {
+        Args: {
+          p_match_count?: number
+          p_query_embedding: string
+          p_space_id: string
+        }
+        Returns: {
+          content: string
+          id: string
+          sensitivity: string
+          similarity: number
+        }[]
+      }
       purge_space: { Args: { target_space_id: string }; Returns: undefined }
       reorder_playlist_items: {
         Args: { ordered_ids: string[]; target_playlist_id: string }

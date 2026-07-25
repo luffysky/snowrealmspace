@@ -1,8 +1,11 @@
 import type { NextRequest } from 'next/server'
 import { memoryCreateSchema, memoryListQuerySchema } from '@snowrealm/validation'
 import { emitEvent } from '@snowrealm/analytics'
+import { toVectorLiteral } from '@snowrealm/ai-core'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
+import { buildCompleteDeps } from '@/lib/ai/deps'
+import { embedForUsage } from '@/lib/ai/embed'
 
 export const dynamic = 'force-dynamic'
 
@@ -77,6 +80,22 @@ export const POST = handler(async (request: NextRequest) => {
   if (error || !data) {
     console.error('[memories] 建立失敗', error?.message)
     return fail('INTERNAL', '無法新增記憶。')
+  }
+
+  // 使用者主動新增的記憶即為 approved → 立刻生成語意向量（失敗不擋新增）。
+  try {
+    const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei' }).format(new Date())
+    const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
+    const vector = await embedForUsage(input.content, deps)
+    if (vector) {
+      await ctx.db
+        .from('memories')
+        .update({ embedding: toVectorLiteral(vector) })
+        .eq('id', data.id)
+        .eq('space_id', ctx.spaceId)
+    }
+  } catch (err) {
+    console.error('[memories] embedding 生成失敗（不擋新增）：', (err as Error).message)
   }
 
   await emitEvent('memory.approved', ctx.spaceId, ctx.userId, {

@@ -77,6 +77,7 @@ module.exports = {
           '(^|/)(eslint|vitest|playwright|next)\\.config\\.(js|cjs|mjs|ts)$',
           '^apps/web/(middleware|next-env)\\.',
           '^apps/web/app/',
+          '^apps/web/public/', // sw.js 由瀏覽器載入、非 import；本就是 orphan
           '^scripts/',
           '^supabase/',
         ],

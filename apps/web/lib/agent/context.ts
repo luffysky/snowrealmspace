@@ -1,17 +1,19 @@
-import { AGENT_TOOLS, type AgentContext } from '@snowrealm/ai-core'
+import { AGENT_TOOLS, toVectorLiteral, type AgentContext } from '@snowrealm/ai-core'
 import type { ApiContext } from '@/lib/api/context'
 
 /**
  * Context Builder（07-agent.md §3）—— 蒐集這個 space 的當前脈絡組成 AgentContext。
  *
- * 記憶檢索的 embedding/pgvector 語意排序需要 AI 金鑰（usage key 'embedding'），
- * 設金鑰後再接；目前先取最近的已批准、非 restricted 記憶（restricted 永不進 context，§3.2）。
- * 對話歷史摘要同理待金鑰。
+ * 記憶檢索：帶 queryEmbedding 時走 pgvector 語意排序（match_memories，§3.2），
+ * 挑「跟這次訊息最相關」的記憶而非只看時間；沒有向量（缺金鑰/舊記憶未 backfill）時
+ * 退回最近的已批准、非 restricted 記憶。restricted 永不進 context。
  */
 
 export type BuildContextOpts = {
   route?: string
   selectedSnapshotId?: string
+  /** 這次使用者訊息的語意向量（由呼叫端用 embedForUsage 算好）。有值就啟用語意記憶檢索。 */
+  queryEmbedding?: number[]
 }
 
 export async function buildAgentContext(
@@ -61,16 +63,27 @@ export async function buildAgentContext(
   // 記憶：已批准、非 restricted（restricted 永不進 context）
   let memories: string[] = []
   if (memoryEnabled) {
-    const { data: mem } = await db
-      .from('memories')
-      .select('content, sensitivity')
-      .eq('space_id', ctx.spaceId)
-      .eq('approved', true)
-      .neq('sensitivity', 'restricted')
-      .is('deleted_at', null)
-      .order('created_at', { ascending: false })
-      .limit(8)
-    memories = (mem ?? []).map((m) => m.content)
+    // 有查詢向量 → 語意排序（挑最相關）；否則退回時間序（挑最近）。
+    if (opts.queryEmbedding?.length) {
+      const { data: matched, error } = await db.rpc('match_memories', {
+        p_space_id: ctx.spaceId,
+        p_query_embedding: toVectorLiteral(opts.queryEmbedding),
+        p_match_count: 8,
+      })
+      if (!error && matched) memories = matched.map((m) => m.content)
+    }
+    if (memories.length === 0) {
+      const { data: mem } = await db
+        .from('memories')
+        .select('content, sensitivity')
+        .eq('space_id', ctx.spaceId)
+        .eq('approved', true)
+        .neq('sensitivity', 'restricted')
+        .is('deleted_at', null)
+        .order('created_at', { ascending: false })
+        .limit(8)
+      memories = (mem ?? []).map((m) => m.content)
+    }
   }
 
   // 設計原則

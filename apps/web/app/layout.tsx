@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { DEFAULT_THEME } from '@/lib/theme-defaults'
 import { TutorialHost } from '@/components/tutorial/TutorialController'
 import { CookieConsent } from '@/components/CookieConsent'
+import { ServiceWorkerRegistrar } from '@/components/ServiceWorkerRegistrar'
 import '@/styles/globals.css'
 
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://snowrealm-space.snowrealm.pet'
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <TutorialHost />
         <CookieConsent />
+        <ServiceWorkerRegistrar />
       </body>
     </html>
   )

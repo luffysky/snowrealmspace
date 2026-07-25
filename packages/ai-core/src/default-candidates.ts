@@ -21,6 +21,7 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
   // 註：Groq 目前無 vision 模型（llama-3.2-vision 已停役），故不放 Groq。
   agent_chat_vision: [
     { model: 'google:gemini-2.0-flash', role: 'primary' },
+    { model: 'openai:gpt-4o-mini', role: 'fallback' },
     { model: 'openrouter:meta-llama/llama-3.2-11b-vision-instruct:free', role: 'fallback' },
     { model: 'anthropic:claude-haiku-4-5-20251001', role: 'escalate' },
   ],
@@ -36,10 +37,12 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
   ],
   design_vision_light: [
     { model: 'google:gemini-2.0-flash', role: 'primary' },
+    { model: 'openai:gpt-4o-mini', role: 'fallback' },
     { model: 'openrouter:meta-llama/llama-3.2-11b-vision-instruct:free', role: 'fallback' },
   ],
   design_vision_deep: [
     { model: 'anthropic:claude-opus-4-8', role: 'primary' },
+    { model: 'openai:gpt-4o', role: 'fallback' },
     { model: 'google:gemini-2.0-flash', role: 'fallback' },
   ],
   design_compare: [
@@ -94,5 +97,10 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
     { model: 'groq:llama-3.3-70b-versatile', role: 'primary' },
     { model: 'cerebras:llama-3.3-70b', role: 'fallback' },
   ],
-  embedding: [{ model: 'google:text-embedding-004', role: 'primary' }],
+  // 語意檢索向量（768 維，配合 memories.embedding vector(768)）。
+  // openai text-embedding-3-small 用 dimensions 參數壓到 768；google 004 原生 768。
+  embedding: [
+    { model: 'openai:text-embedding-3-small', role: 'primary' },
+    { model: 'google:text-embedding-004', role: 'fallback' },
+  ],
 }
