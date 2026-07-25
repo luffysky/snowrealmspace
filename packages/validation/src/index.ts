@@ -168,3 +168,13 @@ export {
 } from './principles.js'
 
 export { agentChatSchema, type AgentChatInput } from './agent.js'
+export {
+  MOODS,
+  moodUpsertSchema,
+  goalCreateSchema,
+  goalPatchSchema,
+  type Mood,
+  type MoodUpsertInput,
+  type GoalCreateInput,
+  type GoalPatchInput,
+} from './widget-data.js'

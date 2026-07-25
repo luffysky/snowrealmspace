@@ -1690,6 +1690,56 @@ export type Database = {
         }
         Relationships: []
       }
+      goals: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          current: number
+          deleted_at: string | null
+          done: boolean
+          id: string
+          space_id: string
+          target: number
+          title: string
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          current?: number
+          deleted_at?: string | null
+          done?: boolean
+          id?: string
+          space_id: string
+          target?: number
+          title: string
+          unit?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          current?: number
+          deleted_at?: string | null
+          done?: boolean
+          id?: string
+          space_id?: string
+          target?: number
+          title?: string
+          unit?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goals_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       insights: {
         Row: {
           confidence: number
@@ -1905,6 +1955,41 @@ export type Database = {
           },
           {
             foreignKeyName: "memories_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mood_entries: {
+        Row: {
+          created_by: string | null
+          local_date: string
+          mood: string
+          note: string
+          space_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_by?: string | null
+          local_date: string
+          mood: string
+          note?: string
+          space_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_by?: string | null
+          local_date?: string
+          mood?: string
+          note?: string
+          space_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mood_entries_space_id_fkey"
             columns: ["space_id"]
             isOneToOne: false
             referencedRelation: "spaces"

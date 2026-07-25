@@ -127,6 +127,25 @@ const timelinePreviewConfig = z.object({
   view: z.enum(['recent', 'on_this_day']).default('recent'),
 })
 
+// ── Future widgets（本次實作四個）────────────────────
+const focusTimerConfig = z.object({
+  workMinutes: z.number().int().min(5).max(90).default(25),
+  breakMinutes: z.number().int().min(1).max(30).default(5),
+  rounds: z.number().int().min(1).max(12).default(4),
+})
+
+const creativeStreakConfig = z.object({
+  windowDays: z.number().int().min(7).max(90).default(30),
+})
+
+const moodCheckinConfig = z.object({
+  showHistory: z.boolean().default(true),
+})
+
+const goalTrackerConfig = z.object({
+  showCompleted: z.boolean().default(false),
+})
+
 function def<T>(d: WidgetDefinition<T>): WidgetDefinition<T> {
   return d
 }
@@ -265,6 +284,66 @@ export const WIDGET_REGISTRY = {
     defaultConfig: timelinePreviewConfig.parse({}),
     permissions: ['read:timeline'],
     refreshPolicy: { onMount: true, intervalSeconds: 300 },
+  }),
+
+  focus_timer: def({
+    id: 'focus_timer',
+    name: '專注計時',
+    version: '1.0.0',
+    category: 'utility',
+    description: '番茄鐘。工作／休息輪替。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 3, h: 3 },
+    maxSize: { w: 5, h: 4 },
+    configSchema: focusTimerConfig,
+    defaultConfig: focusTimerConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: false },
+  }),
+
+  creative_streak: def({
+    id: 'creative_streak',
+    name: '創作連續',
+    version: '1.0.0',
+    category: 'creative',
+    description: '你連續幾天有動手。',
+    defaultSize: { w: 4, h: 2 },
+    minSize: { w: 3, h: 2 },
+    maxSize: { w: 6, h: 4 },
+    configSchema: creativeStreakConfig,
+    defaultConfig: creativeStreakConfig.parse({}),
+    permissions: ['read:timeline'],
+    refreshPolicy: { onMount: true, intervalSeconds: 600 },
+  }),
+
+  mood_checkin: def({
+    id: 'mood_checkin',
+    name: '心情打卡',
+    version: '1.0.0',
+    category: 'daily',
+    description: '今天過得怎麼樣。',
+    defaultSize: { w: 4, h: 3 },
+    minSize: { w: 3, h: 2 },
+    maxSize: { w: 6, h: 5 },
+    configSchema: moodCheckinConfig,
+    defaultConfig: moodCheckinConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  goal_tracker: def({
+    id: 'goal_tracker',
+    name: '目標追蹤',
+    version: '1.0.0',
+    category: 'project',
+    description: '想達成的事，一步步推進。',
+    defaultSize: { w: 4, h: 4 },
+    minSize: { w: 3, h: 3 },
+    maxSize: { w: 6, h: 8 },
+    configSchema: goalTrackerConfig,
+    defaultConfig: goalTrackerConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
   }),
 }
 
