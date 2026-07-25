@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
@@ -21,6 +20,7 @@ import {
 import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
+import { SpaceShell } from '@/components/SpaceShell'
 import { signOut } from '../(auth)/actions'
 
 /**
@@ -111,8 +111,47 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
     { href: '/settings', label: 'Settings' },
   ]
 
+  const actions = (
+    <>
+      <BackgroundMusic
+        spaceId={space.id}
+        enabled={audioSettings?.background_audio_enabled ?? false}
+        assetId={audioSettings?.background_audio_asset_id ?? null}
+        volume={audioSettings?.background_audio_volume ?? 0.5}
+      />
+      <NotificationBell />
+      <span data-tour="theme-toggle">
+        <ThemeModeToggle initialMode={mode} lightDef={definition} />
+      </span>
+      <form action={signOut}>
+        <button className="sr-button sr-button-secondary" type="submit">
+          登出
+        </button>
+      </form>
+    </>
+  )
+
+  const footerNode = (
+    <>
+      <div className="sr-main" style={{ paddingTop: 0 }}>
+        <SiteFooter />
+      </div>
+      {process.env.NODE_ENV === 'development' && (
+        <footer className="sr-main" style={{ paddingTop: 0 }}>
+          <p className="sr-muted">
+            Flags：
+            {Object.entries(flags)
+              .filter(([, v]) => v)
+              .map(([k]) => k)
+              .join('、') || '全部關閉'}
+          </p>
+        </footer>
+      )}
+    </>
+  )
+
   return (
-    <div className="sr-shell" {...dataAttrs}>
+    <div className="sr-shell-root" {...dataAttrs}>
       <style dangerouslySetInnerHTML={{ __html: themeCss }} />
       {fonts && (
         <>
@@ -127,57 +166,16 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
 
       <BackgroundLayer spaceId={space.id} state={background} />
 
-      <header className="sr-nav">
-        <strong style={{ fontSize: 'var(--sr-text-lg)' }}>{space.name}</strong>
-
-        <nav aria-label="主導覽" className="sr-nav-links" data-tour="nav">
-          {nav.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="sr-nav-end">
-          <BackgroundMusic
-            spaceId={space.id}
-            enabled={audioSettings?.background_audio_enabled ?? false}
-            assetId={audioSettings?.background_audio_asset_id ?? null}
-            volume={audioSettings?.background_audio_volume ?? 0.5}
-          />
-          <NotificationBell />
-          <span data-tour="theme-toggle">
-            <ThemeModeToggle initialMode={mode} lightDef={definition} />
-          </span>
-          <span className="sr-muted">{role === 'owner' ? '擁有者' : role}</span>
-          <form action={signOut}>
-            <button className="sr-button sr-button-secondary" type="submit">
-              登出
-            </button>
-          </form>
-        </div>
-      </header>
-
-      <main className="sr-main">
+      <SpaceShell
+        spaceName={space.name}
+        roleLabel={role === 'owner' ? '擁有者' : role}
+        nav={nav}
+        actions={actions}
+        footer={footerNode}
+      >
         {needsRecovery && <BindingReminder />}
         {children}
-      </main>
-
-      <div className="sr-main" style={{ paddingTop: 0 }}>
-        <SiteFooter />
-      </div>
-
-      {process.env.NODE_ENV === 'development' && (
-        <footer className="sr-main" style={{ paddingTop: 0 }}>
-          <p className="sr-muted">
-            Flags：
-            {Object.entries(flags)
-              .filter(([, v]) => v)
-              .map(([k]) => k)
-              .join('、') || '全部關閉'}
-          </p>
-        </footer>
-      )}
+      </SpaceShell>
     </div>
   )
 }

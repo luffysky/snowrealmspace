@@ -229,63 +229,272 @@ h3 {
   background: rgba(140, 88, 112, 0.06);
 }
 
-.sr-shell {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 100dvh;
+/*
+ * ── App Shell（頂列 + 可收合側邊欄 + 手機抽屜）────────────────
+ * 桌機／筆電：頂列橫跨上緣，左側側邊欄可收合（展開 220px ↔ 收合 64px 圖示軌道）。
+ *   --sb 用 @property 註冊成 <length>，才能被 transition 平滑動畫（grid 欄寬跟著動）。
+ * 手機／平板：側邊欄改成固定定位、從左滑入的抽屜；頂列出現漢堡鈕。
+ * 之前是 flex-wrap 一排連結，窄螢幕會撐寬 header → 行動瀏覽器縮放整頁（CLAUDE.md #5）。
+ */
+@property --sb {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 220px;
 }
 
-.sr-nav {
+.sr-shell-root {
+  display: contents;
+}
+
+.sr-shell {
+  --sb: 220px;
+  --topbar-h: 60px;
+  display: grid;
+  grid-template-columns: var(--sb) 1fr;
+  grid-template-rows: var(--topbar-h) 1fr;
+  grid-template-areas:
+    'top top'
+    'side content';
+  min-height: 100dvh;
+}
+.sr-shell[data-collapsed='true'] {
+  --sb: 64px;
+}
+/* 首載讀 localStorage 前不套過渡，避免收合狀態閃一下 */
+.sr-shell[data-ready='true'] {
+  transition: --sb var(--sr-duration-base) var(--sr-ease);
+}
+
+/* ── 頂列 ── */
+.sr-topbar {
+  grid-area: top;
+  position: sticky;
+  top: 0;
+  z-index: 30;
   display: flex;
   align-items: center;
-  gap: var(--sr-space-4);
-  padding: var(--sr-space-4) var(--sr-space-6);
+  gap: var(--sr-space-3);
+  padding: 0 var(--sr-space-5);
   border-bottom: var(--sr-border-width) solid var(--sr-border);
   background: var(--sr-surface-alt);
   backdrop-filter: blur(var(--sr-blur));
   -webkit-backdrop-filter: blur(var(--sr-blur));
-  flex-wrap: wrap;
 }
-
-/*
- * 導覽連結必須能換行。
- * 沒有 wrap 時，五個連結在窄螢幕上會把 header 撐寬，
- * 整個文件產生水平溢位 —— 行動瀏覽器會為了塞下而**縮小整頁**，
- * 導致所有點擊座標偏移、按鈕點不到。
- */
-.sr-nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sr-space-1);
-  min-width: 0;
+.sr-brand {
+  font-size: var(--sr-text-lg);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.sr-nav-end {
+.sr-actions {
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: var(--sr-space-3);
-  flex-shrink: 0;
+  min-width: 0;
 }
 
-.sr-nav a {
-  text-decoration: none;
+/* 頂列的圖示鈕（漢堡、收合切換） */
+.sr-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--sr-radius-sm);
+  background: transparent;
+  color: var(--sr-text-secondary);
+  cursor: pointer;
+}
+.sr-icon-btn:hover {
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+/* 漢堡只在手機／平板出現；收合切換只在桌機出現 */
+.sr-hamburger {
+  display: none;
+}
+
+/* ── 側邊欄 ── */
+.sr-sidebar {
+  grid-area: side;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: var(--sr-space-4) var(--sr-space-3);
+  border-right: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface-alt);
+  backdrop-filter: blur(var(--sr-blur));
+  -webkit-backdrop-filter: blur(var(--sr-blur));
+}
+.sr-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sr-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-3);
+  padding: var(--sr-space-2) var(--sr-space-3);
+  border-radius: var(--sr-radius-sm);
   color: var(--sr-text-secondary);
   font-size: var(--sr-text-sm);
   font-weight: 600;
-  padding: var(--sr-space-2) var(--sr-space-3);
-  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.sr-nav a[aria-current='page'] {
-  color: var(--sr-text-primary);
+.sr-nav-link:hover {
   background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+.sr-nav-link[aria-current='page'] {
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+.sr-nav-icon {
+  flex-shrink: 0;
+}
+.sr-nav-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 1;
+  transition: opacity var(--sr-duration-fast) ease;
+}
+/* 收合軌道：只剩圖示，文字淡出並不佔位 */
+.sr-shell[data-collapsed='true'] .sr-nav-label {
+  opacity: 0;
+  width: 0;
+}
+.sr-sidebar-role {
+  margin: auto 0 0;
+  padding: var(--sr-space-3) var(--sr-space-3) 0;
+  font-size: var(--sr-text-sm);
+}
+.sr-shell[data-collapsed='true'] .sr-sidebar-role {
+  display: none;
 }
 
+/* 手機抽屜背景遮罩：桌機不存在 */
+.sr-scrim {
+  display: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 內容 ── */
+.sr-content {
+  grid-area: content;
+  min-width: 0;
+}
 .sr-main {
   padding: var(--sr-space-8) var(--sr-space-6);
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+}
+
+/* ── 手機／平板（<1024px）：頂列漢堡 + 滑入抽屜 ── */
+@media (max-width: 1023px) {
+  .sr-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--topbar-h) 1fr;
+    grid-template-areas:
+      'top'
+      'content';
+  }
+  .sr-hamburger {
+    display: inline-flex;
+  }
+  .sr-collapse-toggle {
+    display: none;
+  }
+
+  .sr-sidebar {
+    position: fixed;
+    top: var(--topbar-h);
+    bottom: 0;
+    left: 0;
+    z-index: 40;
+    width: min(78vw, 300px);
+    border-right: var(--sr-border-width) solid var(--sr-border);
+    box-shadow: var(--sr-shadow-lg, 0 12px 40px rgb(0 0 0 / 0.18));
+    transform: translateX(-100%);
+    visibility: hidden;
+  }
+  .sr-shell[data-ready='true'] .sr-sidebar {
+    transition:
+      transform var(--sr-duration-base) var(--sr-ease),
+      visibility var(--sr-duration-base);
+  }
+  .sr-shell[data-open='true'] .sr-sidebar {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  /* 抽屜裡永遠顯示完整文字，即使桌機記著收合狀態 */
+  .sr-shell[data-collapsed='true'] .sr-nav-label {
+    opacity: 1;
+    width: auto;
+  }
+  .sr-shell[data-collapsed='true'] .sr-sidebar-role {
+    display: block;
+  }
+
+  /* 連結逐項「時間差」淡入 */
+  .sr-nav-link {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  .sr-shell[data-ready='true'] .sr-nav-link {
+    transition:
+      opacity var(--sr-duration-fast) ease,
+      transform var(--sr-duration-fast) ease;
+  }
+  .sr-shell[data-open='true'] .sr-nav-link {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--i, 0) * 35ms);
+  }
+
+  /* 背景遮罩 */
+  .sr-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--topbar-h) 0 0 0;
+    z-index: 35;
+    background: rgb(0 0 0 / 0.4);
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+  }
+  .sr-shell[data-ready='true'] .sr-scrim {
+    transition: opacity var(--sr-duration-base) ease;
+  }
+  .sr-shell[data-open='true'] .sr-scrim {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* 動效偏好：關閉所有過渡與位移，直接呈現最終狀態 */
+@media (prefers-reduced-motion: reduce) {
+  .sr-shell,
+  .sr-sidebar,
+  .sr-nav-link,
+  .sr-nav-label,
+  .sr-scrim {
+    transition: none !important;
+  }
+  .sr-nav-link {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .sr-center {
@@ -308,16 +517,13 @@ h3 {
     --sr-text-h2: 1.5rem;
   }
 
-  .sr-nav {
-    padding: var(--sr-space-3) var(--sr-space-4);
+  .sr-topbar {
+    padding: 0 var(--sr-space-3);
     gap: var(--sr-space-2);
   }
-
-  /* 窄螢幕上讓右側區塊自己換行，而不是把 header 撐寬 */
-  .sr-nav-end {
-    margin-left: 0;
-    width: 100%;
-    justify-content: space-between;
+  /* 窄螢幕縮小動作區間距，避免 header 被撐寬 */
+  .sr-actions {
+    gap: var(--sr-space-2);
   }
 
   /*
