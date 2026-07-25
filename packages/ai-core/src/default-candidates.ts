@@ -17,6 +17,13 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
     { model: 'google:gemini-2.0-flash', role: 'fallback' },
     { model: 'anthropic:claude-haiku-4-5-20251001', role: 'escalate' },
   ],
+  // 帶圖片的對話 —— 必須走能看圖的模型（免費優先）。文字對話用 agent_chat。
+  agent_chat_vision: [
+    { model: 'google:gemini-2.0-flash', role: 'primary' },
+    { model: 'groq:llama-3.2-90b-vision-preview', role: 'fallback' },
+    { model: 'openrouter:meta-llama/llama-3.2-11b-vision-instruct:free', role: 'fallback' },
+    { model: 'anthropic:claude-haiku-4-5-20251001', role: 'escalate' },
+  ],
   agent_chat_deep: [
     { model: 'anthropic:claude-opus-4-8', role: 'primary' },
     { model: 'anthropic:claude-haiku-4-5-20251001', role: 'fallback' },

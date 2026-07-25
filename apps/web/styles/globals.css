@@ -2710,6 +2710,42 @@ input[type='range'] {
   resize: vertical;
 }
 
+/* Agent 多模態附件 */
+.sr-chat-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+  margin-bottom: var(--sr-space-2);
+}
+.sr-chat-thumb {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: var(--sr-radius);
+  border: var(--sr-border-width) solid var(--sr-border);
+  display: block;
+}
+.sr-chat-thumb-wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+.sr-chat-thumb-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
+}
+
 /* ══ 斷點方案（統一參考） ══════════════════════════
    ⌚ 手錶 ≤340 · 📱 手機 341–599 · 平板 600–1023 · 筆電 1024–1439 · 🖥 桌機 ≥1440
    所有裝置都顧橫/直式：短高度橫式另外處理。 */

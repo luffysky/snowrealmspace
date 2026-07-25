@@ -7,6 +7,7 @@
 export type AiUsageKey =
   // 對話
   | 'agent_chat'
+  | 'agent_chat_vision'
   | 'agent_chat_deep'
   | 'agent_proactive'
   // 設計
@@ -32,6 +33,7 @@ export type AiUsageKey =
 
 export const AI_USAGE_KEYS: readonly AiUsageKey[] = [
   'agent_chat',
+  'agent_chat_vision',
   'agent_chat_deep',
   'agent_proactive',
   'design_vision_light',
@@ -57,6 +59,7 @@ export const AI_USAGE_KEYS: readonly AiUsageKey[] = [
  */
 export const UNCACHEABLE_USAGE: ReadonlySet<AiUsageKey> = new Set<AiUsageKey>([
   'agent_chat',
+  'agent_chat_vision',
   'agent_chat_deep',
   'memory_proposal',
   'design_vision_light',

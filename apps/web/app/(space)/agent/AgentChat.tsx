@@ -1,15 +1,53 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { ALLOWED_MIME } from '@snowrealm/validation'
+import { uploadAsset } from '@/lib/upload-asset'
+
+export type Attachment = { assetId: string; mimeType: string }
 
 export type ChatMessage = {
   id: string
   role: 'user' | 'assistant'
   content: string
   escalated?: boolean
+  /** 本地預覽（送出當下的 object URL）。 */
+  images?: string[]
+  /** 從歷史載入的附件參照（需向伺服器換短期 URL）。 */
+  attachments?: Attachment[]
 }
 
 export type ThreadSummary = { id: string; title: string | null; last_message_at: string }
+
+type PendingImage = { assetId: string; previewUrl: string; name: string }
+
+const IMAGE_ACCEPT = ALLOWED_MIME.image.join(',')
+const TEXT_ACCEPT = '.txt,.md,.markdown,.csv,.json,.log,.ts,.tsx,.js,.py,.html,.css,text/*'
+const MAX_TEXT_FILE_BYTES = 1024 * 1024 // 1MB
+const MAX_TEXT_CHARS = 20000
+
+/** 歷史訊息的附件縮圖：向 /api/assets 換 15 分鐘短期 URL。 */
+function HistoryThumb({ assetId, spaceId }: { assetId: string; spaceId: string }) {
+  const [url, setUrl] = useState<string | null>(null)
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    let alive = true
+    fetch(`/api/assets/${assetId}/url`, { headers: { 'x-space-id': spaceId } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((b: { data: { url: string } }) => {
+        if (alive) setUrl(b.data.url)
+      })
+      .catch(() => {
+        if (alive) setFailed(true)
+      })
+    return () => {
+      alive = false
+    }
+  }, [assetId, spaceId])
+  if (failed) return <span className="sr-chip sr-chip-tag">🖼 圖片</span>
+  if (!url) return <span className="sr-chip sr-chip-tag">🖼 載入中…</span>
+  return <img src={url} alt="附件" className="sr-chat-thumb" />
+}
 
 export function AgentChat({
   spaceId,
@@ -28,7 +66,17 @@ export function AgentChat({
   const [input, setInput] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [pendingImages, setPendingImages] = useState<PendingImage[]>([])
+  const [uploading, setUploading] = useState(false)
+  const [recording, setRecording] = useState(false)
+  const [transcribing, setTranscribing] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const recorderRef = useRef<MediaRecorder | null>(null)
+  const chunksRef = useRef<Blob[]>([])
+
+  const busy = pending || uploading || transcribing
 
   async function refreshThreads() {
     try {
@@ -43,15 +91,16 @@ export function AgentChat({
   }
 
   function newConversation() {
-    if (pending) return
+    if (busy) return
     setThreadId(null)
     setMessages([])
     setError(null)
     setInput('')
+    clearPendingImages()
   }
 
   async function switchTo(id: string) {
-    if (pending || id === threadId) return
+    if (busy || id === threadId) return
     setError(null)
     try {
       const res = await fetch(`/api/agent/threads/${id}`, { headers: { 'x-space-id': spaceId } })
@@ -71,10 +120,139 @@ export function AgentChat({
     })
   }
 
-  async function send(text: string) {
+  function clearPendingImages() {
+    setPendingImages((prev) => {
+      prev.forEach((p) => URL.revokeObjectURL(p.previewUrl))
+      return []
+    })
+  }
+
+  // ── 圖片附件：走既有 assets 管線上傳，拿到 assetId ──
+  async function onPickImages(files: FileList | null) {
+    if (!files || files.length === 0) return
+    const slots = 4 - pendingImages.length
+    const chosen = Array.from(files).slice(0, Math.max(0, slots))
+    if (chosen.length === 0) {
+      setError('最多附加 4 張圖片。')
+      return
+    }
+    setError(null)
+    setUploading(true)
+    for (const file of chosen) {
+      if (!(ALLOWED_MIME.image as readonly string[]).includes(file.type)) {
+        setError(`不支援 ${file.type || '這個格式'}（圖片只收 PNG/JPEG/WebP/GIF/AVIF）。`)
+        continue
+      }
+      const previewUrl = URL.createObjectURL(file)
+      try {
+        const assetId = await uploadAsset(file, spaceId)
+        setPendingImages((prev) => [...prev, { assetId, previewUrl, name: file.name }])
+      } catch (err) {
+        URL.revokeObjectURL(previewUrl)
+        setError(err instanceof Error ? err.message : '圖片上傳失敗。')
+      }
+    }
+    setUploading(false)
+  }
+
+  function removePending(assetId: string) {
+    setPendingImages((prev) => {
+      const found = prev.find((p) => p.assetId === assetId)
+      if (found) URL.revokeObjectURL(found.previewUrl)
+      return prev.filter((p) => p.assetId !== assetId)
+    })
+  }
+
+  // ── 文字檔：前端讀內容、貼進輸入框（不落地，最誠實）──
+  async function onPickTextFile(files: FileList | null) {
+    const file = files?.[0]
+    if (!file) return
+    setError(null)
+    if (file.size > MAX_TEXT_FILE_BYTES) {
+      setError('檔案太大（文字附件上限 1MB）。圖片請用「圖片」按鈕。')
+      return
+    }
+    try {
+      let text = await file.text()
+      let truncated = false
+      if (text.length > MAX_TEXT_CHARS) {
+        text = text.slice(0, MAX_TEXT_CHARS)
+        truncated = true
+      }
+      const block = `【附件：${file.name}】\n${text}${truncated ? '\n…（內容過長，已截斷）' : ''}\n`
+      setInput((prev) => (prev ? `${prev}\n${block}` : block))
+    } catch {
+      setError('讀不到這個檔案的內容（可能不是文字檔）。')
+    }
+  }
+
+  // ── 語音：錄音 → 轉寫 → 填進輸入框（不自動送出，可先改再送）──
+  async function toggleRecording() {
+    if (recording) {
+      recorderRef.current?.stop()
+      return
+    }
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+      setError('這個瀏覽器不支援錄音。')
+      return
+    }
+    setError(null)
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      const recorder = new MediaRecorder(stream)
+      chunksRef.current = []
+      recorder.addEventListener('dataavailable', (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data)
+      })
+      recorder.addEventListener('stop', () => {
+        stream.getTracks().forEach((t) => t.stop())
+        setRecording(false)
+        const blob = new Blob(chunksRef.current, { type: recorder.mimeType || 'audio/webm' })
+        if (blob.size > 0) void transcribe(blob)
+      })
+      recorderRef.current = recorder
+      recorder.start()
+      setRecording(true)
+    } catch {
+      setError('無法存取麥克風（請確認已允許權限）。')
+    }
+  }
+
+  async function transcribe(blob: Blob) {
+    setTranscribing(true)
+    setError(null)
+    try {
+      const fd = new FormData()
+      fd.append('audio', blob, 'audio.webm')
+      const res = await fetch('/api/agent/transcribe', {
+        method: 'POST',
+        headers: { 'x-space-id': spaceId },
+        body: fd,
+      })
+      const body: unknown = await res.json().catch(() => null)
+      if (!res.ok) {
+        const msg = (body as { error?: { message?: string } } | null)?.error?.message ?? '語音轉文字失敗。'
+        setError(msg)
+        return
+      }
+      const text = (body as { data: { text: string } }).data.text
+      setInput((prev) => (prev ? `${prev} ${text}` : text))
+    } catch {
+      setError('語音轉文字時網路錯誤。')
+    } finally {
+      setTranscribing(false)
+    }
+  }
+
+  async function send(text: string, images: PendingImage[]) {
     setPending(true)
     setError(null)
-    const optimisticUser: ChatMessage = { id: `u-${Date.now()}`, role: 'user', content: text }
+    const optimisticUser: ChatMessage = {
+      id: `u-${Date.now()}`,
+      role: 'user',
+      content: text,
+      ...(images.length ? { images: images.map((i) => i.previewUrl) } : {}),
+    }
     setMessages((prev) => [...prev, optimisticUser])
     scrollToBottom()
 
@@ -82,7 +260,12 @@ export function AgentChat({
       const res = await fetch('/api/agent/chat', {
         method: 'POST',
         headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
-        body: JSON.stringify({ threadId, message: text, route: '/agent' }),
+        body: JSON.stringify({
+          threadId,
+          message: text,
+          route: '/agent',
+          ...(images.length ? { attachmentAssetIds: images.map((i) => i.assetId) } : {}),
+        }),
       })
       const body: unknown = await res.json().catch(() => null)
 
@@ -92,6 +275,7 @@ export function AgentChat({
         // §46.2：保留使用者輸入（放回輸入框）、可重試，不生成假結果
         setError(msg)
         setInput(text)
+        setPendingImages(images) // 附件放回，可重試
         setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
         return
       }
@@ -113,6 +297,7 @@ export function AgentChat({
     } catch {
       setError('網路錯誤，請重試。')
       setInput(text)
+      setPendingImages(images)
       setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
     } finally {
       setPending(false)
@@ -122,15 +307,17 @@ export function AgentChat({
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     const text = input.trim()
-    if (!text || pending) return
+    if ((!text && pendingImages.length === 0) || busy) return
+    const images = pendingImages
     setInput('')
-    void send(text)
+    setPendingImages([]) // 交給 send 保管；失敗時放回
+    void send(text, images)
   }
 
   return (
     <div className="sr-card sr-stack">
       <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center', flexWrap: 'wrap' }}>
-        <button type="button" className="sr-button sr-button-secondary" onClick={newConversation} disabled={pending}>
+        <button type="button" className="sr-button sr-button-secondary" onClick={newConversation} disabled={busy}>
           ＋ 新對話
         </button>
         {threads.length > 0 && (
@@ -138,7 +325,7 @@ export function AgentChat({
             className="sr-input"
             style={{ flex: 1, minWidth: 160, maxWidth: 320 }}
             value={threadId ?? ''}
-            disabled={pending}
+            disabled={busy}
             onChange={(e) => (e.target.value ? void switchTo(e.target.value) : newConversation())}
           >
             <option value="">— 新對話 —</option>
@@ -154,12 +341,22 @@ export function AgentChat({
       <div ref={listRef} className="sr-chat-list" aria-live="polite">
         {messages.length === 0 ? (
           <p className="sr-muted" style={{ textAlign: 'center', padding: 'var(--sr-space-6) 0' }}>
-            跟你的 AI 夥伴說點什麼吧。你可以問它對某件作品的看法（記得先選取），或請它幫你整理。
+            跟你的 AI 夥伴說點什麼吧。你可以傳一張圖片問它的看法、附上文字檔，或用語音輸入。
           </p>
         ) : (
           messages.map((m) => (
             <div key={m.id} className={`sr-chat-msg sr-chat-${m.role}`}>
               <div className="sr-chat-bubble">
+                {(m.images?.length || m.attachments?.length) && (
+                  <div className="sr-chat-attachments">
+                    {m.images?.map((src, i) => (
+                      <img key={`img-${i}`} src={src} alt="附件" className="sr-chat-thumb" />
+                    ))}
+                    {m.attachments?.map((a) => (
+                      <HistoryThumb key={a.assetId} assetId={a.assetId} spaceId={spaceId} />
+                    ))}
+                  </div>
+                )}
                 {m.content}
                 {m.role === 'assistant' && m.escalated && (
                   <span className="sr-chip sr-chip-tag" style={{ marginLeft: 'var(--sr-space-2)' }}>
@@ -183,6 +380,75 @@ export function AgentChat({
         </p>
       )}
 
+      {/* 待送出的圖片縮圖 */}
+      {pendingImages.length > 0 && (
+        <div className="sr-chat-attachments" aria-label="待送出的圖片">
+          {pendingImages.map((p) => (
+            <span key={p.assetId} className="sr-chat-thumb-wrap">
+              <img src={p.previewUrl} alt={p.name} className="sr-chat-thumb" />
+              <button
+                type="button"
+                className="sr-chat-thumb-remove"
+                aria-label={`移除 ${p.name}`}
+                onClick={() => removePending(p.assetId)}
+              >
+                ✕
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* 附件工具列 */}
+      <div className="sr-row" style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+        <button
+          type="button"
+          className="sr-button sr-button-secondary"
+          onClick={() => imageInputRef.current?.click()}
+          disabled={busy || pendingImages.length >= 4}
+        >
+          🖼 圖片
+        </button>
+        <button
+          type="button"
+          className="sr-button sr-button-secondary"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={busy}
+        >
+          📎 檔案
+        </button>
+        <button
+          type="button"
+          className={`sr-button ${recording ? '' : 'sr-button-secondary'}`}
+          onClick={() => void toggleRecording()}
+          disabled={pending || transcribing}
+        >
+          {recording ? '⏹ 停止錄音' : transcribing ? '轉寫中…' : '🎤 語音'}
+        </button>
+        {uploading && <span className="sr-muted">上傳圖片中…</span>}
+        <input
+          ref={imageInputRef}
+          type="file"
+          accept={IMAGE_ACCEPT}
+          multiple
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            void onPickImages(e.target.files)
+            e.target.value = ''
+          }}
+        />
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept={TEXT_ACCEPT}
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            void onPickTextFile(e.target.files)
+            e.target.value = ''
+          }}
+        />
+      </div>
+
       <form onSubmit={onSubmit} className="sr-chat-input-row">
         <textarea
           className="sr-input"
@@ -199,7 +465,7 @@ export function AgentChat({
           placeholder="輸入訊息…（Enter 送出、Shift+Enter 換行）"
           disabled={pending}
         />
-        <button type="submit" className="sr-button" disabled={pending || !input.trim()}>
+        <button type="submit" className="sr-button" disabled={busy || (!input.trim() && pendingImages.length === 0)}>
           送出
         </button>
       </form>

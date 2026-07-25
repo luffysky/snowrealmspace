@@ -1,10 +1,26 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
-import { AgentChat, type ChatMessage, type ThreadSummary } from './AgentChat'
+import { AgentChat, type Attachment, type ChatMessage, type ThreadSummary } from './AgentChat'
 
 export const metadata: Metadata = { title: 'Agent — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
+
+/** agent_messages.blocks（jsonb）→ 圖片附件參照。忽略非圖片 block。 */
+function blocksToAttachments(blocks: unknown): Attachment[] | undefined {
+  if (!Array.isArray(blocks)) return undefined
+  const out: Attachment[] = []
+  for (const b of blocks) {
+    if (b && typeof b === 'object' && (b as { type?: string }).type === 'image') {
+      const assetId = (b as { assetId?: unknown }).assetId
+      const mimeType = (b as { mimeType?: unknown }).mimeType
+      if (typeof assetId === 'string') {
+        out.push({ assetId, mimeType: typeof mimeType === 'string' ? mimeType : 'image/*' })
+      }
+    }
+  }
+  return out.length ? out : undefined
+}
 
 export default async function AgentPage() {
   const { space } = await requireActiveSpace()
@@ -25,18 +41,22 @@ export default async function AgentPage() {
   if (thread) {
     const { data: msgs } = await db
       .from('agent_messages')
-      .select('id, role, content, escalated')
+      .select('id, role, content, escalated, blocks')
       .eq('thread_id', thread.id)
       .order('created_at', { ascending: true })
       .limit(50)
     messages = (msgs ?? [])
       .filter((m) => m.role === 'user' || m.role === 'assistant')
-      .map((m) => ({
-        id: m.id,
-        role: m.role as 'user' | 'assistant',
-        content: m.content ?? '',
-        escalated: m.escalated ?? false,
-      }))
+      .map((m) => {
+        const attachments = blocksToAttachments(m.blocks)
+        return {
+          id: m.id,
+          role: m.role as 'user' | 'assistant',
+          content: m.content ?? '',
+          escalated: m.escalated ?? false,
+          ...(attachments ? { attachments } : {}),
+        }
+      })
   }
 
   return (

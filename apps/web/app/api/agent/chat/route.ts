@@ -7,7 +7,9 @@ import {
   QuotaExceededError,
   AllCandidatesFailedError,
   type AIMessage,
+  type AIContentBlock,
 } from '@snowrealm/ai-core'
+import { storage } from '@snowrealm/storage'
 import { createAdminClient } from '@snowrealm/db/server'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
@@ -41,6 +43,38 @@ export const POST = handler(async (request: NextRequest) => {
 
   const admin = createAdminClient()
 
+  // ── 圖片附件（多模態）──────────────────────────────────
+  // 走既有 assets 管線：位元組只在 assets（ADR-005）。這裡用受 RLS 約束的 db 讀，
+  // 不是成員就查不到；讀出真實位元組轉 base64 塞進 vision 訊息。
+  const attachmentIds = input.attachmentAssetIds ?? []
+  const imageBlocks: AIContentBlock[] = []
+  const attachmentRefs: { type: 'image'; assetId: string; mimeType: string }[] = []
+  if (attachmentIds.length) {
+    const { data: rows } = await ctx.db
+      .from('assets')
+      .select('id, storage_key, mime_type, kind, bytes, status')
+      .in('id', attachmentIds)
+      .eq('space_id', ctx.spaceId)
+      .eq('kind', 'image')
+      .is('deleted_at', null)
+    for (const a of rows ?? []) {
+      if (a.status !== 'ready') continue
+      if (a.bytes > 8 * 1024 * 1024) continue // 8MB：避免 base64 撐爆 request body
+      try {
+        const bytes = await storage().get(a.storage_key)
+        imageBlocks.push({
+          type: 'image',
+          mediaType: a.mime_type,
+          data: Buffer.from(bytes).toString('base64'),
+        })
+        attachmentRefs.push({ type: 'image', assetId: a.id, mimeType: a.mime_type })
+      } catch {
+        // 讀不到就跳過這張 —— 誠實：不假裝看得到（§靜默失敗是 bug 的反面：這裡是「部分成功」）
+      }
+    }
+  }
+  const hasImages = imageBlocks.length > 0
+
   // 取得或建立 thread
   let threadId = input.threadId ?? null
   if (threadId) {
@@ -55,7 +89,8 @@ export const POST = handler(async (request: NextRequest) => {
   }
   if (!threadId) {
     // 用第一句話當標題（截斷），對話列表才認得出來
-    const title = input.message.trim().slice(0, 40) || '新對話'
+    const title =
+      input.message.trim().slice(0, 40) || (attachmentIds.length ? '圖片對話' : '新對話')
     const { data: created, error } = await admin
       .from('agent_threads')
       .insert({ space_id: ctx.spaceId, created_by: ctx.userId, mode: 'companion', title })
@@ -65,12 +100,13 @@ export const POST = handler(async (request: NextRequest) => {
     threadId = created.id
   }
 
-  // 存使用者訊息
+  // 存使用者訊息（blocks 記附件參照，供歷史重繪縮圖）
   await admin.from('agent_messages').insert({
     space_id: ctx.spaceId,
     thread_id: threadId,
     role: 'user',
     content: input.message,
+    blocks: attachmentRefs,
   })
 
   // 對話歷史（最近 N 則，時間正序）
@@ -85,6 +121,16 @@ export const POST = handler(async (request: NextRequest) => {
     .filter((m) => m.role === 'user' || m.role === 'assistant')
     .map((m) => ({ role: m.role as 'user' | 'assistant', content: m.content ?? '' }))
 
+  // 帶圖時：把圖片塞進「這一輪」的使用者訊息（歷史保持純文字，省 token）。
+  if (hasImages && historyMessages.length) {
+    const last = historyMessages[historyMessages.length - 1]
+    if (last && last.role === 'user') {
+      const text =
+        input.message || '看看這張圖片，用溫暖的語氣跟我說你看到什麼、有什麼想法。'
+      last.content = [{ type: 'text', text }, ...imageBlocks]
+    }
+  }
+
   // 組 system prompt（含當前脈絡）
   const agentCtx = await buildAgentContext(ctx, {
     ...(input.route ? { route: input.route } : {}),
@@ -97,11 +143,18 @@ export const POST = handler(async (request: NextRequest) => {
 
   try {
     // 帶上工具 —— 模型可決定要不要動手做事（07-agent.md §5）。
-    const completion = await completeForUsage(
-      'agent_chat',
-      { spaceId: ctx.spaceId, system, user: historyMessages, tools: toProviderTools() },
-      deps,
-    )
+    // 帶圖時走 vision 候選鏈，且先不帶工具（多數免費 vision 模型不支援 tools+image 併用）。
+    const completion = hasImages
+      ? await completeForUsage(
+          'agent_chat_vision',
+          { spaceId: ctx.spaceId, system, user: historyMessages },
+          deps,
+        )
+      : await completeForUsage(
+          'agent_chat',
+          { spaceId: ctx.spaceId, system, user: historyMessages, tools: toProviderTools() },
+          deps,
+        )
 
     let reply = completion.text
     const actions: { tool: string; status: string; actionId?: string; reason?: string }[] = []
