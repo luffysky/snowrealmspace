@@ -292,6 +292,10 @@
       ✅ 0726：四個新 widget（0045 mood_entries+goals）＋ on_this_day 本就可用；sync-widget-defs.ts
 - [ ] Email 週報 channel、協作/訪客分享、公開作品集頁（`feature.publicPortfolio` flag 已在）
 - [x] ~~（embedding）記憶語意搜尋~~ ✅ 0726：/api/memories/search + match_memories RPC（跨產品跨庫版待平台整合）
+- [ ] **富文本輸入（tiptap + emoji + giphy）** — 全站輸入框（Agent 對話、筆記、捕捉、留言等）
+      升級為 tiptap 編輯器 + 表情選擇器 + giphy GIF 挑選。**參考 AI 島 `D:\SnowRealmRebirth\AI\ai_island_v3`**
+      的實作。注意：giphy 需 API 金鑰（外部資源）、儲存格式需相容既有純文字/blocks 欄位。
+- [ ] 對話歷史摘要（長對話壓縮，接 ai-core，可用 groq 免費驗）— 同 D 區重複，收尾 AI Core 用
 - [ ] （跨產品）寵物版 Space
 
 ### 平台/經濟（Bucket 3，多為「等決策」非「等程式」）
