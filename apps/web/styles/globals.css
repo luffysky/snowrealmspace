@@ -134,6 +134,7 @@ h3 {
   background: var(--sr-accent);
   color: #fff;
   cursor: pointer;
+  white-space: nowrap;
   transition: filter var(--sr-duration-fast) var(--sr-ease);
 }
 .sr-button:hover:not(:disabled) {
@@ -615,11 +616,20 @@ h3 {
 
   .sr-topbar {
     padding: 0 var(--sr-space-3);
-    gap: var(--sr-space-2);
+    gap: var(--sr-space-1);
   }
-  /* 窄螢幕縮小動作區間距，避免 header 被撐寬 */
+  /* 窄螢幕縮小動作區間距與按鈕，避免 header 被撐寬、按鈕文字折行 */
   .sr-actions {
-    gap: var(--sr-space-2);
+    gap: var(--sr-space-1);
+  }
+  .sr-topbar .sr-actions .sr-button {
+    padding: var(--sr-space-2) var(--sr-space-3);
+    font-size: var(--sr-text-sm);
+  }
+  /* 品牌名可縮，別把 header 撐爆 */
+  .sr-brand {
+    font-size: var(--sr-text-base, 1rem);
+    min-width: 0;
   }
 
   /*
