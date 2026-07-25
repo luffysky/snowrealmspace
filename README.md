@@ -1,7 +1,6 @@
 # SnowRealm Space
 
 一個會隨長期使用而成長的私人數位空間，給喜歡創作與設計的人。
-初始版本是給 Nami 的生日禮物，但底層從第一天就是多使用者架構。
 
 > 完整規格見 [`docs/spec/`](docs/spec/)。動手前先讀 [`CLAUDE.md`](CLAUDE.md) 與
 > [`docs/spec/00-README.md`](docs/spec/00-README.md)。
