@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { FORBIDDEN_PATTERNS } from '@snowrealm/validation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
 import { ContentFiltersAdmin } from './ContentFiltersAdmin'
 
@@ -17,7 +18,7 @@ type Pattern = { id: string; pattern: string; description: string | null; enable
  */
 export default async function AdminContentFiltersPage() {
   const gate = await checkSiteAdmin()
-  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? '/login?next=/admin/content-filters' : '/home')
+  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/content-filters` : '/home')
 
   const admin = createAdminClient()
   const { data } = await admin
@@ -29,7 +30,7 @@ export default async function AdminContentFiltersPage() {
   return (
     <main style={{ maxWidth: 820, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
       <p className="sr-muted">
-        <Link href="/admin" className="sr-link">
+        <Link href={ADMIN_BASE} className="sr-link">
           ← 管理後台
         </Link>
       </p>

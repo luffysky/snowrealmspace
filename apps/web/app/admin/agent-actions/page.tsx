@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
 
 export const metadata: Metadata = { title: 'Agent 動作 — SnowRealm' }
@@ -23,7 +24,7 @@ type Row = {
  */
 export default async function AdminAgentActionsPage() {
   const gate = await checkSiteAdmin()
-  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? '/login?next=/admin/agent-actions' : '/home')
+  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/agent-actions` : '/home')
 
   const admin = createAdminClient()
   const { data } = await admin
@@ -38,7 +39,7 @@ export default async function AdminAgentActionsPage() {
   return (
     <main style={{ maxWidth: 900, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
       <p className="sr-muted">
-        <Link href="/admin" className="sr-link">
+        <Link href={ADMIN_BASE} className="sr-link">
           ← 管理後台
         </Link>
       </p>

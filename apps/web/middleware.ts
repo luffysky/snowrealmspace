@@ -12,6 +12,24 @@ import { GATE_COOKIE, GATE_TOKEN } from '@/lib/gate'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // ── 後台隨機碼（防掃描，配合 checkSiteAdmin 的角色閘門雙層）──────────
+  // 設了 env ADMIN_SEGMENT 才啟用：後台只在 /<碼>/admin 存取，裸 /admin 回 404。
+  // ADMIN_SEGMENT 是伺服器端 env（不加 NEXT_PUBLIC），不會外洩到瀏覽器。
+  const adminSeg = process.env.ADMIN_SEGMENT?.trim()
+  if (adminSeg) {
+    const secret = `/${adminSeg}/admin`
+    if (pathname === secret || pathname.startsWith(secret + '/')) {
+      // 密路徑 → 內部改寫到 /admin（瀏覽器網址仍是密路徑）。後台頁自己有角色閘門。
+      const url = request.nextUrl.clone()
+      url.pathname = pathname.slice(`/${adminSeg}`.length)
+      return NextResponse.rewrite(url)
+    }
+    if (pathname === '/admin' || pathname.startsWith('/admin/')) {
+      // 裸 /admin → 當作不存在
+      return new NextResponse(null, { status: 404 })
+    }
+  }
+
   // ── 站台密碼閘門（尚未對外開放）────────────────────────────
   // 沒通過閘門的人只能看到 /gate 與其 API。通過後才進入正常流程。
   const passedGate = request.cookies.get(GATE_COOKIE)?.value === GATE_TOKEN

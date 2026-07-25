@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { createAdminClient } from '@snowrealm/db/server'
 
@@ -43,7 +44,7 @@ function tally<T extends string>(rows: Row[], key: (r: Row) => T) {
 export default async function AdminAiUsagePage() {
   const gate = await checkSiteAdmin()
   if (!gate.ok) {
-    redirect(gate.reason === 'unauthenticated' ? '/login?next=/admin/ai/usage' : '/home')
+    redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/ai/usage` : '/home')
   }
 
   const admin = createAdminClient()
@@ -87,7 +88,7 @@ export default async function AdminAiUsagePage() {
       <h1 style={{ fontSize: 'var(--sr-text-h1, 1.8rem)' }}>AI 用量與成本</h1>
       <p className="sr-muted">
         免費優先的路由跑得如何。聚合最近 {SAMPLE} 筆 <code>ai_usage_log</code>。{' '}
-        <Link href="/admin/ai-keys" className="sr-link">
+        <Link href={`${ADMIN_BASE}/ai-keys`} className="sr-link">
           金鑰管理 →
         </Link>
       </p>

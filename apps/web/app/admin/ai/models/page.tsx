@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { AiModelsAdmin } from './AiModelsAdmin'
 
 export const metadata: Metadata = { title: 'AI 模型管理 — SnowRealm' }
@@ -9,12 +10,12 @@ export const dynamic = 'force-dynamic'
 
 export default async function AdminAiModelsPage() {
   const gate = await checkSiteAdmin()
-  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? '/login?next=/admin/ai/models' : '/home')
+  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/ai/models` : '/home')
 
   return (
     <main style={{ maxWidth: 960, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
       <p className="sr-muted">
-        <Link href="/admin" className="sr-link">
+        <Link href={ADMIN_BASE} className="sr-link">
           ← 管理後台
         </Link>
       </p>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { AI_USAGE_KEYS, DEFAULT_CANDIDATES } from '@snowrealm/ai-core'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
 import { CandidateChainEditor } from './CandidateChainEditor'
 
@@ -32,7 +33,7 @@ function asCandidates(c: unknown): Candidate[] | null {
  */
 export default async function AdminCandidatesPage() {
   const gate = await checkSiteAdmin()
-  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? '/login?next=/admin/ai/candidates' : '/home')
+  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/ai/candidates` : '/home')
 
   const admin = createAdminClient()
   const { data } = await admin.from('ai_usage_models').select('usage_key, candidates, enabled')
@@ -41,7 +42,7 @@ export default async function AdminCandidatesPage() {
   return (
     <main style={{ maxWidth: 900, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
       <p className="sr-muted">
-        <Link href="/admin" className="sr-link">
+        <Link href={ADMIN_BASE} className="sr-link">
           ← 管理後台
         </Link>
       </p>

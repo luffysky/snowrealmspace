@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+import { ADMIN_BASE } from '@/lib/admin-path'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { AiKeysAdmin } from './AiKeysAdmin'
 
@@ -15,7 +16,7 @@ export default async function AdminAiKeysPage() {
   const gate = await checkSiteAdmin()
   if (!gate.ok) {
     // 未登入 → 登入頁；已登入但非管理員 → 首頁
-    redirect(gate.reason === 'unauthenticated' ? '/login?next=/admin/ai-keys' : '/home')
+    redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/ai-keys` : '/home')
   }
 
   return (
