@@ -1,7 +1,28 @@
+import { createHash } from 'node:crypto'
 import { getToolByName, needsConfirmation } from '@snowrealm/ai-core'
 import { createAdminClient } from '@snowrealm/db/server'
 import { audit } from '@snowrealm/analytics'
+import { compareLocalFeatures, parseColor, rgbToHsl, hslToRgb, toHex, type LocalFeatures } from '@snowrealm/theme-engine'
 import type { ApiContext } from '@/lib/api/context'
+
+/** 從基準色（或依 mood 推一個 hue）生成一組協調配色。純函式、決定性。 */
+function generatePalette(baseHex: string, count: number): string[] {
+  const rgba = parseColor(baseHex)
+  if (!rgba) return [baseHex]
+  const hsl = rgbToHsl(rgba)
+  const out: string[] = []
+  for (let i = 0; i < count; i++) {
+    const h = (hsl.h + (360 / count) * i) % 360
+    const l = Math.min(0.85, Math.max(0.25, hsl.l + (i % 2 === 0 ? 0 : 0.12)))
+    out.push(toHex(hslToRgb({ h, s: Math.max(0.35, hsl.s), l })))
+  }
+  return out
+}
+function hueFromMood(mood: string): string {
+  let h = 0
+  for (const c of mood) h = (h + c.charCodeAt(0) * 7) % 360
+  return toHex(hslToRgb({ h, s: 0.6, l: 0.55 }))
+}
 
 /**
  * Tool 執行流程（07-agent.md §5）。
@@ -114,6 +135,112 @@ const HANDLERS: Record<string, Handler> = {
       if (tagErr) throw new Error(`更新標籤失敗：${tagErr.message}`)
     }
     return { output: { tagged: undoBefore.length }, undo: { previous: undoBefore } }
+  },
+
+  create_note: async (ctx, admin, input) => {
+    const { data, error } = await admin
+      .from('notes')
+      .insert({
+        space_id: ctx.spaceId,
+        created_by: ctx.userId,
+        title: input.title ? String(input.title) : null,
+        body: String(input.body ?? ''),
+        project_id: input.projectId ? String(input.projectId) : null,
+      } as never)
+      .select('id')
+      .single()
+    if (error || !data) throw new Error(`建立筆記失敗：${error?.message ?? '未知錯誤'}`)
+    return { output: { noteId: (data as { id: string }).id }, undo: { noteId: (data as { id: string }).id } }
+  },
+
+  create_theme_draft: async (ctx, admin, input) => {
+    const { data, error } = await admin
+      .from('themes')
+      .insert({
+        space_id: ctx.spaceId,
+        created_by: ctx.userId,
+        name: String(input.name ?? '主題草稿'),
+        definition: (input.definition ?? {}) as never,
+      } as never)
+      .select('id')
+      .single()
+    if (error || !data) throw new Error(`建立主題草稿失敗：${error?.message ?? '未知錯誤'}`)
+    // 草稿只是建立、不套用（apply_theme 才套用）
+    return { output: { themeId: (data as { id: string }).id, draft: true }, undo: { themeId: (data as { id: string }).id } }
+  },
+
+  create_palette: async (_ctx, _admin, input) => {
+    const count = Math.min(8, Math.max(3, Number(input.count ?? 5)))
+    const base =
+      typeof input.baseColor === 'string' && /^#[0-9a-fA-F]{6}$/.test(input.baseColor)
+        ? input.baseColor
+        : hueFromMood(String(input.mood ?? ''))
+    return { output: { mood: input.mood ?? null, baseColor: base, colors: generatePalette(base, count) } }
+  },
+
+  add_background: async (ctx, admin, input) => {
+    const assetId = String(input.assetId ?? '')
+    const { data: asset } = await admin
+      .from('assets')
+      .select('id, kind')
+      .eq('id', assetId)
+      .eq('space_id', ctx.spaceId)
+      .is('deleted_at', null)
+      .maybeSingle()
+    if (!asset) throw new Error('找不到這個檔案')
+    if (asset.kind !== 'image') throw new Error('只有圖片能當背景')
+    const { data, error } = await admin
+      .from('background_items')
+      .insert({ space_id: ctx.spaceId, created_by: ctx.userId, asset_id: assetId, type: 'image' } as never)
+      .select('id')
+      .single()
+    if (error || !data) throw new Error(`加入背景失敗：${error?.message ?? '未知錯誤'}`)
+    return { output: { backgroundItemId: (data as { id: string }).id }, undo: { backgroundItemId: (data as { id: string }).id } }
+  },
+
+  compare_design_versions: async (ctx, admin, input) => {
+    const idA = String(input.snapshotIdA ?? '')
+    const idB = String(input.snapshotIdB ?? '')
+    const { data: rows } = await admin
+      .from('design_snapshots')
+      .select('id, asset_id, extracted_features')
+      .in('id', [idA, idB])
+      .eq('space_id', ctx.spaceId)
+    const rowA = rows?.find((r) => r.id === idA)
+    const rowB = rows?.find((r) => r.id === idB)
+    if (!rowA || !rowB) throw new Error('找不到指定的版本快照')
+    const comparison = compareLocalFeatures(
+      rowA.extracted_features as unknown as LocalFeatures,
+      rowB.extracted_features as unknown as LocalFeatures,
+    )
+    return { output: { comparison, a: rowA.id, b: rowB.id } }
+  },
+
+  create_daily_card: async (ctx, admin, input) => {
+    const kind = ['daily_card', 'agent_note', 'creative_prompt'].includes(String(input.kind))
+      ? String(input.kind)
+      : 'agent_note'
+    const body = String(input.body ?? '')
+    const { data: sp } = await admin.from('spaces').select('timezone').eq('id', ctx.spaceId).maybeSingle()
+    const tz = sp?.timezone ?? 'Asia/Taipei'
+    const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())
+    const contentHash = createHash('sha256').update(`${kind}:${body}`).digest('hex').slice(0, 32)
+    const { data, error } = await admin
+      .from('daily_items')
+      .insert({
+        space_id: ctx.spaceId,
+        local_date: localDate,
+        kind,
+        title: input.title ? String(input.title) : null,
+        body,
+        source: 'generated',
+        content_hash: contentHash,
+        status: 'delivered',
+      } as never)
+      .select('id')
+      .single()
+    if (error || !data) throw new Error(`建立每日卡片失敗：${error?.message ?? '未知錯誤'}`)
+    return { output: { dailyItemId: (data as { id: string }).id, kind, localDate }, undo: { dailyItemId: (data as { id: string }).id } }
   },
 }
 
@@ -231,6 +358,14 @@ export async function undoAction(ctx: ApiContext, actionId: string): Promise<Too
       for (const p of undo.previous as { id: string; tags: string[] }[]) {
         await admin.from('assets').update({ tags: p.tags }).eq('id', p.id).eq('space_id', ctx.spaceId)
       }
+    } else if (action.tool_name === 'create_note' && undo.noteId) {
+      await admin.from('notes').update({ deleted_at: new Date().toISOString() } as never).eq('id', String(undo.noteId)).eq('space_id', ctx.spaceId)
+    } else if (action.tool_name === 'create_theme_draft' && undo.themeId) {
+      await admin.from('themes').update({ deleted_at: new Date().toISOString() } as never).eq('id', String(undo.themeId)).eq('space_id', ctx.spaceId)
+    } else if (action.tool_name === 'add_background' && undo.backgroundItemId) {
+      await admin.from('background_items').update({ deleted_at: new Date().toISOString() } as never).eq('id', String(undo.backgroundItemId)).eq('space_id', ctx.spaceId)
+    } else if (action.tool_name === 'create_daily_card' && undo.dailyItemId) {
+      await admin.from('daily_items').delete().eq('id', String(undo.dailyItemId)).eq('space_id', ctx.spaceId)
     } else if (action.tool_name === 'save_memory_proposal' && undo) {
       // 提案復原：直接刪掉那筆 pending 記憶（若還在）
       const out = (
