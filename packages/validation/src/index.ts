@@ -80,6 +80,8 @@ export {
   FORBIDDEN_PATTERNS,
   passesContentFilter,
   contentFilterReason,
+  compileFilterPatterns,
+  passesContentFilterWith,
   quoteSchema,
   promptSchema,
   greetingSchema,

@@ -53,6 +53,10 @@ const ALLOWLIST_NO_SPACE_ID = new Set([
   'ai_models',
   'ai_provider_keys',
   'ai_usage_models',
+  // 全域 AI 額度上限：單列全站設定，非租戶資料（RLS 開、零 policy = 只有 service role）
+  'ai_quota_config',
+  // 後台附加的內容安全字樣：全站規則，非租戶資料（RLS 開、零 policy = 只有 service role）
+  'content_filter_patterns',
   // 使用者層級而非 space 層級，理由見 REQUIRED_RLS_WITHOUT_SPACE_ID
   'user_identities',
   'oauth_transactions',

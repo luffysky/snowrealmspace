@@ -38,6 +38,32 @@ export function contentFilterReason(text: string): string | null {
   return hit ? hit.source : null
 }
 
+/**
+ * 把後台字串規則安全編譯成 RegExp。無效的正則（或過長）**跳過並不納入**，
+ * 而不是讓整批過濾壞掉 —— 底線 FORBIDDEN_PATTERNS 永遠還在，跳過附加規則只是少一層。
+ */
+export function compileFilterPatterns(sources: readonly string[]): RegExp[] {
+  const out: RegExp[] = []
+  for (const src of sources) {
+    if (typeof src !== 'string' || src.length === 0 || src.length > 200) continue
+    try {
+      out.push(new RegExp(src))
+    } catch {
+      // 無效正則：略過（呼叫端可另外記 log）
+    }
+  }
+  return out
+}
+
+/**
+ * 附加層過濾：底線 FORBIDDEN_PATTERNS + 後台附加規則。
+ * extra 只能讓過濾**更嚴**，永遠不會放寬底線。
+ */
+export function passesContentFilterWith(text: string, extra: readonly RegExp[]): boolean {
+  if (!passesContentFilter(text)) return false
+  return !extra.some((re) => re.test(text))
+}
+
 // ── 共用欄位 ─────────────────────────────────────────────
 
 const idSchema = z

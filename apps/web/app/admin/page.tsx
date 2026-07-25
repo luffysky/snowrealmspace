@@ -23,6 +23,7 @@ const SECTIONS: { group: string; items: { href: string; label: string; desc: str
     items: [
       { href: '/admin/agent-actions', label: 'Agent 動作', desc: '工具呼叫紀錄與失敗' },
       { href: '/admin/content', label: '內容池', desc: '主動訊息／每日一句／驚喜文案' },
+      { href: '/admin/content-filters', label: '內容安全字樣', desc: '底線 + 後台附加的過濾規則' },
       { href: '/admin/flags', label: 'Feature Flags', desc: '全域旗標即時切換 + space 覆寫' },
     ],
   },

@@ -1,5 +1,5 @@
 import { createAdminClient } from '@snowrealm/db/server'
-import { passesContentFilter, hashToUnit } from '@snowrealm/validation'
+import { compileFilterPatterns, passesContentFilterWith, hashToUnit } from '@snowrealm/validation'
 
 /**
  * 主動訊息（Milestone E）。docs/spec/10-acceptance.md：觸發條件、頻率上限 3/日、Quiet hours。
@@ -124,15 +124,19 @@ export async function maybeGenerateProactive(
 
 type Admin = ReturnType<typeof createAdminClient>
 
+/** 載入後台附加的安全字樣（附加在底線 FORBIDDEN_PATTERNS 之上，只會更嚴）。 */
+async function loadExtraFilters(admin: Admin): Promise<RegExp[]> {
+  const { data } = await admin.from('content_filter_patterns').select('pattern').eq('enabled', true)
+  return compileFilterPatterns((data ?? []).map((r) => r.pattern))
+}
+
 /** 從內容池挑一句陪伴訊息（決定性、過安全過濾）。 */
 async function pickCompanionLine(admin: Admin, spaceId: string, date: string): Promise<string | null> {
-  const { data } = await admin
-    .from('content_items')
-    .select('content_id, text')
-    .in('kind', ['prompt', 'quote'])
-    .eq('enabled', true)
-    .limit(500)
-  const pool = (data ?? []).filter((r) => passesContentFilter(r.text))
+  const [{ data }, extra] = await Promise.all([
+    admin.from('content_items').select('content_id, text').in('kind', ['prompt', 'quote']).eq('enabled', true).limit(500),
+    loadExtraFilters(admin),
+  ])
+  const pool = (data ?? []).filter((r) => passesContentFilterWith(r.text, extra))
   if (pool.length === 0) return null
   const seed = hashToUnit(`${spaceId}:proactive:${date}`)
   const row = pool[Math.floor(seed * pool.length) % pool.length]!
