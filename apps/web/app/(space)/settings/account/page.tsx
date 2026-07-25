@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { requireUser } from '@/lib/auth/session'
+import { requireUser, requireActiveSpace } from '@/lib/auth/session'
 import { listIdentities, syncFromAuthIdentities } from '@snowrealm/db/identities'
 import { lineConfig } from '@snowrealm/db/line-oauth'
 import { LinkedAccounts } from './LinkedAccounts'
+import { CopyId } from './CopyId'
 
 export const metadata: Metadata = { title: '登入方式 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -34,6 +35,7 @@ export default async function AccountSettingsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }) {
   const user = await requireUser()
+  const { space } = await requireActiveSpace()
   const params = await searchParams
 
   // auth.identities 是權威來源，先同步再讀，
@@ -90,6 +92,17 @@ export default async function AccountSettingsPage({
           googleAvailable={Boolean(process.env['GOOGLE_OAUTH_CLIENT_ID'])}
           lineAvailable={lineConfig() !== null}
         />
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>會員資料</h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          以 UUID 記身分（OAuth 綁定前的識別）。需要對帳或客服時用得到。
+        </p>
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+          <CopyId label="使用者 ID" value={user.id} />
+          <CopyId label="空間 ID" value={space.id} />
+        </div>
       </section>
 
       <p className="sr-muted">

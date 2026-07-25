@@ -372,6 +372,28 @@ h3 {
   opacity: 0;
   width: 0;
 }
+/* 公開資訊頁的輕量頂列（隱私/條款/說明——app 外殼之外） */
+.sr-public-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sr-space-3);
+  padding: var(--sr-space-3) var(--sr-space-5);
+  border-bottom: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface-alt);
+  backdrop-filter: blur(var(--sr-blur));
+  -webkit-backdrop-filter: blur(var(--sr-blur));
+}
+.sr-public-brand {
+  font-weight: 700;
+  font-size: var(--sr-text-lg);
+  color: var(--sr-text-primary);
+  text-decoration: none;
+}
+
 /* 後台入口：與頁面導覽用分隔線隔開，並上推到底部區 */
 .sr-nav-admin {
   margin-top: var(--sr-space-3);

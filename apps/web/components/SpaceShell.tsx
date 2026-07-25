@@ -54,6 +54,12 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M12 7v5l3 2" />
     </>
   ),
+  '/daily': (
+    <>
+      <rect x="3" y="4" width="18" height="17" rx="2" />
+      <path d="M8 2v4M16 2v4M3 9h18M8 14h3" />
+    </>
+  ),
   '/principles': (
     <>
       <circle cx="12" cy="12" r="9" />

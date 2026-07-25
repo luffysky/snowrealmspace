@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PublicTopBar } from '@/components/PublicTopBar'
 
 export const metadata: Metadata = { title: '使用條款 — SnowRealm Space' }
 
 export default function TermsPage() {
   return (
-    <main className="sr-legal">
+    <>
+      <PublicTopBar />
+      <main className="sr-legal">
       <article className="sr-card sr-stack" style={{ maxWidth: 760, margin: '0 auto' }}>
         <header>
           <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>使用條款</h1>
@@ -55,5 +58,6 @@ export default function TermsPage() {
         </p>
       </article>
     </main>
+    </>
   )
 }

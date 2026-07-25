@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PublicTopBar } from '@/components/PublicTopBar'
 
 export const metadata: Metadata = { title: '隱私政策 — SnowRealm Space' }
 
@@ -9,7 +10,9 @@ export const metadata: Metadata = { title: '隱私政策 — SnowRealm Space' }
  */
 export default function PrivacyPage() {
   return (
-    <main className="sr-legal">
+    <>
+      <PublicTopBar />
+      <main className="sr-legal">
       <article className="sr-card sr-stack" style={{ maxWidth: 760, margin: '0 auto' }}>
         <header>
           <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>隱私政策</h1>
@@ -71,5 +74,6 @@ export default function PrivacyPage() {
         </p>
       </article>
     </main>
+    </>
   )
 }
