@@ -256,6 +256,15 @@
 > 來源：全面盤點 agent（讀憲章＋規格＋平台計畫＋所有路由）。
 > **近期佇列 B → A → C/D**（Luffy 定）。**貼 AI 金鑰（Groq＋Gemini）→ 所有 AI 生成功能全亮**。
 
+### 0726 進度（實地盤點 + 一批完成）
+- [x] ~~Agent 多模態~~：圖片(vision，新 agent_chat_vision 候選鏈)／檔案(前端讀文字)／語音(Groq whisper `/api/agent/transcribe`)
+- [x] ~~**生日通知 critical bug**~~：`notifications` CHECK 不含 'birthday' → 生日當天靜默失敗（旗艦功能）。0044 修好。
+- **4 個 agent 實地盤點結論（別再信 91-backlog 的「0%」）**：
+  - B 視覺補漏 **全數已實作**（轉場/排程UI/輪播/layout/widget設定面板/毛玻璃上限）。
+  - 隱私刪除 **大多已實作**（刪帳號/snapshot/memory）；只缺匯出 ZIP（邊際價值低）。
+  - 主動訊息 **已 cron-wired**；已把 Home 觸發收斂掉消除競態。週報 in-app 已有（缺 email 供應商）。
+- **卡決策/外部（等 Luffy）**：公開作品集頁（對外曝光可見性模型）、訪客分享模型、Email 供應商金鑰、字體檔、Figma 憑證、Sentry DSN、AI Dot 定價。
+
 ### 近期佇列（純程式，不卡外部）
 - [ ] **B. 幹掉 window.prompt/confirm ＋ 資產選擇器 modal** ← 先做
       最醜：Works「新增版本」要手貼 asset UUID、WorkDetail 寫死 initialFiles[0]；
@@ -276,8 +285,9 @@
 - [ ] （字體檔）Font system 收尾
 
 ### 新功能（Bucket 2）
-- [ ] 隨手捕捉 inbox → 每日循環（YukiBoard「隨處捕捉→沉澱進空間」鉤子，戰略價值高）
-- [ ] 更多 widget（現有 11 個未建）：focus_timer / creative_streak / mood_checkin / goal_tracker / on-this-day
+- [x] ~~隨手捕捉 inbox → 每日循環~~ ✅ 0726：0046 capture_inbox + /capture 頁 + API（source 支援 yukiboard/agent）
+- [x] ~~更多 widget：focus_timer / creative_streak / mood_checkin / goal_tracker / on-this-day~~
+      ✅ 0726：四個新 widget（0045 mood_entries+goals）＋ on_this_day 本就可用；sync-widget-defs.ts
 - [ ] Email 週報 channel、協作/訪客分享、公開作品集頁（`feature.publicPortfolio` flag 已在）
 - [ ] （金鑰/embedding）跨庫語意搜尋（`feature.semanticSearch` flag 已在）
 - [ ] （跨產品）寵物版 Space
