@@ -50,3 +50,46 @@
 - **Zeabur 環境變數**：`RESEND_API_KEY`+`RESEND_FROM`（週報 email）、`SENTRY_DSN`（監控）。
 - **平台決策**：開 `snowrealm-id` 專案 → 我接 Space 成 OIDC client + 綁定流程。
 - 外部：字體檔、Figma 憑證、AI Dot 定價。
+
+---
+
+# 0726 下半場（同日續，量很大）
+
+## 平台身份 prep（ADR-024）
+- identity 介面 `lib/auth/identity.ts`（全站唯一讀身份）＋ `profiles.snowrealm_id`（0051）＋ ADR-024。
+- platform.md 寫下策略看法＋鎖定架構（snowrealm.pet 入口＋snowrealm-id 發證方，email 只當輔助綁定）。
+
+## 全專案接線審計（多 agent）
+- API↔DB 全清；UI↔後端修 Theme 匯出 JSON（缺 x-space-id → fetch+blob）；RWD 修 2 處。
+
+## 生日／UI
+- 信封生日卡（信封→掀蓋→信紙升起動畫，reduced-motion 直接展開）＋內容＋Home 生日當天呈現。
+- 內容池收合、app-shell 捲動（前後台側邊欄固定）、隱藏捲軸、側邊欄次要選單、明顯回首頁、版面範本（6 套）+ 還原預設。
+
+## 設計師審計 → 系統性修復
+- **補齊未定義 token**（`--sr-space-5`×35、`--sr-radius-md`、`--sr-text-xs`×103、`.sr-empty`）—全站默默壞掉的 padding／方角／字級。
+- 信封卡改用主題色（color-mix）、Theme 預覽自我套用（卡片與質感即時反映）。
+
+## 🟢 純程式批次（全清）
+- Insight 五分類徽章、Theme AI 配色（paletteFromMood）、widget projectId 選擇器、
+  webhook/角色頁（查證已存在）、生日/palette 單測。
+
+## 🟡 AI 批次（部分）
+- **設計視覺分析**（/api/design/vision，複用多模態，graceful）。
+- **AI 深入回顧**（/api/insights/generate，weekly_recap→suggestion，clampStatement，graceful）。
+- **重要 bug 修**：候選鏈踩到 Groq 已停役的 `llama-3.2-90b-vision`（實測 400）；查 Groq model list 確認**目前無 vision 模型**。
+  又發現 weekly_recap/insight_phrasing/daily_prompt 只掛 cerebras/mistral（無金鑰）→ 補 groq fallback。
+  且 hosted `ai_usage_models` 有**舊 seed 覆寫**會蓋掉修好的 DEFAULT → 刪掉這些 vision/text 覆寫列。
+
+## ⚠️ 環境卡點（影響 AI live 驗證）
+- **Gemini 免費額度用盡**（實測 429）、**Groq 無 vision 模型** → 視覺分析／多模態圖片目前 live 跑不動，
+  程式正確且 graceful；**Gemini 額度恢復 或 加 OpenRouter(免費 vision)／Anthropic 金鑰**即可用。
+- Groq **文字**正常（llama-3.3）→ AI 深入回顧實測可用。
+
+## 🟡 仍待（兩個大件，需專注 session）
+- **embedding 語意檢索**：pgvector 欄位/索引已在（memories.embedding），但**無 embedding 產生程式**；
+  需在 ai-core 加 embedding API＋寫入時嵌入＋pgvector 查詢。且 embedding 模型（google）目前額度盡，無法 live 驗。
+- **SSE 串流對話**：需動 ai-core 的 callAI 加串流＋route 回 stream＋AgentChat 讀 stream（core 變動，可用 groq 驗）。
+
+## 全域閘門
+- typecheck / lint / check:rls(58) / check:deps / check:secrets 全綠；**762 單元測試全過**。

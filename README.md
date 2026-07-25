@@ -17,9 +17,15 @@
 - **Lottie 動畫背景** — 5 個自製向量動畫（CC0），lottie-web 懶載入、省流量/減動態時降級
 - **媒體庫** — 資料夾分類、標籤篩選、pg_trgm 檔名搜尋、版本比較、軟刪除 30 天寬限
 - **字體系統** — 開源繁中／拉丁字體，unicode-range 分片、首屏預算控管
-- **可自訂版面** — 拖拉（跟手）式 widget 格線、多套版面切換、每種螢幕寬度各自記住排列
-- **每日內容** — 語錄、創作提示、驚喜盒、生日鏈、主動訊息、每週回顧（Daily Loop）
+- **可自訂版面** — 拖拉（跟手）式 widget 格線、多套版面 CRUD + 6 套範本（專注／創作／每日／極簡／總覽）、
+  每種螢幕寬度各自記住排列、一鍵還原預設。widget 含專注計時／心情打卡／目標追蹤／創作連續等
+- **每日內容** — 語錄、創作提示、驚喜盒、生日鏈、主動訊息、每週回顧（Daily Loop）；
+  生日當天以**信封生日卡**（掀蓋動畫）呈現，自動送出
+- **創作與作品** — 專案、作品與版本比較、**AI 視覺分析**回饋（light/deep）；
+  **公開作品集頁**與**唯讀分享連結**（逐作品 private／unlisted／public，連結可設到期、可撤銷）
+- **捕捉與筆記** — 隨手捕捉 inbox（之後沉澱成筆記）、筆記增刪改、隨手記小工具（跨裝置同步）
 - **AI 夥伴** — 免費模型優先的多模型路由 + Agent 工具 + 記憶（AI Core，金鑰到後台設）；
+  **多模態對話**（傳圖片／檔案／語音轉文字）、對話串管理、**AI 深入回顧**（有根據的建議）；
   語氣可選（溫暖／輕柔／專業／俏皮／極簡）
 - **管理後台** — 站台管理員專用：AI 金鑰／模型／候選鏈／用量／每日額度／回應快取、
   Agent 動作、內容池、Feature Flags（即時切換）、系統健康、稽核日誌
@@ -139,12 +145,16 @@ pnpm test:a11y           # 無障礙（axe-core）
 |---|---|
 | A — Foundation | ✅ 完成 |
 | B — Visual Personalization | ✅ 約 98%（剩手動走查與一個字體檔） |
-| C — Creative Core | ⬜ 未開始 |
-| D — AI Core | ⬜ 未開始 |
-| E — Daily Loop | 🚧 內容池建置中 |
-| F — Integration | ⬜ 未開始 |
+| C — Creative Core | ✅ 大致完成（Projects／作品版本／Library／Timeline／隱私刪除；剩本地分析擴充） |
+| D — AI Core | ✅ 大致完成（路由／Agent／多模態／記憶骨架／視覺分析／深入回顧；剩 SSE 串流、embedding 語意檢索） |
+| E — Daily Loop | ✅ 完成（cron 掃時區、週報、主動訊息、生日卡） |
+| F — Integration | 🚧 骨架（Figma adapter／webhook；OAuth 待憑證） |
 
 完整盤點見 [`docs/spec/91-backlog.md`](docs/spec/91-backlog.md)。
+
+> **平台方向**：SnowRealm Space 是未來 SnowRealm 平台（`snowrealm.pet`）底下的一個產品；
+> 平台身份、經濟、AI Router 的整合規劃見 [`docs/platform.md`](docs/platform.md) 與
+> [`docs/SnowRealm-Platform-Planning.md`](docs/SnowRealm-Platform-Planning.md)。
 
 ---
 

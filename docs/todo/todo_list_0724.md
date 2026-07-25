@@ -111,8 +111,8 @@
 - [x] ~~**系統健康儀表板** `/admin/system`（job_records 佇列統計、失敗清單、空間/檔案數）~~
 - [x] ~~**稽核日誌檢視** `/admin/audit`（audit_logs）~~
 - [x] ~~**Agent 動作檢視** `/admin/agent-actions`（工具呼叫紀錄、失敗、需確認標記）~~
-- [ ] **站台管理員角色**（目前靠 env allowlist；可加 DB role 授予/撤銷，如 ai 島 owner/admin/support）
-- [ ] **整合/webhook 狀態**（provider_webhooks 收件記錄、connection 健康）
+- [x] ~~站台管理員角色 DB 授予/撤銷~~ ✅ /admin/users（owner 改 site_role）
+- [x] ~~整合/webhook 狀態頁~~ ✅ /admin/integrations（provider_webhooks 收件記錄）
 
 **內容／空間**
 - [x] ~~**內容池檢視＋審核** `/admin/content`~~ ✅ 0725：每則可啟用/停用（PATCH，樂觀更新）〔新增文案/編輯權重/生日鏈編輯仍待做〕
@@ -144,7 +144,7 @@
 - [x] ~~深淺色切換（選項 A：任何主題自動算暗色版、nav 日/月鈕、cookie 記住）~~
 - [x] ~~cron 掃時區主動生成（daily-engine 共享套件 + worker daily-cron handler，每小時掃、當地 04:00 生成）~~
 - [x] ~~Weekly Recap 專屬通知（當地週一 09:00 生成回顧 + weekly_recap 通知，冪等）~~
-- [ ] Insight 升級 inference/suggestion/creative（需 D 的 LLM，即金鑰）
+- [x] ~~Insight 升級（AI 深入回顧）~~ ✅ 0726：/api/insights/generate（weekly_recap→suggestion，clampStatement，graceful）
 
 ---
 
@@ -196,7 +196,7 @@
 - [x] ~~**Agent 語氣**（參考 AI 島 persona）：settings 選 warm/gentle/professional/playful/concise
       → space_settings.agent_tone → renderContextSuffix 注入；未知值不注入。3 反向測試~~
 - [ ] SSE 串流、UI 五分類視覺區別（文字對話已可用，串流待金鑰調校）
-- [ ] 設計分析 light/deep（vision，需金鑰）；把 Insight/greeting 接 completeForUsage（graceful）
+- [x] ~~設計視覺分析 light/deep~~ ✅ 0726：/api/design/vision（複用多模態，graceful）+ 修停役 vision 模型
 - [ ] embedding 記憶語意檢索 + 對話歷史摘要（需金鑰）
 
 ---
@@ -239,7 +239,7 @@
 ## 技術債
 
 - [ ] `--sr-font-*-id` 舊註解（已解，可清）
-- [ ] widget config 的 uuid 型欄位（projectId）需專門選擇器（目前標 unsupported 跳過）
+- [x] ~~widget config projectId 選擇器~~ ✅ 0726：project 型欄位改專案下拉
 - [ ] `apps/web/lib` 部分邏輯無單元測試（靠 E2E）
 - [x] ~~`QuickNoteWidget` 存 localStorage~~ ✅ 0725 改存 widget_notes 表（0038，RLS by space_id），跨裝置可見、自動存雲端
 - [ ] 測試 env 指向 hosted 會污染正式資料 — 已有 cleanup 腳本，但流程要小心
@@ -278,9 +278,9 @@
 - [ ] **D. AI Dot 帳本基礎建設** — append-only 雙分錄、餘額=sum、冪等扣點 keyed on `ai_usage_log.id`；**卡 Luffy 定價表**
 
 ### 升級現有（Bucket 1）
-- [ ] `clampStatements` 五分類 UI（fact/metric/inference/suggestion/creative + evidence）— 目前執行期未生效
+- [x] ~~clampStatements 五分類 UI~~ ✅ 0726：fact/metric/inference/suggestion/creative 徽章+evidence+可信度
 - [ ] SSE 串流 agent chat（`ai_models.supports_streaming` 未用）
-- [ ] Theme Studio「AI 配色」模式（接 create_palette handler）
+- [x] ~~Theme AI 配色~~ ✅ 0726：paletteFromMood 心情→三套配色（本地，不需金鑰）
 - [ ] （金鑰）embedding 記憶語意檢索、設計視覺分析（淺/深）、Insight 升級（推論/建議/創意）
 - [ ] （字體檔）Font system 收尾
 
