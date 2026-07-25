@@ -248,3 +248,40 @@
 - [ ] 主動訊息目前「進 Home 時觸發」；完整方案要 cron 掃時區主動產生（同每日卡片）
 - [ ] `apps/web/lib/insights`、`lib/daily/proactive`、`lib/notifications` 尚無單元測試
       （引擎邏輯已用 `scripts/verify-milestone-e.ts` 直連 DB 驗證，但缺純函式單測）
+
+---
+
+## 🗺️ 產品路線圖（0725 全面盤點，優先序）
+
+> 來源：全面盤點 agent（讀憲章＋規格＋平台計畫＋所有路由）。
+> **近期佇列 B → A → C/D**（Luffy 定）。**貼 AI 金鑰（Groq＋Gemini）→ 所有 AI 生成功能全亮**。
+
+### 近期佇列（純程式，不卡外部）
+- [ ] **B. 幹掉 window.prompt/confirm ＋ 資產選擇器 modal** ← 先做
+      最醜：Works「新增版本」要手貼 asset UUID、WorkDetail 寫死 initialFiles[0]；
+      Home 版面建立/命名、Library 資料夾/標籤/移動(數字選單)、Timeline 命名。做一個 modal + asset-picker 原語貫穿。
+- [ ] **A. 接上 Agent 工具迴圈** ← 再做（模型真的呼叫工具需金鑰驗）
+      chat route 沒把 `tools` 傳進 `completeForUsage` → 整套工具系統是死程式。
+      傳 `toProviderTools()` + 跑工具迴圈 + 補 6 個 handler：create_note / create_theme_draft /
+      create_palette / add_background / compare_design_versions / create_daily_card（現有 4/10）。
+      確認/拒絕/24h 復原/稽核生命週期已完成。
+- [ ] **C. Trust Level L0–L3 ＋ SnowRealm+（Space 版）** — 經濟層唯一不卡決策的；接在 `profiles.privileged` 上，防濫用閘門
+- [ ] **D. AI Dot 帳本基礎建設** — append-only 雙分錄、餘額=sum、冪等扣點 keyed on `ai_usage_log.id`；**卡 Luffy 定價表**
+
+### 升級現有（Bucket 1）
+- [ ] `clampStatements` 五分類 UI（fact/metric/inference/suggestion/creative + evidence）— 目前執行期未生效
+- [ ] SSE 串流 agent chat（`ai_models.supports_streaming` 未用）
+- [ ] Theme Studio「AI 配色」模式（接 create_palette handler）
+- [ ] （金鑰）embedding 記憶語意檢索、設計視覺分析（淺/深）、Insight 升級（推論/建議/創意）
+- [ ] （字體檔）Font system 收尾
+
+### 新功能（Bucket 2）
+- [ ] 隨手捕捉 inbox → 每日循環（YukiBoard「隨處捕捉→沉澱進空間」鉤子，戰略價值高）
+- [ ] 更多 widget（現有 11 個未建）：focus_timer / creative_streak / mood_checkin / goal_tracker / on-this-day
+- [ ] Email 週報 channel、協作/訪客分享、公開作品集頁（`feature.publicPortfolio` flag 已在）
+- [ ] （金鑰/embedding）跨庫語意搜尋（`feature.semanticSearch` flag 已在）
+- [ ] （跨產品）寵物版 Space
+
+### 平台/經濟（Bucket 3，多為「等決策」非「等程式」）
+- [ ] Trust Level（見 C）／AI Dot 帳本（見 D）／Z幣錢包（卡金流·稅）／SnowRealm+ entitlement 服務／
+      Onboarding Dot 獎勵＋任務引擎／ai-core 抽成共用 HTTP AI Router（卡 SSO issuer 決策）
