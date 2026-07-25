@@ -123,7 +123,7 @@ export default async function HomePage() {
       */}
       <div data-tour="home-grid">
         {isBirthdayToday ? (
-          <EnvelopeCard {...birthdayCardFor(space.id)} />
+          <EnvelopeCard {...birthdayCardFor(space.id)} savable />
         ) : settings.is_birthday_recipient ? (
           <BirthdayChain />
         ) : (

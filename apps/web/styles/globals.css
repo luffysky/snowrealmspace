@@ -2924,6 +2924,13 @@ input[type='range'] {
   line-height: 1.9;
   color: var(--sr-text-primary);
 }
+.sr-env-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+  justify-content: center;
+  margin-top: var(--sr-space-4);
+}
 /* 信封本體：置中疊在信紙位置上 */
 .sr-env-envelope {
   position: absolute;
