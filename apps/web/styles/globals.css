@@ -324,6 +324,11 @@ h3 {
   grid-area: side;
   display: flex;
   flex-direction: column;
+  /* 桌機：固定在 topbar 下方，內容區捲動時不跟著動（自身過長才內部捲動） */
+  position: sticky;
+  top: var(--topbar-h);
+  align-self: start;
+  height: calc(100dvh - var(--topbar-h));
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;

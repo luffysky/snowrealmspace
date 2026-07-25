@@ -59,7 +59,9 @@ export function PlaylistPanel({
 }) {
   const router = useRouter()
   const [creating, setCreating] = useState(false)
-  const [newName, setNewName] = useState('我的幻燈片')
+  const [newName, setNewName] = useState('')
+  const [renamingId, setRenamingId] = useState<string | null>(null)
+  const [renameValue, setRenameValue] = useState('')
 
   const api = useCallback(
     async (path: string, init?: RequestInit) => {
@@ -92,14 +94,27 @@ export function PlaylistPanel({
     try {
       await api('/api/background-playlists', {
         method: 'POST',
-        body: JSON.stringify({ name: newName, playMode: 'sequential', transition: 'fade' }),
+        body: JSON.stringify({ name: newName.trim(), playMode: 'sequential', transition: 'fade' }),
       })
       await reload()
+      setNewName('') // 建立後清空，避免同名再按一次、也不再殘留「我的幻燈片」預設
       onStatus('已建立播放清單。')
     } catch (err) {
       onStatus(err instanceof Error ? err.message : '建立失敗。', true)
     } finally {
       setCreating(false)
+    }
+  }
+
+  async function rename(playlistId: string) {
+    const name = renameValue.trim()
+    if (!name) return
+    try {
+      await patch(playlistId, { name })
+      setRenamingId(null)
+      onStatus('已更名。')
+    } catch (err) {
+      onStatus(err instanceof Error ? err.message : '更名失敗。', true)
     }
   }
 
@@ -192,7 +207,11 @@ export function PlaylistPanel({
           className="sr-input"
           value={newName}
           maxLength={80}
+          placeholder="播放清單名稱…"
           onChange={(e) => setNewName(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && newName.trim()) void create()
+          }}
           aria-label="新播放清單的名稱"
           style={{ maxWidth: 240 }}
         />
@@ -215,10 +234,46 @@ export function PlaylistPanel({
         return (
           <article key={playlist.id} className="sr-playlist">
             <header className="sr-row" style={{ justifyContent: 'space-between' }}>
-              <strong>
-                {playlist.name}
-                {playlist.is_active && <span className="sr-badge">播放中</span>}
-              </strong>
+              {renamingId === playlist.id ? (
+                <span className="sr-row" style={{ gap: '4px', alignItems: 'center' }}>
+                  <input
+                    className="sr-input"
+                    value={renameValue}
+                    maxLength={80}
+                    autoFocus
+                    onChange={(e) => setRenameValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') void rename(playlist.id)
+                      if (e.key === 'Escape') setRenamingId(null)
+                    }}
+                    aria-label="播放清單名稱"
+                    style={{ maxWidth: 200 }}
+                  />
+                  <button type="button" className="sr-button" style={{ padding: '2px 10px' }} onClick={() => void rename(playlist.id)}>
+                    儲存
+                  </button>
+                  <button type="button" className="sr-button sr-button-secondary" style={{ padding: '2px 10px' }} onClick={() => setRenamingId(null)}>
+                    取消
+                  </button>
+                </span>
+              ) : (
+                <strong className="sr-row" style={{ gap: '6px', alignItems: 'center' }}>
+                  {playlist.name}
+                  {playlist.is_active && <span className="sr-badge">播放中</span>}
+                  <button
+                    type="button"
+                    className="sr-button sr-button-secondary"
+                    style={{ padding: '0 8px', fontSize: 'var(--sr-text-sm)' }}
+                    onClick={() => {
+                      setRenamingId(playlist.id)
+                      setRenameValue(playlist.name)
+                    }}
+                    aria-label={`重新命名「${playlist.name}」`}
+                  >
+                    ✏️
+                  </button>
+                </strong>
+              )}
               <button
                 type="button"
                 className="sr-button sr-button-secondary"
