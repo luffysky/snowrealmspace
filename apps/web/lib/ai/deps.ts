@@ -41,6 +41,12 @@ async function loadQuotaCaps(admin: Db): Promise<QuotaCaps> {
   }
 }
 
+/** 特權使用者：免費用全站資源（AI 額度不擋）。讀取失敗一律當「非特權」（安全預設）。 */
+async function loadPrivileged(admin: Db, userId: string): Promise<boolean> {
+  const { data } = await admin.from('profiles').select('privileged').eq('id', userId).maybeSingle()
+  return Boolean(data?.privileged)
+}
+
 type ModelInfo = { isFree: boolean; costInput: number; costOutput: number }
 
 async function loadModels(admin: Db): Promise<Map<string, ModelInfo>> {
@@ -67,11 +73,16 @@ function hashPrompt(usageKey: string, spaceId: string, prompt: string): string {
   return createHash('sha256').update(`${usageKey}|${spaceId}|${normalizeQuestion(prompt)}`).digest('hex')
 }
 
-export async function buildCompleteDeps(spaceId: string, localDate: string): Promise<CompleteDeps> {
+export async function buildCompleteDeps(
+  spaceId: string,
+  localDate: string,
+  userId?: string,
+): Promise<CompleteDeps> {
   const admin = createAdminClient()
   const env = serverEnv()
   const models = await loadModels(admin)
   const caps = await loadQuotaCaps(admin)
+  const privileged = userId ? await loadPrivileged(admin, userId) : false
 
   const getKey = createKeyResolver({
     encryptionSecret: env.AI_KEY_ENCRYPTION_SECRET,
@@ -104,6 +115,8 @@ export async function buildCompleteDeps(spaceId: string, localDate: string): Pro
     },
 
     budget: async (space: string) => {
+      // 特權使用者：額度不擋（免費用全站資源）。用量仍照常記錄（供 ERP 對帳）。
+      if (privileged) return { freeExhausted: false, paidExhausted: false }
       const { data } = await admin
         .from('ai_daily_quota')
         .select('free_calls, paid_calls')

@@ -89,7 +89,7 @@ export const POST = handler(async (request: NextRequest) => {
   const system = buildAgentSystemPrompt(agentCtx)
 
   const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: agentCtx.timezone }).format(new Date())
-  const deps = await buildCompleteDeps(ctx.spaceId, localDate)
+  const deps = await buildCompleteDeps(ctx.spaceId, localDate, ctx.userId)
 
   try {
     const completion = await completeForUsage(
