@@ -14,7 +14,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}` : '/home')
 
   const groups: AdminNavGroup[] = [
-    { group: '總覽', items: [{ href: ADMIN_BASE, label: 'Dashboard' }] },
+    {
+      group: '總覽',
+      items: [
+        { href: ADMIN_BASE, label: 'Dashboard' },
+        { href: `${ADMIN_BASE}/resources`, label: '資源與成本' },
+      ],
+    },
     {
       group: 'AI',
       items: [
