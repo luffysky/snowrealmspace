@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useScrollLock } from '@/lib/use-scroll-lock'
 
 export type AdminNavGroup = { group: string; items: { href: string; label: string }[] }
 
@@ -36,18 +37,14 @@ export function AdminShell({
 
   useEffect(() => setReady(true), [])
   useEffect(() => setMobileOpen(false), [pathname])
+  useScrollLock(mobileOpen)
   useEffect(() => {
     if (!mobileOpen) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMobileOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = prev
-      window.removeEventListener('keydown', onKey)
-    }
+    return () => window.removeEventListener('keydown', onKey)
   }, [mobileOpen])
 
   function isActive(href: string) {

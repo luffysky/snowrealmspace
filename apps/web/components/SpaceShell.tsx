@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useScrollLock } from '@/lib/use-scroll-lock'
 
 /**
  * Space Shell 的互動外殼。
@@ -129,19 +130,16 @@ export function SpaceShell({
     setMobileOpen(false)
   }, [pathname])
 
-  // 抽屜開啟時鎖背景捲動 + Esc 關閉。
+  // 抽屜開啟時鎖背景捲動（position:fixed，手機才真的鎖得住）。
+  useScrollLock(mobileOpen)
+  // Esc 關閉。
   useEffect(() => {
     if (!mobileOpen) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMobileOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = prev
-      window.removeEventListener('keydown', onKey)
-    }
+    return () => window.removeEventListener('keydown', onKey)
   }, [mobileOpen])
 
   function toggleCollapsed() {

@@ -88,13 +88,24 @@ export async function DashboardStats() {
       style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 'var(--sr-space-3)', marginTop: 'var(--sr-space-4)' }}
     >
       {cards.map((c) => (
-        <div key={c.label} className="sr-card" style={{ padding: 'var(--sr-space-4)' }}>
-          <div className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
+        <div
+          key={c.label}
+          className="sr-card"
+          style={{
+            padding: 'var(--sr-space-5) var(--sr-space-3)',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 4,
+          }}
+        >
+          <div className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', fontWeight: 600, letterSpacing: '0.02em' }}>
             {c.label}
           </div>
-          <div style={{ fontSize: 'var(--sr-text-h2)', fontWeight: 700, lineHeight: 1.2 }}>{c.value}</div>
+          <div style={{ fontSize: '1.9rem', fontWeight: 800, lineHeight: 1.1, color: 'var(--sr-text-primary)' }}>{c.value}</div>
           {c.hint && (
-            <div className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)' }}>
+            <div className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', lineHeight: 1.5 }}>
               {c.hint}
             </div>
           )}

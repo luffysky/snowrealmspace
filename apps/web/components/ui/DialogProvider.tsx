@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useScrollLock } from '@/lib/use-scroll-lock'
 
 /**
  * 承諾式對話框：取代 window.confirm / window.prompt。
@@ -66,17 +67,15 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
     setState(null)
   }
 
+  useScrollLock(state !== null)
   useEffect(() => {
     if (!state) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close(state.kind === 'confirm' ? false : null)
     }
     window.addEventListener('keydown', onKey)
     const t = setTimeout(() => inputRef.current?.focus(), 30)
     return () => {
-      document.body.style.overflow = prev
       window.removeEventListener('keydown', onKey)
       clearTimeout(t)
     }
