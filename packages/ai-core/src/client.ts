@@ -69,6 +69,62 @@ export async function callAI(reqIn: AICompletionRequest): Promise<AICompletionRe
   return { ...parsed, latencyMs: Date.now() - started, raw: json }
 }
 
+/**
+ * 串流版（只實作 OpenAI 相容協定 —— Groq/OpenAI/Cerebras/Mistral/OpenRouter 都走這個）。
+ * 逐塊 yield 文字 delta。非 openai 協定（Anthropic/Google）丟錯，呼叫端可退回非串流。
+ */
+export async function* callAIStream(
+  reqIn: AICompletionRequest,
+): AsyncGenerator<string, void, unknown> {
+  const req: AICompletionRequest = { ...reqIn, model: splitProviderPrefix(reqIn.model).model }
+  if (protocolFor(req.provider) !== 'openai') {
+    throw new Error('streaming 目前只支援 openai 相容協定')
+  }
+  const doFetch = req.fetchImpl ?? fetch
+  const cleaned: AIMessage[] = req.messages.map((m) => ({ role: m.role, content: cleanContent(m.content) }))
+  const body: Record<string, unknown> = {
+    model: req.model,
+    messages: cleaned.map((m) => ({ role: m.role, content: contentToOpenAI(m.content) })),
+    stream: true,
+  }
+  if (req.temperature !== undefined) body.temperature = req.temperature
+  if (req.maxTokens !== undefined) body.max_tokens = req.maxTokens
+
+  const res = await doFetch(endpointFor(req.provider, req.cloudflareAccountId), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', authorization: `Bearer ${req.apiKey}` },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok || !res.body) {
+    const t = await res.text().catch(() => '')
+    throw new Error(`${res.status} ${res.statusText} ${t.slice(0, 300)}`)
+  }
+
+  const reader = res.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  for (;;) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split('\n')
+    buffer = lines.pop() ?? ''
+    for (const line of lines) {
+      const s = line.trim()
+      if (!s.startsWith('data:')) continue
+      const data = s.slice(5).trim()
+      if (data === '[DONE]') return
+      try {
+        const json = JSON.parse(data) as { choices?: { delta?: { content?: string } }[] }
+        const delta = json.choices?.[0]?.delta?.content
+        if (delta) yield cleanText(delta)
+      } catch {
+        /* 不完整的 chunk，忽略等下一輪 */
+      }
+    }
+  }
+}
+
 // ── OpenAI 相容協定 ───────────────────────────────────
 function contentToOpenAI(content: string | AIContentBlock[]): unknown {
   if (typeof content === 'string') return content

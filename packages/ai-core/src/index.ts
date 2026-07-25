@@ -80,7 +80,7 @@ export {
   type AICompletionResponse,
 } from './types.js'
 
-export { callAI } from './client.js'
+export { callAI, callAIStream } from './client.js'
 
 export {
   encryptKey,

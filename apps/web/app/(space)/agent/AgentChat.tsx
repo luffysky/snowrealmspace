@@ -65,6 +65,7 @@ export function AgentChat({
   const [threads, setThreads] = useState<ThreadSummary[]>(initialThreads)
   const [input, setInput] = useState('')
   const [pending, setPending] = useState(false)
+  const [streaming, setStreaming] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [pendingImages, setPendingImages] = useState<PendingImage[]>([])
   const [uploading, setUploading] = useState(false)
@@ -256,50 +257,116 @@ export function AgentChat({
     setMessages((prev) => [...prev, optimisticUser])
     scrollToBottom()
 
+    // 帶圖片：走非串流的 vision 路徑（工具/圖片不串流）
+    if (images.length > 0) {
+      try {
+        const res = await fetch('/api/agent/chat', {
+          method: 'POST',
+          headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+          body: JSON.stringify({
+            threadId,
+            message: text,
+            route: '/agent',
+            attachmentAssetIds: images.map((i) => i.assetId),
+          }),
+        })
+        const body: unknown = await res.json().catch(() => null)
+        if (!res.ok) {
+          const msg = (body as { error?: { message?: string } } | null)?.error?.message ?? 'AI 暫時無法回應。'
+          setError(msg)
+          setInput(text)
+          setPendingImages(images)
+          setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
+          return
+        }
+        const data = (body as { data: { threadId: string; reply: string; escalated: boolean } }).data
+        const wasNew = threadId === null
+        setThreadId(data.threadId)
+        setMessages((prev) => [
+          ...prev,
+          { id: `a-${Date.now()}`, role: 'assistant', content: data.reply, escalated: data.escalated },
+        ])
+        if (wasNew) void refreshThreads()
+        scrollToBottom()
+      } catch {
+        setError('網路錯誤，請重試。')
+        setInput(text)
+        setPendingImages(images)
+        setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
+      } finally {
+        setPending(false)
+      }
+      return
+    }
+
+    // 純文字：串流（逐字吐）
+    const assistantId = `a-${Date.now()}`
+    let full = ''
+    let started = false
+    const wasNew = threadId === null
     try {
-      const res = await fetch('/api/agent/chat', {
+      const res = await fetch('/api/agent/chat/stream', {
         method: 'POST',
         headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
-        body: JSON.stringify({
-          threadId,
-          message: text,
-          route: '/agent',
-          ...(images.length ? { attachmentAssetIds: images.map((i) => i.assetId) } : {}),
-        }),
+        body: JSON.stringify({ threadId, message: text, route: '/agent' }),
       })
-      const body: unknown = await res.json().catch(() => null)
-
-      if (!res.ok) {
-        const msg =
-          (body as { error?: { message?: string } } | null)?.error?.message ?? 'AI 暫時無法回應。'
-        // §46.2：保留使用者輸入（放回輸入框）、可重試，不生成假結果
+      if (!res.ok || !res.body) {
+        const body: unknown = await res.json().catch(() => null)
+        const msg = (body as { error?: { message?: string } } | null)?.error?.message ?? 'AI 暫時無法回應。'
         setError(msg)
         setInput(text)
-        setPendingImages(images) // 附件放回，可重試
         setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
         return
       }
-
-      const data = (body as {
-        data: { threadId: string; reply: string; escalated: boolean; degraded: boolean }
-      }).data
-      const wasNew = threadId === null
-      setThreadId(data.threadId)
-      setMessages((prev) => [
-        ...prev,
-        { id: `a-${Date.now()}`, role: 'assistant', content: data.reply, escalated: data.escalated },
-      ])
-      if (wasNew) void refreshThreads()
-      if (data.degraded) {
-        setError('本次使用快速模式（今日深入分析額度已用完，明日 00:00 重置）。')
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+      for (;;) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buffer += decoder.decode(value, { stream: true })
+        const blocks = buffer.split('\n\n')
+        buffer = blocks.pop() ?? ''
+        for (const blk of blocks) {
+          const line = blk.trim()
+          if (!line.startsWith('data:')) continue
+          let obj: { delta?: string; error?: string; done?: boolean; threadId?: string }
+          try {
+            obj = JSON.parse(line.slice(5).trim())
+          } catch {
+            continue
+          }
+          if (obj.delta) {
+            full += obj.delta
+            if (!started) {
+              started = true
+              setStreaming(true)
+              setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', content: full }])
+            } else {
+              setMessages((prev) => prev.map((m) => (m.id === assistantId ? { ...m, content: full } : m)))
+            }
+            scrollToBottom()
+          }
+          if (obj.error) setError(obj.error)
+          if (obj.done && obj.threadId) {
+            setThreadId(obj.threadId)
+            if (wasNew) void refreshThreads()
+          }
+        }
       }
-      scrollToBottom()
+      // 完全沒吐字也沒 error → 移除樂觀訊息、把輸入放回
+      if (!full) {
+        setInput(text)
+        setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
+      }
     } catch {
-      setError('網路錯誤，請重試。')
-      setInput(text)
-      setPendingImages(images)
-      setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
+      if (!full) {
+        setError('網路錯誤，請重試。')
+        setInput(text)
+        setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
+      }
     } finally {
+      setStreaming(false)
       setPending(false)
     }
   }
@@ -367,7 +434,7 @@ export function AgentChat({
             </div>
           ))
         )}
-        {pending && (
+        {pending && !streaming && (
           <div className="sr-chat-msg sr-chat-assistant">
             <div className="sr-chat-bubble sr-muted">思考中…</div>
           </div>
