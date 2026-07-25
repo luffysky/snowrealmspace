@@ -313,3 +313,44 @@ Space 的憲章是「**私人**數位空間」——親密、安靜、給 Nami �
 > 2. **兩個時鐘：入口耐心成長，地基趁早收斂。私密是預設，平台是 opt-in 的外層。**
 
 —— 這跟你 `SnowRealm-Platform-Planning.md` 裡「收斂而非建置」「HTTP API＋薄 SDK」的方向一致；差別只是我把「現在該急什麼」講清楚了：**急的是地基收斂與 SSO 決策，不是把 Space 改叫 Platform。**
+
+---
+
+# ✅ 決定的架構（Luffy 2026-07-26）
+
+不把 Space 變成平台，而是**平台另外搭**：
+
+- **`snowrealm.pet` = 平台入口**，品牌叫 **SnowRealm**。是產品啟動器 ＋ 帳號頁；每個產品在這有自己的入口，**各產品網址不改**（聯邦式，不是搬家）。
+- **`snowrealm-id` = 中立發證方**（OIDC）：email＋Google＋LINE。只回答「你是誰」，不碰任何產品資料。
+- **Space 一樣是一個產品**（維持私密核心）；AI島／insight／毛行天下…也都各自是產品。
+- **既有使用者綁一個 snowrealm-id**：之後用「Sign in with SnowRealm」登入，會連回原本產品的帳號。
+
+## ⚠️ 唯一的資安地雷：account linking 只能用「已驗證 email」
+
+「連回原本帳號」是全案唯一會出事的地方：
+
+> **規則：只有 snowrealm-id 的 email 已驗證、且與產品端既有帳號 email 相符，才自動綁定。**
+
+- 不驗證的話 = 任何人用你的 email 註冊 snowrealm-id，首次 SSO 就接管你的產品帳號（經典 SSO 接管漏洞）。
+- 對不上（同人不同 email）→ 不自動綁，改在設定頁提供「手動連結帳號」。
+
+## 最小架構
+
+```
+snowrealm.pet          平台入口（啟動器＋帳號頁），品牌 SnowRealm
+  └─ snowrealm-id      中立 OIDC 發證方：email + Google + LINE
+
+每個產品保留自己的網址與 DB：
+  + 對應表：local_user_id ↔ snowrealm_id
+  + 「用 SnowRealm 登入」按鈕（舊登入保留當備援，漸進遷移）
+  + 首次 SSO：已驗證 email 比對 → 連回既有帳號；對不上就建新的
+```
+
+## 上線順序（絞殺式）
+
+1. 立 **snowrealm-id**（發證方）＋ 定對應表 schema。
+2. **Space 當第一個 client** ＋ email 綁定既有使用者（owner=Luffy／admin=Nami 當第一批測試）。
+3. 第二個產品（AI 島）。
+4. 最後做 **snowrealm.pet** 入口頁（只是聚合，最不急）。
+
+> 這解掉了上面那個張力：Space 維持私密親密；公開／社群／市集全在外層的 snowrealm.pet。私密是預設，平台是 opt-in 外層。
