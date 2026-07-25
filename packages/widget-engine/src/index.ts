@@ -27,9 +27,12 @@ export {
   WIDGET_IDS,
   getWidgetDefinition,
   defaultLayoutItems,
+  LAYOUT_PRESETS,
+  layoutPreset,
   type WidgetId,
   type WidgetPermission,
   type WidgetDefinition,
+  type LayoutPreset,
 } from './registry.js'
 
 export {

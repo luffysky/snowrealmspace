@@ -1,13 +1,17 @@
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
-import { GRID, defaultLayoutItems, getWidgetDefinition } from '@snowrealm/widget-engine'
+import { GRID, defaultLayoutItems, getWidgetDefinition, layoutPreset } from '@snowrealm/widget-engine'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
 
 const createSchema = z
-  .object({ name: z.string().trim().min(1).max(80).default('我的版面') })
+  .object({
+    name: z.string().trim().min(1).max(80).default('我的版面'),
+    // 從範本建立：帶 preset key 就用該範本的 widget，否則首個版面用預設、其餘留空
+    preset: z.string().max(40).optional(),
+  })
   .strict()
 
 export const GET = handler(async () => {
@@ -70,8 +74,12 @@ export const POST = handler(async (request: NextRequest) => {
     return fail('INTERNAL', '無法建立版面。')
   }
 
-  if (isFirst) {
-    const seeds = defaultLayoutItems().filter((item) => getWidgetDefinition(item.id) !== null)
+  // 種子：帶 preset 用範本；否則首個版面用預設；其餘留空由使用者自己加。
+  const presetItems = parsed.data.preset ? layoutPreset(parsed.data.preset)?.items : undefined
+  const seedItems = presetItems ?? (isFirst ? defaultLayoutItems() : null)
+
+  if (seedItems) {
+    const seeds = seedItems.filter((item) => getWidgetDefinition(item.id) !== null)
 
     if (seeds.length > 0) {
       await ctx.db.from('widget_instances').insert(

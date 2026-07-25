@@ -6,7 +6,9 @@ import {
   GRID,
   breakpointForWidth,
   deriveTabletFromDesktop,
+  LAYOUT_PRESETS,
   type GridItem,
+  type LayoutPreset,
 } from '@snowrealm/widget-engine'
 import { WidgetGrid } from '@/components/widgets/WidgetGrid'
 import { WidgetRenderer, hasImplementation } from '@/components/widgets/registry'
@@ -135,6 +137,19 @@ export function HomeGrid({
       router.refresh()
     } catch (err) {
       setNotice(err instanceof Error ? err.message : '無法刪除。')
+    }
+  }
+
+  async function createFromPreset(preset: LayoutPreset) {
+    try {
+      const created = (await api('/api/layouts', {
+        method: 'POST',
+        body: JSON.stringify({ name: preset.name, preset: preset.key }),
+      })) as { id: string }
+      await api(`/api/layouts/${created.id}`, { method: 'PATCH', body: JSON.stringify({ activate: true }) })
+      router.refresh()
+    } catch (err) {
+      setNotice(err instanceof Error ? err.message : '無法從範本建立。')
     }
   }
 
@@ -366,6 +381,29 @@ export function HomeGrid({
                 刪除此版面
               </button>
             )}
+          </div>
+        )}
+
+        {editing && (
+          <div style={{ marginTop: 'var(--sr-space-3)' }}>
+            <p className="sr-label" style={{ margin: '0 0 var(--sr-space-2)' }}>
+              從範本新增一套版面（可依工作狀態切換）
+            </p>
+            <div className="sr-preset-grid">
+              {LAYOUT_PRESETS.map((preset) => (
+                <button
+                  key={preset.key}
+                  type="button"
+                  className="sr-preset-card"
+                  onClick={() => void createFromPreset(preset)}
+                  title={`從「${preset.name}」建立新版面`}
+                >
+                  <span className="sr-preset-name">{preset.name}</span>
+                  <span className="sr-preset-desc sr-muted">{preset.description}</span>
+                  <span className="sr-preset-count sr-muted">{preset.items.length} 個區塊</span>
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>

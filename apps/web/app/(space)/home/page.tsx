@@ -133,6 +133,7 @@ export default async function HomePage() {
 
       {layout ? (
         <HomeGrid
+          key={layout.id}
           spaceId={space.id}
           layoutId={layout.id}
           initialWidgets={(layout.widget_instances ?? []) as unknown as WidgetInstanceRow[]}

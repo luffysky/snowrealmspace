@@ -381,3 +381,80 @@ export function defaultLayoutItems(): GridItem[] {
     { id: 'quick_note', x: 0, y: 5, w: 4, h: 3 },
   ]
 }
+
+/**
+ * 版面範本：不同工作狀態用不同排版。使用者可從這幾套建立新版面，之後自由增減。
+ * 只用「已實作」的 widget（無假區塊）。12 欄格線，位置不重疊。
+ */
+export type LayoutPreset = { key: string; name: string; description: string; items: GridItem[] }
+
+export const LAYOUT_PRESETS: LayoutPreset[] = [
+  {
+    key: 'default',
+    name: '預設',
+    description: '每日內容 + 驚喜 + 隨手記，均衡的起點。',
+    items: defaultLayoutItems(),
+  },
+  {
+    key: 'focus',
+    name: '專注',
+    description: '番茄鐘 + 今天 + 目標 + 隨手記，把雜訊收起來做事。',
+    items: [
+      { id: 'focus_timer', x: 0, y: 0, w: 4, h: 3 },
+      { id: 'daily_card', x: 4, y: 0, w: 8, h: 3 },
+      { id: 'goal_tracker', x: 0, y: 3, w: 6, h: 4 },
+      { id: 'quick_note', x: 6, y: 3, w: 6, h: 4 },
+    ],
+  },
+  {
+    key: 'creative',
+    name: '創作',
+    description: '目前專案 + 最近作品 + 連續天數 + 目標，給做東西的日子。',
+    items: [
+      { id: 'current_project', x: 0, y: 0, w: 6, h: 3 },
+      { id: 'recent_designs', x: 6, y: 0, w: 6, h: 3 },
+      { id: 'creative_streak', x: 0, y: 3, w: 4, h: 2 },
+      { id: 'goal_tracker', x: 4, y: 3, w: 4, h: 4 },
+      { id: 'quick_note', x: 8, y: 3, w: 4, h: 4 },
+    ],
+  },
+  {
+    key: 'daily',
+    name: '每日',
+    description: '每日卡 + 驚喜 + 心情 + Agent + 時間軸，慢慢過一天。',
+    items: [
+      { id: 'daily_card', x: 0, y: 0, w: 6, h: 3 },
+      { id: 'surprise_box', x: 6, y: 0, w: 6, h: 3 },
+      { id: 'mood_checkin', x: 0, y: 3, w: 4, h: 3 },
+      { id: 'agent_message', x: 4, y: 3, w: 8, h: 2 },
+      { id: 'timeline_preview', x: 4, y: 5, w: 4, h: 4 },
+    ],
+  },
+  {
+    key: 'minimal',
+    name: '極簡',
+    description: '只留每日卡與隨手記，越少越安靜。',
+    items: [
+      { id: 'daily_card', x: 0, y: 0, w: 7, h: 3 },
+      { id: 'quick_note', x: 7, y: 0, w: 5, h: 3 },
+    ],
+  },
+  {
+    key: 'overview',
+    name: '總覽',
+    description: '一次看到最多：內容、專案、作品、時間軸、心情。',
+    items: [
+      { id: 'daily_card', x: 0, y: 0, w: 6, h: 3 },
+      { id: 'current_project', x: 6, y: 0, w: 6, h: 3 },
+      { id: 'recent_designs', x: 0, y: 3, w: 6, h: 3 },
+      { id: 'timeline_preview', x: 6, y: 3, w: 4, h: 4 },
+      { id: 'creative_streak', x: 0, y: 6, w: 4, h: 2 },
+      { id: 'mood_checkin', x: 4, y: 6, w: 4, h: 3 },
+      { id: 'quick_note', x: 8, y: 7, w: 4, h: 3 },
+    ],
+  },
+]
+
+export function layoutPreset(key: string): LayoutPreset | null {
+  return LAYOUT_PRESETS.find((p) => p.key === key) ?? null
+}

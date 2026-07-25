@@ -2733,6 +2733,44 @@ input[type='range'] {
   resize: vertical;
 }
 
+/* 版面範本卡 */
+.sr-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--sr-space-2);
+}
+.sr-preset-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  padding: var(--sr-space-3);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius);
+  background: var(--sr-surface);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+.sr-preset-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  border-color: var(--sr-accent);
+}
+.sr-preset-card:focus-visible {
+  outline: 2px solid var(--sr-accent);
+  outline-offset: 2px;
+}
+.sr-preset-name {
+  font-weight: 700;
+}
+.sr-preset-desc {
+  font-size: var(--sr-text-sm);
+  line-height: 1.5;
+}
+.sr-preset-count {
+  font-size: var(--sr-text-sm);
+}
+
 /* 生日信封卡 */
 .sr-env {
   position: relative;
