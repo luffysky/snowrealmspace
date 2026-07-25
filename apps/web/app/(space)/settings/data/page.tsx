@@ -103,9 +103,12 @@ export default async function DataMapPage() {
           把這個空間的資料與設定（主題、背景、專案、作品、時間軸、記憶、回顧、通知、檔案清單…）
           下載成一份可讀、可再匯入的 JSON。檔案本身的位元組不在裡面，可到 Library 逐一下載。
         </p>
-        <p style={{ margin: 0 }}>
+        <p style={{ margin: 0, display: 'flex', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+          <a href="/api/account/export?format=zip" className="sr-button sr-button-secondary" download>
+            下載 ZIP（含清單）
+          </a>
           <a href="/api/account/export" className="sr-button sr-button-secondary" download>
-            下載 JSON 匯出
+            下載 JSON
           </a>
         </p>
       </section>

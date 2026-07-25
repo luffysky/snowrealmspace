@@ -1,8 +1,25 @@
+import type { NextRequest } from 'next/server'
+import { zipSync, strToU8 } from 'fflate'
 import { getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { fail, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
+
+/** assets 中繼資料 → 好讀的 CSV（不含位元組）。 */
+function assetsCsv(rows: unknown): string {
+  const list = Array.isArray(rows) ? rows : []
+  const header = 'id,original_filename,kind,mime_type,bytes,created_at'
+  const esc = (v: unknown) => {
+    const s = v == null ? '' : String(v)
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
+  }
+  const lines = list.map((r) => {
+    const a = r as Record<string, unknown>
+    return [a.id, a.original_filename, a.kind, a.mime_type, a.bytes, a.created_at].map(esc).join(',')
+  })
+  return [header, ...lines].join('\n')
+}
 
 /**
  * 帳號資料匯出（10-acceptance.md 隱私與刪除）。
@@ -31,9 +48,11 @@ const TABLES = [
   'assets',
 ] as const
 
-export const GET = handler(async () => {
+export const GET = handler(async (request: NextRequest) => {
   const user = await getUser()
   if (!user) return fail('UNAUTHENTICATED', '請先登入。')
+
+  const asZip = new URL(request.url).searchParams.get('format') === 'zip'
 
   const db = await getDb()
 
@@ -83,13 +102,40 @@ export const GET = handler(async () => {
   }
 
   const slug = typeof space.slug === 'string' ? space.slug : 'space'
-  const filename = `snowrealm-export-${slug}-${new Date().toISOString().slice(0, 10)}.json`
+  const stamp = new Date().toISOString().slice(0, 10)
+  const jsonStr = JSON.stringify(payload, null, 2)
 
-  return new Response(JSON.stringify(payload, null, 2), {
+  if (asZip) {
+    const readme =
+      `SnowRealm Space 帳號匯出\n匯出時間：${payload.meta.exportedAt}\n\n` +
+      `data.json —— 全部資料與設定（可再匯入）。\n` +
+      `assets.csv —— 檔案清單（中繼資料）。實際檔案位元組請到 Library 逐一下載；\n` +
+      `依 ADR-005，位元組只存在 assets 儲存層，不放進這份匯出。\n`
+    const zipped = zipSync(
+      {
+        'data.json': strToU8(jsonStr),
+        'assets.csv': strToU8(assetsCsv(data['assets'])),
+        'README.txt': strToU8(readme),
+      },
+      { level: 6 },
+    )
+    // fflate 回傳的是 Node ArrayBuffer 檢視；轉成獨立 ArrayBuffer 供 Response 使用
+    const body = zipped.slice().buffer
+    return new Response(body, {
+      status: 200,
+      headers: {
+        'content-type': 'application/zip',
+        'content-disposition': `attachment; filename="snowrealm-export-${slug}-${stamp}.zip"`,
+        'cache-control': 'no-store',
+      },
+    })
+  }
+
+  return new Response(jsonStr, {
     status: 200,
     headers: {
       'content-type': 'application/json; charset=utf-8',
-      'content-disposition': `attachment; filename="${filename}"`,
+      'content-disposition': `attachment; filename="snowrealm-export-${slug}-${stamp}.json"`,
       'cache-control': 'no-store',
     },
   })
