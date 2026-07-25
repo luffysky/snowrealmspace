@@ -15,7 +15,7 @@ import type { WidgetProps } from '../types'
 
 type SaveState = 'loading' | 'idle' | 'saving' | 'saved' | 'load-error' | 'save-error'
 
-export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
+export default function QuickNoteWidget({ spaceId, instanceId, config }: WidgetProps) {
   const placeholder = (config as { placeholder?: string } | null)?.placeholder ?? '隨手記下…'
   const autoSaveSeconds = (config as { autoSaveSeconds?: number } | null)?.autoSaveSeconds ?? 3
 
@@ -28,7 +28,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
   useEffect(() => {
     let alive = true
     setState('loading')
-    fetch(`/api/widgets/${instanceId}/note`)
+    fetch(`/api/widgets/${instanceId}/note`, { headers: { 'x-space-id': spaceId } })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((json: { data?: { body?: string } }) => {
         if (!alive) return
@@ -42,7 +42,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
     return () => {
       alive = false
     }
-  }, [instanceId])
+  }, [instanceId, spaceId])
 
   useEffect(
     () => () => {
@@ -57,7 +57,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
       try {
         const res = await fetch(`/api/widgets/${instanceId}/note`, {
           method: 'PUT',
-          headers: { 'content-type': 'application/json' },
+          headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
           body: JSON.stringify({ body: value }),
         })
         if (!res.ok) throw new Error(String(res.status))
@@ -66,7 +66,7 @@ export default function QuickNoteWidget({ instanceId, config }: WidgetProps) {
         setState('save-error')
       }
     },
-    [instanceId],
+    [instanceId, spaceId],
   )
 
   function onChange(value: string) {
