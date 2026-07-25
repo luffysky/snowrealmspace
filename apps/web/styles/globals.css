@@ -256,7 +256,9 @@ h3 {
   grid-template-areas:
     'top top'
     'side content';
-  min-height: 100dvh;
+  /* App-shell：整體固定滿版、內容區自己捲動 → topbar 與側邊欄永遠不動 */
+  height: 100dvh;
+  overflow: hidden;
 }
 .sr-shell[data-collapsed='true'] {
   --sb: 64px;
@@ -324,11 +326,8 @@ h3 {
   grid-area: side;
   display: flex;
   flex-direction: column;
-  /* 桌機：固定在 topbar 下方，內容區捲動時不跟著動（自身過長才內部捲動） */
-  position: sticky;
-  top: var(--topbar-h);
-  align-self: start;
-  height: calc(100dvh - var(--topbar-h));
+  /* app-shell：側邊欄是固定高度的格子（撐滿 1fr 列），自身過長才內部捲動；
+     內容區捲動時完全不動（因為會捲的是 .sr-content，不是整頁）。 */
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -569,10 +568,13 @@ h3 {
   padding: 0;
 }
 
-/* ── 內容 ── */
+/* ── 內容（唯一會捲動的區域）── */
 .sr-content {
   grid-area: content;
   min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .sr-main {
   padding: var(--sr-space-8) var(--sr-space-6);
@@ -617,6 +619,10 @@ h3 {
   .sr-shell[data-open='true'] .sr-sidebar {
     transform: translateX(0);
     visibility: visible;
+  }
+  /* 抽屜開著時鎖住底下內容，不讓它跟著滑（顏色變身等頁面） */
+  .sr-shell[data-open='true'] .sr-content {
+    overflow: hidden;
   }
   /* 抽屜裡永遠顯示完整文字，即使桌機記著收合狀態 */
   .sr-shell[data-collapsed='true'] .sr-nav-label {
@@ -750,8 +756,8 @@ body {
 
 .sr-studio-preview {
   position: sticky;
-  /* 貼在 topbar 下方，不被蓋住 */
-  top: calc(var(--topbar-h, 60px) + var(--sr-space-4));
+  /* app-shell：捲動容器是 .sr-content，topbar 不在其中，所以貼近內容頂即可 */
+  top: var(--sr-space-4);
 }
 
 @media (max-width: 1023px) {
@@ -762,7 +768,7 @@ body {
   .sr-studio-preview {
     order: -1;
     position: sticky;
-    top: var(--topbar-h, 60px);
+    top: 0;
     z-index: 5;
     max-height: 42vh;
     overflow: auto;
@@ -2725,6 +2731,157 @@ input[type='range'] {
 .sr-chat-input-row textarea {
   flex: 1;
   resize: vertical;
+}
+
+/* 生日信封卡 */
+.sr-env {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 260px;
+  perspective: 1200px;
+}
+/* 信紙：封好時藏在下方、淡出；掀蓋後升起展開 */
+.sr-env-letter {
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+  transform-origin: center top;
+  transition:
+    opacity 0.6s ease 0.45s,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+}
+.sr-env[data-stage='sealed'] .sr-env-letter,
+.sr-env[data-stage='opening'] .sr-env-letter {
+  opacity: 0;
+  transform: translateY(48px) scale(0.94);
+  pointer-events: none;
+}
+.sr-env[data-stage='reading'] .sr-env-letter {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.sr-env-ribbon {
+  display: block;
+  width: 56px;
+  height: 4px;
+  border-radius: 999px;
+  margin: 0 auto var(--sr-space-3);
+  background: linear-gradient(90deg, var(--sr-accent), var(--sr-primary));
+}
+.sr-env-title {
+  font-size: var(--sr-text-h2, 1.5rem);
+  margin: 0 0 var(--sr-space-3);
+}
+.sr-env-line {
+  margin: 0 0 var(--sr-space-2);
+  line-height: 1.9;
+  color: var(--sr-text-primary);
+}
+/* 信封本體：置中疊在信紙位置上 */
+.sr-env-envelope {
+  position: absolute;
+  top: 8px;
+  width: min(320px, 82vw);
+  height: 200px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition:
+    opacity 0.5s ease 0.2s,
+    transform 0.6s ease 0.2s;
+}
+.sr-env-body {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(160deg, #f7d9e6 0%, #e9b7cd 60%, #d79ab6 100%);
+  box-shadow: 0 14px 34px rgba(140, 88, 112, 0.28);
+  /* 下半信封口的 V 形（用內陰影暗示） */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.sr-env-body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background:
+    linear-gradient(150deg, transparent 49.5%, rgba(255, 255, 255, 0.35) 50%, transparent 50.5%),
+    linear-gradient(210deg, transparent 49.5%, rgba(255, 255, 255, 0.35) 50%, transparent 50.5%);
+}
+/* 上封蓋：三角形，沿頂邊掀開 */
+.sr-env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 108px;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.55s cubic-bezier(0.5, 0, 0.2, 1);
+  background: linear-gradient(180deg, #f3c9db 0%, #e3a6c1 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 3;
+  backface-visibility: hidden;
+}
+.sr-env-seal {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #b8607f, #8c5870);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 4;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+}
+.sr-env-hint {
+  position: absolute;
+  left: 50%;
+  bottom: -30px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-muted, #9a8b95);
+  animation: sr-env-bob 1.8s ease-in-out infinite;
+}
+@keyframes sr-env-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+/* 掀蓋 + 淡出 */
+.sr-env[data-stage='opening'] .sr-env-flap,
+.sr-env[data-stage='reading'] .sr-env-flap {
+  transform: rotateX(-172deg);
+}
+.sr-env[data-stage='opening'] .sr-env-seal,
+.sr-env[data-stage='reading'] .sr-env-seal {
+  opacity: 0;
+}
+.sr-env[data-stage='reading'] .sr-env-envelope {
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sr-env-letter,
+  .sr-env-envelope,
+  .sr-env-flap {
+    transition: none !important;
+  }
+  .sr-env-hint {
+    animation: none;
+  }
 }
 
 /* 對外公開頁（作品集/分享） */

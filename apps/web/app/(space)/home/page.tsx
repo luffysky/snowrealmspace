@@ -7,6 +7,8 @@ import { createAdminClient } from '@snowrealm/db/server'
 import { HomeGrid, type WidgetInstanceRow, type AvailableWidget } from './HomeGrid'
 import BirthdayChain from '@/components/widgets/impl/BirthdayChainWidget'
 import { WelcomeLetter } from '@/components/WelcomeLetter'
+import { EnvelopeCard } from '@/components/EnvelopeCard'
+import { birthdayCardFor } from '@/lib/birthday-cards'
 
 export const metadata: Metadata = { title: 'Home — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -15,6 +17,20 @@ export default async function HomePage() {
   const { space, settings } = await requireActiveSpace()
   const user = await getUser()
   const db = await getDb()
+
+  // 生日當天判定（用空間時區的當地月日；daily-cron 也是這樣送生日通知）
+  const bdParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: space.timezone,
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(new Date())
+  const bdMonth = Number(bdParts.find((p) => p.type === 'month')?.value)
+  const bdDay = Number(bdParts.find((p) => p.type === 'day')?.value)
+  const isBirthdayToday =
+    settings.birthday_month != null &&
+    settings.birthday_day != null &&
+    settings.birthday_month === bdMonth &&
+    settings.birthday_day === bdDay
 
   await emitEvent(
     'space.opened',
@@ -101,9 +117,14 @@ export default async function HomePage() {
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{space.name}</h1>
       </section>
 
-      {/* 生日主角（Nami）看到生日鏈；其餘使用者看到溫暖的歡迎信 */}
+      {/*
+        生日當天：不管是誰，都看到信封生日卡（點開有動畫）。
+        其餘日子：生日主角（Nami）看生日鏈；其他人看溫暖歡迎信。
+      */}
       <div data-tour="home-grid">
-        {settings.is_birthday_recipient ? (
+        {isBirthdayToday ? (
+          <EnvelopeCard {...birthdayCardFor(space.id)} />
+        ) : settings.is_birthday_recipient ? (
           <BirthdayChain />
         ) : (
           <WelcomeLetter spaceName={space.name} seed={space.id} />

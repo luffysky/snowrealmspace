@@ -29,6 +29,15 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
   const [weight, setWeight] = useState('1')
   const [label, setLabel] = useState('')
   const [busy, setBusy] = useState(false)
+  // 內容池很大：分類預設收合，展開才渲染該類清單（避免一次塞幾千列 DOM）
+  const [openKinds, setOpenKinds] = useState<Set<string>>(new Set())
+  const toggleKind = (k: string) =>
+    setOpenKinds((prev) => {
+      const next = new Set(prev)
+      if (next.has(k)) next.delete(k)
+      else next.add(k)
+      return next
+    })
 
   function say(m: string, isErr = false) {
     setMsg(m)
@@ -131,18 +140,47 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
         </p>
       </section>
 
-      {[...byKind.entries()].map(([k, list]) => (
-        <section key={k} className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
-          <h2 className="sr-section-title">
-            {KIND_LABEL[k] ?? k} <span className="sr-muted" style={{ fontWeight: 400 }}>（{list.length}）</span>
-          </h2>
-          <ul className="sr-stack" style={{ margin: 0, padding: 0, listStyle: 'none', gap: 'var(--sr-space-2)' }}>
-            {list.map((r) => (
-              <ContentItemRow key={r.content_id} row={r} onPatch={patch} onRemove={remove} />
-            ))}
-          </ul>
-        </section>
-      ))}
+      {[...byKind.entries()].map(([k, list]) => {
+        const isOpen = openKinds.has(k)
+        return (
+          <section key={k} className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+            <button
+              type="button"
+              onClick={() => toggleKind(k)}
+              aria-expanded={isOpen}
+              className="sr-section-title"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 'var(--sr-space-2)',
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <span>
+                {KIND_LABEL[k] ?? k}{' '}
+                <span className="sr-muted" style={{ fontWeight: 400 }}>（{list.length}）</span>
+              </span>
+              <span aria-hidden="true">{isOpen ? '▾' : '▸'}</span>
+            </button>
+            {isOpen && (
+              <ul
+                className="sr-stack"
+                style={{ margin: 'var(--sr-space-3) 0 0', padding: 0, listStyle: 'none', gap: 'var(--sr-space-2)' }}
+              >
+                {list.map((r) => (
+                  <ContentItemRow key={r.content_id} row={r} onPatch={patch} onRemove={remove} />
+                ))}
+              </ul>
+            )}
+          </section>
+        )
+      })}
     </>
   )
 }
