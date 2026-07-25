@@ -337,11 +337,13 @@ h3 {
   grid-area: side;
   display: flex;
   flex-direction: column;
-  /* app-shell：側邊欄是固定高度的格子（撐滿 1fr 列），自身過長才內部捲動；
-     內容區捲動時完全不動（因為會捲的是 .sr-content，不是整頁）。 */
+  /* app-shell：側邊欄本身不捲（overflow:hidden）——只有內部的 .sr-sidebar-nav 捲，
+     底部頁尾（次要選單＋角色）永遠釘在最下方、不受主選單捲動影響。
+     過去讓整個側邊欄捲 + 頁尾用 margin-top:auto，在內容溢位時會把頂端連結頂出可視範圍、
+     且捲到底會把捲動「串」給內容頁一起跑掉。改成這樣兩個問題都消失。 */
   min-height: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+  overscroll-behavior: contain;
   padding: var(--sr-space-4) var(--sr-space-3);
   border-right: var(--sr-border-width) solid var(--sr-border);
   background: var(--sr-surface-alt);
@@ -352,6 +354,11 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  /* 唯一會捲的區域：主選單過長時內部捲動，捲到頭尾不外溢（不帶動內容頁）。 */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .sr-nav-link {
   display: flex;
@@ -564,7 +571,8 @@ h3 {
 }
 
 .sr-sidebar-role {
-  margin: auto 0 0;
+  flex: 0 0 auto;
+  margin: 0;
   padding: var(--sr-space-3) var(--sr-space-3) 0;
   font-size: var(--sr-text-sm);
 }
@@ -2756,7 +2764,9 @@ input[type='range'] {
 
 /* 側邊欄次要連結（使用說明/教學/隱私/條款）——推到底部 */
 .sr-sidebar-secondary {
-  margin-top: auto;
+  /* 頁尾群組：釘在主選單下方（主選單 flex:1 已把它推到底），不再用 margin-top:auto。 */
+  flex: 0 0 auto;
+  margin-top: var(--sr-space-2);
   padding-top: var(--sr-space-3);
   border-top: var(--sr-border-width) solid var(--sr-border);
   display: flex;
