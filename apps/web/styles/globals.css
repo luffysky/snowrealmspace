@@ -2933,8 +2933,12 @@ input[type='range'] {
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: linear-gradient(160deg, #f7d9e6 0%, #e9b7cd 60%, #d79ab6 100%);
-  box-shadow: 0 14px 34px rgba(140, 88, 112, 0.28);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--sr-accent) 22%, white) 0%,
+    color-mix(in srgb, var(--sr-accent) 55%, var(--sr-primary)) 100%
+  );
+  box-shadow: var(--sr-shadow-lg, 0 14px 34px rgba(0, 0, 0, 0.2));
   /* 下半信封口的 V 形（用內陰影暗示） */
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -2957,7 +2961,11 @@ input[type='range'] {
   transform-origin: top center;
   transform: rotateX(0deg);
   transition: transform 0.55s cubic-bezier(0.5, 0, 0.2, 1);
-  background: linear-gradient(180deg, #f3c9db 0%, #e3a6c1 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--sr-accent) 30%, white) 0%,
+    color-mix(in srgb, var(--sr-accent) 65%, var(--sr-primary)) 100%
+  );
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   z-index: 3;
   backface-visibility: hidden;
@@ -2970,8 +2978,12 @@ input[type='range'] {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #b8607f, #8c5870);
-  color: #fff;
+  background: radial-gradient(
+    circle at 40% 35%,
+    var(--sr-accent),
+    color-mix(in srgb, var(--sr-primary) 80%, black)
+  );
+  color: var(--sr-on-accent, #fff);
   display: flex;
   align-items: center;
   justify-content: center;
