@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useDialog } from '@/components/ui/DialogProvider'
 import { Uploader } from './Uploader'
 import { AssetGrid, type AssetRow, type AssetActions } from './AssetGrid'
 import { ThemeFromImage } from './ThemeFromImage'
@@ -27,6 +28,7 @@ export function LibraryClient({
   initialAssets: AssetRow[]
 }) {
   const router = useRouter()
+  const { confirm, prompt } = useDialog()
   const [assets, setAssets] = useState<AssetRow[]>(initialAssets)
   const [selected, setSelected] = useState<AssetRow | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
@@ -143,14 +145,14 @@ export function LibraryClient({
   }
 
   async function newFolderPrompt() {
-    const name = window.prompt('新資料夾名稱', '')
+    const name = await prompt({ title: '新資料夾', message: '資料夾名稱', placeholder: '例如：草稿' })
     if (name === null || !name.trim()) return
     const created = await createFolder(name.trim())
     if (created) setNotice(`已建立資料夾「${created.name}」。`)
   }
 
   async function renameFolder(f: Folder) {
-    const name = window.prompt('資料夾新名稱', f.name)
+    const name = await prompt({ title: '重新命名資料夾', message: '資料夾名稱', defaultValue: f.name })
     if (name === null || !name.trim()) return
     const res = await fetch(`/api/folders/${f.id}`, {
       method: 'PATCH',
@@ -165,7 +167,7 @@ export function LibraryClient({
   }
 
   async function deleteFolder(f: Folder) {
-    if (!window.confirm(`刪除資料夾「${f.name}」？裡面的檔案會移回未分類，不會被刪除。`)) return
+    if (!(await confirm({ title: '刪除資料夾', message: `刪除資料夾「${f.name}」？裡面的檔案會移回未分類，不會被刪除。`, danger: true, confirmText: '刪除' }))) return
     const res = await fetch(`/api/folders/${f.id}`, { method: 'DELETE', headers })
     if (!res.ok) {
       setNotice('✕ 刪除失敗。')
@@ -191,7 +193,7 @@ export function LibraryClient({
       }
     },
     onEditTags: async (a) => {
-      const raw = window.prompt('標籤（逗號分隔）', a.tags.join(', '))
+      const raw = await prompt({ title: '編輯標籤', message: '標籤（逗號分隔）', defaultValue: a.tags.join(', ') })
       if (raw === null) return
       const tags = raw
         .split(/[\s,\uFF0C\u3000]+/)
@@ -201,13 +203,13 @@ export function LibraryClient({
       if (u) applyLocal(u)
     },
     onRename: async (a) => {
-      const name = window.prompt('新檔名', a.original_filename ?? '')
+      const name = await prompt({ title: '重新命名', message: '新檔名', defaultValue: a.original_filename ?? '' })
       if (name === null || !name.trim()) return
       const u = await patchAsset(a, { originalFilename: name.trim() })
       if (u) applyLocal(u)
     },
     onCreateWork: async (a) => {
-      const title = window.prompt('作品標題', a.original_filename ?? '')
+      const title = await prompt({ title: '建立作品', message: '作品標題', defaultValue: a.original_filename ?? '' })
       if (title === null || !title.trim()) return
       const res = await fetch('/api/design/files', {
         method: 'POST',
@@ -230,7 +232,7 @@ export function LibraryClient({
         '',
         '或直接輸入新資料夾名稱來建立並移入',
       ]
-      const raw = window.prompt(lines.join('\n'), '')
+      const raw = await prompt({ title: '移到資料夾', message: lines.join('\n'), placeholder: '輸入編號或新資料夾名稱' })
       if (raw === null) return
       const trimmed = raw.trim()
       if (trimmed === '') return
@@ -274,9 +276,12 @@ export function LibraryClient({
       const details = (body as { error?: { details?: { references?: { label: string }[] } } })
         ?.error?.details
       const labels = (details?.references ?? []).map((r) => r.label).join('、')
-      const confirmed = window.confirm(
-        `這個檔案還在使用中：\n${labels}\n\n一併移除這些引用並刪除嗎？`,
-      )
+      const confirmed = await confirm({
+        title: '檔案使用中',
+        message: `這個檔案還在使用中：\n${labels}\n\n一併移除這些引用並刪除嗎？`,
+        danger: true,
+        confirmText: '一併刪除',
+      })
       if (confirmed) await handleDelete(asset, true)
       return
     }

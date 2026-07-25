@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useDialog } from '@/components/ui/DialogProvider'
 
 export type PrincipleRow = {
   id: string
@@ -19,6 +20,7 @@ export function PrinciplesClient({
   spaceId: string
   initialPrinciples: PrincipleRow[]
 }) {
+  const { confirm, prompt } = useDialog()
   const [items, setItems] = useState<PrincipleRow[]>(initialPrinciples)
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
@@ -57,9 +59,9 @@ export function PrinciplesClient({
   }
 
   async function edit(p: PrincipleRow) {
-    const t = window.prompt('原則', p.title)
+    const t = await prompt({ title: '編輯原則', message: '原則', defaultValue: p.title })
     if (t === null || !t.trim()) return
-    const bd = window.prompt('說明（可留空）', p.body ?? '')
+    const bd = await prompt({ title: '編輯原則', message: '說明（可留空）', defaultValue: p.body ?? '', multiline: true })
     const res = await fetch(`/api/design-principles/${p.id}`, {
       method: 'PATCH',
       headers,
@@ -72,7 +74,7 @@ export function PrinciplesClient({
   }
 
   async function remove(p: PrincipleRow) {
-    if (!window.confirm(`刪除「${p.title}」？`)) return
+    if (!(await confirm({ title: '刪除原則', message: `刪除「${p.title}」？`, danger: true, confirmText: '刪除' }))) return
     const res = await fetch(`/api/design-principles/${p.id}`, { method: 'DELETE', headers })
     if (res.ok) setItems((prev) => prev.filter((x) => x.id !== p.id))
   }

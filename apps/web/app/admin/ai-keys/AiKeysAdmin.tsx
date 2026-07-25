@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useDialog } from '@/components/ui/DialogProvider'
 
 type ProviderRow = {
   provider: string
@@ -16,6 +17,7 @@ type ProviderRow = {
 }
 
 export function AiKeysAdmin() {
+  const { confirm } = useDialog()
   const [rows, setRows] = useState<ProviderRow[]>([])
   const [loading, setLoading] = useState(true)
   const [drafts, setDrafts] = useState<Record<string, string>>({})
@@ -63,7 +65,7 @@ export function AiKeysAdmin() {
   }
 
   async function remove(provider: string) {
-    if (!window.confirm(`移除 ${provider} 的金鑰？`)) return
+    if (!(await confirm({ title: '移除金鑰', message: `移除 ${provider} 的金鑰？`, danger: true, confirmText: '移除' }))) return
     setBusy(provider)
     try {
       await fetch(`/api/admin/ai-keys/${provider}`, { method: 'DELETE' })

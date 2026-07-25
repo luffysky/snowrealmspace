@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useDialog } from '@/components/ui/DialogProvider'
 import type { LinkedIdentity } from '@snowrealm/db/identities'
 
 type Provider = 'email' | 'google' | 'line'
@@ -26,6 +27,7 @@ export function LinkedAccounts({
   lineAvailable: boolean
   googleAvailable: boolean
 }) {
+  const { confirm } = useDialog()
   const [identities, setIdentities] = useState(initial)
   const [busy, setBusy] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -37,7 +39,7 @@ export function LinkedAccounts({
 
   async function unlink(identity: LinkedIdentity) {
     const label = LABEL[identity.provider]
-    if (!confirm(`確定要解除「${label}」嗎？解除後就不能再用這個方式登入。`)) return
+    if (!(await confirm({ title: '解除登入方式', message: `確定要解除「${label}」嗎？解除後就不能再用這個方式登入。`, danger: true, confirmText: '解除' }))) return
 
     setBusy(identity.id)
     setError(null)

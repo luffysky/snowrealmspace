@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { useDialog } from '@/components/ui/DialogProvider'
 import { PROJECT_STATUSES, type ProjectStatus } from '@snowrealm/validation'
 
 export type ProjectRow = {
@@ -64,6 +65,7 @@ export function ProjectsClient({
   initialProjects: ProjectRow[]
   assetOptions: AssetOption[]
 }) {
+  const { confirm } = useDialog()
   const [projects, setProjects] = useState<ProjectRow[]>(initialProjects)
   const [filter, setFilter] = useState<ProjectStatus | 'all'>('all')
   const [form, setForm] = useState<FormState>(EMPTY_FORM)
@@ -143,7 +145,7 @@ export function ProjectsClient({
   }
 
   async function handleDelete(p: ProjectRow) {
-    if (!window.confirm(`刪除專案「${p.name}」？裡面的作品會保留，只解除歸屬。`)) return
+    if (!(await confirm({ title: '刪除專案', message: `刪除專案「${p.name}」？裡面的作品會保留，只解除歸屬。`, danger: true, confirmText: '刪除' }))) return
     setBusy(true)
     try {
       const res = await fetch(`/api/projects/${p.id}`, { method: 'DELETE', headers })

@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
+import { DialogProvider } from '@/components/ui/DialogProvider'
 import { AdminShell, type AdminNavGroup } from './AdminShell'
 
 export const dynamic = 'force-dynamic'
@@ -55,8 +56,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   ]
 
   return (
-    <AdminShell groups={groups} homeHref="/home">
-      {children}
-    </AdminShell>
+    <DialogProvider>
+      <AdminShell groups={groups} homeHref="/home">
+        {children}
+      </AdminShell>
+    </DialogProvider>
   )
 }

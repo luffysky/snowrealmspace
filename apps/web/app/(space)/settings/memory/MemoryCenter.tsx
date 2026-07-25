@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useDialog } from '@/components/ui/DialogProvider'
 import { MEMORY_SENSITIVITY, type MemorySensitivity } from '@snowrealm/validation'
 
 export type MemoryRow = {
@@ -29,6 +30,7 @@ export function MemoryCenter({
   initialMemories: MemoryRow[]
   memoryEnabled: boolean
 }) {
+  const { confirm, prompt } = useDialog()
   const [memories, setMemories] = useState<MemoryRow[]>(initialMemories)
   const [notice, setNotice] = useState<string | null>(null)
   const [newContent, setNewContent] = useState('')
@@ -79,7 +81,7 @@ export function MemoryCenter({
     }
   }
   async function remove(m: MemoryRow) {
-    if (!window.confirm('刪除這則記憶？')) return
+    if (!(await confirm({ title: '刪除記憶', message: '刪除這則記憶？', danger: true, confirmText: '刪除' }))) return
     if (await act(m.id, '', 'DELETE')) {
       setMemories((prev) => prev.filter((x) => x.id !== m.id))
       setNotice('已刪除。')
@@ -87,7 +89,7 @@ export function MemoryCenter({
   }
 
   async function editContent(m: MemoryRow) {
-    const content = window.prompt('編輯記憶', m.content)
+    const content = await prompt({ title: '編輯記憶', defaultValue: m.content, multiline: true })
     if (content === null || !content.trim()) return
     const res = await fetch(`/api/memories/${m.id}`, {
       method: 'PATCH',
@@ -109,7 +111,7 @@ export function MemoryCenter({
   }
 
   async function deleteAll() {
-    if (!window.confirm(`確定刪除全部 ${approved.length + pending.length} 則記憶？此動作無法復原。`)) return
+    if (!(await confirm({ title: '刪除全部記憶', message: `確定刪除全部 ${approved.length + pending.length} 則記憶？此動作無法復原。`, danger: true, confirmText: '全部刪除' }))) return
     setBusy(true)
     try {
       await Promise.all(memories.map((m) => act(m.id, '', 'DELETE')))
