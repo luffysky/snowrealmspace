@@ -59,7 +59,7 @@ export default async function AdminUsersPage() {
         特權＝免費使用全站資源（AI 等）。{gate.role === 'owner' ? '你是 owner，可調整。' : '你是 admin，僅能檢視。'}
       </p>
 
-      <UsersAdmin initial={users} isOwner={gate.role === 'owner'} selfId={gate.userId} />
+      <UsersAdmin initial={users} isOwner={gate.role === 'owner'} selfId={gate.userId} adminBase={ADMIN_BASE} />
     </main>
   )
 }

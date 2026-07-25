@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export type UserRow = {
@@ -21,7 +22,17 @@ const ROLE_LABEL: Record<UserRow['siteRole'], string> = {
 /**
  * 使用者角色／特權編輯。只有 owner 能改（isOwner）；不能改自己的角色。
  */
-export function UsersAdmin({ initial, isOwner, selfId }: { initial: UserRow[]; isOwner: boolean; selfId: string }) {
+export function UsersAdmin({
+  initial,
+  isOwner,
+  selfId,
+  adminBase,
+}: {
+  initial: UserRow[]
+  isOwner: boolean
+  selfId: string
+  adminBase: string
+}) {
   const router = useRouter()
   const [rows, setRows] = useState<UserRow[]>(initial)
   const [busyId, setBusyId] = useState<string | null>(null)
@@ -73,7 +84,9 @@ export function UsersAdmin({ initial, isOwner, selfId }: { initial: UserRow[]; i
               return (
                 <tr key={r.id} style={{ borderTop: '1px solid var(--sr-border)' }}>
                   <td style={td}>
-                    {r.displayName || r.username || r.email || '（未命名）'}
+                    <Link href={`${adminBase}/users/${r.id}`} className="sr-link">
+                      {r.displayName || r.username || r.email || '（未命名）'}
+                    </Link>
                     <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>
                       {r.email ?? r.id.slice(0, 8) + '…'}
                       {isSelf ? '（你）' : ''}

@@ -1,0 +1,145 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { ADMIN_BASE } from '@/lib/admin-path'
+import { createAdminClient } from '@snowrealm/db/server'
+import { UserAdminControls } from './UserAdminControls'
+
+export const metadata: Metadata = { title: '使用者詳情 — SnowRealm' }
+export const dynamic = 'force-dynamic'
+
+const ROLE_LABEL: Record<string, string> = { owner: '擁有者', admin: '管理員', member: '成員', collaborator: '協作者', guest: '訪客' }
+
+/**
+ * 使用者 360 檢視（CRM）：身分、角色/特權、所屬空間、登入方式、近期活動。
+ * 資料全部真實聚合。AI 用量是 per-space 記帳，這裡列出所屬空間供 ERP 層深入。
+ */
+export default async function UserDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const gate = await checkSiteAdmin()
+  if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/users` : '/home')
+  const { id } = await params
+
+  const admin = createAdminClient()
+  const [{ data: authRes }, { data: profile }, { data: memberships }, { data: identities }, { data: recent }, activityCount] =
+    await Promise.all([
+      admin.auth.admin.getUserById(id),
+      admin.from('profiles').select('display_name, locale, timezone, site_role, privileged, created_at').eq('id', id).maybeSingle(),
+      admin.from('space_members').select('space_id, role, joined_at').eq('user_id', id),
+      admin.from('user_identities').select('provider, email').eq('user_id', id),
+      admin.from('activity_events').select('event_type, occurred_at').eq('actor_id', id).order('occurred_at', { ascending: false }).limit(20),
+      admin.from('activity_events').select('*', { count: 'exact', head: true }).eq('actor_id', id),
+    ])
+
+  const authUser = authRes?.user ?? null
+  if (!authUser && !profile) {
+    return (
+      <main style={{ maxWidth: 820, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
+        <p className="sr-muted">
+          <Link href={`${ADMIN_BASE}/users`} className="sr-link">← 使用者管理</Link>
+        </p>
+        <p className="sr-muted">找不到這位使用者。</p>
+      </main>
+    )
+  }
+
+  const spaceIds = (memberships ?? []).map((m) => m.space_id)
+  const { data: spaces } = spaceIds.length
+    ? await admin.from('spaces').select('id, name, slug, privacy, created_at, deleted_at').in('id', spaceIds)
+    : { data: [] }
+  const roleInSpace = new Map((memberships ?? []).map((m) => [m.space_id, m.role]))
+
+  const role = (profile?.site_role === 'owner' || profile?.site_role === 'admin' ? profile.site_role : 'member') as
+    | 'owner'
+    | 'admin'
+    | 'member'
+  const email = authUser?.email ?? null
+  const username = (authUser?.user_metadata as { username?: string } | null)?.username ?? null
+  const lastSignIn = authUser?.last_sign_in_at ?? null
+
+  const td = { padding: 'var(--sr-space-2)' }
+
+  return (
+    <main style={{ maxWidth: 900, margin: '0 auto', padding: 'var(--sr-space-6) var(--sr-space-4)' }}>
+      <p className="sr-muted">
+        <Link href={`${ADMIN_BASE}/users`} className="sr-link">← 使用者管理</Link>
+      </p>
+      <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{profile?.display_name || username || email || '使用者'}</h1>
+      <p className="sr-muted">{email}</p>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">身分與權限</h2>
+        <div className="sr-stack" style={{ gap: 'var(--sr-space-1)', fontSize: 'var(--sr-text-sm)' }}>
+          <div><span className="sr-muted">使用者 ID：</span><code>{id}</code></div>
+          {username && <div><span className="sr-muted">使用者名稱：</span>{username}</div>}
+          <div><span className="sr-muted">語系／時區：</span>{profile?.locale ?? '—'}／{profile?.timezone ?? '—'}</div>
+          <div><span className="sr-muted">註冊：</span>{profile?.created_at ? new Date(profile.created_at).toLocaleString('zh-TW') : '—'}</div>
+          <div><span className="sr-muted">上次登入：</span>{lastSignIn ? new Date(lastSignIn).toLocaleString('zh-TW') : '—'}</div>
+          <div><span className="sr-muted">登入方式：</span>{(identities ?? []).map((i) => i.provider).join('、') || 'email'}</div>
+        </div>
+        <div style={{ marginTop: 'var(--sr-space-3)', paddingTop: 'var(--sr-space-3)', borderTop: '1px solid var(--sr-border)' }}>
+          <UserAdminControls
+            userId={id}
+            initialRole={role}
+            initialPrivileged={Boolean(profile?.privileged)}
+            isOwner={gate.role === 'owner'}
+            isSelf={id === gate.userId}
+          />
+        </div>
+      </section>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">所屬空間（{spaces?.length ?? 0}）</h2>
+        {(spaces ?? []).length === 0 ? (
+          <p className="sr-muted" style={{ margin: 0 }}>沒有任何空間。</p>
+        ) : (
+          <div style={{ overflowX: 'auto' }}>
+            <table className="sr-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--sr-text-sm)' }}>
+              <thead>
+                <tr style={{ textAlign: 'left' }}>
+                  <th style={td}>名稱</th>
+                  <th style={td}>角色</th>
+                  <th style={td}>隱私</th>
+                  <th style={td}>狀態</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(spaces ?? []).map((s) => (
+                  <tr key={s.id} style={{ borderTop: '1px solid var(--sr-border)', opacity: s.deleted_at ? 0.5 : 1 }}>
+                    <td style={td}>
+                      {s.name}
+                      <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>/{s.slug}</span>
+                    </td>
+                    <td style={td}>{ROLE_LABEL[roleInSpace.get(s.id) ?? ''] ?? roleInSpace.get(s.id) ?? '—'}</td>
+                    <td style={td}>{s.privacy}</td>
+                    <td style={td}>{s.deleted_at ? '待清除' : '使用中'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">
+          近期活動 <span className="sr-muted" style={{ fontWeight: 400 }}>（共 {activityCount.count ?? 0} 筆，顯示最近 20）</span>
+        </h2>
+        {(recent ?? []).length === 0 ? (
+          <p className="sr-muted" style={{ margin: 0 }}>還沒有活動紀錄。</p>
+        ) : (
+          <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0, gap: '2px', fontSize: 'var(--sr-text-sm)' }}>
+            {(recent ?? []).map((e, i) => (
+              <li key={i} className="sr-row" style={{ justifyContent: 'space-between', gap: 'var(--sr-space-3)' }}>
+                <code style={{ fontSize: 'var(--sr-text-xs)' }}>{e.event_type}</code>
+                <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)' }}>
+                  {new Date(e.occurred_at).toLocaleString('zh-TW')}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </main>
+  )
+}
