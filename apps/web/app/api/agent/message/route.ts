@@ -1,27 +1,19 @@
 import { NextResponse } from 'next/server'
 import { getDb } from '@/lib/supabase/server'
 import { requireActiveSpace, requireUser } from '@/lib/auth/session'
-import { maybeGenerateProactive } from '@snowrealm/daily-engine'
 
 export const dynamic = 'force-dynamic'
 
-async function timeZoneOf(spaceId: string, fallback: string): Promise<string> {
-  const db = await getDb()
-  const { data } = await db.from('spaces').select('timezone').eq('id', spaceId).maybeSingle()
-  return data?.timezone ?? fallback ?? 'Asia/Taipei'
-}
-
 /**
- * Agent 主動訊息：進 Home 時呼叫，若條件允許就產生今天的一則（頻率/quiet hours 由 lib 把關），
- * 並回傳最新一則 agent/milestone 訊息給 widget 顯示。
+ * Agent 主動訊息：**只讀**最新一則 agent/milestone 訊息給 widget 顯示。
+ *
+ * 產生改由 worker cron（daily-cron.ts）掃時區冪等生成，這裡不再生成——
+ * 否則「進 Home 生成」與「cron 生成」兩條路徑會競態、可能一天多送（proactive 沒有 unique 約束）。
  */
 export async function GET() {
   const user = await requireUser()
-  const { space } = await requireActiveSpace()
+  await requireActiveSpace()
   try {
-    const tz = await timeZoneOf(space.id, space.timezone)
-    await maybeGenerateProactive(space.id, user.id, tz)
-
     const db = await getDb()
     const { data } = await db
       .from('notifications')
