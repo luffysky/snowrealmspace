@@ -3107,6 +3107,93 @@ input[type='range'] {
   color: var(--sr-text-primary);
   border: var(--sr-border-width) solid var(--sr-border);
 }
+/* ── AI 夥伴漂浮小幫手（綠寶風，2D） ── */
+.sr-fa-fab {
+  position: fixed;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--sr-primary), var(--sr-accent));
+  color: var(--sr-on-accent, #fff);
+  box-shadow: var(--sr-shadow-lg);
+  cursor: grab;
+  touch-action: none;
+  font-weight: 600;
+}
+.sr-fa-fab:active {
+  cursor: grabbing;
+}
+.sr-fa-fab-emoji {
+  font-size: 24px;
+  line-height: 1;
+}
+.sr-fa-fab-name {
+  font-size: var(--sr-text-sm);
+}
+.sr-fa-panel {
+  position: fixed;
+  z-index: 55;
+  right: 16px;
+  bottom: 16px;
+  width: min(400px, calc(100vw - 24px));
+  height: min(640px, calc(100dvh - 96px));
+  display: flex;
+  flex-direction: column;
+  background: var(--sr-surface);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: 16px;
+  box-shadow: var(--sr-shadow-lg);
+  overflow: hidden;
+}
+.sr-fa-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface-alt);
+}
+.sr-fa-avatar {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sr-primary), var(--sr-accent));
+  font-size: 20px;
+}
+.sr-fa-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sr-fa-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--sr-text-secondary);
+  padding: 0 6px;
+}
+.sr-fa-close:hover {
+  color: var(--sr-text-primary);
+}
+.sr-fa-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+}
+
 /* ── VRM 角色 widget（全站漂浮） ── */
 .sr-vrm-fab {
   position: fixed;

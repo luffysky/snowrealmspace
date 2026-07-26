@@ -295,3 +295,21 @@
   補 .sr-studio-controls min-width:0。
 
 全程 typecheck/lint/check:deps 綠、多次 isolated next build 驗證、push 自動部署。
+
+---
+
+## 0727 尾：拿掉 VRM，改 2D「綠寶風」漂浮 AI 夥伴
+
+Luffy 決定 VRM 太重（手機卡/無回應、包大、暫時非必要）→ 拿掉，做成像 AI 島綠寶導師的 2D 呈現
+（一樣 AI 對話、少了 3D）。派 agent 讀 ai_island_v3 確認綠寶＝2D 漂浮聊天（漸層球 launcher + emoji 頭像 +
+persona chat panel），非 VRM。
+
+- **移除**：刪 `@snowrealm/vrm-character` 套件、`.vrm`/`.fbx`（~32MB）、three 依賴、transpilePackages、workspace dep。
+- **mood 匯流排改 web-local**：`lib/agent/mood.ts`（emitAgentMood/onAgentMood + MOOD_EMOJI）取代 VRM bus；
+  AgentChat 的情緒改發這個。**LLM 吐 `⟦mood:x⟧` → 2D 表情 emoji**（不再驅動 3D）。
+- **FloatingAgent**（新）：全站漂浮可拖曳漸層球（emoji 依情緒變 + 名字）→ 浮動對話卡，
+  複用 AgentChat（新增 `autoload` prop 自載最近對話；React.lazy 打開才載，一般頁面不背它）。
+  用戶選「兩個都要」：`/agent` 分頁保留 + 全站漂浮球。
+- 閘門：typecheck/lint/check:deps 綠；build /home 136KB、/agent 135KB（無 three、聊天 lazy）。
+
+> 決策：呈現「兩個都要」、頭像「2D 依情緒換表情」。VRM SDK 作廢，`@snowrealm/chat` + 聊天服務藍圖仍有效。

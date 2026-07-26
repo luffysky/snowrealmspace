@@ -6,10 +6,10 @@ import { uploadAsset } from '@/lib/upload-asset'
 import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
 import { Avatar } from '@/components/Avatar'
-import { emitVrm, type VrmMood } from '@snowrealm/vrm-character'
+import { emitAgentMood, type AgentMood } from '@/lib/agent/mood'
 
-/** 從回應文字粗略判斷情緒 → 驅動 VRM 角色表情（客戶端啟發式，零 token）。 */
-function moodFromText(text: string): VrmMood {
+/** 從回應文字粗略判斷情緒 → 驅動 AI 2D 表情（客戶端啟發式，零 token）。 */
+function moodFromText(text: string): AgentMood {
   if (/哈哈|太好|恭喜|很棒|讚|開心|😊|😄|🎉|great|awesome|congrat/i.test(text)) return 'happy'
   if (/抱歉|遺憾|難過|可惜|sorry|unfortunately|😢|😞/i.test(text)) return 'sad'
   if (/注意|警告|小心|風險|錯誤|warning|careful/i.test(text)) return 'surprised'
@@ -104,6 +104,7 @@ export function AgentChat({
   userAvatarSrc,
   agentName,
   agentAvatarSrc,
+  autoload = false,
 }: {
   spaceId: string
   initialThreadId: string | null
@@ -113,6 +114,8 @@ export function AgentChat({
   userAvatarSrc: string | null
   agentName: string
   agentAvatarSrc: string | null
+  /** 沒有伺服器初始資料時（漂浮小幫手）自行載入最近對話。 */
+  autoload?: boolean
 }) {
   const [threadId, setThreadId] = useState<string | null>(initialThreadId)
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
@@ -134,6 +137,32 @@ export function AgentChat({
   const chunksRef = useRef<Blob[]>([])
 
   const busy = pending || uploading || transcribing
+
+  // 漂浮小幫手：沒有 SSR 初始資料 → mount 時自行載入最近一個對話。
+  useEffect(() => {
+    if (!autoload) return
+    let alive = true
+    void (async () => {
+      try {
+        const res = await fetch('/api/agent/threads', { headers: { 'x-space-id': spaceId } })
+        if (!res.ok || !alive) return
+        const body = (await res.json()) as { data: ThreadSummary[] }
+        setThreads(body.data)
+        const latest = body.data[0]
+        if (!latest || !alive) return
+        const r2 = await fetch(`/api/agent/threads/${latest.id}`, { headers: { 'x-space-id': spaceId } })
+        if (!r2.ok || !alive) return
+        const b2 = (await r2.json()) as { data: { threadId: string; messages: ChatMessage[] } }
+        setThreadId(b2.data.threadId)
+        setMessages(b2.data.messages)
+      } catch {
+        /* 載入失敗就從空白新對話開始 */
+      }
+    })()
+    return () => {
+      alive = false
+    }
+  }, [autoload, spaceId])
 
   async function refreshThreads() {
     try {
@@ -348,7 +377,7 @@ export function AgentChat({
   async function send(text: string, images: PendingImage[], files: PendingFile[]) {
     setPending(true)
     setError(null)
-    emitVrm({ type: 'mood', mood: 'thinking' }) // 角色進入思考表情
+    emitAgentMood('thinking') // AI 進入思考表情
     const optimisticUser: ChatMessage = {
       id: `u-${Date.now()}`,
       role: 'user',
@@ -391,7 +420,7 @@ export function AgentChat({
           ...prev,
           { id: `a-${Date.now()}`, role: 'assistant', content: data.reply, escalated: data.escalated },
         ])
-        emitVrm({ type: 'mood', mood: moodFromText(data.reply) })
+        emitAgentMood(moodFromText(data.reply))
         if (wasNew) void refreshThreads()
         scrollToBottom()
       } catch {
@@ -445,7 +474,7 @@ export function AgentChat({
           }
           if (obj.mood) {
             serverMood = true
-            emitVrm({ type: 'mood', mood: obj.mood as VrmMood })
+            emitAgentMood(obj.mood as AgentMood)
           }
           if (obj.delta) {
             full += obj.delta
@@ -466,7 +495,7 @@ export function AgentChat({
         }
       }
       // 串流結束：伺服器沒吐情緒才用客戶端啟發式當後備
-      if (full && !serverMood) emitVrm({ type: 'mood', mood: moodFromText(full) })
+      if (full && !serverMood) emitAgentMood(moodFromText(full))
       // 完全沒吐字也沒 error → 移除樂觀訊息、把輸入放回
       if (!full) {
         setInput(text)

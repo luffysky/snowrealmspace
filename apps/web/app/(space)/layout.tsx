@@ -21,7 +21,7 @@ import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
 import { SpaceShell } from '@/components/SpaceShell'
-import { VrmWidget } from '@snowrealm/vrm-character'
+import { FloatingAgent } from '@/components/FloatingAgent'
 import { DialogProvider } from '@/components/ui/DialogProvider'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
@@ -56,6 +56,16 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
     : { data: null }
   const myAvatarSrc = await resolveAvatarUrl(db, myProfile?.avatar_asset_id ?? null)
   const myName = myProfile?.display_name || user?.username || user?.email || ''
+
+  // AI 夥伴（漂浮小幫手用）：名字 + 頭像
+  const { data: agentProfile } = await db
+    .from('agent_profiles')
+    .select('display_name, avatar_asset_id')
+    .eq('space_id', space.id)
+    .maybeSingle()
+  const agentAvatarSrc = await resolveAvatarUrl(db, agentProfile?.avatar_asset_id ?? null)
+  const rawAgentName = agentProfile?.display_name ?? 'Agent'
+  const agentName = !rawAgentName || rawAgentName === 'Agent' ? 'AI 夥伴' : rawAgentName
 
   // 背景音樂設定（Luffy 追加）
   const { data: audioSettings } = await db
@@ -219,7 +229,13 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
           {needsRecovery && <BindingReminder />}
           {children}
         </SpaceShell>
-        <VrmWidget />
+        <FloatingAgent
+          spaceId={space.id}
+          userName={myName}
+          userAvatarSrc={myAvatarSrc}
+          agentName={agentName}
+          agentAvatarSrc={agentAvatarSrc}
+        />
       </DialogProvider>
     </div>
   )
