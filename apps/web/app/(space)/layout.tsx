@@ -40,6 +40,9 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   // 站台角色（owner/admin）才看得到後台入口
   const siteAdmin = await checkSiteAdmin()
   const adminHref = siteAdmin.ok ? ADMIN_BASE : null
+  // 平台擁有者（luffysky00，env/DB 站台 owner）才標「擁有者」；
+  // 其他 space 的擁有者（例如 nami0724 收到的空間）標「管理員」。
+  const isSiteOwner = siteAdmin.ok && siteAdmin.role === 'owner'
 
   // 沒有救援方式的帳號才提醒綁定（綁了就不再出現）
   const user = await getUser()
@@ -179,8 +182,20 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
 
       <DialogProvider>
         <SpaceShell
+          spaceId={space.id}
           spaceName={space.name}
-          roleLabel={{ owner: '管理員', collaborator: '協作者', guest: '訪客' }[role] ?? role}
+          canRename={role === 'owner'}
+          roleLabel={
+            role === 'owner'
+              ? isSiteOwner
+                ? '擁有者'
+                : '管理員'
+              : role === 'collaborator'
+                ? '協作者'
+                : role === 'guest'
+                  ? '訪客'
+                  : role
+          }
           nav={nav}
           adminHref={adminHref}
           actions={actions}

@@ -307,6 +307,52 @@ h3 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* owner 可改名的品牌：像文字的按鈕，hover 才浮出鉛筆提示可編輯 */
+.sr-brand-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+  max-width: 100%;
+  padding: var(--sr-space-1) var(--sr-space-2);
+  margin-inline-start: calc(-1 * var(--sr-space-2));
+  border: none;
+  border-radius: var(--sr-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: text;
+}
+.sr-brand-edit svg {
+  flex-shrink: 0;
+  opacity: 0;
+  color: var(--sr-text-secondary);
+  transition: opacity var(--sr-duration-fast) ease;
+}
+.sr-brand-edit:hover {
+  background: var(--sr-surface);
+}
+.sr-brand-edit:hover svg,
+.sr-brand-edit:focus-visible svg {
+  opacity: 1;
+}
+/* 就地編輯的輸入框：看起來仍是品牌字，只加一條底線提示可編輯 */
+.sr-brand-input {
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--sr-space-1) var(--sr-space-2);
+  margin-inline-start: calc(-1 * var(--sr-space-2));
+  border: none;
+  border-bottom: 2px solid var(--sr-accent);
+  border-radius: var(--sr-radius-sm) var(--sr-radius-sm) 0 0;
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+  font: inherit;
+  font-weight: 700;
+}
+.sr-brand-input:focus {
+  outline: none;
+}
 .sr-actions {
   margin-left: auto;
   display: flex;

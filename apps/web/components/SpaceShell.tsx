@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useScrollLock } from '@/lib/use-scroll-lock'
 import { startTutorial } from '@/components/tutorial/TutorialController'
 
@@ -106,7 +106,9 @@ function NavIcon({ href }: { href: string }) {
 const COLLAPSE_KEY = 'sr:sidebar-collapsed'
 
 export function SpaceShell({
+  spaceId,
   spaceName,
+  canRename = false,
   roleLabel,
   nav,
   adminHref,
@@ -114,7 +116,9 @@ export function SpaceShell({
   footer,
   children,
 }: {
+  spaceId: string
   spaceName: string
+  canRename?: boolean
   roleLabel: string
   nav: NavItem[]
   adminHref?: string | null
@@ -196,7 +200,7 @@ export function SpaceShell({
           </svg>
         </button>
 
-        <strong className="sr-brand">{spaceName}</strong>
+        <SpaceBrand spaceId={spaceId} spaceName={spaceName} canRename={canRename} />
 
         <div className="sr-actions">{actions}</div>
       </header>
@@ -277,5 +281,107 @@ export function SpaceShell({
         {footer}
       </div>
     </div>
+  )
+}
+
+/**
+ * 空間名稱。owner 點一下可就地編輯、存檔更新（PATCH /api/space）。
+ * 非 owner 只是純文字。存檔後 router.refresh() 讓其他 SSR 取名處一起更新。
+ */
+function SpaceBrand({
+  spaceId,
+  spaceName,
+  canRename,
+}: {
+  spaceId: string
+  spaceName: string
+  canRename: boolean
+}) {
+  const router = useRouter()
+  const [editing, setEditing] = useState(false)
+  const [value, setValue] = useState(spaceName)
+  const [saving, setSaving] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  // props 變了（換空間 / 存檔後 refresh）就同步顯示值。
+  useEffect(() => {
+    setValue(spaceName)
+  }, [spaceName])
+
+  useEffect(() => {
+    if (editing) inputRef.current?.select()
+  }, [editing])
+
+  if (!canRename) {
+    return <strong className="sr-brand">{spaceName}</strong>
+  }
+
+  async function save() {
+    const next = value.trim()
+    if (!next || next === spaceName) {
+      setValue(spaceName)
+      setEditing(false)
+      return
+    }
+    setSaving(true)
+    try {
+      const res = await fetch('/api/space', {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name: next }),
+      })
+      if (!res.ok) {
+        setValue(spaceName) // 失敗回滾，不假裝存到了
+      } else {
+        setEditing(false)
+        router.refresh()
+      }
+    } catch {
+      setValue(spaceName)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  if (editing) {
+    return (
+      <input
+        ref={inputRef}
+        className="sr-brand sr-brand-input"
+        value={value}
+        maxLength={80}
+        disabled={saving}
+        aria-label="空間名稱"
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={() => void save()}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault()
+            void save()
+          } else if (e.key === 'Escape') {
+            setValue(spaceName)
+            setEditing(false)
+          }
+        }}
+      />
+    )
+  }
+
+  return (
+    <button
+      type="button"
+      className="sr-brand sr-brand-edit"
+      title="點一下改名"
+      onClick={() => {
+        void spaceId
+        setEditing(true)
+      }}
+    >
+      {spaceName}
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+      </svg>
+    </button>
   )
 }
