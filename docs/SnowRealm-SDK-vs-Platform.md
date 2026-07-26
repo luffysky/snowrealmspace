@@ -118,6 +118,51 @@ packages/rich-editor/
 
 ---
 
+## 專案資料夾拓撲與遷移順序
+
+**先講原則：光搬資料夾不會變成 Platform**——共用是靠「發套件 + HTTP 契約」，不是靠共同父目錄。
+真正要決定的是 **repo / 套件拓撲**，不是把東西塞進一個 `Platform/` 夾。三個觀念：
+
+1. **「Platform」不是產品的容器**，是產品「站在上面」的東西。SSO/AI Router/Economy 才是 Platform；
+   Space、AI島、毛行…是跑在上面的 app。用 `Platform/` 當它們的父夾會語意混亂。
+2. **不能全部一個 monorepo**：多聞=Python、YukiBoard=Kotlin 進不了 JS monorepo（正是「HTTP + 各語言薄 client」契約的由來）。
+3. **搬夾子有真實成本、零實質收益**：`docs` 寫死的路徑、各專案 build/deploy 路徑、git 歷史都會受影響。
+
+### 建議拓撲：產品各自 repo + 一個 platform monorepo
+
+```
+D:\SnowRealm\                    ← 本機整理用的傘狀夾（cosmetic，可有可無）
+  snowrealm-platform\            ← 新開「一個」monorepo：共用的都在這
+    packages\                    ← SDK：rich-editor / theme / ui / platform-js / ai-core…
+    services\                    ← Platform HTTP：sso / ai-router / economy
+    (pnpm + turbo，一套 CI)
+  space\        (產品 repo，獨立部署)
+  ai-island\    (產品 repo)
+  pet\          (產品 repo)
+  yukiboard\    (Kotlin 產品 repo)
+  tammon\       (Python 產品 repo)
+  insight\      (產品 repo)
+  md2deck\      (產品 repo)
+```
+
+- **產品維持各自 repo**：多語言、各自部署節奏、各自 CI——這是它們該獨立的理由。
+- **共用收進「一個」`snowrealm-platform` monorepo**：SDK（發到 npm private / GitHub Packages）+ HTTP 服務（各自部署）。
+- 產品透過 `@snowrealm/*` 套件 + 打 Platform HTTP 消費，不靠目錄相鄰。
+- **為何共用用 monorepo、產品用 polyrepo**：共用套件彼此依賴、常一起改，放一起才好做原子改動 + 一套 CI；
+  產品彼此獨立、不同語言、不同上線節奏，硬綁一起只會互相拖累。
+- **本機傘狀夾**（`D:\SnowRealm\`）純為整理，可有可無，跟架構無關。
+
+### 遷移順序（絞殺式）
+
+1. 開 `snowrealm-platform` monorepo（pnpm + turbo）。
+2. **第一個抽 `@snowrealm/rich-editor`** 進去、發套件，讓 Space 反過來裝它 → 驗證「發/裝」這條路走得通。
+3. 再把 Space 現成 package（`theme-engine`、`storage`、`validation`…已切乾淨）搬過去升 scope。
+4. 之後才動 HTTP 服務（AI Router 先，種子 AI島/Space），配 `platform-js` / Python client。
+
+> 每步「先抽一個、跨兩個產品驗證、再抽下一個」，不大爆炸重寫。
+
+---
+
 ## 建議收斂順序（絞殺式，不大爆炸重寫）
 
 1. **`@snowrealm/rich-editor`（B1）** — 零後端、風險最低、正要用。先抽這個練流程。
