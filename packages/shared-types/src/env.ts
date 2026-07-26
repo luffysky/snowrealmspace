@@ -72,6 +72,9 @@ const serverSchema = z.object({
   FIGMA_CLIENT_ID: z.string().optional(),
   FIGMA_CLIENT_SECRET: z.string().optional(),
   FIGMA_WEBHOOK_SECRET: z.string().optional(),
+
+  // Giphy GIF 選擇器。走伺服器代理（/api/giphy/search），金鑰不進 client bundle。
+  GIPHY_API_KEY: z.string().optional(),
 })
 
 /** 可以進 client bundle 的變數。 */
