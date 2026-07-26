@@ -379,6 +379,11 @@
    - **Zeabur `web` 服務**——只是登入頁「要不要顯示 Google 按鈕」的開關：
      `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`
 6. 沒設的話登入頁 Google 按鈕會顯示「尚未設定」並停用，不會壞。
+7. **GoTrue 驗完轉回站台的網址**（`/auth/callback`、`/auth/link-callback`）不用為 Google 另設——
+   Google 登入共用 magic link 那個 `/auth/callback`，已由 auth 服務的
+   `GOTRUE_SITE_URL=https://snowrealm-space.snowrealm.pet` +
+   `GOTRUE_URI_ALLOW_LIST=…snowrealm.pet,…snowrealm.pet/**`（修 :8080 時已設）涵蓋。
+   只要 magic link 登入信點了能正確回站台，Google 這條回導就 OK。
 
 ## 4. LINE 登入
 1. <https://developers.line.biz/console/> → 建 Provider → 建 **LINE Login** channel。
