@@ -28,8 +28,6 @@ type CharControls = {
 const CHAR_KEY = 'sr:vrm-char'
 const OPEN_KEY = 'sr:vrm-open'
 const POS_KEY = 'sr:vrm-pos'
-const PANEL_W = 260
-const PANEL_H = 340
 
 const CHAR_LABEL: Record<Char, string> = { yukirin: '雪凜', riku: '凜空' }
 
@@ -120,9 +118,10 @@ export function VrmWidget() {
 
   if (!mounted) return null
 
+  // 預設在右下，但抬高到 88px 避開背景播放/暫停控制（右下角 WCAG 控制不能被蓋）
   const style: React.CSSProperties = pos
     ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto' }
-    : { right: 20, bottom: 20 }
+    : { right: 20, bottom: 88 }
 
   if (!open) {
     return (
@@ -146,7 +145,7 @@ export function VrmWidget() {
   }
 
   return (
-    <div className="sr-vrm-panel" style={{ ...style, width: PANEL_W, height: PANEL_H }}>
+    <div className="sr-vrm-panel" style={style}>
       <div
         className="sr-vrm-bar"
         onPointerDown={onDragStart}

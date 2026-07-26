@@ -991,6 +991,12 @@ body {
   align-items: start;
 }
 
+/* grid 子項預設 min-width:auto，長 token 會把欄撐爆右側裁切 → 夾成 0 */
+.sr-studio-controls,
+.sr-studio-preview {
+  min-width: 0;
+}
+
 .sr-studio-preview {
   position: sticky;
   /* app-shell：捲動容器是 .sr-content，topbar 不在其中，所以貼近內容頂即可 */
@@ -3112,6 +3118,9 @@ input[type='range'] {
 .sr-vrm-panel {
   position: fixed;
   z-index: 55;
+  /* 夾住視窗尺寸，手機才不會被 260x340 的固定面板蓋掉整頁 */
+  width: min(260px, calc(100vw - 24px));
+  height: min(340px, calc(100dvh - 104px));
   border-radius: 16px;
   border: var(--sr-border-width) solid var(--sr-border);
   background: var(--sr-surface);
