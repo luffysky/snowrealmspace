@@ -2721,20 +2721,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "spaces_bg_dark_item_id_fkey"
-            columns: ["bg_dark_item_id"]
-            isOneToOne: false
-            referencedRelation: "background_items"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "spaces_bg_light_item_id_fkey"
-            columns: ["bg_light_item_id"]
-            isOneToOne: false
-            referencedRelation: "background_items"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "spaces_active_playlist_fk"
             columns: ["active_playlist_id"]
             isOneToOne: false
@@ -2746,6 +2732,20 @@ export type Database = {
             columns: ["active_theme_id"]
             isOneToOne: false
             referencedRelation: "themes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spaces_bg_dark_item_id_fkey"
+            columns: ["bg_dark_item_id"]
+            isOneToOne: false
+            referencedRelation: "background_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spaces_bg_light_item_id_fkey"
+            columns: ["bg_light_item_id"]
+            isOneToOne: false
+            referencedRelation: "background_items"
             referencedColumns: ["id"]
           },
         ]
