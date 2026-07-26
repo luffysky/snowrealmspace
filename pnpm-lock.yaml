@@ -120,12 +120,6 @@ importers:
 
   apps/web:
     dependencies:
-      '@pixiv/three-vrm':
-        specifier: ^3.5.1
-        version: 3.5.5(three@0.183.2)
-      '@pixiv/three-vrm-animation':
-        specifier: ^3.5.1
-        version: 3.5.5(three@0.183.2)
       '@snowrealm/ai-core':
         specifier: workspace:*
         version: link:../../packages/ai-core
@@ -156,6 +150,9 @@ importers:
       '@snowrealm/validation':
         specifier: workspace:*
         version: link:../../packages/validation
+      '@snowrealm/vrm-character':
+        specifier: workspace:*
+        version: link:../../packages/vrm-character
       '@snowrealm/widget-engine':
         specifier: workspace:*
         version: link:../../packages/widget-engine
@@ -252,9 +249,6 @@ importers:
       subset-font:
         specifier: ^2.5.0
         version: 2.5.0
-      three:
-        specifier: ^0.183.2
-        version: 0.183.2
       tiptap-markdown:
         specifier: ^0.9.0
         version: 0.9.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
@@ -271,9 +265,6 @@ importers:
       '@types/sanitize-html':
         specifier: ^2.16.1
         version: 2.16.1
-      '@types/three':
-        specifier: ^0.183.1
-        version: 0.183.1
       typescript:
         specifier: ^5.7.2
         version: 5.9.3
@@ -538,6 +529,34 @@ importers:
         specifier: ^3.24.1
         version: 3.25.76
     devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)(jsdom@29.1.1(@noble/hashes@1.8.0))
+
+  packages/vrm-character:
+    dependencies:
+      '@pixiv/three-vrm':
+        specifier: ^3.5.1
+        version: 3.5.5(three@0.183.2)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.8(react@19.2.8)
+      three:
+        specifier: ^0.183.2
+        version: 0.183.2
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.2.17
+      '@types/three':
+        specifier: ^0.183.1
+        version: 0.183.1
       typescript:
         specifier: ^5.7.2
         version: 5.9.3
@@ -1355,11 +1374,6 @@ packages:
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
 
-  '@pixiv/three-vrm-animation@3.5.5':
-    resolution: {integrity: sha512-Q0kEtmftxfv0iCUHQkJH2jAr1zmT9ywYXnAzhxnLPMYCsx0Kken3J3U2GJF9PdGZmLlKpoK0LFEXVdD/L7ZA4Q==}
-    peerDependencies:
-      three: '>=0.137'
-
   '@pixiv/three-vrm-core@3.5.5':
     resolution: {integrity: sha512-jjaXZbMVRsk2HAGVxqDLmSJyGOJqbMcJpuTHR1TY/TN1FxiKdAzSqdr/ZUcczYipNf8IL9vDT9NX2XmWj+ybRQ==}
     peerDependencies:
@@ -1415,9 +1429,6 @@ packages:
 
   '@pixiv/types-vrmc-vrm-1.0@3.5.5':
     resolution: {integrity: sha512-WnemHHo2375BcBdumEhvrupZzsMSzTfdWlokmV9sUX2oC+OAQqJFfBjLF8ppkOhzHpl4MAPJqEfuhBJtNPm9ww==}
-
-  '@pixiv/types-vrmc-vrm-animation-1.0@3.5.5':
-    resolution: {integrity: sha512-pyow6wBLdRZbLQbtHqu8uvYG+NXJbwIiLVK6pM6UvtaYotecOv43t6qIdMLYuieV+F+bEJcdfOLFZZVolrOOcQ==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -4192,13 +4203,6 @@ snapshots:
 
   '@noble/hashes@1.8.0': {}
 
-  '@pixiv/three-vrm-animation@3.5.5(three@0.183.2)':
-    dependencies:
-      '@pixiv/three-vrm-core': 3.5.5(three@0.183.2)
-      '@pixiv/types-vrmc-vrm-1.0': 3.5.5
-      '@pixiv/types-vrmc-vrm-animation-1.0': 3.5.5
-      three: 0.183.2
-
   '@pixiv/three-vrm-core@3.5.5(three@0.183.2)':
     dependencies:
       '@pixiv/types-vrm-0.0': 3.5.5
@@ -4257,10 +4261,6 @@ snapshots:
   '@pixiv/types-vrmc-springbone-extended-collider-1.0@3.5.5': {}
 
   '@pixiv/types-vrmc-vrm-1.0@3.5.5': {}
-
-  '@pixiv/types-vrmc-vrm-animation-1.0@3.5.5':
-    dependencies:
-      '@pixiv/types-vrmc-vrm-1.0': 3.5.5
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

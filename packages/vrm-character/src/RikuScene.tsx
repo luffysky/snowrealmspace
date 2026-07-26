@@ -5,8 +5,8 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { VRMLoaderPlugin, VRM, VRMUtils } from '@pixiv/three-vrm'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
-import { retargetMixamoAnimation } from '@/lib/vrm/loadMixamoAnimation'
-import { VrmLipSync, isTtsSupported } from '@/lib/vrm/vrmLipSync'
+import { retargetMixamoAnimation } from './loadMixamoAnimation'
+import { VrmLipSync, isTtsSupported } from './vrmLipSync'
 
 export type RikuMood = 'neutral' | 'relaxed' | 'thinking' | 'happy' | 'shy' | 'sad' | 'surprised'
 

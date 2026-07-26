@@ -21,9 +21,8 @@
     "@snowrealm/storage": "workspace:*",
     "@snowrealm/theme-engine": "workspace:*",
     "@snowrealm/validation": "workspace:*",
+    "@snowrealm/vrm-character": "workspace:*",
     "@snowrealm/widget-engine": "workspace:*",
-    "@pixiv/three-vrm": "^3.5.1",
-    "@pixiv/three-vrm-animation": "^3.5.1",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.47.10",
     "@tiptap/extension-character-count": "^3",
@@ -54,7 +53,6 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanitize-html": "^2.17.6",
-    "three": "^0.183.2",
     "subset-font": "^2.5.0",
     "tiptap-markdown": "^0.9.0",
     "zod": "^3.24.1"
@@ -63,7 +61,6 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/sanitize-html": "^2.16.1",
-    "@types/three": "^0.183.1",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   }

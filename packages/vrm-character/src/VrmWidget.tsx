@@ -1,19 +1,19 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { onVrm } from '@/lib/vrm/bus'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { onVrm } from './bus'
 
 /**
  * 全站漂浮的 VRM 角色 widget（移植自 insight-engine 的角色功能）。
  *
  * 收合時是一顆小球，展開是可拖曳的角色面板（雪凜／凜空可切換）。
- * three.js 只能在 client 跑 → 兩個場景都用 dynamic(ssr:false) 載入。
- * 角色會依 `@/lib/vrm/bus` 的訊號反應（Agent 對話端 emit 情緒/動作/朗讀）。
+ * three.js 只能在 client 跑 → 用 React.lazy 動態載入；`mounted` guard 保證
+ * 只在 client（mount 後）才渲染 lazy 場景，因此 SSR 不會踩到 three.js（不綁 Next）。
+ * 角色會依 `./bus` 的訊號反應（宿主的對話端 emit 情緒/動作/朗讀）。
  */
 
-const YukirinScene = dynamic(() => import('./YukirinScene'), { ssr: false })
-const RikuScene = dynamic(() => import('./RikuScene'), { ssr: false })
+const YukirinScene = lazy(() => import('./YukirinScene'))
+const RikuScene = lazy(() => import('./RikuScene'))
 
 type Char = 'yukirin' | 'riku'
 
@@ -155,11 +155,13 @@ export function VrmWidget() {
         </button>
       </div>
       <div className="sr-vrm-canvas">
-        {char === 'yukirin' ? (
-          <YukirinScene cameraMode="upperBody" showBackground={false} allowOrbit onLoad={onLoad} />
-        ) : (
-          <RikuScene cameraMode="upperBody" showBackground={false} allowOrbit onLoad={onLoad} />
-        )}
+        <Suspense fallback={null}>
+          {char === 'yukirin' ? (
+            <YukirinScene cameraMode="upperBody" showBackground={false} allowOrbit onLoad={onLoad} />
+          ) : (
+            <RikuScene cameraMode="upperBody" showBackground={false} allowOrbit onLoad={onLoad} />
+          )}
+        </Suspense>
       </div>
     </div>
   )

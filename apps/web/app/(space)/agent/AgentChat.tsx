@@ -6,7 +6,7 @@ import { uploadAsset } from '@/lib/upload-asset'
 import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
 import { Avatar } from '@/components/Avatar'
-import { emitVrm, type VrmMood } from '@/lib/vrm/bus'
+import { emitVrm, type VrmMood } from '@snowrealm/vrm-character'
 
 /** 從回應文字粗略判斷情緒 → 驅動 VRM 角色表情（客戶端啟發式，零 token）。 */
 function moodFromText(text: string): VrmMood {
