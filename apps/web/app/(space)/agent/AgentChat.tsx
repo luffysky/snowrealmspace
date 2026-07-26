@@ -6,7 +6,65 @@ import { uploadAsset } from '@/lib/upload-asset'
 import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
 
-export type Attachment = { assetId: string; mimeType: string }
+export type Attachment = { assetId: string; mimeType: string; kind?: string; name?: string | null }
+
+/** 一則附件的媒體渲染：圖片/影片直接顯示（不進氣泡框）、可點開、圖片可存；其餘為檔案連結。 */
+function ChatMedia({ url, kind, name }: { url: string; kind: string; name?: string | null | undefined }) {
+  async function download() {
+    try {
+      const r = await fetch(url)
+      const blob = await r.blob()
+      const u = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = u
+      a.download = name || 'image'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(u)
+    } catch {
+      window.open(url, '_blank')
+    }
+  }
+  if (kind === 'image') {
+    return (
+      <span className="sr-chat-media-wrap">
+        <a href={url} target="_blank" rel="noreferrer">
+          <img src={url} alt={name || '圖片'} className="sr-chat-media" />
+        </a>
+        <button type="button" className="sr-chat-media-dl" onClick={() => void download()} title="儲存圖片" aria-label="儲存圖片">
+          ⤓
+        </button>
+      </span>
+    )
+  }
+  if (kind === 'video') return <video src={url} controls className="sr-chat-media" />
+  if (kind === 'audio') return <audio src={url} controls style={{ maxWidth: '100%' }} />
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className="sr-chip sr-chip-tag">
+      📄 {name || '檔案'}
+    </a>
+  )
+}
+
+/** 歷史/送出後的附件：先向 /api/assets 換短期 URL，再交給 ChatMedia。 */
+function AssetMedia({ assetId, kind, name, spaceId }: { assetId: string; kind?: string | undefined; name?: string | null | undefined; spaceId: string }) {
+  const [url, setUrl] = useState<string | null>(null)
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    let alive = true
+    fetch(`/api/assets/${assetId}/url`, { headers: { 'x-space-id': spaceId } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((b: { data: { url: string } }) => alive && setUrl(b.data.url))
+      .catch(() => alive && setFailed(true))
+    return () => {
+      alive = false
+    }
+  }, [assetId, spaceId])
+  if (failed) return <span className="sr-chip sr-chip-tag">📄 {name || '附件'}</span>
+  if (!url) return <span className="sr-chip sr-chip-tag">載入中…</span>
+  return <ChatMedia url={url} kind={kind || 'file'} name={name} />
+}
 
 export type ChatMessage = {
   id: string
@@ -22,34 +80,9 @@ export type ChatMessage = {
 export type ThreadSummary = { id: string; title: string | null; last_message_at: string }
 
 type PendingImage = { assetId: string; previewUrl: string; name: string }
+type PendingFile = { assetId: string; name: string; kind: string; mimeType: string }
 
 const IMAGE_ACCEPT = ALLOWED_MIME.image.join(',')
-const TEXT_ACCEPT = '.txt,.md,.markdown,.csv,.json,.log,.ts,.tsx,.js,.py,.html,.css,text/*'
-const MAX_TEXT_FILE_BYTES = 1024 * 1024 // 1MB
-const MAX_TEXT_CHARS = 20000
-
-/** 歷史訊息的附件縮圖：向 /api/assets 換 15 分鐘短期 URL。 */
-function HistoryThumb({ assetId, spaceId }: { assetId: string; spaceId: string }) {
-  const [url, setUrl] = useState<string | null>(null)
-  const [failed, setFailed] = useState(false)
-  useEffect(() => {
-    let alive = true
-    fetch(`/api/assets/${assetId}/url`, { headers: { 'x-space-id': spaceId } })
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((b: { data: { url: string } }) => {
-        if (alive) setUrl(b.data.url)
-      })
-      .catch(() => {
-        if (alive) setFailed(true)
-      })
-    return () => {
-      alive = false
-    }
-  }, [assetId, spaceId])
-  if (failed) return <span className="sr-chip sr-chip-tag">🖼 圖片</span>
-  if (!url) return <span className="sr-chip sr-chip-tag">🖼 載入中…</span>
-  return <img src={url} alt="附件" className="sr-chat-thumb" />
-}
 
 export function AgentChat({
   spaceId,
@@ -70,6 +103,7 @@ export function AgentChat({
   const [streaming, setStreaming] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [pendingImages, setPendingImages] = useState<PendingImage[]>([])
+  const [pendingFiles, setPendingFiles] = useState<PendingFile[]>([])
   const [uploading, setUploading] = useState(false)
   const [recording, setRecording] = useState(false)
   const [transcribing, setTranscribing] = useState(false)
@@ -101,6 +135,7 @@ export function AgentChat({
     setError(null)
     setInput('')
     clearPendingImages()
+    setPendingFiles([])
   }
 
   async function switchTo(id: string) {
@@ -207,27 +242,30 @@ export function AgentChat({
     }
   }
 
-  // ── 文字檔：前端讀內容、貼進輸入框（不落地，最誠實）──
-  async function onPickTextFile(files: FileList | null) {
-    const file = files?.[0]
-    if (!file) return
+  // ── 任意檔案：走 assets 管線上傳，當附件送出（影片/音檔/PDF/文件…）。AI 只看得到圖片，其餘是分享/顯示用。──
+  async function onPickAnyFile(files: FileList | null) {
+    if (!files || files.length === 0) return
     setError(null)
-    if (file.size > MAX_TEXT_FILE_BYTES) {
-      setError('檔案太大（文字附件上限 1MB）。圖片請用「圖片」按鈕。')
-      return
-    }
-    try {
-      let text = await file.text()
-      let truncated = false
-      if (text.length > MAX_TEXT_CHARS) {
-        text = text.slice(0, MAX_TEXT_CHARS)
-        truncated = true
+    setUploading(true)
+    for (const file of Array.from(files).slice(0, 4)) {
+      try {
+        const assetId = await uploadAsset(file, spaceId)
+        const kind = file.type.startsWith('image/')
+          ? 'image'
+          : file.type.startsWith('video/')
+            ? 'video'
+            : file.type.startsWith('audio/')
+              ? 'audio'
+              : 'file'
+        setPendingFiles((prev) => [...prev, { assetId, name: file.name, kind, mimeType: file.type }])
+      } catch (err) {
+        setError(err instanceof Error ? err.message : `${file.name} 上傳失敗（可能不支援這個格式）。`)
       }
-      const block = `【附件：${file.name}】\n${text}${truncated ? '\n…（內容過長，已截斷）' : ''}\n`
-      setInput((prev) => (prev ? `${prev}\n${block}` : block))
-    } catch {
-      setError('讀不到這個檔案的內容（可能不是文字檔）。')
     }
+    setUploading(false)
+  }
+  function removePendingFile(assetId: string) {
+    setPendingFiles((prev) => prev.filter((f) => f.assetId !== assetId))
   }
 
   // ── 語音：錄音 → 轉寫 → 填進輸入框（不自動送出，可先改再送）──
@@ -288,7 +326,7 @@ export function AgentChat({
     }
   }
 
-  async function send(text: string, images: PendingImage[]) {
+  async function send(text: string, images: PendingImage[], files: PendingFile[]) {
     setPending(true)
     setError(null)
     const optimisticUser: ChatMessage = {
@@ -296,12 +334,15 @@ export function AgentChat({
       role: 'user',
       content: text,
       ...(images.length ? { images: images.map((i) => i.previewUrl) } : {}),
+      ...(files.length
+        ? { attachments: files.map((f) => ({ assetId: f.assetId, mimeType: f.mimeType, kind: f.kind, name: f.name })) }
+        : {}),
     }
     setMessages((prev) => [...prev, optimisticUser])
     scrollToBottom()
 
-    // 帶圖片：走非串流的 vision 路徑（工具/圖片不串流）
-    if (images.length > 0) {
+    // 有任何附件（圖片/影片/音檔/檔案）：走非串流路徑；只有圖片會餵給 vision，其餘僅顯示。
+    if (images.length > 0 || files.length > 0) {
       try {
         const res = await fetch('/api/agent/chat', {
           method: 'POST',
@@ -310,7 +351,7 @@ export function AgentChat({
             threadId,
             message: text,
             route: '/agent',
-            attachmentAssetIds: images.map((i) => i.assetId),
+            attachmentAssetIds: [...images.map((i) => i.assetId), ...files.map((f) => f.assetId)],
           }),
         })
         const body: unknown = await res.json().catch(() => null)
@@ -319,6 +360,7 @@ export function AgentChat({
           setError(msg)
           setInput(text)
           setPendingImages(images)
+          setPendingFiles(files)
           setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
           return
         }
@@ -417,11 +459,13 @@ export function AgentChat({
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     const text = input.trim()
-    if ((!text && pendingImages.length === 0) || busy) return
+    if ((!text && pendingImages.length === 0 && pendingFiles.length === 0) || busy) return
     const images = pendingImages
+    const files = pendingFiles
     setInput('')
     setPendingImages([]) // 交給 send 保管；失敗時放回
-    void send(text, images)
+    setPendingFiles([])
+    void send(text, images, files)
   }
 
   return (
@@ -456,24 +500,27 @@ export function AgentChat({
         ) : (
           messages.map((m) => (
             <div key={m.id} className={`sr-chat-msg sr-chat-${m.role}`}>
-              <div className="sr-chat-bubble">
-                {(m.images?.length || m.attachments?.length) && (
-                  <div className="sr-chat-attachments">
-                    {m.images?.map((src, i) => (
-                      <img key={`img-${i}`} src={src} alt="附件" className="sr-chat-thumb" />
-                    ))}
-                    {m.attachments?.map((a) => (
-                      <HistoryThumb key={a.assetId} assetId={a.assetId} spaceId={spaceId} />
-                    ))}
-                  </div>
-                )}
-                {m.content}
-                {m.role === 'assistant' && m.escalated && (
-                  <span className="sr-chip sr-chip-tag" style={{ marginLeft: 'var(--sr-space-2)' }}>
-                    深入分析
-                  </span>
-                )}
-              </div>
+              {/* 圖片/影片/檔案直接顯示，不進氣泡框 */}
+              {(m.images?.length || m.attachments?.length) && (
+                <div className="sr-chat-media-row">
+                  {m.images?.map((src, i) => (
+                    <ChatMedia key={`img-${i}`} url={src} kind="image" />
+                  ))}
+                  {m.attachments?.map((a) => (
+                    <AssetMedia key={a.assetId} assetId={a.assetId} kind={a.kind} name={a.name} spaceId={spaceId} />
+                  ))}
+                </div>
+              )}
+              {(m.content || (m.role === 'assistant' && m.escalated)) && (
+                <div className="sr-chat-bubble">
+                  {m.content}
+                  {m.role === 'assistant' && m.escalated && (
+                    <span className="sr-chip sr-chip-tag" style={{ marginLeft: 'var(--sr-space-2)' }}>
+                      深入分析
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
           ))
         )}
@@ -501,6 +548,25 @@ export function AgentChat({
                 className="sr-chat-thumb-remove"
                 aria-label={`移除 ${p.name}`}
                 onClick={() => removePending(p.assetId)}
+              >
+                ✕
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* 待送出的檔案（影片/音檔/其他） */}
+      {pendingFiles.length > 0 && (
+        <div className="sr-chip-row" aria-label="待送出的檔案">
+          {pendingFiles.map((f) => (
+            <span key={f.assetId} className="sr-chip sr-chip-tag">
+              {f.kind === 'video' ? '🎬' : f.kind === 'audio' ? '🎵' : '📄'} {f.name}
+              <button
+                type="button"
+                aria-label={`移除 ${f.name}`}
+                style={{ border: 'none', background: 'transparent', cursor: 'pointer', marginLeft: 4 }}
+                onClick={() => removePendingFile(f.assetId)}
               >
                 ✕
               </button>
@@ -552,10 +618,11 @@ export function AgentChat({
         <input
           ref={fileInputRef}
           type="file"
-          accept={TEXT_ACCEPT}
+          accept="*/*"
+          multiple
           style={{ display: 'none' }}
           onChange={(e) => {
-            void onPickTextFile(e.target.files)
+            void onPickAnyFile(e.target.files)
             e.target.value = ''
           }}
         />

@@ -4,20 +4,27 @@ import { ok, fail, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
 
-/** agent_messages.blocks（jsonb）→ 圖片附件參照。忽略非圖片 block。 */
+/** agent_messages.blocks（jsonb）→ 附件參照（圖片/影片/音檔/檔案）。 */
 function blocksToAttachments(
   blocks: unknown,
-): { assetId: string; mimeType: string }[] | undefined {
+): { assetId: string; mimeType: string; kind?: string; name?: string | null }[] | undefined {
   if (!Array.isArray(blocks)) return undefined
-  const out: { assetId: string; mimeType: string }[] = []
+  const out: { assetId: string; mimeType: string; kind?: string; name?: string | null }[] = []
   for (const b of blocks) {
-    if (b && typeof b === 'object' && (b as { type?: string }).type === 'image') {
-      const assetId = (b as { assetId?: unknown }).assetId
-      const mimeType = (b as { mimeType?: unknown }).mimeType
-      if (typeof assetId === 'string') {
-        out.push({ assetId, mimeType: typeof mimeType === 'string' ? mimeType : 'image/*' })
-      }
-    }
+    if (!b || typeof b !== 'object') continue
+    const type = (b as { type?: string }).type
+    if (type !== 'image' && type !== 'file') continue
+    const assetId = (b as { assetId?: unknown }).assetId
+    if (typeof assetId !== 'string') continue
+    const mimeType = (b as { mimeType?: unknown }).mimeType
+    const kind = (b as { kind?: unknown }).kind
+    const name = (b as { name?: unknown }).name
+    out.push({
+      assetId,
+      mimeType: typeof mimeType === 'string' ? mimeType : 'application/octet-stream',
+      kind: typeof kind === 'string' ? kind : type === 'image' ? 'image' : 'file',
+      name: typeof name === 'string' ? name : null,
+    })
   }
   return out.length ? out : undefined
 }

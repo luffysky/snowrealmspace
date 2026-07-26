@@ -50,28 +50,41 @@ export const POST = handler(async (request: NextRequest) => {
   // 不是成員就查不到；讀出真實位元組轉 base64 塞進 vision 訊息。
   const attachmentIds = input.attachmentAssetIds ?? []
   const imageBlocks: AIContentBlock[] = []
-  const attachmentRefs: { type: 'image'; assetId: string; mimeType: string }[] = []
+  const attachmentRefs: {
+    type: 'image' | 'file'
+    assetId: string
+    mimeType: string
+    kind: string
+    name: string | null
+  }[] = []
   if (attachmentIds.length) {
+    // 所有類型都收（影片/音檔/任意檔）——顯示用；只有圖片且不太大才餵給 vision（AI 看得到的只有圖片）。
     const { data: rows } = await ctx.db
       .from('assets')
-      .select('id, storage_key, mime_type, kind, bytes, status')
+      .select('id, storage_key, mime_type, kind, bytes, status, original_filename')
       .in('id', attachmentIds)
       .eq('space_id', ctx.spaceId)
-      .eq('kind', 'image')
       .is('deleted_at', null)
     for (const a of rows ?? []) {
       if (a.status !== 'ready') continue
-      if (a.bytes > 8 * 1024 * 1024) continue // 8MB：避免 base64 撐爆 request body
-      try {
-        const bytes = await storage().get(a.storage_key)
-        imageBlocks.push({
-          type: 'image',
-          mediaType: a.mime_type,
-          data: Buffer.from(bytes).toString('base64'),
-        })
-        attachmentRefs.push({ type: 'image', assetId: a.id, mimeType: a.mime_type })
-      } catch {
-        // 讀不到就跳過這張 —— 誠實：不假裝看得到（§靜默失敗是 bug 的反面：這裡是「部分成功」）
+      attachmentRefs.push({
+        type: a.kind === 'image' ? 'image' : 'file',
+        assetId: a.id,
+        mimeType: a.mime_type,
+        kind: a.kind,
+        name: a.original_filename,
+      })
+      if (a.kind === 'image' && a.bytes <= 8 * 1024 * 1024) {
+        try {
+          const bytes = await storage().get(a.storage_key)
+          imageBlocks.push({
+            type: 'image',
+            mediaType: a.mime_type,
+            data: Buffer.from(bytes).toString('base64'),
+          })
+        } catch {
+          // 讀不到就不餵給 vision（誠實：不假裝看得到）
+        }
       }
     }
   }

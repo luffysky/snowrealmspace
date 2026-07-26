@@ -3694,3 +3694,46 @@ input[type='range'] {
   object-fit: cover;
   display: block;
 }
+
+/* 對話附件：圖片/影片直接顯示（不進氣泡框），原圖 + 圓角，可點開；圖片可存 */
+.sr-chat-media-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+  margin-bottom: var(--sr-space-1);
+  max-width: 100%;
+}
+.sr-chat-user .sr-chat-media-row {
+  justify-content: flex-end;
+}
+.sr-chat-media {
+  max-width: min(320px, 82%);
+  max-height: 320px;
+  border-radius: var(--sr-radius);
+  display: block;
+  cursor: pointer;
+}
+.sr-chat-media-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.sr-chat-media-dl {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity var(--sr-duration-fast) ease;
+}
+.sr-chat-media-wrap:hover .sr-chat-media-dl,
+.sr-chat-media-dl:focus-visible {
+  opacity: 1;
+}
