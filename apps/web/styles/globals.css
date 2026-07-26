@@ -3107,6 +3107,37 @@ input[type='range'] {
   color: var(--sr-text-primary);
   border: var(--sr-border-width) solid var(--sr-border);
 }
+/* ── 404 ── */
+.sr-404-code {
+  font-size: clamp(72px, 22vw, 140px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--sr-primary), var(--sr-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.08em;
+}
+.sr-404-flake {
+  display: inline-block;
+  color: var(--sr-accent);
+  -webkit-text-fill-color: var(--sr-accent);
+  animation: sr-float 4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sr-404-flake {
+    animation: none;
+  }
+}
+@keyframes sr-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(20deg); }
+}
+
 /* ── AI 夥伴漂浮小幫手（綠寶風，2D） ── */
 .sr-fa-fab {
   position: fixed;

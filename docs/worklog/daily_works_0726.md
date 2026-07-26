@@ -313,3 +313,14 @@ persona chat panel），非 VRM。
 - 閘門：typecheck/lint/check:deps 綠；build /home 136KB、/agent 135KB（無 three、聊天 lazy）。
 
 > 決策：呈現「兩個都要」、頭像「2D 依情緒換表情」。VRM SDK 作廢，`@snowrealm/chat` + 聊天服務藍圖仍有效。
+
+---
+
+## 0727 收尾：404 頁 + README/待辦更新
+
+- 重新設計 404（`app/not-found.tsx`）：雪境風「4❄4」漸層大字（`--sr-*` token）、
+  ❄ 浮動動畫（reduced-motion 停用）、文案同時涵蓋「頁面不存在」與「功能未開放」（ADR-018）、
+  回首頁／回登入。RWD：sr-center + 卡片 max-width + 按鈕列 flex-wrap。
+- README 更新：主題即時預覽＋儲存並套用、字體全字重＋可選字重、AI 命名＋2D 漂浮小幫手、rich-editor 套件。
+- 提交前確認：typecheck/lint/check:deps 綠；build /_not-found 103KB、/home 136KB、/agent 135KB；
+  404 純靜態（無 API/DB）；PWA 未動（manifest/SW/matcher 皆完好）。
