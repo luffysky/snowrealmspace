@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { requireUser, requireActiveSpace } from '@/lib/auth/session'
+import { getDb } from '@/lib/supabase/server'
 import { listIdentities, syncFromAuthIdentities } from '@snowrealm/db/identities'
 import { lineConfig } from '@snowrealm/db/line-oauth'
 import { LinkedAccounts } from './LinkedAccounts'
+import { AvatarUpload } from './AvatarUpload'
 import { CopyId } from './CopyId'
 
 export const metadata: Metadata = { title: '登入方式 — SnowRealm Space' }
@@ -43,6 +45,14 @@ export default async function AccountSettingsPage({
   await syncFromAuthIdentities(user.id)
   const identities = await listIdentities(user.id)
 
+  // 目前的大頭貼（asset id → 前端換 signed URL 顯示）
+  const db = await getDb()
+  const { data: profile } = await db
+    .from('profiles')
+    .select('avatar_asset_id')
+    .eq('id', user.id)
+    .maybeSingle()
+
   const errorKey = typeof params['error'] === 'string' ? params['error'] : null
   const linkedKey = typeof params['linked'] === 'string' ? params['linked'] : null
   const welcome = params['welcome'] === '1'
@@ -78,6 +88,14 @@ export default async function AccountSettingsPage({
           ✓ 已綁定 {linkedKey === 'google' ? 'Google' : 'LINE'}。下次可以直接用它登入。
         </p>
       )}
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>大頭貼</h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          上傳一張圖片當你的頭像。存進你空間的媒體庫（Library），只有你看得到。
+        </p>
+        <AvatarUpload spaceId={space.id} initialAssetId={profile?.avatar_asset_id ?? null} />
+      </section>
 
       <section className="sr-card">
         <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>

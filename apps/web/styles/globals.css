@@ -162,6 +162,27 @@ h3 {
   border: var(--sr-border-width) solid var(--sr-border);
 }
 
+/* 大頭貼圓框：有圖顯示圖（cover），沒圖顯示中性剪影佔位 */
+.sr-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--sr-surface-alt);
+  color: var(--sr-text-secondary);
+  border: var(--sr-border-width) solid var(--sr-border);
+}
+.sr-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* 後台「← 回前台」：實心強調色 + 微陰影，與頂列（surface-alt）明顯區隔。
    原本用 sr-button-secondary（透明）會和背景混在一起。 */
 .sr-admin-back {

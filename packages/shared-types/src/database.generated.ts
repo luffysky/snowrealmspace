@@ -2213,6 +2213,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          avatar_asset_id: string | null
           avatar_url: string | null
           created_at: string
           display_name: string | null
@@ -2227,6 +2228,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          avatar_asset_id?: string | null
           avatar_url?: string | null
           created_at?: string
           display_name?: string | null
@@ -2241,6 +2243,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          avatar_asset_id?: string | null
           avatar_url?: string | null
           created_at?: string
           display_name?: string | null
@@ -2254,7 +2257,15 @@ export type Database = {
           timezone?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_avatar_asset_id_fkey"
+            columns: ["avatar_asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       projects: {
         Row: {
