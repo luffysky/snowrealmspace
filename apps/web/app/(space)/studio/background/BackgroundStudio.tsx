@@ -28,18 +28,53 @@ export function BackgroundStudio({
   initialPlaylists,
   imageAssets,
   activeTheme,
+  initialBgLightId,
+  initialBgDarkId,
 }: {
   spaceId: string
   initialBackgrounds: BackgroundItem[]
   initialPlaylists: Playlist[]
   imageAssets: AssetOption[]
   activeTheme: ThemeDefinition
+  initialBgLightId: string | null
+  initialBgDarkId: string | null
 }) {
   const router = useRouter()
   const [backgrounds, setBackgrounds] = useState(initialBackgrounds)
   const [playlists, setPlaylists] = useState(initialPlaylists)
   const [editing, setEditing] = useState<BackgroundItem | null>(null)
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
+  // 深/淺色模式各自指定的背景 id
+  const [bgLightId, setBgLightId] = useState(initialBgLightId)
+  const [bgDarkId, setBgDarkId] = useState(initialBgDarkId)
+
+  // 指定某個背景為淺色/深色模式背景（再按一次取消）。切換到該模式時就會用它。
+  async function assignBgForMode(mode: 'light' | 'dark', id: string) {
+    const cur = mode === 'light' ? bgLightId : bgDarkId
+    const nextId = cur === id ? null : id
+    // 樂觀更新
+    if (mode === 'light') setBgLightId(nextId)
+    else setBgDarkId(nextId)
+    try {
+      const res = await fetch('/api/space', {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(mode === 'light' ? { bgLightItemId: nextId } : { bgDarkItemId: nextId }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus({
+        kind: 'ok',
+        message: nextId
+          ? `已設為${mode === 'light' ? '淺色' : '深色'}模式背景。切到該模式就會用它。`
+          : `已取消${mode === 'light' ? '淺色' : '深色'}模式背景指定。`,
+      })
+    } catch {
+      // 回滾
+      if (mode === 'light') setBgLightId(cur)
+      else setBgDarkId(cur)
+      setStatus({ kind: 'error', message: '設定失敗。' })
+    }
+  }
 
   const api = useCallback(
     async (path: string, init?: RequestInit) => {
@@ -368,10 +403,32 @@ export function BackgroundStudio({
                 >
                   移除
                 </button>
+                {/* 深/淺色模式各自指定背景：切到該模式就用它 */}
+                <div className="sr-chip-row" style={{ gap: 'var(--sr-space-1)', marginTop: 'var(--sr-space-1)' }}>
+                  <button
+                    type="button"
+                    className={`sr-chip${bgLightId === bg.id ? ' sr-chip-active' : ''}`}
+                    onClick={() => void assignBgForMode('light', bg.id)}
+                    title="設為淺色模式的背景"
+                  >
+                    ☀ 淺色{bgLightId === bg.id ? ' ✓' : ''}
+                  </button>
+                  <button
+                    type="button"
+                    className={`sr-chip${bgDarkId === bg.id ? ' sr-chip-active' : ''}`}
+                    onClick={() => void assignBgForMode('dark', bg.id)}
+                    title="設為深色模式的背景"
+                  >
+                    ☾ 深色{bgDarkId === bg.id ? ' ✓' : ''}
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
         )}
+        <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
+          幫每個背景標「淺色／深色」：切換深淺色模式時會自動換成你指定的那個。沒指定就沿用播放清單。
+        </p>
       </section>
 
       {editing && (

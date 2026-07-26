@@ -31,7 +31,39 @@ export async function resolveCurrentBackground(
   spaceId: string,
   timeZone: string,
   now = new Date(),
+  mode: 'light' | 'dark' = 'light',
 ): Promise<ResolvedBackground | null> {
+  // 先看該色模式有沒有「指定的單一背景」（bg_light_item_id / bg_dark_item_id）。
+  // 有就直接用它，繞過播放清單；沒設才走既有播放清單邏輯（向後相容）。
+  const { data: sp } = await db
+    .from('spaces')
+    .select('bg_light_item_id, bg_dark_item_id')
+    .eq('id', spaceId)
+    .maybeSingle()
+  const pinnedId = sp ? (mode === 'dark' ? sp.bg_dark_item_id : sp.bg_light_item_id) : null
+  if (pinnedId) {
+    const { data: item } = await db
+      .from('background_items')
+      .select('*')
+      .eq('id', pinnedId)
+      .eq('space_id', spaceId)
+      .is('deleted_at', null)
+      .maybeSingle()
+    if (item) {
+      const one = item as unknown as Record<string, unknown>
+      return {
+        transition: 'fade',
+        transitionMs: 600,
+        playMode: 'single',
+        intervalSeconds: 0,
+        current: one,
+        next: null,
+        switchAt: null,
+        items: [one],
+      }
+    }
+  }
+
   const { data: playlist } = await db
     .from('background_playlists')
     .select('*')

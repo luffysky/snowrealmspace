@@ -890,6 +890,7 @@ export type Database = {
           scene_density: number
           scene_id: string | null
           space_id: string
+          tone: string
           type: string
           updated_at: string
           zoom: number
@@ -927,6 +928,7 @@ export type Database = {
           scene_density?: number
           scene_id?: string | null
           space_id: string
+          tone?: string
           type: string
           updated_at?: string
           zoom?: number
@@ -964,6 +966,7 @@ export type Database = {
           scene_density?: number
           scene_id?: string | null
           space_id?: string
+          tone?: string
           type?: string
           updated_at?: string
           zoom?: number
@@ -2662,6 +2665,8 @@ export type Database = {
           active_layout_id: string | null
           active_playlist_id: string | null
           active_theme_id: string | null
+          bg_dark_item_id: string | null
+          bg_light_item_id: string | null
           created_at: string
           deleted_at: string | null
           description: string | null
@@ -2677,6 +2682,8 @@ export type Database = {
           active_layout_id?: string | null
           active_playlist_id?: string | null
           active_theme_id?: string | null
+          bg_dark_item_id?: string | null
+          bg_light_item_id?: string | null
           created_at?: string
           deleted_at?: string | null
           description?: string | null
@@ -2692,6 +2699,8 @@ export type Database = {
           active_layout_id?: string | null
           active_playlist_id?: string | null
           active_theme_id?: string | null
+          bg_dark_item_id?: string | null
+          bg_light_item_id?: string | null
           created_at?: string
           deleted_at?: string | null
           description?: string | null
@@ -2709,6 +2718,20 @@ export type Database = {
             columns: ["active_layout_id"]
             isOneToOne: false
             referencedRelation: "layouts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spaces_bg_dark_item_id_fkey"
+            columns: ["bg_dark_item_id"]
+            isOneToOne: false
+            referencedRelation: "background_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spaces_bg_light_item_id_fkey"
+            columns: ["bg_light_item_id"]
+            isOneToOne: false
+            referencedRelation: "background_items"
             referencedColumns: ["id"]
           },
           {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { effectiveTheme, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { applyThemeToDom } from '@/lib/theme/apply'
 import { MODE_COOKIE, MODE_MAX_AGE, type ColorMode } from '@/lib/theme/mode'
@@ -21,6 +22,7 @@ export function ThemeModeToggle({
   baseDef: ThemeDefinition
 }) {
   const [mode, setMode] = useState<ColorMode>(initialMode)
+  const router = useRouter()
 
   function toggle() {
     const next: ColorMode = mode === 'dark' ? 'light' : 'dark'
@@ -29,6 +31,9 @@ export function ThemeModeToggle({
     applyThemeToDom(effectiveTheme(baseDef, next))
     // 背景暗罩靠 .sr-shell-root 的 data-color-mode 觸發；即時切換也要更新它。
     document.querySelector('.sr-shell-root')?.setAttribute('data-color-mode', next)
+    // 顏色已即時套用（不閃）；再 refresh 讓伺服器依新模式重解析背景
+    // （深/淺各自指定的背景要換）。背景是 server 端解析 + 簽 R2 URL，只能走這條。
+    router.refresh()
   }
 
   const dark = mode === 'dark'

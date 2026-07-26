@@ -46,7 +46,7 @@ export default async function BackgroundStudioPage() {
   let activeTheme: ThemeDefinition = defaultThemeDefinition()
   const { data: spaceRow } = await db
     .from('spaces')
-    .select('active_theme_id')
+    .select('active_theme_id, bg_light_item_id, bg_dark_item_id')
     .eq('id', space.id)
     .maybeSingle()
   if (spaceRow?.active_theme_id) {
@@ -75,6 +75,8 @@ export default async function BackgroundStudioPage() {
         initialPlaylists={(playlists ?? []) as unknown as Playlist[]}
         imageAssets={(assets ?? []) as AssetOption[]}
         activeTheme={activeTheme}
+        initialBgLightId={spaceRow?.bg_light_item_id ?? null}
+        initialBgDarkId={spaceRow?.bg_dark_item_id ?? null}
       />
     </div>
   )

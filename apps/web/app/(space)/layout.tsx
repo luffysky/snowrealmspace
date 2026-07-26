@@ -108,6 +108,8 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
     db,
     space.id,
     space.timezone,
+    new Date(),
+    mode,
   )) as BackgroundState | null
 
   const nav = [
