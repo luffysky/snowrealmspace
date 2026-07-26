@@ -17,6 +17,7 @@ import { buildAgentContext } from '@/lib/agent/context'
 import { buildCompleteDeps } from '@/lib/ai/deps'
 import { embedForUsage } from '@/lib/ai/embed'
 import { executeToolCall } from '@/lib/agent/tools'
+import { summarizeThreadIfNeeded } from '@/lib/agent/summarize'
 
 export const dynamic = 'force-dynamic'
 
@@ -78,15 +79,17 @@ export const POST = handler(async (request: NextRequest) => {
 
   // 取得或建立 thread
   let threadId = input.threadId ?? null
+  let threadSummary: string | null = null
   if (threadId) {
     const { data: t } = await ctx.db
       .from('agent_threads')
-      .select('id')
+      .select('id, summary')
       .eq('id', threadId)
       .eq('space_id', ctx.spaceId)
       .is('deleted_at', null)
-      .maybeSingle()
+      .maybeSingle<{ id: string; summary: string | null }>()
     if (!t) threadId = null
+    else threadSummary = t.summary
   }
   if (!threadId) {
     // 用第一句話當標題（截斷），對話列表才認得出來
@@ -144,7 +147,11 @@ export const POST = handler(async (request: NextRequest) => {
     ...(input.selectedSnapshotId ? { selectedSnapshotId: input.selectedSnapshotId } : {}),
     ...(queryEmbedding ? { queryEmbedding } : {}),
   })
-  const system = buildAgentSystemPrompt(agentCtx)
+  const baseSystem = buildAgentSystemPrompt(agentCtx)
+  // 長對話：把滾動摘要接在 system 後面，讓模型記得視窗（最近 N 則）之外的脈絡。
+  const system = threadSummary
+    ? `${baseSystem}\n\n## 先前對話摘要（供你記得脈絡，不要照唸）\n${threadSummary}`
+    : baseSystem
 
   try {
     // 帶上工具 —— 模型可決定要不要動手做事（07-agent.md §5）。
@@ -219,6 +226,9 @@ export const POST = handler(async (request: NextRequest) => {
     }
 
     await admin.from('agent_threads').update({ last_message_at: new Date().toISOString() }).eq('id', threadId)
+
+    // 長對話滾動摘要（超過門檻才跑、免費模型、失敗不擋回應）
+    await summarizeThreadIfNeeded(admin, deps, ctx.spaceId, threadId)
 
     return ok({
       threadId,

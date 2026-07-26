@@ -17,6 +17,7 @@ import { fail, failValidation } from '@/lib/api/respond'
 import { buildAgentContext } from '@/lib/agent/context'
 import { buildCompleteDeps } from '@/lib/ai/deps'
 import { embedForUsage } from '@/lib/ai/embed'
+import { summarizeThreadIfNeeded } from '@/lib/agent/summarize'
 
 export const dynamic = 'force-dynamic'
 
@@ -50,15 +51,17 @@ export async function POST(request: NextRequest): Promise<Response> {
 
   // 取得或建立 thread
   let threadId = input.threadId ?? null
+  let threadSummary: string | null = null
   if (threadId) {
     const { data: t } = await ctx.db
       .from('agent_threads')
-      .select('id')
+      .select('id, summary')
       .eq('id', threadId)
       .eq('space_id', ctx.spaceId)
       .is('deleted_at', null)
-      .maybeSingle()
+      .maybeSingle<{ id: string; summary: string | null }>()
     if (!t) threadId = null
+    else threadSummary = t.summary
   }
   if (!threadId) {
     const title = input.message.trim().slice(0, 40) || '新對話'
@@ -101,7 +104,11 @@ export async function POST(request: NextRequest): Promise<Response> {
     ...(input.selectedSnapshotId ? { selectedSnapshotId: input.selectedSnapshotId } : {}),
     ...(queryEmbedding ? { queryEmbedding } : {}),
   })
-  const system = buildAgentSystemPrompt(agentCtx)
+  const baseSystem = buildAgentSystemPrompt(agentCtx)
+  // 長對話：滾動摘要接在 system 後，讓模型記得視窗（最近 N 則）之外的脈絡。
+  const system = threadSummary
+    ? `${baseSystem}\n\n## 先前對話摘要（供你記得脈絡，不要照唸）\n${threadSummary}`
+    : baseSystem
 
   // 額度閘門（串流前先擋，才不會吐一半才發現沒額度）
   const budget = await deps.budget(ctx.spaceId)
@@ -177,6 +184,8 @@ export async function POST(request: NextRequest): Promise<Response> {
           content: full,
         })
         await admin.from('agent_threads').update({ last_message_at: new Date().toISOString() }).eq('id', threadId)
+        // 長對話滾動摘要（超過門檻才跑、免費模型、失敗不擋）
+        if (threadId) await summarizeThreadIfNeeded(admin, deps, ctx.spaceId, threadId)
       }
       send({ done: true, threadId })
       controller.close()

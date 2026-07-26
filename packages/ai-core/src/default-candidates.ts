@@ -35,6 +35,12 @@ export const DEFAULT_CANDIDATES: Record<AiUsageKey, UsageCandidate[]> = {
     { model: 'mistral:mistral-small-latest', role: 'fallback' },
     { model: 'groq:llama-3.3-70b-versatile', role: 'fallback' },
   ],
+  // 長對話壓縮：把較舊的訊息滾動摘要成一段，純文字、免費模型即可。
+  conversation_summary: [
+    { model: 'groq:llama-3.3-70b-versatile', role: 'primary' },
+    { model: 'cerebras:llama-3.3-70b', role: 'fallback' },
+    { model: 'mistral:mistral-small-latest', role: 'fallback' },
+  ],
   design_vision_light: [
     { model: 'google:gemini-2.0-flash', role: 'primary' },
     { model: 'openai:gpt-4o-mini', role: 'fallback' },
