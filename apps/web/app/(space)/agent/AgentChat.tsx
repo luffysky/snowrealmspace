@@ -5,6 +5,7 @@ import { ALLOWED_MIME } from '@snowrealm/validation'
 import { uploadAsset } from '@/lib/upload-asset'
 import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
+import { Avatar } from '@/components/Avatar'
 
 export type Attachment = { assetId: string; mimeType: string; kind?: string; name?: string | null }
 
@@ -89,11 +90,19 @@ export function AgentChat({
   initialThreadId,
   initialMessages,
   initialThreads,
+  userName,
+  userAvatarSrc,
+  agentName,
+  agentAvatarSrc,
 }: {
   spaceId: string
   initialThreadId: string | null
   initialMessages: ChatMessage[]
   initialThreads: ThreadSummary[]
+  userName: string
+  userAvatarSrc: string | null
+  agentName: string
+  agentAvatarSrc: string | null
 }) {
   const [threadId, setThreadId] = useState<string | null>(initialThreadId)
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
@@ -500,6 +509,14 @@ export function AgentChat({
         ) : (
           messages.map((m) => (
             <div key={m.id} className={`sr-chat-msg sr-chat-${m.role}`}>
+              <div className="sr-chat-meta">
+                <Avatar
+                  src={m.role === 'user' ? userAvatarSrc : agentAvatarSrc}
+                  name={m.role === 'user' ? userName : agentName}
+                  size={24}
+                />
+                <span className="sr-chat-name">{m.role === 'user' ? userName : agentName}</span>
+              </div>
               {/* 圖片/影片/檔案直接顯示，不進氣泡框 */}
               {(m.images?.length || m.attachments?.length) && (
                 <div className="sr-chat-media-row">
@@ -526,6 +543,10 @@ export function AgentChat({
         )}
         {pending && !streaming && (
           <div className="sr-chat-msg sr-chat-assistant">
+            <div className="sr-chat-meta">
+              <Avatar src={agentAvatarSrc} name={agentName} size={24} />
+              <span className="sr-chat-name">{agentName}</span>
+            </div>
             <div className="sr-chat-bubble sr-muted">思考中…</div>
           </div>
         )}

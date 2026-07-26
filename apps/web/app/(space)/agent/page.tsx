@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { requireActiveSpace } from '@/lib/auth/session'
+import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
+import { resolveAvatarUrl } from '@/lib/avatar'
 import { AgentChat, type Attachment, type ChatMessage, type ThreadSummary } from './AgentChat'
 
 export const metadata: Metadata = { title: 'Agent — SnowRealm Space' }
@@ -24,7 +25,22 @@ function blocksToAttachments(blocks: unknown): Attachment[] | undefined {
 
 export default async function AgentPage() {
   const { space } = await requireActiveSpace()
+  const user = await getUser()
   const db = await getDb()
+
+  // 使用者與 AI 夥伴的名字＋頭像（對話兩邊各自顯示）
+  const [{ data: myProfile }, { data: agentProfile }] = await Promise.all([
+    user
+      ? db.from('profiles').select('display_name, avatar_asset_id').eq('id', user.id).maybeSingle()
+      : Promise.resolve({ data: null }),
+    db.from('agent_profiles').select('display_name, avatar_asset_id').eq('space_id', space.id).maybeSingle(),
+  ])
+  const [userAvatarSrc, agentAvatarSrc] = await Promise.all([
+    resolveAvatarUrl(db, myProfile?.avatar_asset_id ?? null),
+    resolveAvatarUrl(db, agentProfile?.avatar_asset_id ?? null),
+  ])
+  const userName = myProfile?.display_name || user?.username || user?.email || '你'
+  const agentName = agentProfile?.display_name || 'AI 夥伴'
 
   // 對話清單 + 最近一個對話的訊息
   const { data: threadRows } = await db
@@ -73,6 +89,10 @@ export default async function AgentPage() {
         initialThreadId={thread?.id ?? null}
         initialMessages={messages}
         initialThreads={threads}
+        userName={userName}
+        userAvatarSrc={userAvatarSrc}
+        agentName={agentName}
+        agentAvatarSrc={agentAvatarSrc}
       />
     </div>
   )

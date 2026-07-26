@@ -3047,6 +3047,20 @@ input[type='range'] {
 .sr-chat-assistant {
   align-items: flex-start;
 }
+.sr-chat-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+}
+/* 使用者訊息靠右：頭像在名字右邊 */
+.sr-chat-user .sr-chat-meta {
+  flex-direction: row-reverse;
+}
+.sr-chat-name {
+  font-size: var(--sr-text-xs);
+  color: var(--sr-text-secondary);
+  font-weight: 600;
+}
 .sr-chat-bubble {
   max-width: min(80%, 640px);
   padding: var(--sr-space-2) var(--sr-space-3);
