@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import {
   analyzeTheme,
   suggestFix,
@@ -10,7 +10,6 @@ import {
   type ThemeDefinition,
   type A11yReport,
 } from '@snowrealm/theme-engine'
-import { applyThemeToPreview } from '@/lib/theme/apply'
 import { ColorField } from './ColorField'
 import { SurfaceControls } from './SurfaceControls'
 import { A11yPanel } from './A11yPanel'
@@ -64,15 +63,10 @@ export function ThemeStudio({
   const [moodVariants, setMoodVariants] = useState<{ variant: string; definition: ThemeDefinition }[]>([])
   const [moodBusy, setMoodBusy] = useState(false)
 
-  const previewRef = useRef<HTMLDivElement>(null)
-
   const report: A11yReport = useMemo(() => analyzeTheme(draft), [draft])
 
-  // 即時預覽：只套用到預覽容器，不影響整個介面
-  useEffect(() => {
-    if (previewRef.current) applyThemeToPreview(draft, previewRef.current)
-  }, [draft])
-
+  // 即時預覽由 ThemePreview 自己負責套用（含淺/深模式）——這裡不再重複套用，
+  // 否則兩個 effect 會互相蓋掉、深色 tab 會被打回淺色。
   const update = useCallback((patch: (prev: ThemeDefinition) => ThemeDefinition) => {
     setDraft((prev) => patch(structuredClone(prev)))
     setDirty(true)
@@ -474,7 +468,7 @@ export function ThemeStudio({
 
       {/* ── 右：預覽 ── */}
       <div className="sr-studio-preview">
-        <ThemePreview ref={previewRef} definition={draft} />
+        <ThemePreview definition={draft} />
       </div>
     </div>
   )

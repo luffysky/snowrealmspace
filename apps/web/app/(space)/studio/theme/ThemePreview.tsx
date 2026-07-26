@@ -1,7 +1,7 @@
 'use client'
 
-import { forwardRef, useEffect, useRef } from 'react'
-import type { ThemeDefinition } from '@snowrealm/theme-engine'
+import { forwardRef, useEffect, useRef, useState } from 'react'
+import { effectiveTheme, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { applyThemeToPreview } from '@/lib/theme/apply'
 
 /**
@@ -14,15 +14,19 @@ import { applyThemeToPreview } from '@/lib/theme/apply'
  * 預覽內容刻意涵蓋所有會被對比檢查的元素：
  * 一般文字、次要文字、主色按鈕、錯誤訊息、focus 外框、disabled 狀態。
  * 使用者調色時能立刻看到後果，而不是只看到抽象的色票。
+ *
+ * 淺色／深色 tab：用 effectiveTheme 依草稿推導對應模式，讓使用者不用真的切換
+ * 整站就能看到「這套主題在深色模式下長怎樣」。
  */
 export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefinition }>(
   function ThemePreview({ definition }, ref) {
+    const [mode, setMode] = useState<'light' | 'dark'>('light')
     // 預覽自己負責把 definition 寫進自己的容器 —— 不依賴父層 effect 的時序，
     // 顏色與「卡片與質感」（圓角/材質/陰影/邊框）都會即時反映。
     const surfaceRef = useRef<HTMLDivElement | null>(null)
     useEffect(() => {
-      if (surfaceRef.current) applyThemeToPreview(definition, surfaceRef.current)
-    }, [definition])
+      if (surfaceRef.current) applyThemeToPreview(effectiveTheme(definition, mode), surfaceRef.current)
+    }, [definition, mode])
     const setRef = (el: HTMLDivElement | null) => {
       surfaceRef.current = el
       if (typeof ref === 'function') ref(el)
@@ -30,9 +34,29 @@ export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefini
     }
     return (
       <div className="sr-preview-frame">
-        <p className="sr-muted sr-preview-caption">
-          即時預覽 —— 這裡的樣子就是套用後的樣子
-        </p>
+        <div className="sr-preview-topline">
+          <p className="sr-muted sr-preview-caption">即時預覽 —— 這裡的樣子就是套用後的樣子</p>
+          <div className="sr-mode-tabs" role="tablist" aria-label="預覽模式">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'light'}
+              className={`sr-mode-tab ${mode === 'light' ? 'is-active' : ''}`}
+              onClick={() => setMode('light')}
+            >
+              淺色
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'dark'}
+              className={`sr-mode-tab ${mode === 'dark' ? 'is-active' : ''}`}
+              onClick={() => setMode('dark')}
+            >
+              深色
+            </button>
+          </div>
+        </div>
 
         <div ref={setRef} className="sr-preview-surface">
           <div className="sr-preview-inner">
