@@ -59,6 +59,22 @@ const CATEGORY_LABEL: Record<string, string> = {
   mono: '等寬',
 }
 
+const WEIGHT_LABEL: Record<number, string> = {
+  100: '100 極細',
+  200: '200 特細',
+  300: '300 細',
+  400: '400 標準',
+  500: '500 中',
+  600: '600 半粗',
+  700: '700 粗',
+  800: '800 特粗',
+  900: '900 極粗',
+}
+
+/** 只有標題與內文可選字重（介面跟著內文）。 */
+const WEIGHTED_ROLES = new Set<Role>(['heading', 'body'])
+const DEFAULT_WEIGHT: Record<string, number> = { heading: 700, body: 400 }
+
 function kb(bytes: number): string {
   return `${Math.round(bytes / 1024)} KB`
 }
@@ -149,6 +165,13 @@ export function FontPanel({
       const key = `${role}FontId` as const
       return { ...prev, typography: { ...prev.typography, [key]: fontId } }
     })
+  }
+
+  function setWeight(role: 'heading' | 'body', weight: number) {
+    onChange((prev) => ({
+      ...prev,
+      typography: { ...prev.typography, [`${role}Weight`]: weight },
+    }))
   }
 
   function applyPair(pair: ApiPair) {
@@ -244,6 +267,11 @@ export function FontPanel({
       {(['heading', 'body', 'ui'] as Role[]).map((role) => {
         const currentId = draft.typography[`${role}FontId`]
         const current = byId.get(currentId)
+        const weighted = WEIGHTED_ROLES.has(role)
+        const currentWeight =
+          (role === 'heading' ? draft.typography.headingWeight : role === 'body' ? draft.typography.bodyWeight : undefined) ??
+          DEFAULT_WEIGHT[role] ??
+          400
 
         return (
           <div key={role} className="sr-field">
@@ -275,11 +303,37 @@ export function FontPanel({
               })}
             </select>
 
+            {weighted && current && (
+              <div className="sr-field" style={{ marginTop: 'var(--sr-space-2)' }}>
+                <label className="sr-label" htmlFor={`weight-${role}`}>
+                  {ROLE_LABEL[role]}字重
+                </label>
+                <select
+                  id={`weight-${role}`}
+                  className="sr-input"
+                  value={currentWeight}
+                  onChange={(e) => setWeight(role as 'heading' | 'body', Number(e.target.value))}
+                >
+                  {current.weights
+                    .slice()
+                    .sort((a, b) => a - b)
+                    .map((w) => (
+                      <option key={w} value={w}>
+                        {WEIGHT_LABEL[w] ?? String(w)}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            )}
+
             {current && (
               <p
                 className="sr-font-sample"
-                // 預覽必須用真正的字體，否則所有選項長得一樣
-                style={{ fontFamily: `"${current.family}", ${current.fallbackStack}` }}
+                // 預覽必須用真正的字體與字重，否則所有選項長得一樣
+                style={{
+                  fontFamily: `"${current.family}", ${current.fallbackStack}`,
+                  fontWeight: weighted ? currentWeight : undefined,
+                }}
               >
                 {current.previewText ?? '雪境是一個會隨時間長大的空間'}
               </p>

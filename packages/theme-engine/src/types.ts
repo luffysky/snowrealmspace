@@ -35,6 +35,10 @@ export type ThemeTypography = {
   bodyFontId: string
   uiFontId: string
   monoFontId?: string | undefined
+  /** 標題字重（100–900，預設 700）。 */
+  headingWeight?: number | undefined
+  /** 內文字重（100–900，預設 400）。 */
+  bodyWeight?: number | undefined
   headingScale: number
   bodyScale: number
   lineHeight: number

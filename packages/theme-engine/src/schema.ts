@@ -48,6 +48,8 @@ export const themeTypographySchema = z
     bodyFontId: z.string().min(1).max(64),
     uiFontId: z.string().min(1).max(64),
     monoFontId: z.string().min(1).max(64).optional(),
+    headingWeight: z.number().int().min(100).max(900).optional(),
+    bodyWeight: z.number().int().min(100).max(900).optional(),
     headingScale: z.number().min(0.8).max(2),
     bodyScale: z.number().min(0.75).max(1.5),
     lineHeight: z.number().min(1).max(2.4),

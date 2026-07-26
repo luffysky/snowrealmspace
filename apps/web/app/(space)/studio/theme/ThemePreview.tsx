@@ -92,6 +92,7 @@ export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefini
       applyFontVars({ heading: toEntry(heading), body: toEntry(body), ui: toEntry(ui) }, surface)
       // surface 自己也要吃 body 變數，內文才會跟著換（標題各自用 var(--sr-font-heading)）
       surface.style.fontFamily = 'var(--sr-font-body)'
+      surface.style.fontWeight = 'var(--sr-weight-body)'
     }, [definition, mode, fonts, byKey])
     const setRef = (el: HTMLDivElement | null) => {
       surfaceRef.current = el

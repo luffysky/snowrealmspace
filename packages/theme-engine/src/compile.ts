@@ -136,6 +136,8 @@ export function compileThemeToCssVars(def: ThemeDefinition): Record<string, stri
 
     '--sr-scale-heading': String(t.headingScale),
     '--sr-scale-body': String(t.bodyScale),
+    '--sr-weight-heading': String(t.headingWeight ?? 700),
+    '--sr-weight-body': String(t.bodyWeight ?? 400),
     '--sr-line-height': String(t.lineHeight),
     '--sr-letter-spacing': `${t.letterSpacing}em`,
 
