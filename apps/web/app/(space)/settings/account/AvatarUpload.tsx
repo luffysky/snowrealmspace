@@ -5,15 +5,24 @@ import { useRouter } from 'next/navigation'
 import { uploadAsset } from '@/lib/upload-asset'
 
 /**
- * 大頭貼上傳。走既有 assets 管線（uploadAsset，ADR-005）→ 綁 profiles.avatar_asset_id。
+ * 大頭貼上傳。走既有 assets 管線（uploadAsset，ADR-005）→ 綁某個 avatar_asset_id。
  * 顯示用短期 signed URL（bucket 是 private，經 /api/assets/[id]/url 拿）。
+ *
+ * 預設綁使用者自己的 profiles.avatar_asset_id（/api/profile）；傳 endpoint/field
+ * 就能綁別的目標（例如 AI 夥伴的 agent_profiles → /api/agent/profile）。
  */
 export function AvatarUpload({
   spaceId,
   initialAssetId,
+  endpoint = '/api/profile',
+  field = 'avatarAssetId',
+  uploadLabel = '上傳大頭貼',
 }: {
   spaceId: string
   initialAssetId: string | null
+  endpoint?: string
+  field?: string
+  uploadLabel?: string
 }) {
   const [assetId, setAssetId] = useState<string | null>(initialAssetId)
   const [url, setUrl] = useState<string | null>(null)
@@ -57,10 +66,10 @@ export function AvatarUpload({
     setNotice(null)
     try {
       const id = await uploadAsset(file, spaceId)
-      const res = await fetch('/api/profile', {
+      const res = await fetch(endpoint, {
         method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ avatarAssetId: id }),
+        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
+        body: JSON.stringify({ [field]: id }),
       })
       if (!res.ok) {
         const body = (await res.json().catch(() => null)) as { error?: { message: string } } | null
@@ -82,10 +91,10 @@ export function AvatarUpload({
   async function remove() {
     setBusy(true)
     try {
-      const res = await fetch('/api/profile', {
+      const res = await fetch(endpoint, {
         method: 'PATCH',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ avatarAssetId: null }),
+        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
+        body: JSON.stringify({ [field]: null }),
       })
       if (!res.ok) {
         setNotice({ kind: 'error', text: '✕ 移除失敗。' })
@@ -115,7 +124,7 @@ export function AvatarUpload({
 
         <div className="sr-row" style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
           <button type="button" className="sr-button sr-button-secondary" disabled={busy} onClick={() => inputRef.current?.click()}>
-            {busy ? '處理中…' : url ? '更換' : '上傳大頭貼'}
+            {busy ? '處理中…' : url ? '更換' : uploadLabel}
           </button>
           {assetId && (
             <button type="button" className="sr-linkish" disabled={busy} onClick={() => void remove()}>

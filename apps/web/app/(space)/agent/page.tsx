@@ -4,6 +4,7 @@ import { getDb } from '@/lib/supabase/server'
 import { resolveAvatarUrl } from '@/lib/avatar'
 import { AgentChat, type Attachment, type ChatMessage, type ThreadSummary } from './AgentChat'
 import { AiNaming } from './AiNaming'
+import { AvatarUpload } from '@/app/(space)/settings/account/AvatarUpload'
 
 export const metadata: Metadata = { title: 'AI 夥伴 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -94,6 +95,24 @@ export default async function AgentPage() {
         isDefault={agentUnnamed}
         canEdit={role === 'owner'}
       />
+
+      {role === 'owner' && (
+        <section className="sr-card">
+          <h2 style={{ fontSize: 'var(--sr-text-lg)', marginTop: 0, marginBottom: 'var(--sr-space-2)' }}>
+            AI 夥伴的大頭貼
+          </h2>
+          <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+            上傳一張圖片當 {agentName} 的頭像，對話裡就會看到它。
+          </p>
+          <AvatarUpload
+            spaceId={space.id}
+            initialAssetId={agentProfile?.avatar_asset_id ?? null}
+            endpoint="/api/agent/profile"
+            field="avatarAssetId"
+            uploadLabel="上傳頭像"
+          />
+        </section>
+      )}
 
       <AgentChat
         spaceId={space.id}

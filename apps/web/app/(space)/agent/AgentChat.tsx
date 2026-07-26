@@ -7,6 +7,7 @@ import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
 import { Avatar } from '@/components/Avatar'
 import { emitAgentMood, type AgentMood } from '@/lib/agent/mood'
+import { useDialog } from '@/components/ui/DialogProvider'
 
 /** 從回應文字粗略判斷情緒 → 驅動 AI 2D 表情（客戶端啟發式，零 token）。 */
 function moodFromText(text: string): AgentMood {
@@ -137,6 +138,51 @@ export function AgentChat({
   const chunksRef = useRef<Blob[]>([])
 
   const busy = pending || uploading || transcribing
+  const { prompt, confirm } = useDialog()
+
+  // 對話改名（PATCH /api/agent/threads）
+  async function renameThread() {
+    if (!threadId || busy) return
+    const current = threads.find((t) => t.id === threadId)?.title ?? ''
+    const next = await prompt({ title: '對話改名', message: '新名稱', defaultValue: current, placeholder: '例如：學習計畫' })
+    const title = next?.trim()
+    if (!title || title === current) return
+    try {
+      const res = await fetch('/api/agent/threads', {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
+        body: JSON.stringify({ threadId, title }),
+      })
+      if (!res.ok) throw new Error()
+      setThreads((prev) => prev.map((t) => (t.id === threadId ? { ...t, title } : t)))
+    } catch {
+      setError('改名失敗，請再試一次。')
+    }
+  }
+
+  // 刪除對話（軟刪除；DELETE /api/agent/threads）
+  async function deleteThread() {
+    if (!threadId || busy) return
+    const yes = await confirm({
+      title: '刪除對話',
+      message: '刪除後這個對話不再列出（訊息會保留但看不到）。確定要刪嗎？',
+      confirmText: '刪除',
+      danger: true,
+    })
+    if (!yes) return
+    const id = threadId
+    try {
+      const res = await fetch(`/api/agent/threads?threadId=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: { 'x-space-id': spaceId },
+      })
+      if (!res.ok) throw new Error()
+      setThreads((prev) => prev.filter((t) => t.id !== id))
+      newConversation()
+    } catch {
+      setError('刪除失敗，請再試一次。')
+    }
+  }
 
   // 漂浮小幫手：沒有 SSR 初始資料 → mount 時自行載入最近一個對話。
   useEffect(() => {
@@ -546,6 +592,16 @@ export function AgentChat({
               </option>
             ))}
           </select>
+        )}
+        {threadId && (
+          <>
+            <button type="button" className="sr-linkish" onClick={() => void renameThread()} disabled={busy} title="對話改名">
+              改名
+            </button>
+            <button type="button" className="sr-linkish" onClick={() => void deleteThread()} disabled={busy} title="刪除對話">
+              刪除
+            </button>
+          </>
         )}
       </div>
 
