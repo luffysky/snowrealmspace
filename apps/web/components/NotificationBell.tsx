@@ -15,7 +15,7 @@ type Notification = {
 
 const CATEGORY_LABEL: Record<string, string> = {
   daily: '每日',
-  agent: 'Agent',
+  agent: 'AI 夥伴',
   weekly_recap: '回顧',
   milestone: '里程碑',
   birthday: '生日',

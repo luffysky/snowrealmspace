@@ -3,8 +3,9 @@ import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { resolveAvatarUrl } from '@/lib/avatar'
 import { AgentChat, type Attachment, type ChatMessage, type ThreadSummary } from './AgentChat'
+import { AiNaming } from './AiNaming'
 
-export const metadata: Metadata = { title: 'Agent — SnowRealm Space' }
+export const metadata: Metadata = { title: 'AI 夥伴 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
 
 /** agent_messages.blocks（jsonb）→ 圖片附件參照。忽略非圖片 block。 */
@@ -24,7 +25,7 @@ function blocksToAttachments(blocks: unknown): Attachment[] | undefined {
 }
 
 export default async function AgentPage() {
-  const { space } = await requireActiveSpace()
+  const { space, role } = await requireActiveSpace()
   const user = await getUser()
   const db = await getDb()
 
@@ -40,7 +41,10 @@ export default async function AgentPage() {
     resolveAvatarUrl(db, agentProfile?.avatar_asset_id ?? null),
   ])
   const userName = myProfile?.display_name || user?.username || user?.email || '你'
-  const agentName = agentProfile?.display_name || 'AI 夥伴'
+  // 預設名 'Agent' 視為「還沒取名」→ 顯示成「AI 夥伴」，並引導使用者命名
+  const rawAgentName = agentProfile?.display_name ?? 'Agent'
+  const agentUnnamed = !rawAgentName || rawAgentName === 'Agent'
+  const agentName = agentUnnamed ? 'AI 夥伴' : rawAgentName
 
   // 對話清單 + 最近一個對話的訊息
   const { data: threadRows } = await db
@@ -78,11 +82,18 @@ export default async function AgentPage() {
   return (
     <div className="sr-stack" data-tour="agent-chat">
       <section>
-        <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Agent</h1>
+        <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>AI 夥伴</h1>
         <p className="sr-muted">
           這個空間的 AI 夥伴。它只看得到你提供的內容，不會假裝看過沒看過的東西。
         </p>
       </section>
+
+      <AiNaming
+        spaceId={space.id}
+        initialName={rawAgentName}
+        isDefault={agentUnnamed}
+        canEdit={role === 'owner'}
+      />
 
       <AgentChat
         spaceId={space.id}
