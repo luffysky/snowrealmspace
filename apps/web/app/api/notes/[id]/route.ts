@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server'
 import { notePatchSchema } from '@snowrealm/validation'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
+import { sanitizeRichHtml } from '@/lib/rich-html'
 
 export const dynamic = 'force-dynamic'
 
@@ -17,7 +18,7 @@ export const PATCH = handler(async (request: NextRequest, { params }: { params: 
 
   const patch: { title?: string | null; body?: string } = {}
   if (parsed.data.title !== undefined) patch.title = parsed.data.title
-  if (parsed.data.body !== undefined) patch.body = parsed.data.body
+  if (parsed.data.body !== undefined) patch.body = sanitizeRichHtml(parsed.data.body)
 
   const { data, error } = await ctx.db
     .from('notes')

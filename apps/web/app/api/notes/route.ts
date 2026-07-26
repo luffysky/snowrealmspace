@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server'
 import { noteCreateSchema } from '@snowrealm/validation'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
+import { sanitizeRichHtml } from '@/lib/rich-html'
 
 export const dynamic = 'force-dynamic'
 
@@ -36,7 +37,7 @@ export const POST = handler(async (request: NextRequest) => {
       space_id: ctx.spaceId,
       created_by: ctx.userId,
       title: parsed.data.title ?? null,
-      body: parsed.data.body,
+      body: sanitizeRichHtml(parsed.data.body),
     })
     .select('id, title, body, created_at, updated_at')
     .single()

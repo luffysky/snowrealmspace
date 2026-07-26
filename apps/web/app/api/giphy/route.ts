@@ -1,9 +1,13 @@
 import type { NextRequest } from 'next/server'
-import { serverEnv } from '@snowrealm/shared-types'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
+
+/** 兩種命名都收：伺服器端 GIPHY_API_KEY，或 AI 島慣用的 NEXT_PUBLIC_GIPHY_API_KEY（server 端也讀得到）。 */
+function giphyKey(): string | undefined {
+  return process.env['GIPHY_API_KEY'] || process.env['NEXT_PUBLIC_GIPHY_API_KEY'] || undefined
+}
 
 /**
  * Giphy 代理。金鑰只在伺服器（GIPHY_API_KEY），不進 client bundle。
@@ -16,7 +20,7 @@ export const GET = handler(async (request: NextRequest) => {
   const result = await resolveContext()
   if (!result.ok) return fail('UNAUTHENTICATED', '請先登入。')
 
-  const key = serverEnv().GIPHY_API_KEY
+  const key = giphyKey()
   if (!key) return fail('AI_UNAVAILABLE', 'Giphy 尚未設定。', { configured: false })
 
   const q = request.nextUrl.searchParams.get('q')?.trim() ?? ''
