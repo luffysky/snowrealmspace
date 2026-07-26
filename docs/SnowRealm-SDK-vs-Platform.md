@@ -116,10 +116,58 @@ packages/rich-editor/
 
 ---
 
+## 聊天 AI：一個服務 + 兩個 SDK
+
+**現況**：七個產品各自有聊天 AI，AI Router 已 5 套、各自接金鑰。整合＝**收斂**：
+中央收「錢／金鑰／額度／模型路由」，邊緣統一成「同一條 SSE ＋ 同一組結構化訊號」，
+UI（泡泡 / VRM 角色）當純消費端。
+
+### 1. 聊天 AI 服務（Platform HTTP，SSE）
+
+- **種子**：Space 的 `@snowrealm/ai-core`（最乾淨：`completeForUsage` 已收好金鑰、候選鏈、
+  免費優先、額度閘門、滾動摘要）。AI島 `ai-router` 的能力逐步併入。
+- **對外合約**：一條 SSE。
+  - 進：`{ messages, persona, spaceId, attachments? }`
+  - 出（`data:` JSON 事件流）：
+    - `{ delta }` — 逐字文字
+    - `{ mood }` — **結構化側訊號**（見下），未來可加 `{ animation }` / `{ cite }` / `{ tool }`
+    - `{ error }` / `{ done, threadId }`
+- 金鑰、成本、額度、記帳、內容過濾全部集中在服務端；產品不再各自接 provider SDK（ADR-023 精神跨產品化）。
+
+### 2. `mood` 側訊號協定（已在 Space 落地，當種子）
+
+- 模型在回覆**最後**輸出隱藏標記 `⟦mood:值⟧`（10 種：`happy/sad/surprised/angry/relaxed/excited/shy/thinking/neutral/wink`）。
+- 服務端 SSE **保留尾端數十字不送 → strip 掉標記 → 補送乾淨文字 → 另發 `{mood}` 事件**；
+  存 DB 的是乾淨文字。模型沒照格式 → 標記不出現 → 消費端退回客戶端啟發式，不會壞。
+- 這是「文字之外的結構化側channel」第一個實例；之後 `animation` / 引用 / 工具呼叫都走同一個模式。
+
+### 3. `@snowrealm/chat`（前端薄 SDK）
+
+- 打那條 SSE、吐出同一組事件（`onDelta` / `onMood` / `onDone`）。**UI 長怎樣是產品的事**——
+  泡泡也好、VRM 角色也好，消費的是同一個事件流。
+- persona / system prompt / 頭像 由產品傳入或服務端按 `persona` 查。
+
+### 4. `@snowrealm/vrm-character`（前端 SDK，本次先抽）
+
+- 內容：`YukirinScene` / `RikuScene`（自包 three.js 場景）、`loadMixamoAnimation`（Mixamo→VRM 重定向）、
+  `vrmLipSync`（TTS 對嘴）、`bus`（`emitVrm`/`onVrm`）、`VrmWidget`（漂浮可拖曳、雙角色切換）。
+- **解耦點**：`next/dynamic(ssr:false)` 換成 `React.lazy` + mounted guard（不綁 Next）；
+  模型/動作資產走 `/models/*.vrm`、`/animations/idle/*.fbx` 慣例，**消費端把資產放進自己的 `public/`**
+  （或未來加 `assetBase` prop）。
+- 任何產品 `pnpm add` 它、接上 `@snowrealm/chat` 的 `onMood` → `emitVrm` → 角色即時反應。**一次做、七產品共用**。
+
+### 遷移順序
+
+先讓 **Space ↔ AI島** 兩個產品共用聊天服務合約驗證跑得通 → 其餘產品逐一換 import →
+最後配 Python client 給非 JS 產品。`vrm-character` 可獨立先抽（零後端，跟 `rich-editor` 一樣）。
+
+---
+
 ## 一句話結論
 
-- **錢、身份、額度、跨用戶資料 → Platform HTTP**（AI Router、Economy/Dot、SSO、Storage quota、Memory、Analytics）
-- **編輯器、主題、UI 元件、轉換器 → 純 SDK**（`rich-editor` 先行，`theme`/`ui` 次之）
+- **錢、身份、額度、跨用戶資料 → Platform HTTP**（AI Router／**聊天 AI 服務**、Economy/Dot、SSO、Storage quota、Memory、Analytics）
+- **編輯器、主題、UI 元件、角色、轉換器 → 純 SDK**（`rich-editor` 先行，`vrm-character` 次之，`chat`/`theme`/`ui` 跟上）
+- **對話統一成「一條 SSE ＋ 結構化側訊號（`mood`…）」**，UI（泡泡/角色）當純消費端
 - **非 JS 產品 → 每個 Platform 能力再配一個薄 client SDK**
 
 **該 HTTP 就 HTTP、該 SDK 就 SDK、該 client 就 client。**
