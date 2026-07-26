@@ -4,7 +4,7 @@ import { getDb } from '@/lib/supabase/server'
 import { themeDefinitionSchema, defaultThemeDefinition } from '@snowrealm/theme-engine'
 import { ThemeStudio, type SavedTheme } from './ThemeStudio'
 
-export const metadata: Metadata = { title: 'Theme Studio — SnowRealm Space' }
+export const metadata: Metadata = { title: '主題工作室 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function ThemeStudioPage() {
@@ -61,9 +61,9 @@ export default async function ThemeStudioPage() {
   return (
     <div className="sr-stack">
       <section>
-        <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Theme Studio</h1>
+        <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>主題工作室</h1>
         <p className="sr-muted">
-          調整顏色與質感。右邊會即時顯示套用後的樣子。
+          調整顏色、字體與質感。右邊會即時顯示套用後的樣子。
         </p>
       </section>
 

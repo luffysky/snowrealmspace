@@ -57,7 +57,7 @@ export default async function DataMapPage() {
     { label: '檔案（圖片／影片／PDF）', count: assets, where: 'R2 儲存 + assets 表', href: '/library', how: '在 Library 逐一刪除（含引用檢查、30 天寬限）' },
     { label: '專案', count: projects, where: 'projects 表', href: '/projects', how: '在 Projects 刪除（作品保留、僅解除歸屬）' },
     { label: '作品與版本', count: works, where: 'design_files / design_snapshots', href: '/works', how: '在 Works 刪除作品或個別版本' },
-    { label: '主題', count: themes, where: 'themes 表', href: '/studio/theme', how: '在 Theme Studio 刪除' },
+    { label: '主題', count: themes, where: 'themes 表', href: '/studio/theme', how: '在主題工作室刪除' },
     { label: '背景', count: backgrounds, where: 'background_items 表', href: '/studio/background', how: '在 Background Studio 刪除' },
     { label: '時間軸', count: timeline, where: 'timeline_events 表', href: '/timeline', how: '在 Timeline 隱藏或刪除每一筆' },
     { label: '回顧 Insight', count: insights, where: 'insights 表', href: '/insights', how: '在 Insight 頁刪除' },
