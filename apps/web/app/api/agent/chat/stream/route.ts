@@ -23,6 +23,29 @@ export const dynamic = 'force-dynamic'
 
 const HISTORY_LIMIT = 12
 
+/** 前台 VRM 角色可用的情緒（與 lib/vrm/bus 的 VrmMood 對齊）。 */
+const ALLOWED_MOODS = new Set([
+  'happy', 'sad', 'surprised', 'angry', 'relaxed', 'excited', 'shy', 'thinking', 'neutral', 'wink',
+])
+
+/**
+ * 讓模型在回覆最後吐一個情緒標記給前台角色用；使用者看不到。
+ * 格式刻意用少見的角括號 ⟦ ⟧，正文幾乎不會誤中。
+ */
+const MOOD_INSTRUCTION = `\n\n## 情緒標記（給前台虛擬角色，使用者看不到）
+在你這則回覆的**最後**，另起一行只輸出一個情緒標記，格式：⟦mood:值⟧
+可用值：happy、sad、surprised、angry、relaxed、excited、shy、thinking、neutral、wink
+挑最貼近你這則回覆語氣的一個。除了這個標記，不要在正文提到它、也不要輸出別的括號。`
+
+/** 從文字抽出情緒標記並移除（回傳給使用者看的乾淨文字 + 情緒）。 */
+function extractMood(text: string): { visible: string; mood: string | null } {
+  const m = text.match(/⟦\s*mood\s*:\s*([a-zA-Z]+)\s*⟧/)
+  if (!m || m.index === undefined) return { visible: text, mood: null }
+  const mood = m[1]!.toLowerCase()
+  const visible = (text.slice(0, m.index) + text.slice(m.index + m[0].length)).trimEnd()
+  return { visible, mood: ALLOWED_MOODS.has(mood) ? mood : null }
+}
+
 /** openai 相容協定的 provider 才能串流（Groq/OpenAI/…）。Anthropic/Google 不行 → 退非串流。 */
 function isStreamable(provider: ProviderId): boolean {
   return provider !== 'anthropic' && provider !== 'google'
@@ -106,9 +129,10 @@ export async function POST(request: NextRequest): Promise<Response> {
   })
   const baseSystem = buildAgentSystemPrompt(agentCtx)
   // 長對話：滾動摘要接在 system 後，讓模型記得視窗（最近 N 則）之外的脈絡。
-  const system = threadSummary
-    ? `${baseSystem}\n\n## 先前對話摘要（供你記得脈絡，不要照唸）\n${threadSummary}`
-    : baseSystem
+  const system =
+    (threadSummary
+      ? `${baseSystem}\n\n## 先前對話摘要（供你記得脈絡，不要照唸）\n${threadSummary}`
+      : baseSystem) + MOOD_INSTRUCTION
 
   // 額度閘門（串流前先擋，才不會吐一半才發現沒額度）
   const budget = await deps.budget(ctx.spaceId)
@@ -135,6 +159,17 @@ export async function POST(request: NextRequest): Promise<Response> {
     async start(controller) {
       const send = (obj: unknown) => controller.enqueue(enc.encode(`data: ${JSON.stringify(obj)}\n\n`))
       let full = ''
+      // 已送給前台的可見字數。串流時保留最後 HOLD 個字不送，確保尾端的
+      // ⟦mood:x⟧ 標記不會漏到使用者眼前；收尾時 strip 掉再把剩下的乾淨文字補送。
+      let sent = 0
+      const HOLD = 32
+      const flushSafe = () => {
+        const safeEnd = Math.max(sent, full.length - HOLD)
+        if (safeEnd > sent) {
+          send({ delta: full.slice(sent, safeEnd) })
+          sent = safeEnd
+        }
+      }
       try {
         if (picked) {
           for await (const delta of callAIStream({
@@ -144,14 +179,13 @@ export async function POST(request: NextRequest): Promise<Response> {
             messages: streamMessages,
           })) {
             full += delta
-            send({ delta })
+            flushSafe()
           }
         }
-        // 沒有可串流候選、或串流中途沒吐任何字 → 退回非串流一次拿完
+        // 沒有可串流候選、或串流中途沒吐任何字 → 退回非串流一次拿完（收尾統一送）
         if (!full) {
           const c = await completeForUsage('agent_chat', { spaceId: ctx.spaceId, system, user: messages }, deps)
           full = c.text
-          if (full) send({ delta: full })
         }
       } catch (err) {
         if (!full) {
@@ -159,7 +193,6 @@ export async function POST(request: NextRequest): Promise<Response> {
           try {
             const c = await completeForUsage('agent_chat', { spaceId: ctx.spaceId, system, user: messages }, deps)
             full = c.text
-            if (full) send({ delta: full })
           } catch (e2) {
             const msg =
               e2 instanceof QuotaExceededError
@@ -175,7 +208,13 @@ export async function POST(request: NextRequest): Promise<Response> {
         }
       }
 
-      // 存助理訊息 + 更新 thread
+      // 收尾：strip 情緒標記 → 補送剩餘乾淨文字 → 發 mood 事件
+      const { visible, mood } = extractMood(full)
+      full = visible
+      if (full.length > sent) send({ delta: full.slice(sent) })
+      if (mood) send({ mood })
+
+      // 存助理訊息 + 更新 thread（存的是 strip 後的乾淨文字）
       if (full) {
         await admin.from('agent_messages').insert({
           space_id: ctx.spaceId,

@@ -409,6 +409,7 @@ export function AgentChat({
     const assistantId = `a-${Date.now()}`
     let full = ''
     let started = false
+    let serverMood = false // 伺服器（LLM）有吐情緒就用它，不再跑客戶端啟發式
     const wasNew = threadId === null
     try {
       const res = await fetch('/api/agent/chat/stream', {
@@ -436,11 +437,15 @@ export function AgentChat({
         for (const blk of blocks) {
           const line = blk.trim()
           if (!line.startsWith('data:')) continue
-          let obj: { delta?: string; error?: string; done?: boolean; threadId?: string }
+          let obj: { delta?: string; error?: string; done?: boolean; threadId?: string; mood?: string }
           try {
             obj = JSON.parse(line.slice(5).trim())
           } catch {
             continue
+          }
+          if (obj.mood) {
+            serverMood = true
+            emitVrm({ type: 'mood', mood: obj.mood as VrmMood })
           }
           if (obj.delta) {
             full += obj.delta
@@ -460,8 +465,8 @@ export function AgentChat({
           }
         }
       }
-      // 串流結束：依整段回應更新角色表情
-      if (full) emitVrm({ type: 'mood', mood: moodFromText(full) })
+      // 串流結束：伺服器沒吐情緒才用客戶端啟發式當後備
+      if (full && !serverMood) emitVrm({ type: 'mood', mood: moodFromText(full) })
       // 完全沒吐字也沒 error → 移除樂觀訊息、把輸入放回
       if (!full) {
         setInput(text)
