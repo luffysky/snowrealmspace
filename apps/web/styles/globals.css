@@ -2963,6 +2963,12 @@ input[type='range'] {
   flex-direction: column;
   gap: var(--sr-space-3);
 }
+/* 非分組檢視時 <ul> 同時是卡片（.sr-timeline.sr-card）；上面的 padding:0 會蓋掉
+   .sr-card 的內距（source order 較後），使時間軸左邊框與圓點跑到卡片外（bugpic/19）。
+   補回卡片內距，讓左邊框與圓點落在內距內。 */
+.sr-timeline.sr-card {
+  padding: var(--sr-space-6);
+}
 .sr-timeline-item {
   display: flex;
   gap: var(--sr-space-3);

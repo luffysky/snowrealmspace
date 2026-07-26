@@ -9,7 +9,9 @@ type Event = { id: string; event_type: string; title: string | null; occurred_at
 /** 時間軸預覽：最近或「在這一天」的事件。資料來自 /api/timeline。 */
 export default function TimelinePreviewWidget({ spaceId, config }: WidgetProps) {
   const limit = (config as { limit?: number } | null)?.limit ?? 5
-  const view = (config as { view?: string } | null)?.view === 'on_this_day' ? 'on_this_day' : 'recent'
+  // API 只認 chronological / project / on_this_day（不是 recent）——
+  // 之前用 'recent' 會被 schema 擋成 400 → widget 顯示「讀不到時間軸」。
+  const view = (config as { view?: string } | null)?.view === 'on_this_day' ? 'on_this_day' : 'chronological'
   const [items, setItems] = useState<Event[]>([])
   const [state, setState] = useState<'loading' | 'ready' | 'empty' | 'error'>('loading')
 
@@ -38,8 +40,8 @@ export default function TimelinePreviewWidget({ spaceId, config }: WidgetProps) 
       {state === 'empty' ? (
         <p className="sr-muted" style={{ margin: 0 }}>
           {view === 'on_this_day' ? '這一天還沒有故事。' : '還沒有事件。到 '}
-          {view === 'recent' && <Link href="/timeline" className="sr-link">時間軸</Link>}
-          {view === 'recent' && ' 看看。'}
+          {view === 'chronological' && <Link href="/timeline" className="sr-link">時間軸</Link>}
+          {view === 'chronological' && ' 看看。'}
         </p>
       ) : (
         <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0, gap: 'var(--sr-space-1)' }}>
