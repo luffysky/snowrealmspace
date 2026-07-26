@@ -127,29 +127,12 @@ export const POST = handler(async (request: NextRequest) => {
     return fail('VALIDATION_FAILED', '授權檔內容過短，看起來不是完整的授權全文。')
   }
 
-  // 子集化（記憶體內）
   const files = await Promise.all(
     fontFiles.map(async (f) => ({ name: f.name, body: new Uint8Array(await f.arrayBuffer()) })),
   )
-  let built
-  try {
-    built = await subsetUploadedFont({
-      slug: entry.slug,
-      scripts: entry.scripts,
-      weights: entry.weights,
-      files,
-    })
-  } catch (err) {
-    return fail('UNPROCESSABLE', `字體處理失敗：${(err as Error).message}`)
-  }
-  if (!built.withinBudget) {
-    return fail(
-      'UNPROCESSABLE',
-      `首屏字體 ${kb(built.firstScreenBytes)} 超出 ${kb(built.budgetLimit)} 預算 ${kb(built.overBy)}，這套太重無法用於首屏。`,
-    )
-  }
 
   // 上傳 R2：先授權後字體（順序反過來中途失敗會留下無授權的字體檔）。
+  // 子集化改串流：邊產邊上傳邊釋放，不把整套分片留在記憶體（見 subsetUploadedFont 註解）。
   const store = storage()
   const licenseKey = `${KEY_PREFIX}/${entry.slug}/LICENSE.txt`
   await store.put({
@@ -161,21 +144,40 @@ export const POST = handler(async (request: NextRequest) => {
 
   const fileManifest: FileManifest = {}
   let uploadedSlices = 0
-  for (const weight of built.weights) {
-    const subsets: FileManifest[string]['subsets'] = []
-    for (const slice of weight.slices) {
-      const key = `${KEY_PREFIX}/${entry.slug}/${slice.file}`
-      await store.put({
-        key,
-        body: slice.body,
-        contentType: 'font/woff2',
-        // 檔名含 slug + 字重 + 分片 id，內容變檔名變 → 可安全 immutable 一年。
-        cacheControl: 'public, max-age=31536000, immutable',
-      })
-      subsets.push({ file: key, unicodeRange: slice.unicodeRange, bytes: slice.bytes, critical: slice.critical })
-      uploadedSlices++
-    }
-    fileManifest[String(weight.weight)] = { subsets }
+  let built
+  try {
+    built = await subsetUploadedFont({
+      slug: entry.slug,
+      scripts: entry.scripts,
+      weights: entry.weights,
+      files,
+      onSlice: async (weight, slice) => {
+        const key = `${KEY_PREFIX}/${entry.slug}/${slice.file}`
+        await store.put({
+          key,
+          body: slice.body,
+          contentType: 'font/woff2',
+          // 檔名含 slug + 字重 + 分片 id，內容變檔名變 → 可安全 immutable 一年。
+          cacheControl: 'public, max-age=31536000, immutable',
+        })
+        const w = String(weight)
+        ;(fileManifest[w] ??= { subsets: [] }).subsets.push({
+          file: key,
+          unicodeRange: slice.unicodeRange,
+          bytes: slice.bytes,
+          critical: slice.critical,
+        })
+        uploadedSlices++
+      },
+    })
+  } catch (err) {
+    return fail('UNPROCESSABLE', `字體處理失敗：${(err as Error).message}`)
+  }
+  if (!built.withinBudget) {
+    return fail(
+      'UNPROCESSABLE',
+      `首屏字體 ${kb(built.firstScreenBytes)} 超出 ${kb(built.budgetLimit)} 預算 ${kb(built.overBy)}，這套太重無法用於首屏。`,
+    )
   }
 
   // 寫入 fonts 表（service role：字體是全域公開參考資料，非某 space 的內容）。
@@ -186,7 +188,7 @@ export const POST = handler(async (request: NextRequest) => {
       slug: entry.slug,
       category: entry.category,
       supported_languages: entry.scripts,
-      weights: built.weights.map((w) => w.weight),
+      weights: built.weightList,
       styles: ['normal'],
       preview_text: entry.previewText,
       file_manifest: fileManifest,
@@ -206,7 +208,7 @@ export const POST = handler(async (request: NextRequest) => {
   return ok({
     slug: entry.slug,
     family: entry.family,
-    weights: built.weights.map((w) => w.weight),
+    weights: built.weightList,
     sliceCount: uploadedSlices,
     firstScreenBytes: built.firstScreenBytes,
     totalBytes: built.totalBytes,

@@ -31,12 +31,11 @@ export type BuiltSlice = {
   body: Uint8Array
 }
 
-export type BuiltWeight = { weight: number; source: string; slices: BuiltSlice[] }
-
-export type BuiltFont = {
+/** 子集化結果（**不含位元組**）——分片本體已透過 onSlice 串流上傳、隨即釋放。 */
+export type SubsetResult = {
   slug: string
   subsetStrategy: 'unicode_range' | 'static'
-  weights: BuiltWeight[]
+  weightList: number[]
   totalBytes: number
   firstScreenBytes: number
   withinBudget: boolean
@@ -99,7 +98,15 @@ async function buildSlice(
 }
 
 /**
- * 把上傳的原始字體檔子集化成分片。回傳結果只在記憶體，呼叫端負責上傳 R2。
+ * 把上傳的原始字體檔子集化成分片，**邊產邊上傳邊釋放**。
+ *
+ * ## 為什麼用串流（onSlice）而不是回傳一整包
+ *
+ * 中文一套 9 字重 × ~47 分片 ≈ 423 個 woff2。若全部累積在記憶體再一次上傳，
+ * 尖峰＝原始 TTF + 全部 423 個 buffer 同時存在，容易 OOM（worker 端就中過 SIGTERM）。
+ * 這裡每產一片就交給 `onSlice` 上傳，回來後該片 body 就沒人引用、可被 GC，
+ * 尖峰的子集 buffer 從 ~423 降到 ~1。每個來源檔處理完也釋放原始位元組。
+ * 與 `apps/worker` 的 `buildAndUpload` 同一套策略（未來收進 `@snowrealm/font-build` 去重）。
  *
  * @throws 若沒有可用檔案、或沒有對應宣告字重的檔案。
  */
@@ -109,14 +116,18 @@ export async function subsetUploadedFont(input: {
   /** 目錄宣告的字重，只產出這些。 */
   weights: readonly number[]
   files: { name: string; body: Uint8Array }[]
-}): Promise<BuiltFont> {
+  /** 每產出一片就呼叫（呼叫端上傳 R2、記錄 manifest）；回來後 body 即可釋放。 */
+  onSlice: (weight: number, slice: BuiltSlice) => Promise<void>
+}): Promise<SubsetResult> {
   const slices = slicesForScripts(input.scripts)
 
   // 斜體不做（中文機械傾斜會壞字形；拉丁斜體目前無 UI 用得到）。
   const upright = input.files.filter((f) => !/italic/i.test(f.name))
   if (upright.length === 0) throw new Error('沒有可用的字體檔（.ttf / .otf）')
 
-  const built: BuiltWeight[] = []
+  // 只留每字重分片的 metadata（bytes/critical）供預算計算；body 不留。
+  const metaByWeight = new Map<number, { bytes: number; critical: boolean }[]>()
+  let totalBytes = 0
 
   for (const file of upright) {
     const variable = isVariable(file.name)
@@ -125,38 +136,38 @@ export async function subsetUploadedFont(input: {
 
     for (const weight of targetWeights) {
       if (!input.weights.includes(weight)) continue
-      if (built.some((w) => w.weight === weight)) continue
+      if (metaByWeight.has(weight)) continue
 
-      const sliceOutputs: BuiltSlice[] = []
+      const meta: { bytes: number; critical: boolean }[] = []
       for (const slice of slices) {
         const out = await buildSlice(source, input.slug, weight, slice, variable)
-        if (out) sliceOutputs.push(out)
+        if (!out) continue
+        await input.onSlice(weight, out) // 上傳後 out.body 即可 GC
+        meta.push({ bytes: out.bytes, critical: out.critical })
+        totalBytes += out.bytes
       }
-      built.push({ weight, source: file.name, slices: sliceOutputs })
+      metaByWeight.set(weight, meta)
     }
+
+    // 這個來源檔處理完，釋放原始 TTF 位元組
+    ;(file as { body: Uint8Array | null }).body = null
   }
 
-  if (built.length === 0) {
+  if (metaByWeight.size === 0) {
     throw new Error(`上傳的檔案沒有對應宣告字重 [${input.weights.join(', ')}]`)
   }
 
-  built.sort((a, b) => a.weight - b.weight)
-
-  const allSlices = built.flatMap((w) => w.slices)
-  const totalBytes = allSlices.reduce((n, s) => n + s.bytes, 0)
+  const weightList = [...metaByWeight.keys()].sort((a, b) => a - b)
 
   // 首屏成本只算 400 字重的 critical 分片（首屏不會同時用到所有字重）。
-  const regular = built.find((w) => w.weight === 400) ?? built[0]!
+  const regular = metaByWeight.get(400) ?? metaByWeight.get(weightList[0]!)!
   const limit = budgetForScripts(input.scripts)
-  const budget = firstScreenBudget(
-    regular.slices.map((s) => ({ bytes: s.bytes, critical: s.critical })),
-    limit,
-  )
+  const budget = firstScreenBudget(regular, limit)
 
   return {
     slug: input.slug,
     subsetStrategy: input.scripts.includes('zh-Hant') ? 'unicode_range' : 'static',
-    weights: built,
+    weightList,
     totalBytes,
     firstScreenBytes: budget.totalBytes,
     withinBudget: budget.withinBudget,
