@@ -96,8 +96,14 @@ export const POST = handler(async (request: NextRequest) => {
   const gate = await checkSiteAdmin()
   if (!gate.ok) return fail(gate.reason === 'unauthenticated' ? 'UNAUTHENTICATED' : 'FORBIDDEN', '需要站台管理員身份。')
 
+  // formData() 失敗多半是 body 太大被代理擋掉（字體檔很大），不是真的沒帶表單。
   const form = await request.formData().catch(() => null)
-  if (!form) return fail('VALIDATION_FAILED', '需要 multipart 表單。')
+  if (!form) {
+    return fail(
+      'UNPROCESSABLE',
+      '無法讀取上傳內容——通常是字體檔太大被伺服器/代理擋下。思源等 13 套可用 CLI（scripts/download-fonts.ts）安裝；台北黑體檔案較大時，單一字重分次上傳或改用 CLI。',
+    )
+  }
 
   const slug = String(form.get('slug') ?? '').trim()
   const entry = fontBySlug(slug)
