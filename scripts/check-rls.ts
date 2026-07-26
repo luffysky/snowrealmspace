@@ -59,6 +59,8 @@ const ALLOWLIST_NO_SPACE_ID = new Set([
   'content_filter_patterns',
   // 後台對使用者的 CRM 註記：全域管理資料，非租戶（RLS 開、零 policy = 只有 service role）
   'admin_user_notes',
+  // 站台管理員的 secret 紀錄：全域管理資料，值加密存，非租戶（RLS 開、零 policy = 只有 service role）
+  'admin_secret_notes',
   // 使用者層級而非 space 層級，理由見 REQUIRED_RLS_WITHOUT_SPACE_ID
   'user_identities',
   'oauth_transactions',
