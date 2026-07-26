@@ -118,9 +118,19 @@ export function VrmWidget() {
 
   if (!mounted) return null
 
+  // 把座標夾回目前視窗內 —— 桌機存的位置換到手機會跑到視窗外，這裡每次 render 都夾。
+  const clamp = (p: { x: number; y: number }) => {
+    const w = Math.min(260, window.innerWidth - 24)
+    const h = Math.min(340, window.innerHeight - 104)
+    return {
+      x: Math.max(4, Math.min(p.x, window.innerWidth - w - 4)),
+      y: Math.max(4, Math.min(p.y, window.innerHeight - h - 4)),
+    }
+  }
   // 預設在右下，但抬高到 88px 避開背景播放/暫停控制（右下角 WCAG 控制不能被蓋）
-  const style: React.CSSProperties = pos
-    ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto' }
+  const clamped = pos ? clamp(pos) : null
+  const style: React.CSSProperties = clamped
+    ? { left: clamped.x, top: clamped.y, right: 'auto', bottom: 'auto' }
     : { right: 20, bottom: 88 }
 
   if (!open) {
@@ -175,9 +185,9 @@ export function VrmWidget() {
       <div className="sr-vrm-canvas">
         <Suspense fallback={<div className="sr-vrm-loading">載入角色中…</div>}>
           {char === 'yukirin' ? (
-            <YukirinScene cameraMode="upperBody" showBackground={false} onLoad={onLoad} />
+            <YukirinScene cameraMode="upperBody" showBackground={false} quality="low" onLoad={onLoad} />
           ) : (
-            <RikuScene cameraMode="upperBody" showBackground={false} onLoad={onLoad} />
+            <RikuScene cameraMode="upperBody" showBackground={false} quality="low" onLoad={onLoad} />
           )}
         </Suspense>
       </div>

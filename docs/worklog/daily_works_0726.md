@@ -256,3 +256,42 @@
 
 > 這是純程式面的降記憶體；**另一半是 Zeabur 容器記憶體**要夠（in-repo 沒有也不該有容器設定）。若還會 OOM，於 Zeabur 調高 worker 記憶體，或視情況加 `NODE_OPTIONS=--max-old-space-size`（註：harfbuzz 是 off-heap，heap flag 只治一半）。
 > 之後平台重構時，web `lib/fonts/subset.ts` 與 worker 這份可收進 `@snowrealm/font-build` 去重＋共用這套串流。
+
+---
+
+## 0727 續：SDK 化、AI 角色、帳號、字體、RWD 一連串
+
+**SDK 抽出（絞殺式）**
+- `@snowrealm/rich-editor`：富文本抽成套件，web 保留薄 wrapper（promptLink/giphyEndpoint 解耦），三消費端不動。
+- `@snowrealm/vrm-character`：**移植 insight-engine 的 VRM 角色**——YukirinScene/RikuScene（自包 three.js）、
+  loadMixamoAnimation、vrmLipSync、bus、VrmWidget（漂浮/可拖曳/雙角色切換）。next/dynamic 換 React.lazy 解耦 Next。
+  資產（.vrm/.fbx）留 apps/web/public。
+
+**AI 角色 + 情緒協定**
+- Agent 對話加使用者/AI 頭像＋名稱（agent_profiles）；頁面「Agent」對外改叫「AI 夥伴」。
+- **幫 AI 命名**：PATCH /api/agent/profile（RLS owner）＋ AiNaming（第一次引導取名，預設 'Agent' 視為未命名）。
+- **LLM 直接吐情緒**：串流 system prompt 要求尾端 `⟦mood:x⟧`；SSE 保留尾端 32 字 strip 標記→補送→發 {mood}；
+  存 DB 是乾淨文字；客戶端收 {mood}→emitVrm 驅動角色，模型沒照格式退回啟發式。這是「聊天服務結構化側訊號」種子。
+- `docs/SnowRealm-SDK-vs-Platform.md` 補「聊天 AI：一個服務 + 兩個 SDK（chat / vrm-character）」藍圖。
+
+**帳號**
+- 登入方式加「更改密碼」（不落地 session 驗舊密碼，純帳號也能用）。
+- 「帳號就帳號」：合成 `@users.snowrealm.pet` 不對外顯示（lib/auth/account-identity）；刪帳號二次確認改輸帳號。
+- Google/LINE OAuth 自架 GoTrue 設定寫進 todo（`GOTRUE_EXTERNAL_GOOGLE_*` + `MANUAL_LINKING_ENABLED`；LINE 不經 GoTrue）。
+
+**頭像全站**：可複用 `<Avatar>` + lib/avatar（同 space 走 RLS、跨 space 後台走 admin client）。
+放進品牌列、登入方式、後台使用者/Space/對話。修「上傳後沒變」（缺 x-space-id + router.refresh）。
+
+**字體**
+- 主題選字體「即時預覽」補上（ThemePreview 注入 @font-face + 寫 --sr-font-*）。
+- 加「儲存並套用」一鍵（消除先存再套的困惑）。
+- **可選字重**：typography.headingWeight/bodyWeight → --sr-weight-* → body/heading CSS；FontPanel 加字重下拉。
+- 字體自動安裝改串流式子集化（worker + web），修中文 OOM。全字重 100–900（含中文）。
+
+**運維 / RWD**
+- worker SIGTERM：非 OOM，是平台健康檢查沒 port → 加 $PORT 健康 HTTP server。
+- VRM 角色資產被 auth gate 攔（307→/gate）→ middleware matcher 排除 .vrm/.fbx（+ .gitattributes 標 binary）。
+- RWD 稽核：全站大致已硬化，唯 VRM 面板沒夾視窗 → 改 min(260, 100vw-24)/min(340,100dvh-104)、抬高避開右下控制、
+  補 .sr-studio-controls min-width:0。
+
+全程 typecheck/lint/check:deps 綠、多次 isolated next build 驗證、push 自動部署。

@@ -12,5 +12,9 @@
  */
 export { VrmWidget } from './VrmWidget'
 export { emitVrm, onVrm, type VrmMood, type VrmSignal } from './bus'
-export { default as YukirinScene, type YukirinControls, type YukirinMood } from './YukirinScene'
-export { default as RikuScene, type RikuControls, type RikuMood } from './RikuScene'
+
+// 注意：**不要**在這個 barrel 靜態 re-export YukirinScene/RikuScene。
+// 它們靜態 import three.js（~450KB）；一旦 barrel 靜態帶入，任何只想拿 `emitVrm`
+// 的消費端（如 AgentChat）都會把 three 拉進首屏 bundle（/agent 曾因此 599KB）。
+// VrmWidget 內部用 React.lazy 動態載入場景 → three 只在打開角色時才下載。
+// 需要直接用場景的消費端請走子路徑 import（'@snowrealm/vrm-character/scenes'，未來需要再開）。

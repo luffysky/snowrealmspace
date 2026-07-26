@@ -126,6 +126,8 @@ h2,
 h3 {
   line-height: 1.25;
   margin: 0;
+  /* 標題字重跟隨主題（預設 700）。UA 預設 bold 會蓋掉使用者選的字重，這裡明確吃變數 */
+  font-weight: var(--sr-weight-heading);
 }
 
 /* ── 元件 ───────────────────────────────────────── */
@@ -2740,7 +2742,6 @@ input[type='range'] {
   font-family: var(--sr-font-heading);
   font-weight: var(--sr-weight-heading);
   font-size: var(--sr-text-lg);
-  font-weight: 600;
 }
 .sr-chain-node[data-unlocked='false'] .sr-chain-node-title {
   color: var(--sr-text-secondary);

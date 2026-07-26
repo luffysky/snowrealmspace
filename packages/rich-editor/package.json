@@ -6,7 +6,10 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./EmojiPicker": "./src/EmojiPicker.tsx",
+    "./GifPicker": "./src/GifPicker.tsx",
+    "./RichHtml": "./src/RichHtml.tsx"
   },
   "scripts": {
     "lint": "eslint src",
