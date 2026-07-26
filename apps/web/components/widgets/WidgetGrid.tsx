@@ -62,6 +62,11 @@ export function WidgetGrid({
     setLive(items)
   }, [items])
 
+  // 退出編輯模式時清掉選取 —— 否則殘留的 selectedId 會在檢視模式留一圈選取外框。
+  useEffect(() => {
+    if (!editing) setSelectedId(null)
+  }, [editing])
+
   const columnWidth = useCallback(() => {
     const width = containerRef.current?.clientWidth ?? 1200
     return (width - config.gap * (config.columns - 1)) / config.columns

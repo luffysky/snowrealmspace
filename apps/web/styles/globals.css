@@ -1931,7 +1931,9 @@ input[type='range'] {
   z-index: 2;
 }
 
-.sr-widget-slot[data-selected='true'] {
+/* 選取外框只在編輯模式出現（與虛線外框一致）——否則退出編輯後殘留的選取
+   會在檢視模式留一圈粗強調色框（見 bugpic/16）。 */
+.sr-widget-grid[data-editing='true'] .sr-widget-slot[data-selected='true'] {
   outline: 2px solid var(--sr-accent);
 }
 
