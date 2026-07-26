@@ -14,7 +14,7 @@ import {
   themeDataAttributes,
   themeDefinitionSchema,
   defaultThemeDefinition,
-  deriveDarkTheme,
+  effectiveTheme,
   type ThemeDefinition,
 } from '@snowrealm/theme-engine'
 import { resolveThemeFonts } from '@/lib/theme/server-fonts'
@@ -85,7 +85,9 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
    * （保留主題色相與個性，只翻明暗）。
    */
   const mode = parseMode((await cookies()).get(MODE_COOKIE)?.value)
-  const effective = mode === 'dark' ? deriveDarkTheme(definition) : definition
+  // effectiveTheme 會依「使用者選的底是淺是深」自動推導對應模式的版本：
+  // 選淺色主題 → 深色模式得中性深底＋主題強調；選深色主題 → 淺色模式得中性亮底。
+  const effective = effectiveTheme(definition, mode)
 
   /*
    * SSR 時就把主題寫進 <style>，避免首屏閃一下預設色再換成使用者的主題。
@@ -135,7 +137,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
       />
       <NotificationBell />
       <span data-tour="theme-toggle">
-        <ThemeModeToggle initialMode={mode} lightDef={definition} />
+        <ThemeModeToggle initialMode={mode} baseDef={definition} />
       </span>
       <form action={signOut}>
         <button className="sr-button sr-button-secondary" type="submit">

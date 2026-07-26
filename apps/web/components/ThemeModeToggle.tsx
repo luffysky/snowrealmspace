@@ -1,23 +1,24 @@
 'use client'
 
 import { useState } from 'react'
-import { deriveDarkTheme, type ThemeDefinition } from '@snowrealm/theme-engine'
+import { effectiveTheme, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { applyThemeToDom } from '@/lib/theme/apply'
 import { MODE_COOKIE, MODE_MAX_AGE, type ColorMode } from '@/lib/theme/mode'
 
 /**
  * 深／淺色切換。
  *
- * 明暗與主題分開：任何主題都能切暗色版（deriveDarkTheme 保留色相與個性）。
+ * 明暗與主題分開：任何主題都自動有淺色版與深色版（effectiveTheme 保留強調色相，
+ * 底色走中性）。不論使用者選的底是淺是深，切到哪個模式都得到該有的樣子。
  * 切換 < 150ms：直接 applyThemeToDom 改 :root 的 inline style，不重渲染整棵樹。
  * 記在 cookie，SSR 首屏就用對的模式，不閃。
  */
 export function ThemeModeToggle({
   initialMode,
-  lightDef,
+  baseDef,
 }: {
   initialMode: ColorMode
-  lightDef: ThemeDefinition
+  baseDef: ThemeDefinition
 }) {
   const [mode, setMode] = useState<ColorMode>(initialMode)
 
@@ -25,7 +26,7 @@ export function ThemeModeToggle({
     const next: ColorMode = mode === 'dark' ? 'light' : 'dark'
     setMode(next)
     document.cookie = `${MODE_COOKIE}=${next};path=/;max-age=${MODE_MAX_AGE};samesite=lax`
-    applyThemeToDom(next === 'dark' ? deriveDarkTheme(lightDef) : lightDef)
+    applyThemeToDom(effectiveTheme(baseDef, next))
   }
 
   const dark = mode === 'dark'
