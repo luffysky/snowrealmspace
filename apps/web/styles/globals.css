@@ -3164,6 +3164,10 @@ input[type='range'] {
 }
 .sr-fa-fab-name {
   font-size: var(--sr-text-sm);
+  max-width: 42vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .sr-fa-panel {
   position: fixed;
