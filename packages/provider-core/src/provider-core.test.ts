@@ -18,9 +18,11 @@ describe('capabilities', () => {
   it('Figma connectable=false（尚未設定憑證，前端不給連接按鈕，禁 Coming Soon）', () => {
     expect(FIGMA_CAPABILITIES.connectable).toBe(false)
   })
-  it('capabilitiesFor 查得到 figma、查不到未知', () => {
+  it('capabilitiesFor 查得到 figma/canva、查不到未實作', () => {
     expect(capabilitiesFor('figma')?.displayName).toBe('Figma')
-    expect(capabilitiesFor('canva')).toBeUndefined()
+    expect(capabilitiesFor('canva')?.displayName).toBe('Canva')
+    expect(capabilitiesFor('canva')?.connectable).toBe(false)
+    expect(capabilitiesFor('photoshop')).toBeUndefined()
   })
 })
 

@@ -35,7 +35,19 @@ export const FIGMA_CAPABILITIES: ProviderCapabilities = {
   selectiveFiles: true,
 }
 
-export const ALL_PROVIDERS: ProviderCapabilities[] = [FIGMA_CAPABILITIES]
+/** Canva 的能力宣告（Canva Connect API：讀取＋分析設計）。connectable=false 直到設定 Canva app 憑證。 */
+export const CANVA_CAPABILITIES: ProviderCapabilities = {
+  provider: 'canva',
+  displayName: 'Canva',
+  connectable: false, // 需要 CANVA_CLIENT_ID/SECRET
+  oauth: true,
+  webhooks: false, // Canva Connect webhook 範圍待確認，先保守關閉
+  fileSync: true,
+  versionHistory: false,
+  selectiveFiles: true,
+}
+
+export const ALL_PROVIDERS: ProviderCapabilities[] = [FIGMA_CAPABILITIES, CANVA_CAPABILITIES]
 
 export function capabilitiesFor(provider: ProviderId): ProviderCapabilities | undefined {
   return ALL_PROVIDERS.find((p) => p.provider === provider)
@@ -102,6 +114,22 @@ export class FigmaAdapter implements DesignProviderAdapter {
     if (typeof p?.event_id === 'string') return p.event_id
     // Figma file_update 沒有 event_id → 用 file_key + timestamp 組
     if (p?.file_key && p?.timestamp) return `${p.file_key}:${p.timestamp}`
+    return null
+  }
+}
+
+/** Canva adapter（capability + webhook 佔位；OAuth/sync 待 CANVA_CLIENT_ID/SECRET 才實作）。 */
+export class CanvaAdapter implements DesignProviderAdapter {
+  readonly capabilities = CANVA_CAPABILITIES
+
+  verifyWebhook(rawBody: string, signature: string | null, secret: string): boolean {
+    return verifyHmacSignature(rawBody, signature, secret)
+  }
+
+  externalEventId(payload: unknown): string | null {
+    const p = payload as { event_id?: string; id?: string }
+    if (typeof p?.event_id === 'string') return p.event_id
+    if (typeof p?.id === 'string') return p.id
     return null
   }
 }

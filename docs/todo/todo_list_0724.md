@@ -321,3 +321,90 @@
 - [ ] 開 `snowrealm-id` 專案 → Space 接 OIDC client + 綁定/解綁流程（ADR-024 已備）
 - [ ] Zeabur env：RESEND_API_KEY / RESEND_FROM / SENTRY_DSN
 - [ ] 字體檔、Figma 憑證、AI Dot 定價、visual regression（與 E2E 暫停衝突，待解除）
+
+---
+
+# 🔴 你（Luffy）要做的事 — 詳細步驟（0727 整理）
+
+> 這一節是最下面的「操作手冊」：每項都寫清楚**在哪做、貼哪、為什麼**。上面的 🅰 區是摘要，這裡是步驟。
+> 正式網域以 `https://snowrealm-space.snowrealm.pet` 為例（換成你的實際網域）。
+> Zeabur env 改法：Zeabur 專案 → 該服務 → Variables → 加/改 → **Redeploy** 才生效。
+
+## 0. Zeabur 重新部署（最優先，每次改完都要）
+- push 會自動觸發；若沒觸發或想立即看到今天的改動：Zeabur → web 服務 → **Redeploy（抓最新 commit）**。
+- **build 綠 ≠ 起得起來**：部署後點進網站確認首頁能開、CSS 有載入（不是純文字排版）。
+
+## 1. AI 金鑰（Groq + Gemini，免費）→ 貼在後台，不放 env
+1. Groq：<https://console.groq.com/keys> 申請 → 複製 `gsk_...`
+2. Gemini：<https://aistudio.google.com/apikey> 申請 → 複製
+3. 進網站 **後台 → AI 金鑰（`/admin/ai-keys`）** → 各家貼上（會先測試才加密存 DB）。
+4. Zeabur web 只需設**一把** `AI_KEY_ENCRYPTION_SECRET`（base64 的 32 bytes）：
+   `node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"` 產生後貼進 Zeabur env。
+5. 設好 Groq+Gemini，Agent 對話 / 主題配色 / 記憶檢索 / 洞察就會真的產生回應。
+   （後台 Secret 產生器 `/admin/secrets` 也能產這把金鑰。）
+
+## 2. Email（Resend）→ magic link / 週報 才對外可用
+> 帳號密碼登入不受影響；這只影響「寄信」。
+1. Resend：<https://resend.com> 註冊 → **Domains** 加你的網域 → 照它給的 DNS（SPF/DKIM）設好 → 驗證通過。
+2. API Keys → 建一把 → 複製 `re_...`。
+3. Zeabur web env：`RESEND_API_KEY=re_...`、`RESEND_FROM=service@snowrealm.pet`（用已驗證網域的寄件人）。
+4. **Supabase Auth 寄件人**：把 auth 服務的 `GOTRUE_SMTP_ADMIN_EMAIL` 設成 `service@snowrealm.pet` → 重啟 auth。
+   （目前 `Error sending confirmation email` 就是寄件人還在沙盒。）
+
+## 3. Google 登入
+1. <https://console.cloud.google.com> → 建專案 → **OAuth consent screen**（外部）填好、加測試使用者。
+2. **Credentials → Create OAuth client ID → Web application**。
+3. **Authorized redirect URI** 填 Supabase 的 callback（Supabase Dashboard → Auth → Providers → Google 會顯示那個 URL，長得像 `https://<專案>.supabase.co/auth/v1/callback`）。
+4. 拿到 Client ID / Secret：
+   - Zeabur web env：`GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`
+   - **Supabase Dashboard → Auth → Providers → Google → 開啟 + 貼上同一組**（兩邊都要設才生效）。
+5. 沒設的話登入頁 Google 按鈕會顯示「尚未設定」並停用，不會壞。
+
+## 4. LINE 登入
+1. <https://developers.line.biz/console/> → 建 Provider → 建 **LINE Login** channel。
+2. **Callback URL** 填 `https://snowrealm-space.snowrealm.pet/api/auth/line/callback`
+   —— **必須與這裡完全一致**，多一個斜線就會被拒且不告訴你原因。
+3. Zeabur web env：`LINE_LOGIN_CHANNEL_ID` / `LINE_LOGIN_CHANNEL_SECRET` / `LINE_LOGIN_REDIRECT_URI`（=上面那個 callback）。
+4. 想拿 email：在 channel 申請 **email 權限**（要填用途說明）。
+5. LINE 走自建流程（Supabase 不支援），程式已完成，只差憑證。
+
+## 5. Figma（Milestone F）
+1. <https://www.figma.com/developers/apps> → Create new app → 拿 **Client ID / Client Secret**。
+2. OAuth redirect 用正式網域的 callback。
+3. `FIGMA_WEBHOOK_SECRET` **不是 Figma 發的**——是你自訂的 passcode：
+   `openssl rand -hex 32` 產一個，之後建 webhook（`POST /v2/webhooks`）時填這個字串，Figma 會原樣回傳在每則事件，我們用它驗證。
+4. Zeabur web env：`FIGMA_CLIENT_ID` / `FIGMA_CLIENT_SECRET` / `FIGMA_WEBHOOK_SECRET`。
+
+## 5b. Canva（設計來源，跟 Figma 同性質：讀取＋分析設計）
+1. <https://www.canva.com/developers/> → Create an app（Canva Connect API）→ 拿 **Client ID / Client Secret**。
+2. 設定 **OAuth redirect URL** 為正式網域 callback、勾選需要的 scopes（讀設計 `design:content:read`、資產 `asset:read` 等）。
+3. Zeabur web env：`CANVA_CLIENT_ID` / `CANVA_CLIENT_SECRET`（+ 若有 webhook 再加 secret）。
+4. 程式面：provider-core 已註冊 Canva capabilities（未設憑證前顯示「尚未設定」、不給假按鈕）；
+   憑證設好後才實作 OAuth connect/callback 與 `canva.sync`（同 Figma 路徑）。
+
+## 6. 隱私政策 / 使用條款（Google、LINE 審核前置）
+- `/privacy`、`/terms` 頁面已存在；送 Google/LINE 審核前，**確認內容寫實**（資料怎麼用、第三方登入、刪除方式）。
+
+## 7. JWT secret（正式對外前必換）
+- Zeabur 的 Supabase 還在用 demo 預設 secret（key 的 `iss=supabase-demo`）。
+- 換成自己的 JWT secret → **重新產生 anon / service key** → 更新所有用到的 env。正式對外前一定要做。
+
+## 8. 字體
+- **13 套（思源黑/宋、Inter、昭源…）**：後台 **字體管理（`/admin/fonts`）→ 選字體 → 「⤓ 自動安裝」**（伺服器自己抓，免上傳）。
+- **台北黑體**（無自動來源）：翰字鑄造 <https://sites.google.com/view/jtfoundry/> 下載 3 個字重 + OFL 授權 → 後台上傳；檔案大時單一字重分次上傳。詳見 `docs/fonts/README.md`。
+
+## 9. Giphy（富文本 GIF）—— ✅ 你已設好
+- 已在 env/Zeabur 設好。代理 `/api/giphy` 讀 `GIPHY_API_KEY` 或 `NEXT_PUBLIC_GIPHY_API_KEY` 皆可。
+
+## 10. Sentry（可選，錯誤監控）
+- <https://sentry.io> 建專案 → 拿 DSN → Zeabur web env `SENTRY_DSN`。沒設就是關閉（no-op），不影響運作。
+
+## 11. 只有你能決定的內容
+- **Agent 名字 / 外觀**（Milestone D 前）。
+- **生日鏈第 5 環「一年後」放什麼**（已有 AI 代寫版，可換）。
+- **正式產品名稱**（公開前；程式用 `snowrealm` 前綴、品牌走 i18n）。
+- **AI Dot 定價表**（卡經濟層帳本）。
+
+## 12. 平台（之後，見 docs/SnowRealm-Platform-*.md）
+- 開 `snowrealm-id`（OIDC issuer）→ Space 接 client + 綁定/解綁（ADR-024 已備）。
+- 抽 `@snowrealm/rich-editor` SDK（見 `SnowRealm-SDK-vs-Platform.md`）。
