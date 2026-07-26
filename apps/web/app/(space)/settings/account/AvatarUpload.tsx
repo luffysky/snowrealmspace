@@ -29,7 +29,9 @@ export function AvatarUpload({
     }
     void (async () => {
       try {
-        const res = await fetch(`/api/assets/${assetId}/url`)
+        // 必帶 x-space-id：/api/assets/[id]/url 走 resolveContext，沒 header 會 missing_space
+        // → 回 401，signed URL 拿不到、大頭貼一直不顯示（就是「上傳後沒變」的原因）
+        const res = await fetch(`/api/assets/${assetId}/url`, { headers: { 'x-space-id': spaceId } })
         if (!res.ok) return
         const body = (await res.json()) as { data: { url: string } }
         if (!cancelled) setUrl(body.data.url)
@@ -40,7 +42,7 @@ export function AvatarUpload({
     return () => {
       cancelled = true
     }
-  }, [assetId])
+  }, [assetId, spaceId])
 
   async function onPick(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
