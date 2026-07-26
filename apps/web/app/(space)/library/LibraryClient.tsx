@@ -42,6 +42,8 @@ export function LibraryClient({
   const [archived, setArchived] = useState<ArchivedFilter>('exclude')
   const [folderFilter, setFolderFilter] = useState<FolderFilter>('all')
   const [folders, setFolders] = useState<Folder[]>([])
+  // 拖曳中被指向的資料夾 chip（'none' = 未分類、或某 folder id）
+  const [dropTarget, setDropTarget] = useState<string | null>(null)
 
   const headers = { 'x-space-id': spaceId }
   const patchHeaders = { ...headers, 'content-type': 'application/json' }
@@ -178,6 +180,39 @@ export function LibraryClient({
     void refresh()
   }
 
+  // 移動一個檔案到資料夾（拖放與「資料夾」按鈕共用）。folderId=null 代表移出到未分類。
+  async function moveAssetToFolder(asset: AssetRow, folderId: string | null) {
+    if (asset.folder_id === folderId) return
+    const u = await patchAsset(asset, { folderId })
+    if (u) {
+      applyLocal(u)
+      void loadFolders()
+      setNotice(folderId ? '已移到資料夾。' : '已移出資料夾。')
+    }
+  }
+
+  // drop 到某個資料夾 chip：取拖曳帶的 asset id，移過去。
+  function handleDropToFolder(folderId: string | null, e: React.DragEvent) {
+    e.preventDefault()
+    setDropTarget(null)
+    const assetId = e.dataTransfer.getData('text/plain')
+    const asset = assets.find((a) => a.id === assetId)
+    if (asset) void moveAssetToFolder(asset, folderId)
+  }
+
+  /** 讓一個資料夾 chip 成為 drop target 的共用 props。 */
+  function dropProps(key: string, folderId: string | null) {
+    return {
+      onDragOver: (e: React.DragEvent) => {
+        e.preventDefault()
+        e.dataTransfer.dropEffect = 'move'
+        if (dropTarget !== key) setDropTarget(key)
+      },
+      onDragLeave: () => setDropTarget((cur) => (cur === key ? null : cur)),
+      onDrop: (e: React.DragEvent) => handleDropToFolder(folderId, e),
+    }
+  }
+
   const actions: AssetActions = {
     onSelect: (a) => setSelected(a.kind === 'image' ? a : null),
     onDelete: (a) => void handleDelete(a),
@@ -255,12 +290,7 @@ export function LibraryClient({
         folderId = created.id
       }
 
-      const u = await patchAsset(a, { folderId })
-      if (u) {
-        applyLocal(u)
-        void loadFolders()
-        setNotice(folderId ? '已移到資料夾。' : '已移出資料夾。')
-      }
+      await moveAssetToFolder(a, folderId)
     },
     onTagClick: (t) => setTag(t),
   }
@@ -327,8 +357,9 @@ export function LibraryClient({
             </button>
             <button
               type="button"
-              className={`sr-chip${folderFilter === 'none' ? ' sr-chip-active' : ''}`}
+              className={`sr-chip${folderFilter === 'none' ? ' sr-chip-active' : ''}${dropTarget === 'none' ? ' sr-chip-drop' : ''}`}
               onClick={() => setFolderFilter('none')}
+              {...dropProps('none', null)}
             >
               未分類
             </button>
@@ -336,8 +367,9 @@ export function LibraryClient({
               <button
                 key={f.id}
                 type="button"
-                className={`sr-chip${folderFilter === f.id ? ' sr-chip-active' : ''}`}
+                className={`sr-chip${folderFilter === f.id ? ' sr-chip-active' : ''}${dropTarget === f.id ? ' sr-chip-drop' : ''}`}
                 onClick={() => setFolderFilter(f.id)}
+                {...dropProps(f.id, f.id)}
               >
                 📁 {f.name} {f.count > 0 && <span className="sr-muted">({f.count})</span>}
               </button>
@@ -346,6 +378,9 @@ export function LibraryClient({
               ＋ 新增資料夾
             </button>
           </div>
+          <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
+            提示：把下方檔案直接拖到資料夾上就會移進去（也可以用檔案的「資料夾」按鈕）。
+          </p>
           {/* 選了某個資料夾時，提供改名/刪除 */}
           {folderFilter !== 'all' &&
             folderFilter !== 'none' &&

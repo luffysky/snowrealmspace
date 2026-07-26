@@ -1370,6 +1370,19 @@ input[type='range'] {
   flex-direction: column;
   gap: var(--sr-space-2);
 }
+/* 可拖到資料夾：整格用抓取游標，提示可拖 */
+.sr-asset-tile[draggable='true'] {
+  cursor: grab;
+}
+.sr-asset-tile[draggable='true']:active {
+  cursor: grabbing;
+}
+/* 資料夾 chip 被拖曳指向時的高亮（drop target） */
+.sr-chip-drop {
+  outline: 2px dashed var(--sr-accent);
+  outline-offset: 2px;
+  background: color-mix(in srgb, var(--sr-accent) 14%, transparent);
+}
 
 .sr-asset-button {
   display: flex;

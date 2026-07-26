@@ -75,7 +75,15 @@ function AssetTile({
   const archived = asset.archived_at !== null
 
   return (
-    <li className="sr-asset-tile">
+    <li
+      className="sr-asset-tile"
+      draggable
+      onDragStart={(e) => {
+        // 拖到資料夾 chip 上放開即移動（LibraryClient 的 chip 是 drop target）
+        e.dataTransfer.setData('text/plain', asset.id)
+        e.dataTransfer.effectAllowed = 'move'
+      }}
+    >
       <button
         type="button"
         className="sr-asset-fav"
@@ -97,7 +105,8 @@ function AssetTile({
         <span className="sr-asset-thumb">
           {url && asset.kind === 'image' ? (
             /* signed URL 是動態且短期的，不適合 next/image 的最佳化管線 */
-            <img src={url} alt="" loading="lazy" />
+            /* draggable={false}：避免瀏覽器改拖圖片本身，讓整個 li 的拖曳生效 */
+            <img src={url} alt="" loading="lazy" draggable={false} />
           ) : (
             <span className="sr-asset-placeholder" aria-hidden="true">
               {asset.kind === 'video' ? '影片' : asset.kind === 'pdf' ? 'PDF' : '…'}
