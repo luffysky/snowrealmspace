@@ -125,3 +125,30 @@
 ## 全域閘門（本批次收尾）
 - typecheck / lint（web＋ai-core）/ check:rls(58) / check:deps / check:secrets / build 全綠；
   **768 單元測試全過**（+6 embed）。SSE 與 embedding 皆以真實金鑰 live 驗過。
+
+---
+
+## RWD 破版修復 + 字體來源文件（晚間補）
+
+**回報（截圖 13/14）**：手機通知面板溢出畫面右緣文字被切；側邊欄選單項目 padding 太小擠成一團。
+**做法**：先修兩處，再派 Explore agent 全專案掃「同類」問題一起收。
+
+### 側邊欄選單間距（前台＋後台一起）
+- `.sr-nav-link` 垂直 padding `8px → 10px`（＋圖示 20px ≈ 40px 點擊高度，接近 WCAG 目標尺寸）。
+- `.sr-sidebar-nav` / `.sr-sidebar-secondary` 項目間距 `2px → var(--sr-space-1)`（4px）。
+- `.sr-nav-sub` padding `6px 10px → var(--sr-space-2) var(--sr-space-3)`（8/12）。
+- **後台 AdminShell 沿用同一批 class**，上述改動一併生效；另補 `.sr-admin-navgroup` 改 flex column + gap（原本群組內連結 0 間距）。
+
+### 通知面板防溢出（加固）
+- 手機 override 已存在（`fixed` + `inset-inline`）。加 `max-width: calc(100vw - 2*space-3)` 當防線
+  —— `.sr-topbar` 有 `backdrop-filter` 會成為 `fixed` 的包含塊，明確夾住寬度後任何情況都不破版。
+- `top` 改用 `calc(var(--topbar-h) + space-1)`（原寫死 60px）。
+
+### 全專案 RWD 掃描結論（Explore agent）
+- **右錨點下拉**：全站僅通知面板一個，已修；`.sr-tour-tip`（有 clampLeft+max-width）、`.sr-dialog`、`.sr-cookie` 皆已響應式。
+- **寬表格**：後台 15+ 張 `.sr-table` 全部已包 `overflow-x:auto`，無漏。
+- **nowrap / min-width**：都在窄內容或 `flex-wrap` 列，加上 `html,body{overflow-x:hidden}` 安全網，無水平溢出源。
+
+### 字體來源文件（task）
+- 新增 `docs/fonts/README.md`：14 套字體（9 繁中＋5 拉丁）完整下載來源表、一鍵指令、OFL 注意事項。
+- **台北黑體**為唯一人工步驟：翰字鑄造 JT Foundry <https://sites.google.com/view/jtfoundry/>，其餘 13 套 `scripts/download-fonts.ts` 自動化。

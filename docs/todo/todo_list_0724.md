@@ -35,7 +35,8 @@
 - [x] ~~**hosted migrations** — 已套到 **0037**（含 Lottie `type`/`lottie_id`）；每加 DB 欄跑 `pnpm db:migrate`~~
 - 🔴 **JWT secret** — Zeabur Supabase 仍用 demo 預設 secret（key 的 iss=supabase-demo）。**正式對外前必換**，換完重新產 anon/service key 更新 env。
 - 🔴 **Q10 手動走查** — 人實際點過 Milestone B 一輪（主題/背景/字體/版面）。
-- 🔴 **台北黑體字檔** — 沒有穩定下載網址，需人工下載放 `assets/fonts/taipei-sans-tc/`（其餘 12 套已自動化）。
+- 🔴 **台北黑體字檔** — 沒有穩定下載網址，需人工下載放 `assets/fonts/taipei-sans-tc/`（其餘 13 套已自動化）。
+      **下載來源與步驟見 `docs/fonts/README.md`**（翰字鑄造 JT Foundry <https://sites.google.com/view/jtfoundry/>）。
 - 🔴 **AI 金鑰**（Milestone D）— **改為後台管理**（照 ai 島）：
       - Zeabur web 只需設**一把** `AI_KEY_ENCRYPTION_SECRET`（base64 的 32 bytes，master 加密金鑰）
       - 各家 provider 金鑰到網站 **`/admin/ai-keys`** 貼上（會先測試才加密存 DB），不放 Zeabur env

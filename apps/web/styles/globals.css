@@ -353,7 +353,7 @@ h3 {
 .sr-sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--sr-space-1);
   /* 唯一會捲的區域：主選單過長時內部捲動，捲到頭尾不外溢（不帶動內容頁）。 */
   flex: 1 1 auto;
   min-height: 0;
@@ -364,7 +364,9 @@ h3 {
   display: flex;
   align-items: center;
   gap: var(--sr-space-3);
-  padding: var(--sr-space-2) var(--sr-space-3);
+  /* 每項至少有可觀的點擊高度（垂直 10px + 圖示 20px ≈ 40px，接近 WCAG 目標尺寸）。
+     先前是 8px，行動抽屜裡十幾項擠成一團、幾乎沒有 padding。 */
+  padding: 10px var(--sr-space-3);
   border-radius: var(--sr-radius-sm);
   color: var(--sr-text-secondary);
   font-size: var(--sr-text-sm);
@@ -396,6 +398,13 @@ h3 {
   width: 0;
 }
 /* 後台側邊欄的分組（可收合，純文字連結） */
+.sr-admin-navgroup {
+  /* 群組內的標題與連結原本是無間距的 block；改成 flex column + gap，
+     讓每列與主側邊欄一致地有呼吸空間（否則後台選單同樣擠成一團）。 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-1);
+}
 .sr-admin-navgroup + .sr-admin-navgroup {
   margin-top: var(--sr-space-2);
 }
@@ -748,8 +757,11 @@ h3 {
   .sr-notif-panel {
     position: fixed;
     inset-inline: var(--sr-space-3);
-    top: 60px;
+    top: calc(var(--topbar-h) + var(--sr-space-1));
     width: auto;
+    /* 防線：.sr-topbar 有 backdrop-filter → 會成為 fixed 的包含塊，若日後 topbar 不是滿版
+       就可能溢出。明確夾住寬度，任何情況都不超過視窗。 */
+    max-width: calc(100vw - 2 * var(--sr-space-3));
     max-height: 75vh;
   }
 }
@@ -2771,12 +2783,12 @@ input[type='range'] {
   border-top: var(--sr-border-width) solid var(--sr-border);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--sr-space-1);
 }
 .sr-nav-sub {
   display: block;
   width: 100%;
-  padding: 6px 10px;
+  padding: var(--sr-space-2) var(--sr-space-3);
   border-radius: var(--sr-radius-sm, 8px);
   font-size: var(--sr-text-sm);
   color: var(--sr-text-secondary);
