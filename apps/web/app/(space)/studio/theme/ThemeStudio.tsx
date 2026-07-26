@@ -101,14 +101,15 @@ export function ThemeStudio({
     return (body as { data: unknown }).data
   }
 
-  async function handleSave(asNew: boolean) {
+  /** 儲存草稿。回傳存好的 theme id（失敗回 null），讓「儲存並套用」能接著用同一個 id。 */
+  async function handleSave(asNew: boolean): Promise<string | null> {
     const validated = themeDefinitionSchema.safeParse({ ...draft, name })
     if (!validated.success) {
       setStatus({
         kind: 'error',
         message: validated.error.issues[0]?.message ?? '主題設定不正確。',
       })
-      return
+      return null
     }
 
     setStatus({ kind: 'saving' })
@@ -121,6 +122,8 @@ export function ThemeStudio({
         setThemes((prev) => [{ ...created, is_favorite: false }, ...prev])
         setEditingId(created.id)
         setStatus({ kind: 'saved', message: '已另存為新主題。' })
+        setDirty(false)
+        return created.id
       } else {
         const updated = (await api(`/api/themes/${editingId}`, {
           method: 'PATCH',
@@ -128,10 +131,22 @@ export function ThemeStudio({
         })) as SavedTheme
         setThemes((prev) => prev.map((t) => (t.id === editingId ? { ...t, ...updated } : t)))
         setStatus({ kind: 'saved', message: '已儲存。' })
+        setDirty(false)
+        return editingId
       }
-      setDirty(false)
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '儲存失敗。' })
+      return null
+    }
+  }
+
+  async function applyThemeId(id: string) {
+    setStatus({ kind: 'saving' })
+    try {
+      await api(`/api/themes/${id}/apply`, { method: 'POST' })
+      setStatus({ kind: 'saved', message: '已套用到你的空間。重新整理即可看到。' })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '套用失敗。' })
     }
   }
 
@@ -140,13 +155,13 @@ export function ThemeStudio({
       setStatus({ kind: 'error', message: '請先儲存主題再套用。' })
       return
     }
-    setStatus({ kind: 'saving' })
-    try {
-      await api(`/api/themes/${editingId}/apply`, { method: 'POST' })
-      setStatus({ kind: 'saved', message: '已套用到你的空間。重新整理即可看到。' })
-    } catch (err) {
-      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '套用失敗。' })
-    }
+    await applyThemeId(editingId)
+  }
+
+  /** 一鍵儲存並套用 —— 消除「先存再套」兩步的困惑（字體/顏色改完直接生效）。 */
+  async function handleSaveAndApply() {
+    const id = await handleSave(false)
+    if (id) await applyThemeId(id)
   }
 
   function loadTheme(theme: SavedTheme) {
@@ -274,9 +289,17 @@ export function ThemeStudio({
             }}
           />
 
-          <div className="sr-row" style={{ marginTop: 'var(--sr-space-4)' }}>
-            <button className="sr-button" type="button" onClick={() => void handleSave(false)}>
-              {editingId ? '儲存' : '建立'}
+          <div className="sr-row" style={{ marginTop: 'var(--sr-space-4)', flexWrap: 'wrap' }}>
+            <button
+              className="sr-button"
+              type="button"
+              onClick={() => void handleSaveAndApply()}
+              title="儲存這套設定並立刻套用到你的空間"
+            >
+              儲存並套用
+            </button>
+            <button className="sr-button sr-button-secondary" type="button" onClick={() => void handleSave(false)}>
+              {editingId ? '只儲存' : '建立'}
             </button>
             <button
               className="sr-button sr-button-secondary"
@@ -295,6 +318,9 @@ export function ThemeStudio({
               套用
             </button>
           </div>
+          <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
+            改好字體/顏色後按「<strong>儲存並套用</strong>」就會生效。只是預覽的話不會保留。
+          </p>
 
           {status.kind === 'error' && (
             <p className="sr-message sr-message-error" role="alert">
