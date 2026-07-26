@@ -544,7 +544,8 @@ h3 {
 .sr-sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: var(--sr-space-1);
+  /* 項目間距 4px→8px：先前列與列貼太近，看起來像 padding 不夠。 */
+  gap: var(--sr-space-2);
   /* 唯一會捲的區域：主選單過長時內部捲動，捲到頭尾不外溢（不帶動內容頁）。 */
   flex: 1 1 auto;
   min-height: 0;
@@ -558,6 +559,9 @@ h3 {
   /* 每項的點擊高度（垂直 12px + 圖示 20px ≈ 44px，達 WCAG 目標尺寸）。
      先前 8px→10px 仍偏擠，加到 space-3 讓每列明顯有呼吸空間。 */
   padding: var(--sr-space-3) var(--sr-space-3);
+  /* 關鍵：flex column 裡的項目預設 flex-shrink:1，選單一長就會被壓扁（padding 看起來變小）。
+     釘成 0 → 項目永遠保持完整高度，改由 .sr-sidebar-nav 捲動，而不是壓縮每一列。 */
+  flex-shrink: 0;
   border-radius: var(--sr-radius-sm);
   color: var(--sr-text-secondary);
   font-size: var(--sr-text-sm);
