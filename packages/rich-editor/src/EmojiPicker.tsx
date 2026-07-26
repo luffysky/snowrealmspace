@@ -38,7 +38,11 @@ export function EmojiPicker({ onSelect }: { onSelect: (emoji: string) => void })
   function toggle() {
     if (!open && btnRef.current) {
       const r = btnRef.current.getBoundingClientRect()
-      setPos({ top: r.bottom + 6, left: Math.max(8, Math.min(r.left, window.innerWidth - 300)) })
+      const PANEL_H = 320
+      const left = Math.max(8, Math.min(r.left, window.innerWidth - 300))
+      // 下方空間不夠（例如底部的漂浮對話）就往上開，避免被裁切
+      const top = window.innerHeight - r.bottom >= PANEL_H ? r.bottom + 6 : Math.max(8, r.top - PANEL_H - 6)
+      setPos({ top, left })
     }
     setOpen((o) => !o)
   }

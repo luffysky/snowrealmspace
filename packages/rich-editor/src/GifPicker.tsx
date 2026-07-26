@@ -21,6 +21,7 @@ export function GifPicker({
   const [q, setQ] = useState('')
   const [gifs, setGifs] = useState<Gif[]>([])
   const [state, setState] = useState<'idle' | 'loading' | 'error' | 'unconfigured'>('idle')
+  const [errMsg, setErrMsg] = useState<string | null>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -49,9 +50,20 @@ export function GifPicker({
             if (alive) setState('unconfigured')
             return null
           }
-          return r.ok ? r.json() : Promise.reject(new Error())
+          const body = (await r.json().catch(() => null)) as
+            | { data?: { gifs: Gif[] }; error?: { message?: string } }
+            | null
+          if (!r.ok) {
+            // 顯示伺服器給的真正原因（例如金鑰無效），別只說「讀不到」
+            if (alive) {
+              setErrMsg(body?.error?.message ?? null)
+              setState('error')
+            }
+            return null
+          }
+          return body
         })
-        .then((body: { data?: { gifs: Gif[] } } | null) => {
+        .then((body) => {
           if (!alive || !body) return
           setGifs(body.data?.gifs ?? [])
           setState('idle')
@@ -67,7 +79,11 @@ export function GifPicker({
   function toggle() {
     if (!open && btnRef.current) {
       const r = btnRef.current.getBoundingClientRect()
-      setPos({ top: r.bottom + 6, left: Math.max(8, Math.min(r.left, window.innerWidth - 340)) })
+      const PANEL_H = 380
+      const left = Math.max(8, Math.min(r.left, window.innerWidth - 340))
+      // 下方空間不夠（例如底部的漂浮對話）就往上開，避免被裁切
+      const top = window.innerHeight - r.bottom >= PANEL_H ? r.bottom + 6 : Math.max(8, r.top - PANEL_H - 6)
+      setPos({ top, left })
     }
     setOpen((o) => !o)
   }
@@ -89,7 +105,7 @@ export function GifPicker({
           {state === 'unconfigured' ? (
             <p className="sr-muted" style={{ margin: 0 }}>Giphy 尚未設定（GIPHY_API_KEY）。</p>
           ) : state === 'error' ? (
-            <p className="sr-muted" style={{ margin: 0 }}>讀不到 GIF。</p>
+            <p className="sr-muted" style={{ margin: 0 }}>{errMsg ?? '讀不到 GIF。'}</p>
           ) : state === 'loading' ? (
             <p className="sr-muted" style={{ margin: 0 }}>載入中…</p>
           ) : (

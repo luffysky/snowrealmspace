@@ -33,7 +33,16 @@ export const GET = handler(async (request: NextRequest) => {
 
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
-    if (!res.ok) return fail('PROVIDER_ERROR', 'Giphy 回應失敗。')
+    if (!res.ok) {
+      // 把真正的原因說出來（靜默失敗是 bug）——最常見是金鑰無效（401/403）
+      const detail = await res.text().catch(() => '')
+      console.error('[giphy] 上游回應失敗', res.status, detail.slice(0, 200))
+      const msg =
+        res.status === 401 || res.status === 403
+          ? 'Giphy 金鑰無效或未啟用（請確認 web 服務的 GIPHY_API_KEY 正確、且已重新部署）。'
+          : `Giphy 回應失敗（${res.status}）。`
+      return fail('PROVIDER_ERROR', msg)
+    }
     const body = (await res.json()) as { data?: GiphyRaw[] }
     const gifs = (body.data ?? [])
       .map((g) => {
