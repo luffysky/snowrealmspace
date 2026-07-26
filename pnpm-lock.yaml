@@ -135,6 +135,9 @@ importers:
       '@snowrealm/provider-core':
         specifier: workspace:*
         version: link:../../packages/provider-core
+      '@snowrealm/rich-editor':
+        specifier: workspace:*
+        version: link:../../packages/rich-editor
       '@snowrealm/shared-types':
         specifier: workspace:*
         version: link:../../packages/shared-types
@@ -377,6 +380,91 @@ importers:
 
   packages/provider-core:
     devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)(jsdom@29.1.1(@noble/hashes@1.8.0))
+
+  packages/rich-editor:
+    dependencies:
+      '@tiptap/extension-character-count':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extensions@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-code-block-lowlight':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/extension-code-block@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0)(highlight.js@11.11.1)(lowlight@3.3.0)
+      '@tiptap/extension-color':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extension-text-style@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0)))
+      '@tiptap/extension-highlight':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
+      '@tiptap/extension-image':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
+      '@tiptap/extension-link':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0)
+      '@tiptap/extension-placeholder':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extensions@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-table':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0)
+      '@tiptap/extension-table-cell':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extension-table@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-table-header':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extension-table@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-table-row':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extension-table@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-task-item':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extension-list@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-task-list':
+        specifier: ^3
+        version: 3.29.0(@tiptap/extension-list@3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0))
+      '@tiptap/extension-text-align':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
+      '@tiptap/extension-text-style':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
+      '@tiptap/extension-underline':
+        specifier: ^3
+        version: 3.29.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
+      '@tiptap/pm':
+        specifier: ^3
+        version: 3.29.0
+      '@tiptap/react':
+        specifier: ^3
+        version: 3.29.0(@floating-ui/dom@1.8.0)(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))(@tiptap/pm@3.29.0)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@tiptap/starter-kit':
+        specifier: ^3
+        version: 3.29.0
+      lowlight:
+        specifier: ^3.3.0
+        version: 3.3.0
+      react:
+        specifier: ^19.0.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.8(react@19.2.8)
+      tiptap-markdown:
+        specifier: ^0.9.0
+        version: 0.9.0(@tiptap/core@3.29.0(@tiptap/pm@3.29.0))
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.2.3(@types/react@19.2.17)
       typescript:
         specifier: ^5.7.2
         version: 5.9.3

@@ -26,6 +26,7 @@ const nextConfig = {
     '@snowrealm/analytics',
     '@snowrealm/storage',
     '@snowrealm/validation',
+    '@snowrealm/rich-editor',
   ],
 
   webpack: (webpackConfig) => {
