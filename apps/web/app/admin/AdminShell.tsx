@@ -69,7 +69,7 @@ export function AdminShell({
         </button>
         <strong className="sr-brand">管理後台</strong>
         <div className="sr-actions">
-          <Link href={homeHref} className="sr-button sr-button-secondary">
+          <Link href={homeHref} className="sr-button sr-admin-back">
             ← 回前台
           </Link>
         </div>

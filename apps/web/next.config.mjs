@@ -8,6 +8,12 @@ const nextConfig = {
   // 但那不是「build 壞掉」。解耦後 build 只管編譯，風格由 CI 擋。
   eslint: { ignoreDuringBuilds: true },
 
+  // subset-font 在執行期從自己的套件目錄載入 harfbuzz 的 .wasm。
+  // 若讓 webpack 打包它，那個 .wasm 不會被搬進 build 產物 → production
+  // （next build + next start）會找不到 wasm 而壞掉。標成 external，
+  // 讓 Next 在執行期直接從 node_modules require（wasm 就在 index.js 旁邊）。
+  serverExternalPackages: ['subset-font'],
+
   // E2E 用獨立的 build 目錄。沒有這個隔離，`next build` 會覆寫
   // 正在執行的 dev server 的 .next，導致 CSS chunk 變成 404
   // ——頁面看起來還在，但完全沒有樣式。見 90-build-log.md。

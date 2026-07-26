@@ -152,3 +152,21 @@
 ### 字體來源文件（task）
 - 新增 `docs/fonts/README.md`：14 套字體（9 繁中＋5 拉丁）完整下載來源表、一鍵指令、OFL 注意事項。
 - **台北黑體**為唯一人工步驟：翰字鑄造 JT Foundry <https://sites.google.com/view/jtfoundry/>，其餘 13 套 `scripts/download-fonts.ts` 自動化。
+
+---
+
+## 後台字體管理（上傳／安裝／啟用／移除）
+
+**需求**：Luffy 下載好字體（台北黑體）想直接在後台上傳，不用跑 CLI。
+**做法**：把 `download→build→upload` 這條 CLI 管線的 build+upload 兩步搬進後台 route，
+維持 ADR-016 的不變量 —— **只安裝內建目錄（ALL_FONTS）的 OFL 字體**，metadata 一律取自目錄，
+授權全文必填（不接受任意使用者字體）。
+
+- `lib/fonts/subset.ts`：`build-fonts.ts` 的執行期版本，記憶體內把 ttf/otf 切成 unicode-range woff2 分片（同一套分片、同一首屏預算）。
+- `POST /api/admin/fonts`：上傳原始檔＋授權 → 子集化 → 超預算擋下（誠實）→ 先授權後字體上傳 R2（`public/fonts/<slug>/`）→ upsert `fonts` 表。
+- `GET`：已安裝清單（含停用）＋目錄安裝狀態；`PATCH ?slug=`：啟用/停用；`DELETE ?slug=`：先刪 R2 分片再刪列（font_pairs FK cascade）。
+- `/admin/fonts` 頁＋`FontsAdmin` client：選目錄字體→上傳字體檔＋授權→即時安裝；已安裝表可切換/移除。後台側邊欄新增「外觀資源 → 字體管理」。
+- `subset-font` 加進 apps/web 依賴；`next.config` 設 `serverExternalPackages: ['subset-font']`（harfbuzz wasm 執行期從 node_modules 載，不被 webpack 打包）；補 `types/subset-font.d.ts`。
+- **驗證**：typecheck / lint / check:secrets / check:deps 全綠；`next build`（獨立 dist）成功，wasm 外部化後不破 build。
+
+**台北黑體安裝步驟**：後台 → 外觀資源 → 字體管理 → 選「台北黑體（需人工下載）」→ 選 3 個字重檔（Light/Regular/Bold）＋ OFL 授權檔 → 上傳並安裝。

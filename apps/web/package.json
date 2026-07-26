@@ -30,6 +30,7 @@
     "pg-boss": "^10.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "subset-font": "^2.5.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

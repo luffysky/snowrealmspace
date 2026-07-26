@@ -44,6 +44,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       ],
     },
     {
+      group: '外觀資源',
+      items: [{ href: `${ADMIN_BASE}/fonts`, label: '字體管理' }],
+    },
+    {
       group: '系統與稽核',
       items: [
         { href: `${ADMIN_BASE}/users`, label: '使用者管理' },

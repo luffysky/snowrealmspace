@@ -162,6 +162,12 @@ h3 {
   border: var(--sr-border-width) solid var(--sr-border);
 }
 
+/* 後台「← 回前台」：實心強調色 + 微陰影，與頂列（surface-alt）明顯區隔。
+   原本用 sr-button-secondary（透明）會和背景混在一起。 */
+.sr-admin-back {
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.18);
+}
+
 .sr-input {
   font: inherit;
   width: 100%;
@@ -364,9 +370,9 @@ h3 {
   display: flex;
   align-items: center;
   gap: var(--sr-space-3);
-  /* 每項至少有可觀的點擊高度（垂直 10px + 圖示 20px ≈ 40px，接近 WCAG 目標尺寸）。
-     先前是 8px，行動抽屜裡十幾項擠成一團、幾乎沒有 padding。 */
-  padding: 10px var(--sr-space-3);
+  /* 每項的點擊高度（垂直 12px + 圖示 20px ≈ 44px，達 WCAG 目標尺寸）。
+     先前 8px→10px 仍偏擠，加到 space-3 讓每列明顯有呼吸空間。 */
+  padding: var(--sr-space-3) var(--sr-space-3);
   border-radius: var(--sr-radius-sm);
   color: var(--sr-text-secondary);
   font-size: var(--sr-text-sm);
