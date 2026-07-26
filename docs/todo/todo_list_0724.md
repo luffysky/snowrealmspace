@@ -366,10 +366,18 @@
    - `https://snowrealm-space-db.zeabur.app/auth/v1/callback` ← **關鍵，一定要對**
    - 本機用本地 Supabase 測 Google 才需要：`http://127.0.0.1:54321/auth/v1/callback`
    - ⚠️ 不要填站台的 `/auth/callback`——那是 Supabase 驗完後才轉回站台的位址，
-     由 Supabase 的 `additional_redirect_urls` 白名單管（config.toml / Dashboard），不是 Google 這邊。
-5. 拿到 Client ID / Secret：
-   - Zeabur web env：`GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`
-   - **Supabase → Auth → Providers → Google → 開啟 + 貼上同一組**（兩邊都要設才生效）。
+     自架版由 auth 服務的 `GOTRUE_URI_ALLOW_LIST` env 白名單管（就是你設 magic link 網域那個），不是 Google 這邊。
+5. 拿到 Client ID / Secret 後，**兩個服務都要設**（自架 Supabase 沒有 Dashboard，全靠 env）：
+   - **Zeabur `auth`（GoTrue）服務**——真正驗證用，加這四個再重啟：
+     ```
+     GOTRUE_EXTERNAL_GOOGLE_ENABLED=true
+     GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID=<Client ID>
+     GOTRUE_EXTERNAL_GOOGLE_SECRET=<Client Secret>
+     GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI=https://snowrealm-space-db.zeabur.app/auth/v1/callback
+     ```
+     （就是設 `GOTRUE_SMTP_ADMIN_EMAIL` 那個服務；`REDIRECT_URI` 要跟 Google Console 那個一字不差）
+   - **Zeabur `web` 服務**——只是登入頁「要不要顯示 Google 按鈕」的開關：
+     `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`
 6. 沒設的話登入頁 Google 按鈕會顯示「尚未設定」並停用，不會壞。
 
 ## 4. LINE 登入
