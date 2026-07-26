@@ -67,6 +67,14 @@
 
 ## 富文本 SDK：`@snowrealm/rich-editor`
 
+> **狀態（0727 已上線第一階段）**：套件已抽出並上 workspace，`apps/web` 反過來裝它，
+> 三個消費端（notes / capture / agent）改用薄包裝、行為不變，`next build` 三頁驗證通過。
+> 這一階段**只搬 client 元件**（RichEditor / EmojiPicker / GifPicker / RichHtml），耦合拆兩處：
+> `promptLink`（必填，web 注入 useDialog）、`giphyEndpoint`（預設 `/api/giphy`）。
+> **刻意留在 web、之後再搬**：`sanitizeRichHtml`（伺服器端，避免把 Node 依賴帶進 client bundle）、
+> `ChatMedia`（還綁 `/api/assets` 與聊天 UI）、`.sr-rich*` 樣式（仍靠宿主 globals.css + `--sr-*` token）。
+> 下面的「套件結構 / 耦合表」是**最終目標**，非目前現況。
+
 **為什麼它是 SDK 不是 Platform**：純前端、無狀態、客戶端可獨立跑；輸出/輸入都是 HTML 字串，
 不需要中央服務。它有幾塊**不是 tiptap 原生依賴**（自刻），正是收成 SDK 的價值所在。
 

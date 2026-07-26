@@ -222,3 +222,20 @@
 - 閘門：web/worker typecheck、lint、check:deps 全綠。
 
 > 之後平台重構時，web 上傳路徑（`lib/fonts/subset.ts`）與 worker 這份 fetch+subset 可收進 `@snowrealm/font-build` 套件去重。
+
+---
+
+## 0727：抽出 `@snowrealm/rich-editor` SDK（第一階段）
+
+**目標**：把富文本從 `apps/web` 收成可攜套件，讓未來社群 / SnowRealm Platform 動態牆能複用同一套編輯器。
+
+- 新套件 `packages/rich-editor`（type:module、`src/index.ts` 為入口，pattern 對齊 widget-engine）：搬入 `RichEditor` / `EmojiPicker` / `GifPicker` / `RichHtml`；tiptap+lowlight+tiptap-markdown 進 deps、react/react-dom 當 peer。
+- **耦合拆兩處**（否則不可攜）：
+  - `promptLink`（必填）：SDK 不再直接依賴 `useDialog`，改由宿主注入網址對話框。
+  - `giphyEndpoint`（預設 `/api/giphy`）：Giphy 代理端點參數化。
+- **web 端保留 `components/rich/*` 薄包裝**：`RichEditor` 注入 `useDialog` 的 prompt，其餘直接 re-export → 三個消費端（notes / capture / agent）**import 路徑與行為都不變**。
+- `next.config` `transpilePackages` + `apps/web/package.json` workspace dep 加它；dep-cruiser 無違規（react/tiptap 套件不受 `packages/ui` 的禁 workspace-deps 規則約束）。
+- **刻意留在 web、之後再搬**：`sanitizeRichHtml`（伺服器端 sanitize，避免把 Node 依賴帶進 client bundle）、`ChatMedia`（還綁 `/api/assets` 與聊天 UI）、`.sr-rich*` 樣式（仍靠宿主 globals.css + `--sr-*` token）。文件已標「目前現況 vs 最終目標」。
+- 閘門：package + web typecheck、lint、check:deps 全綠；isolated `next build`（`.next-verify`）驗證 notes/capture/agent 三頁正常打包（各 353 kB，含編輯器）。
+
+> 下一步（非本次）：`sanitizeRichHtml` 抽成套件的 Node 專用子路徑、`ChatMedia` 以 `resolveAssetUrl` prop 解耦、`.sr-rich*` 出獨立 stylesheet——對外發佈前再做。
