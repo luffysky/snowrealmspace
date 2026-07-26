@@ -7,6 +7,8 @@ import { lineConfig } from '@snowrealm/db/line-oauth'
 import { LinkedAccounts } from './LinkedAccounts'
 import { AvatarUpload } from './AvatarUpload'
 import { CopyId } from './CopyId'
+import { ChangePassword } from './ChangePassword'
+import { accountIdentity } from '@/lib/auth/account-identity'
 
 export const metadata: Metadata = { title: '登入方式 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -57,11 +59,16 @@ export default async function AccountSettingsPage({
   const linkedKey = typeof params['linked'] === 'string' ? params['linked'] : null
   const welcome = params['welcome'] === '1'
 
+  // 純帳號註冊的合成 email 不對外顯示 —— 顯示帳號本身
+  const acct = accountIdentity(user.email, user.username)
+
   return (
     <div className="sr-stack">
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{welcome ? '歡迎！' : '登入方式'}</h1>
-        <p className="sr-muted">{user.email}</p>
+        <p className="sr-muted">
+          {acct.label}：{acct.value}
+        </p>
       </section>
 
       {welcome && (
@@ -110,6 +117,14 @@ export default async function AccountSettingsPage({
           googleAvailable={Boolean(process.env['GOOGLE_OAUTH_CLIENT_ID'])}
           lineAvailable={lineConfig() !== null}
         />
+      </section>
+
+      <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>更改密碼</h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          知道目前的密碼就能在這裡直接換新的。忘記密碼要另外走重設（需要綁定的真信箱）。
+        </p>
+        <ChangePassword />
       </section>
 
       <section className="sr-card">

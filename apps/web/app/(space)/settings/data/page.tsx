@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { DangerZone } from '../DangerZone'
+import { accountIdentity } from '@/lib/auth/account-identity'
 
 export const metadata: Metadata = { title: '資料地圖 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -113,7 +114,12 @@ export default async function DataMapPage() {
         </p>
       </section>
 
-      <DangerZone spaceId={space.id} spaceName={space.name} userEmail={user?.email ?? null} />
+      <DangerZone
+        spaceId={space.id}
+        spaceName={space.name}
+        confirmLabel={accountIdentity(user?.email, user?.username).label}
+        confirmValue={user ? accountIdentity(user.email, user.username).value : null}
+      />
     </div>
   )
 }

@@ -6,8 +6,9 @@ import { z } from 'zod'
 import { getDb } from '@/lib/supabase/server'
 import { getUser } from '@/lib/auth/session'
 import { emitEvent, audit } from '@snowrealm/analytics'
-import { createAdminClient } from '@snowrealm/db/server'
+import { createAdminClient, createPublicClient } from '@snowrealm/db/server'
 import { storage } from '@snowrealm/storage'
+import { accountIdentity } from '@/lib/auth/account-identity'
 
 const privacySchema = z
   .object({
@@ -256,6 +257,71 @@ export async function updateBirthday(
   return { status: 'saved', message: month ? '已記住你的生日。' : '已清除生日。' }
 }
 
+const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, '請輸入目前的密碼'),
+    newPassword: z.string().min(8, '新密碼至少 8 個字'),
+  })
+  .strict()
+
+/**
+ * 更改密碼（登入方式頁）。
+ *
+ * 這是「知道舊密碼、當場換新的」路徑 —— 和忘記密碼（寄信重設）不同，
+ * 純使用者名稱帳號（沒有真 email，不能收信）也能用這條。
+ *
+ * 驗證目前密碼用的是**不落地 session 的 anon client**（createPublicClient），
+ * 避免動到當前登入狀態；驗過才用本人的 session client 更新密碼。
+ */
+export async function changePassword(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const parsed = changePasswordSchema.safeParse({
+    currentPassword: formData.get('currentPassword'),
+    newPassword: formData.get('newPassword'),
+  })
+  if (!parsed.success) {
+    return { status: 'error', message: parsed.error.issues[0]?.message ?? '輸入格式不正確。' }
+  }
+  const { currentPassword, newPassword } = parsed.data
+
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+  // email 這裡只是 Supabase 的內部登入識別（純帳號時是合成值），不對外顯示
+  if (!user.email) return { status: 'error', message: '這個帳號沒有可用的登入識別，無法改密碼。' }
+
+  if (currentPassword === newPassword) {
+    return { status: 'error', message: '新密碼不能和目前的一樣。' }
+  }
+
+  // 驗證目前密碼：不落地 session，不影響現在的登入
+  const verifier = createPublicClient()
+  const { error: verifyErr } = await verifier.auth.signInWithPassword({
+    email: user.email,
+    password: currentPassword,
+  })
+  if (verifyErr) {
+    return { status: 'error', message: '目前的密碼不對。' }
+  }
+
+  const db = await getDb()
+  const { error } = await db.auth.updateUser({ password: newPassword })
+  if (error) {
+    return { status: 'error', message: '更新密碼失敗，請稍後再試。' }
+  }
+
+  await audit({
+    spaceId: null,
+    actorId: user.id,
+    action: 'account.password.changed',
+    entityType: 'user',
+    entityId: user.id,
+  })
+
+  return { status: 'saved', message: '密碼已更新。下次用新密碼登入。' }
+}
+
 const deleteSpaceSchema = z
   .object({ spaceId: z.string().uuid(), confirmName: z.string() })
   .strict()
@@ -349,17 +415,19 @@ async function purgeSpaceNow(admin: ReturnType<typeof createAdminClient>, spaceI
  * 名下 space 先清掉，刪 user 時就不會再 cascade 到有 append-only 規則的 activity_events；
  * 他在別人 space 留下的事件則由 FK 的 ON DELETE SET NULL 匿名化（0031 放行）。
  *
- * 需要輸入 email 二次確認。用 service role（帳號生命週期，rule 10 容許）。
+ * 需要輸入帳號識別二次確認（真 email 帳號輸 email；純帳號輸使用者名稱，
+ * 不逼使用者去記那個內部合成 email）。用 service role（帳號生命週期，rule 10 容許）。
  */
 export async function deleteAccount(
   _prev: SettingsActionState,
   formData: FormData,
 ): Promise<SettingsActionState> {
-  const confirmEmail = (formData.get('confirmEmail') as string | null)?.trim() ?? ''
+  const confirmValue = (formData.get('confirmValue') as string | null)?.trim() ?? ''
   const user = await getUser()
   if (!user) return { status: 'error', message: '請先登入。' }
-  if (!user.email || confirmEmail.toLowerCase() !== user.email.toLowerCase()) {
-    return { status: 'error', message: '輸入的 email 不符，請輸入你的登入 email 以確認。' }
+  const acct = accountIdentity(user.email, user.username)
+  if (!acct.value || confirmValue.toLowerCase() !== acct.value.toLowerCase()) {
+    return { status: 'error', message: `輸入的${acct.label}不符，請輸入你的${acct.label}以確認。` }
   }
 
   const admin = createAdminClient()

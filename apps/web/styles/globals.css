@@ -34,6 +34,7 @@
     'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei',
     sans-serif;
   --sr-font-ui: var(--sr-font-body);
+  --sr-font-heading: var(--sr-font-body);
   --sr-font-mono: ui-monospace, 'JetBrains Mono', 'Cascadia Code', monospace;
 
   --sr-scale-body: 1;

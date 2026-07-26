@@ -9,21 +9,26 @@ const initial: SettingsActionState = { status: 'idle' }
  * 危險區域：刪除整個空間，或刪除整個帳號。
  *
  * 刪除空間：軟刪除 + 7 天寬限（期間可還原），需完整輸入空間名稱。
- * 刪除帳號：立即且不可逆（含名下所有 space），需輸入登入 email。
+ * 刪除帳號：立即且不可逆（含名下所有 space），需輸入帳號識別
+ * （真 email 帳號輸 email；純帳號輸使用者名稱）。
  */
 export function DangerZone({
   spaceId,
   spaceName,
-  userEmail,
+  confirmLabel,
+  confirmValue,
 }: {
   spaceId: string
   spaceName: string
-  userEmail: string | null
+  /** 刪帳號時要輸入的識別種類：'帳號' 或 'Email' */
+  confirmLabel: string
+  /** 該識別的值（使用者名稱或真 email） */
+  confirmValue: string | null
 }) {
   return (
     <>
       <DeleteSpace spaceId={spaceId} spaceName={spaceName} />
-      {userEmail && <DeleteAccount userEmail={userEmail} />}
+      {confirmValue && <DeleteAccount confirmLabel={confirmLabel} confirmValue={confirmValue} />}
     </>
   )
 }
@@ -73,17 +78,17 @@ function DeleteSpace({ spaceId, spaceName }: { spaceId: string; spaceName: strin
   )
 }
 
-function DeleteAccount({ userEmail }: { userEmail: string }) {
+function DeleteAccount({ confirmLabel, confirmValue }: { confirmLabel: string; confirmValue: string }) {
   const [state, formAction, pending] = useActionState(deleteAccount, initial)
   const [confirm, setConfirm] = useState('')
-  const armed = confirm.trim().toLowerCase() === userEmail.toLowerCase()
+  const armed = confirm.trim().toLowerCase() === confirmValue.toLowerCase()
 
   return (
     <section className="sr-card sr-danger-zone">
       <h2 className="sr-section-title">刪除整個帳號</h2>
       <p className="sr-muted" style={{ marginTop: 0 }}>
         這會<strong>立刻且不可逆</strong>地刪除你的帳號與<strong>名下所有空間的全部資料</strong>
-        （檔案先從雲端儲存刪除，再刪資料），沒有寬限、無法還原。確定要刪，請輸入你的登入 email。
+        （檔案先從雲端儲存刪除，再刪資料），沒有寬限、無法還原。確定要刪，請輸入你的{confirmLabel}。
       </p>
 
       {state.status === 'error' && (
@@ -95,16 +100,15 @@ function DeleteAccount({ userEmail }: { userEmail: string }) {
       <form action={formAction} className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
         <label className="sr-field">
           <span>
-            輸入登入 email「<strong>{userEmail}</strong>」以確認
+            輸入{confirmLabel}「<strong>{confirmValue}</strong>」以確認
           </span>
           <input
             className="sr-input"
-            name="confirmEmail"
-            type="email"
+            name="confirmValue"
             autoComplete="off"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
-            placeholder={userEmail}
+            placeholder={confirmValue}
           />
         </label>
         <div className="sr-btn-row">

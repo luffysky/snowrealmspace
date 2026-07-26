@@ -1,8 +1,29 @@
 'use client'
 
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { effectiveTheme, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { applyThemeToPreview } from '@/lib/theme/apply'
+import { applyFontVars, loadFontFaces, type FontManifestEntry } from '@/lib/theme/font-loader'
+
+/** /api/fonts 回傳的欄位（只取字體套用需要的）。 */
+type CatalogueFont = {
+  id: string
+  slug: string
+  family: string
+  fallbackStack: string
+  weights: number[]
+  files: Record<string, { file: string; unicodeRange: string; critical: boolean }[]>
+}
+
+function toEntry(f: CatalogueFont): FontManifestEntry {
+  return {
+    slug: f.slug,
+    family: f.family,
+    fallbackStack: f.fallbackStack,
+    weights: f.weights,
+    files: f.files,
+  }
+}
 
 /**
  * 即時預覽。
@@ -21,12 +42,57 @@ import { applyThemeToPreview } from '@/lib/theme/apply'
 export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefinition }>(
   function ThemePreview({ definition }, ref) {
     const [mode, setMode] = useState<'light' | 'dark'>('light')
-    // 預覽自己負責把 definition 寫進自己的容器 —— 不依賴父層 effect 的時序，
-    // 顏色與「卡片與質感」（圓角/材質/陰影/邊框）都會即時反映。
     const surfaceRef = useRef<HTMLDivElement | null>(null)
+
+    // 字體目錄（一次載入）。字體不隨淺/深模式變。
+    const [fonts, setFonts] = useState<CatalogueFont[] | null>(null)
     useEffect(() => {
-      if (surfaceRef.current) applyThemeToPreview(effectiveTheme(definition, mode), surfaceRef.current)
-    }, [definition, mode])
+      let cancelled = false
+      void (async () => {
+        const res = await fetch('/api/fonts')
+        if (cancelled || !res.ok) return
+        const body = (await res.json()) as { data: { fonts: CatalogueFont[] } }
+        if (!cancelled) setFonts(body.data.fonts)
+      })()
+      return () => {
+        cancelled = true
+      }
+    }, [])
+
+    // id 或 slug 都能查（使用者主題存 uuid，內建主題存 slug）
+    const byKey = useMemo(() => {
+      const m = new Map<string, CatalogueFont>()
+      for (const f of fonts ?? []) {
+        m.set(f.id, f)
+        m.set(f.slug, f)
+      }
+      return m
+    }, [fonts])
+
+    // 預覽自己負責把 definition 寫進自己的容器 —— 不依賴父層 effect 的時序，
+    // 顏色、「卡片與質感」（圓角/材質/陰影/邊框）與字體都即時反映。
+    //
+    // 顏色與字體**必須在同一個 effect**：applyThemeToPreview 是 `style.cssText = …`
+    // 全量覆寫，會把字體變數一起清掉。若拆兩個 effect，切換淺/深模式時只有顏色那個
+    // 會重跑 → 字體變數被清掉卻沒補回來。所以先套顏色、緊接著補字體。
+    useEffect(() => {
+      const surface = surfaceRef.current
+      if (!surface) return
+      applyThemeToPreview(effectiveTheme(definition, mode), surface)
+
+      if (!fonts) return
+      const heading = byKey.get(definition.typography.headingFontId)
+      const body = byKey.get(definition.typography.bodyFontId)
+      const ui = byKey.get(definition.typography.uiFontId)
+      // 三個角色缺任何一個就不動字體（維持繼承），避免只換一半更難看。
+      // globals.css 讀的是 --sr-font-body/-heading/-ui，不是 compileThemeToCssVars
+      // 產的 -id placeholder —— 少了這段，選字體時預覽不會有任何變化。
+      if (!heading || !body || !ui) return
+      loadFontFaces([...new Set([heading, body, ui])].map(toEntry))
+      applyFontVars({ heading: toEntry(heading), body: toEntry(body), ui: toEntry(ui) }, surface)
+      // surface 自己也要吃 body 變數，內文才會跟著換（標題各自用 var(--sr-font-heading)）
+      surface.style.fontFamily = 'var(--sr-font-body)'
+    }, [definition, mode, fonts, byKey])
     const setRef = (el: HTMLDivElement | null) => {
       surfaceRef.current = el
       if (typeof ref === 'function') ref(el)

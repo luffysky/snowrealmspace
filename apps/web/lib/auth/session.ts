@@ -10,7 +10,7 @@ export type ActiveSpace = {
   settings: Tables<'space_settings'>
 }
 
-export type SessionUser = { id: string; email: string | null }
+export type SessionUser = { id: string; email: string | null; username: string | null }
 
 /**
  * 取得目前登入者。未登入回 null。
@@ -20,7 +20,7 @@ export const getUser = cache(async (): Promise<SessionUser | null> => {
   const db = await getDb()
   const identity = await readSessionIdentity(db)
   if (!identity) return null
-  return { id: identity.id, email: identity.email }
+  return { id: identity.id, email: identity.email, username: identity.username }
 })
 
 export async function requireUser(): Promise<SessionUser> {
