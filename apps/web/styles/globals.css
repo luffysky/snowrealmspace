@@ -3888,11 +3888,9 @@ input[type='range'] {
 .sr-gif-panel {
   position: fixed;
   z-index: 90;
-  width: 288px;
+  width: 300px;
   max-width: calc(100vw - 16px);
-  max-height: 320px;
-  overflow-y: auto;
-  padding: var(--sr-space-3);
+  padding: var(--sr-space-2);
   display: flex;
   flex-direction: column;
   gap: var(--sr-space-2);
@@ -3900,32 +3898,112 @@ input[type='range'] {
   border: var(--sr-border-width) solid var(--sr-border);
   border-radius: var(--sr-radius-md);
   box-shadow: var(--sr-shadow-lg, 0 12px 40px -12px rgba(0, 0, 0, 0.4));
+  overflow: hidden;
+}
+.sr-emoji-panel {
+  max-height: 340px;
 }
 .sr-gif-panel {
   width: 320px;
+  max-height: 420px;
 }
-.sr-emoji-group {
-  margin: var(--sr-space-1) 0 2px;
-  font-size: var(--sr-text-xs);
-  font-weight: 700;
-  color: var(--sr-text-secondary);
+
+/* 分類 tab（emoji）與捲動區共用結構 */
+.sr-emoji-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.sr-emoji-tab {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sr-emoji-tab:hover {
+  background: var(--sr-surface-alt);
+}
+.sr-emoji-tab.is-active {
+  background: var(--sr-surface-alt);
+  box-shadow: inset 0 0 0 1.5px var(--sr-accent);
+}
+.sr-emoji-scroll,
+.sr-gif-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 .sr-emoji-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 2px;
 }
 .sr-emoji-cell {
   border: none;
   background: transparent;
-  font-size: 20px;
-  line-height: 1;
-  padding: 4px;
+  padding: 3px;
   border-radius: var(--sr-radius-sm);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
 }
 .sr-emoji-cell:hover {
   background: var(--sr-surface-alt);
+}
+.sr-kaomoji-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+}
+.sr-kaomoji-cell {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  padding: 6px 4px;
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+  color: var(--sr-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sr-kaomoji-cell:hover {
+  background: var(--sr-surface-alt);
+  color: var(--sr-accent);
+}
+
+/* GIF：分類快捷 + 格 + 分頁 */
+.sr-gif-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.sr-gif-cat {
+  border: none;
+  background: var(--sr-surface-alt);
+  color: var(--sr-text-secondary);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sr-gif-cat:hover {
+  color: var(--sr-text-primary);
+}
+.sr-gif-cat.is-active {
+  background: var(--sr-accent);
+  color: var(--sr-on-accent, #fff);
+  font-weight: 600;
 }
 .sr-gif-grid {
   display: grid;
@@ -3946,6 +4024,15 @@ input[type='range'] {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.sr-gif-cell:hover {
+  box-shadow: inset 0 0 0 2px var(--sr-accent);
+}
+.sr-gif-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sr-space-2);
 }
 
 /* 對話附件：圖片/影片直接顯示（不進氣泡框），原圖 + 圓角，可點開；圖片可存 */

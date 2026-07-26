@@ -25,11 +25,12 @@ export const GET = handler(async (request: NextRequest) => {
 
   const q = request.nextUrl.searchParams.get('q')?.trim() ?? ''
   const limit = Math.min(24, Math.max(1, Number(request.nextUrl.searchParams.get('limit')) || 24))
+  const offset = Math.max(0, Number(request.nextUrl.searchParams.get('offset')) || 0)
 
   const base = q
     ? `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(q)}`
     : 'https://api.giphy.com/v1/gifs/trending'
-  const url = `${base}${q ? '&' : '?'}api_key=${encodeURIComponent(key)}&limit=${limit}&rating=pg-13&bundle=fixed_height_small`
+  const url = `${base}${q ? '&' : '?'}api_key=${encodeURIComponent(key)}&limit=${limit}&offset=${offset}&rating=pg-13&bundle=fixed_height_small`
 
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
@@ -43,7 +44,7 @@ export const GET = handler(async (request: NextRequest) => {
           : `Giphy 回應失敗（${res.status}）。`
       return fail('PROVIDER_ERROR', msg)
     }
-    const body = (await res.json()) as { data?: GiphyRaw[] }
+    const body = (await res.json()) as { data?: GiphyRaw[]; pagination?: { total_count?: number } }
     const gifs = (body.data ?? [])
       .map((g) => {
         const img = g.images?.fixed_height_small ?? g.images?.fixed_height
@@ -57,7 +58,8 @@ export const GET = handler(async (request: NextRequest) => {
         }
       })
       .filter((x): x is GiphyGif => x !== null)
-    return ok({ gifs })
+    const total = body.pagination?.total_count ?? 0
+    return ok({ gifs, hasMore: offset + limit < total })
   } catch {
     return fail('PROVIDER_ERROR', 'Giphy 連線逾時或失敗。')
   }
