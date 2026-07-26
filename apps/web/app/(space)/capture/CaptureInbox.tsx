@@ -1,6 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { RichEditor } from '@/components/rich/RichEditor'
+import { RichHtml } from '@/components/rich/RichHtml'
+
+/** 空內容判定：tiptap 空文件是 <p></p>；有 GIF（img）不算空。 */
+function isEmptyHtml(html: string): boolean {
+  if (/<img\b/i.test(html)) return false
+  return !html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim()
+}
 
 export type CaptureRow = {
   id: string
@@ -23,8 +31,8 @@ export function CaptureInbox({ spaceId, initial }: { spaceId: string; initial: C
   const [error, setError] = useState<string | null>(null)
 
   async function add() {
-    const body = draft.trim()
-    if (!body || busy) return
+    const body = draft
+    if (isEmptyHtml(draft) || busy) return
     setBusy(true)
     setError(null)
     try {
@@ -78,26 +86,10 @@ export function CaptureInbox({ spaceId, initial }: { spaceId: string; initial: C
   return (
     <div className="sr-stack">
       <section className="sr-card">
-        <label className="sr-visually-hidden" htmlFor="capture-draft">
-          要捕捉的內容
-        </label>
-        <textarea
-          id="capture-draft"
-          className="sr-input"
-          rows={3}
-          value={draft}
-          maxLength={2000}
-          placeholder="現在在想什麼？丟進來就好，之後再整理。（Ctrl/⌘+Enter 送出）"
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-              e.preventDefault()
-              void add()
-            }
-          }}
-        />
+        <label className="sr-visually-hidden">要捕捉的內容</label>
+        <RichEditor value={draft} onChange={setDraft} placeholder="現在在想什麼？丟進來就好，之後再整理。" />
         <div className="sr-row" style={{ justifyContent: 'flex-end', marginTop: 'var(--sr-space-2)' }}>
-          <button type="button" className="sr-button" onClick={() => void add()} disabled={busy || !draft.trim()}>
+          <button type="button" className="sr-button" onClick={() => void add()} disabled={busy || isEmptyHtml(draft)}>
             捕捉
           </button>
         </div>
@@ -118,7 +110,7 @@ export function CaptureInbox({ spaceId, initial }: { spaceId: string; initial: C
           <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0, gap: 'var(--sr-space-2)' }}>
             {items.map((it) => (
               <li key={it.id} className="sr-card" style={{ padding: 'var(--sr-space-3)' }}>
-                <p style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{it.body}</p>
+                <RichHtml html={it.body} />
                 <div className="sr-row" style={{ gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-2)', alignItems: 'center', flexWrap: 'wrap' }}>
                   {SOURCE_LABEL[it.source] && (
                     <span className="sr-chip sr-chip-tag">{SOURCE_LABEL[it.source]}</span>

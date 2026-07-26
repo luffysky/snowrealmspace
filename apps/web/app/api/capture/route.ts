@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server'
 import { captureCreateSchema } from '@snowrealm/validation'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
+import { sanitizeRichHtml } from '@/lib/rich-html'
 
 export const dynamic = 'force-dynamic'
 
@@ -34,7 +35,7 @@ export const POST = handler(async (request: NextRequest) => {
     .from('capture_inbox')
     .insert({
       space_id: ctx.spaceId,
-      body: parsed.data.body,
+      body: sanitizeRichHtml(parsed.data.body),
       source: parsed.data.source,
       created_by: ctx.userId,
     })

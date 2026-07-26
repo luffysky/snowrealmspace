@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { ALLOWED_MIME } from '@snowrealm/validation'
 import { uploadAsset } from '@/lib/upload-asset'
+import { EmojiPicker } from '@/components/rich/EmojiPicker'
+import { GifPicker } from '@/components/rich/GifPicker'
 
 export type Attachment = { assetId: string; mimeType: string }
 
@@ -72,6 +74,7 @@ export function AgentChat({
   const [recording, setRecording] = useState(false)
   const [transcribing, setTranscribing] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const imageInputRef = useRef<HTMLInputElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const recorderRef = useRef<MediaRecorder | null>(null)
@@ -162,6 +165,46 @@ export function AgentChat({
       if (found) URL.revokeObjectURL(found.previewUrl)
       return prev.filter((p) => p.assetId !== assetId)
     })
+  }
+
+  // 表情：插到游標處（不用富文本，純字元進 textarea）
+  function insertEmoji(emoji: string) {
+    const ta = textareaRef.current
+    if (!ta) {
+      setInput((p) => p + emoji)
+      return
+    }
+    const start = ta.selectionStart ?? input.length
+    const end = ta.selectionEnd ?? input.length
+    const next = input.slice(0, start) + emoji + input.slice(end)
+    setInput(next)
+    requestAnimationFrame(() => {
+      ta.focus()
+      const pos = start + emoji.length
+      ta.setSelectionRange(pos, pos)
+    })
+  }
+
+  // GIF：giphy 是外部 URL，抓下來當圖片走既有 assets 管線（GIF 屬 image kind）→ 就能顯示與送出。
+  async function attachGif(url: string) {
+    if (pendingImages.length >= 4) {
+      setError('最多附加 4 張圖片。')
+      return
+    }
+    setUploading(true)
+    setError(null)
+    try {
+      const res = await fetch(url)
+      const blob = await res.blob()
+      const file = new File([blob], 'giphy.gif', { type: blob.type || 'image/gif' })
+      const previewUrl = URL.createObjectURL(file)
+      const assetId = await uploadAsset(file, spaceId)
+      setPendingImages((prev) => [...prev, { assetId, previewUrl, name: 'GIF' }])
+    } catch {
+      setError('加入 GIF 失敗（可能跨網域限制），請改用圖片上傳。')
+    } finally {
+      setUploading(false)
+    }
   }
 
   // ── 文字檔：前端讀內容、貼進輸入框（不落地，最誠實）──
@@ -492,7 +535,9 @@ export function AgentChat({
         >
           {recording ? '⏹ 停止錄音' : transcribing ? '轉寫中…' : '🎤 語音'}
         </button>
-        {uploading && <span className="sr-muted">上傳圖片中…</span>}
+        <EmojiPicker onSelect={insertEmoji} />
+        <GifPicker onSelect={(url) => void attachGif(url)} />
+        {uploading && <span className="sr-muted">上傳中…</span>}
         <input
           ref={imageInputRef}
           type="file"
@@ -518,6 +563,7 @@ export function AgentChat({
 
       <form onSubmit={onSubmit} className="sr-chat-input-row">
         <textarea
+          ref={textareaRef}
           className="sr-input"
           rows={2}
           value={input}
