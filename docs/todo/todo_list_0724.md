@@ -386,6 +386,10 @@
    只要 magic link 登入信點了能正確回站台，Google 這條回導就 OK。
 
 ## 4. LINE 登入
+> **跟 Google 不一樣**：LINE **不經 GoTrue**（Supabase 沒有 LINE provider），站台自己實作 OAuth。
+> 所以沒有 `GOTRUE_EXTERNAL_LINE_*`、也沒有 `…/auth/v1/callback` 這種東西——
+> callback 是**站台自己**的 `/api/auth/line/callback`，憑證全設在 **web 服務**，auth 服務完全不用動。
+
 1. <https://developers.line.biz/console/> → 建 Provider → 建 **LINE Login** channel。
 2. **Callback URL** 填 `https://snowrealm-space.snowrealm.pet/api/auth/line/callback`
    —— **必須與這裡完全一致**，多一個斜線就會被拒且不告訴你原因。
