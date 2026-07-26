@@ -1216,6 +1216,42 @@ input[type='range'] {
   color: #fff;
 }
 
+/* 背景即時預覽舞台：背景填滿、主題卡片疊在上面 */
+.sr-bg-preview-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 380px;
+  border-radius: var(--sr-radius);
+  overflow: hidden;
+  border: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface-alt);
+}
+.sr-bg-preview-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sr-bg-preview-empty {
+  background:
+    repeating-conic-gradient(var(--sr-border) 0% 25%, transparent 0% 50%) 50% / 24px 24px;
+  opacity: 0.5;
+}
+.sr-bg-preview-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sr-space-4);
+}
+.sr-bg-preview-card {
+  max-width: 320px;
+  width: 100%;
+}
+
 /*
  * 預覽容器自己帶一整套 --sr-* 變數（由 applyThemeToPreview 寫入），
  * 所以裡面的元素會用草稿的顏色而非目前套用的主題。

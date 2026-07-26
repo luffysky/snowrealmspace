@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
+import {
+  themeDefinitionSchema,
+  defaultThemeDefinition,
+  type ThemeDefinition,
+} from '@snowrealm/theme-engine'
 import { BackgroundStudio, type AssetOption } from './BackgroundStudio'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import type { Playlist } from './PlaylistPanel'
@@ -37,6 +42,24 @@ export default async function BackgroundStudioPage() {
       .limit(100),
   ])
 
+  // 目前套用的主題（給預覽把背景疊在主題上，並能切淺/深模式）
+  let activeTheme: ThemeDefinition = defaultThemeDefinition()
+  const { data: spaceRow } = await db
+    .from('spaces')
+    .select('active_theme_id')
+    .eq('id', space.id)
+    .maybeSingle()
+  if (spaceRow?.active_theme_id) {
+    const { data: theme } = await db
+      .from('themes')
+      .select('definition')
+      .eq('id', spaceRow.active_theme_id)
+      .is('deleted_at', null)
+      .maybeSingle()
+    const parsed = themeDefinitionSchema.safeParse(theme?.definition)
+    if (parsed.success) activeTheme = parsed.data
+  }
+
   return (
     <div className="sr-stack">
       <section>
@@ -51,6 +74,7 @@ export default async function BackgroundStudioPage() {
         initialBackgrounds={(backgrounds ?? []) as unknown as BackgroundItem[]}
         initialPlaylists={(playlists ?? []) as unknown as Playlist[]}
         imageAssets={(assets ?? []) as AssetOption[]}
+        activeTheme={activeTheme}
       />
     </div>
   )

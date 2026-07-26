@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
-import { NEUTRAL } from '@snowrealm/theme-engine'
+import { NEUTRAL, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { DYNAMIC_SCENES, STATIC_SCENES, getScene } from '@/lib/scenes'
 import { LOTTIE_SCENES, getLottieScene } from '@/lib/lottie-scenes'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
@@ -11,6 +11,7 @@ import { gradientCss } from '@/components/BackgroundLayer'
 import { ProceduralScene } from '@/components/ProceduralScene'
 import { LottieBackground } from '@/components/LottieBackground'
 import { BackgroundEditor } from './BackgroundEditor'
+import { BackgroundPreview } from './BackgroundPreview'
 import { PlaylistPanel, backgroundLabel, type Playlist } from './PlaylistPanel'
 
 export type AssetOption = {
@@ -26,11 +27,13 @@ export function BackgroundStudio({
   initialBackgrounds,
   initialPlaylists,
   imageAssets,
+  activeTheme,
 }: {
   spaceId: string
   initialBackgrounds: BackgroundItem[]
   initialPlaylists: Playlist[]
   imageAssets: AssetOption[]
+  activeTheme: ThemeDefinition
 }) {
   const router = useRouter()
   const [backgrounds, setBackgrounds] = useState(initialBackgrounds)
@@ -203,6 +206,12 @@ export function BackgroundStudio({
           ✓ {status.message}
         </p>
       )}
+
+      <BackgroundPreview
+        spaceId={spaceId}
+        item={editing ?? backgrounds[0] ?? null}
+        theme={activeTheme}
+      />
 
       <section className="sr-card" data-tour="bg-add">
         <h2 className="sr-section-title">加入背景</h2>

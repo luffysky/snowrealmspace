@@ -217,14 +217,14 @@ export function FontsAdmin() {
             <label className="sr-label" htmlFor="font-files">
               字體檔（.ttf / .otf，可多選）
             </label>
-            <input id="font-files" ref={fontInputRef} type="file" accept=".ttf,.otf" multiple disabled={busy} />
+            <input id="font-files" ref={fontInputRef} type="file" accept=".ttf,.otf" multiple disabled={busy} style={{ maxWidth: '100%' }} />
           </div>
 
           <div>
             <label className="sr-label" htmlFor="license-file">
               授權全文（OFL.txt / LICENSE，必填）
             </label>
-            <input id="license-file" ref={licenseInputRef} type="file" accept=".txt,.md,text/plain" disabled={busy} />
+            <input id="license-file" ref={licenseInputRef} type="file" accept=".txt,.md,text/plain" disabled={busy} style={{ maxWidth: '100%' }} />
           </div>
 
           <div>
