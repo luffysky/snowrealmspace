@@ -1002,6 +1002,22 @@ body {
   min-width: 0;
 }
 
+/* 隨捲動固定的存檔列：控制項很長時，改完字體/顏色往下捲也永遠看得到「儲存並套用」 */
+.sr-studio-savebar {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-3);
+  flex-wrap: wrap;
+  padding: var(--sr-space-2) var(--sr-space-3);
+  background: var(--sr-surface);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius);
+  box-shadow: var(--sr-shadow-md);
+}
+
 .sr-studio-preview {
   position: sticky;
   /* app-shell：捲動容器是 .sr-content，topbar 不在其中，所以貼近內容頂即可 */

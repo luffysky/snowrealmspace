@@ -71,7 +71,7 @@ export function AiNaming({
             className="sr-input"
             value={value}
             maxLength={40}
-            placeholder="例如：小雪、Nami、夥伴…"
+            placeholder="例如：雪凜、凜空、綠寶…"
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') void save()

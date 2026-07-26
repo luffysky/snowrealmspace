@@ -274,6 +274,17 @@ export function ThemeStudio({
     <div className="sr-studio" data-tour="theme-studio">
       {/* ── 左：控制 ── */}
       <div className="sr-studio-controls sr-stack">
+        {/* 隨捲動固定的存檔列 —— 手機上控制項很長，改完字體往下捲也永遠看得到怎麼存 */}
+        <div className="sr-studio-savebar">
+          <button className="sr-button" type="button" onClick={() => void handleSaveAndApply()}>
+            儲存並套用
+          </button>
+          {dirty ? (
+            <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>有未儲存的變更</span>
+          ) : status.kind === 'saved' ? (
+            <span className="sr-message-success" style={{ fontSize: 'var(--sr-text-sm)' }}>✓ 已套用</span>
+          ) : null}
+        </div>
         <section className="sr-card">
           <label className="sr-label" htmlFor="theme-name">
             主題名稱
