@@ -170,3 +170,15 @@
 - **驗證**：typecheck / lint / check:secrets / check:deps 全綠；`next build`（獨立 dist）成功，wasm 外部化後不破 build。
 
 **台北黑體安裝步驟**：後台 → 外觀資源 → 字體管理 → 選「台北黑體（需人工下載）」→ 選 3 個字重檔（Light/Regular/Bold）＋ OFL 授權檔 → 上傳並安裝。
+
+---
+
+## UI/主題/後台一批（晚間續，逐項 commit）
+
+- **選單 padding 再加大**：`.sr-nav-link` 8→10→12px（前後台選單）；`.sr-admin-navgroup` 補 flex gap。
+- **「← 回前台」按鈕**：改實心強調色 + 微陰影（原透明 secondary 與頂列混色）。
+- **角色標籤**：平台 owner（luffysky00）標「擁有者」；其他空間 owner（nami0724）標「管理員」（用 checkSiteAdmin.role 區分）。
+- **空間名稱就地改名**：SpaceShell 品牌名 owner 點一下編輯 → `PATCH /api/space`（id 取自 session 防 IDOR、owner+RLS 雙保險）→ router.refresh。
+- **深淺色自動配對**：`deriveDarkTheme` 卡片/底色壓中性（不再深粉紅）；新增 `deriveLightTheme`/`isDarkTheme`/`effectiveTheme`（依底自動選模式，深色主題也能反推淺色）。dark-mode.test 11/11。
+- **Secret 產生器**（`/admin/secrets`）：前端 crypto 產生，長度 8/16/32/64、字元組合 hex/base64/英數/純英/純數/英數+符號、各長度用途表、copy。
+- **Secret 紀錄**（0054）：`admin_secret_notes` 值 AES-256-GCM 加密後存（主金鑰在 env）；RLS 無 policy → 只 service role + checkSiteAdmin；GET 列表/reveal、POST、DELETE；UI 可存/顯示/刪。types 手動補（gen types 需 Docker，本機無）。

@@ -56,6 +56,39 @@ export type Database = {
           },
         ]
       }
+      admin_secret_notes: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          encoding: string | null
+          id: string
+          label: string
+          length_bytes: number | null
+          purpose: string | null
+          value_encrypted: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          encoding?: string | null
+          id?: string
+          label: string
+          length_bytes?: number | null
+          purpose?: string | null
+          value_encrypted: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          encoding?: string | null
+          id?: string
+          label?: string
+          length_bytes?: number | null
+          purpose?: string | null
+          value_encrypted?: string
+        }
+        Relationships: []
+      }
       admin_user_notes: {
         Row: {
           author_id: string | null

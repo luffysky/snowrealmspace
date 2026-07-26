@@ -21,8 +21,8 @@ export default async function AdminSecretsPage() {
       </p>
       <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Secret 產生器</h1>
       <p className="sr-muted">
-        產生密碼學等級的隨機值（前端 crypto，不經伺服器、不落地）。選長度與字元組合，產生後複製貼到
-        Zeabur env 或後台設定。
+        產生密碼學等級的隨機值（前端 crypto，產生本身不經伺服器）。選長度與字元組合，產生後複製貼到
+        Zeabur env 或後台設定。也可以加密儲存紀錄（值以 AES-256-GCM 加密後才進 DB）。
       </p>
       <SecretGen />
     </main>

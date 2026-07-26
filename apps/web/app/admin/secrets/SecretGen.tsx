@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * Secret 產生器（純前端，crypto.getRandomValues）。
@@ -79,15 +79,123 @@ function generate(charset: Charset, length: number): string {
   }
 }
 
+type SavedNote = {
+  id: string
+  label: string
+  purpose: string | null
+  length_bytes: number | null
+  encoding: string | null
+  created_at: string
+}
+
 export function SecretGen() {
   const [charset, setCharset] = useState<Charset>('hex')
   const [length, setLength] = useState(32)
   const [value, setValue] = useState('')
   const [copied, setCopied] = useState(false)
 
+  // 儲存的紀錄（值在 DB 加密存，這裡列表不含值）
+  const [saved, setSaved] = useState<SavedNote[]>([])
+  const [saveLabel, setSaveLabel] = useState('')
+  const [savePurpose, setSavePurpose] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [revealed, setRevealed] = useState<Record<string, string>>({})
+  const [notice, setNotice] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null)
+
+  async function loadSaved() {
+    try {
+      const res = await fetch('/api/admin/secrets')
+      if (!res.ok) return
+      const body = (await res.json()) as { data: SavedNote[] }
+      setSaved(body.data)
+    } catch {
+      /* 列表載入失敗不擋產生器 */
+    }
+  }
+
+  useEffect(() => {
+    void loadSaved()
+  }, [])
+
   function make() {
     setValue(generate(charset, length))
     setCopied(false)
+  }
+
+  async function save() {
+    if (!value) {
+      setNotice({ kind: 'error', text: '先產生一個 secret 再儲存。' })
+      return
+    }
+    if (!saveLabel.trim()) {
+      setNotice({ kind: 'error', text: '請給這筆紀錄一個標籤（例如「JWT secret 2026-07」）。' })
+      return
+    }
+    setSaving(true)
+    try {
+      const res = await fetch('/api/admin/secrets', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          label: saveLabel.trim(),
+          purpose: savePurpose.trim() || undefined,
+          value,
+          lengthBytes: length,
+          encoding: charset,
+        }),
+      })
+      const body = (await res.json().catch(() => null)) as { error?: { message: string } } | null
+      if (!res.ok) {
+        setNotice({ kind: 'error', text: `✕ ${body?.error?.message ?? '儲存失敗。'}` })
+        return
+      }
+      setNotice({ kind: 'ok', text: '✓ 已加密儲存這筆紀錄。' })
+      setSaveLabel('')
+      setSavePurpose('')
+      await loadSaved()
+    } catch {
+      setNotice({ kind: 'error', text: '✕ 網路或伺服器錯誤。' })
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  async function reveal(id: string) {
+    if (revealed[id]) {
+      // 再按一次收起
+      setRevealed((r) => {
+        const next = { ...r }
+        delete next[id]
+        return next
+      })
+      return
+    }
+    try {
+      const res = await fetch(`/api/admin/secrets?id=${encodeURIComponent(id)}`)
+      const body = (await res.json().catch(() => null)) as { data?: { value: string }; error?: { message: string } } | null
+      if (!res.ok || !body?.data) {
+        setNotice({ kind: 'error', text: `✕ ${body?.error?.message ?? '無法讀取。'}` })
+        return
+      }
+      setRevealed((r) => ({ ...r, [id]: body.data!.value }))
+    } catch {
+      setNotice({ kind: 'error', text: '✕ 網路錯誤。' })
+    }
+  }
+
+  async function del(id: string) {
+    if (!window.confirm('刪除這筆 secret 紀錄？')) return
+    const res = await fetch(`/api/admin/secrets?id=${encodeURIComponent(id)}`, { method: 'DELETE' })
+    if (!res.ok) {
+      setNotice({ kind: 'error', text: '✕ 刪除失敗。' })
+      return
+    }
+    setRevealed((r) => {
+      const next = { ...r }
+      delete next[id]
+      return next
+    })
+    await loadSaved()
   }
 
   async function copy() {
@@ -106,6 +214,12 @@ export function SecretGen() {
 
   return (
     <div className="sr-stack">
+      {notice && (
+        <p className={`sr-message ${notice.kind === 'error' ? 'sr-message-error' : 'sr-message-success'}`} role="status">
+          {notice.text}
+        </p>
+      )}
+
       <section className="sr-card" style={{ padding: 'var(--sr-space-5)' }}>
         <div className="sr-stack">
           <div>
@@ -172,6 +286,37 @@ export function SecretGen() {
               {value}
             </output>
           )}
+
+          {/* 儲存紀錄：值會加密後存 DB（reveal 時才解密） */}
+          {value && (
+            <div
+              className="sr-stack"
+              style={{
+                borderTop: 'var(--sr-border-width) solid var(--sr-border)',
+                paddingTop: 'var(--sr-space-4)',
+              }}
+            >
+              <input
+                className="sr-input"
+                placeholder="標籤（例如「JWT secret 2026-07」）"
+                value={saveLabel}
+                maxLength={120}
+                onChange={(e) => setSaveLabel(e.target.value)}
+              />
+              <input
+                className="sr-input"
+                placeholder="用途備註（選填）"
+                value={savePurpose}
+                maxLength={500}
+                onChange={(e) => setSavePurpose(e.target.value)}
+              />
+              <div>
+                <button type="button" className="sr-button sr-button-secondary" onClick={() => void save()} disabled={saving}>
+                  {saving ? '儲存中…' : '加密儲存這筆'}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -199,6 +344,63 @@ export function SecretGen() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      {/* ── 已儲存的 secret 紀錄 ── */}
+      <section>
+        <h2 style={{ fontSize: 'var(--sr-text-h3, 1.25rem)' }}>已儲存的紀錄（{saved.length}）</h2>
+        <p className="sr-muted" style={{ marginTop: 0, fontSize: 'var(--sr-text-sm)' }}>
+          值以 AES-256-GCM 加密後存 DB（主金鑰在 env，不在 DB）。列表不含值，按「顯示」才會解密。
+        </p>
+        {saved.length === 0 ? (
+          <p className="sr-muted">還沒有儲存任何紀錄。</p>
+        ) : (
+          <div style={{ overflowX: 'auto' }}>
+            <table className="sr-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr>
+                  <th style={{ textAlign: 'left' }}>標籤 / 用途</th>
+                  <th style={{ textAlign: 'left' }}>格式</th>
+                  <th style={{ textAlign: 'left' }}>值</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {saved.map((s) => (
+                  <tr key={s.id}>
+                    <td>
+                      <strong>{s.label}</strong>
+                      {s.purpose && (
+                        <>
+                          <br />
+                          <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
+                            {s.purpose}
+                          </span>
+                        </>
+                      )}
+                    </td>
+                    <td className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
+                      {s.encoding ?? '—'}
+                      {s.length_bytes ? ` · ${s.length_bytes}` : ''}
+                    </td>
+                    <td style={{ fontFamily: 'var(--sr-font-mono, ui-monospace, monospace)', wordBreak: 'break-all', userSelect: 'all', maxWidth: 240 }}>
+                      {revealed[s.id] ?? '••••••••'}
+                    </td>
+                    <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
+                      <button type="button" className="sr-linkish" onClick={() => void reveal(s.id)}>
+                        {revealed[s.id] ? '隱藏' : '顯示'}
+                      </button>
+                      {' · '}
+                      <button type="button" className="sr-linkish" onClick={() => void del(s.id)}>
+                        刪除
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
     </div>
   )
