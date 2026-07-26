@@ -116,32 +116,46 @@ export function FontsAdmin() {
     }
   }
 
+  // 安裝改成背景 job（中文字體太重，同步會 524）：只入列，然後輪詢列表看它出現。
   async function autoInstall() {
     if (!slug) {
       setNotice({ kind: 'error', text: '請先選擇字體。' })
       return
     }
+    const target = slug
+    const family = selected?.displayName ?? target
     setBusy(true)
-    setNotice({ kind: 'ok', text: '伺服器抓取＋子集化中…（免上傳，可能需數十秒）' })
     try {
       const res = await fetch('/api/admin/fonts/install', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ slug: target }),
       })
-      const body = (await res.json().catch(() => null)) as
-        | { data?: { family: string; weights: number[]; sliceCount: number } }
-        | { error?: { message: string } }
-        | null
+      const body = (await res.json().catch(() => null)) as { error?: { message: string } } | null
       if (!res.ok) {
-        const msg = (body && 'error' in body && body.error?.message) || '安裝失敗。'
-        setNotice({ kind: 'error', text: `✕ ${msg}` })
+        setNotice({ kind: 'error', text: `✕ ${body?.error?.message ?? '排入安裝失敗。'}` })
+        setBusy(false)
         return
       }
-      const d = body && 'data' in body ? body.data : undefined
-      setNotice({ kind: 'ok', text: d ? `✓ 已自動安裝 ${d.family}（${d.weights.length} 字重）。` : '✓ 已安裝。' })
       setSlug('')
-      await load()
+      setNotice({ kind: 'ok', text: `已排入背景安裝「${family}」——中文字體可能要 1–3 分鐘，安裝好會自動出現在下方。` })
+      // 輪詢：每 5 秒查一次，直到出現在已安裝（最多約 5 分鐘）
+      for (let i = 0; i < 60; i++) {
+        await new Promise((r) => setTimeout(r, 5000))
+        try {
+          const r2 = await fetch('/api/admin/fonts')
+          if (!r2.ok) continue
+          const b2 = (await r2.json()) as { data: { installed: Installed[]; catalogue: Catalogue[] } }
+          setInstalled(b2.data.installed)
+          setCatalogue(b2.data.catalogue)
+          if (b2.data.installed.some((f) => f.slug === target)) {
+            setNotice({ kind: 'ok', text: `✓ 已安裝「${family}」。` })
+            break
+          }
+        } catch {
+          /* 下次再試 */
+        }
+      }
     } catch {
       setNotice({ kind: 'error', text: '✕ 網路或伺服器錯誤。' })
     } finally {

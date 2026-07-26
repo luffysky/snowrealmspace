@@ -52,6 +52,11 @@ async function main() {
   await boss.createQueue(QUEUES.spacePurge)
   await boss.work(QUEUES.spacePurge, { batchSize: 1 }, handleSpacePurge)
 
+  const { handleFontInstall } = await import('./handlers/font-install.js')
+  await boss.createQueue(QUEUES.fontInstall)
+  // 字體安裝很重（中文子集化數分鐘）→ 一次只跑一個，別讓多個一起吃爆記憶體
+  await boss.work(QUEUES.fontInstall, { batchSize: 1 }, handleFontInstall)
+
   // ADR-008：排程由 pg-boss 自己管，不依賴平台的 Cron
   await registerSchedules(boss)
 

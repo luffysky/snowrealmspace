@@ -59,6 +59,8 @@ export const QUEUES = {
   storageGc: 'maintenance.storage-gc',
   // 軟刪除滿寬限期的 space 的永久清除（R2 先於 DB）
   spacePurge: 'maintenance.space-purge',
+  // 字體自動安裝（中文子集化太重，同步 HTTP 會 524；移背景）
+  fontInstall: 'font.install',
 } as const
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES]
