@@ -352,13 +352,25 @@
    （目前 `Error sending confirmation email` 就是寄件人還在沙盒。）
 
 ## 3. Google 登入
+> 走 Supabase(GoTrue) 代管 OAuth，Google 是導回 **Supabase 主機**再轉回站台，
+> 所以 Google Console 填的是 Supabase 的網址，不是站台網址。
+> 本專案 Supabase 自架在 Zeabur：`https://snowrealm-space-db.zeabur.app`。
+
 1. <https://console.cloud.google.com> → 建專案 → **OAuth consent screen**（外部）填好、加測試使用者。
 2. **Credentials → Create OAuth client ID → Web application**。
-3. **Authorized redirect URI** 填 Supabase 的 callback（Supabase Dashboard → Auth → Providers → Google 會顯示那個 URL，長得像 `https://<專案>.supabase.co/auth/v1/callback`）。
-4. 拿到 Client ID / Secret：
+3. **已授權的 JavaScript 來源（Authorized JavaScript origins）**——只填 scheme+host、不含路徑：
+   - `https://snowrealm-space-db.zeabur.app`（Supabase 主機，必填）
+   - `https://snowrealm-space.snowrealm.pet`（站台，建議一起加）
+   - 本機測試再加 `http://localhost:3000`
+4. **已授權的重新導向 URI（Authorized redirect URIs）**——填完整路徑：
+   - `https://snowrealm-space-db.zeabur.app/auth/v1/callback` ← **關鍵，一定要對**
+   - 本機用本地 Supabase 測 Google 才需要：`http://127.0.0.1:54321/auth/v1/callback`
+   - ⚠️ 不要填站台的 `/auth/callback`——那是 Supabase 驗完後才轉回站台的位址，
+     由 Supabase 的 `additional_redirect_urls` 白名單管（config.toml / Dashboard），不是 Google 這邊。
+5. 拿到 Client ID / Secret：
    - Zeabur web env：`GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`
-   - **Supabase Dashboard → Auth → Providers → Google → 開啟 + 貼上同一組**（兩邊都要設才生效）。
-5. 沒設的話登入頁 Google 按鈕會顯示「尚未設定」並停用，不會壞。
+   - **Supabase → Auth → Providers → Google → 開啟 + 貼上同一組**（兩邊都要設才生效）。
+6. 沒設的話登入頁 Google 按鈕會顯示「尚未設定」並停用，不會壞。
 
 ## 4. LINE 登入
 1. <https://developers.line.biz/console/> → 建 Provider → 建 **LINE Login** channel。
