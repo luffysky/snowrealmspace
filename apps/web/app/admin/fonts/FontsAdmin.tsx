@@ -116,6 +116,39 @@ export function FontsAdmin() {
     }
   }
 
+  async function autoInstall() {
+    if (!slug) {
+      setNotice({ kind: 'error', text: '請先選擇字體。' })
+      return
+    }
+    setBusy(true)
+    setNotice({ kind: 'ok', text: '伺服器抓取＋子集化中…（免上傳，可能需數十秒）' })
+    try {
+      const res = await fetch('/api/admin/fonts/install', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      })
+      const body = (await res.json().catch(() => null)) as
+        | { data?: { family: string; weights: number[]; sliceCount: number } }
+        | { error?: { message: string } }
+        | null
+      if (!res.ok) {
+        const msg = (body && 'error' in body && body.error?.message) || '安裝失敗。'
+        setNotice({ kind: 'error', text: `✕ ${msg}` })
+        return
+      }
+      const d = body && 'data' in body ? body.data : undefined
+      setNotice({ kind: 'ok', text: d ? `✓ 已自動安裝 ${d.family}（${d.weights.length} 字重）。` : '✓ 已安裝。' })
+      setSlug('')
+      await load()
+    } catch {
+      setNotice({ kind: 'error', text: '✕ 網路或伺服器錯誤。' })
+    } finally {
+      setBusy(false)
+    }
+  }
+
   async function toggle(f: Installed) {
     const next = !f.enabled
     setInstalled((rs) => rs.map((r) => (r.slug === f.slug ? { ...r, enabled: next } : r)))
@@ -213,9 +246,26 @@ export function FontsAdmin() {
             </div>
           )}
 
+          {selected && !selected.manual && (
+            <div
+              style={{
+                padding: 'var(--sr-space-3)',
+                background: 'var(--sr-surface-alt)',
+                borderRadius: 'var(--sr-radius-sm)',
+              }}
+            >
+              <button type="button" className="sr-button" onClick={() => void autoInstall()} disabled={busy}>
+                {busy ? '安裝中…' : '⤓ 自動安裝（伺服器抓取，免上傳）'}
+              </button>
+              <p className="sr-muted" style={{ margin: '6px 0 0', fontSize: 'var(--sr-text-sm)' }}>
+                這套有穩定下載來源，不用手動上傳——伺服器直接抓取、子集化、上傳。大檔也不受瀏覽器限制。
+              </p>
+            </div>
+          )}
+
           <div>
             <label className="sr-label" htmlFor="font-files">
-              字體檔（.ttf / .otf，可多選）
+              字體檔（.ttf / .otf，可多選）{selected && !selected.manual ? '（或改用上面的自動安裝）' : ''}
             </label>
             <input id="font-files" ref={fontInputRef} type="file" accept=".ttf,.otf" multiple disabled={busy} style={{ maxWidth: '100%' }} />
           </div>
