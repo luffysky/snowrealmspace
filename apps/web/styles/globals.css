@@ -3988,11 +3988,12 @@ input[type='range'] {
   gap: 4px;
 }
 .sr-gif-cat {
-  border: none;
+  border: var(--sr-border-width) solid var(--sr-border);
   background: var(--sr-surface-alt);
   color: var(--sr-text-secondary);
-  font-size: 11px;
-  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 5px 12px;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;

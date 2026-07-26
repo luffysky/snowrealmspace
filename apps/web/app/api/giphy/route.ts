@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server'
-import { resolveContext } from '@/lib/api/context'
+import { resolveUser } from '@/lib/api/context'
 import { ok, fail, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
@@ -17,8 +17,9 @@ function giphyKey(): string | undefined {
  * 需登入（避免變成公開的 giphy 代理被人白嫖流量）。
  */
 export const GET = handler(async (request: NextRequest) => {
-  const result = await resolveContext()
-  if (!result.ok) return fail('UNAUTHENTICATED', '請先登入。')
+  // Giphy 只需要「已登入」，不需要 space 脈絡 —— 用 resolveUser（不必帶 x-space-id）
+  const user = await resolveUser()
+  if (!user) return fail('UNAUTHENTICATED', '請先登入。')
 
   const key = giphyKey()
   if (!key) return fail('AI_UNAVAILABLE', 'Giphy 尚未設定。', { configured: false })
