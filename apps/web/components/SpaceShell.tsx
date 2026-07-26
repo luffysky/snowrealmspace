@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useScrollLock } from '@/lib/use-scroll-lock'
 import { startTutorial } from '@/components/tutorial/TutorialController'
+import { Avatar } from '@/components/Avatar'
 
 /**
  * Space Shell 的互動外殼。
@@ -108,6 +109,8 @@ const COLLAPSE_KEY = 'sr:sidebar-collapsed'
 export function SpaceShell({
   spaceId,
   spaceName,
+  avatarSrc = null,
+  avatarName = '',
   canRename = false,
   roleLabel,
   nav,
@@ -118,6 +121,8 @@ export function SpaceShell({
 }: {
   spaceId: string
   spaceName: string
+  avatarSrc?: string | null
+  avatarName?: string
   canRename?: boolean
   roleLabel: string
   nav: NavItem[]
@@ -200,6 +205,7 @@ export function SpaceShell({
           </svg>
         </button>
 
+        <Avatar src={avatarSrc} name={avatarName} size={32} />
         <SpaceBrand spaceId={spaceId} spaceName={spaceName} canRename={canRename} />
 
         <div className="sr-actions">{actions}</div>

@@ -9,6 +9,8 @@ import { AvatarUpload } from './AvatarUpload'
 import { CopyId } from './CopyId'
 import { ChangePassword } from './ChangePassword'
 import { accountIdentity } from '@/lib/auth/account-identity'
+import { Avatar } from '@/components/Avatar'
+import { resolveAvatarUrl } from '@/lib/avatar'
 
 export const metadata: Metadata = { title: '登入方式 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -61,14 +63,18 @@ export default async function AccountSettingsPage({
 
   // 純帳號註冊的合成 email 不對外顯示 —— 顯示帳號本身
   const acct = accountIdentity(user.email, user.username)
+  const avatarSrc = await resolveAvatarUrl(db, profile?.avatar_asset_id ?? null)
 
   return (
     <div className="sr-stack">
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{welcome ? '歡迎！' : '登入方式'}</h1>
-        <p className="sr-muted">
-          {acct.label}：{acct.value}
-        </p>
+        <div className="sr-row" style={{ gap: 'var(--sr-space-3)', alignItems: 'center' }}>
+          <Avatar src={avatarSrc} name={acct.value} size={44} />
+          <p className="sr-muted" style={{ margin: 0 }}>
+            {acct.label}：{acct.value}
+          </p>
+        </div>
       </section>
 
       {welcome && (

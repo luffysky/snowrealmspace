@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
+import { resolveAvatarUrls } from '@/lib/avatar'
+import { Avatar } from '@/components/Avatar'
 import { OrphanRepair } from './OrphanRepair'
 
 export const metadata: Metadata = { title: 'Space／使用者 — SnowRealm' }
@@ -19,7 +21,7 @@ type SpaceRow = {
   deleted_at: string | null
 }
 type MemberRow = { space_id: string; user_id: string; role: string }
-type ProfileRow = { id: string; display_name: string | null; created_at: string; locale: string }
+type ProfileRow = { id: string; display_name: string | null; created_at: string; locale: string; avatar_asset_id: string | null }
 type IdentityRow = { user_id: string; provider: string; email: string | null }
 
 /**
@@ -40,7 +42,7 @@ export default async function AdminSpacesPage() {
         .order('created_at', { ascending: false })
         .limit(300),
       admin.from('space_members').select('space_id, user_id, role').limit(2000),
-      admin.from('profiles').select('id, display_name, created_at, locale').order('created_at', { ascending: false }).limit(500),
+      admin.from('profiles').select('id, display_name, created_at, locale, avatar_asset_id').order('created_at', { ascending: false }).limit(500),
       admin.from('user_identities').select('user_id, provider, email').limit(1000),
       admin.from('space_settings').select('space_id').limit(2000),
     ])
@@ -51,6 +53,11 @@ export default async function AdminSpacesPage() {
   const identities = (identityData ?? []) as IdentityRow[]
 
   const nameOf = new Map(profiles.map((p) => [p.id, p.display_name ?? '（未命名）']))
+  const avatarUrls = await resolveAvatarUrls(admin, profiles.map((p) => p.avatar_asset_id))
+  const avatarOf = (userId: string): string | null => {
+    const aid = profiles.find((p) => p.id === userId)?.avatar_asset_id
+    return aid ? (avatarUrls.get(aid) ?? null) : null
+  }
   const memberCount = new Map<string, number>()
   for (const m of members) memberCount.set(m.space_id, (memberCount.get(m.space_id) ?? 0) + 1)
   const identOf = new Map<string, string[]>()
@@ -118,7 +125,12 @@ export default async function AdminSpacesPage() {
                       /{s.slug}
                     </span>
                   </td>
-                  <td style={td}>{nameOf.get(s.owner_id) ?? '—'}</td>
+                  <td style={td}>
+                    <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+                      <Avatar src={avatarOf(s.owner_id)} name={nameOf.get(s.owner_id) ?? ''} size={26} />
+                      <span>{nameOf.get(s.owner_id) ?? '—'}</span>
+                    </div>
+                  </td>
                   <td style={td}>{s.privacy}</td>
                   <td style={{ ...td, textAlign: 'right' }}>{memberCount.get(s.id) ?? 0}</td>
                   <td className="sr-muted" style={td}>{new Date(s.created_at).toLocaleDateString('zh-TW')}</td>
@@ -146,10 +158,15 @@ export default async function AdminSpacesPage() {
               {profiles.map((p) => (
                 <tr key={p.id} style={{ borderTop: '1px solid var(--sr-border)' }}>
                   <td style={td}>
-                    {p.display_name ?? '（未命名）'}
-                    <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>
-                      {p.id.slice(0, 8)}…
-                    </span>
+                    <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+                      <Avatar src={avatarOf(p.id)} name={p.display_name ?? ''} size={28} />
+                      <div>
+                        {p.display_name ?? '（未命名）'}
+                        <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>
+                          {p.id.slice(0, 8)}…
+                        </span>
+                      </div>
+                    </div>
                   </td>
                   <td style={td}>{(identOf.get(p.id) ?? ['email']).join('、')}</td>
                   <td style={td}>{p.locale}</td>

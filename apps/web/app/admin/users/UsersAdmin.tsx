@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { Avatar } from '@/components/Avatar'
 
 export type UserRow = {
   id: string
@@ -11,6 +12,7 @@ export type UserRow = {
   displayName: string | null
   siteRole: 'owner' | 'admin' | 'member'
   privileged: boolean
+  avatarUrl: string | null
 }
 
 const ROLE_LABEL: Record<UserRow['siteRole'], string> = {
@@ -84,13 +86,18 @@ export function UsersAdmin({
               return (
                 <tr key={r.id} style={{ borderTop: '1px solid var(--sr-border)' }}>
                   <td style={td}>
-                    <Link href={`${adminBase}/users/${r.id}`} className="sr-link">
-                      {r.displayName || r.username || r.email || '（未命名）'}
-                    </Link>
-                    <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>
-                      {r.email ?? r.id.slice(0, 8) + '…'}
-                      {isSelf ? '（你）' : ''}
-                    </span>
+                    <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+                      <Avatar src={r.avatarUrl} name={r.displayName || r.username || r.email || ''} size={32} />
+                      <div>
+                        <Link href={`${adminBase}/users/${r.id}`} className="sr-link">
+                          {r.displayName || r.username || r.email || '（未命名）'}
+                        </Link>
+                        <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)', display: 'block' }}>
+                          {r.email ?? r.id.slice(0, 8) + '…'}
+                          {isSelf ? '（你）' : ''}
+                        </span>
+                      </div>
+                    </div>
                   </td>
                   <td style={td}>
                     {isOwner && !isSelf ? (

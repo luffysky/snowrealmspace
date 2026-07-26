@@ -24,6 +24,7 @@ import { SpaceShell } from '@/components/SpaceShell'
 import { DialogProvider } from '@/components/ui/DialogProvider'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
+import { resolveAvatarUrl } from '@/lib/avatar'
 import { signOut } from '../(auth)/actions'
 
 /**
@@ -47,6 +48,13 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   // 沒有救援方式的帳號才提醒綁定（綁了就不再出現）
   const user = await getUser()
   const needsRecovery = user ? !(await accountHasRecovery(user.id, user.email)) : false
+
+  // 目前登入者的大頭貼（品牌列顯示）
+  const { data: myProfile } = user
+    ? await db.from('profiles').select('avatar_asset_id, display_name').eq('id', user.id).maybeSingle()
+    : { data: null }
+  const myAvatarSrc = await resolveAvatarUrl(db, myProfile?.avatar_asset_id ?? null)
+  const myName = myProfile?.display_name || user?.username || user?.email || ''
 
   // 背景音樂設定（Luffy 追加）
   const { data: audioSettings } = await db
@@ -188,6 +196,8 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         <SpaceShell
           spaceId={space.id}
           spaceName={space.name}
+          avatarSrc={myAvatarSrc}
+          avatarName={myName}
           canRename={role === 'owner'}
           roleLabel={
             role === 'owner'

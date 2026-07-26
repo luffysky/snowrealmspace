@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { uploadAsset } from '@/lib/upload-asset'
 
 /**
@@ -19,6 +20,7 @@ export function AvatarUpload({
   const [busy, setBusy] = useState(false)
   const [notice, setNotice] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
 
   // 有 assetId 就換成 signed URL 顯示
   useEffect(() => {
@@ -67,6 +69,8 @@ export function AvatarUpload({
       }
       setAssetId(id)
       setNotice({ kind: 'ok', text: '✓ 大頭貼已更新。' })
+      // 讓其他 SSR 顯示大頭貼的地方（品牌列、管理後台…）也更新
+      router.refresh()
     } catch (err) {
       setNotice({ kind: 'error', text: `✕ ${(err as Error).message}` })
     } finally {
@@ -89,6 +93,7 @@ export function AvatarUpload({
       }
       setAssetId(null)
       setNotice({ kind: 'ok', text: '✓ 已移除大頭貼。' })
+      router.refresh()
     } finally {
       setBusy(false)
     }

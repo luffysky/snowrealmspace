@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
+import { resolveAvatarUrls } from '@/lib/avatar'
 import { UsersAdmin, type UserRow } from './UsersAdmin'
 
 export const metadata: Metadata = { title: '使用者管理 — SnowRealm' }
@@ -20,14 +21,25 @@ export default async function AdminUsersPage() {
   const admin = createAdminClient()
   const [{ data: authList }, { data: profileData }] = await Promise.all([
     admin.auth.admin.listUsers({ page: 1, perPage: 200 }),
-    admin.from('profiles').select('id, display_name, site_role, privileged'),
+    admin.from('profiles').select('id, display_name, site_role, privileged, avatar_asset_id'),
   ])
 
   const roleOf = new Map(
     (profileData ?? []).map((p) => [
       p.id,
-      { role: (p.site_role as string) ?? 'member', privileged: Boolean(p.privileged), name: p.display_name },
+      {
+        role: (p.site_role as string) ?? 'member',
+        privileged: Boolean(p.privileged),
+        name: p.display_name,
+        avatarAssetId: (p as { avatar_asset_id?: string | null }).avatar_asset_id ?? null,
+      },
     ]),
+  )
+
+  // 跨 space 頭像：用 admin client 繞 RLS 批次解 signed URL（已 checkSiteAdmin 過）
+  const avatarUrls = await resolveAvatarUrls(
+    admin,
+    (profileData ?? []).map((p) => (p as { avatar_asset_id?: string | null }).avatar_asset_id ?? null),
   )
 
   const users: UserRow[] = (authList?.users ?? []).map((u) => {
@@ -39,6 +51,7 @@ export default async function AdminUsersPage() {
       displayName: (p?.name ?? null) as string | null,
       siteRole: (p?.role === 'owner' || p?.role === 'admin' ? p.role : 'member') as UserRow['siteRole'],
       privileged: p?.privileged ?? false,
+      avatarUrl: p?.avatarAssetId ? (avatarUrls.get(p.avatarAssetId) ?? null) : null,
     }
   })
 

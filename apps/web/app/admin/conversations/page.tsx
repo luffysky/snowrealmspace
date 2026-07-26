@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
+import { resolveAvatarUrls } from '@/lib/avatar'
+import { Avatar } from '@/components/Avatar'
 
 export const metadata: Metadata = { title: '對話紀錄 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -37,7 +39,7 @@ export default async function AdminConversationsPage() {
       .limit(200),
     admin.from('agent_messages').select('thread_id').limit(20000),
     admin.from('spaces').select('id, name').limit(500),
-    admin.from('profiles').select('id, display_name').limit(500),
+    admin.from('profiles').select('id, display_name, avatar_asset_id').limit(500),
   ])
 
   const threads = (threadData ?? []) as Thread[]
@@ -45,6 +47,14 @@ export default async function AdminConversationsPage() {
   for (const m of msgData ?? []) msgCount.set(m.thread_id, (msgCount.get(m.thread_id) ?? 0) + 1)
   const spaceName = new Map((spaceData ?? []).map((s) => [s.id, s.name]))
   const userName = new Map((profileData ?? []).map((p) => [p.id, p.display_name]))
+  const avatarAssetOf = new Map(
+    (profileData ?? []).map((p) => [p.id, (p as { avatar_asset_id?: string | null }).avatar_asset_id ?? null]),
+  )
+  const avatarUrls = await resolveAvatarUrls(admin, [...avatarAssetOf.values()])
+  const avatarOf = (userId: string): string | null => {
+    const aid = avatarAssetOf.get(userId)
+    return aid ? (avatarUrls.get(aid) ?? null) : null
+  }
 
   const th = { padding: 'var(--sr-space-2)', textAlign: 'left' as const }
   const td = { padding: 'var(--sr-space-2)' }
@@ -91,9 +101,12 @@ export default async function AdminConversationsPage() {
                     </td>
                     <td style={td}>
                       {t.created_by ? (
-                        <Link href={`${ADMIN_BASE}/users/${t.created_by}`} className="sr-link">
-                          {userName.get(t.created_by) ?? t.created_by.slice(0, 8) + '…'}
-                        </Link>
+                        <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+                          <Avatar src={avatarOf(t.created_by)} name={userName.get(t.created_by) ?? ''} size={26} />
+                          <Link href={`${ADMIN_BASE}/users/${t.created_by}`} className="sr-link">
+                            {userName.get(t.created_by) ?? t.created_by.slice(0, 8) + '…'}
+                          </Link>
+                        </div>
                       ) : (
                         '—'
                       )}

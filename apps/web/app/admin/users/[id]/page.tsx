@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { createAdminClient } from '@snowrealm/db/server'
+import { resolveAvatarUrl } from '@/lib/avatar'
+import { Avatar } from '@/components/Avatar'
 import { UserAdminControls } from './UserAdminControls'
 import { UserNotes, type Note } from './UserNotes'
 
@@ -25,7 +27,7 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
   const [{ data: authRes }, { data: profile }, { data: memberships }, { data: identities }, { data: recent }, activityCount] =
     await Promise.all([
       admin.auth.admin.getUserById(id),
-      admin.from('profiles').select('display_name, locale, timezone, site_role, privileged, created_at').eq('id', id).maybeSingle(),
+      admin.from('profiles').select('display_name, locale, timezone, site_role, privileged, created_at, avatar_asset_id').eq('id', id).maybeSingle(),
       admin.from('space_members').select('space_id, role, joined_at').eq('user_id', id),
       admin.from('user_identities').select('provider, email').eq('user_id', id),
       admin.from('activity_events').select('event_type, occurred_at').eq('actor_id', id).order('occurred_at', { ascending: false }).limit(20),
@@ -65,6 +67,7 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
   const email = authUser?.email ?? null
   const username = (authUser?.user_metadata as { username?: string } | null)?.username ?? null
   const lastSignIn = authUser?.last_sign_in_at ?? null
+  const avatarSrc = await resolveAvatarUrl(admin, (profile as { avatar_asset_id?: string | null } | null)?.avatar_asset_id ?? null)
 
   const td = { padding: 'var(--sr-space-2)' }
 
@@ -73,8 +76,13 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
       <p className="sr-muted">
         <Link href={`${ADMIN_BASE}/users`} className="sr-link">← 使用者管理</Link>
       </p>
-      <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>{profile?.display_name || username || email || '使用者'}</h1>
-      <p className="sr-muted">{email}</p>
+      <div className="sr-row" style={{ gap: 'var(--sr-space-3)', alignItems: 'center' }}>
+        <Avatar src={avatarSrc} name={profile?.display_name || username || email || ''} size={52} />
+        <div>
+          <h1 style={{ fontSize: 'var(--sr-text-h1)', margin: 0 }}>{profile?.display_name || username || email || '使用者'}</h1>
+          <p className="sr-muted" style={{ margin: 0 }}>{email}</p>
+        </div>
+      </div>
 
       <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
         <h2 className="sr-section-title">身分與權限</h2>
