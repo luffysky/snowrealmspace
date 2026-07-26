@@ -167,7 +167,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
   )
 
   return (
-    <div className="sr-shell-root" {...dataAttrs}>
+    <div className="sr-shell-root" data-color-mode={mode} {...dataAttrs}>
       <style dangerouslySetInnerHTML={{ __html: themeCss }} />
       {fonts && (
         <>

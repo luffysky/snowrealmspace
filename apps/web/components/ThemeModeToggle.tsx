@@ -27,6 +27,8 @@ export function ThemeModeToggle({
     setMode(next)
     document.cookie = `${MODE_COOKIE}=${next};path=/;max-age=${MODE_MAX_AGE};samesite=lax`
     applyThemeToDom(effectiveTheme(baseDef, next))
+    // 背景暗罩靠 .sr-shell-root 的 data-color-mode 觸發；即時切換也要更新它。
+    document.querySelector('.sr-shell-root')?.setAttribute('data-color-mode', next)
   }
 
   const dark = mode === 'dark'

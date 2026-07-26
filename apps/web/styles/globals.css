@@ -1547,6 +1547,18 @@ input[type='range'] {
   overflow: hidden;
   pointer-events: none;
 }
+/*
+ * 深色模式先幫背景壓一層暗罩，讓淺色背景不會和深色卡片打架（見 bugpic/17）。
+ * 這是「每個模式各指定背景」完整功能前的過渡：至少深色模式看起來協調。
+ * data-color-mode 由 layout（SSR）與 ThemeModeToggle（即時切換）設在 .sr-shell-root 上。
+ */
+[data-color-mode='dark'] .sr-bg-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 14, 0.5);
+  pointer-events: none;
+}
 
 /*
  * 背景輪播用兩層堆疊：舊的淡出、新的淡入。
