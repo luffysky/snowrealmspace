@@ -3077,6 +3077,65 @@ input[type='range'] {
   color: var(--sr-text-primary);
   border: var(--sr-border-width) solid var(--sr-border);
 }
+/* ── VRM 角色 widget（全站漂浮） ── */
+.sr-vrm-fab {
+  position: fixed;
+  z-index: 55;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface);
+  box-shadow: var(--sr-shadow-lg);
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sr-vrm-fab:hover {
+  background: var(--sr-surface-alt);
+}
+.sr-vrm-panel {
+  position: fixed;
+  z-index: 55;
+  border-radius: 16px;
+  border: var(--sr-border-width) solid var(--sr-border);
+  background: var(--sr-surface);
+  box-shadow: var(--sr-shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sr-vrm-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  background: var(--sr-surface-alt);
+  border-bottom: var(--sr-border-width) solid var(--sr-border);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.sr-vrm-bar-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.sr-vrm-bar-btn:hover {
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+.sr-vrm-canvas {
+  flex: 1;
+  min-height: 0;
+}
+
 .sr-chat-input-row {
   display: flex;
   gap: var(--sr-space-2);

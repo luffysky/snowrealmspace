@@ -21,6 +21,7 @@ import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
 import { SpaceShell } from '@/components/SpaceShell'
+import { VrmWidget } from '@/components/vrm/VrmWidget'
 import { DialogProvider } from '@/components/ui/DialogProvider'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
@@ -218,6 +219,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
           {needsRecovery && <BindingReminder />}
           {children}
         </SpaceShell>
+        <VrmWidget />
       </DialogProvider>
     </div>
   )

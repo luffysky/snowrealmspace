@@ -6,6 +6,16 @@ import { uploadAsset } from '@/lib/upload-asset'
 import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
 import { Avatar } from '@/components/Avatar'
+import { emitVrm, type VrmMood } from '@/lib/vrm/bus'
+
+/** 從回應文字粗略判斷情緒 → 驅動 VRM 角色表情（客戶端啟發式，零 token）。 */
+function moodFromText(text: string): VrmMood {
+  if (/哈哈|太好|恭喜|很棒|讚|開心|😊|😄|🎉|great|awesome|congrat/i.test(text)) return 'happy'
+  if (/抱歉|遺憾|難過|可惜|sorry|unfortunately|😢|😞/i.test(text)) return 'sad'
+  if (/注意|警告|小心|風險|錯誤|warning|careful/i.test(text)) return 'surprised'
+  if (/讓我想|思考|分析|hmm|嗯…/i.test(text)) return 'thinking'
+  return 'relaxed'
+}
 
 export type Attachment = { assetId: string; mimeType: string; kind?: string; name?: string | null }
 
@@ -338,6 +348,7 @@ export function AgentChat({
   async function send(text: string, images: PendingImage[], files: PendingFile[]) {
     setPending(true)
     setError(null)
+    emitVrm({ type: 'mood', mood: 'thinking' }) // 角色進入思考表情
     const optimisticUser: ChatMessage = {
       id: `u-${Date.now()}`,
       role: 'user',
@@ -380,6 +391,7 @@ export function AgentChat({
           ...prev,
           { id: `a-${Date.now()}`, role: 'assistant', content: data.reply, escalated: data.escalated },
         ])
+        emitVrm({ type: 'mood', mood: moodFromText(data.reply) })
         if (wasNew) void refreshThreads()
         scrollToBottom()
       } catch {
@@ -448,6 +460,8 @@ export function AgentChat({
           }
         }
       }
+      // 串流結束：依整段回應更新角色表情
+      if (full) emitVrm({ type: 'mood', mood: moodFromText(full) })
       // 完全沒吐字也沒 error → 移除樂觀訊息、把輸入放回
       if (!full) {
         setInput(text)
