@@ -239,3 +239,20 @@
 - 閘門：package + web typecheck、lint、check:deps 全綠；isolated `next build`（`.next-verify`）驗證 notes/capture/agent 三頁正常打包（各 353 kB，含編輯器）。
 
 > 下一步（非本次）：`sanitizeRichHtml` 抽成套件的 Node 專用子路徑、`ChatMedia` 以 `resolveAssetUrl` prop 解耦、`.sr-rich*` 出獨立 stylesheet——對外發佈前再做。
+
+---
+
+## 0727：worker 字體安裝 OOM（中文 SIGTERM）→ 串流式子集化
+
+**症狀**：worker log 在字體安裝時 SIGTERM。派 agent 讀程式做記憶體剖析。
+
+**根因**：`font-install.ts` 舊版把整套字重×分片先全部子集化累積在陣列（中文 9 字重 × ~47 片 ≈ 423 個 woff2 buffer），**再一次上傳**。尖峰＝原始 TTF + 全部 423 個 buffer + harfbuzz-wasm 記憶體同時存在；靜態多檔字體還會一次把 9 個 TTF（~9×16MB）全留著。worker 沒設 `--max-old-space-size`、也不知道容器上限（`Dockerfile` 無 NODE_OPTIONS）→ 記憶體受限容器被 OOM kill → SIGTERM。
+
+**修法**（`apps/worker/src/handlers/font-install.ts`）：
+- `subsetFontFiles`＋`installOne` 的兩段（先全部子集化、再全部上傳）合成一段 **`buildAndUpload` 串流**：每產一片就上傳一片、隨即丟掉 body，只留幾十 bytes 的 metadata → 尖峰子集 buffer 從 ~423 降到 ~1。
+- 每個來源檔處理完把原始 TTF 位元組設 null 釋放（靜態多檔省數十 MB）。
+- 子集化仍逐一 await（不並行），行為與輸出（file_manifest / weights / 預算檢查）不變。
+- 閘門：worker typecheck、lint、check:deps 綠。
+
+> 這是純程式面的降記憶體；**另一半是 Zeabur 容器記憶體**要夠（in-repo 沒有也不該有容器設定）。若還會 OOM，於 Zeabur 調高 worker 記憶體，或視情況加 `NODE_OPTIONS=--max-old-space-size`（註：harfbuzz 是 off-heap，heap flag 只治一半）。
+> 之後平台重構時，web `lib/fonts/subset.ts` 與 worker 這份可收進 `@snowrealm/font-build` 去重＋共用這套串流。

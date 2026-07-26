@@ -49,9 +49,6 @@ async function installOne(slug: string): Promise<void> {
   const fetched = await fetchSource(entry.source)
   if ('error' in fetched) throw new Error(fetched.error)
 
-  const built = await subsetFontFiles(entry.slug, entry.scripts, entry.weights, fetched.files)
-  if (!built.withinBudget) throw new Error(`${slug} 首屏超出預算`)
-
   const store = storage()
   const licenseKey = `${KEY_PREFIX}/${entry.slug}/LICENSE.txt`
   await store.put({
@@ -61,16 +58,9 @@ async function installOne(slug: string): Promise<void> {
     cacheControl: 'public, max-age=31536000, immutable',
   })
 
-  const fileManifest: FileManifest = {}
-  for (const weight of built.weights) {
-    const subsets: FileManifest[string]['subsets'] = []
-    for (const slice of weight.slices) {
-      const key = `${KEY_PREFIX}/${entry.slug}/${slice.file}`
-      await store.put({ key, body: slice.body, contentType: 'font/woff2', cacheControl: 'public, max-age=31536000, immutable' })
-      subsets.push({ file: key, unicodeRange: slice.unicodeRange, bytes: slice.bytes, critical: slice.critical })
-    }
-    fileManifest[String(weight.weight)] = { subsets }
-  }
+  // 邊子集化邊上傳邊釋放 —— 不把整套字重×分片留在記憶體（見 buildAndUpload 註解）
+  const built = await buildAndUpload(store, entry.slug, entry.scripts, entry.weights, fetched.files)
+  if (!built.withinBudget) throw new Error(`${slug} 首屏超出預算`)
 
   const admin = createAdminClient()
   const { error } = await admin.from('fonts').upsert(
@@ -79,10 +69,10 @@ async function installOne(slug: string): Promise<void> {
       slug: entry.slug,
       category: entry.category,
       supported_languages: entry.scripts,
-      weights: built.weights.map((w) => w.weight),
+      weights: built.weightList,
       styles: ['normal'],
       preview_text: entry.previewText,
-      file_manifest: fileManifest,
+      file_manifest: built.fileManifest,
       subset_strategy: entry.scripts.includes('zh-Hant') ? 'unicode_range' : 'static',
       license_name: entry.license,
       license_url: entry.licenseUrl,
@@ -95,7 +85,7 @@ async function installOne(slug: string): Promise<void> {
     { onConflict: 'slug' },
   )
   if (error) throw new Error(`寫入 fonts 表失敗：${error.message}`)
-  console.log(`[font.install] ✓ ${slug}（${built.weights.length} 字重）`)
+  console.log(`[font.install] ✓ ${slug}（${built.weightList.length} 字重）`)
 }
 
 // ── 子集化（記憶體內；同 apps/web/lib/fonts/subset.ts）───────────────────
@@ -120,7 +110,22 @@ async function buildSlice(source: Buffer, slug: string, weight: number, slice: U
   if (subset.byteLength < 1024) return null
   return { file: `${slug}-${weight}-${slice.id}.woff2`, unicodeRange: slice.range, bytes: subset.byteLength, critical: slice.critical, body: subset }
 }
-async function subsetFontFiles(
+
+type SliceMeta = { bytes: number; critical: boolean }
+
+/**
+ * 串流式子集化 + 上傳。**這是不吃爆記憶體的關鍵。**
+ *
+ * 中文一套 9 字重 × ~47 分片 ≈ 423 個 woff2。舊版先全部子集化累積在陣列裡、
+ * 再一次上傳，尖峰＝原檔 + 全部 423 個 buffer + harfbuzz wasm 記憶體同時存在，
+ * 在記憶體受限的 worker 容器會被 OOM kill（SIGTERM）。
+ *
+ * 這裡改成每產一片就上傳一片、隨即丟掉 body（只留幾十 bytes 的 metadata），
+ * 尖峰的子集 buffer 從 ~423 降到 ~1。每個來源檔處理完也把原始位元組釋放
+ * （靜態多檔字體尤其重要）。子集化本身仍是逐一 await，不並行。
+ */
+async function buildAndUpload(
+  store: ReturnType<typeof storage>,
   slug: string,
   scripts: readonly string[],
   weights: readonly number[],
@@ -129,28 +134,41 @@ async function subsetFontFiles(
   const slices = slicesForScripts(scripts)
   const upright = files.filter((f) => !/italic/i.test(f.name))
   if (upright.length === 0) throw new Error('沒有可用字體檔')
-  const built: { weight: number; slices: NonNullable<Awaited<ReturnType<typeof buildSlice>>>[] }[] = []
+
+  const fileManifest: FileManifest = {}
+  const metaByWeight = new Map<number, SliceMeta[]>()
+
   for (const file of upright) {
     const variable = isVariable(file.name)
     const targetWeights = variable ? weights : [detectWeight(file.name)]
     const source = Buffer.from(file.body)
     for (const weight of targetWeights) {
       if (!weights.includes(weight)) continue
-      if (built.some((w) => w.weight === weight)) continue
-      const out: NonNullable<Awaited<ReturnType<typeof buildSlice>>>[] = []
+      if (metaByWeight.has(weight)) continue
+      const subsets: FileManifest[string]['subsets'] = []
+      const meta: SliceMeta[] = []
       for (const slice of slices) {
         const s = await buildSlice(source, slug, weight, slice, variable)
-        if (s) out.push(s)
+        if (!s) continue
+        const key = `${KEY_PREFIX}/${slug}/${s.file}`
+        // 立刻上傳，body 上傳完就沒人引用 → 可被 GC，不累積
+        await store.put({ key, body: s.body, contentType: 'font/woff2', cacheControl: 'public, max-age=31536000, immutable' })
+        subsets.push({ file: key, unicodeRange: s.unicodeRange, bytes: s.bytes, critical: s.critical })
+        meta.push({ bytes: s.bytes, critical: s.critical })
       }
-      built.push({ weight, slices: out })
+      fileManifest[String(weight)] = { subsets }
+      metaByWeight.set(weight, meta)
     }
+    // 這個來源檔處理完，釋放原始 TTF 位元組（靜態多檔時省下數十 MB）
+    ;(file as { body: Uint8Array | null }).body = null
   }
-  if (built.length === 0) throw new Error('沒有對應字重的檔案')
-  built.sort((a, b) => a.weight - b.weight)
-  const regular = built.find((w) => w.weight === 400) ?? built[0]!
+
+  if (metaByWeight.size === 0) throw new Error('沒有對應字重的檔案')
+  const weightList = [...metaByWeight.keys()].sort((a, b) => a - b)
+  const regularMeta = metaByWeight.get(400) ?? metaByWeight.get(weightList[0]!)!
   const limit = budgetForScripts(scripts)
-  const budget = firstScreenBudget(regular.slices.map((s) => ({ bytes: s.bytes, critical: s.critical })), limit)
-  return { weights: built, withinBudget: budget.withinBudget }
+  const budget = firstScreenBudget(regularMeta, limit)
+  return { fileManifest, weightList, withinBudget: budget.withinBudget }
 }
 
 // ── 從來源抓檔＋授權（同 install route）─────────────────────────────
