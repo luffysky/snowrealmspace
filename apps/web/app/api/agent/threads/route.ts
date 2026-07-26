@@ -1,6 +1,7 @@
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
 import { resolveContext } from '@/lib/api/context'
+import { createAdminClient } from '@snowrealm/db/server'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
@@ -34,12 +35,19 @@ export const PATCH = handler(async (request: NextRequest) => {
   const body: unknown = await request.json().catch(() => null)
   const parsed = patchSchema.safeParse(body)
   if (!parsed.success) return failValidation(parsed.error)
-  const { error } = await ctx.db
+  // 對話寫入走 service role（設計如此：0025「寫入走 service role」）；
+  // resolveContext 已驗證是本 space 成員，這裡再用 space_id 綁定範圍。
+  const admin = createAdminClient()
+  const { data, error } = await admin
     .from('agent_threads')
     .update({ title: parsed.data.title })
     .eq('id', parsed.data.threadId)
     .eq('space_id', ctx.spaceId)
+    .is('deleted_at', null)
+    .select('id')
+    .maybeSingle()
   if (error) return fail('INTERNAL', '改名失敗。')
+  if (!data) return fail('NOT_FOUND', '找不到這個對話。')
   return ok({ threadId: parsed.data.threadId, title: parsed.data.title })
 })
 
@@ -50,11 +58,16 @@ export const DELETE = handler(async (request: NextRequest) => {
   const { ctx } = result
   const id = z.string().uuid().safeParse(new URL(request.url).searchParams.get('threadId'))
   if (!id.success) return fail('VALIDATION_FAILED', 'threadId 不正確。')
-  const { error } = await ctx.db
+  const admin = createAdminClient()
+  const { data, error } = await admin
     .from('agent_threads')
     .update({ deleted_at: new Date().toISOString() })
     .eq('id', id.data)
     .eq('space_id', ctx.spaceId)
+    .is('deleted_at', null)
+    .select('id')
+    .maybeSingle()
   if (error) return fail('INTERNAL', '刪除失敗。')
+  if (!data) return fail('NOT_FOUND', '找不到這個對話。')
   return ok({ threadId: id.data, deleted: true })
 })
