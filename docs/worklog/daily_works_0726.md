@@ -205,3 +205,20 @@
 - **RWD/PWA**：PWA 全對；RWD 修 3 處（富文本表格拉寬可橫捲不裁切、對話媒體+文字改直排、emoji/gif 面板加 max-width）。
 
 全程 typecheck/lint/secrets/deps/rls 綠、`next build` 通過。DB 到 0056。
+
+---
+
+## 0727：字體自動安裝移 worker（解中文 524）
+
+**問題**：後台自動安裝思源黑體回 524——中文一套子集化 9 字重 × ~48 分片 × 16MB 原檔，同步 HTTP 超過 Cloudflare 100 秒。
+**做法**：把重運算移到 worker 背景 job（無 HTTP timeout）。
+
+- `apps/worker/src/handlers/font-install.ts`（新）：fetch 來源（google-fonts/github-branch/github-release .ttf）→ 記憶體內子集化（subset-font + theme-engine 分片）→ 上 R2 → upsert fonts。冪等（onConflict slug）。
+- `boss.ts` QUEUES.fontInstall；`index.ts` 註冊 handler（`batchSize:1`，一次一個免吃爆記憶體）；worker 加 `subset-font` 依賴 + 型別 shim。
+- `/api/admin/fonts/install` 改成只入列（`enqueue('font.install')`，singletonKey 防重複）→ 202 快回。
+- `FontsAdmin` 自動安裝：入列後每 5 秒輪詢 `/api/admin/fonts`，目標 slug 出現在 installed 即通知（最多 ~5 分鐘）。
+- 拉丁字體照樣秒裝；中文字體現在也能免 CLI、不逾時。
+- **注意**：動到 worker → Zeabur worker 服務也要重新部署才認得 `font.install`。
+- 閘門：web/worker typecheck、lint、check:deps 全綠。
+
+> 之後平台重構時，web 上傳路徑（`lib/fonts/subset.ts`）與 worker 這份 fetch+subset 可收進 `@snowrealm/font-build` 套件去重。

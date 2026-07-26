@@ -391,15 +391,12 @@
 
 ## 8. 字體
 - **拉丁字體（Inter/Playfair/…）**：後台 **字體管理（`/admin/fonts`）→ 選字體 → 「⤓ 自動安裝」** 很快，直接用。
-- **⚠️ 中文字體（思源黑/宋、昭源…）自動安裝會 524 逾時**：
-  中文一套要子集化 9 個字重 × 每字重約 48 分片 × 16MB 原檔，**同步 HTTP 遠超 Cloudflare 100 秒**（524）。
-  - **先確認是否其實裝好了**：524 是「代理放棄等」，Zeabur origin 可能還在跑並已寫進 R2/DB。過 1–2 分鐘重整「已安裝」列表，思源黑體可能已在。
-  - **正解（待做）**：把字體安裝移到 **worker 背景 job**（無 HTTP timeout）→ 後台觸發後輪詢狀態。見下方待辦。
-  - **暫時**：中文字體用 CLI（無 timeout）`pnpm tsx scripts/download-fonts.ts noto-sans-tc && pnpm fonts:build noto-sans-tc && pnpm fonts:upload`。
+- **中文字體（思源黑/宋、昭源…）** ✅ 0727：**自動安裝已移到 worker 背景 job**（無 HTTP timeout），
+  中文全字重也能免 CLI、不再 524。後台「⤓ 自動安裝」入列後會輪詢，字體約 1–3 分鐘自己出現在「已安裝」。
+  - 🔴 **前置**：這次動到 worker → **Zeabur 的 worker 服務也要重新部署**（才認得 `font.install` 佇列）。
 - **台北黑體**（無自動來源）：翰字鑄造 <https://sites.google.com/view/jtfoundry/> 下載 3 個字重 + OFL 授權 → 後台上傳；檔案大時單一字重分次上傳。詳見 `docs/fonts/README.md`。
 
-> **待做（純程式，我下次做）**：字體安裝（download+subset+upload）移到 worker 背景 job，
-> route 只建 job + 回 202，UI 輪詢「已安裝」列表。這樣中文全字重也能免 CLI、不逾時。
+> ~~**待做**：字體安裝移 worker 背景 job~~ ✅ **0727 完成**（handler `font.install` + install route 只入列 + UI 輪詢）。
 
 ## 9. Giphy（富文本 GIF）—— ✅ 你已設好
 - 已在 env/Zeabur 設好。代理 `/api/giphy` 讀 `GIPHY_API_KEY` 或 `NEXT_PUBLIC_GIPHY_API_KEY` 皆可。
