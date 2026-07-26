@@ -39,7 +39,9 @@ export function VrmWidget() {
   const [char, setChar] = useState<Char>('yukirin')
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
   const controlsRef = useRef<CharControls | null>(null)
-  const dragRef = useRef<{ dx: number; dy: number } | null>(null)
+  const dragRef = useRef<{ dx: number; dy: number; sx: number; sy: number; w: number; h: number } | null>(null)
+  const movedRef = useRef(false)
+  const posRef = useRef<{ x: number; y: number } | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -87,21 +89,32 @@ export function VrmWidget() {
     })
   }
 
-  // 拖曳（在標題列）
+  // 拖曳 —— 收合的球與展開的標題列共用。用元素實際位置起算，兩種尺寸都對。
   function onDragStart(e: React.PointerEvent) {
-    const startX = pos?.x ?? window.innerWidth - PANEL_W - 20
-    const startY = pos?.y ?? window.innerHeight - PANEL_H - 20
-    dragRef.current = { dx: e.clientX - startX, dy: e.clientY - startY }
-    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
+    const el = e.currentTarget as HTMLElement
+    const rect = el.getBoundingClientRect()
+    dragRef.current = {
+      dx: e.clientX - rect.left,
+      dy: e.clientY - rect.top,
+      sx: e.clientX,
+      sy: e.clientY,
+      w: rect.width,
+      h: rect.height,
+    }
+    movedRef.current = false
+    el.setPointerCapture(e.pointerId)
   }
   function onDragMove(e: React.PointerEvent) {
-    if (!dragRef.current) return
-    const x = Math.max(4, Math.min(window.innerWidth - PANEL_W - 4, e.clientX - dragRef.current.dx))
-    const y = Math.max(4, Math.min(window.innerHeight - 40, e.clientY - dragRef.current.dy))
+    const d = dragRef.current
+    if (!d) return
+    if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) > 4) movedRef.current = true
+    const x = Math.max(4, Math.min(window.innerWidth - d.w - 4, e.clientX - d.dx))
+    const y = Math.max(4, Math.min(window.innerHeight - d.h - 4, e.clientY - d.dy))
+    posRef.current = { x, y }
     setPos({ x, y })
   }
   function onDragEnd() {
-    if (dragRef.current && pos) localStorage.setItem(POS_KEY, JSON.stringify(pos))
+    if (posRef.current) localStorage.setItem(POS_KEY, JSON.stringify(posRef.current))
     dragRef.current = null
   }
 
@@ -117,9 +130,15 @@ export function VrmWidget() {
         type="button"
         className="sr-vrm-fab"
         style={style}
-        onClick={toggleOpen}
+        onPointerDown={onDragStart}
+        onPointerMove={onDragMove}
+        onPointerUp={(e) => {
+          onDragEnd()
+          if (!movedRef.current) toggleOpen() // 有拖曳就不當作點擊
+          ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
+        }}
         aria-label="打開 AI 夥伴角色"
-        title="AI 夥伴"
+        title="AI 夥伴（可拖曳）"
       >
         🧊
       </button>
@@ -155,11 +174,11 @@ export function VrmWidget() {
         </button>
       </div>
       <div className="sr-vrm-canvas">
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="sr-vrm-loading">載入角色中…</div>}>
           {char === 'yukirin' ? (
-            <YukirinScene cameraMode="upperBody" showBackground={false} allowOrbit onLoad={onLoad} />
+            <YukirinScene cameraMode="upperBody" showBackground={false} onLoad={onLoad} />
           ) : (
-            <RikuScene cameraMode="upperBody" showBackground={false} allowOrbit onLoad={onLoad} />
+            <RikuScene cameraMode="upperBody" showBackground={false} onLoad={onLoad} />
           )}
         </Suspense>
       </div>

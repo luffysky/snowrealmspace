@@ -3088,10 +3088,23 @@ input[type='range'] {
   background: var(--sr-surface);
   box-shadow: var(--sr-shadow-lg);
   font-size: 26px;
-  cursor: pointer;
+  cursor: grab;
+  touch-action: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.sr-vrm-fab:active {
+  cursor: grabbing;
+}
+.sr-vrm-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
 }
 .sr-vrm-fab:hover {
   background: var(--sr-surface-alt);

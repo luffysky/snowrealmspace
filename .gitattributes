@@ -1,0 +1,8 @@
+# VRM / 動作等二進位資產：絕不做行尾轉換（Windows autocrlf 會弄壞二進位檔）
+*.vrm binary
+*.fbx binary
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
