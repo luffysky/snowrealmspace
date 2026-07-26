@@ -182,3 +182,26 @@
 - **深淺色自動配對**：`deriveDarkTheme` 卡片/底色壓中性（不再深粉紅）；新增 `deriveLightTheme`/`isDarkTheme`/`effectiveTheme`（依底自動選模式，深色主題也能反推淺色）。dark-mode.test 11/11。
 - **Secret 產生器**（`/admin/secrets`）：前端 crypto 產生，長度 8/16/32/64、字元組合 hex/base64/英數/純英/純數/英數+符號、各長度用途表、copy。
 - **Secret 紀錄**（0054）：`admin_secret_notes` 值 AES-256-GCM 加密後存（主金鑰在 env）；RLS 無 policy → 只 service role + checkSiteAdmin；GET 列表/reveal、POST、DELETE；UI 可存/顯示/刪。types 手動補（gen types 需 Docker，本機無）。
+
+---
+
+## 0726→0727 大批次（富文本 / 附件 / 字體 / 深淺背景 / 平台文件 / 稽核）
+
+**功能**
+- **富文本編輯器**（`@/components/rich`）：tiptap v3，功能對齊 AI 島（標題/刪除線/行內碼/程式碼區塊 lowlight/螢光筆/文字顏色/對齊/待辦清單/表格/Markdown 貼上/字數）+ 自刻表情、GIF、`ChatMedia`；存 HTML + 伺服器 sanitize；筆記、捕捉接上。
+- **Agent 對話**：表情 + GIF（giphy 代理）+ **傳任意檔**（影片/音檔/任意檔，走 assets）；圖片/影片脫離氣泡框直接顯示、可點開、圖片可存。
+- **字體後台自動安裝**：`/api/admin/fonts/install` 伺服器抓 google-fonts/github → 子集化 → R2（拉丁 OK）。**中文 9 字重會 524 逾時 → 待移 worker**。全字重 100–900。
+- **深/淺色各自指定背景**（0056）：`spaces.bg_light/dark_item_id` + `background_items.tone`；resolver 依模式挑；Studio ☀/☾ + 色調鈕；toggle 後 refresh 換背景 + 深色暗罩。
+- **Secret 產生器 + 加密紀錄**（0054）、**大頭貼**（0055）、**對話歷史摘要**（agent_threads.summary + conversation_summary usage）。
+- **Canva 設計來源**註冊（provider-core，connectable=false 待憑證）。
+- 深淺色自動配對（effectiveTheme）、選單間距、創作連續框、時間軸排版+widget、CI 型別漂移修正、字體大檔錯誤訊息。
+
+**平台文件**
+- `docs/SnowRealm-SDK-vs-Platform.md`：Platform HTTP / SDK / 薄 client 分界 + 富文本 SDK 計畫 + **資料夾拓撲與遷移順序**（產品各自 repo + 一個 platform monorepo）。
+- `docs/fonts/README.md`；`todo_list_0724.md` 底部加「你要做的事—詳細步驟」（AI金鑰/Email/Google/LINE/Figma/Canva/JWT/字體/Giphy/Sentry）。
+
+**稽核（兩個 agent）**
+- **API↔DB↔UI 接線**：無半接線缺陷——表/路由/8 條新功能鏈全接上、無假按鈕。
+- **RWD/PWA**：PWA 全對；RWD 修 3 處（富文本表格拉寬可橫捲不裁切、對話媒體+文字改直排、emoji/gif 面板加 max-width）。
+
+全程 typecheck/lint/secrets/deps/rls 綠、`next build` 通過。DB 到 0056。

@@ -3037,12 +3037,14 @@ input[type='range'] {
 }
 .sr-chat-msg {
   display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-1);
 }
 .sr-chat-user {
-  justify-content: flex-end;
+  align-items: flex-end;
 }
 .sr-chat-assistant {
-  justify-content: flex-start;
+  align-items: flex-start;
 }
 .sr-chat-bubble {
   max-width: min(80%, 640px);
@@ -3596,7 +3598,15 @@ input[type='range'] {
   padding: var(--sr-space-3);
   min-height: 80px;
   max-height: 360px;
-  overflow-y: auto;
+  overflow: auto;
+}
+/* 表格拉寬後（prosemirror 寫死 colgroup px）要能橫向捲，不要被裁掉 */
+.sr-rich-content .ProseMirror .tableWrapper {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.sr-rich-view {
+  overflow-x: auto;
 }
 .sr-rich-content .ProseMirror {
   outline: none;
@@ -3637,6 +3647,7 @@ input[type='range'] {
   position: fixed;
   z-index: 90;
   width: 288px;
+  max-width: calc(100vw - 16px);
   max-height: 320px;
   overflow-y: auto;
   padding: var(--sr-space-3);
@@ -3803,7 +3814,6 @@ input[type='range'] {
   border-collapse: collapse;
   width: 100%;
   margin: var(--sr-space-2) 0;
-  overflow: hidden;
 }
 .sr-rich-content .ProseMirror :is(td, th),
 .sr-rich-view :is(td, th) {

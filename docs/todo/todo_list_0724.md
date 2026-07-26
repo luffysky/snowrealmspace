@@ -390,8 +390,16 @@
 - 換成自己的 JWT secret → **重新產生 anon / service key** → 更新所有用到的 env。正式對外前一定要做。
 
 ## 8. 字體
-- **13 套（思源黑/宋、Inter、昭源…）**：後台 **字體管理（`/admin/fonts`）→ 選字體 → 「⤓ 自動安裝」**（伺服器自己抓，免上傳）。
+- **拉丁字體（Inter/Playfair/…）**：後台 **字體管理（`/admin/fonts`）→ 選字體 → 「⤓ 自動安裝」** 很快，直接用。
+- **⚠️ 中文字體（思源黑/宋、昭源…）自動安裝會 524 逾時**：
+  中文一套要子集化 9 個字重 × 每字重約 48 分片 × 16MB 原檔，**同步 HTTP 遠超 Cloudflare 100 秒**（524）。
+  - **先確認是否其實裝好了**：524 是「代理放棄等」，Zeabur origin 可能還在跑並已寫進 R2/DB。過 1–2 分鐘重整「已安裝」列表，思源黑體可能已在。
+  - **正解（待做）**：把字體安裝移到 **worker 背景 job**（無 HTTP timeout）→ 後台觸發後輪詢狀態。見下方待辦。
+  - **暫時**：中文字體用 CLI（無 timeout）`pnpm tsx scripts/download-fonts.ts noto-sans-tc && pnpm fonts:build noto-sans-tc && pnpm fonts:upload`。
 - **台北黑體**（無自動來源）：翰字鑄造 <https://sites.google.com/view/jtfoundry/> 下載 3 個字重 + OFL 授權 → 後台上傳；檔案大時單一字重分次上傳。詳見 `docs/fonts/README.md`。
+
+> **待做（純程式，我下次做）**：字體安裝（download+subset+upload）移到 worker 背景 job，
+> route 只建 job + 回 202，UI 輪詢「已安裝」列表。這樣中文全字重也能免 CLI、不逾時。
 
 ## 9. Giphy（富文本 GIF）—— ✅ 你已設好
 - 已在 env/Zeabur 設好。代理 `/api/giphy` 讀 `GIPHY_API_KEY` 或 `NEXT_PUBLIC_GIPHY_API_KEY` 皆可。
