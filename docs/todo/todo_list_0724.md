@@ -374,8 +374,12 @@
      GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID=<Client ID>
      GOTRUE_EXTERNAL_GOOGLE_SECRET=<Client Secret>
      GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI=https://snowrealm-space-db.zeabur.app/auth/v1/callback
+     GOTRUE_SECURITY_MANUAL_LINKING_ENABLED=true
      ```
      （就是設 `GOTRUE_SMTP_ADMIN_EMAIL` 那個服務；`REDIRECT_URI` 要跟 Google Console 那個一字不差）
+     ⚠️ **`MANUAL_LINKING_ENABLED` 沒設 → 在登入方式頁按「綁定 Google」會回「連結失敗」**
+     （linkIdentity 回 422）。純登入不需要它，但「綁到既有帳號」一定要。config.toml 本機是
+     `enable_manual_linking = true`，hosted 要用這個 env 對應。
    - **Zeabur `web` 服務**——只是登入頁「要不要顯示 Google 按鈕」的開關：
      `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`
 6. 沒設的話登入頁 Google 按鈕會顯示「尚未設定」並停用，不會壞。
