@@ -24,6 +24,21 @@ const { registerSchedules } = await import('./schedules.js')
 async function main() {
   console.log('[worker] 啟動中…')
 
+  // 健康檢查用的極簡 HTTP server。
+  //
+  // Zeabur 等平台會對服務的 $PORT 做健康檢查；純 pg-boss worker 不聽任何 port，
+  // 平台就把它判成「不健康」→ 每隔一段時間送 SIGTERM 重啟（log 會一直看到
+  // 「Command failed with signal SIGTERM」的重啟迴圈）。聽一個 port 回 200 即可打破。
+  // 沒注入 PORT（例如本機）時就不啟這個 server。
+  const healthPort = Number(process.env.PORT)
+  if (Number.isFinite(healthPort) && healthPort > 0) {
+    const { createServer } = await import('node:http')
+    createServer((_req, res) => {
+      res.writeHead(200, { 'content-type': 'text/plain' })
+      res.end('ok')
+    }).listen(healthPort, () => console.log(`[worker] 健康檢查 HTTP 在 :${healthPort}`))
+  }
+
   const boss = await startBoss()
 
   await boss.createQueue(QUEUES.ping)
