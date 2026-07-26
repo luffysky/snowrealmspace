@@ -19,6 +19,8 @@ import { LottieBackground } from './LottieBackground'
 export type BackgroundItem = {
   id: string
   name: string | null
+  /** 色調分類（淺色/深色），供資源庫分區與深淺模式參考。 */
+  tone?: 'light' | 'dark' | undefined
   type: 'image' | 'video' | 'gradient' | 'procedural' | 'lottie'
   asset_id: string | null
   fit: 'cover' | 'contain' | 'original'

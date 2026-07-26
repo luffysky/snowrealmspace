@@ -48,6 +48,23 @@ export function BackgroundStudio({
   const [bgLightId, setBgLightId] = useState(initialBgLightId)
   const [bgDarkId, setBgDarkId] = useState(initialBgDarkId)
 
+  // 色調分類（淺/深）：新增時系統先猜，這裡讓使用者手動改。分類供你「淺色從淺色選」。
+  async function flipTone(bg: BackgroundItem) {
+    const next = (bg.tone ?? 'light') === 'light' ? 'dark' : 'light'
+    setBackgrounds((prev) => prev.map((b) => (b.id === bg.id ? { ...b, tone: next } : b)))
+    try {
+      const res = await fetch(`/api/backgrounds/${bg.id}`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
+        body: JSON.stringify({ tone: next }),
+      })
+      if (!res.ok) throw new Error()
+    } catch {
+      setBackgrounds((prev) => prev.map((b) => (b.id === bg.id ? { ...b, tone: bg.tone } : b)))
+      setStatus({ kind: 'error', message: '改色調失敗。' })
+    }
+  }
+
   // 指定某個背景為淺色/深色模式背景（再按一次取消）。切換到該模式時就會用它。
   async function assignBgForMode(mode: 'light' | 'dark', id: string) {
     const cur = mode === 'light' ? bgLightId : bgDarkId
@@ -420,6 +437,14 @@ export function BackgroundStudio({
                     title="設為深色模式的背景"
                   >
                     ☾ 深色{bgDarkId === bg.id ? ' ✓' : ''}
+                  </button>
+                  <button
+                    type="button"
+                    className="sr-chip"
+                    onClick={() => void flipTone(bg)}
+                    title="切換這個背景的色調分類（系統先猜、可手改）"
+                  >
+                    色調：{(bg.tone ?? 'light') === 'dark' ? '深' : '淺'}
                   </button>
                 </div>
               </li>

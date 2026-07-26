@@ -1,10 +1,32 @@
 import type { NextRequest } from 'next/server'
 import { backgroundCreateSchema } from '@snowrealm/validation'
 import { emitEvent } from '@snowrealm/analytics'
+import { parseColor, relativeLuminance } from '@snowrealm/theme-engine'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
+
+/**
+ * 猜色調（淺/深），供資源庫分區。漸層直接看色停平均亮度；其餘暫時當淺色，
+ * 使用者可在 Studio 手動改（「系統先幫忙選、再自己改」）。
+ */
+function detectTone(input: { type: string; gradientSpec?: unknown }): 'light' | 'dark' {
+  const gs = input.gradientSpec as { stops?: { color: string }[] } | null | undefined
+  if (input.type === 'gradient' && gs?.stops?.length) {
+    const lums = gs.stops
+      .map((s) => {
+        const p = parseColor(s.color)
+        return p ? relativeLuminance(p) : null
+      })
+      .filter((n): n is number => n !== null)
+    if (lums.length) {
+      const avg = lums.reduce((a, b) => a + b, 0) / lums.length
+      return avg < 0.4 ? 'dark' : 'light'
+    }
+  }
+  return 'light'
+}
 
 export const GET = handler(async () => {
   const result = await resolveContext()
@@ -74,6 +96,7 @@ export const POST = handler(async (request: NextRequest) => {
       created_by: ctx.userId,
       asset_id: input.assetId ?? null,
       type: input.type,
+      tone: detectTone(input),
       name: input.name ?? derivedName,
       fit: input.fit,
       position_x: input.positionX,

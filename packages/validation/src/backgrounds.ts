@@ -140,6 +140,7 @@ export const backgroundCreateSchema = z
 export const backgroundPatchSchema = z
   .object({
     name: z.string().trim().max(80).nullable().optional(),
+    tone: z.enum(['light', 'dark']).optional(),
     fit: z.enum(['cover', 'contain', 'original']).optional(),
     positionX: z.number().min(0).max(100).optional(),
     positionY: z.number().min(0).max(100).optional(),

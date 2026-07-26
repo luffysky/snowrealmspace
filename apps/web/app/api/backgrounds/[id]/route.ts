@@ -7,6 +7,7 @@ export const dynamic = 'force-dynamic'
 
 const FIELD_MAP: Record<string, string> = {
   name: 'name',
+  tone: 'tone',
   fit: 'fit',
   positionX: 'position_x',
   positionY: 'position_y',
