@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { getUser } from '@/lib/auth/session'
 import { startLineAuth, lineConfig } from '@snowrealm/db/line-oauth'
+import { appUrl } from '@/lib/app-url'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,7 +16,8 @@ export const dynamic = 'force-dynamic'
  * 會在 callback 被擋下並說明原因，而不是靜靜建立一個進不去的帳號。
  */
 export async function GET(request: NextRequest) {
-  const origin = request.nextUrl.origin
+  // 錯誤重導基底用對外網址（LINE 授權 URL 本身走 env 的 redirectUri，不受影響）
+  const origin = appUrl()
 
   const intent = request.nextUrl.searchParams.get('intent') === 'login' ? 'login' : 'link'
   const next = request.nextUrl.searchParams.get('next') ?? undefined

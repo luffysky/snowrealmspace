@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { getDb } from '@/lib/supabase/server'
 import { syncFromAuthIdentities } from '@snowrealm/db/identities'
+import { appUrl } from '@/lib/app-url'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,17 +14,19 @@ export const dynamic = 'force-dynamic'
  */
 export async function GET(request: NextRequest) {
   const url = request.nextUrl
+  // 重導基底用對外網址（APP_PUBLIC_URL），不用 request host（Zeabur 內是 localhost:8080）
+  const base = appUrl()
   const code = url.searchParams.get('code')
   const next = url.searchParams.get('next') ?? '/settings/account'
   const oauthError = url.searchParams.get('error')
 
   // 使用者在 Google 那邊按了取消 —— 這不是錯誤，安靜回去就好
   if (oauthError === 'access_denied') {
-    return NextResponse.redirect(new URL(next, url.origin))
+    return NextResponse.redirect(new URL(next, base))
   }
 
   if (!code) {
-    return NextResponse.redirect(new URL(`${next}?error=link_missing_code`, url.origin))
+    return NextResponse.redirect(new URL(`${next}?error=link_missing_code`, base))
   }
 
   const db = await getDb()
@@ -34,7 +37,7 @@ export async function GET(request: NextRequest) {
     // 這是正常且必須明說的情況，不是系統錯誤。
     const already = error?.message?.includes('already') ?? false
     return NextResponse.redirect(
-      new URL(`${next}?error=${already ? 'link_taken' : 'link_failed'}`, url.origin),
+      new URL(`${next}?error=${already ? 'link_taken' : 'link_failed'}`, base),
     )
   }
 
@@ -47,5 +50,5 @@ export async function GET(request: NextRequest) {
     console.error('[auth/link-callback] 身分同步失敗', err)
   }
 
-  return NextResponse.redirect(new URL(`${next}?linked=google`, url.origin))
+  return NextResponse.redirect(new URL(`${next}?linked=google`, base))
 }

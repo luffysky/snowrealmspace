@@ -9,6 +9,7 @@ import {
 } from '@snowrealm/db/identities'
 import { mintSessionForUser } from '@snowrealm/db/session-mint'
 import { audit } from '@snowrealm/analytics'
+import { appUrl } from '@/lib/app-url'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,7 +25,8 @@ export const dynamic = 'force-dynamic'
  */
 export async function GET(request: NextRequest) {
   const url = request.nextUrl
-  const origin = url.origin
+  // 重導基底用對外網址（APP_PUBLIC_URL），不用 request host（Zeabur 內是 localhost:8080）
+  const origin = appUrl()
   const code = url.searchParams.get('code')
   const state = url.searchParams.get('state') ?? ''
   const lineError = url.searchParams.get('error')

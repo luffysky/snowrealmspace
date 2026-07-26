@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { getDb } from '@/lib/supabase/server'
 import { requireUser } from '@/lib/auth/session'
+import { appUrl } from '@/lib/app-url'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,7 +21,8 @@ export async function GET(request: NextRequest) {
   await requireUser()
 
   const db = await getDb()
-  const origin = request.nextUrl.origin
+  // 對外網址基底（APP_PUBLIC_URL），不用 request host（Zeabur 容器內是 localhost:8080）
+  const origin = appUrl()
   const next = request.nextUrl.searchParams.get('next') ?? '/settings/account'
 
   const { data, error } = await db.auth.linkIdentity({

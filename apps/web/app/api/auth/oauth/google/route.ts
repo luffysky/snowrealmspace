@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { getDb } from '@/lib/supabase/server'
+import { appUrl } from '@/lib/app-url'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,7 +14,9 @@ export const dynamic = 'force-dynamic'
  * 也就是「用 Google 登入 ≠ 註冊」—— 這一點在登入頁已寫明。
  */
 export async function GET(request: NextRequest) {
-  const origin = request.nextUrl.origin
+  // 重導基底一律用對外網址（APP_PUBLIC_URL），不用 request host ——
+  // Zeabur 容器內看到的是 localhost:8080，用它組 redirectTo 會把人導去 :8080。
+  const origin = appUrl()
   const next = request.nextUrl.searchParams.get('next') ?? '/home'
 
   const db = await getDb()
