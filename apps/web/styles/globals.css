@@ -136,6 +136,124 @@ h3 {
   padding: var(--sr-space-6);
 }
 
+/*
+ * 卡片材質與動畫。
+ *
+ * themeDataAttributes 會把 data-surface-style / data-motion-preset 設在
+ * .sr-shell-root（整站）或 .sr-preview-surface（Theme Studio 即時預覽）上。
+ * 這裡一律用「後代選擇器」，所以同一份規則兩邊都生效 —— 過去這些屬性有設、
+ * 卻沒有任何 CSS 消費，等於材質與動畫選了沒反應（假控制項）。
+ * base .sr-card 是毛玻璃（glass）；其餘材質在此覆寫。
+ */
+[data-surface-style='solid'] .sr-card {
+  background: var(--sr-surface-opaque, var(--sr-surface));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+[data-surface-style='soft'] .sr-card {
+  background: var(--sr-surface-opaque, var(--sr-surface));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent;
+  box-shadow: var(--sr-shadow-lg);
+}
+[data-surface-style='outline'] .sr-card {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* 動畫：尊重「減少動態」偏好，強度由 --sr-motion-intensity 縮放。 */
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion-preset='soft'] .sr-card,
+  [data-motion-preset='float'] .sr-card,
+  [data-motion-preset='playful'] .sr-card,
+  [data-motion-preset='cinematic'] .sr-card {
+    transition:
+      transform 220ms var(--sr-ease, ease),
+      box-shadow 220ms var(--sr-ease, ease);
+  }
+  [data-motion-preset='soft'] .sr-card:hover {
+    transform: translateY(calc(-4px * var(--sr-motion-intensity, 1)));
+  }
+  [data-motion-preset='playful'] .sr-card:hover {
+    transform: translateY(calc(-6px * var(--sr-motion-intensity, 1)))
+      scale(calc(1 + 0.012 * var(--sr-motion-intensity, 1)));
+  }
+  [data-motion-preset='float'] .sr-card {
+    animation: sr-card-float calc(6s - 2s * var(--sr-motion-intensity, 1)) ease-in-out infinite;
+  }
+  [data-motion-preset='cinematic'] .sr-card {
+    animation: sr-card-cine-in 600ms ease both;
+  }
+}
+@keyframes sr-card-float {
+  0%,
+  100% {
+    transform: translateY(calc(-3px * var(--sr-motion-intensity, 1)));
+  }
+  50% {
+    transform: translateY(calc(3px * var(--sr-motion-intensity, 1)));
+  }
+}
+@keyframes sr-card-cine-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * 預覽隔離：Theme Studio 的預覽容器巢狀在整站 .sr-shell-root 裡，
+ * 兩者都帶 data-surface-style / data-motion-preset。若不隔離，外層（目前套用的主題）
+ * 的材質/動畫會透過後代選擇器蓋到預覽卡片，讓預覽顯示的不是草稿。
+ * 這裡用 .sr-preview-surface[...] 提高特異度，讓預覽一律以自己的草稿為準（含 glass 還原）。
+ */
+.sr-preview-surface[data-surface-style='glass'] .sr-card {
+  background: var(--sr-surface);
+  backdrop-filter: blur(var(--sr-blur));
+  -webkit-backdrop-filter: blur(var(--sr-blur));
+  border-color: var(--sr-border);
+  box-shadow: var(--sr-shadow-md);
+}
+.sr-preview-surface[data-surface-style='solid'] .sr-card {
+  background: var(--sr-surface-opaque, var(--sr-surface));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--sr-border);
+  box-shadow: var(--sr-shadow-md);
+}
+.sr-preview-surface[data-surface-style='soft'] .sr-card {
+  background: var(--sr-surface-opaque, var(--sr-surface));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent;
+  box-shadow: var(--sr-shadow-lg);
+}
+.sr-preview-surface[data-surface-style='outline'] .sr-card {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+/* 動畫也以預覽自己的草稿為準：先清掉從外層繼承來的持續動畫，再依草稿 preset 重新套用。 */
+.sr-preview-surface .sr-card {
+  animation: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sr-preview-surface[data-motion-preset='float'] .sr-card {
+    animation: sr-card-float calc(6s - 2s * var(--sr-motion-intensity, 1)) ease-in-out infinite;
+  }
+  .sr-preview-surface[data-motion-preset='cinematic'] .sr-card {
+    animation: sr-card-cine-in 600ms ease both;
+  }
+}
+
 .sr-button {
   font: inherit;
   font-weight: 600;
