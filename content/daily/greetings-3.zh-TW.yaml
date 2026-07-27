@@ -1,0 +1,85 @@
+# 問候補充批次 3。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-080
+    text: 早，今天想先做哪件事？
+  - id: g-morning-081
+    text: 早安，昨晚睡得好嗎？
+  - id: g-morning-082
+    text: 早，先別急著看訊息。
+  - id: g-morning-083
+    text: 天亮了，起來動一動。
+  - id: g-morning-084
+    text: 早安，給今天一個好開場。
+  - id: g-morning-085
+    text: 早，喝完這杯再出發。
+  - id: g-morning-086
+    text: 早安，日子還長，慢慢來。
+  - id: g-morning-087
+    text: 早，讓陽光進來一點。
+  - id: g-morning-088
+    text: 早安，你已經醒了，很好。
+  - id: g-morning-089
+    text: 早，先伸個懶腰再說。
+afternoon:
+  - id: g-afternoon-080
+    text: 午安，還撐得住嗎？
+  - id: g-afternoon-081
+    text: 下午了，換個姿勢坐。
+  - id: g-afternoon-082
+    text: 午安，做完一件就休息。
+  - id: g-afternoon-083
+    text: 午後，眼睛也需要放假。
+  - id: g-afternoon-084
+    text: 午安，剩下半天，不急。
+  - id: g-afternoon-085
+    text: 下午好，補個點心吧。
+  - id: g-afternoon-086
+    text: 午安，深呼吸，繼續。
+  - id: g-afternoon-087
+    text: 午後了，站起來看看遠方。
+  - id: g-afternoon-088
+    text: 午安，把難的留到有精神時。
+  - id: g-afternoon-089
+    text: 下午好，一步一步來。
+evening:
+  - id: g-evening-080
+    text: 傍晚好，今天過得如何？
+  - id: g-evening-081
+    text: 晚上好，先把肩膀放鬆。
+  - id: g-evening-082
+    text: 天色暗了，慢慢收尾。
+  - id: g-evening-083
+    text: 傍晚了，替自己倒杯水。
+  - id: g-evening-084
+    text: 晚間好，做完就別想了。
+  - id: g-evening-085
+    text: 傍晚好，看一眼窗外的顏色。
+  - id: g-evening-086
+    text: 晚上好，今天辛苦你了。
+  - id: g-evening-087
+    text: 入夜了，把節奏放慢。
+  - id: g-evening-088
+    text: 傍晚好，留點時間給自己。
+  - id: g-evening-089
+    text: 晚間好，燈光調柔一點。
+night:
+  - id: g-night-080
+    text: 夜深了，別再滑手機。
+  - id: g-night-081
+    text: 晚安，把煩惱先擱著。
+  - id: g-night-082
+    text: 夜裡好，聽點輕的音樂。
+  - id: g-night-083
+    text: 晚安，今天已經很足夠。
+  - id: g-night-084
+    text: 深夜了，讓身體先躺平。
+  - id: g-night-085
+    text: 夜安，明天的事明天想。
+  - id: g-night-086
+    text: 晚安，謝謝今天的自己。
+  - id: g-night-087
+    text: 夜裡，放空一會兒再睡。
+  - id: g-night-088
+    text: 晚安，願你睡得安穩。
+  - id: g-night-089
+    text: 夜深，把燈調暗，慢慢沉。
