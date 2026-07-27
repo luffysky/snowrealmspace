@@ -1,0 +1,73 @@
+# 二十四節氣專屬語（tags 含節氣 slug + 季節）。選取時會優先命中當下的節氣。
+- id: se-jieqi-xiaohan
+  text: 小寒最冷，把自己裹暖一點。
+  tags: [xiaohan, winter]
+- id: se-jieqi-dahan
+  text: 大寒了，熬過這段，春天就近了。
+  tags: [dahan, winter]
+- id: se-jieqi-lichun
+  text: 立春，冷還在，但風裡有了別的味道。
+  tags: [lichun, spring]
+- id: se-jieqi-yushui
+  text: 雨水時節，讓乾了很久的想法也濕潤一下。
+  tags: [yushui, spring]
+- id: se-jieqi-jingzhe
+  text: 驚蟄，蟄伏的都動起來了，你呢？
+  tags: [jingzhe, spring]
+- id: se-jieqi-chunfen
+  text: 春分，日夜對半，找回你的平衡。
+  tags: [chunfen, spring]
+- id: se-jieqi-qingming
+  text: 清明時節，收拾一下，也放下一些。
+  tags: [qingming, spring]
+- id: se-jieqi-guyu
+  text: 穀雨，播下的都在等雨，別急。
+  tags: [guyu, spring]
+- id: se-jieqi-lixia
+  text: 立夏了，日子開始有了熱度。
+  tags: [lixia, summer]
+- id: se-jieqi-xiaoman
+  text: 小滿，未滿正好，留一點餘地。
+  tags: [xiaoman, summer]
+- id: se-jieqi-mangzhong
+  text: 芒種時節，忙起來也記得喘口氣。
+  tags: [mangzhong, summer]
+- id: se-jieqi-xiazhi
+  text: 夏至，一年最長的白天，慢慢用。
+  tags: [xiazhi, summer]
+- id: se-jieqi-xiaoshu
+  text: 小暑，暑氣漸起，動作放緩。
+  tags: [xiaoshu, summer]
+- id: se-jieqi-dashu
+  text: 大暑，最熱的時候，躲進陰涼裡。
+  tags: [dashu, summer]
+- id: se-jieqi-liqiu
+  text: 立秋，暑氣未消，涼意已在路上。
+  tags: [liqiu, autumn]
+- id: se-jieqi-chushu
+  text: 處暑，熱要收尾了，鬆一口氣。
+  tags: [chushu, autumn]
+- id: se-jieqi-bailu
+  text: 白露，晨間有露，記得添件衣。
+  tags: [bailu, autumn]
+- id: se-jieqi-qiufen
+  text: 秋分，日夜再度對半，收收心。
+  tags: [qiufen, autumn]
+- id: se-jieqi-hanlu
+  text: 寒露，涼得更實了，暖著過。
+  tags: [hanlu, autumn]
+- id: se-jieqi-shuangjiang
+  text: 霜降，第一層霜落下，慢下腳步。
+  tags: [shuangjiang, autumn]
+- id: se-jieqi-lidong
+  text: 立冬了，把自己收好，安靜地養。
+  tags: [lidong, winter]
+- id: se-jieqi-xiaoxue
+  text: 小雪，天要更冷了，屋裡點暖些。
+  tags: [xiaoxue, winter]
+- id: se-jieqi-daxue
+  text: 大雪，外頭冷，這一角是你的暖。
+  tags: [daxue, winter]
+- id: se-jieqi-dongzhi
+  text: 冬至，最長的夜過了，就一天天轉亮。
+  tags: [dongzhi, winter]
