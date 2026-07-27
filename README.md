@@ -20,10 +20,13 @@
   全字重（100–900）、標題／內文可各自選字重；後台一鍵自動安裝（子集化移 worker 串流處理）
 - **可自訂版面** — 拖拉（跟手）式 widget 格線、多套版面 CRUD + 6 套範本（專注／創作／每日／極簡／總覽）、
   每種螢幕寬度各自記住排列、一鍵還原預設。widget 含專注計時／心情打卡／目標追蹤／創作連續等
-- **每日內容** — 語錄、創作提示、驚喜盒、生日鏈、主動訊息、每週回顧（Daily Loop）；
+- **每日內容** — 語錄、創作提示、**每日一問**、**微行動**、**季節·節氣**、驚喜盒、生日鏈、主動訊息、每週回顧（Daily Loop）；
+  **依使用者近況挑內容**（讀活動事件推出「剛回來／連續創作／夜貓」等狀態、對應加權）；
   生日當天以**信封生日卡**（掀蓋動畫）呈現，自動送出
 - **創作與作品** — 專案、作品與版本比較、**AI 視覺分析**回饋（light/deep）；
   **公開作品集頁**與**唯讀分享連結**（逐作品 private／unlisted／public，連結可設到期、可撤銷）
+- **外部設計工具整合**（Milestone F，進行中） — 連接 **Figma／Canva**（OAuth，token 加密儲存）、
+  明確選檔同步進媒體庫並建版本快照；worker 背景同步（去重／指數退避／429 依 Retry-After／失敗通知）
 - **捕捉與筆記** — 隨手捕捉 inbox（之後沉澱成筆記）、筆記增刪改、隨手記小工具（跨裝置同步）
 - **AI 夥伴** — 免費模型優先的多模型路由 + Agent 工具 + 記憶（AI Core，金鑰到後台設）；
   **多模態對話**（傳圖片／檔案／語音轉文字）、**SSE 逐字串流**回覆、對話串管理、**AI 深入回顧**（有根據的建議）；
@@ -69,6 +72,8 @@ packages/
   widget-engine/  格線佈局、widget 註冊、設定欄位
   rich-editor/    共用富文本 SDK（tiptap，供筆記／捕捉／Agent 複用）
   analytics/      activity_events / audit_logs
+  provider-core/  設計工具 adapter（Figma／Canva capability、webhook 驗簽）
+  design-sync/    F 整合的 token 層與同步核心（web／worker 共用單一來源）
 content/        每日內容池（YAML，由 seed 匯入）
 docs/spec/      可執行規格與 ADR
 supabase/       migration 與 RLS 測試
@@ -150,9 +155,9 @@ pnpm test:a11y           # 無障礙（axe-core）
 | A — Foundation | ✅ 完成 |
 | B — Visual Personalization | ✅ 約 98%（剩手動走查與一個字體檔） |
 | C — Creative Core | ✅ 大致完成（Projects／作品版本／Library／Timeline／隱私刪除；剩本地分析擴充） |
-| D — AI Core | ✅ 大致完成（路由／Agent／多模態／SSE 串流／記憶＋語意檢索／視覺分析／深入回顧；剩對話歷史摘要、金鑰額度調校） |
-| E — Daily Loop | ✅ 完成（cron 掃時區、週報、主動訊息、生日卡） |
-| F — Integration | 🚧 骨架（Figma adapter／webhook；OAuth 待憑證） |
+| D — AI Core | ✅ 大致完成（路由／Agent／多模態／SSE 串流／記憶＋語意檢索／視覺分析／深入回顧／對話歷史摘要；剩金鑰額度調校） |
+| E — Daily Loop | ✅ 完成（cron 掃時區、週報、主動訊息、生日卡、依近況給內容） |
+| F — Integration | 🚧 進行中（**納入 Canva**）：連接半段 ✅（Figma／Canva OAuth＋斷線）、同步 S1 ✅（選檔→版本快照）、S2 ✅（worker 同步 job）；剩 webhook 觸發、選檔／版本比較 UI、Figma 端點實測 |
 
 完整盤點見 [`docs/spec/91-backlog.md`](docs/spec/91-backlog.md)。
 
