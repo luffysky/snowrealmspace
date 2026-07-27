@@ -20,6 +20,7 @@ import {
 import { resolveThemeFonts } from '@/lib/theme/server-fonts'
 import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLayer'
+import { themeGradientBackground } from '@/lib/theme/theme-gradient-bg'
 import { SpaceShell } from '@/components/SpaceShell'
 import { FloatingAgent } from '@/components/FloatingAgent'
 import { DialogProvider } from '@/components/ui/DialogProvider'
@@ -103,10 +104,29 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
    * 從 cookie 讀模式，SSR 首屏就用對的顏色，不閃。暗色由 deriveDarkTheme 推導
    * （保留主題色相與個性，只翻明暗）。
    */
-  const mode = parseMode((await cookies()).get(MODE_COOKIE)?.value)
-  // effectiveTheme 會依「使用者選的底是淺是深」自動推導對應模式的版本：
-  // 選淺色主題 → 深色模式得中性深底＋主題強調；選深色主題 → 淺色模式得中性亮底。
+  const cookieMode = parseMode((await cookies()).get(MODE_COOKIE)?.value)
+
+  /*
+   * #54「背景為主」：先解析背景，用它的明暗(tone)決定整體模式與文字對比 ——
+   * 深色背景→深色模式（淺字）、淺色背景→淺色模式（深字）。背景沒標 tone 時退回
+   * cookie 模式。切深/淺模式時 resolveCurrentBackground 會選對應的 per-mode 釘選背景
+   * （bg_light/bg_dark_item_id），所以模式與背景天然一起換。
+   */
+  const background = (await resolveCurrentBackground(
+    db,
+    space.id,
+    space.timezone,
+    new Date(),
+    cookieMode,
+  )) as BackgroundState | null
+  const bgTone = (background?.current as { tone?: 'light' | 'dark' } | null)?.tone ?? null
+  const mode = bgTone ?? cookieMode
+
+  // effectiveTheme 依 mode 推導對應版本（深色模式＝淺字、淺色模式＝深字），文字對比自動成立。
   const effective = effectiveTheme(definition, mode)
+
+  // 沒有背景時，用主題色生成一張漸層背景（tone 跟著 mode）→ 永遠有背景、且跟主題連動。
+  const resolvedBackground = background ?? themeGradientBackground(effective, mode)
 
   /*
    * SSR 時就把主題寫進 <style>，避免首屏閃一下預設色再換成使用者的主題。
@@ -121,15 +141,6 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
    * 解析失敗回 null，頁面退回 CSS 檔的預設堆疊（已在 server-fonts 記錄原因）。
    */
   const fonts = await resolveThemeFonts(db, definition)
-
-  // 背景：SSR 就解析好，避免進頁後才閃一下
-  const background = (await resolveCurrentBackground(
-    db,
-    space.id,
-    space.timezone,
-    new Date(),
-    mode,
-  )) as BackgroundState | null
 
   const nav = [
     { href: '/home', label: 'Home' },
@@ -201,7 +212,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
         </>
       )}
 
-      <BackgroundLayer spaceId={space.id} state={background} />
+      <BackgroundLayer spaceId={space.id} state={resolvedBackground} />
 
       <DialogProvider>
         <SpaceShell
