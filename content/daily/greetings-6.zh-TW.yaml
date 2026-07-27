@@ -1,0 +1,85 @@
+# 問候補充批次 6。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-110
+    text: 早，窗外今天是什麼天氣？
+  - id: g-morning-111
+    text: 早安，先喝杯熱的暖暖胃。
+  - id: g-morning-112
+    text: 早，把窗打開換點空氣。
+  - id: g-morning-113
+    text: 天亮了，動動手指和腳趾。
+  - id: g-morning-114
+    text: 早安，今天想對自己說什麼？
+  - id: g-morning-115
+    text: 早，一步一步來就好。
+  - id: g-morning-116
+    text: 早安，昨天的事就翻頁了。
+  - id: g-morning-117
+    text: 早，替今天定一個小小的期待。
+  - id: g-morning-118
+    text: 早安，光已經在門口等你。
+  - id: g-morning-119
+    text: 早，允許自己慢慢醒。
+afternoon:
+  - id: g-afternoon-110
+    text: 午安，記得起來走幾步。
+  - id: g-afternoon-111
+    text: 下午了，補個點心也不錯。
+  - id: g-afternoon-112
+    text: 午安，做累了就換件輕鬆的。
+  - id: g-afternoon-113
+    text: 午後，看向窗外遠一點的地方。
+  - id: g-afternoon-114
+    text: 午安，喝口水潤潤喉。
+  - id: g-afternoon-115
+    text: 下午好，把難的留給有精神時。
+  - id: g-afternoon-116
+    text: 午安，一次專心一件事。
+  - id: g-afternoon-117
+    text: 午後，讓肩膀往下沉一沉。
+  - id: g-afternoon-118
+    text: 午安，撐到現在辛苦你了。
+  - id: g-afternoon-119
+    text: 下午好，慢一點也沒關係。
+evening:
+  - id: g-evening-110
+    text: 傍晚了，今天過得如何呢？
+  - id: g-evening-111
+    text: 晚間好，先把電腦闔上吧。
+  - id: g-evening-112
+    text: 天黑了，替自己開盞小燈。
+  - id: g-evening-113
+    text: 傍晚好，深深吐一口氣。
+  - id: g-evening-114
+    text: 晚上好，吃頓喜歡的犒賞自己。
+  - id: g-evening-115
+    text: 入夜了，把節奏慢下來。
+  - id: g-evening-116
+    text: 傍晚好，窗外的顏色正在變。
+  - id: g-evening-117
+    text: 晚間好，煩心的事先擱著。
+  - id: g-evening-118
+    text: 天暗了，讓心也跟著柔軟。
+  - id: g-evening-119
+    text: 晚上好，這一天你走完了。
+night:
+  - id: g-night-110
+    text: 夜深了，讓思緒慢慢靜下來。
+  - id: g-night-111
+    text: 晚安，替今天畫上句點。
+  - id: g-night-112
+    text: 夜裡好，聽首輕輕的歌。
+  - id: g-night-113
+    text: 晚安，被子拉高一點。
+  - id: g-night-114
+    text: 深夜了，讓身體好好放鬆。
+  - id: g-night-115
+    text: 夜安，星星也在陪著你。
+  - id: g-night-116
+    text: 晚安，這一天你辛苦了。
+  - id: g-night-117
+    text: 夜裡，把明天先放一邊。
+  - id: g-night-118
+    text: 晚安，慢慢閉上眼睛。
+  - id: g-night-119
+    text: 夜深，願你睡得香甜。
