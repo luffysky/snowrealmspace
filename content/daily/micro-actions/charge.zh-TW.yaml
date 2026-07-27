@@ -1,0 +1,61 @@
+# 微行動 · 充電與裝置維護。兩分鐘內做得完。
+- id: ma-charge-01
+  text: 把電量偏低的手機放上充電座。
+  tags: [charge]
+- id: ma-charge-02
+  text: 關掉背景一個一直開著的 App。
+  tags: [charge]
+- id: ma-charge-03
+  text: 幫一個常用的 App 更新到最新版本。
+  tags: [charge]
+- id: ma-charge-04
+  text: 用軟毛刷把手機充電孔裡的棉絮清出來。
+  tags: [charge]
+- id: ma-charge-05
+  text: 拔掉已經充飽的手機充電器。
+  tags: [charge]
+- id: ma-charge-06
+  text: 幫智慧手錶補一點電。
+  tags: [charge]
+- id: ma-charge-07
+  text: 把耳機盒放回座上充電。
+  tags: [charge]
+- id: ma-charge-08
+  text: 看一下手機電池健康度的百分比。
+  tags: [charge]
+- id: ma-charge-09
+  text: 打開省電模式讓手機多撐一會。
+  tags: [charge]
+- id: ma-charge-10
+  text: 確認行動電源還剩幾格電。
+  tags: [charge]
+- id: ma-charge-11
+  text: 把很久沒關機的手機重新開機一次。
+  tags: [charge]
+- id: ma-charge-12
+  text: 清掉一個 App 佔用的暫存快取。
+  tags: [charge]
+- id: ma-charge-13
+  text: 幫平板裝上一個等待中的系統更新。
+  tags: [charge]
+- id: ma-charge-14
+  text: 把螢幕亮度調低一點減少耗電。
+  tags: [charge]
+- id: ma-charge-15
+  text: 拔掉牆上沒接裝置的空充電頭。
+  tags: [charge]
+- id: ma-charge-16
+  text: 幫遙控器或滑鼠換一顆新電池。
+  tags: [charge]
+- id: ma-charge-17
+  text: 關掉一個 App 的背景重新整理權限。
+  tags: [charge]
+- id: ma-charge-18
+  text: 幫無線滑鼠或鍵盤接上線充電。
+  tags: [charge]
+- id: ma-charge-19
+  text: 看一下手機還剩多少可用儲存空間。
+  tags: [charge]
+- id: ma-charge-20
+  text: 把插座上發燙的充電器先拔下來散熱。
+  tags: [charge]
