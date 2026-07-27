@@ -1,0 +1,85 @@
+# 問候補充批次 14。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-190
+    text: 早，先坐在床邊醒一醒神。
+  - id: g-morning-191
+    text: 早安，今天想留點時間給自己嗎？
+  - id: g-morning-192
+    text: 早，開扇窗放晨光進來。
+  - id: g-morning-193
+    text: 天亮了，補口水潤潤喉。
+  - id: g-morning-194
+    text: 早安，起不來也別怪自己。
+  - id: g-morning-195
+    text: 早，挑最想做的那件先開始。
+  - id: g-morning-196
+    text: 早安，深吸一口早晨的涼。
+  - id: g-morning-197
+    text: 早，扭扭腰讓身體醒過來。
+  - id: g-morning-198
+    text: 早安，一天才剛起頭，不趕。
+  - id: g-morning-199
+    text: 早，帶著鬆一點的心出門。
+afternoon:
+  - id: g-afternoon-190
+    text: 午安，眼皮沉就閉眼歇一下。
+  - id: g-afternoon-191
+    text: 下午了，起身伸展再坐回去。
+  - id: g-afternoon-192
+    text: 午安，難題留給精神好的時候。
+  - id: g-afternoon-193
+    text: 午後，配杯飲料換個狀態。
+  - id: g-afternoon-194
+    text: 午安，喝口水休息三十秒。
+  - id: g-afternoon-195
+    text: 下午好，慢慢推進就好。
+  - id: g-afternoon-196
+    text: 午安，讓眼睛看看窗外放空。
+  - id: g-afternoon-197
+    text: 午後，深呼吸讓自己回神。
+  - id: g-afternoon-198
+    text: 午安，這一天你頂住了。
+  - id: g-afternoon-199
+    text: 下午好，別把自己逼太緊。
+evening:
+  - id: g-evening-190
+    text: 傍晚了，讓今天緩緩收攏。
+  - id: g-evening-191
+    text: 晚間好，先把螢幕闔上休息。
+  - id: g-evening-192
+    text: 天黑了，點盞燈陪自己。
+  - id: g-evening-193
+    text: 傍晚好，深深呼一口放鬆。
+  - id: g-evening-194
+    text: 晚上好，煮點暖胃的吧。
+  - id: g-evening-195
+    text: 入夜了，讓步調柔柔慢下。
+  - id: g-evening-196
+    text: 傍晚好，欣賞一下今晚的天。
+  - id: g-evening-197
+    text: 晚間好，沒完的明天再接。
+  - id: g-evening-198
+    text: 天暗了，心也可以歇一歇。
+  - id: g-evening-199
+    text: 晚上好，今天謝謝你的堅持。
+night:
+  - id: g-night-190
+    text: 夜深了，讓身心慢慢卸下。
+  - id: g-night-191
+    text: 晚安，把今天穩穩收好。
+  - id: g-night-192
+    text: 夜裡好，配段雨聲入睡。
+  - id: g-night-193
+    text: 晚安，窩進被子暖暖的。
+  - id: g-night-194
+    text: 深夜了，讓肌肉一點點放鬆。
+  - id: g-night-195
+    text: 夜安，星子替你守著夜。
+  - id: g-night-196
+    text: 晚安，今晚就安心睡吧。
+  - id: g-night-197
+    text: 夜裡，把牽掛先放床頭。
+  - id: g-night-198
+    text: 晚安，讓睏意輕輕漫上。
+  - id: g-night-199
+    text: 夜深，好好睡一覺養神。
