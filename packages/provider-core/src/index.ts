@@ -84,11 +84,15 @@ export type FetchedFile = {
   metadata: Record<string, unknown>
 }
 
-/** provider REST 呼叫失敗（含 HTTP 狀態）。app 層據此給使用者看得到的錯誤，不吞掉。 */
+/**
+ * provider REST 呼叫失敗（含 HTTP 狀態）。app 層據此給使用者看得到的錯誤，不吞掉。
+ * retryAfterHeader 保留 provider 回的 Retry-After 原字串（429 時），解析交給上層（@snowrealm/design-sync 的 retry）。
+ */
 export class ProviderApiError extends Error {
   constructor(
     readonly status: number,
     message: string,
+    readonly retryAfterHeader: string | null = null,
   ) {
     super(message)
     this.name = 'ProviderApiError'
@@ -112,7 +116,7 @@ async function providerGetJson(url: string, accessToken: string): Promise<unknow
     } catch {
       /* 非 JSON，原樣截斷 */
     }
-    throw new ProviderApiError(res.status, String(msg).slice(0, 300))
+    throw new ProviderApiError(res.status, String(msg).slice(0, 300), res.headers.get('retry-after'))
   }
   try {
     return JSON.parse(text)

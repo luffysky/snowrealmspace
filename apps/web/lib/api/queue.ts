@@ -28,7 +28,12 @@ async function getBoss(): Promise<PgBoss> {
   return bossPromise
 }
 
-export type JobName = 'asset.process' | 'asset.analyze_local' | 'theme.from_mood' | 'font.install'
+export type JobName =
+  | 'asset.process'
+  | 'asset.analyze_local'
+  | 'theme.from_mood'
+  | 'font.install'
+  | 'design.sync'
 
 /**
  * 入列。

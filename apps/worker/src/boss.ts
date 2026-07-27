@@ -61,6 +61,8 @@ export const QUEUES = {
   spacePurge: 'maintenance.space-purge',
   // 字體自動安裝（中文子集化太重，同步 HTTP 會 524；移背景）
   fontInstall: 'font.install',
+  // Design provider 同步（Milestone F sync 半段 S2）：背景執行、退避重試、429 依 Retry-After
+  designSync: 'design.sync',
 } as const
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES]
@@ -74,4 +76,6 @@ export type JobPayloads = {
   'maintenance.queue-health': Record<string, never>
   'maintenance.storage-gc': Record<string, never>
   'maintenance.space-purge': Record<string, never>
+  // 每次 job 處理「單一檔案」，以利獨立去重/退避/連 5 次失敗轉 error。attempt 由 1 起算。
+  'design.sync': { connectionId: string; spaceId: string; externalId: string; attempt: number }
 }

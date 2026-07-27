@@ -15,6 +15,7 @@
     "@snowrealm/analytics": "workspace:*",
     "@snowrealm/daily-engine": "workspace:*",
     "@snowrealm/db": "workspace:*",
+    "@snowrealm/design-sync": "workspace:*",
     "@snowrealm/provider-core": "workspace:*",
     "@snowrealm/rich-editor": "workspace:*",
     "@snowrealm/shared-types": "workspace:*",

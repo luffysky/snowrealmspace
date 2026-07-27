@@ -72,6 +72,12 @@ async function main() {
   // 字體安裝很重（中文子集化數分鐘）→ 一次只跑一個，別讓多個一起吃爆記憶體
   await boss.work(QUEUES.fontInstall, { batchSize: 1 }, handleFontInstall)
 
+  // Design provider 同步（Milestone F S2）。重試/退避由 handler 主導（見 design-sync.ts），
+  // 併發 2：多檔可平行，但不過度打 provider。
+  const { handleDesignSync } = await import('./handlers/design-sync.js')
+  await boss.createQueue(QUEUES.designSync)
+  await boss.work(QUEUES.designSync, { batchSize: 1 }, handleDesignSync)
+
   // ADR-008：排程由 pg-boss 自己管，不依賴平台的 Cron
   await registerSchedules(boss)
 

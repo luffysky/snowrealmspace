@@ -367,3 +367,21 @@ connect 半段（本次）：
 閘門：lint / typecheck / check:secrets / check:deps 皆綠。主對話已逐檔審過安全敏感面。
 
 同批補 `docs/todo/todo_list_0724.md` 一則「站內 AI Agent 每日額度調高（待討論）」文件註記（Milestone D 區）。
+
+### F sync 半段 S1–S2（提前落地，切片進行）
+
+connect 半段之後，sync 半段切成 S1–S5、寫一塊驗一塊（主對話逐檔審 + 獨立重跑閘門後才 commit）。
+
+- **S1（commit 86bd8b9）**：`DesignProviderAdapter` 加 `listFiles`/`fetchFile`（純 HTTP 層、非 2xx 拋 `ProviderApiError`）；
+  `syncSelectedFiles`：抓檔 → upsert `design_files` → 下載預覽走 `StorageAdapter` 存 assets（checksum 去重、
+  內容嗅探必須圖片）→ `createSnapshotFromAsset` 建版本。`[key]/files`（列檔）、`[key]/sync`（選檔、externalIds
+  必填非空、無「全部」路徑）。位元組只在 assets（ADR-005）；寫入走 getDb（RLS）。
+- **S2**：worker 不能 import `apps/web`（分層規則 + 無 `@/` 別名）→ 把 S1 的 token 層與 sync 核心**抽成新套件
+  `@snowrealm/design-sync`（單一來源）**，web 端 `lib/integrations/{sync,providers,canva}` 與 `lib/design/snapshots`
+  改成 `export *` 薄 barrel（**committed 匯入路徑全部不變**，typecheck 保證）。worker handler `design.sync`：
+  **單檔一 job**（利於獨立去重/退避/計數），`singletonKey` 去重，**handler 主導重試**（非 pg-boss 自動重試，才能遵守
+  Retry-After）——429 依 `Retry-After`、其餘暫時性錯誤指數退避（30s→上限 30m）、4xx 永久不重試、連 5 次失敗轉
+  `error` + 通知（既有 `notifications`、`sync_failed` 分類）。退避/去重/永久判定抽成純函式，15 單元測試。
+  `POST /sync` 改為入列（202）。worker 用 service role（規則#10）但每查詢帶 `space_id`。
+- **未做**：S3 webhook→觸發（canva 未接 webhook）、S4 選檔 picker / 版本比較 UI、S5 錄真實回應 mock（卡憑證）。
+  Figma 端點/scope 全程掛 `TODO(figma) 待實測`，未宣稱驗證。
