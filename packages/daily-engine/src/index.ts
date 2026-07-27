@@ -6,6 +6,13 @@
  */
 
 export { type TodayContent, getTodayContent } from './service.js'
+export {
+  type DerivedState,
+  type StateEvent,
+  type StateTag,
+  STATE_TAGS,
+  deriveSpaceState,
+} from './space-state.js'
 export { maybeGenerateProactive } from './proactive.js'
 export {
   type Rarity,

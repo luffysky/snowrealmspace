@@ -51,6 +51,9 @@ export type SelectInput = {
  *   5. 加權隨機（決定性）
  *   6-8. 候選為空 → 逐步放寬
  */
+/** 命中當前狀態的內容相對通用內容的權重倍數。夠大才「被感受到」，又不到獨佔。 */
+const STATE_CONTENT_BOOST = 8
+
 export function pickDailyItem(input: SelectInput): PoolEntry | null {
   const { pool, recent, context } = input
 
@@ -101,10 +104,16 @@ export function pickDailyItem(input: SelectInput): PoolEntry | null {
   const candidates = attempts.find((a) => a.length > 0)
   if (!candidates || candidates.length === 0) return null
 
-  // 第 4 步：活躍度調權重 —— 低活躍時偏好低門檻（estimatedMinutes ≤ 5）
+  // 第 4 步：權重調整
+  //  a. 低活躍時偏好低門檻（estimatedMinutes ≤ 5）
+  //  b. 命中使用者當前狀態（requiresTag ∈ context.tags）的內容大幅加權——
+  //     這類內容本來就已被 requiresTag 硬性限定「只有這個狀態才會看到」，
+  //     但它們散在幾千則通用內容裡權重只有 1，等於選不到。加權讓狀態「被感受到」，
+  //     仍走加權隨機（不獨佔、會輪替、守冷卻）。
   const weighted = candidates.map((e) => {
     let w = e.weight
     if (context.recentActivityLevel === 'low' && (e.estimatedMinutes ?? 99) <= 5) w *= 3
+    if (e.requiresTag && context.tags.includes(e.requiresTag)) w *= STATE_CONTENT_BOOST
     return { entry: e, weight: w }
   })
 

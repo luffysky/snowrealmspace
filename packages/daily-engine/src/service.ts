@@ -10,6 +10,7 @@ import {
 } from '@snowrealm/validation'
 import { solarTermFor } from './seasonal.js'
 import { milestoneFor } from './milestone.js'
+import { deriveSpaceState, type StateEvent } from './space-state.js'
 
 /**
  * 每日內容的生成與讀取。實作 09-content-pool.md。
@@ -88,10 +89,22 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
     ? Math.max(0, Math.floor((Date.now() - Date.parse(space.created_at)) / 86400000))
     : 0
 
+  // 近況：從使用者自己的 activity_events 推導（非寫死）。
+  // 近 30 天足以判斷回歸/連續/創作中/佈置中；讀取走 service role（同 insights）。
+  const stateSince = new Date(Date.now() - 30 * 86400000).toISOString()
+  const { data: stateEvents } = await admin
+    .from('activity_events')
+    .select('event_type, occurred_at')
+    .eq('space_id', spaceId)
+    .gte('occurred_at', stateSince)
+    .order('occurred_at', { ascending: false })
+
+  const state = deriveSpaceState((stateEvents ?? []) as StateEvent[], timeZone, new Date())
+
   const context: SpaceContext = {
     daysSinceSignup,
-    tags: [],
-    recentActivityLevel: 'normal',
+    tags: state.tags,
+    recentActivityLevel: state.recentActivityLevel,
   }
 
   // 已生成的今日內容
