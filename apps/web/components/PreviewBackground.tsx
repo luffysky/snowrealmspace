@@ -17,9 +17,10 @@ export function PreviewBackground({ spaceId, state }: { spaceId: string; state: 
 
   return (
     <div className="sr-preview-bg" aria-hidden="true">
-      <BackgroundMedia spaceId={spaceId} item={item} paused onVideoPresent={() => {}} />
+      {/* 不 paused：動態背景（procedural / lottie / 影片）在預覽裡也要動，否則會是一片空白 */}
+      <BackgroundMedia spaceId={spaceId} item={item} paused={false} onVideoPresent={() => {}} />
 
-      {item.scene_id && <ProceduralScene sceneId={item.scene_id} density={item.scene_density} overlay paused />}
+      {item.scene_id && <ProceduralScene sceneId={item.scene_id} density={item.scene_density} overlay paused={false} />}
 
       {item.overlay_opacity > 0 && (
         <div className="sr-bg-overlay" style={{ background: item.overlay_color, opacity: item.overlay_opacity }} />
