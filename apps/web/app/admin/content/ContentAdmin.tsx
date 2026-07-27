@@ -35,9 +35,10 @@ type KindState = {
   loaded: boolean
   loading: boolean
   q: string
+  tag: string // 標籤篩選（詳細分類）
 }
 
-const emptyKind = (): KindState => ({ items: [], total: 0, loaded: false, loading: false, q: '' })
+const emptyKind = (): KindState => ({ items: [], total: 0, loaded: false, loading: false, q: '', tag: '' })
 
 export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
   const [open, setOpen] = useState<string | null>(null)
@@ -60,11 +61,11 @@ export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
   const patchKind = (k: string, patch: Partial<KindState>) =>
     setState((s) => ({ ...s, [k]: { ...(s[k] ?? emptyKind()), ...patch } }))
 
-  /** 拉某一類的一頁；offset=0 代表重新載入（換搜尋詞或首次展開）。 */
-  async function load(k: string, offset: number, q: string) {
+  /** 拉某一類的一頁；offset=0 代表重新載入（換搜尋詞/標籤或首次展開）。 */
+  async function load(k: string, offset: number, q: string, tag = '') {
     patchKind(k, { loading: true })
     try {
-      const url = `/api/admin/content?kind=${k}&offset=${offset}&limit=${PAGE}&q=${encodeURIComponent(q)}`
+      const url = `/api/admin/content?kind=${k}&offset=${offset}&limit=${PAGE}&q=${encodeURIComponent(q)}&tag=${encodeURIComponent(tag)}`
       const res = await fetch(url)
       const json = (await res.json()) as {
         data?: { items: ContentRow[]; total: number }
@@ -74,7 +75,7 @@ export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
       setState((s) => {
         const prev = s[k] ?? emptyKind()
         const items = offset === 0 ? json.data!.items : [...prev.items, ...json.data!.items]
-        return { ...s, [k]: { ...prev, items, total: json.data!.total, loaded: true, loading: false, q } }
+        return { ...s, [k]: { ...prev, items, total: json.data!.total, loaded: true, loading: false, q, tag } }
       })
     } catch (e) {
       patchKind(k, { loading: false })
@@ -159,7 +160,7 @@ export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
       }
     } catch (e) {
       // 失敗回滾：重新載入該類第一頁最單純
-      void load(row.kind, 0, state[row.kind]?.q ?? '')
+      void load(row.kind, 0, state[row.kind]?.q ?? '', state[row.kind]?.tag ?? '')
       say(e instanceof Error ? e.message : '刪除失敗', true)
     }
   }
@@ -228,16 +229,35 @@ export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
 
             {isOpen && (
               <>
-                <div className="sr-row" style={{ gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-3)' }}>
+                <div className="sr-row" style={{ gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-3)', flexWrap: 'wrap' }}>
                   <input
                     className="sr-input"
-                    style={{ flex: 1 }}
+                    style={{ flex: '2 1 200px' }}
                     placeholder="搜尋這一類的文字…"
                     defaultValue={st?.q ?? ''}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') void load(k, 0, (e.target as HTMLInputElement).value.trim())
+                      if (e.key === 'Enter') void load(k, 0, (e.target as HTMLInputElement).value.trim(), st?.tag ?? '')
                     }}
                   />
+                  <input
+                    className="sr-input"
+                    style={{ flex: '1 1 140px' }}
+                    placeholder="篩選標籤（如 solitude）"
+                    defaultValue={st?.tag ?? ''}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') void load(k, 0, st?.q ?? '', (e.target as HTMLInputElement).value.trim())
+                    }}
+                  />
+                  {st?.tag ? (
+                    <button
+                      type="button"
+                      className="sr-button sr-button-secondary"
+                      style={{ padding: '2px 10px', fontSize: 'var(--sr-text-xs)' }}
+                      onClick={() => void load(k, 0, st?.q ?? '', '')}
+                    >
+                      清除標籤：{st.tag}
+                    </button>
+                  ) : null}
                 </div>
 
                 {st?.loading && !st.items.length ? (
@@ -255,7 +275,7 @@ export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
                     {st && (
                       <p className="sr-muted" style={{ marginTop: 'var(--sr-space-3)', marginBottom: 0, fontSize: 'var(--sr-text-xs)' }}>
                         顯示 {st.items.length.toLocaleString()} / {st.total.toLocaleString()} 則
-                        {st.q ? '（搜尋結果）' : ''}
+                        {st.q || st.tag ? '（篩選結果）' : ''}
                         {st.items.length < st.total && (
                           <>
                             {' · '}
@@ -263,7 +283,7 @@ export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
                               type="button"
                               className="sr-linkish"
                               disabled={st.loading}
-                              onClick={() => void load(k, st.items.length, st.q)}
+                              onClick={() => void load(k, st.items.length, st.q, st.tag)}
                             >
                               {st.loading ? '載入中…' : '載入更多'}
                             </button>

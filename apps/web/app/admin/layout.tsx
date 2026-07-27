@@ -1,18 +1,64 @@
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
+import { getUser } from '@/lib/auth/session'
+import { getDb } from '@/lib/supabase/server'
 import { ADMIN_BASE } from '@/lib/admin-path'
 import { DialogProvider } from '@/components/ui/DialogProvider'
 import { AdminShell, type AdminNavGroup } from './AdminShell'
+import {
+  compileThemeToCssText,
+  themeDataAttributes,
+  themeDefinitionSchema,
+  defaultThemeDefinition,
+  effectiveTheme,
+  type ThemeDefinition,
+} from '@snowrealm/theme-engine'
+import { resolveThemeFonts } from '@/lib/theme/server-fonts'
+import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 
 export const dynamic = 'force-dynamic'
 
 /**
  * 後台外殼：整層先過 checkSiteAdmin（防禦深度，各頁另有自己的閘門）。
  * 側邊欄分組導覽 + 回前台。連結一律吃 ADMIN_BASE（可能含隨機碼）。
+ *
+ * 後台也套用「管理員自己空間」的主題與字體 —— 否則字體選了、後台卻還是系統預設字體
+ * （使用者回報過）。走跟 (space)/layout 同一套：SSR 注入 :root 主題 CSS + @font-face + 預載。
  */
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const gate = await checkSiteAdmin()
   if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}` : '/home')
+
+  // 管理員自己空間的主題（active_theme_id → themes.definition），拿來套字體/顏色。
+  const user = await getUser()
+  const db = await getDb()
+  let definition: ThemeDefinition = defaultThemeDefinition()
+  if (user) {
+    const { data: sp } = await db
+      .from('spaces')
+      .select('active_theme_id')
+      .eq('owner_id', user.id)
+      .is('deleted_at', null)
+      .order('created_at', { ascending: true })
+      .limit(1)
+      .maybeSingle()
+    if (sp?.active_theme_id) {
+      const { data: theme } = await db
+        .from('themes')
+        .select('definition')
+        .eq('id', sp.active_theme_id)
+        .is('deleted_at', null)
+        .maybeSingle()
+      const parsed = themeDefinitionSchema.safeParse(theme?.definition)
+      if (parsed.success) definition = parsed.data
+    }
+  }
+  const mode = parseMode((await cookies()).get(MODE_COOKIE)?.value)
+  const effective = effectiveTheme(definition, mode)
+  const themeCss = compileThemeToCssText(effective, ':root')
+  const dataAttrs = themeDataAttributes(effective)
+  const fonts = await resolveThemeFonts(db, definition)
 
   const groups: AdminNavGroup[] = [
     {
@@ -64,10 +110,21 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   ]
 
   return (
-    <DialogProvider>
-      <AdminShell groups={groups} homeHref="/home">
-        {children}
-      </AdminShell>
-    </DialogProvider>
+    <div data-color-mode={mode} {...dataAttrs}>
+      <style dangerouslySetInnerHTML={{ __html: themeCss }} />
+      {fonts && (
+        <>
+          <style dangerouslySetInnerHTML={{ __html: fonts.css }} />
+          {fonts.preload.map((href) => (
+            <link key={href} rel="preload" as="font" type="font/woff2" href={href} crossOrigin="" />
+          ))}
+        </>
+      )}
+      <DialogProvider>
+        <AdminShell groups={groups} homeHref="/home">
+          {children}
+        </AdminShell>
+      </DialogProvider>
+    </div>
   )
 }

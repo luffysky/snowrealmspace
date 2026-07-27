@@ -49,6 +49,7 @@ export const GET = handler(async (request: NextRequest) => {
   const url = new URL(request.url)
   const kind = url.searchParams.get('kind') ?? ''
   const q = (url.searchParams.get('q') ?? '').trim()
+  const tag = (url.searchParams.get('tag') ?? '').trim()
   const offset = Math.max(0, Number(url.searchParams.get('offset')) || 0)
   const limit = Math.min(200, Math.max(1, Number(url.searchParams.get('limit')) || 100))
   if (!(KINDS as readonly string[]).includes(kind)) return fail('VALIDATION_FAILED', 'kind 不正確。')
@@ -59,6 +60,7 @@ export const GET = handler(async (request: NextRequest) => {
     .select('content_id, kind, label, text, enabled, weight, rarity, tags', { count: 'exact' })
     .eq('kind', kind)
   if (q) query = query.ilike('text', `%${q}%`)
+  if (tag) query = query.contains('tags', [tag])
   const { data, error, count } = await query
     .order('weight', { ascending: false })
     .order('content_id', { ascending: true })
