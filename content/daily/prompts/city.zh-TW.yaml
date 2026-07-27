@@ -1,0 +1,81 @@
+# 每日創作提示 — 城市／街道。畫你身邊或想像的都市。繁體中文，每一則獨一無二。
+- id: p-city-001
+  text: 畫你家窗外看得到的一棟建築。
+  tags: [city, observe]
+  estimatedMinutes: 15
+- id: p-city-002
+  text: 畫一條你常走的街，憑印象。
+  tags: [city, scene]
+  estimatedMinutes: 15
+- id: p-city-003
+  text: 替一間你喜歡的小店畫招牌。
+  tags: [city, design]
+  estimatedMinutes: 15
+- id: p-city-004
+  text: 畫一個路口，紅綠燈亮著的樣子。
+  tags: [city, scene]
+  estimatedMinutes: 15
+- id: p-city-005
+  text: 畫下夜裡城市的燈光。
+  tags: [city, mood]
+  estimatedMinutes: 15
+- id: p-city-006
+  text: 想像一座漂在水上的城市，畫它。
+  tags: [city, imagine]
+  estimatedMinutes: 20
+- id: p-city-007
+  text: 畫一班你搭過的公車或捷運。
+  tags: [city, object]
+  estimatedMinutes: 15
+- id: p-city-008
+  text: 畫一個城市角落的小攤子。
+  tags: [city, scene]
+  estimatedMinutes: 15
+- id: p-city-009
+  text: 用俯瞰視角，畫一小塊街區。
+  tags: [city, framing]
+  estimatedMinutes: 20
+- id: p-city-010
+  text: 畫下雨中的一條馬路。
+  tags: [city, mood]
+  estimatedMinutes: 15
+- id: p-city-011
+  text: 替你的城市，設計一張明信片。
+  tags: [city, design]
+  estimatedMinutes: 20
+- id: p-city-012
+  text: 畫一座橋，連著兩邊的生活。
+  tags: [city, scene]
+  estimatedMinutes: 15
+- id: p-city-013
+  text: 畫一扇你覺得好看的窗戶。
+  tags: [city, observe]
+  estimatedMinutes: 12
+- id: p-city-014
+  text: 想像百年後的街景，畫下來。
+  tags: [city, imagine]
+  estimatedMinutes: 20
+- id: p-city-015
+  text: 畫一個等車的人的背影。
+  tags: [city, character]
+  estimatedMinutes: 15
+- id: p-city-016
+  text: 畫下清晨還沒醒的街道。
+  tags: [city, mood]
+  estimatedMinutes: 15
+- id: p-city-017
+  text: 替一座天橋，畫它的線條。
+  tags: [city, minimal]
+  estimatedMinutes: 12
+- id: p-city-018
+  text: 畫一片被燈點亮的招牌牆。
+  tags: [city, color]
+  estimatedMinutes: 15
+- id: p-city-019
+  text: 畫一個你想住的陽台。
+  tags: [city, scene]
+  estimatedMinutes: 15
+- id: p-city-020
+  text: 用三個形狀，簡化一座城市。
+  tags: [city, minimal]
+  estimatedMinutes: 12
