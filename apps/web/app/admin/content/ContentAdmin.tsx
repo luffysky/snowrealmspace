@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 export type ContentRow = {
   content_id: string
@@ -16,10 +15,22 @@ export type ContentRow = {
 
 const KIND_LABEL: Record<string, string> = { quote: '語錄', prompt: '創作提示', greeting: '問候', surprise: '驚喜', chain: '生日鏈' }
 const ADDABLE = ['quote', 'prompt', 'greeting', 'surprise'] as const
+const PAGE = 100
 
-export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
-  const router = useRouter()
-  const [rows, setRows] = useState<ContentRow[]>(initial)
+/** 每一類的展開狀態（懶載入 + 分頁）。 */
+type KindState = {
+  items: ContentRow[]
+  total: number // 符合搜尋條件的總數（未搜尋時＝該類全部）
+  loaded: boolean
+  loading: boolean
+  q: string
+}
+
+const emptyKind = (): KindState => ({ items: [], total: 0, loaded: false, loading: false, q: '' })
+
+export function ContentAdmin({ counts }: { counts: Record<string, number> }) {
+  const [open, setOpen] = useState<string | null>(null)
+  const [state, setState] = useState<Record<string, KindState>>({})
   const [msg, setMsg] = useState<string | null>(null)
   const [error, setError] = useState(false)
 
@@ -29,19 +40,41 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
   const [weight, setWeight] = useState('1')
   const [label, setLabel] = useState('')
   const [busy, setBusy] = useState(false)
-  // 內容池很大：分類預設收合，展開才渲染該類清單（避免一次塞幾千列 DOM）
-  const [openKinds, setOpenKinds] = useState<Set<string>>(new Set())
-  const toggleKind = (k: string) =>
-    setOpenKinds((prev) => {
-      const next = new Set(prev)
-      if (next.has(k)) next.delete(k)
-      else next.add(k)
-      return next
-    })
 
   function say(m: string, isErr = false) {
     setMsg(m)
     setError(isErr)
+  }
+
+  const patchKind = (k: string, patch: Partial<KindState>) =>
+    setState((s) => ({ ...s, [k]: { ...(s[k] ?? emptyKind()), ...patch } }))
+
+  /** 拉某一類的一頁；offset=0 代表重新載入（換搜尋詞或首次展開）。 */
+  async function load(k: string, offset: number, q: string) {
+    patchKind(k, { loading: true })
+    try {
+      const url = `/api/admin/content?kind=${k}&offset=${offset}&limit=${PAGE}&q=${encodeURIComponent(q)}`
+      const res = await fetch(url)
+      const json = (await res.json()) as {
+        data?: { items: ContentRow[]; total: number }
+        error?: { message?: string }
+      }
+      if (!res.ok || !json.data) throw new Error(json.error?.message ?? '讀取失敗')
+      setState((s) => {
+        const prev = s[k] ?? emptyKind()
+        const items = offset === 0 ? json.data!.items : [...prev.items, ...json.data!.items]
+        return { ...s, [k]: { ...prev, items, total: json.data!.total, loaded: true, loading: false, q } }
+      })
+    } catch (e) {
+      patchKind(k, { loading: false })
+      say(e instanceof Error ? e.message : '讀取失敗', true)
+    }
+  }
+
+  function toggle(k: string) {
+    const next = open === k ? null : k
+    setOpen(next)
+    if (next && !state[k]?.loaded) void load(k, 0, '')
   }
 
   async function add() {
@@ -58,11 +91,15 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
       })
       const json: { data?: ContentRow; error?: { message?: string } } = await res.json()
       if (!res.ok || !json.data) throw new Error(json.error?.message ?? '新增失敗')
-      setRows((r) => [json.data!, ...r])
+      // 若該類已展開載入，就把新項插到最前並讓總數 +1
+      setState((s) => {
+        const prev = s[kind]
+        if (!prev?.loaded) return s
+        return { ...s, [kind]: { ...prev, items: [json.data!, ...prev.items], total: prev.total + 1 } }
+      })
       setText('')
       setLabel('')
-      say('已新增。')
-      router.refresh()
+      say('已新增。展開該類即可看到。')
     } catch (e) {
       say(e instanceof Error ? e.message : '新增失敗', true)
     } finally {
@@ -70,28 +107,39 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
     }
   }
 
-  async function patch(row: ContentRow, patch: { enabled?: boolean; text?: string; weight?: number }) {
-    const before = rows
-    setRows((rs) => rs.map((r) => (r.content_id === row.content_id ? { ...r, ...patch } : r)))
+  async function patch(row: ContentRow, p: { enabled?: boolean; text?: string; weight?: number }) {
+    setState((s) => {
+      const st = s[row.kind]
+      if (!st) return s
+      return { ...s, [row.kind]: { ...st, items: st.items.map((r) => (r.content_id === row.content_id ? { ...r, ...p } : r)) } }
+    })
     try {
       const res = await fetch('/api/admin/content', {
         method: 'PATCH',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ contentId: row.content_id, ...patch }),
+        body: JSON.stringify({ contentId: row.content_id, ...p }),
       })
       if (!res.ok) {
         const j: { error?: { message?: string } } = await res.json()
         throw new Error(j.error?.message ?? '更新失敗')
       }
     } catch (e) {
-      setRows(before)
+      // 失敗回滾：把這一項改回原值
+      setState((s) => {
+        const st = s[row.kind]
+        if (!st) return s
+        return { ...s, [row.kind]: { ...st, items: st.items.map((r) => (r.content_id === row.content_id ? row : r)) } }
+      })
       say(e instanceof Error ? e.message : '更新失敗', true)
     }
   }
 
   async function remove(row: ContentRow) {
-    const before = rows
-    setRows((rs) => rs.filter((r) => r.content_id !== row.content_id))
+    setState((s) => {
+      const st = s[row.kind]
+      if (!st) return s
+      return { ...s, [row.kind]: { ...st, items: st.items.filter((r) => r.content_id !== row.content_id), total: Math.max(0, st.total - 1) } }
+    })
     try {
       const res = await fetch(`/api/admin/content?contentId=${encodeURIComponent(row.content_id)}`, { method: 'DELETE' })
       if (!res.ok) {
@@ -99,17 +147,13 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
         throw new Error(j.error?.message ?? '刪除失敗')
       }
     } catch (e) {
-      setRows(before)
+      // 失敗回滾：重新載入該類第一頁最單純
+      void load(row.kind, 0, state[row.kind]?.q ?? '')
       say(e instanceof Error ? e.message : '刪除失敗', true)
     }
   }
 
-  const byKind = new Map<string, ContentRow[]>()
-  for (const r of rows) {
-    const l = byKind.get(r.kind) ?? []
-    l.push(r)
-    byKind.set(r.kind, l)
-  }
+  const kinds = Object.keys(KIND_LABEL).filter((k) => (counts[k] ?? 0) > 0 || k !== 'chain')
 
   return (
     <>
@@ -140,13 +184,15 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
         </p>
       </section>
 
-      {[...byKind.entries()].map(([k, list]) => {
-        const isOpen = openKinds.has(k)
+      {kinds.map((k) => {
+        const st = state[k]
+        const isOpen = open === k
+        const total = counts[k] ?? 0
         return (
           <section key={k} className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
             <button
               type="button"
-              onClick={() => toggleKind(k)}
+              onClick={() => toggle(k)}
               aria-expanded={isOpen}
               className="sr-section-title"
               style={{
@@ -164,19 +210,59 @@ export function ContentAdmin({ initial }: { initial: ContentRow[] }) {
             >
               <span>
                 {KIND_LABEL[k] ?? k}{' '}
-                <span className="sr-muted" style={{ fontWeight: 400 }}>（{list.length}）</span>
+                <span className="sr-muted" style={{ fontWeight: 400 }}>（{total.toLocaleString()}）</span>
               </span>
               <span aria-hidden="true">{isOpen ? '▾' : '▸'}</span>
             </button>
+
             {isOpen && (
-              <ul
-                className="sr-stack"
-                style={{ margin: 'var(--sr-space-3) 0 0', padding: 0, listStyle: 'none', gap: 'var(--sr-space-2)' }}
-              >
-                {list.map((r) => (
-                  <ContentItemRow key={r.content_id} row={r} onPatch={patch} onRemove={remove} />
-                ))}
-              </ul>
+              <>
+                <div className="sr-row" style={{ gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-3)' }}>
+                  <input
+                    className="sr-input"
+                    style={{ flex: 1 }}
+                    placeholder="搜尋這一類的文字…"
+                    defaultValue={st?.q ?? ''}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') void load(k, 0, (e.target as HTMLInputElement).value.trim())
+                    }}
+                  />
+                </div>
+
+                {st?.loading && !st.items.length ? (
+                  <p className="sr-muted" style={{ marginTop: 'var(--sr-space-3)' }}>載入中…</p>
+                ) : (
+                  <>
+                    <ul
+                      className="sr-stack"
+                      style={{ margin: 'var(--sr-space-3) 0 0', padding: 0, listStyle: 'none', gap: 'var(--sr-space-2)' }}
+                    >
+                      {(st?.items ?? []).map((r) => (
+                        <ContentItemRow key={r.content_id} row={r} onPatch={patch} onRemove={remove} />
+                      ))}
+                    </ul>
+                    {st && (
+                      <p className="sr-muted" style={{ marginTop: 'var(--sr-space-3)', marginBottom: 0, fontSize: 'var(--sr-text-xs)' }}>
+                        顯示 {st.items.length.toLocaleString()} / {st.total.toLocaleString()} 則
+                        {st.q ? '（搜尋結果）' : ''}
+                        {st.items.length < st.total && (
+                          <>
+                            {' · '}
+                            <button
+                              type="button"
+                              className="sr-linkish"
+                              disabled={st.loading}
+                              onClick={() => void load(k, st.items.length, st.q)}
+                            >
+                              {st.loading ? '載入中…' : '載入更多'}
+                            </button>
+                          </>
+                        )}
+                      </p>
+                    )}
+                  </>
+                )}
+              </>
             )}
           </section>
         )

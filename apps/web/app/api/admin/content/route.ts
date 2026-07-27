@@ -38,6 +38,35 @@ async function gate() {
   return { g }
 }
 
+/**
+ * 分頁列出某一類的內容。後台不再一次拉全部（PostgREST 上限 1000 + 池有上萬則），
+ * 改成「展開某類才拉那一頁」，並回傳該類的**真實總數**（count exact）。
+ */
+export const GET = handler(async (request: NextRequest) => {
+  const gr = await gate()
+  if ('res' in gr) return gr.res
+
+  const url = new URL(request.url)
+  const kind = url.searchParams.get('kind') ?? ''
+  const q = (url.searchParams.get('q') ?? '').trim()
+  const offset = Math.max(0, Number(url.searchParams.get('offset')) || 0)
+  const limit = Math.min(200, Math.max(1, Number(url.searchParams.get('limit')) || 100))
+  if (!(KINDS as readonly string[]).includes(kind)) return fail('VALIDATION_FAILED', 'kind 不正確。')
+
+  const admin = createAdminClient()
+  let query = admin
+    .from('content_items')
+    .select('content_id, kind, label, text, enabled, weight, rarity, tags', { count: 'exact' })
+    .eq('kind', kind)
+  if (q) query = query.ilike('text', `%${q}%`)
+  const { data, error, count } = await query
+    .order('weight', { ascending: false })
+    .order('content_id', { ascending: true })
+    .range(offset, offset + limit - 1)
+  if (error) return fail('INTERNAL', '讀取失敗。')
+  return ok({ items: data ?? [], total: count ?? 0, offset, limit })
+})
+
 /** 內容文字要過安全過濾（底線 + 後台附加），與一般寫入同標準。 */
 async function contentAllowed(admin: Db, text: string): Promise<boolean> {
   const { data } = await admin.from('content_filter_patterns').select('pattern').eq('enabled', true)
@@ -134,5 +163,3 @@ export const DELETE = handler(async (request: NextRequest) => {
   if (error) return fail('INTERNAL', '刪除失敗。')
   return ok({ contentId, deleted: true })
 })
-
-void KINDS
