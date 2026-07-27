@@ -32,8 +32,21 @@ export interface StorageAdapter {
     expiresInSeconds?: number
   }): Promise<PutIntent>
 
-  /** 產生短期讀取 URL（ADR-022：15 分鐘）。 */
-  createDownloadUrl(input: { key: string; expiresInSeconds?: number }): Promise<string>
+  /**
+   * 產生短期讀取 URL（ADR-022：15 分鐘）。
+   *
+   * `cacheWindowSeconds`：**只給內容不會變**的物件（字體分片這種檔名含雜湊者）。
+   * 給了它，簽章時間會被向下對齊到這個視窗的整數倍，於是同一個 key 在同一個視窗內
+   * 每次都產生「位元組完全相同」的 URL —— 瀏覽器 HTTP 快取以完整 URL 為鍵，
+   * 相同才會命中。少了它，每次 SSR 都簽出不同 signature → URL 一直變 → 即使物件是
+   * immutable 也每次重載都 cache miss、重新下載（字體 CJK 分片很多，這就是「字體隔很久才變」的主因）。
+   * expiresInSeconds 會自動放大到覆蓋整個視窗＋緩衝（上限 SigV4 的 7 天）。
+   */
+  createDownloadUrl(input: {
+    key: string
+    expiresInSeconds?: number
+    cacheWindowSeconds?: number
+  }): Promise<string>
 
   /** 讀取物件 metadata。用於驗證客戶端上傳的內容與宣稱相符。 */
   head(key: string): Promise<ObjectHead | null>

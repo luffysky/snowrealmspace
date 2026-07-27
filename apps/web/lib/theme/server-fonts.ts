@@ -25,7 +25,9 @@ import { storage } from '@snowrealm/storage'
  * 否則「使用者選的字體沒生效」會變成一個沒人發現的靜默失敗。
  */
 
-const SIGNED_URL_TTL_SECONDS = 24 * 60 * 60
+// 字體分片是 immutable（檔名含雜湊）。用「穩定視窗」簽 URL：同一天內每次 SSR 都
+// 簽出位元組相同的 URL → 瀏覽器快取命中、換頁不再重抓 CJK 分片。見 adapter.ts 註解。
+const FONT_URL_WINDOW_SECONDS = 24 * 60 * 60
 
 type SubsetRecord = { file: string; unicodeRange: string; bytes: number; critical: boolean }
 type FileManifest = Record<string, { subsets: SubsetRecord[] }>
@@ -101,7 +103,19 @@ export async function resolveThemeFonts(
   const faces: string[] = []
   const preload: string[] = []
 
+  // 首屏會用到的字重：標題用 headingWeight、內文/介面用 bodyWeight（介面沒得選 → 退 400）。
+  // 只預載「首屏真的會畫」的字重的 critical 片，其餘字重與非 critical 分片仍由瀏覽器
+  // 按 unicode-range 自己 lazy 抓。之前只寫死預載 400 → 標題（預設 700）永遠沒被預載，
+  // 於是標題會先用系統字體、隔幾秒才 swap 成使用者選的字體（就是「隔很久才變」）。
+  const headingWeight = definition.typography.headingWeight ?? 700
+  const bodyWeight = definition.typography.bodyWeight ?? 400
+
   for (const font of new Set([heading, body, ui])) {
+    const preloadWeights = new Set<number>()
+    if (font === heading) preloadWeights.add(headingWeight)
+    if (font === body) preloadWeights.add(bodyWeight)
+    if (font === ui) preloadWeights.add(400)
+
     const manifest = (font.file_manifest ?? {}) as FileManifest
 
     for (const [weight, entry] of Object.entries(manifest)) {
@@ -109,7 +123,7 @@ export async function resolveThemeFonts(
         (entry.subsets ?? []).map(async (subset) => ({
           url: await store.createDownloadUrl({
             key: subset.file,
-            expiresInSeconds: SIGNED_URL_TTL_SECONDS,
+            cacheWindowSeconds: FONT_URL_WINDOW_SECONDS,
           }),
           unicodeRange: subset.unicodeRange,
           critical: subset.critical,
@@ -126,8 +140,7 @@ export async function resolveThemeFonts(
         }),
       )
 
-      // 只預載內文字重的 critical 片。全部字重都預載會下載一堆用不到的。
-      if (weight === '400') {
+      if (preloadWeights.has(Number(weight))) {
         preload.push(...subsets.filter((s) => s.critical).map((s) => s.url))
       }
     }
@@ -143,7 +156,7 @@ export async function resolveThemeFonts(
     .map(([k, v]) => `${k}:${v}`)
     .join(';')}}`
 
-  return { css: [...faces, varsCss].join('\n'), preload }
+  return { css: [...faces, varsCss].join('\n'), preload: [...new Set(preload)] }
 }
 
 function toResolved(row: {

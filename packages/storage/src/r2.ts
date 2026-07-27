@@ -97,11 +97,29 @@ export class R2StorageAdapter implements StorageAdapter {
     }
   }
 
-  async createDownloadUrl(input: { key: string; expiresInSeconds?: number }): Promise<string> {
+  async createDownloadUrl(input: {
+    key: string
+    expiresInSeconds?: number
+    cacheWindowSeconds?: number
+  }): Promise<string> {
     const command = new GetObjectCommand({ Bucket: bucket(), Key: input.key })
-    return getSignedUrl(client(), command, {
-      expiresIn: input.expiresInSeconds ?? DOWNLOAD_URL_TTL_SECONDS,
-    })
+
+    // 一般情況：短期、每次都新簽（signingDate 用當下）。
+    if (!input.cacheWindowSeconds) {
+      return getSignedUrl(client(), command, {
+        expiresIn: input.expiresInSeconds ?? DOWNLOAD_URL_TTL_SECONDS,
+      })
+    }
+
+    // 穩定視窗（immutable 內容）：把簽章時間對齊到視窗整數倍，
+    // 同一 key 在同一視窗內每次都簽出「完全相同」的 URL → 瀏覽器快取命中。
+    const win = input.cacheWindowSeconds
+    const windowStartMs = Math.floor(Date.now() / (win * 1000)) * (win * 1000)
+    const signingDate = new Date(windowStartMs)
+    // 有效期要覆蓋「整個視窗 + 下一個視窗」，否則視窗尾端簽出的 URL 可能還沒換就過期。
+    // SigV4 預簽上限 7 天（604800s）。
+    const expiresIn = Math.min(604800, input.expiresInSeconds ?? win * 2)
+    return getSignedUrl(client(), command, { expiresIn, signingDate })
   }
 
   async head(key: string): Promise<ObjectHead | null> {
