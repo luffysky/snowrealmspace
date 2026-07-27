@@ -19,11 +19,12 @@ const KIND_LABEL: Record<string, string> = {
   question: '每日一問',
   micro_action: '微行動',
   seasonal: '季節·節氣',
+  milestone: '里程碑回顧',
   greeting: '問候',
   surprise: '驚喜',
   chain: '生日鏈',
 }
-const ADDABLE = ['quote', 'prompt', 'question', 'micro_action', 'seasonal', 'greeting', 'surprise'] as const
+const ADDABLE = ['quote', 'prompt', 'question', 'micro_action', 'seasonal', 'milestone', 'greeting', 'surprise'] as const
 const PAGE = 100
 
 /** 每一類的展開狀態（懶載入 + 分頁）。 */

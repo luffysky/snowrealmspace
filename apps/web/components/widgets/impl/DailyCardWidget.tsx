@@ -18,6 +18,7 @@ type Today = {
   question: { id: string; text: string } | null
   microAction: { id: string; text: string; estimatedMinutes: number | null } | null
   seasonal: { term: string; text: string } | null
+  milestone: { label: string; text: string } | null
 }
 
 export default function DailyCardWidget({ config }: WidgetProps) {
@@ -70,7 +71,8 @@ export default function DailyCardWidget({ config }: WidgetProps) {
     !today.prompt &&
     !today.question &&
     !today.microAction &&
-    !today.seasonal
+    !today.seasonal &&
+    !today.milestone
   ) {
     return (
       <div className="sr-card sr-daily-card">
@@ -83,6 +85,15 @@ export default function DailyCardWidget({ config }: WidgetProps) {
 
   return (
     <div className="sr-card sr-daily-card">
+      {today.milestone && (
+        <div className="sr-daily-prompt" style={{ borderLeft: '3px solid var(--sr-accent)', paddingLeft: 'var(--sr-space-3)' }}>
+          <span className="sr-label" style={{ marginBottom: 4 }}>
+            🎉 里程碑 · {today.milestone.label}
+          </span>
+          <p style={{ margin: 0 }}>{today.milestone.text}</p>
+        </div>
+      )}
+
       {today.greeting && <p className="sr-daily-greeting">{today.greeting}</p>}
 
       {today.seasonal && (

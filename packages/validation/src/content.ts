@@ -70,7 +70,8 @@ const idSchema = z
   .string()
   .regex(/^[a-z][a-z0-9-]{2,63}$/, 'id 必須是小寫字母開頭的 kebab（例如 q-action-001）')
 
-const tagsSchema = z.array(z.string().regex(/^[a-z_]+$/)).max(6).default([])
+// 允許數字：里程碑用 day_7 / year_1 這類含數字的 key 當選取 tag。
+const tagsSchema = z.array(z.string().regex(/^[a-z0-9_]+$/)).max(6).default([])
 
 const weightSchema = z.number().min(0.1).max(5).default(1)
 
@@ -147,6 +148,17 @@ export const seasonalSchema = z
   })
   .strict()
 
+// ── 里程碑回顧 ────────────────────────────────────────────
+// 依註冊天數在剛好到節點那天顯示。tags 需含里程碑 key（day_7 / year_1…）或 generic。
+export const milestoneSchema = z
+  .object({
+    id: idSchema,
+    text: z.string().trim().min(4).max(120),
+    tags: tagsSchema,
+    weight: weightSchema.optional(),
+  })
+  .strict()
+
 // ── Greeting（依時段分組）────────────────────────────────
 
 export const greetingSchema = z
@@ -209,6 +221,7 @@ export type Prompt = z.infer<typeof promptSchema>
 export type Question = z.infer<typeof questionSchema>
 export type MicroAction = z.infer<typeof microActionSchema>
 export type Seasonal = z.infer<typeof seasonalSchema>
+export type Milestone = z.infer<typeof milestoneSchema>
 export type Greeting = z.infer<typeof greetingSchema>
 export type Surprise = z.infer<typeof surpriseSchema>
 export type ChainLink = z.infer<typeof chainLinkSchema>

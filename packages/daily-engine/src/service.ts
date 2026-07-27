@@ -9,6 +9,7 @@ import {
   type SpaceContext,
 } from '@snowrealm/validation'
 import { solarTermFor } from './seasonal.js'
+import { milestoneFor } from './milestone.js'
 
 /**
  * 每日內容的生成與讀取。實作 09-content-pool.md。
@@ -43,6 +44,8 @@ export type TodayContent = {
   microAction: { id: string; text: string; estimatedMinutes: number | null } | null
   /** 季節·節氣語：依當天節氣挑 */
   seasonal: { term: string; text: string } | null
+  /** 里程碑回顧：剛好到註冊天數節點那天才有 */
+  milestone: { label: string; text: string } | null
 }
 
 /** space 當地日期（YYYY-MM-DD）與小時。 */
@@ -128,7 +131,36 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
       ? { id: actionRow.source_ref ?? '', text: actionRow.body, estimatedMinutes: minutesOf(actionRow) }
       : null,
     seasonal: await pickSeasonal(admin, spaceId, date),
+    milestone: await pickMilestone(admin, spaceId, daysSinceSignup),
   }
+}
+
+/**
+ * 里程碑回顧。只有「剛好到某個註冊天數節點」的當天才回傳一則。
+ * 先找 tags 含里程碑 key 的，沒有退 generic。
+ */
+async function pickMilestone(
+  admin: ReturnType<typeof createAdminClient>,
+  spaceId: string,
+  daysSinceSignup: number,
+): Promise<{ label: string; text: string } | null> {
+  const m = milestoneFor(daysSinceSignup)
+  if (!m) return null
+
+  const { data } = await admin
+    .from('content_items')
+    .select('text, tags')
+    .eq('kind', 'milestone')
+    .eq('enabled', true)
+  if (!data || data.length === 0) return null
+
+  const byKey = data.filter((r) => (r.tags ?? []).includes(m.key))
+  const generic = data.filter((r) => (r.tags ?? []).includes('generic'))
+  const pool = byKey.length > 0 ? byKey : generic.length > 0 ? generic : data
+
+  const idx = Math.floor(hashToUnit(`${spaceId}:milestone:${daysSinceSignup}`) * pool.length)
+  const picked = pool[idx] ?? pool[0]!
+  return { label: m.label, text: picked.text }
 }
 
 /**

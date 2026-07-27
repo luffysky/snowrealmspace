@@ -9,6 +9,7 @@ import {
   questionSchema,
   microActionSchema,
   seasonalSchema,
+  milestoneSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -125,6 +126,18 @@ async function main() {
       text: s.text,
       tags: s.tags,
       weight: s.weight ?? 1,
+    })
+  }
+
+  // ── 里程碑回顧 ──
+  for (const raw of await loadDir('daily/milestone')) {
+    const m = milestoneSchema.parse(raw)
+    rows.push({
+      content_id: m.id,
+      kind: 'milestone',
+      text: m.text,
+      tags: m.tags,
+      weight: m.weight ?? 1,
     })
   }
 
