@@ -211,6 +211,40 @@ export function ThemeStudio({
     setStatus({ kind: 'idle' })
   }
 
+  /**
+   * 內建主題「一鍵套用」：載進預覽 + 直接建立/更新為儲存主題並套用到空間。
+   * 同名的內建主題重用同一列，避免每點一次就多一筆。之後改參數再用「儲存並套用」。
+   */
+  async function applyPreset(preset: ThemeDefinition) {
+    loadPreset(preset)
+    setStatus({ kind: 'saving' })
+    try {
+      const existing = themes.find((t) => t.name === preset.name)
+      let id: string
+      if (existing) {
+        const updated = (await api(`/api/themes/${existing.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ name: preset.name, definition: preset }),
+        })) as SavedTheme
+        setThemes((prev) => prev.map((t) => (t.id === existing.id ? { ...t, ...updated } : t)))
+        id = existing.id
+      } else {
+        const created = (await api('/api/themes', {
+          method: 'POST',
+          body: JSON.stringify({ name: preset.name, definition: preset, source: 'manual' }),
+        })) as SavedTheme
+        setThemes((prev) => [{ ...created, is_favorite: false }, ...prev])
+        id = created.id
+      }
+      setEditingId(id)
+      setDirty(false)
+      await api(`/api/themes/${id}/apply`, { method: 'POST' })
+      setStatus({ kind: 'saved', message: `已套用「${preset.name}」。重新整理即可看到。` })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '套用失敗。' })
+    }
+  }
+
   // AI 配色：心情 → 三套變體（本地演算法，對比保證）；點一套只換顏色，保留名稱與字型。
   async function generateFromMood() {
     const m = mood.trim()
@@ -459,10 +493,13 @@ export function ThemeStudio({
           )}
 
           <h3 className="sr-subsection-title">內建</h3>
+          <p className="sr-muted" style={{ marginTop: 0, fontSize: 'var(--sr-text-xs)' }}>
+            點一下＝直接套用到你的空間（重新整理生效）。之後再改參數就用「儲存並套用」。
+          </p>
           <ul className="sr-theme-list">
             {PRESET_THEMES.map((p) => (
               <li key={p.name}>
-                <button type="button" className="sr-theme-chip" onClick={() => loadPreset(p)}>
+                <button type="button" className="sr-theme-chip" onClick={() => void applyPreset(p)}>
                   <span
                     className="sr-swatch-row"
                     aria-hidden="true"

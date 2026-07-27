@@ -46,6 +46,9 @@ export const ThemePreview = forwardRef<
   { definition: ThemeDefinition; spaceId: string; background: BackgroundState | null }
 >(function ThemePreview({ definition, spaceId, background }, ref) {
     const [mode, setMode] = useState<'light' | 'dark'>('light')
+    // 顯示背景：預設開（看合成後的真實效果）。玻璃材質半透明，背景會透出來 ——
+    // 想單看主題配色時可關掉，避免「怎麼都像背景色」的錯覺。
+    const [showBg, setShowBg] = useState(true)
     const surfaceRef = useRef<HTMLDivElement | null>(null)
 
     // 字體目錄（一次載入）。字體不隨淺/深模式變。
@@ -126,11 +129,22 @@ export const ThemePreview = forwardRef<
             >
               深色
             </button>
+            {background?.current ? (
+              <button
+                type="button"
+                className={`sr-mode-tab ${showBg ? 'is-active' : ''}`}
+                aria-pressed={showBg}
+                onClick={() => setShowBg((v) => !v)}
+                title="關掉可單看主題配色（玻璃材質半透明，會透出背景色）"
+              >
+                背景
+              </button>
+            ) : null}
           </div>
         </div>
 
         <div ref={setRef} className="sr-preview-surface">
-          <PreviewBackground spaceId={spaceId} state={background} />
+          {showBg ? <PreviewBackground spaceId={spaceId} state={background} /> : null}
           <div className="sr-preview-inner">
             <header className="sr-preview-header">
               <strong className="sr-preview-title">{definition.name || '未命名主題'}</strong>
