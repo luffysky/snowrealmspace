@@ -1,0 +1,81 @@
+# 每日創作提示 — 手／手作。畫動作、觸感、做東西的手。繁體中文，每一則獨一無二。
+- id: p-hands-001
+  text: 畫你自己的一隻手，攤開的樣子。
+  tags: [hands, observe]
+  estimatedMinutes: 15
+- id: p-hands-002
+  text: 畫一雙正在做事的手。
+  tags: [hands, character]
+  estimatedMinutes: 15
+- id: p-hands-003
+  text: 畫握著一杯熱飲的手。
+  tags: [hands, mood]
+  estimatedMinutes: 12
+- id: p-hands-004
+  text: 畫兩隻手交握的瞬間。
+  tags: [hands, character]
+  estimatedMinutes: 15
+- id: p-hands-005
+  text: 畫一隻手指向遠方。
+  tags: [hands, minimal]
+  estimatedMinutes: 10
+- id: p-hands-006
+  text: 畫正在翻書的手。
+  tags: [hands, scene]
+  estimatedMinutes: 15
+- id: p-hands-007
+  text: 畫捧著什麼小東西的手心。
+  tags: [hands, object]
+  estimatedMinutes: 12
+- id: p-hands-008
+  text: 畫一隻手在紙上寫字。
+  tags: [hands, scene]
+  estimatedMinutes: 15
+- id: p-hands-009
+  text: 畫老人的手，帶著歲月。
+  tags: [hands, character]
+  estimatedMinutes: 20
+- id: p-hands-010
+  text: 畫揮手道別的動作。
+  tags: [hands, mood]
+  estimatedMinutes: 12
+- id: p-hands-011
+  text: 畫正在澆花的手。
+  tags: [hands, scene]
+  estimatedMinutes: 15
+- id: p-hands-012
+  text: 畫捏著畫筆的手。
+  tags: [hands, object]
+  estimatedMinutes: 12
+- id: p-hands-013
+  text: 畫一隻手接住落下的東西。
+  tags: [hands, imagine]
+  estimatedMinutes: 15
+- id: p-hands-014
+  text: 畫十指交扣的樣子。
+  tags: [hands, minimal]
+  estimatedMinutes: 12
+- id: p-hands-015
+  text: 畫正在揉麵團的手。
+  tags: [hands, scene]
+  estimatedMinutes: 15
+- id: p-hands-016
+  text: 畫比出一個手勢，任何一個。
+  tags: [hands, quick]
+  estimatedMinutes: 8
+- id: p-hands-017
+  text: 畫牽著小孩的大手。
+  tags: [hands, character]
+  estimatedMinutes: 15
+- id: p-hands-018
+  text: 畫沾了顏料的手指。
+  tags: [hands, color]
+  estimatedMinutes: 12
+- id: p-hands-019
+  text: 畫一隻手撐著下巴發呆。
+  tags: [hands, mood]
+  estimatedMinutes: 15
+- id: p-hands-020
+  text: 畫手心裡的一條掌紋。
+  tags: [hands, minimal]
+  estimatedMinutes: 10
