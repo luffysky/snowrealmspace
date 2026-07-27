@@ -401,16 +401,25 @@
 4. 想拿 email：在 channel 申請 **email 權限**（要填用途說明）。
 5. LINE 走自建流程（Supabase 不支援），程式已完成，只差憑證。
 
-## 5. Figma（Milestone F）
-1. <https://www.figma.com/developers/apps> → Create new app → 拿 **Client ID / Client Secret**。
-2. OAuth redirect 用正式網域的 callback。
-3. `FIGMA_WEBHOOK_SECRET` **不是 Figma 發的**——是你自訂的 passcode：
-   `openssl rand -hex 32` 產一個，之後建 webhook（`POST /v2/webhooks`）時填這個字串，Figma 會原樣回傳在每則事件，我們用它驗證。
+## 5. Figma（Milestone F）— 詳解
+1. **建 app + 憑證**：<https://www.figma.com/developers/apps> → Create a new app → 拿 `Client ID` / `Client Secret`。
+2. **OAuth2（授權碼）**：
+   - Redirect URI 填正式網域 callback（要跟程式一字不差），例如
+     `https://snowrealm-space.snowrealm.pet/api/integrations/figma/callback`。
+   - 授權導向：`https://www.figma.com/oauth?client_id=…&redirect_uri=…&scope=file_read&state=<防CSRF>&response_type=code`
+   - 換 token：`POST https://www.figma.com/api/oauth/token`（`client_id`/`client_secret`/`redirect_uri`/`code`/`grant_type=authorization_code`）→ 拿 `access_token`（+ `refresh_token`，過期用 refresh 換）。
+   - 讀檔：`GET https://api.figma.com/v1/files/:key`，帶 `Authorization: Bearer <token>`。
+3. `FIGMA_WEBHOOK_SECRET` **不是 Figma 發的**——是你自訂的 passcode：`openssl rand -hex 32`。
+   建 webhook（`POST https://api.figma.com/v2/webhooks`，body 含 `event_type`/`team_id`/`endpoint`/**`passcode`**）時填它；
+   Figma 每則事件會**原樣回傳** `passcode`，handler 比對相符才處理（防偽造）。
 4. Zeabur web env：`FIGMA_CLIENT_ID` / `FIGMA_CLIENT_SECRET` / `FIGMA_WEBHOOK_SECRET`。
 
-## 5b. Canva（設計來源，跟 Figma 同性質：讀取＋分析設計）
-1. <https://www.canva.com/developers/> → Create an app（Canva Connect API）→ 拿 **Client ID / Client Secret**。
-2. 設定 **OAuth redirect URL** 為正式網域 callback、勾選需要的 scopes（讀設計 `design:content:read`、資產 `asset:read` 等）。
+## 5b. Canva（設計來源，跟 Figma 同性質，但 OAuth 用 PKCE）— 詳解
+1. **建 app**：<https://www.canva.com/developers/> → Create an app（Canva Connect API）→ 拿 `Client ID` / `Client Secret`。
+2. **OAuth2 + PKCE（Canva 強制）**：
+   - Redirect URL 填正式網域 callback；scopes 勾 `design:content:read`、`asset:read` 等。
+   - 授權：`https://www.canva.com/api/oauth/authorize?response_type=code&client_id=…&redirect_uri=…&scope=…&code_challenge=<PKCE>&code_challenge_method=S256&state=…`
+   - 換 token：`POST https://api.canva.com/rest/v1/oauth/token`（帶 `code`/`code_verifier`/`client_id`/`client_secret`/`grant_type=authorization_code`）；過期用 `refresh_token` 換。
 3. Zeabur web env：`CANVA_CLIENT_ID` / `CANVA_CLIENT_SECRET`（+ 若有 webhook 再加 secret）。
 4. 程式面：provider-core 已註冊 Canva capabilities（未設憑證前顯示「尚未設定」、不給假按鈕）；
    憑證設好後才實作 OAuth connect/callback 與 `canva.sync`（同 Figma 路徑）。
