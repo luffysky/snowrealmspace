@@ -6,8 +6,10 @@ import { WIDGET_REGISTRY, GRID, defaultLayoutItems, getWidgetDefinition } from '
 import { createAdminClient } from '@snowrealm/db/server'
 import { HomeGrid, type WidgetInstanceRow, type AvailableWidget } from './HomeGrid'
 import BirthdayChain from '@/components/widgets/impl/BirthdayChainWidget'
+import { WelcomeChain } from '@/components/WelcomeChain'
 import { EnvelopeCard } from '@/components/EnvelopeCard'
 import { birthdayCardFor } from '@/lib/birthday-cards'
+import { getWelcomeLine } from '@snowrealm/daily-engine'
 
 export const metadata: Metadata = { title: 'Home — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -30,6 +32,9 @@ export default async function HomePage() {
     settings.birthday_day != null &&
     settings.birthday_month === bdMonth &&
     settings.birthday_day === bdDay
+
+  // 歡迎鏈：非生日時的每日一句歡迎（回家的感覺）
+  const welcomeLine = await getWelcomeLine(space.id, space.timezone)
 
   await emitEvent(
     'space.opened',
@@ -117,22 +122,26 @@ export default async function HomePage() {
       </section>
 
       {/*
-        壽星（生日主角）：信封卡留在 Home 等她親手打開＋收藏；收藏後才移到驚喜收藏頁，
-          之後 Home 改看生日鏈。
-        其他人：生日當天看信封卡（可保存）；其餘日子看生日鏈 —— 生日鏈現在大家共用，
-          內容用 {name} 佔位、依開啟者名字帶入，依條件逐步解鎖（見 api/chain）。
+        生日鏈只在「真的是這個人的生日」那天出現；平常用歡迎鏈（每天一句歡迎）。
+        - 壽星（生日主角，暫時：Nami）：先信封卡等她親手收藏；收藏後生日鏈＋歡迎鏈**兩個都給**
+          （之後你說要拿掉生日鏈再拿掉）。
+        - 其他人：生日當天看生日鏈；其餘日子看歡迎鏈。
+        生日鏈內容用 {name} 佔位、依開啟者名字帶入（見 api/chain）。
       */}
-      <div data-tour="home-grid">
+      <div data-tour="home-grid" className="sr-stack">
         {settings.is_birthday_recipient ? (
           settings.birthday_card_collected_at ? (
-            <BirthdayChain />
+            <>
+              <BirthdayChain />
+              <WelcomeChain line={welcomeLine} />
+            </>
           ) : (
             <EnvelopeCard {...birthdayCardFor(space.id)} savable collectable spaceId={space.id} />
           )
         ) : isBirthdayToday ? (
-          <EnvelopeCard {...birthdayCardFor(space.id)} savable />
-        ) : (
           <BirthdayChain />
+        ) : (
+          <WelcomeChain line={welcomeLine} />
         )}
       </div>
 

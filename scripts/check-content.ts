@@ -9,6 +9,7 @@ import {
   microActionSchema,
   seasonalSchema,
   milestoneSchema,
+  welcomeSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -45,6 +46,7 @@ const THRESHOLDS = {
   microActions: 3650, // 微行動也走每日輪替
   seasonal: 120, // 依節氣挑（24 節氣，非每日唯一）；每節氣 ~5 則即足
   milestone: 30, // 依註冊天數觸發（節點有限），每節點數則即足
+  welcome: 365, // 歡迎鏈每日輪替；一年份即足
   greetings: 3650, // 使用者要求每時段補到 ~1000（共 ~4000）
   surprises: 600,
   chain: 5,
@@ -57,7 +59,7 @@ async function main() {
   const allIds = new Map<string, string>() // id → 第一次出現的檔案
   const allTexts = new Map<string, string>() // 正規化文字 → id
 
-  const counts = { quotes: 0, prompts: 0, questions: 0, microActions: 0, seasonal: 0, milestone: 0, greetings: 0, surprises: 0, chain: 0 }
+  const counts = { quotes: 0, prompts: 0, questions: 0, microActions: 0, seasonal: 0, milestone: 0, welcome: 0, greetings: 0, surprises: 0, chain: 0 }
 
   // ── Quotes ──
   for (const { file, rows } of await loadDir('daily/quotes')) {
@@ -100,6 +102,13 @@ async function main() {
   for (const { file, rows } of await loadDir('daily/milestone')) {
     for (const raw of rows) {
       if (validateRow(milestoneSchema, raw, file, allIds, allTexts, problems)) counts.milestone++
+    }
+  }
+
+  // ── 歡迎鏈 ──
+  for (const { file, rows } of await loadDir('daily/welcome')) {
+    for (const raw of rows) {
+      if (validateRow(welcomeSchema, raw, file, allIds, allTexts, problems)) counts.welcome++
     }
   }
 

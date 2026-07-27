@@ -7,11 +7,11 @@ import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
 
-const KINDS = ['quote', 'prompt', 'question', 'micro_action', 'seasonal', 'milestone', 'greeting', 'surprise', 'chain'] as const
+const KINDS = ['quote', 'prompt', 'question', 'micro_action', 'seasonal', 'milestone', 'welcome', 'greeting', 'surprise', 'chain'] as const
 
 const postSchema = z
   .object({
-    kind: z.enum(['quote', 'prompt', 'question', 'micro_action', 'seasonal', 'milestone', 'greeting', 'surprise']),
+    kind: z.enum(['quote', 'prompt', 'question', 'micro_action', 'seasonal', 'milestone', 'welcome', 'greeting', 'surprise']),
     text: z.string().trim().min(2).max(500),
     weight: z.number().positive().max(10).default(1),
     label: z.string().trim().max(24).optional(),

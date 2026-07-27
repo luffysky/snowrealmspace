@@ -10,6 +10,7 @@ import {
   microActionSchema,
   seasonalSchema,
   milestoneSchema,
+  welcomeSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -126,6 +127,18 @@ async function main() {
       text: s.text,
       tags: s.tags,
       weight: s.weight ?? 1,
+    })
+  }
+
+  // ── 歡迎鏈 ──
+  for (const raw of await loadDir('daily/welcome')) {
+    const w = welcomeSchema.parse(raw)
+    rows.push({
+      content_id: w.id,
+      kind: 'welcome',
+      text: w.text,
+      tags: w.tags,
+      weight: w.weight ?? 1,
     })
   }
 

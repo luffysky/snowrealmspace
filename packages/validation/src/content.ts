@@ -148,6 +148,17 @@ export const seasonalSchema = z
   })
   .strict()
 
+// ── 歡迎鏈 ────────────────────────────────────────────────
+// 非生日時首頁每天一句歡迎（回家的感覺）。每日輪替，決定性 by date。
+export const welcomeSchema = z
+  .object({
+    id: idSchema,
+    text: z.string().trim().min(2).max(50),
+    tags: tagsSchema,
+    weight: weightSchema.optional(),
+  })
+  .strict()
+
 // ── 里程碑回顧 ────────────────────────────────────────────
 // 依註冊天數在剛好到節點那天顯示。tags 需含里程碑 key（day_7 / year_1…）或 generic。
 export const milestoneSchema = z
@@ -222,6 +233,7 @@ export type Question = z.infer<typeof questionSchema>
 export type MicroAction = z.infer<typeof microActionSchema>
 export type Seasonal = z.infer<typeof seasonalSchema>
 export type Milestone = z.infer<typeof milestoneSchema>
+export type Welcome = z.infer<typeof welcomeSchema>
 export type Greeting = z.infer<typeof greetingSchema>
 export type Surprise = z.infer<typeof surpriseSchema>
 export type ChainLink = z.infer<typeof chainLinkSchema>

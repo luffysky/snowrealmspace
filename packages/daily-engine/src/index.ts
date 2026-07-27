@@ -21,6 +21,7 @@ export {
   rareDrought,
 } from './surprise.js'
 export { type ChainAvailability, type ChainLinkView, getChainState } from './chain.js'
+export { getWelcomeLine } from './welcome.js'
 export {
   type Insight,
   generateInsights,
