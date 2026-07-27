@@ -49,7 +49,7 @@ export {
   type ThemeExport,
 } from './schema.js'
 
-export { PRESET_THEMES, DEFAULT_THEME, defaultThemeDefinition, NEUTRAL } from './presets.js'
+export { PRESET_THEMES, PRESET_CATEGORY, DEFAULT_THEME, defaultThemeDefinition, NEUTRAL } from './presets.js'
 
 export { deriveDarkTheme, deriveLightTheme, effectiveTheme, isDarkTheme } from './dark-mode.js'
 

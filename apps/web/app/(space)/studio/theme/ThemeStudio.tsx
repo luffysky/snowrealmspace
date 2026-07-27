@@ -7,6 +7,7 @@ import {
   themeDefinitionSchema,
   defaultThemeDefinition,
   PRESET_THEMES,
+  PRESET_CATEGORY,
   type ThemeDefinition,
   type A11yReport,
 } from '@snowrealm/theme-engine'
@@ -16,6 +17,9 @@ import { A11yPanel } from './A11yPanel'
 import { FontPanel } from './FontPanel'
 import { ThemePreview } from './ThemePreview'
 import type { BackgroundState } from '@/components/BackgroundLayer'
+
+/** 內建主題分類顯示順序。 */
+const PRESET_CATEGORY_ORDER = ['淺色柔和', '淺色自然', '淺色中性', '深色', '深色中性', '其他']
 
 export type SavedTheme = {
   id: string
@@ -496,22 +500,33 @@ export function ThemeStudio({
           <p className="sr-muted" style={{ marginTop: 0, fontSize: 'var(--sr-text-xs)' }}>
             點一下＝直接套用到你的空間（重新整理生效）。之後再改參數就用「儲存並套用」。
           </p>
-          <ul className="sr-theme-list">
-            {PRESET_THEMES.map((p) => (
-              <li key={p.name}>
-                <button type="button" className="sr-theme-chip" onClick={() => void applyPreset(p)}>
-                  <span
-                    className="sr-swatch-row"
-                    aria-hidden="true"
-                    style={{
-                      background: `linear-gradient(90deg, ${p.colors.primary} 0 33%, ${p.colors.accent} 33% 66%, ${p.colors.background} 66%)`,
-                    }}
-                  />
-                  <span>{p.name}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          {PRESET_CATEGORY_ORDER.map((cat) => {
+            const list = PRESET_THEMES.filter((p) => (PRESET_CATEGORY[p.name] ?? '其他') === cat)
+            if (list.length === 0) return null
+            return (
+              <div key={cat}>
+                <p className="sr-muted" style={{ margin: 'var(--sr-space-3) 0 var(--sr-space-1)', fontSize: 'var(--sr-text-xs)', fontWeight: 600 }}>
+                  {cat}
+                </p>
+                <ul className="sr-theme-list">
+                  {list.map((p) => (
+                    <li key={p.name}>
+                      <button type="button" className="sr-theme-chip" onClick={() => void applyPreset(p)}>
+                        <span
+                          className="sr-swatch-row"
+                          aria-hidden="true"
+                          style={{
+                            background: `linear-gradient(90deg, ${p.colors.primary} 0 33%, ${p.colors.accent} 33% 66%, ${p.colors.background} 66%)`,
+                          }}
+                        />
+                        <span>{p.name}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
 
           <div className="sr-row" style={{ marginTop: 'var(--sr-space-4)' }}>
             <button className="sr-button sr-button-secondary" type="button" onClick={handleReset}>
