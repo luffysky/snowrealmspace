@@ -1,0 +1,121 @@
+# 季節 · 節氣生活。繁體中文，每一則獨一無二。
+- id: se-jl-lichun-01
+  text: 立春了，天氣要開始回暖，可以慢慢收起厚外套。
+  tags: [lichun, spring]
+- id: se-jl-lichun-02
+  text: 有些地方立春會咬一口春餅，把新一季的生氣捲進去。
+  tags: [lichun, spring]
+- id: se-jl-lichun-03
+  text: 這幾天早晚溫差還很大，出門帶件薄外套比較妥當。
+  tags: [lichun, spring]
+- id: se-jl-lichun-04
+  text: 陽台的盆栽開始冒新芽了，記得多給它一點水。
+  tags: [lichun, spring]
+- id: se-jl-lichun-05
+  text: 立春後白天悄悄變長，散步的時間可以往後挪一點。
+  tags: [lichun, spring]
+- id: se-jl-qingming-01
+  text: 清明前後常飄雨，出門記得把傘放進包裡。
+  tags: [qingming, spring]
+- id: se-jl-qingming-02
+  text: 這個時節的青草氣息很濃，適合去郊外走走踏踏青。
+  tags: [qingming, spring]
+- id: se-jl-qingming-03
+  text: 潤餅是清明的滋味，包滿花生糖粉和滿滿的菜。
+  tags: [qingming, spring]
+- id: se-jl-qingming-04
+  text: 天氣潮濕，衣物晾在通風處比較不容易有味道。
+  tags: [qingming, spring]
+- id: se-jl-qingming-05
+  text: 清明是想念故人的日子，把心裡的話輕輕說給他們聽。
+  tags: [qingming, spring]
+- id: se-jl-lixia-01
+  text: 立夏一到，短袖和涼鞋可以從衣櫃深處請出來了。
+  tags: [lixia, summer]
+- id: se-jl-lixia-02
+  text: 老一輩會在立夏秤秤體重，圖個一整個夏天的安穩。
+  tags: [lixia, summer]
+- id: se-jl-lixia-03
+  text: 午後的陽光變得刺眼，窗簾拉上一半屋裡就涼快多了。
+  tags: [lixia, summer]
+- id: se-jl-lixia-04
+  text: 綠豆湯是立夏的老朋友，冰鎮一碗就能解掉一身暑氣。
+  tags: [lixia, summer]
+- id: se-jl-lixia-05
+  text: 白天愈拉愈長，晚餐後還亮著，剛好散個步消消食。
+  tags: [lixia, summer]
+- id: se-jl-dashu-01
+  text: 大暑是一年最悶熱的時候，多喝水讓身體不缺水分。
+  tags: [dashu, summer]
+- id: se-jl-dashu-02
+  text: 正午的太陽最毒，把外出的行程排到清晨或傍晚比較舒服。
+  tags: [dashu, summer]
+- id: se-jl-dashu-03
+  text: 民間有大暑吃鳳梨的說法，甜甜的果肉透著沁涼。
+  tags: [dashu, summer]
+- id: se-jl-dashu-04
+  text: 冷氣和身體之間留條薄毯，睡起來喉嚨比較不會乾。
+  tags: [dashu, summer]
+- id: se-jl-dashu-05
+  text: 這種天氣流汗特別多，補點鹽分身子才有力氣。
+  tags: [dashu, summer]
+- id: se-jl-liqiu-01
+  text: 立秋雖到，暑氣還沒退，防曬和補水都別鬆懈。
+  tags: [liqiu, autumn]
+- id: se-jl-liqiu-02
+  text: 傍晚的風開始帶了一絲涼意，是秋天在打招呼。
+  tags: [liqiu, autumn]
+- id: se-jl-liqiu-03
+  text: 老話說立秋要貼秋膘，吃頓好的把夏天掉的份量補回來。
+  tags: [liqiu, autumn]
+- id: se-jl-liqiu-04
+  text: 早晚溫差慢慢拉開，睡前備件薄長袖比較安心。
+  tags: [liqiu, autumn]
+- id: se-jl-liqiu-05
+  text: 空氣沒那麼黏了，曬過的棉被聞起來格外清爽。
+  tags: [liqiu, autumn]
+- id: se-jl-shuangjiang-01
+  text: 霜降天氣轉涼，柿子紅透掛滿枝頭，正是嘗鮮的時候。
+  tags: [shuangjiang, autumn]
+- id: se-jl-shuangjiang-02
+  text: 早晨草葉上凝了白霜，出門的手可以先揣進口袋暖著。
+  tags: [shuangjiang, autumn]
+- id: se-jl-shuangjiang-03
+  text: 這個節氣進補正合適，一鍋熱湯把寒氣都逼出去。
+  tags: [shuangjiang, autumn]
+- id: se-jl-shuangjiang-04
+  text: 空氣乾了起來，臉和手抹點乳液比較不會緊繃。
+  tags: [shuangjiang, autumn]
+- id: se-jl-shuangjiang-05
+  text: 路邊的楓葉開始染紅，抬頭看一眼就是免費的風景。
+  tags: [shuangjiang, autumn]
+- id: se-jl-lidong-01
+  text: 立冬是進補的開場，一鍋薑母鴨把整個人焐得暖呼呼。
+  tags: [lidong, winter]
+- id: se-jl-lidong-02
+  text: 天黑得早了，屋裡早點亮起燈就多了幾分暖意。
+  tags: [lidong, winter]
+- id: se-jl-lidong-03
+  text: 厚外套和圍巾可以放到隨手拿得到的地方了。
+  tags: [lidong, winter]
+- id: se-jl-lidong-04
+  text: 冷風容易吹得嘴唇乾，護唇膏放進口袋剛剛好。
+  tags: [lidong, winter]
+- id: se-jl-lidong-05
+  text: 睡前泡個熱水腳，整夜的被窩都跟著暖了起來。
+  tags: [lidong, winter]
+- id: se-jl-dongzhi-01
+  text: 冬至一家人圍著吃湯圓，甜甜的滋味代表又長了一歲。
+  tags: [dongzhi, winter]
+- id: se-jl-dongzhi-02
+  text: 這是一年裡夜最長的一天，過了今晚白晝就一點點回來。
+  tags: [dongzhi, winter]
+- id: se-jl-dongzhi-03
+  text: 北方冬至習慣吃餃子，熱騰騰一盤下肚耳朵都不怕凍。
+  tags: [dongzhi, winter]
+- id: se-jl-dongzhi-04
+  text: 天氣最冷的一段開始了，出門把脖子和耳朵都護好。
+  tags: [dongzhi, winter]
+- id: se-jl-dongzhi-05
+  text: 窗外再冷，屋裡有碗熱湯和一盞燈，就是最好的取暖。
+  tags: [dongzhi, winter]
