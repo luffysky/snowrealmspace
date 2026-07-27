@@ -23,13 +23,22 @@ import {
  * 不必等 cron 那一輪。兩者靠 unique(space_id, local_date, kind) 冪等共存。
  */
 
-const KIND_MAP = { quote: 'daily_card', prompt: 'creative_prompt' } as const
-const COOLDOWN = { quote: 30, prompt: 60 } as const
+const KIND_MAP = {
+  quote: 'daily_card',
+  prompt: 'creative_prompt',
+  question: 'daily_question',
+  micro_action: 'micro_action',
+} as const
+const COOLDOWN = { quote: 30, prompt: 60, question: 45, micro_action: 45 } as const
 
 export type TodayContent = {
   greeting: string | null
   quote: { id: string; text: string } | null
   prompt: { id: string; text: string; estimatedMinutes: number | null } | null
+  /** 每日一問：反思提問 */
+  question: { id: string; text: string } | null
+  /** 微行動：2 分鐘小任務 */
+  microAction: { id: string; text: string; estimatedMinutes: number | null } | null
 }
 
 /** space 當地日期（YYYY-MM-DD）與小時。 */
@@ -84,14 +93,14 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
     .select('kind, title, body, source_ref, payload')
     .eq('space_id', spaceId)
     .eq('local_date', date)
-    .in('kind', ['daily_card', 'creative_prompt'])
+    .in('kind', ['daily_card', 'creative_prompt', 'daily_question', 'micro_action'])
 
   const have = new Map<string, GenRow>(
     (existing ?? []).map((r) => [r.kind, r as GenRow]),
   )
 
   // 缺哪個就生成哪個
-  for (const kind of ['quote', 'prompt'] as const) {
+  for (const kind of ['quote', 'prompt', 'question', 'micro_action'] as const) {
     if (have.has(KIND_MAP[kind])) continue
     const generated = await generateOne(admin, spaceId, date, kind, context)
     if (generated) have.set(KIND_MAP[kind], generated)
@@ -99,17 +108,20 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
 
   const quoteRow = have.get('daily_card')
   const promptRow = have.get('creative_prompt')
+  const questionRow = have.get('daily_question')
+  const actionRow = have.get('micro_action')
+  const minutesOf = (row: GenRow | undefined): number | null =>
+    (row?.payload as { estimatedMinutes?: number } | null)?.estimatedMinutes ?? null
 
   return {
     greeting: await pickGreeting(admin, spaceId, hour),
     quote: quoteRow ? { id: quoteRow.source_ref ?? '', text: quoteRow.body } : null,
     prompt: promptRow
-      ? {
-          id: promptRow.source_ref ?? '',
-          text: promptRow.body,
-          estimatedMinutes:
-            (promptRow.payload as { estimatedMinutes?: number } | null)?.estimatedMinutes ?? null,
-        }
+      ? { id: promptRow.source_ref ?? '', text: promptRow.body, estimatedMinutes: minutesOf(promptRow) }
+      : null,
+    question: questionRow ? { id: questionRow.source_ref ?? '', text: questionRow.body } : null,
+    microAction: actionRow
+      ? { id: actionRow.source_ref ?? '', text: actionRow.body, estimatedMinutes: minutesOf(actionRow) }
       : null,
   }
 }
@@ -120,7 +132,7 @@ async function generateOne(
   admin: ReturnType<typeof createAdminClient>,
   spaceId: string,
   date: string,
-  kind: 'quote' | 'prompt',
+  kind: 'quote' | 'prompt' | 'question' | 'micro_action',
   context: SpaceContext,
 ): Promise<GenRow | null> {
   // 池：該類啟用中的全部

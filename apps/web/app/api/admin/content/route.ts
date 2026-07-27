@@ -7,11 +7,11 @@ import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 
 export const dynamic = 'force-dynamic'
 
-const KINDS = ['quote', 'prompt', 'greeting', 'surprise', 'chain'] as const
+const KINDS = ['quote', 'prompt', 'question', 'micro_action', 'greeting', 'surprise', 'chain'] as const
 
 const postSchema = z
   .object({
-    kind: z.enum(['quote', 'prompt', 'greeting', 'surprise']),
+    kind: z.enum(['quote', 'prompt', 'question', 'micro_action', 'greeting', 'surprise']),
     text: z.string().trim().min(2).max(500),
     weight: z.number().positive().max(10).default(1),
     label: z.string().trim().max(24).optional(),
@@ -104,7 +104,8 @@ export const POST = handler(async (request: NextRequest) => {
       label: input.label ?? null,
       rarity: input.kind === 'surprise' ? (input.rarity ?? 'common') : null,
       greeting_slot: input.kind === 'greeting' ? (input.greetingSlot ?? 'morning') : null,
-      estimated_minutes: input.kind === 'prompt' ? (input.estimatedMinutes ?? null) : null,
+      estimated_minutes:
+        input.kind === 'prompt' || input.kind === 'micro_action' ? (input.estimatedMinutes ?? null) : null,
       tags: input.tags ?? [],
       enabled: true,
     } as never)

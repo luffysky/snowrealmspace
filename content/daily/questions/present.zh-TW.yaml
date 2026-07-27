@@ -1,0 +1,49 @@
+# 每日一問 · 當下。把注意力帶回此刻。
+- id: qn-present-01
+  text: 此刻，你的身體想跟你說什麼？
+  tags: [present, body]
+- id: qn-present-02
+  text: 現在這個當下，有什麼是夠好的？
+  tags: [present]
+- id: qn-present-03
+  text: 如果今天只做一件事，你想做哪件？
+  tags: [present]
+- id: qn-present-04
+  text: 現在的你，最需要的是什麼？
+  tags: [present]
+- id: qn-present-05
+  text: 這一刻，你在意的是什麼？
+  tags: [present]
+- id: qn-present-06
+  text: 如果誠實一點，你現在的心情是哪一種？
+  tags: [present, feeling]
+- id: qn-present-07
+  text: 眼前這個空間，有哪個角落讓你安心？
+  tags: [present]
+- id: qn-present-08
+  text: 今天到現在，最順的一件事是什麼？
+  tags: [present]
+- id: qn-present-09
+  text: 此刻你握著什麼，捨不得放？
+  tags: [present]
+- id: qn-present-10
+  text: 如果現在給自己一句話，你會說什麼？
+  tags: [present]
+- id: qn-present-11
+  text: 你現在最想靠近的，是什麼樣的感覺？
+  tags: [present, feeling]
+- id: qn-present-12
+  text: 今天有什麼小小的、屬於你的時刻？
+  tags: [present]
+- id: qn-present-13
+  text: 現在讓你分心的那件事，真的那麼急嗎？
+  tags: [present]
+- id: qn-present-14
+  text: 這一刻，你想對誰說聲謝謝？
+  tags: [present]
+- id: qn-present-15
+  text: 如果可以按下暫停，你想停在今天的哪一秒？
+  tags: [present]
+- id: qn-present-16
+  text: 現在的你，比昨天多懂了什麼？
+  tags: [present]

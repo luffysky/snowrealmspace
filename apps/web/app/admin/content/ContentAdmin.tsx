@@ -13,8 +13,16 @@ export type ContentRow = {
   tags: string[]
 }
 
-const KIND_LABEL: Record<string, string> = { quote: '語錄', prompt: '創作提示', greeting: '問候', surprise: '驚喜', chain: '生日鏈' }
-const ADDABLE = ['quote', 'prompt', 'greeting', 'surprise'] as const
+const KIND_LABEL: Record<string, string> = {
+  quote: '語錄',
+  prompt: '創作提示',
+  question: '每日一問',
+  micro_action: '微行動',
+  greeting: '問候',
+  surprise: '驚喜',
+  chain: '生日鏈',
+}
+const ADDABLE = ['quote', 'prompt', 'question', 'micro_action', 'greeting', 'surprise'] as const
 const PAGE = 100
 
 /** 每一類的展開狀態（懶載入 + 分頁）。 */

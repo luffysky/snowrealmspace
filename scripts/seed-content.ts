@@ -6,6 +6,8 @@ import { parse } from 'yaml'
 import {
   quoteSchema,
   promptSchema,
+  questionSchema,
+  microActionSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -79,6 +81,37 @@ async function main() {
       min_days_since_signup: p.minDaysSinceSignup ?? null,
       requires_tag: p.requiresTag ?? null,
       cooldown_days: p.cooldownDays ?? null,
+    })
+  }
+
+  // ── 每日一問 ──
+  for (const raw of await loadDir('daily/questions')) {
+    const q = questionSchema.parse(raw)
+    rows.push({
+      content_id: q.id,
+      kind: 'question',
+      text: q.text,
+      tags: q.tags,
+      weight: q.weight ?? 1,
+      min_days_since_signup: q.minDaysSinceSignup ?? null,
+      requires_tag: q.requiresTag ?? null,
+      cooldown_days: q.cooldownDays ?? null,
+    })
+  }
+
+  // ── 微行動 ──
+  for (const raw of await loadDir('daily/micro-actions')) {
+    const m = microActionSchema.parse(raw)
+    rows.push({
+      content_id: m.id,
+      kind: 'micro_action',
+      text: m.text,
+      tags: m.tags,
+      weight: m.weight ?? 1,
+      estimated_minutes: m.estimatedMinutes ?? null,
+      min_days_since_signup: m.minDaysSinceSignup ?? null,
+      requires_tag: m.requiresTag ?? null,
+      cooldown_days: m.cooldownDays ?? null,
     })
   }
 

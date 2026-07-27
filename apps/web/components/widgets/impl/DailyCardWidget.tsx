@@ -15,6 +15,8 @@ type Today = {
   greeting: string | null
   quote: { id: string; text: string } | null
   prompt: { id: string; text: string; estimatedMinutes: number | null } | null
+  question: { id: string; text: string } | null
+  microAction: { id: string; text: string; estimatedMinutes: number | null } | null
 }
 
 export default function DailyCardWidget({ config }: WidgetProps) {
@@ -60,8 +62,8 @@ export default function DailyCardWidget({ config }: WidgetProps) {
     )
   }
 
-  // 池還沒 seed 時三者皆空 —— 誠實說明，不留空殼（Q6）
-  if (!today.greeting && !today.quote && !today.prompt) {
+  // 池還沒 seed 時全空 —— 誠實說明，不留空殼（Q6）
+  if (!today.greeting && !today.quote && !today.prompt && !today.question && !today.microAction) {
     return (
       <div className="sr-card sr-daily-card">
         <p className="sr-muted" style={{ margin: 0 }}>
@@ -81,6 +83,15 @@ export default function DailyCardWidget({ config }: WidgetProps) {
         </blockquote>
       )}
 
+      {today.question && (
+        <div className="sr-daily-prompt">
+          <span className="sr-label" style={{ marginBottom: 4 }}>
+            今天想一下
+          </span>
+          <p style={{ margin: 0 }}>{today.question.text}</p>
+        </div>
+      )}
+
       {today.prompt && !compact && (
         <div className="sr-daily-prompt">
           <span className="sr-label" style={{ marginBottom: 4 }}>
@@ -92,6 +103,15 @@ export default function DailyCardWidget({ config }: WidgetProps) {
               約 {today.prompt.estimatedMinutes} 分鐘
             </span>
           )}
+        </div>
+      )}
+
+      {today.microAction && !compact && (
+        <div className="sr-daily-prompt">
+          <span className="sr-label" style={{ marginBottom: 4 }}>
+            兩分鐘微行動
+          </span>
+          <p style={{ margin: 0 }}>{today.microAction.text}</p>
         </div>
       )}
     </div>

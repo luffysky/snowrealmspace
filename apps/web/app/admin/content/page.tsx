@@ -20,7 +20,7 @@ export default async function AdminContentPage() {
   const admin = createAdminClient()
   // 只拉「每一類的真實總數」（head count，便宜），清單本身等展開才分頁拉。
   // 之前寫死 .limit(1000) 會被 PostgREST 上限截斷 → 後台看起來「沒那麼多」。
-  const KINDS = ['quote', 'prompt', 'greeting', 'surprise', 'chain'] as const
+  const KINDS = ['quote', 'prompt', 'question', 'micro_action', 'greeting', 'surprise', 'chain'] as const
   const countPairs = await Promise.all(
     KINDS.map(async (k) => {
       const { count } = await admin

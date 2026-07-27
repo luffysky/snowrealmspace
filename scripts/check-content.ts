@@ -5,6 +5,8 @@ import { parse } from 'yaml'
 import {
   quoteSchema,
   promptSchema,
+  questionSchema,
+  microActionSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -37,7 +39,9 @@ const THRESHOLDS = {
   // 10 年 × 365 天，每天一則不重複 → 3650 是下限（使用者指示）。
   quotes: 3650,
   prompts: 3650,
-  greetings: 240, // 各時段至少 60；問候依時段輪替，不需 3650
+  questions: 3650, // 每日一問也走每日輪替
+  microActions: 3650, // 微行動也走每日輪替
+  greetings: 3650, // 使用者要求每時段補到 ~1000（共 ~4000）
   surprises: 600,
   chain: 5,
 } as const
@@ -49,7 +53,7 @@ async function main() {
   const allIds = new Map<string, string>() // id → 第一次出現的檔案
   const allTexts = new Map<string, string>() // 正規化文字 → id
 
-  const counts = { quotes: 0, prompts: 0, greetings: 0, surprises: 0, chain: 0 }
+  const counts = { quotes: 0, prompts: 0, questions: 0, microActions: 0, greetings: 0, surprises: 0, chain: 0 }
 
   // ── Quotes ──
   for (const { file, rows } of await loadDir('daily/quotes')) {
@@ -64,6 +68,20 @@ async function main() {
     for (const raw of rows) {
       const check = validateRow(promptSchema, raw, file, allIds, allTexts, problems)
       if (check) counts.prompts++
+    }
+  }
+
+  // ── 每日一問 ──
+  for (const { file, rows } of await loadDir('daily/questions')) {
+    for (const raw of rows) {
+      if (validateRow(questionSchema, raw, file, allIds, allTexts, problems)) counts.questions++
+    }
+  }
+
+  // ── 微行動 ──
+  for (const { file, rows } of await loadDir('daily/micro-actions')) {
+    for (const raw of rows) {
+      if (validateRow(microActionSchema, raw, file, allIds, allTexts, problems)) counts.microActions++
     }
   }
 

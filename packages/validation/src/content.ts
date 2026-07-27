@@ -105,6 +105,36 @@ export const promptSchema = z
   })
   .strict()
 
+// ── 每日一問（反思提問）──────────────────────────────────
+// 每日輪替（像 quote/prompt）。一句開放式問題，邀請使用者想一下自己。
+export const questionSchema = z
+  .object({
+    id: idSchema,
+    text: z.string().trim().min(6).max(80),
+    tags: tagsSchema,
+    weight: weightSchema.optional(),
+    minDaysSinceSignup: z.number().int().min(0).max(3650).optional(),
+    requiresTag: z.string().regex(/^[a-z_]+$/).optional(),
+    cooldownDays: z.number().int().min(1).max(365).optional(),
+  })
+  .strict()
+
+// ── 微行動（2 分鐘小任務）────────────────────────────────
+// 每日輪替。一個當下就能做完的小動作，降低開始門檻。
+export const microActionSchema = z
+  .object({
+    id: idSchema,
+    text: z.string().trim().min(4).max(80),
+    tags: tagsSchema,
+    weight: weightSchema.optional(),
+    /** 預設就是 ~2 分鐘，可覆寫 */
+    estimatedMinutes: z.number().int().min(1).max(15).optional(),
+    minDaysSinceSignup: z.number().int().min(0).max(3650).optional(),
+    requiresTag: z.string().regex(/^[a-z_]+$/).optional(),
+    cooldownDays: z.number().int().min(1).max(365).optional(),
+  })
+  .strict()
+
 // ── Greeting（依時段分組）────────────────────────────────
 
 export const greetingSchema = z
@@ -164,6 +194,8 @@ export const chainLinkSchema = z
 
 export type Quote = z.infer<typeof quoteSchema>
 export type Prompt = z.infer<typeof promptSchema>
+export type Question = z.infer<typeof questionSchema>
+export type MicroAction = z.infer<typeof microActionSchema>
 export type Greeting = z.infer<typeof greetingSchema>
 export type Surprise = z.infer<typeof surpriseSchema>
 export type ChainLink = z.infer<typeof chainLinkSchema>
