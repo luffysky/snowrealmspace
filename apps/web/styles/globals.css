@@ -1331,6 +1331,10 @@ input[type='range'] {
 .sr-preview-inner {
   position: relative;
   z-index: 1;
+  /* 內容比預覽框高時可捲動（背景層 .sr-preview-bg 在底層不動，只有這層捲）。 */
+  max-height: min(70vh, 640px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: var(--sr-space-6);
   display: flex;
   flex-direction: column;
