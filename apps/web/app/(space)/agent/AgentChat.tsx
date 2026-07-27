@@ -5,6 +5,7 @@ import { ALLOWED_MIME } from '@snowrealm/validation'
 import { uploadAsset } from '@/lib/upload-asset'
 import { EmojiPicker } from '@/components/rich/EmojiPicker'
 import { GifPicker } from '@/components/rich/GifPicker'
+import { EmojiText } from '@/components/rich/EmojiText'
 import { Avatar } from '@/components/Avatar'
 import { emitAgentMood, type AgentMood } from '@/lib/agent/mood'
 import { useDialog } from '@/components/ui/DialogProvider'
@@ -634,7 +635,7 @@ export function AgentChat({
               )}
               {(m.content || (m.role === 'assistant' && m.escalated)) && (
                 <div className="sr-chat-bubble">
-                  {m.content}
+                  <EmojiText text={m.content ?? ''} size={20} />
                   {m.role === 'assistant' && m.escalated && (
                     <span className="sr-chip sr-chip-tag" style={{ marginLeft: 'var(--sr-space-2)' }}>
                       深入分析

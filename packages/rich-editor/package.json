@@ -9,6 +9,7 @@
     ".": "./src/index.ts",
     "./EmojiPicker": "./src/EmojiPicker.tsx",
     "./GifPicker": "./src/GifPicker.tsx",
+    "./EmojiText": "./src/EmojiText.tsx",
     "./RichHtml": "./src/RichHtml.tsx"
   },
   "scripts": {
