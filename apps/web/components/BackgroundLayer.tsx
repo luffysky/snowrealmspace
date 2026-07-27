@@ -223,7 +223,7 @@ function useSaveData(): boolean {
   return saveData
 }
 
-function BackgroundMedia({
+export function BackgroundMedia({
   spaceId,
   item,
   paused,

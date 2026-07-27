@@ -4,6 +4,8 @@ import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { effectiveTheme, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { applyThemeToPreview } from '@/lib/theme/apply'
 import { applyFontVars, loadFontFaces, type FontManifestEntry } from '@/lib/theme/font-loader'
+import { PreviewBackground } from '@/components/PreviewBackground'
+import type { BackgroundState } from '@/components/BackgroundLayer'
 
 /** /api/fonts 回傳的欄位（只取字體套用需要的）。 */
 type CatalogueFont = {
@@ -39,8 +41,10 @@ function toEntry(f: CatalogueFont): FontManifestEntry {
  * 淺色／深色 tab：用 effectiveTheme 依草稿推導對應模式，讓使用者不用真的切換
  * 整站就能看到「這套主題在深色模式下長怎樣」。
  */
-export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefinition }>(
-  function ThemePreview({ definition }, ref) {
+export const ThemePreview = forwardRef<
+  HTMLDivElement,
+  { definition: ThemeDefinition; spaceId: string; background: BackgroundState | null }
+>(function ThemePreview({ definition, spaceId, background }, ref) {
     const [mode, setMode] = useState<'light' | 'dark'>('light')
     const surfaceRef = useRef<HTMLDivElement | null>(null)
 
@@ -126,6 +130,7 @@ export const ThemePreview = forwardRef<HTMLDivElement, { definition: ThemeDefini
         </div>
 
         <div ref={setRef} className="sr-preview-surface">
+          <PreviewBackground spaceId={spaceId} state={background} />
           <div className="sr-preview-inner">
             <header className="sr-preview-header">
               <strong className="sr-preview-title">{definition.name || '未命名主題'}</strong>

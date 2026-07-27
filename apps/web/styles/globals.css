@@ -1310,6 +1310,7 @@ input[type='range'] {
  * 所以裡面的元素會用草稿的顏色而非目前套用的主題。
  */
 .sr-preview-surface {
+  position: relative;
   background: var(--sr-background);
   color: var(--sr-text-primary);
   border: 1px solid var(--sr-border);
@@ -1317,8 +1318,19 @@ input[type='range'] {
   overflow: hidden;
   min-height: 480px;
 }
+/* #51：預覽框內的背景層（縮進來的目前背景/幻燈片）。絕對定位、被 surface 的
+   overflow:hidden 夾住，蓋在 surface 底色之上、預覽內容之下。 */
+.sr-preview-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
 .sr-preview-inner {
+  position: relative;
+  z-index: 1;
   padding: var(--sr-space-6);
   display: flex;
   flex-direction: column;

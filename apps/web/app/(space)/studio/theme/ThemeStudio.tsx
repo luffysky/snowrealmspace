@@ -15,6 +15,7 @@ import { SurfaceControls } from './SurfaceControls'
 import { A11yPanel } from './A11yPanel'
 import { FontPanel } from './FontPanel'
 import { ThemePreview } from './ThemePreview'
+import type { BackgroundState } from '@/components/BackgroundLayer'
 
 export type SavedTheme = {
   id: string
@@ -46,10 +47,12 @@ export function ThemeStudio({
   spaceId,
   initialThemes,
   activeThemeId,
+  background,
 }: {
   spaceId: string
   initialThemes: SavedTheme[]
   activeThemeId: string | null
+  background: BackgroundState | null
 }) {
   const [themes, setThemes] = useState<SavedTheme[]>(initialThemes)
   const [editingId, setEditingId] = useState<string | null>(activeThemeId)
@@ -505,7 +508,7 @@ export function ThemeStudio({
 
       {/* ── 右：預覽 ── */}
       <div className="sr-studio-preview">
-        <ThemePreview definition={draft} />
+        <ThemePreview definition={draft} spaceId={spaceId} background={background} />
       </div>
     </div>
   )

@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
+import { cookies } from 'next/headers'
 import { themeDefinitionSchema, defaultThemeDefinition } from '@snowrealm/theme-engine'
 import { ThemeStudio, type SavedTheme } from './ThemeStudio'
+import { resolveCurrentBackground } from '@/lib/api/background-resolver'
+import type { BackgroundState } from '@/components/BackgroundLayer'
+import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 
 export const metadata: Metadata = { title: '主題工作室 — SnowRealm Space' }
 export const dynamic = 'force-dynamic'
@@ -47,6 +51,16 @@ export default async function ThemeStudioPage() {
 
   const activeThemeId = spaceRow?.active_theme_id ?? null
 
+  // 目前套用中的背景（含幻燈片當前這張）—— 讓即時預覽把背景也疊進來（#51）
+  const mode = parseMode((await cookies()).get(MODE_COOKIE)?.value)
+  const background = (await resolveCurrentBackground(
+    db,
+    space.id,
+    space.timezone,
+    new Date(),
+    mode,
+  )) as BackgroundState | null
+
   // 一個主題都沒有時，給一份預設草稿當起點，而不是空白畫面
   if (themes.length === 0) {
     themes.push({
@@ -71,6 +85,7 @@ export default async function ThemeStudioPage() {
         spaceId={space.id}
         initialThemes={themes}
         activeThemeId={activeThemeId}
+        background={background}
       />
     </div>
   )
