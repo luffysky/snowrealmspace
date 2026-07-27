@@ -413,7 +413,10 @@ h3 {
   --sb: 220px;
   --topbar-h: 60px;
   display: grid;
-  grid-template-columns: var(--sb) 1fr;
+  /* minmax(0,1fr)：預設 1fr = minmax(auto,1fr)，其 auto 下限不會小於內容 min-content，
+     於是 topbar 那排（動作區不縮）會把整個 grid 撐得比視窗寬、子項不縮、登出被推出畫面。
+     用 minmax(0,1fr) 讓欄可以縮到 0，flex 子項（品牌名）才會真的被要求截斷。 */
+  grid-template-columns: var(--sb) minmax(0, 1fr);
   grid-template-rows: var(--topbar-h) 1fr;
   grid-template-areas:
     'top top'
@@ -437,6 +440,8 @@ h3 {
   top: 0;
   z-index: 30;
   display: flex;
+  /* 讓 flex row 可以縮到比內容窄（否則品牌名不截斷、把動作擠出畫面） */
+  min-width: 0;
   align-items: center;
   gap: var(--sr-space-3);
   padding: 0 var(--sr-space-5);
@@ -825,7 +830,7 @@ h3 {
 /* ── 手機／平板（<1024px）：頂列漢堡 + 滑入抽屜 ── */
 @media (max-width: 1023px) {
   .sr-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: var(--topbar-h) 1fr;
     grid-template-areas:
       'top'
