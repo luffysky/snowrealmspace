@@ -53,9 +53,76 @@ export function capabilitiesFor(provider: ProviderId): ProviderCapabilities | un
   return ALL_PROVIDERS.find((p) => p.provider === provider)
 }
 
+// ── 檔案列舉與抓取（Milestone F sync 半段 S1）──────────────
+// 這些方法只做「拿 access token → 打 provider REST → 回正規化資料」，
+// 不碰 DB / storage / env（那些是 app 層 orchestration 的責任）。位元組不在這裡落地。
+
+/** 可供使用者選擇同步的檔案摘要。 */
+export type ProviderFileSummary = {
+  externalId: string
+  title: string
+  /** provider 端的預覽圖 URL（短期有效）。app 層負責下載位元組並存進 assets。 */
+  thumbnailUrl: string | null
+  updatedAt: string | null
+}
+
+/** listFiles 選項。container：Figma 需要 project id 才能列檔；Canva 用不到。 */
+export type ProviderListOptions = { container?: string; cursor?: string }
+
+export type ProviderListResult = { files: ProviderFileSummary[]; nextCursor: string | null }
+
+/** 某版本的預覽來源。app 層據此下載位元組存入 assets（ADR-005）。 */
+export type ProviderRendition = { url: string; mimeType: string | null }
+
+/** fetchFile 的正規化輸出。sourceUrl 是「設計頁連結」而非檔案位元組 URL。 */
+export type FetchedFile = {
+  externalId: string
+  title: string
+  externalVersionId: string | null
+  sourceUrl: string | null
+  rendition: ProviderRendition | null
+  metadata: Record<string, unknown>
+}
+
+/** provider REST 呼叫失敗（含 HTTP 狀態）。app 層據此給使用者看得到的錯誤，不吞掉。 */
+export class ProviderApiError extends Error {
+  constructor(
+    readonly status: number,
+    message: string,
+  ) {
+    super(message)
+    this.name = 'ProviderApiError'
+  }
+}
+
+/** 共用的 Bearer GET；非 2xx 一律拋 ProviderApiError（不靜默失敗）。 */
+async function providerGetJson(url: string, accessToken: string): Promise<unknown> {
+  let res: Response
+  try {
+    res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/json' } })
+  } catch (err) {
+    throw new ProviderApiError(0, `連線失敗：${(err as Error).message}`)
+  }
+  const text = await res.text()
+  if (!res.ok) {
+    let msg = text
+    try {
+      const j = JSON.parse(text) as { message?: string; error?: string | { message?: string } }
+      msg = j.message || (typeof j.error === 'string' ? j.error : j.error?.message) || text
+    } catch {
+      /* 非 JSON，原樣截斷 */
+    }
+    throw new ProviderApiError(res.status, String(msg).slice(0, 300))
+  }
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new ProviderApiError(res.status, 'provider 回應不是合法 JSON。')
+  }
+}
+
 /**
- * DesignProviderAdapter 介面（v1.0 §20）。Figma 為第一個實作。
- * connect/sync 需要憑證，先以介面定義，實作在有憑證後補。
+ * DesignProviderAdapter 介面（v1.0 §20）。Figma 為第一個實作，Canva 同步跟上。
  */
 export interface DesignProviderAdapter {
   readonly capabilities: ProviderCapabilities
@@ -63,6 +130,10 @@ export interface DesignProviderAdapter {
   verifyWebhook(rawBody: string, signature: string | null, secret: string): boolean
   /** 從 webhook payload 取得去重用的外部事件 id。 */
   externalEventId(payload: unknown): string | null
+  /** 列出使用者可選擇同步的檔案（禁預設同步整個 Team——列舉≠同步，同步由使用者明確挑選）。 */
+  listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult>
+  /** 取單一檔案的中繼與預覽來源（位元組由 app 層下載後存 assets）。 */
+  fetchFile(accessToken: string, externalId: string): Promise<FetchedFile>
 }
 
 /**
@@ -116,6 +187,47 @@ export class FigmaAdapter implements DesignProviderAdapter {
     if (p?.file_key && p?.timestamp) return `${p.file_key}:${p.timestamp}`
     return null
   }
+
+  // TODO(figma): 以下端點與 scope 仍待對最新 Figma OAuth/REST 文件確認，尚未實測。
+  // Figma 2024 改版後 token/scope 有變動；啟用 Figma 前必須實測校正，勿當作已驗證。
+  async listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult> {
+    // Figma 需要 project 脈絡才能列檔（GET /v1/projects/:project_id/files），
+    // 沒有 container 時無法「列出全部」——這正好符合「禁預設同步整個 Team」。
+    if (!opts?.container) {
+      throw new ProviderApiError(400, 'Figma 需要指定 project id 才能列出檔案。')
+    }
+    const json = (await providerGetJson(
+      `https://api.figma.com/v1/projects/${encodeURIComponent(opts.container)}/files`,
+      accessToken,
+    )) as { files?: Array<{ key?: string; name?: string; thumbnail_url?: string; last_modified?: string }> }
+    const files = Array.isArray(json.files) ? json.files : []
+    return {
+      files: files
+        .filter((f): f is { key: string } & typeof f => typeof f.key === 'string')
+        .map((f) => ({
+          externalId: f.key,
+          title: f.name && f.name.length > 0 ? f.name : '(未命名檔案)',
+          thumbnailUrl: f.thumbnail_url ?? null,
+          updatedAt: f.last_modified ?? null,
+        })),
+      nextCursor: null,
+    }
+  }
+
+  async fetchFile(accessToken: string, externalId: string): Promise<FetchedFile> {
+    const json = (await providerGetJson(
+      `https://api.figma.com/v1/files/${encodeURIComponent(externalId)}`,
+      accessToken,
+    )) as { name?: string; version?: string; thumbnailUrl?: string; lastModified?: string }
+    return {
+      externalId,
+      title: json.name && json.name.length > 0 ? json.name : '(未命名檔案)',
+      externalVersionId: json.version ?? null,
+      sourceUrl: `https://www.figma.com/file/${encodeURIComponent(externalId)}`,
+      rendition: json.thumbnailUrl ? { url: json.thumbnailUrl, mimeType: null } : null,
+      metadata: { lastModified: json.lastModified ?? null },
+    }
+  }
 }
 
 /** Canva adapter（capability + webhook 佔位；OAuth/sync 待 CANVA_CLIENT_ID/SECRET 才實作）。 */
@@ -132,4 +244,61 @@ export class CanvaAdapter implements DesignProviderAdapter {
     if (typeof p?.id === 'string') return p.id
     return null
   }
+
+  // Canva Connect REST v1（api.canva.com）。列設計、取單一設計；預覽用 design.thumbnail。
+  // 註：高解析 export 需非同步 export job（建立→輪詢→取檔），屬後續（S2+），S1 先用 thumbnail 當預覽。
+  async listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult> {
+    const params = new URLSearchParams({ limit: '50' })
+    if (opts?.cursor) params.set('continuation', opts.cursor)
+    const json = (await providerGetJson(
+      `https://api.canva.com/rest/v1/designs?${params.toString()}`,
+      accessToken,
+    )) as { items?: CanvaDesign[]; continuation?: string }
+    const items = Array.isArray(json.items) ? json.items : []
+    return {
+      files: items
+        .filter((d): d is CanvaDesign & { id: string } => typeof d.id === 'string')
+        .map((d) => ({
+          externalId: d.id,
+          title: d.title && d.title.length > 0 ? d.title : '(未命名設計)',
+          thumbnailUrl: d.thumbnail?.url ?? null,
+          updatedAt: canvaTimestampToIso(d.updated_at),
+        })),
+      nextCursor: typeof json.continuation === 'string' ? json.continuation : null,
+    }
+  }
+
+  async fetchFile(accessToken: string, externalId: string): Promise<FetchedFile> {
+    const json = (await providerGetJson(
+      `https://api.canva.com/rest/v1/designs/${encodeURIComponent(externalId)}`,
+      accessToken,
+    )) as { design?: CanvaDesign } & CanvaDesign
+    const d: CanvaDesign = json.design ?? json
+    return {
+      externalId: typeof d.id === 'string' ? d.id : externalId,
+      title: d.title && d.title.length > 0 ? d.title : '(未命名設計)',
+      // Canva 設計沒有明確 version id → 用 updated_at 當版本識別（同內容不會重複建版本）
+      externalVersionId: d.updated_at != null ? String(d.updated_at) : null,
+      sourceUrl: d.urls?.view_url ?? d.urls?.edit_url ?? null,
+      rendition: d.thumbnail?.url ? { url: d.thumbnail.url, mimeType: null } : null,
+      metadata: { thumbnail: d.thumbnail ?? null },
+    }
+  }
+}
+
+type CanvaDesign = {
+  id?: string
+  title?: string
+  thumbnail?: { url?: string }
+  urls?: { view_url?: string; edit_url?: string }
+  updated_at?: number | string
+}
+
+/** Canva 時間戳（多為 unix 秒）→ ISO；已是字串就原樣回傳。 */
+function canvaTimestampToIso(ts: number | string | undefined): string | null {
+  if (ts == null) return null
+  if (typeof ts === 'number') return new Date(ts * 1000).toISOString()
+  const asNum = Number(ts)
+  if (Number.isFinite(asNum) && ts.trim() !== '') return new Date(asNum * 1000).toISOString()
+  return ts
 }
