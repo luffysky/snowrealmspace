@@ -5,6 +5,8 @@ import { updatePrivacySettings } from './actions'
 import Link from 'next/link'
 import { PrivacyToggles } from './PrivacyToggles'
 import { BirthdayForm } from './BirthdayForm'
+import { DisplayNameForm } from './DisplayNameForm'
+import { AvatarUpload } from './account/AvatarUpload'
 import { AgentSettings } from './AgentSettings'
 import { BackgroundMusicSettings, type AudioOption } from './BackgroundMusicSettings'
 
@@ -34,6 +36,12 @@ export default async function SettingsPage() {
     id: a.id,
     label: a.original_filename ?? '未命名音訊',
   }))
+
+  // 個人資料：顯示名字 + 頭像
+  const { data: myProfile } = user
+    ? await db.from('profiles').select('display_name, avatar_asset_id').eq('id', user.id).maybeSingle()
+    : { data: null }
+  const displayName = myProfile?.display_name || user?.username || user?.email || ''
 
   return (
     <div className="sr-stack">
@@ -110,13 +118,27 @@ export default async function SettingsPage() {
       <section className="sr-card">
         <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>個人資料</h2>
         <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
-          生日是選填的。填了，生日當天會收到一則小小的祝福。
+          這些是「你」在這個空間的樣子 —— 顯示名字與頭像會出現在品牌列、AI 對話等處。
         </p>
-        <BirthdayForm
-          spaceId={space.id}
-          month={settings.birthday_month}
-          day={settings.birthday_day}
-        />
+
+        <DisplayNameForm initial={displayName} />
+
+        <div className="sr-field" style={{ marginTop: 'var(--sr-space-4)' }}>
+          <span className="sr-label">頭像</span>
+          <AvatarUpload spaceId={space.id} initialAssetId={myProfile?.avatar_asset_id ?? null} />
+        </div>
+
+        <div className="sr-field" style={{ marginTop: 'var(--sr-space-4)' }}>
+          <span className="sr-label">生日</span>
+          <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-2)' }}>
+            選填。填了，生日當天首頁會換成生日鏈、也會收到一則小小的祝福。
+          </p>
+          <BirthdayForm
+            spaceId={space.id}
+            month={settings.birthday_month}
+            day={settings.birthday_day}
+          />
+        </div>
       </section>
 
       <section className="sr-card">
