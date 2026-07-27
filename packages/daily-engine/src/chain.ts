@@ -32,7 +32,7 @@ const HINT: Record<ChainAvailability, string> = {
   after_1_year: '一年後解鎖',
 }
 
-export async function getChainState(spaceId: string): Promise<ChainLinkView[]> {
+export async function getChainState(spaceId: string, viewerName?: string): Promise<ChainLinkView[]> {
   const admin = createAdminClient()
 
   const { data: links } = await admin
@@ -43,6 +43,11 @@ export async function getChainState(spaceId: string): Promise<ChainLinkView[]> {
     .order('chain_index', { ascending: true })
 
   if (!links || links.length === 0) return []
+
+  // 名字帶入：內容用 {name} 佔位，這裡換成開啟者的名字（大家共用同一份範本）。
+  // 沒有名字時退成中性的「你」，不要出現「生日快樂，。」這種破洞。
+  const name = (viewerName ?? '').trim() || '你'
+  const sub = (s: string): string => s.replaceAll('{name}', name)
 
   // 解鎖條件所需的事實
   const [themeCount, assetCount, space] = await Promise.all([
@@ -77,8 +82,8 @@ export async function getChainState(spaceId: string): Promise<ChainLinkView[]> {
     const unlocked = isUnlocked(cond)
     return {
       index: link.chain_index ?? 0,
-      title: link.label ?? '',
-      text: unlocked ? link.text : null,
+      title: link.label ? sub(link.label) : '',
+      text: unlocked && link.text ? sub(link.text) : null,
       unlocked,
       hint: unlocked ? null : HINT[cond] || '尚未解鎖',
     }

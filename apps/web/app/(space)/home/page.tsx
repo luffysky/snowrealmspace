@@ -6,7 +6,6 @@ import { WIDGET_REGISTRY, GRID, defaultLayoutItems, getWidgetDefinition } from '
 import { createAdminClient } from '@snowrealm/db/server'
 import { HomeGrid, type WidgetInstanceRow, type AvailableWidget } from './HomeGrid'
 import BirthdayChain from '@/components/widgets/impl/BirthdayChainWidget'
-import { WelcomeLetter } from '@/components/WelcomeLetter'
 import { EnvelopeCard } from '@/components/EnvelopeCard'
 import { birthdayCardFor } from '@/lib/birthday-cards'
 
@@ -120,7 +119,8 @@ export default async function HomePage() {
       {/*
         壽星（生日主角）：信封卡留在 Home 等她親手打開＋收藏；收藏後才移到驚喜收藏頁，
           之後 Home 改看生日鏈。
-        其他人：生日當天看信封卡（可保存）；其餘日子看溫暖歡迎信。
+        其他人：生日當天看信封卡（可保存）；其餘日子看生日鏈 —— 生日鏈現在大家共用，
+          內容用 {name} 佔位、依開啟者名字帶入，依條件逐步解鎖（見 api/chain）。
       */}
       <div data-tour="home-grid">
         {settings.is_birthday_recipient ? (
@@ -132,7 +132,7 @@ export default async function HomePage() {
         ) : isBirthdayToday ? (
           <EnvelopeCard {...birthdayCardFor(space.id)} savable />
         ) : (
-          <WelcomeLetter spaceName={space.name} seed={space.id} />
+          <BirthdayChain />
         )}
       </div>
 
