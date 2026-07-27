@@ -414,6 +414,31 @@
    Figma 每則事件會**原樣回傳** `passcode`，handler 比對相符才處理（防偽造）。
 4. Zeabur web env：`FIGMA_CLIENT_ID` / `FIGMA_CLIENT_SECRET` / `FIGMA_WEBHOOK_SECRET`。
 
+### 5a. 憑證「去哪拿 / 去哪填 / 放哪裡」（Luffy 手動，一次性）
+**在哪拿 client_id / client_secret**
+1. <https://www.figma.com/developers/apps>（一般 Figma 帳號登入即可，不用付費）。
+2. **Create a new app** → 填 App 名稱、網站 URL（填網域即可）。
+3. 建好後那個 App 頁面就顯示 **`client_id`** 與 **`client_secret`**，複製下來。
+   - `client_id`：公開，可放一般 env。
+   - `client_secret`：**機密**，只放 server 端 env、**絕不能** `NEXT_PUBLIC_`、不能進 client bundle。
+
+**在哪填 redirect_uri**：同一個 App 設定頁的 **Redirect URLs / Callback URLs** 欄位，加入回呼網址（要和授權請求送出的 `redirect_uri` **一字不差**）：
+- 正式：`https://snowrealm-space.snowrealm.pet/api/integrations/figma/callback`
+- 本機：`http://localhost:3000/api/integrations/figma/callback`（Figma 可加多個）
+
+**放進專案哪裡**（根目錄 `.env.local` server-only ＋ Zeabur 正式環境變數）：
+```
+FIGMA_CLIENT_ID=xxxx
+FIGMA_CLIENT_SECRET=xxxx        # 千萬別加 NEXT_PUBLIC_
+FIGMA_REDIRECT_URI=https://snowrealm-space.snowrealm.pet/api/integrations/figma/callback
+```
+**注意**
+- **scope**：讀檔早期是 `file_read`，Figma 後來換較細的 scope（如 `files:read`）——**以 App 頁面實際列出的可選 scope 為準**，別照舊字串硬填。
+- **state（防 CSRF）**：授權前自產隨機值、存 cookie/session，callback 回來比對一致才續。
+- **token 儲存**：`access_token`/`refresh_token` 存**伺服器端**（依 space 存 integration 表、最好加密），過期用 refresh 換。
+- 這些**須用 Luffy 本人 Figma 帳號申請、secret 不經 AI 之手**；建好把值填進 env 即可，接線程式碼再由 AI 實作。
+- **Canva 同理**：<https://www.canva.com/developers/> 建 integration 拿 `client_id`/`client_secret`、填 redirect URL（Canva OAuth 走 PKCE，見下方 5b）。
+
 ## 5b. Canva（設計來源，跟 Figma 同性質，但 OAuth 用 PKCE）— 詳解
 1. **建 app**：<https://www.canva.com/developers/> → Create an app（Canva Connect API）→ 拿 `Client ID` / `Client Secret`。
 2. **OAuth2 + PKCE（Canva 強制）**：
