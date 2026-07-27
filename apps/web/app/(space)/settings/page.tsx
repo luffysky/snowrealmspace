@@ -61,6 +61,16 @@ export default async function SettingsPage() {
       </section>
 
       <section className="sr-card">
+        <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>外部設計工具</h2>
+        <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+          連接 Figma 或 Canva，把設計檔帶進這個空間、追蹤版本。授權加密保存，隨時可中斷。
+        </p>
+        <Link className="sr-button sr-button-secondary" href="/settings/integrations">
+          管理外部連接
+        </Link>
+      </section>
+
+      <section className="sr-card">
         <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>
           每日與回顧
         </h2>

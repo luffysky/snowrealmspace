@@ -48,6 +48,7 @@ export default async function AdminIntegrationsPage() {
   const google = Boolean(process.env['GOOGLE_OAUTH_CLIENT_ID'] && process.env['GOOGLE_OAUTH_CLIENT_SECRET'])
   const line = Boolean(process.env['LINE_LOGIN_CHANNEL_ID'] && process.env['LINE_LOGIN_CHANNEL_SECRET'])
   const figma = Boolean(process.env['FIGMA_CLIENT_ID'] && process.env['FIGMA_CLIENT_SECRET'])
+  const canva = Boolean(process.env['CANVA_CLIENT_ID'] && process.env['CANVA_CLIENT_SECRET'])
   const resend = Boolean(process.env['RESEND_API_KEY'] || process.env['GOTRUE_SMTP_PASS'])
 
   const td = { padding: 'var(--sr-space-2)' }
@@ -107,6 +108,19 @@ export default async function AdminIntegrationsPage() {
             </table>
           </div>
         )}
+      </section>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">Canva</h2>
+        <div className="sr-row" style={{ justifyContent: 'space-between' }}>
+          <span>Canva Connect 憑證</span>
+          <Badge ok={canva} />
+        </div>
+        <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
+          <Link href={`${ADMIN_BASE}/integrations/canva`} className="sr-link">
+            開啟 Token 轉換器（貼授權導回網址 → 換 access / refresh token）→
+          </Link>
+        </p>
       </section>
 
       <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>

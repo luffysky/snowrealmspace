@@ -72,6 +72,15 @@ const serverSchema = z.object({
   FIGMA_CLIENT_ID: z.string().optional(),
   FIGMA_CLIENT_SECRET: z.string().optional(),
   FIGMA_WEBHOOK_SECRET: z.string().optional(),
+  /** 必須與 Figma app 後台登記的一致。留空則用 {appUrl}/api/integrations/figma/callback。 */
+  FIGMA_REDIRECT_URI: emptyToUndef(z.string().url().optional()),
+
+  // Canva Connect（Milestone F）。全 optional：沒設就在後台顯示未設定並停用 Token 轉換器。
+  CANVA_CLIENT_ID: z.string().optional(),
+  CANVA_CLIENT_SECRET: z.string().optional(),
+  /** 必須與 Canva app 後台登記的完全一致。留空則用 {appUrl}/api/integrations/canva/callback。 */
+  CANVA_REDIRECT_URI: emptyToUndef(z.string().url().optional()),
+  CANVA_WEBHOOK_SECRET: z.string().optional(),
 
   // Giphy GIF 選擇器。走伺服器代理（/api/giphy/search），金鑰不進 client bundle。
   GIPHY_API_KEY: z.string().optional(),

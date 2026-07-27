@@ -201,6 +201,13 @@
 - [x] ~~設計視覺分析 light/deep~~ ✅ 0726：/api/design/vision（複用多模態，graceful）+ 修停役 vision 模型 + 補 OpenAI fallback
 - [x] ~~embedding 記憶語意檢索~~ ✅ 0726：ai-core embedText(768維) + match_memories RPC + approve/新增即時嵌入 + Memory Center 搜尋框 + Agent context RAG + backfill 腳本（實測 OpenAI sim=0.41 命中）
 - [ ] 對話歷史摘要（長對話壓縮，尚未做）
+- [ ] 🆕 **站內 AI Agent 每日額度調高（待 Luffy 討論）** — 0727 提出，後續決定要用哪種：
+      額度是**每 space／每天**計數（`ai_daily_quota`），00:00 當地日期重置。三種調高法：
+      ① 後台「AI → 每日額度」(`/admin/ai/quota`) 或 `PATCH /api/admin/ai-quota-config` 調高全域上限
+         （預設免費 300／付費 20 次/天/space，單項上限 100,000；影響所有 space）；
+      ② 把自己/Nami 的 `profiles.privileged=true` → 額度完全不擋（用量仍記錄對帳，後台「使用者管理」設）；
+      ③ 確認免費金鑰（Groq/Gemini）都在且 enabled，避免過早升級到付費那條窄門。
+      程式：`apps/web/lib/ai/deps.ts`（loadQuotaCaps/budget）、`app/api/admin/ai-quota-config/route.ts`。
 
 ---
 
@@ -524,3 +531,36 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改
 ## 12. 平台（之後，見 docs/SnowRealm-Platform-*.md）
 - 開 `snowrealm-id`（OIDC issuer）→ Space 接 client + 綁定/解綁（ADR-024 已備）。
 - 抽 `@snowrealm/rich-editor` SDK（見 `SnowRealm-SDK-vs-Platform.md`）。
+
+---
+
+## 13. Milestone F — Integration（設計工具整合）進度清單
+> Luffy 指示提前開工。**決定：F 納入 Canva**（覆寫 `10-acceptance.md` §F「不做 Canva／列 V2」；見 `90-build-log.md`）。
+> F = 兩半：**連接(connect)** 已做、**同步(sync)** 未做。sync 是閉環主體，F 未整體驗收。
+
+### 13a. 連接半段（✅ 已完成，主對話已逐檔審 + 四閘門綠）
+- [x] ~~`ProviderCapabilities` 宣告 + 前端只顯示實際支援~~ ✅ connectable 依憑證動態判定
+- [x] ~~未支援功能不顯示（禁永久 Coming Soon）~~ ✅ 無憑證→停用不擺假按鈕、flag 關→404
+- [x] ~~OAuth 流程，token 加密儲存、永不回傳前端~~ ✅ AES-256-GCM 存 `design_connections`；無金鑰拒存明碼
+- [x] ~~connect 端點：owner 限定、flag 關→404（ADR-018）~~ ✅ `/api/integrations/[key]/connect`
+- [x] ~~callback：驗 state + 驗 session 使用者==發起人、換 token 加密落地~~ ✅ `/api/integrations/[key]/callback`
+- [x] ~~斷開連線時明確詢問是否刪派生資料~~ ✅ DELETE `?purgeData`；不刪共享 asset（ADR-005）
+- [x] ~~Webhook 簽章驗證 + 冪等 + 3 秒回 200~~ ✅（figma adapter，先前已有）
+- [x] ~~使用者端整合設定頁（連接/狀態/中斷）+ 後台 Token 轉換器~~ ✅
+- [x] ~~Figma + Canva 兩 provider 皆可連~~ ✅（Figma 端點/scope 待對最新文件確認）
+
+### 13b. 同步半段（⬜ 未做 —— F 閉環驗收主體）
+- [ ] `DesignProviderAdapter` 完整（Figma 第一實作，sync 尚未接上 adapter）
+- [ ] 明確選擇檔案同步，**禁止預設同步整個 Team**
+- [ ] `figma.sync` / canva sync worker job：快取、去重、指數退避、429 依 Retry-After
+- [ ] 連續 5 次失敗轉 `error` 並**通知使用者**
+- [ ] 檔案更新 → 建 `design_snapshots` 版本、rendition 入 assets
+- [ ] webhook → 觸發同步（目前 `/api/webhooks/[provider]` 只掛 figma，**canva 未接**）
+- [ ] UI「上次同步時間」真的會被寫（目前顯示欄位在，但沒東西寫 `last_synced_at`）
+- [ ] 版本比較 UI（compare API 已存在，需接同步產出的版本）
+- [ ] Provider mock 以**錄製的真實回應**建立（規格禁手寫理想化 mock）
+
+### 13c. 啟用前置（Luffy 操作）
+- [ ] 部署環境設 `CANVA_CLIENT_ID/SECRET`（Figma 要則 `FIGMA_CLIENT_ID/SECRET`）+ 32-byte `TOKEN_ENCRYPTION_SECRET`
+- [ ] provider 後台 redirect URL 設 `https://…/api/integrations/{canva|figma}/callback`
+- [ ] 後台開 flag `canvaConnect` / `figmaIntegration`（預設關 → provider 不出現、端點 404）

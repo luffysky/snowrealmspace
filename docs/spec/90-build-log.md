@@ -336,3 +336,34 @@ Luffy 要「影片所有格式 500MB 以下」。原 `assets_bytes_limit` CHECK 
 
 space 可選擇性加一段背景音樂（audio asset）。同樣受 autoplay 政策約束：
 不自動出聲，提供播放/暫停控制，使用者主動開。存在 space_settings，預設無。
+
+### ADR-001 偏離：Milestone F「連接（connect）半段」提前落地（Luffy 指示）
+
+ADR-001 規定未通過驗收不得開始下一個 Milestone；設計工具整合屬 Milestone F，且
+`10-acceptance.md` §F 把 Canva 列為 V2（F 本體只做 Figma）。但 Luffy 這幾天在
+Canva/Figma 開發者後台備憑證，需要能實際連接驗證，故提前做了 **F 的 connect 半段**
+（Figma + Canva 皆可用）。**sync 半段（實際拉檔、版本快照、worker job、webhook 觸發、
+版本比較、錄製 mock）尚未做，F 未整體驗收。**
+
+connect 半段（本次）：
+- `lib/integrations/canva.ts` — Canva Connect OAuth（PKCE + confidential client）：PKCE、授權 URL、
+  換/刷 token（HTTP Basic 帶 secret，**只在 server**）、回呼網址解析、AES-256-GCM 封 cookie 暫存。
+- `lib/integrations/providers.ts` — 統一 provider OAuth（Figma code flow / Canva PKCE）、token
+  AES-256-GCM 加密（**未設金鑰則回 null、拒存明碼**）。Figma 端點/scope 標了「啟用前對最新文件確認」。
+- `app/api/integrations/[key]/connect` — **owner 限定**、flag 關→**404**（ADR-018）、生 state(+PKCE)
+  封加密 httpOnly cookie、回 authorizeUrl。
+- `app/api/integrations/[key]/callback` — 從 cookie 取回 space/user 並**再驗現在 session 使用者==發起人**、
+  比對 state、換 token、加密存 `design_connections`（一 space 一 provider 一條，`getDb()` 受 RLS）。
+  無 real-flow cookie 時降級成「顯示 code 供複製」以相容後台轉換器。
+- `app/api/integrations/[key]` DELETE — owner 限定中斷連線；`?purgeData` 讓使用者**明確選**保留（標 paused/
+  revoked）或刪派生 design_files（snapshots cascade）。**不刪共享 asset 位元組**（守 ADR-005 去重）。
+- `app/api/integrations/route.ts` — connectable 依憑證有無動態判定 + flag 過濾（不擺永久 Coming Soon）。
+- `app/(space)/settings/integrations/`（page + client）使用者端連接/狀態/中斷 UI；`settings/page.tsx` 連入。
+- 後台 `app/admin/integrations/canva/`（Token 轉換器：貼導回網址→換 token，站台管理員限定）。
+- env 加 `CANVA_*` / `FIGMA_REDIRECT_URI`（全 optional，未設→停用不擺假按鈕）。
+
+**前置（啟用前）**：部署環境設 `CANVA_CLIENT_ID/SECRET`（Figma 同）、32-byte `TOKEN_ENCRYPTION_SECRET`、
+開 `canvaConnect`/`figmaIntegration` flag、provider 後台 redirect 設 `…/api/integrations/{key}/callback`。
+閘門：lint / typecheck / check:secrets / check:deps 皆綠。主對話已逐檔審過安全敏感面。
+
+同批補 `docs/todo/todo_list_0724.md` 一則「站內 AI Agent 每日額度調高（待討論）」文件註記（Milestone D 區）。
