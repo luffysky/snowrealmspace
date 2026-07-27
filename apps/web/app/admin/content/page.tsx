@@ -42,6 +42,11 @@ export default async function AdminContentPage() {
       </p>
       <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>內容池</h1>
       <p className="sr-muted">主動訊息／每日一句／驚喜的文案來源，共 {total.toLocaleString()} 則。所有輸出仍會過安全過濾。</p>
+      <p style={{ marginTop: 0 }}>
+        <Link href={`${ADMIN_BASE}/chain`} className="sr-link">
+          生日鏈有專屬編輯器（標題／解鎖條件／順序）→
+        </Link>
+      </p>
 
       <ContentAdmin counts={counts} />
     </main>
