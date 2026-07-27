@@ -3,7 +3,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { NotesManager, type Note } from './NotesManager'
 
-export const metadata: Metadata = { title: '筆記 — SnowRealm Space' }
+export const metadata: Metadata = { title: '筆記 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function NotesPage() {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PublicTopBar } from '@/components/PublicTopBar'
 
-export const metadata: Metadata = { title: '隱私政策 — SnowRealm Space' }
+export const metadata: Metadata = { title: '隱私政策 — SnowRealm-Space' }
 
 /**
  * 隱私政策（公開，站台閘門豁免——Google/LINE OAuth 審核需要可公開存取）。
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         </header>
 
         <p>
-          SnowRealm Space（以下稱「本服務」）是一個私人的數位空間。我們的原則是：
+          SnowRealm-Space（以下稱「本服務」）是一個私人的數位空間。我們的原則是：
           <strong>只收必要的資料、你的資料只屬於你、你隨時能帶走或刪除。</strong>
         </p>
 

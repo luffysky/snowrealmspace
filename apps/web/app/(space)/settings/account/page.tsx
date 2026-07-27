@@ -12,7 +12,7 @@ import { accountIdentity } from '@/lib/auth/account-identity'
 import { Avatar } from '@/components/Avatar'
 import { resolveAvatarUrl } from '@/lib/avatar'
 
-export const metadata: Metadata = { title: '登入方式 — SnowRealm Space' }
+export const metadata: Metadata = { title: '登入方式 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 const ERROR_MESSAGE: Record<string, string> = {

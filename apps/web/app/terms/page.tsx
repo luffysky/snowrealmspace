@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PublicTopBar } from '@/components/PublicTopBar'
 
-export const metadata: Metadata = { title: '使用條款 — SnowRealm Space' }
+export const metadata: Metadata = { title: '使用條款 — SnowRealm-Space' }
 
 export default function TermsPage() {
   return (
@@ -15,7 +15,7 @@ export default function TermsPage() {
           <p className="sr-muted">最後更新：2026-07-25</p>
         </header>
 
-        <p>歡迎使用 SnowRealm Space。使用本服務即表示你同意以下條款。</p>
+        <p>歡迎使用 SnowRealm-Space。使用本服務即表示你同意以下條款。</p>
 
         <section className="sr-stack">
           <h2 className="sr-section-title">1. 服務性質</h2>

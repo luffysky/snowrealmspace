@@ -3,7 +3,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { ProjectsClient, type ProjectRow, type AssetOption } from './ProjectsClient'
 
-export const metadata: Metadata = { title: 'Projects — SnowRealm Space' }
+export const metadata: Metadata = { title: 'Projects — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function ProjectsPage() {

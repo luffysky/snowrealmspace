@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "SnowRealm Space",
-  "short_name": "SnowRealm",
+  "name": "SnowRealm-Space",
+  "short_name": "SnowRealm-Space",
   "description": "一個會隨你長期使用而成長的私人數位空間。",
   "start_url": "/",
   "scope": "/",

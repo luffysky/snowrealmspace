@@ -8,7 +8,7 @@ import { resolveCurrentBackground } from '@/lib/api/background-resolver'
 import type { BackgroundState } from '@/components/BackgroundLayer'
 import { MODE_COOKIE, parseMode } from '@/lib/theme/mode'
 
-export const metadata: Metadata = { title: '主題工作室 — SnowRealm Space' }
+export const metadata: Metadata = { title: '主題工作室 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function ThemeStudioPage() {

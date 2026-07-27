@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ResetForm } from './ResetForm'
 
-export const metadata: Metadata = { title: '重設密碼 — SnowRealm Space' }
+export const metadata: Metadata = { title: '重設密碼 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 /**

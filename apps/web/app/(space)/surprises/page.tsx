@@ -11,7 +11,7 @@ import { SurpriseArchive } from './SurpriseArchive'
 import { EnvelopeCard } from '@/components/EnvelopeCard'
 import { birthdayCardFor } from '@/lib/birthday-cards'
 
-export const metadata: Metadata = { title: '驚喜收藏 — SnowRealm Space' }
+export const metadata: Metadata = { title: '驚喜收藏 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function SurprisesPage() {

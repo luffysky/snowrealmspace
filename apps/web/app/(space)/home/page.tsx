@@ -11,7 +11,7 @@ import { EnvelopeCard } from '@/components/EnvelopeCard'
 import { birthdayCardFor } from '@/lib/birthday-cards'
 import { getWelcomeLine } from '@snowrealm/daily-engine'
 
-export const metadata: Metadata = { title: 'Home — SnowRealm Space' }
+export const metadata: Metadata = { title: 'Home — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {

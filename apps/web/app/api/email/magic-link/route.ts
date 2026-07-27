@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic'
 const TEMPLATE = `<!doctype html>
 <html lang="zh-Hant-TW">
   <body style="margin:0;padding:0;background:#faf3f7;font-family:'PingFang TC','Noto Sans TC','Microsoft JhengHei',system-ui,-apple-system,'Segoe UI',sans-serif;color:#3a2831;-webkit-font-smoothing:antialiased;">
-    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">你的 SnowRealm Space 登入連結與代碼，1 小時內有效。</div>
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">你的 SnowRealm-Space 登入連結與代碼，1 小時內有效。</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf3f7;padding:40px 16px;">
       <tr>
         <td align="center">
@@ -72,7 +72,7 @@ const TEMPLATE = `<!doctype html>
               </td>
             </tr>
           </table>
-          <p style="margin:20px 0 0;color:#c3aeb9;font-size:12px;letter-spacing:0.3px;">SnowRealm Space · 你的私人數位空間</p>
+          <p style="margin:20px 0 0;color:#c3aeb9;font-size:12px;letter-spacing:0.3px;">SnowRealm-Space · 你的私人數位空間</p>
         </td>
       </tr>
     </table>

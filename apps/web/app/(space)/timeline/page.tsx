@@ -3,7 +3,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { TimelineClient, type TimelineRow, type ProjectLabel } from './TimelineClient'
 
-export const metadata: Metadata = { title: '時間軸 — SnowRealm Space' }
+export const metadata: Metadata = { title: '時間軸 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function TimelinePage() {

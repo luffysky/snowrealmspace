@@ -3,7 +3,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { MemoryCenter, type MemoryRow } from './MemoryCenter'
 
-export const metadata: Metadata = { title: '記憶 — SnowRealm Space' }
+export const metadata: Metadata = { title: '記憶 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 /**

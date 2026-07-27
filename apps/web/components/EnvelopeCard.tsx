@@ -213,7 +213,7 @@ function renderCardPng(title: string, lines: string[]): string {
   // 落款
   ctx.font = '400 20px "Noto Sans TC", system-ui, sans-serif'
   ctx.fillStyle = '#c98aa6'
-  ctx.fillText('— SnowRealm Space', W / 2, H - 42)
+  ctx.fillText('— SnowRealm-Space', W / 2, H - 42)
 
   return canvas.toDataURL('image/png')
 }

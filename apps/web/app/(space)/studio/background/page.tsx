@@ -10,7 +10,7 @@ import { BackgroundStudio, type AssetOption } from './BackgroundStudio'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import type { Playlist } from './PlaylistPanel'
 
-export const metadata: Metadata = { title: 'Background Studio — SnowRealm Space' }
+export const metadata: Metadata = { title: 'Background Studio — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function BackgroundStudioPage() {

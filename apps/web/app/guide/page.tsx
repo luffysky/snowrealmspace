@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { GuideClient } from './GuideClient'
 import { PublicTopBar } from '@/components/PublicTopBar'
 
-export const metadata: Metadata = { title: '使用說明 — SnowRealm Space' }
+export const metadata: Metadata = { title: '使用說明 — SnowRealm-Space' }
 
 export default function GuidePage() {
   return (

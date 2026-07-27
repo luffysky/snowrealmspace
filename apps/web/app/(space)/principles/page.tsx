@@ -3,7 +3,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { PrinciplesClient, type PrincipleRow } from './PrinciplesClient'
 
-export const metadata: Metadata = { title: '設計原則 — SnowRealm Space' }
+export const metadata: Metadata = { title: '設計原則 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function PrinciplesPage() {

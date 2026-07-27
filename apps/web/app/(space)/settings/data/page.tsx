@@ -5,7 +5,7 @@ import { getDb } from '@/lib/supabase/server'
 import { DangerZone } from '../DangerZone'
 import { accountIdentity } from '@/lib/auth/account-identity'
 
-export const metadata: Metadata = { title: '資料地圖 — SnowRealm Space' }
+export const metadata: Metadata = { title: '資料地圖 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 /**

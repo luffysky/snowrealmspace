@@ -4,7 +4,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { generateInsights, type Insight } from '@snowrealm/daily-engine'
 
-export const metadata: Metadata = { title: '每週回顧 — SnowRealm Space' }
+export const metadata: Metadata = { title: '每週回顧 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 import { InsightList } from './InsightList'

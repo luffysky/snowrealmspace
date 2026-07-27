@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 
-export const metadata: Metadata = { title: '每日回顧 — SnowRealm Space' }
+export const metadata: Metadata = { title: '每日回顧 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 type Item = { local_date: string; kind: string; body: string; payload: unknown }

@@ -6,7 +6,7 @@ import { AgentChat, type Attachment, type ChatMessage, type ThreadSummary } from
 import { AiNaming } from './AiNaming'
 import { AvatarUpload } from '@/app/(space)/settings/account/AvatarUpload'
 
-export const metadata: Metadata = { title: 'AI 夥伴 — SnowRealm Space' }
+export const metadata: Metadata = { title: 'AI 夥伴 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 /** agent_messages.blocks（jsonb）→ 圖片附件參照。忽略非圖片 block。 */

@@ -107,7 +107,7 @@ export const GET = handler(async (request: NextRequest) => {
 
   if (asZip) {
     const readme =
-      `SnowRealm Space 帳號匯出\n匯出時間：${payload.meta.exportedAt}\n\n` +
+      `SnowRealm-Space 帳號匯出\n匯出時間：${payload.meta.exportedAt}\n\n` +
       `data.json —— 全部資料與設定（可再匯入）。\n` +
       `assets.csv —— 檔案清單（中繼資料）。實際檔案位元組請到 Library 逐一下載；\n` +
       `依 ADR-005，位元組只存在 assets 儲存層，不放進這份匯出。\n`

@@ -4,7 +4,7 @@ import { getDb } from '@/lib/supabase/server'
 import { LibraryClient } from './LibraryClient'
 import type { AssetRow } from './AssetGrid'
 
-export const metadata: Metadata = { title: 'Library — SnowRealm Space' }
+export const metadata: Metadata = { title: 'Library — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function LibraryPage() {

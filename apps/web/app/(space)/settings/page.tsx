@@ -10,7 +10,7 @@ import { AvatarUpload } from './account/AvatarUpload'
 import { AgentSettings } from './AgentSettings'
 import { BackgroundMusicSettings, type AudioOption } from './BackgroundMusicSettings'
 
-export const metadata: Metadata = { title: 'Settings — SnowRealm Space' }
+export const metadata: Metadata = { title: 'Settings — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 /**

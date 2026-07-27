@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ForgotForm } from './ForgotForm'
 
-export const metadata: Metadata = { title: '忘記密碼 — SnowRealm Space' }
+export const metadata: Metadata = { title: '忘記密碼 — SnowRealm-Space' }
 
 export default function ForgotPage() {
   return (

@@ -3,7 +3,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { WorksClient, type WorkFile, type AssetOption } from './WorksClient'
 
-export const metadata: Metadata = { title: '作品 — SnowRealm Space' }
+export const metadata: Metadata = { title: '作品 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 export default async function WorksPage() {

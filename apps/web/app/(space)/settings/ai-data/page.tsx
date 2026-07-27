@@ -4,7 +4,7 @@ import { requireActiveSpace } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
 import { isSiteAdmin } from '@/lib/auth/site-admin'
 
-export const metadata: Metadata = { title: 'AI 資料聲明 — SnowRealm Space' }
+export const metadata: Metadata = { title: 'AI 資料聲明 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
 /**

@@ -6,7 +6,7 @@ import { getDb } from '@/lib/supabase/server'
 import { LoginForm } from '../login/LoginForm'
 import { RestoreSpace } from './RestoreSpace'
 
-export const metadata: Metadata = { title: '邀請 — SnowRealm Space' }
+export const metadata: Metadata = { title: '邀請 — SnowRealm-Space' }
 
 const REASONS: Record<string, string> = {
   not_found: '這個邀請連結無效。',
@@ -100,7 +100,7 @@ export default async function InvitePage({
       <main className="sr-center">
         <div className="sr-card" style={{ maxWidth: 460, width: '100%' }}>
           <h1 style={{ fontSize: 'var(--sr-text-h2)' }}>需要邀請連結</h1>
-          <p className="sr-muted">SnowRealm Space 目前是邀請制。</p>
+          <p className="sr-muted">SnowRealm-Space 目前是邀請制。</p>
           <Link className="sr-button sr-button-secondary" href="/login">
             我已經有帳號
           </Link>

@@ -6,7 +6,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
     <div className="sr-public-shell">
       <main className="sr-public-main">{children}</main>
       <footer className="sr-public-footer">
-        <span className="sr-muted">由 SnowRealm Space 呈現</span>
+        <span className="sr-muted">由 SnowRealm-Space 呈現</span>
       </footer>
     </div>
   )
