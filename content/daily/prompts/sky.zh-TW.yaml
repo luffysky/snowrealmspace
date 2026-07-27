@@ -1,0 +1,81 @@
+# 每日創作提示 — 天空／雲。畫天上的各種樣子。繁體中文，每一則獨一無二。
+- id: p-sky-001
+  text: 畫此刻天空的樣子。
+  tags: [sky, observe]
+  estimatedMinutes: 12
+- id: p-sky-002
+  text: 畫一朵你覺得像什麼的雲。
+  tags: [sky, imagine]
+  estimatedMinutes: 12
+- id: p-sky-003
+  text: 畫日出時天空的漸層。
+  tags: [sky, color]
+  estimatedMinutes: 15
+- id: p-sky-004
+  text: 畫滿天星星的夜空。
+  tags: [sky, mood]
+  estimatedMinutes: 20
+- id: p-sky-005
+  text: 畫暴風雨前的烏雲。
+  tags: [sky, mood]
+  estimatedMinutes: 15
+- id: p-sky-006
+  text: 畫一道彩虹。
+  tags: [sky, color]
+  estimatedMinutes: 12
+- id: p-sky-007
+  text: 畫黃昏那一刻的天空顏色。
+  tags: [sky, color]
+  estimatedMinutes: 15
+- id: p-sky-008
+  text: 畫一輪滿月。
+  tags: [sky, minimal]
+  estimatedMinutes: 12
+- id: p-sky-009
+  text: 畫飛機劃過天空的痕跡。
+  tags: [sky, scene]
+  estimatedMinutes: 12
+- id: p-sky-010
+  text: 畫萬里無雲的晴空。
+  tags: [sky, minimal]
+  estimatedMinutes: 10
+- id: p-sky-011
+  text: 畫雲層透出的一束陽光。
+  tags: [sky, mood]
+  estimatedMinutes: 15
+- id: p-sky-012
+  text: 畫傍晚回巢的一群鳥與天空。
+  tags: [sky, scene]
+  estimatedMinutes: 15
+- id: p-sky-013
+  text: 畫一片棉花糖般的雲。
+  tags: [sky, imagine]
+  estimatedMinutes: 12
+- id: p-sky-014
+  text: 畫下雪的灰白天空。
+  tags: [sky, mood]
+  estimatedMinutes: 15
+- id: p-sky-015
+  text: 畫夜空裡的一顆流星。
+  tags: [sky, minimal]
+  estimatedMinutes: 12
+- id: p-sky-016
+  text: 用三種藍，畫白天到黃昏的天。
+  tags: [sky, color]
+  estimatedMinutes: 15
+- id: p-sky-017
+  text: 畫颱風天翻滾的雲。
+  tags: [sky, motion]
+  estimatedMinutes: 15
+- id: p-sky-018
+  text: 畫映在水面上的一片天空。
+  tags: [sky, scene]
+  estimatedMinutes: 15
+- id: p-sky-019
+  text: 畫你此刻抬頭最想看到的天空。
+  tags: [sky, imagine]
+  estimatedMinutes: 12
+- id: p-sky-020
+  text: 畫清晨薄霧裡的天色。
+  tags: [sky, mood]
+  estimatedMinutes: 15

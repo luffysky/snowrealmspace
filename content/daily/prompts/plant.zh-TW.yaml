@@ -1,0 +1,81 @@
+# 每日創作提示 — 植物／花草。畫綠意、花、樹。繁體中文，每一則獨一無二。
+- id: p-plant-001
+  text: 畫你身邊的一株植物。
+  tags: [plant, observe]
+  estimatedMinutes: 15
+- id: p-plant-002
+  text: 畫一朵剛開的花。
+  tags: [plant, nature]
+  estimatedMinutes: 12
+- id: p-plant-003
+  text: 畫一片你撿到的葉子。
+  tags: [plant, observe]
+  estimatedMinutes: 12
+- id: p-plant-004
+  text: 畫一棵你喜歡的樹。
+  tags: [plant, scene]
+  estimatedMinutes: 15
+- id: p-plant-005
+  text: 畫盆栽從土裡冒出的新芽。
+  tags: [plant, mood]
+  estimatedMinutes: 12
+- id: p-plant-006
+  text: 畫一束你會送人的花。
+  tags: [plant, design]
+  estimatedMinutes: 15
+- id: p-plant-007
+  text: 畫攀在牆上的藤蔓。
+  tags: [plant, scene]
+  estimatedMinutes: 15
+- id: p-plant-008
+  text: 畫一朵花的側面剖開。
+  tags: [plant, observe]
+  estimatedMinutes: 15
+- id: p-plant-009
+  text: 畫多肉植物胖胖的葉子。
+  tags: [plant, minimal]
+  estimatedMinutes: 12
+- id: p-plant-010
+  text: 畫落葉鋪滿地的樣子。
+  tags: [plant, mood]
+  estimatedMinutes: 15
+- id: p-plant-011
+  text: 畫一片草地上的小花。
+  tags: [plant, scene]
+  estimatedMinutes: 15
+- id: p-plant-012
+  text: 畫仙人掌與它的刺。
+  tags: [plant, observe]
+  estimatedMinutes: 12
+- id: p-plant-013
+  text: 畫一棵開滿花的樹。
+  tags: [plant, color]
+  estimatedMinutes: 20
+- id: p-plant-014
+  text: 畫花瓶裡插著的一枝花。
+  tags: [plant, object]
+  estimatedMinutes: 12
+- id: p-plant-015
+  text: 畫種子到發芽的三個階段。
+  tags: [plant, series]
+  estimatedMinutes: 15
+- id: p-plant-016
+  text: 畫雨後帶著水珠的葉子。
+  tags: [plant, observe]
+  estimatedMinutes: 15
+- id: p-plant-017
+  text: 畫森林裡的一小片地面。
+  tags: [plant, nature]
+  estimatedMinutes: 20
+- id: p-plant-018
+  text: 用綠色的深淺，畫一叢草。
+  tags: [plant, color]
+  estimatedMinutes: 12
+- id: p-plant-019
+  text: 畫一朵快要凋謝的花。
+  tags: [plant, mood]
+  estimatedMinutes: 15
+- id: p-plant-020
+  text: 畫窗台上一排小盆栽。
+  tags: [plant, scene]
+  estimatedMinutes: 15
