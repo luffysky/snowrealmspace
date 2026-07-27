@@ -1,0 +1,85 @@
+# 問候補充批次 16。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-210
+    text: 早，讓自己緩緩坐起身。
+  - id: g-morning-211
+    text: 早安，今天想吃什麼當早餐？
+  - id: g-morning-212
+    text: 早，推開窗迎接一天。
+  - id: g-morning-213
+    text: 天亮了，先潤潤乾乾的喉。
+  - id: g-morning-214
+    text: 早安，沒睡飽就放慢步調。
+  - id: g-morning-215
+    text: 早，先把最想做的排前面。
+  - id: g-morning-216
+    text: 早安，讓清晨的涼透進來。
+  - id: g-morning-217
+    text: 早，甩甩手讓自己醒。
+  - id: g-morning-218
+    text: 早安，慢慢開機就好。
+  - id: g-morning-219
+    text: 早，願你一路順順的。
+afternoon:
+  - id: g-afternoon-210
+    text: 午安，睏了就趴桌小睡。
+  - id: g-afternoon-211
+    text: 下午了，站起來動動腳。
+  - id: g-afternoon-212
+    text: 午安，硬骨頭留到後面啃。
+  - id: g-afternoon-213
+    text: 午後，來點喜歡的聲音陪你。
+  - id: g-afternoon-214
+    text: 午安，喝口水緩一緩。
+  - id: g-afternoon-215
+    text: 下午好，一點一點總會完。
+  - id: g-afternoon-216
+    text: 午安，讓視線離開螢幕。
+  - id: g-afternoon-217
+    text: 午後，把背打直深吸氣。
+  - id: g-afternoon-218
+    text: 午安，你今天很盡責。
+  - id: g-afternoon-219
+    text: 下午好，慢慢的也很好。
+evening:
+  - id: g-evening-210
+    text: 傍晚了，讓今天慢慢收工。
+  - id: g-evening-211
+    text: 晚間好，先讓手邊事停一停。
+  - id: g-evening-212
+    text: 天黑了，開一盞溫暖的燈。
+  - id: g-evening-213
+    text: 傍晚好，深深吐氣鬆肩膀。
+  - id: g-evening-214
+    text: 晚上好，替自己熱頓飯。
+  - id: g-evening-215
+    text: 入夜了，把腳步放得更輕。
+  - id: g-evening-216
+    text: 傍晚好，看看今天的夕色。
+  - id: g-evening-217
+    text: 晚間好，未竟的留待明日。
+  - id: g-evening-218
+    text: 天暗了，讓心也緩緩沉。
+  - id: g-evening-219
+    text: 晚上好，今天辛苦你撐著。
+night:
+  - id: g-night-210
+    text: 夜深了，讓身體慢慢鬆下。
+  - id: g-night-211
+    text: 晚安，替今天輕輕收束。
+  - id: g-night-212
+    text: 夜裡好，放段柔和的聲音。
+  - id: g-night-213
+    text: 晚安，鑽進被窩暖一暖。
+  - id: g-night-214
+    text: 深夜了，讓緊繃逐漸退去。
+  - id: g-night-215
+    text: 夜安，星光靜靜伴你。
+  - id: g-night-216
+    text: 晚安，今晚的你可以歇了。
+  - id: g-night-217
+    text: 夜裡，把掛心的先放下。
+  - id: g-night-218
+    text: 晚安，讓睏意慢慢包住你。
+  - id: g-night-219
+    text: 夜深，好好睡到自然醒。

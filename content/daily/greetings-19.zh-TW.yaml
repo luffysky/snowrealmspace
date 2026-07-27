@@ -1,0 +1,93 @@
+# 問候補充批次 19（收尾至每時段 250）。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-240
+    text: 早，讓自己先醒一醒再動。
+  - id: g-morning-241
+    text: 早安，今天想為誰留個位子？
+  - id: g-morning-242
+    text: 早，把窗推開透透氣。
+  - id: g-morning-243
+    text: 天亮了，喝口水叫醒喉嚨。
+  - id: g-morning-244
+    text: 早安，慢一點起床沒關係。
+  - id: g-morning-245
+    text: 早，先挑一件簡單的暖身。
+  - id: g-morning-246
+    text: 早安，讓晨光落進眼底。
+  - id: g-morning-247
+    text: 早，動動指頭喚醒身體。
+  - id: g-morning-248
+    text: 早安，不急，時間站在你這邊。
+  - id: g-morning-249
+    text: 早，願你今天輕鬆自在。
+  - id: g-morning-250
+    text: 早，替新的一天深呼吸一次。
+afternoon:
+  - id: g-afternoon-240
+    text: 午安，累了就闔眼歇口氣。
+  - id: g-afternoon-241
+    text: 下午了，走到窗邊看看外頭。
+  - id: g-afternoon-242
+    text: 午安，麻煩的先跳過再說。
+  - id: g-afternoon-243
+    text: 午後，配段音樂轉個心情。
+  - id: g-afternoon-244
+    text: 午安，記得讓杯子有水。
+  - id: g-afternoon-245
+    text: 下午好，做一點就近一點。
+  - id: g-afternoon-246
+    text: 午安，讓眼睛望遠放鬆。
+  - id: g-afternoon-247
+    text: 午後，挺挺背深吸一口氣。
+  - id: g-afternoon-248
+    text: 午安，你今天做得夠好了。
+  - id: g-afternoon-249
+    text: 下午好，慢慢來不吃虧。
+  - id: g-afternoon-250
+    text: 午安，撐到現在很不容易。
+evening:
+  - id: g-evening-240
+    text: 傍晚了，讓今天慢慢靠岸。
+  - id: g-evening-241
+    text: 晚間好，先把事情輕輕放下。
+  - id: g-evening-242
+    text: 天黑了，為自己點一盞燈。
+  - id: g-evening-243
+    text: 傍晚好，深吐一口鬆開身。
+  - id: g-evening-244
+    text: 晚上好，做頓自己喜歡的飯。
+  - id: g-evening-245
+    text: 入夜了，把腳步收得很輕。
+  - id: g-evening-246
+    text: 傍晚好，欣賞一下暮色。
+  - id: g-evening-247
+    text: 晚間好，明天再處理也不遲。
+  - id: g-evening-248
+    text: 天暗了，讓心情慢慢沉靜。
+  - id: g-evening-249
+    text: 晚上好，今天你真的辛苦了。
+  - id: g-evening-250
+    text: 傍晚好，這一天你圓滿完成。
+night:
+  - id: g-night-240
+    text: 夜深了，讓思緒慢慢落下。
+  - id: g-night-241
+    text: 晚安，把今天輕輕安放。
+  - id: g-night-242
+    text: 夜裡好，聽段海潮聲入眠。
+  - id: g-night-243
+    text: 晚安，被子拉好暖暖睡。
+  - id: g-night-244
+    text: 深夜了，讓全身慢慢放鬆。
+  - id: g-night-245
+    text: 夜安，月光溫柔守著你。
+  - id: g-night-246
+    text: 晚安，今晚就好好歇著。
+  - id: g-night-247
+    text: 夜裡，把心事先寄放一旁。
+  - id: g-night-248
+    text: 晚安，讓睡意悄悄靠近。
+  - id: g-night-249
+    text: 夜深，安穩地睡到天明。
+  - id: g-night-250
+    text: 晚安，願你一夜好眠到天亮。
