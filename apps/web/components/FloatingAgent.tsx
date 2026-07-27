@@ -75,9 +75,13 @@ export function FloatingAgent({
     const w = el?.offsetWidth || 200
     const h = el?.offsetHeight || 56
     const m = 8
+    // 用 clientWidth（真實視窗）而非 innerWidth：一旦有東西溢出，innerWidth 會回報「被撐寬」
+    // 的值，拿它夾邊界會把球夾在畫面外、反過來維持溢出（死循環）。clientWidth 不受溢出影響。
+    const vw = document.documentElement.clientWidth || window.innerWidth
+    const vh = document.documentElement.clientHeight || window.innerHeight
     return {
-      x: Math.max(m, Math.min(p.x, window.innerWidth - w - m)),
-      y: Math.max(m, Math.min(p.y, window.innerHeight - h - m)),
+      x: Math.max(m, Math.min(p.x, vw - w - m)),
+      y: Math.max(m, Math.min(p.y, vh - h - m)),
     }
   }, [])
 
@@ -113,8 +117,10 @@ export function FloatingAgent({
     const d = dragRef.current
     if (!d) return
     if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) > 4) movedRef.current = true
-    const x = Math.max(4, Math.min(window.innerWidth - d.w - 4, e.clientX - d.dx))
-    const y = Math.max(4, Math.min(window.innerHeight - d.h - 4, e.clientY - d.dy))
+    const vw = document.documentElement.clientWidth || window.innerWidth
+    const vh = document.documentElement.clientHeight || window.innerHeight
+    const x = Math.max(4, Math.min(vw - d.w - 4, e.clientX - d.dx))
+    const y = Math.max(4, Math.min(vh - d.h - 4, e.clientY - d.dy))
     posRef.current = { x, y }
     setPos({ x, y })
   }

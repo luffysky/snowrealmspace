@@ -451,6 +451,16 @@ h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* flex 子項：允許縮到比內容還窄，名字才會被截斷而不是把右邊動作擠出畫面 */
+  min-width: 0;
+}
+/* 名字本體：真正做截斷的元素。品牌若是 inline-flex（owner 可改名的按鈕），
+   ellipsis 不會作用在裸文字節點上，必須套在這個 span 才有效。 */
+.sr-brand-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* owner 可改名的品牌：像文字的按鈕，hover 才浮出鉛筆提示可編輯 */
 .sr-brand-edit {
@@ -945,10 +955,16 @@ h3 {
     padding: var(--sr-space-2) var(--sr-space-3);
     font-size: var(--sr-text-sm);
   }
-  /* 品牌名可縮，別把 header 撐爆 */
+  /* 品牌名可縮，別把 header 撐爆。硬上限：名字再長也不擠掉右邊的鈴鐺/深淺/登出。 */
   .sr-brand {
     font-size: var(--sr-text-base, 1rem);
     min-width: 0;
+    flex: 0 1 auto;
+    max-width: 42vw;
+  }
+  /* 動作區固定不縮（要完整可點），把縮放壓力全推給品牌名截斷 */
+  .sr-actions {
+    flex: 0 0 auto;
   }
 
   /*
