@@ -8,11 +8,13 @@ export const dynamic = 'force-dynamic'
  * 站台密碼驗證。
  *
  * 密碼只在這裡（伺服器端）比對，絕不進 client bundle。
- * 預設值寫死一份，讓部署不必額外設定就能運作；
- * 要換密碼設 `SITE_GATE_PASSWORD` 環境變數即可覆寫。
+ * **不再寫死預設密碼**：閘門預設關閉（middleware 看 NEXT_PUBLIC_SITE_GATE_ENABLED）。
+ * 要啟用封閉測試，同時設 `NEXT_PUBLIC_SITE_GATE_ENABLED=true` 與 `SITE_GATE_PASSWORD=<自訂>`。
+ * 沒設 SITE_GATE_PASSWORD 時一律拒絕（不會有可猜的預設值）。
  */
-function expectedPassword(): string {
-  return process.env['SITE_GATE_PASSWORD'] ?? 'nami0724nami0724'
+function expectedPassword(): string | null {
+  const p = process.env['SITE_GATE_PASSWORD']?.trim()
+  return p && p.length > 0 ? p : null
 }
 
 /** 定長比較，避免以回應時間推敲密碼。 */
@@ -27,7 +29,9 @@ export async function POST(request: NextRequest) {
   const body = (await request.json().catch(() => null)) as { password?: string } | null
   const password = body?.password ?? ''
 
-  if (!matches(password, expectedPassword())) {
+  const expected = expectedPassword()
+  // 沒設密碼＝閘門形同關閉，一律拒絕（不放行、也沒有可猜的預設）。
+  if (!expected || !matches(password, expected)) {
     // 不透露是「太短」還是「不對」—— 一律同一個訊息
     return NextResponse.json({ error: { message: '密碼不對。' } }, { status: 401 })
   }

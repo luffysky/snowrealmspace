@@ -30,9 +30,13 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // ── 站台密碼閘門（尚未對外開放）────────────────────────────
-  // 沒通過閘門的人只能看到 /gate 與其 API。通過後才進入正常流程。
-  const passedGate = request.cookies.get(GATE_COOKIE)?.value === GATE_TOKEN
+  // ── 站台密碼閘門（預設關閉；對外開放/送審時就是關的）──────────
+  // 只有明確設 NEXT_PUBLIC_SITE_GATE_ENABLED=true 才啟用（middleware 是 edge，
+  // 只讀得到 NEXT_PUBLIC_*，見 CLAUDE.md 踩坑 #3）。沒設＝關＝全站公開，
+  // 這樣 Figma/Google 審核與一般訪客都進得來，不會卡在 /gate。
+  const gateEnabled = process.env.NEXT_PUBLIC_SITE_GATE_ENABLED === 'true'
+  // 沒通過閘門的人只能看到 /gate 與其 API。通過後（或閘門關閉時）才進入正常流程。
+  const passedGate = !gateEnabled || request.cookies.get(GATE_COOKIE)?.value === GATE_TOKEN
   // 隱私政策/使用條款公開（不需通過閘門）：OAuth 審核（Google/LINE）要求隱私政策
   // 可公開存取，註冊流程也要能連到這兩頁。（/guide 是站內說明，仍在閘門後。）
   const isPublicInfo = pathname === '/privacy' || pathname === '/terms'
