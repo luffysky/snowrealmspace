@@ -147,6 +147,7 @@
 - [x] ~~cron 掃時區主動生成（daily-engine 共享套件 + worker daily-cron handler，每小時掃、當地 04:00 生成）~~
 - [x] ~~Weekly Recap 專屬通知（當地週一 09:00 生成回顧 + weekly_recap 通知，冪等）~~
 - [x] ~~Insight 升級（AI 深入回顧）~~ ✅ 0726：/api/insights/generate（weekly_recap→suggestion，clampStatement，graceful）
+- [x] ~~**依使用者近況給內容**~~ ✅ 0727：`deriveSpaceState`（讀 activity_events 推 st_* 狀態）取代寫死 context，選取加權 `STATE_CONTENT_BOOST`；全專案假值稽核（`af1e116`）
 
 ---
 
