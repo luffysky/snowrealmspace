@@ -1,0 +1,81 @@
+# 每日創作提示 — 動物。畫真的、想像的、記憶裡的動物。繁體中文，每一則獨一無二。
+- id: p-animal-001
+  text: 畫一隻正在睡覺的貓。
+  tags: [animal, mood]
+  estimatedMinutes: 12
+- id: p-animal-002
+  text: 畫你養過或想養的寵物。
+  tags: [animal, memory]
+  estimatedMinutes: 15
+- id: p-animal-003
+  text: 畫一隻停在電線上的鳥。
+  tags: [animal, observe]
+  estimatedMinutes: 12
+- id: p-animal-004
+  text: 畫一隻你覺得最療癒的動物。
+  tags: [animal, quick]
+  estimatedMinutes: 10
+- id: p-animal-005
+  text: 替一隻動物，畫牠的表情。
+  tags: [animal, character]
+  estimatedMinutes: 12
+- id: p-animal-006
+  text: 畫兩隻動物在一起的樣子。
+  tags: [animal, scene]
+  estimatedMinutes: 15
+- id: p-animal-007
+  text: 畫水裡的一條魚。
+  tags: [animal, observe]
+  estimatedMinutes: 12
+- id: p-animal-008
+  text: 想像一種混合兩種動物的生物。
+  tags: [animal, imagine]
+  estimatedMinutes: 15
+- id: p-animal-009
+  text: 畫一隻正在奔跑的動物。
+  tags: [animal, motion]
+  estimatedMinutes: 15
+- id: p-animal-010
+  text: 用簡單線條，畫一隻兔子。
+  tags: [animal, minimal]
+  estimatedMinutes: 10
+- id: p-animal-011
+  text: 畫一隻窩在角落的狗。
+  tags: [animal, mood]
+  estimatedMinutes: 15
+- id: p-animal-012
+  text: 畫一群飛過天空的鳥。
+  tags: [animal, scene]
+  estimatedMinutes: 15
+- id: p-animal-013
+  text: 畫一隻昆蟲的特寫。
+  tags: [animal, observe]
+  estimatedMinutes: 15
+- id: p-animal-014
+  text: 替一隻動物，設計牠的家。
+  tags: [animal, design]
+  estimatedMinutes: 20
+- id: p-animal-015
+  text: 畫一隻你在路上遇過的動物。
+  tags: [animal, memory]
+  estimatedMinutes: 15
+- id: p-animal-016
+  text: 畫一隻動物的腳印。
+  tags: [animal, minimal]
+  estimatedMinutes: 10
+- id: p-animal-017
+  text: 畫海裡的一隻大型生物。
+  tags: [animal, imagine]
+  estimatedMinutes: 20
+- id: p-animal-018
+  text: 畫一隻正在伸懶腰的動物。
+  tags: [animal, motion]
+  estimatedMinutes: 12
+- id: p-animal-019
+  text: 用暖色，畫一隻毛茸茸的動物。
+  tags: [animal, color]
+  estimatedMinutes: 15
+- id: p-animal-020
+  text: 畫一隻動物看著你的眼神。
+  tags: [animal, character]
+  estimatedMinutes: 15
