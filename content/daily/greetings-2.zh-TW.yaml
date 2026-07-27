@@ -1,0 +1,102 @@
+# 問候補充批次（0727）。與 greetings.zh-TW.yaml 同結構，seed/check 會一起合併。
+# night 不得催促（還沒/快點/該/未完成/進度/加油）——check:content 會擋。
+morning:
+  - id: g-morning-068
+    text: 早，先深呼吸一口。
+  - id: g-morning-069
+    text: 天亮了，不急。
+  - id: g-morning-070
+    text: 早安，今天你最大。
+  - id: g-morning-071
+    text: 醒了嗎？先喝口水。
+  - id: g-morning-072
+    text: 早，光線剛剛好。
+  - id: g-morning-073
+    text: 新的一天，交給你了。
+  - id: g-morning-074
+    text: 早安，先不用想太多。
+  - id: g-morning-075
+    text: 早，慢慢醒過來。
+  - id: g-morning-076
+    text: 早安，窗外亮起來了。
+  - id: g-morning-077
+    text: 今天的第一口氣，深一點。
+  - id: g-morning-078
+    text: 早安，一切都還來得及。
+  - id: g-morning-079
+    text: 早，泡杯熱的再開始。
+afternoon:
+  - id: g-afternoon-068
+    text: 午安，先喝口水。
+  - id: g-afternoon-069
+    text: 午後了，動一動肩膀。
+  - id: g-afternoon-070
+    text: 午後好，慢慢來。
+  - id: g-afternoon-071
+    text: 午安，光影正斜。
+  - id: g-afternoon-072
+    text: 下午茶的時間到了。
+  - id: g-afternoon-073
+    text: 午安，累了就停一下。
+  - id: g-afternoon-074
+    text: 午後的風，剛剛好。
+  - id: g-afternoon-075
+    text: 午安，做一點點就好。
+  - id: g-afternoon-076
+    text: 下午好，喘口氣。
+  - id: g-afternoon-077
+    text: 午安，別忘了看看窗外。
+  - id: g-afternoon-078
+    text: 午後，給自己十分鐘。
+  - id: g-afternoon-079
+    text: 午安，起來走兩步。
+evening:
+  - id: g-evening-068
+    text: 傍晚了，燈亮了嗎？
+  - id: g-evening-069
+    text: 晚上好，慢下來。
+  - id: g-evening-070
+    text: 入夜前，先歇會兒。
+  - id: g-evening-071
+    text: 傍晚好，今天辛苦了。
+  - id: g-evening-072
+    text: 天色暗了，放輕鬆。
+  - id: g-evening-073
+    text: 晚上好，煮點熱的吧。
+  - id: g-evening-074
+    text: 黃昏了，看看天空。
+  - id: g-evening-075
+    text: 晚間好，收收心。
+  - id: g-evening-076
+    text: 傍晚，給自己一點安靜。
+  - id: g-evening-077
+    text: 天黑了，回到這裡真好。
+  - id: g-evening-078
+    text: 晚上好，燈光調暖一點。
+  - id: g-evening-079
+    text: 傍晚好，喝口溫的。
+night:
+  - id: g-night-068
+    text: 夜深了，早點睡。
+  - id: g-night-069
+    text: 晚安，今天到這裡就好。
+  - id: g-night-070
+    text: 夜裡好，放下手邊的事。
+  - id: g-night-071
+    text: 這麼晚了，別太累。
+  - id: g-night-072
+    text: 晚安，讓自己靜一靜。
+  - id: g-night-073
+    text: 深夜了，燈可以關了。
+  - id: g-night-074
+    text: 夜安，明天再說吧。
+  - id: g-night-075
+    text: 晚安，好好睡一覺。
+  - id: g-night-076
+    text: 夜深，聽聽自己的呼吸。
+  - id: g-night-077
+    text: 晚安，這裡替你守著夜。
+  - id: g-night-078
+    text: 夜裡，慢慢放空。
+  - id: g-night-079
+    text: 晚安，明天會亮的。
