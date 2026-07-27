@@ -1,0 +1,81 @@
+# 每日創作提示 — 記憶。把記得的畫成畫面。繁體中文，每一則獨一無二。
+- id: p-memory-001
+  text: 畫出你童年住過的房間。
+  tags: [memory, deep]
+  estimatedMinutes: 20
+- id: p-memory-002
+  text: 畫一個你記得很清楚的午後。
+  tags: [memory, mood]
+  estimatedMinutes: 15
+- id: p-memory-003
+  text: 憑印象，畫一位老朋友的側臉。
+  tags: [memory, character]
+  estimatedMinutes: 15
+- id: p-memory-004
+  text: 畫下你記憶裡的第一個玩具。
+  tags: [memory, object]
+  estimatedMinutes: 12
+- id: p-memory-005
+  text: 畫一條你走過無數次的路。
+  tags: [memory, scene]
+  estimatedMinutes: 15
+- id: p-memory-006
+  text: 畫出一個讓你安心的舊角落。
+  tags: [memory, mood]
+  estimatedMinutes: 12
+- id: p-memory-007
+  text: 憑感覺畫一頓小時候的飯桌。
+  tags: [memory, scene]
+  estimatedMinutes: 20
+- id: p-memory-008
+  text: 畫一件你留了很久的東西。
+  tags: [memory, object]
+  estimatedMinutes: 12
+- id: p-memory-009
+  text: 畫下一個你想再回去的地方。
+  tags: [memory, scene]
+  estimatedMinutes: 15
+- id: p-memory-010
+  text: 用一個顏色，代表你的某段回憶。
+  tags: [memory, color]
+  estimatedMinutes: 8
+- id: p-memory-011
+  text: 畫出一場你記得的雨。
+  tags: [memory, mood]
+  estimatedMinutes: 12
+- id: p-memory-012
+  text: 憑印象畫一扇你熟悉的窗。
+  tags: [memory, object]
+  estimatedMinutes: 12
+- id: p-memory-013
+  text: 畫一個你和某人一起笑的畫面。
+  tags: [memory, character]
+  estimatedMinutes: 15
+- id: p-memory-014
+  text: 畫下記憶裡某個節日的樣子。
+  tags: [memory, scene]
+  estimatedMinutes: 20
+- id: p-memory-015
+  text: 畫一雙你記得的手。
+  tags: [memory, character]
+  estimatedMinutes: 12
+- id: p-memory-016
+  text: 畫出一個你曾經很想要的東西。
+  tags: [memory, object]
+  estimatedMinutes: 12
+- id: p-memory-017
+  text: 畫一段你記得的旅程風景。
+  tags: [memory, scene]
+  estimatedMinutes: 20
+- id: p-memory-018
+  text: 憑感覺，畫出某個夏天。
+  tags: [memory, mood]
+  estimatedMinutes: 15
+- id: p-memory-019
+  text: 畫下一個曾陪伴你的小動物。
+  tags: [memory, character]
+  estimatedMinutes: 15
+- id: p-memory-020
+  text: 用畫面，記住今天的一個瞬間。
+  tags: [memory, quick]
+  estimatedMinutes: 10
