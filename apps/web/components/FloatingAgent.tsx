@@ -38,6 +38,7 @@ export function FloatingAgent({
   const [open, setOpen] = useState(false)
   const [mood, setMood] = useState<AgentMood>('neutral')
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
+  const fabRef = useRef<HTMLButtonElement>(null)
   const dragRef = useRef<{ dx: number; dy: number; sx: number; sy: number; w: number; h: number } | null>(null)
   const movedRef = useRef(false)
   const posRef = useRef<{ x: number; y: number } | null>(null)
@@ -64,12 +65,42 @@ export function FloatingAgent({
     })
   }
 
+  // 這顆球是「名字 pill」，寬度看名字長短（可到 ~200px），不是固定 72px 圓鈕。
+  // 夾邊界一定要用「實際量到的寬高」，否則把左上角夾到 innerWidth-72 會讓 pill 右緣
+  // 溢出視窗 ~130px。它是 position:fixed → body/shell 的 overflow:hidden 夾不住它，
+  // 於是整頁被行動瀏覽器判定成比視窗寬、每一頁都被縮放/位移（CLAUDE.md 踩坑 #5）。
+  // 量不到時（首次 render，ref 還沒接上）用保守的寬 pill 估值，寧可偏左也不溢出。
   const clampFab = useCallback((p: { x: number; y: number }) => {
+    const el = fabRef.current
+    const w = el?.offsetWidth || 200
+    const h = el?.offsetHeight || 56
+    const m = 8
     return {
-      x: Math.max(4, Math.min(p.x, window.innerWidth - 72)),
-      y: Math.max(4, Math.min(p.y, window.innerHeight - 72)),
+      x: Math.max(m, Math.min(p.x, window.innerWidth - w - m)),
+      y: Math.max(m, Math.min(p.y, window.innerHeight - h - m)),
     }
   }, [])
+
+  // 視窗尺寸變了（尤其是旋轉：橫向存的位置到直向會超出右緣）就重新夾一次並存回。
+  useEffect(() => {
+    if (!mounted) return
+    const reclamp = () => {
+      setPos((p) => {
+        if (!p) return p
+        const c = clampFab(p)
+        if (c.x === p.x && c.y === p.y) return p
+        localStorage.setItem(POS_KEY, JSON.stringify(c))
+        return c
+      })
+    }
+    reclamp()
+    window.addEventListener('resize', reclamp)
+    window.addEventListener('orientationchange', reclamp)
+    return () => {
+      window.removeEventListener('resize', reclamp)
+      window.removeEventListener('orientationchange', reclamp)
+    }
+  }, [mounted, clampFab])
 
   function onDragStart(e: React.PointerEvent) {
     const el = e.currentTarget as HTMLElement
@@ -103,6 +134,7 @@ export function FloatingAgent({
   if (!open) {
     return (
       <button
+        ref={fabRef}
         type="button"
         className="sr-fa-fab"
         style={fabStyle}

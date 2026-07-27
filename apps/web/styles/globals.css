@@ -3154,6 +3154,9 @@ input[type='range'] {
   cursor: grab;
   touch-action: none;
   font-weight: 600;
+  box-sizing: border-box;
+  /* 防線：即使 JS 夾邊界失手，pill 本身也絕不寬於視窗（fixed 元素不受 body overflow 夾制）。 */
+  max-width: calc(100vw - 16px);
 }
 .sr-fa-fab:active {
   cursor: grabbing;
