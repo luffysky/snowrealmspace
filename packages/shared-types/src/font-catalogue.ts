@@ -22,8 +22,29 @@
 
 export type FontCategory = 'sans' | 'serif' | 'display' | 'handwriting' | 'mono'
 
-/** 這個字體實際涵蓋哪些書寫系統。決定它能被指派到哪個角色。 */
-export type FontScript = 'zh-Hant' | 'latin' | 'bopomofo' | 'ja'
+/** 這個字體實際涵蓋哪些書寫系統。決定它能被指派到哪個角色，也用來依語言分類。 */
+export type FontScript = 'zh-Hant' | 'latin' | 'bopomofo' | 'ja' | 'ko' | 'arabic'
+
+/** 語言/書寫系統的中文標籤（字體庫依此分組）。 */
+export const SCRIPT_LABEL: Record<FontScript, string> = {
+  'zh-Hant': '繁體中文',
+  latin: '拉丁（歐文）',
+  bopomofo: '注音',
+  ja: '日文',
+  ko: '韓文',
+  arabic: '阿拉伯文',
+}
+
+/** 一套字體歸到哪個「語言分組」顯示：取它主要涵蓋的非拉丁書寫系統，純拉丁才歸拉丁。 */
+export function primaryScript(scripts: FontScript[]): FontScript {
+  return (
+    scripts.find((s) => s === 'zh-Hant') ??
+    scripts.find((s) => s === 'ja') ??
+    scripts.find((s) => s === 'ko') ??
+    scripts.find((s) => s === 'arabic') ??
+    'latin'
+  )
+}
 
 export type FontSource =
   /** Google Fonts 的 GitHub repo，可直接抓 TTF */
@@ -340,9 +361,187 @@ export const LATIN_FONTS: FontEntry[] = [
     fallbackStack: 'ui-monospace, "SFMono-Regular", monospace',
     previewText: 'const space = grow(you)',
   },
+  {
+    slug: 'lora',
+    family: 'Lora',
+    displayName: 'Lora',
+    category: 'serif',
+    scripts: ['latin'],
+    weights: [400, 500, 600, 700],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/lora' },
+    fallbackStack: 'Georgia, serif',
+    previewText: 'A space that grows with you',
+    notes: '溫暖的內文襯線，長文好讀。',
+  },
+  {
+    slug: 'nunito',
+    family: 'Nunito',
+    displayName: 'Nunito',
+    category: 'sans',
+    scripts: ['latin'],
+    weights: [200, 300, 400, 500, 600, 700, 800, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/nunito' },
+    fallbackStack: 'system-ui, sans-serif',
+    previewText: 'A space that grows with you',
+    notes: '圓潤無襯線，親切。',
+  },
+  {
+    slug: 'space-grotesk',
+    family: 'Space Grotesk',
+    displayName: 'Space Grotesk',
+    category: 'display',
+    scripts: ['latin'],
+    weights: [300, 400, 500, 600, 700],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/spacegrotesk' },
+    fallbackStack: 'system-ui, sans-serif',
+    previewText: 'A space that grows with you',
+    notes: '幾何感的標題無襯線，帶點科技味。',
+  },
 ]
 
-export const ALL_FONTS: FontEntry[] = [...ZH_HANT_FONTS, ...LATIN_FONTS]
+/**
+ * 日文字體。scripts 含 'ja'；也涵蓋拉丁。
+ */
+export const JA_FONTS: FontEntry[] = [
+  {
+    slug: 'noto-sans-jp',
+    family: 'Noto Sans JP',
+    displayName: '思源黑體 日文（Noto Sans JP）',
+    category: 'sans',
+    scripts: ['ja', 'latin'],
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/notosansjp' },
+    fallbackStack: '"Hiragino Sans", "Yu Gothic", sans-serif',
+    previewText: 'こんにちは、ここはあなたの空間',
+  },
+  {
+    slug: 'noto-serif-jp',
+    family: 'Noto Serif JP',
+    displayName: '思源宋體 日文（Noto Serif JP）',
+    category: 'serif',
+    scripts: ['ja', 'latin'],
+    weights: [200, 300, 400, 500, 600, 700, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/notoserifjp' },
+    fallbackStack: '"Hiragino Mincho ProN", "Yu Mincho", serif',
+    previewText: 'こんにちは、ここはあなたの空間',
+  },
+  {
+    slug: 'mplus-rounded-1c',
+    family: 'M PLUS Rounded 1c',
+    displayName: 'M PLUS Rounded 1c（圓體）',
+    category: 'sans',
+    scripts: ['ja', 'latin'],
+    weights: [100, 300, 400, 500, 700, 800, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/mplusrounded1c' },
+    fallbackStack: '"Hiragino Maru Gothic ProN", sans-serif',
+    previewText: 'こんにちは、ここはあなたの空間',
+    notes: '圓潤可愛，日文與拉丁都涵蓋。',
+  },
+  {
+    slug: 'zen-maru-gothic',
+    family: 'Zen Maru Gothic',
+    displayName: 'Zen 丸ゴシック（圓黑）',
+    category: 'sans',
+    scripts: ['ja', 'latin'],
+    weights: [300, 400, 500, 700, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/zenmarugothic' },
+    fallbackStack: '"Hiragino Maru Gothic ProN", sans-serif',
+    previewText: 'こんにちは、ここはあなたの空間',
+  },
+]
+
+/**
+ * 韓文字體。scripts 含 'ko'；也涵蓋拉丁。
+ */
+export const KO_FONTS: FontEntry[] = [
+  {
+    slug: 'noto-sans-kr',
+    family: 'Noto Sans KR',
+    displayName: '본고딕（Noto Sans KR）',
+    category: 'sans',
+    scripts: ['ko', 'latin'],
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/notosanskr' },
+    fallbackStack: '"Apple SD Gothic Neo", "Malgun Gothic", sans-serif',
+    previewText: '안녕하세요, 당신의 공간입니다',
+  },
+  {
+    slug: 'noto-serif-kr',
+    family: 'Noto Serif KR',
+    displayName: '본명조（Noto Serif KR）',
+    category: 'serif',
+    scripts: ['ko', 'latin'],
+    weights: [200, 300, 400, 500, 600, 700, 900],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/notoserifkr' },
+    fallbackStack: '"Apple SD Gothic Neo", serif',
+    previewText: '안녕하세요, 당신의 공간입니다',
+  },
+]
+
+/**
+ * 其他書寫系統。目前收阿拉伯文。
+ */
+export const OTHER_SCRIPT_FONTS: FontEntry[] = [
+  {
+    slug: 'noto-naskh-arabic',
+    family: 'Noto Naskh Arabic',
+    displayName: 'Noto Naskh Arabic（阿拉伯）',
+    category: 'serif',
+    scripts: ['arabic', 'latin'],
+    weights: [400, 500, 600, 700],
+    license: 'OFL-1.1',
+    licenseUrl: 'https://openfontlicense.org/',
+    licenseFile: 'OFL.txt',
+    reservedFontName: null,
+    source: { kind: 'google-fonts', repoPath: 'ofl/notonaskharabic' },
+    fallbackStack: '"Geeza Pro", Tahoma, serif',
+    previewText: 'مرحبا، هذا فضاؤك الخاص',
+  },
+]
+
+export const ALL_FONTS: FontEntry[] = [
+  ...ZH_HANT_FONTS,
+  ...JA_FONTS,
+  ...KO_FONTS,
+  ...LATIN_FONTS,
+  ...OTHER_SCRIPT_FONTS,
+]
 
 export function fontBySlug(slug: string): FontEntry | undefined {
   return ALL_FONTS.find((f) => f.slug === slug)

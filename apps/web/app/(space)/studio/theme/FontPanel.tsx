@@ -2,7 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import type { ThemeDefinition } from '@snowrealm/theme-engine'
+import { SCRIPT_LABEL, primaryScript, type FontScript } from '@snowrealm/shared-types'
 import { loadFontFaces, type FontManifestEntry } from '@/lib/theme/font-loader'
+
+/** 字體庫依語言分組的顯示順序。 */
+const SCRIPT_ORDER: FontScript[] = ['zh-Hant', 'ja', 'ko', 'latin', 'arabic']
 
 /**
  * 字體選擇。實作 ADR-016 的 UI 部分。
@@ -288,14 +292,15 @@ export function FontPanel({
               value={valueFor(currentId)}
               onChange={(e) => setRole(role, e.target.value)}
             >
-              {Object.entries(CATEGORY_LABEL).map(([category, label]) => {
-                const group = fonts.filter((f) => f.category === category)
+              {SCRIPT_ORDER.map((script) => {
+                // 依語言分組：一套字體歸到它主要涵蓋的書寫系統（純拉丁才歸拉丁）
+                const group = fonts.filter((f) => primaryScript(f.scripts as FontScript[]) === script)
                 if (group.length === 0) return null
                 return (
-                  <optgroup key={category} label={label}>
+                  <optgroup key={script} label={SCRIPT_LABEL[script]}>
                     {group.map((f) => (
                       <option key={f.id} value={f.id}>
-                        {f.family}（{kb(f.firstScreenBytes)}）
+                        {f.family}（{CATEGORY_LABEL[f.category] ?? f.category}·{kb(f.firstScreenBytes)}）
                       </option>
                     ))}
                   </optgroup>
