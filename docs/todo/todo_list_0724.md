@@ -558,11 +558,12 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改
 - [x] ~~檔案 → 建 `design_snapshots` 版本、rendition 入 assets（走 StorageAdapter、checksum 去重、內容嗅探）~~ ✅
 - [x] ~~列檔/同步 API（owner+flag→404 gate）+ token refresh 加密回存~~ ✅ `[key]/files`、`[key]/sync`
 
-**S2 — worker sync job（🚧 子代理寫作中，主對話待審）**
-- [ ] `design.sync` worker job（Figma+Canva 共用 handler）：入列、快取、去重
-- [ ] 指數退避重試 + 429 依 Retry-After（4xx 永久不重試、5xx/429 才重試）
-- [ ] 連續 5 次失敗轉 `error` 並**通知使用者**（走既有通知機制，不自創平行系統）
-- [ ] `POST /sync` 改為入列 job（非當場同步跑）
+**S2 — worker sync job（✅ 已審 commit，抽 `@snowrealm/design-sync` 套件）**
+- [x] ~~`design.sync` worker job（Figma+Canva 共用 handler，單檔一 job）：入列、`singletonKey` 去重~~ ✅
+- [x] ~~指數退避重試（30s→上限 30m）+ 429 依 Retry-After（handler 主導、非 pg-boss 自動重試）~~ ✅
+- [x] ~~4xx 永久不重試、5xx/429 才重試；連 5 次失敗轉 `error` + 通知（既有 notifications、`sync_failed`）~~ ✅ 15 純函式測試
+- [x] ~~`POST /sync` 改為入列 job（202、externalIds 必填非空、無「全部」）~~ ✅
+- 註：worker 不能 import apps/web → S1 邏輯抽成 `@snowrealm/design-sync` 單一來源，web 4 檔改薄 barrel（路徑不變）。
 
 **S3 — webhook → 觸發同步（⬜ 未做）**
 - [ ] `/api/webhooks/[provider]` 接上 canva（目前只掛 figma），事件 → 入列 design.sync
