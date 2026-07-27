@@ -158,6 +158,29 @@ pnpm exec supabase gen types typescript --local --schema public \
 
 副作用：`check` 約束的欄位會是 `string` 而非 union → 用 `toSpaceRole()` / `toSpacePrivacy()` narrowing，**未知值降級為最小權限而非拋錯**。
 
+### 8. `git add A B <已被 rm 的路徑>` 會整批中止 → 靜默漏 commit
+
+真的發生過：要提交 4 個檔案，`git add` 清單裡誤帶了一個**剛剛已被 `git rm` 的路徑**。
+git 對那個 pathspec 報 `fatal: pathspec ... did not match any files` 並**整批中止**——
+4 個檔案一個都沒進 staging。但那次 commit 仍然成立（因為 `git rm` 早已獨立把「刪檔」
+staged 了），結果 **commit 只帶了刪檔、真正的實作全部沒進去**。
+
+後果雙重且有欺騙性：
+1. CI/build 紅（引用了被刪掉的模組），但**本機一路綠**。
+2. 那個功能其實**從未上線**（DB 已改、程式沒部署），線上看到的是半套狀態。
+
+為什麼本機測不出來：`pnpm lint/typecheck` 走 turbo，讀的是**工作目錄**（已改好），
+**不是 git HEAD**。工作目錄永遠是對的 → 本機全綠；CI 一 checkout HEAD 就爆。
+`reuseExistingServer`／turbo 快取這類「讀工作目錄」的工具都有同樣盲點。
+
+**規則（往後一律照做）：**
+- **不要**在一行 `git add` 裡混入可能不存在的路徑。刪檔用 `git rm` 獨立處理，
+  或直接 `git add -A <dir>` / 一個一個加。
+- **每次 commit 後**跑 `git status --short` 確認乾淨；有疑慮再 `git show --stat HEAD`
+  對照「我以為改了的檔案」是否真的在這個 commit 裡。
+- 驗證「HEAD 對不對」時，看的是 `git show HEAD:<file>`，不是工作目錄。
+  本機閘門綠 ≠ 提交出去的內容綠。
+
 ---
 
 ## 工作方式（這個專案的期待）

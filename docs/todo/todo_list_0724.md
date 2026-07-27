@@ -418,9 +418,53 @@
 ## 6. 隱私政策 / 使用條款（Google、LINE 審核前置）
 - `/privacy`、`/terms` 頁面已存在；送 Google/LINE 審核前，**確認內容寫實**（資料怎麼用、第三方登入、刪除方式）。
 
-## 7. JWT secret（正式對外前必換）
+## 7. JWT secret（正式對外前必換）— 詳細操作
 - Zeabur 的 Supabase 還在用 demo 預設 secret（key 的 `iss=supabase-demo`）。
 - 換成自己的 JWT secret → **重新產生 anon / service key** → 更新所有用到的 env。正式對外前一定要做。
+
+### 7.1 secret 用什麼編碼
+- Supabase/GoTrue 是 **HS256（對稱式）**，把你給的字串**原字面**當 HMAC 金鑰，不會 base64/hex decode。
+- **建議 `openssl rand -hex 32`（64 字元）**：只有 `0-9a-f`，貼哪都不會壞。
+  base64 標準含 `+ / =`，在 env/URL/compose 引號裡常出包（除非用 base64url）。
+- 兩者都夠安全（HS256 只要 ≥32 bytes 熵）。**真正會咬人的是「一致性」**，不是編碼。
+
+### 7.2 secret 要放哪幾處（自架 Supabase docker 架構）
+| 服務 | 變數 | 用途 |
+|---|---|---|
+| auth (GoTrue) | `GOTRUE_JWT_SECRET` | 簽/驗 auth token |
+| rest (PostgREST) | `PGRST_JWT_SECRET` | 驗 API 請求上的 JWT |
+| Postgres (db) | GUC `app.settings.jwt_secret` | SQL 端（`auth.jwt()`、pgjwt、部分 RLS） |
+| **Kong**（Zeabur 版）| `JWT_SECRET` + `ANON_KEY` + `SERVICE_ROLE_KEY` | Zeabur 模板把 secret 放在 Kong 當「錨點服務」；Kong 本身用的是 anon/service key（key-auth），不是 raw secret |
+
+- **Zeabur 特例**：`JWT_SECRET` 就在 **Kong 服務的 Variable** 裡（含 `ANON_KEY`/`SERVICE_ROLE_KEY`/`DASHBOARD_*`）。
+  其他服務多半用 `${JWT_SECRET}` 引用它。
+
+### 7.3 `${JWT_SECRET}` 會自動帶入嗎
+- 會。`GOTRUE_JWT_SECRET=${JWT_SECRET}`、`PGRST_JWT_SECRET=${JWT_SECRET}` 是平台/compose 的**變數插值**
+  → 只要環境有一個 `JWT_SECRET`，兩邊都抓同一值。**只填一個 JWT_SECRET 即可**。
+- ⚠️ 要確認平台**真的有插值**（有些 UI 把 `${JWT_SECRET}` 當字面字串存）。
+  驗證：進容器 `echo $GOTRUE_JWT_SECRET` 看是不是真值，或直接測登入。
+
+### 7.4 不小心改掉 Kong 的 JWT_SECRET 怎麼救
+- 還知道原值 → 用眼睛圖示看回、改回去。
+- 已覆蓋拿不回 → 等於換了 secret，必須**連鎖更新**（否則全部 401）：
+  1. 用新 secret **重簽 `ANON_KEY` / `SERVICE_ROLE_KEY`**（jwt.io / Supabase JWT 產生器，payload 分別 `role: anon` / `role: service_role`，`iss: supabase`）。
+  2. 前端 `NEXT_PUBLIC_SUPABASE_ANON_KEY`、App `SUPABASE_SERVICE_ROLE_KEY` 換新值。
+  3. auth/rest/db 若用 `${JWT_SECRET}` 會自動跟；沒有就手動同步三處。
+
+### 7.5 查 / 設 `app.settings.jwt_secret`
+- 它是 **Postgres 的 GUC**，要在 **Postgres 服務**跑（不是 Kong）。
+- ⚠️ SQL 要在 **psql 裡**跑，不能貼在 OS shell（`root@service…:/#` 是 bash，貼 SQL 會 `syntax error near ...(`）。
+```bash
+# 進 psql：
+psql -U postgres -d postgres
+# 進去後（提示變 postgres=#）：
+SELECT current_setting('app.settings.jwt_secret', true);
+# 或一行（不進互動模式）：
+psql -U postgres -d postgres -c "SELECT current_setting('app.settings.jwt_secret', true);"
+# 設定：
+ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改完要重連
+```
 
 ## 8. 字體
 - **拉丁字體（Inter/Playfair/…）**：後台 **字體管理（`/admin/fonts`）→ 選字體 → 「⤓ 自動安裝」** 很快，直接用。
