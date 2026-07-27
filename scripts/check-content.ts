@@ -7,6 +7,7 @@ import {
   promptSchema,
   questionSchema,
   microActionSchema,
+  seasonalSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -41,6 +42,7 @@ const THRESHOLDS = {
   prompts: 3650,
   questions: 3650, // 每日一問也走每日輪替
   microActions: 3650, // 微行動也走每日輪替
+  seasonal: 120, // 依節氣挑（24 節氣，非每日唯一）；每節氣 ~5 則即足
   greetings: 3650, // 使用者要求每時段補到 ~1000（共 ~4000）
   surprises: 600,
   chain: 5,
@@ -53,7 +55,7 @@ async function main() {
   const allIds = new Map<string, string>() // id → 第一次出現的檔案
   const allTexts = new Map<string, string>() // 正規化文字 → id
 
-  const counts = { quotes: 0, prompts: 0, questions: 0, microActions: 0, greetings: 0, surprises: 0, chain: 0 }
+  const counts = { quotes: 0, prompts: 0, questions: 0, microActions: 0, seasonal: 0, greetings: 0, surprises: 0, chain: 0 }
 
   // ── Quotes ──
   for (const { file, rows } of await loadDir('daily/quotes')) {
@@ -82,6 +84,13 @@ async function main() {
   for (const { file, rows } of await loadDir('daily/micro-actions')) {
     for (const raw of rows) {
       if (validateRow(microActionSchema, raw, file, allIds, allTexts, problems)) counts.microActions++
+    }
+  }
+
+  // ── 季節·節氣 ──
+  for (const { file, rows } of await loadDir('daily/seasonal')) {
+    for (const raw of rows) {
+      if (validateRow(seasonalSchema, raw, file, allIds, allTexts, problems)) counts.seasonal++
     }
   }
 

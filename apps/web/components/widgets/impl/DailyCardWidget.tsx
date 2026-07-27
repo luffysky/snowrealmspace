@@ -17,6 +17,7 @@ type Today = {
   prompt: { id: string; text: string; estimatedMinutes: number | null } | null
   question: { id: string; text: string } | null
   microAction: { id: string; text: string; estimatedMinutes: number | null } | null
+  seasonal: { term: string; text: string } | null
 }
 
 export default function DailyCardWidget({ config }: WidgetProps) {
@@ -63,7 +64,14 @@ export default function DailyCardWidget({ config }: WidgetProps) {
   }
 
   // 池還沒 seed 時全空 —— 誠實說明，不留空殼（Q6）
-  if (!today.greeting && !today.quote && !today.prompt && !today.question && !today.microAction) {
+  if (
+    !today.greeting &&
+    !today.quote &&
+    !today.prompt &&
+    !today.question &&
+    !today.microAction &&
+    !today.seasonal
+  ) {
     return (
       <div className="sr-card sr-daily-card">
         <p className="sr-muted" style={{ margin: 0 }}>
@@ -76,6 +84,15 @@ export default function DailyCardWidget({ config }: WidgetProps) {
   return (
     <div className="sr-card sr-daily-card">
       {today.greeting && <p className="sr-daily-greeting">{today.greeting}</p>}
+
+      {today.seasonal && (
+        <div className="sr-daily-prompt">
+          <span className="sr-label" style={{ marginBottom: 4 }}>
+            節氣 · {today.seasonal.term}
+          </span>
+          <p style={{ margin: 0 }}>{today.seasonal.text}</p>
+        </div>
+      )}
 
       {today.quote && (
         <blockquote className="sr-daily-quote">

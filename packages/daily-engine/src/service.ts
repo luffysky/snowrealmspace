@@ -3,10 +3,12 @@ import { createHash } from 'node:crypto'
 import {
   pickDailyItem,
   greetingSlotForHour,
+  hashToUnit,
   type PoolEntry,
   type RecentItem,
   type SpaceContext,
 } from '@snowrealm/validation'
+import { solarTermFor } from './seasonal.js'
 
 /**
  * 每日內容的生成與讀取。實作 09-content-pool.md。
@@ -39,6 +41,8 @@ export type TodayContent = {
   question: { id: string; text: string } | null
   /** 微行動：2 分鐘小任務 */
   microAction: { id: string; text: string; estimatedMinutes: number | null } | null
+  /** 季節·節氣語：依當天節氣挑 */
+  seasonal: { term: string; text: string } | null
 }
 
 /** space 當地日期（YYYY-MM-DD）與小時。 */
@@ -123,7 +127,36 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
     microAction: actionRow
       ? { id: actionRow.source_ref ?? '', text: actionRow.body, estimatedMinutes: minutesOf(actionRow) }
       : null,
+    seasonal: await pickSeasonal(admin, spaceId, date),
   }
+}
+
+/**
+ * 季節·節氣語。依當天落在哪個節氣挑一則（不存 DB，跟日期決定性掛勾）。
+ * 先找 tags 含節氣 slug 的，沒有退季節 slug，再沒有用整池。
+ */
+async function pickSeasonal(
+  admin: ReturnType<typeof createAdminClient>,
+  spaceId: string,
+  date: string,
+): Promise<{ term: string; text: string } | null> {
+  const [, m, d] = date.split('-').map(Number)
+  const term = solarTermFor(m ?? 1, d ?? 1)
+
+  const { data } = await admin
+    .from('content_items')
+    .select('text, tags')
+    .eq('kind', 'seasonal')
+    .eq('enabled', true)
+  if (!data || data.length === 0) return null
+
+  const bySlug = data.filter((r) => (r.tags ?? []).includes(term.slug))
+  const bySeason = data.filter((r) => (r.tags ?? []).includes(term.season))
+  const pool = bySlug.length > 0 ? bySlug : bySeason.length > 0 ? bySeason : data
+
+  const idx = Math.floor(hashToUnit(`${spaceId}:seasonal:${date}`) * pool.length)
+  const picked = pool[idx] ?? pool[0]!
+  return { term: term.name, text: picked.text }
 }
 
 type GenRow = { kind: string; title: string | null; body: string; source_ref: string | null; payload: unknown }

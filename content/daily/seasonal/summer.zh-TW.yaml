@@ -1,0 +1,37 @@
+# 季節·節氣 · 夏。tags 至少含 summer；可再加節氣 slug（lixia…dashu）。
+- id: se-summer-01
+  text: 天亮得早，今天多出來的時光給自己用。
+  tags: [summer]
+- id: se-summer-02
+  text: 熱的時候，慢下來也是一種本事。
+  tags: [summer]
+- id: se-summer-03
+  text: 蟬聲很吵，但夏天就是這樣熱鬧地活著。
+  tags: [summer]
+- id: se-summer-04
+  text: 午後雷陣雨來得快去得快，心情也可以。
+  tags: [summer]
+- id: se-summer-05
+  text: 大暑最熱，記得多喝水、別硬撐。
+  tags: [summer, dashu]
+- id: se-summer-06
+  text: 夏天適合把窗打開，讓空氣流動。
+  tags: [summer]
+- id: se-summer-07
+  text: 太陽很大，找個陰影待一會兒也好。
+  tags: [summer]
+- id: se-summer-08
+  text: 一年最盛的時候，你做的東西也在長。
+  tags: [summer]
+- id: se-summer-09
+  text: 天氣熱，做事分段來，別一次做到底。
+  tags: [summer, dashu]
+- id: se-summer-10
+  text: 傍晚涼一點，那是屬於你的時段。
+  tags: [summer]
+- id: se-summer-11
+  text: 西瓜、冷氣，和一件想做的小事。
+  tags: [summer]
+- id: se-summer-12
+  text: 熱到發懶也沒關係，休息是正經事。
+  tags: [summer]

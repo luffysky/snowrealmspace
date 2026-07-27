@@ -8,6 +8,7 @@ import {
   promptSchema,
   questionSchema,
   microActionSchema,
+  seasonalSchema,
   greetingsFileSchema,
   surpriseSchema,
   chainLinkSchema,
@@ -112,6 +113,18 @@ async function main() {
       min_days_since_signup: m.minDaysSinceSignup ?? null,
       requires_tag: m.requiresTag ?? null,
       cooldown_days: m.cooldownDays ?? null,
+    })
+  }
+
+  // ── 季節·節氣 ──
+  for (const raw of await loadDir('daily/seasonal')) {
+    const s = seasonalSchema.parse(raw)
+    rows.push({
+      content_id: s.id,
+      kind: 'seasonal',
+      text: s.text,
+      tags: s.tags,
+      weight: s.weight ?? 1,
     })
   }
 

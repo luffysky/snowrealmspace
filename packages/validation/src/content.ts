@@ -135,6 +135,18 @@ export const microActionSchema = z
   })
   .strict()
 
+// ── 季節·節氣語 ──────────────────────────────────────────
+// 依當天節氣挑（非隨機輪替）。tags 需含節氣 slug（如 dashu）或季節 slug
+// （spring/summer/autumn/winter）供選取對應。
+export const seasonalSchema = z
+  .object({
+    id: idSchema,
+    text: z.string().trim().min(4).max(60),
+    tags: tagsSchema,
+    weight: weightSchema.optional(),
+  })
+  .strict()
+
 // ── Greeting（依時段分組）────────────────────────────────
 
 export const greetingSchema = z
@@ -196,6 +208,7 @@ export type Quote = z.infer<typeof quoteSchema>
 export type Prompt = z.infer<typeof promptSchema>
 export type Question = z.infer<typeof questionSchema>
 export type MicroAction = z.infer<typeof microActionSchema>
+export type Seasonal = z.infer<typeof seasonalSchema>
 export type Greeting = z.infer<typeof greetingSchema>
 export type Surprise = z.infer<typeof surpriseSchema>
 export type ChainLink = z.infer<typeof chainLinkSchema>
