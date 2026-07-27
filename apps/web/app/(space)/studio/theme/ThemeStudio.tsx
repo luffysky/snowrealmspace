@@ -82,6 +82,13 @@ export function ThemeStudio({
   const [moodVariants, setMoodVariants] = useState<{ variant: string; definition: ThemeDefinition }[]>([])
   const [moodBusy, setMoodBusy] = useState(false)
 
+  // 內建主題分類 tab（橫式）。只列有主題的分類，預設選第一個。
+  const themeCats = useMemo(
+    () => PRESET_CATEGORY_ORDER.filter((cat) => PRESET_THEMES.some((p) => (PRESET_CATEGORY[p.name] ?? '其他') === cat)),
+    [],
+  )
+  const [activeCat, setActiveCat] = useState<string>(themeCats[0] ?? '')
+
   const report: A11yReport = useMemo(() => analyzeTheme(draft), [draft])
 
   // 即時預覽由 ThemePreview 自己負責套用（含淺/深模式）——這裡不再重複套用，
@@ -512,33 +519,36 @@ export function ThemeStudio({
           <p className="sr-muted" style={{ marginTop: 0, fontSize: 'var(--sr-text-xs)' }}>
             點一下＝直接套用到你的空間（重新整理生效）。之後再改參數就用「儲存並套用」。
           </p>
-          {PRESET_CATEGORY_ORDER.map((cat) => {
-            const list = PRESET_THEMES.filter((p) => (PRESET_CATEGORY[p.name] ?? '其他') === cat)
-            if (list.length === 0) return null
-            return (
-              <div key={cat}>
-                <p className="sr-muted" style={{ margin: 'var(--sr-space-3) 0 var(--sr-space-1)', fontSize: 'var(--sr-text-xs)', fontWeight: 600 }}>
-                  {cat}
-                </p>
-                <ul className="sr-theme-list">
-                  {list.map((p) => (
-                    <li key={p.name}>
-                      <button type="button" className="sr-theme-chip" onClick={() => void applyPreset(p)}>
-                        <span
-                          className="sr-swatch-row"
-                          aria-hidden="true"
-                          style={{
-                            background: `linear-gradient(90deg, ${p.colors.primary} 0 33%, ${p.colors.accent} 33% 66%, ${p.colors.background} 66%)`,
-                          }}
-                        />
-                        <span>{p.name}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
+          <div className="sr-cat-tabs" role="tablist" aria-label="主題分類">
+            {themeCats.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                aria-selected={activeCat === cat}
+                className={`sr-cat-tab ${activeCat === cat ? 'is-active' : ''}`}
+                onClick={() => setActiveCat(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <ul className="sr-theme-list" style={{ marginTop: 'var(--sr-space-3)' }}>
+            {PRESET_THEMES.filter((p) => (PRESET_CATEGORY[p.name] ?? '其他') === activeCat).map((p) => (
+              <li key={p.name}>
+                <button type="button" className="sr-theme-chip" onClick={() => void applyPreset(p)}>
+                  <span
+                    className="sr-swatch-row"
+                    aria-hidden="true"
+                    style={{
+                      background: `linear-gradient(90deg, ${p.colors.primary} 0 33%, ${p.colors.accent} 33% 66%, ${p.colors.background} 66%)`,
+                    }}
+                  />
+                  <span>{p.name}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
 
           <div className="sr-row" style={{ marginTop: 'var(--sr-space-4)' }}>
             <button className="sr-button sr-button-secondary" type="button" onClick={handleReset}>

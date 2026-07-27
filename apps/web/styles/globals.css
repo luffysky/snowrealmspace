@@ -1161,6 +1161,37 @@ input[type='range'] {
   gap: var(--sr-space-2);
 }
 
+/* 主題分類 tab：橫式、可左右捲（分類多） */
+.sr-cat-tabs {
+  display: flex;
+  gap: var(--sr-space-1);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: var(--sr-space-1);
+  margin-top: var(--sr-space-2);
+  scrollbar-width: thin;
+}
+.sr-cat-tab {
+  flex: 0 0 auto;
+  padding: var(--sr-space-1) var(--sr-space-3);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-sm);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.sr-cat-tab:hover {
+  background: var(--sr-surface);
+  color: var(--sr-text-primary);
+}
+.sr-cat-tab.is-active {
+  background: var(--sr-primary);
+  color: var(--sr-on-primary, #fff);
+  border-color: var(--sr-primary);
+}
+
 .sr-theme-chip {
   display: flex;
   align-items: center;
