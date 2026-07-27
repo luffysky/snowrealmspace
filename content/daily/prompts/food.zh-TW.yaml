@@ -1,0 +1,81 @@
+# 每日創作提示 — 食物／飲食。畫吃的、喝的、廚房裡的。繁體中文，每一則獨一無二。
+- id: p-food-001
+  text: 畫你今天吃的其中一餐。
+  tags: [food, observe]
+  estimatedMinutes: 15
+- id: p-food-002
+  text: 畫一碗你最想念的家常菜。
+  tags: [food, memory]
+  estimatedMinutes: 15
+- id: p-food-003
+  text: 畫一杯你常喝的飲料。
+  tags: [food, object]
+  estimatedMinutes: 12
+- id: p-food-004
+  text: 替一間想像的餐廳設計菜單。
+  tags: [food, design]
+  estimatedMinutes: 20
+- id: p-food-005
+  text: 畫水果攤上一排顏色。
+  tags: [food, color]
+  estimatedMinutes: 15
+- id: p-food-006
+  text: 畫一顆切開的水果剖面。
+  tags: [food, observe]
+  estimatedMinutes: 12
+- id: p-food-007
+  text: 畫熱湯冒著煙的樣子。
+  tags: [food, mood]
+  estimatedMinutes: 12
+- id: p-food-008
+  text: 畫你理想中的早餐盤。
+  tags: [food, scene]
+  estimatedMinutes: 15
+- id: p-food-009
+  text: 畫一支融化中的冰淇淋。
+  tags: [food, imagine]
+  estimatedMinutes: 12
+- id: p-food-010
+  text: 畫夜市裡的一個小吃攤。
+  tags: [food, scene]
+  estimatedMinutes: 20
+- id: p-food-011
+  text: 替一款想像的零食設計包裝。
+  tags: [food, design]
+  estimatedMinutes: 20
+- id: p-food-012
+  text: 畫一塊蛋糕的切面。
+  tags: [food, observe]
+  estimatedMinutes: 12
+- id: p-food-013
+  text: 畫剛出爐的麵包。
+  tags: [food, mood]
+  estimatedMinutes: 15
+- id: p-food-014
+  text: 畫一桌你想和人分享的菜。
+  tags: [food, scene]
+  estimatedMinutes: 20
+- id: p-food-015
+  text: 畫一顆荷包蛋，煎到你喜歡的樣子。
+  tags: [food, quick]
+  estimatedMinutes: 10
+- id: p-food-016
+  text: 畫泡在水裡的茶包。
+  tags: [food, minimal]
+  estimatedMinutes: 10
+- id: p-food-017
+  text: 畫一串烤好的食物。
+  tags: [food, object]
+  estimatedMinutes: 12
+- id: p-food-018
+  text: 用暖色，畫一鍋正在煮的東西。
+  tags: [food, color]
+  estimatedMinutes: 15
+- id: p-food-019
+  text: 畫你會帶去野餐的食物。
+  tags: [food, imagine]
+  estimatedMinutes: 15
+- id: p-food-020
+  text: 畫一碗麵，麵條的樣子。
+  tags: [food, observe]
+  estimatedMinutes: 15
