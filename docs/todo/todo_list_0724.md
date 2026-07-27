@@ -125,8 +125,9 @@
       DesignProviderAdapter 介面、FigmaAdapter、HMAC 簽章驗證、webhook 冪等（12 測試）~~
 - [x] ~~GET /api/integrations（capability matrix）+ POST /api/webhooks/:provider（驗簽+冪等+快回 200）~~
 - [x] ~~middleware 豁免 /api/webhooks/*（外部呼叫）~~
-- [ ] 🔴 **Figma app 憑證**（client id/secret）→ OAuth connect/callback、figma.sync job 才能實作
+- [x] ~~OAuth connect/callback（Figma+Canva，token 加密存 design_connections）~~ ✅ 見下方 #13a
 - [x] ~~worker 部署~~ ✅（Luffy 已啟動）
+- 🔴 **憑證仍需 Luffy 設**（Zeabur `CANVA_*`/`FIGMA_*`）才能實跑；sync job 進度見 #13b。
 
 ## 🅴 Milestone E — Daily Loop
 
@@ -536,7 +537,7 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改
 
 ## 13. Milestone F — Integration（設計工具整合）進度清單
 > Luffy 指示提前開工。**決定：F 納入 Canva**（覆寫 `10-acceptance.md` §F「不做 Canva／列 V2」；見 `90-build-log.md`）。
-> F = 兩半：**連接(connect)** 已做、**同步(sync)** 未做。sync 是閉環主體，F 未整體驗收。
+> F = 兩半：**連接(connect)** 已做、**同步(sync)** 進行中（切 S1–S5，寫一塊驗一塊）。sync 是閉環主體，F 未整體驗收。
 
 ### 13a. 連接半段（✅ 已完成，主對話已逐檔審 + 四閘門綠）
 - [x] ~~`ProviderCapabilities` 宣告 + 前端只顯示實際支援~~ ✅ connectable 依憑證動態判定
@@ -549,16 +550,30 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改
 - [x] ~~使用者端整合設定頁（連接/狀態/中斷）+ 後台 Token 轉換器~~ ✅
 - [x] ~~Figma + Canva 兩 provider 皆可連~~ ✅（Figma 端點/scope 待對最新文件確認）
 
-### 13b. 同步半段（⬜ 未做 —— F 閉環驗收主體）
-- [ ] `DesignProviderAdapter` 完整（Figma 第一實作，sync 尚未接上 adapter）
-- [ ] 明確選擇檔案同步，**禁止預設同步整個 Team**
-- [ ] `figma.sync` / canva sync worker job：快取、去重、指數退避、429 依 Retry-After
-- [ ] 連續 5 次失敗轉 `error` 並**通知使用者**
-- [ ] 檔案更新 → 建 `design_snapshots` 版本、rendition 入 assets
-- [ ] webhook → 觸發同步（目前 `/api/webhooks/[provider]` 只掛 figma，**canva 未接**）
-- [ ] UI「上次同步時間」真的會被寫（目前顯示欄位在，但沒東西寫 `last_synced_at`）
-- [ ] 版本比較 UI（compare API 已存在，需接同步產出的版本）
-- [ ] Provider mock 以**錄製的真實回應**建立（規格禁手寫理想化 mock）
+### 13b. 同步半段（🚧 進行中 —— F 閉環驗收主體，切 S1–S5）
+
+**S1 — adapter 列檔/抓檔 + 選檔同步 + 建 snapshot（✅ 已審 commit 86bd8b9）**
+- [x] ~~`DesignProviderAdapter` 加 listFiles/fetchFile（Figma+Canva，純 HTTP 層、非 2xx 拋錯）~~ ✅（Figma 端點掛 TODO 待實測）
+- [x] ~~明確選檔同步，**禁止預設同步整個 Team**~~ ✅ `/sync` externalIds 必填非空、無「全部」路徑
+- [x] ~~檔案 → 建 `design_snapshots` 版本、rendition 入 assets（走 StorageAdapter、checksum 去重、內容嗅探）~~ ✅
+- [x] ~~列檔/同步 API（owner+flag→404 gate）+ token refresh 加密回存~~ ✅ `[key]/files`、`[key]/sync`
+
+**S2 — worker sync job（🚧 子代理寫作中，主對話待審）**
+- [ ] `design.sync` worker job（Figma+Canva 共用 handler）：入列、快取、去重
+- [ ] 指數退避重試 + 429 依 Retry-After（4xx 永久不重試、5xx/429 才重試）
+- [ ] 連續 5 次失敗轉 `error` 並**通知使用者**（走既有通知機制，不自創平行系統）
+- [ ] `POST /sync` 改為入列 job（非當場同步跑）
+
+**S3 — webhook → 觸發同步（⬜ 未做）**
+- [ ] `/api/webhooks/[provider]` 接上 canva（目前只掛 figma），事件 → 入列 design.sync
+
+**S4 — UI（⬜ 未做）**
+- [ ] 選檔 picker UI（列可選檔案、勾選送同步）
+- [ ] 「上次同步時間」顯示接上真實 `last_synced_at`（S1 已會寫入）
+- [ ] 版本比較 UI（compare API 已存在，接同步產出的版本）
+
+**S5 — mock（⬜ 卡憑證，等 13c）**
+- [ ] Provider mock 以**錄製的真實回應**建立（規格禁手寫理想化 mock）——需真憑證+真檔才錄得到
 
 ### 13c. 啟用前置（Luffy 操作）
 - [ ] 部署環境設 `CANVA_CLIENT_ID/SECRET`（Figma 要則 `FIGMA_CLIENT_ID/SECRET`）+ 32-byte `TOKEN_ENCRYPTION_SECRET`
