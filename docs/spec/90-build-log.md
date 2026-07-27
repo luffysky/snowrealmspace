@@ -337,24 +337,6 @@ Luffy 要「影片所有格式 500MB 以下」。原 `assets_bytes_limit` CHECK 
 space 可選擇性加一段背景音樂（audio asset）。同樣受 autoplay 政策約束：
 不自動出聲，提供播放/暫停控制，使用者主動開。存在 space_settings，預設無。
 
-### 0727：依使用者近況給內容 + 全專案假值稽核 + 內容衝量
-
-**狀態偵測接真實資料（`af1e116`）**：原本每日內容選取的 context 是寫死的 `{tags:[], recentActivityLevel:'normal'}`。
-新增 `packages/daily-engine/src/space-state.ts` 的純函式 `deriveSpaceState(events, tz, now)`，讀
-`activity_events`（ADR-013 真相來源）推導 `recentActivityLevel`（7 日活躍天數 → high/normal/low）與狀態標籤
-`st_returning`/`st_streak`/`st_creating`/`st_decorating`/`st_nightowl`。`service.ts` 改為實際讀 30 日 activity_events
-（service role）→ deriveSpaceState；`daily-select.ts` 對 `requiresTag ∈ context.tags` 的內容加權 `STATE_CONTENT_BOOST=8`。
-11 個單元測試（含負案例）。另新增 `state-aware.zh-TW.yaml` 40 則帶 `requiresTag: st_*` 的內容。
-
-**全專案假值稽核（Luffy 指示「整個專案不要有寫死的值」）**：掃過全 repo，唯一「載入型」假值就是上面 service.ts 的 context，
-已修；其餘為預設/種子值非假資料。
-
-**內容衝 4000（多-agent 產線）**：quotes 4045 / prompts 4001 / questions 4000 / greetings 1000 收滿；
-micro_action / seasonal / welcome 起量續補（見記憶 content-4000-marathon 與 todo #50）。每輪 check:content（去重/安全/id 唯一）
-+ 手動抽讀 + 反向 + 撞號檢查。
-
-**字體自動安裝移 worker（`font.install` job）**：避免 HTTP timeout，install route 只入列、UI 輪詢。
-
 ### ADR-001 偏離：Milestone F「連接（connect）半段」提前落地（Luffy 指示）
 
 ADR-001 規定未通過驗收不得開始下一個 Milestone；設計工具整合屬 Milestone F，且

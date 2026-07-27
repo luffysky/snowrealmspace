@@ -324,3 +324,41 @@ persona chat panel），非 VRM。
 - README 更新：主題即時預覽＋儲存並套用、字體全字重＋可選字重、AI 命名＋2D 漂浮小幫手、rich-editor 套件。
 - 提交前確認：typecheck/lint/check:deps 綠；build /_not-found 103KB、/home 136KB、/agent 135KB；
   404 純靜態（無 API/DB）；PWA 未動（manifest/SW/matcher 皆完好）。
+
+---
+
+# 0726 補記（第三批 —— 日誌更新 commit `39c85eb` 之後又寫的，先前漏記）
+
+> 0728 對照 git log 補回。這批約 30 個 commit 當天有做、也有 push，但沒寫進日誌。
+
+## AI / Agent
+- **記憶語意檢索**（`89b9672`）：ai-core `embedText`(768 維) + `match_memories` RPC + approve/新增即時嵌入 +
+  Memory Center 搜尋框 + Agent context RAG + backfill 腳本（實測 OpenAI sim=0.41 命中）。
+- **對話歷史摘要**（`89af849`）：長對話滾動壓縮進 `agent_threads.summary`（AI Core 收尾）。
+- **SSE 串流對話**（`5d51cde`）：逐字吐。
+- **視覺 OpenAI fallback + PWA 更新**（`89b9672`）。
+
+## 後台 Secret 管理
+- **Secret 紀錄**（`45d1a93`，0054）：值 AES-256-GCM 加密後存 DB。
+- **Secret 產生器**（`8ae1b2c`）：長度/字元組合/用途說明，純前端。
+- RLS：`admin_secret_notes` 加入無-space_id 允許清單（全域管理表，非租戶，`fba4db4`）。
+
+## 主題 / 背景 / UI
+- **深/淺色模式各自指定背景**（`b5a0e58`）＋深色先壓暗罩過渡（`7908812`）。
+- Theme / 背景**即時預覽**加淺/深 tab（`4e74814`/`0503aca`）。
+- 修「卡片材質與動畫」假控制——設了 data 屬性卻無 CSS 消費（`54c6cb2`）。
+- 深淺色自動配對：淺主題切深色得中性深底而非深粉紅、並支援反推（`f6bc3c7`）。
+- **檔案拖曳到資料夾**（放開即移動，`7a4ad17`）。
+- 修退出編輯殘留選取外框（bugpic/16，`4b1316e`）、時間軸 widget/排版（`a66b5df`）。
+
+## 帳號 / 空間
+- **使用者大頭貼上傳**（settings/account，`6d79f36`）。
+- **空間改名 + 角色標籤**（區分平台擁有者/空間管理員，`8a1b9fe`）。
+
+## 修復 / 基礎
+- **auth 回呼改用 `APP_PUBLIC_URL`**（不用 request host，修容器內部 :8080 導向，`14077eb`）。
+- **Figma webhook 用 passcode 驗證**（Figma 不發 secret，是自訂 passcode，`a5e6007`）。
+- **Giphy 伺服器端代理** + `GIPHY_API_KEY`（富文本 GIF 地基，`535942d`）。
+- 背景色調分類 tone（新增時系統先猜、Studio 可改，補 #42，`aa384bc`）。
+- 字體管理誠實錯誤訊息（檔太大被代理擋，`b81e234`）；型別漂移修正（`dafe984`）。
+- 生日信封卡細修（壽星親手開/常駐驚喜收藏/存成圖片，`7841819`/`b331cec`）。

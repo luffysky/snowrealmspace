@@ -318,3 +318,32 @@ pnpm tsx scripts/queue-ping.ts          # queue 往返（需 worker 執行中）
 **被外部資源卡住的項目見 `docs/todo/todo_list_0724.md`**（字體檔、Zeabur、R2、git remote、AI 金鑰）。
 
 部署平台為 **Zeabur**（ADR-008）：web、worker、Supabase 同一平台，R2 仍用 Cloudflare。
+
+---
+
+## 工作日誌與待辦（每次收工都要更新）
+
+### 工作日誌 → `docs/worklog/daily_works_MMDD.md`
+
+**這是「今天做了什麼」的地方**，不是 `docs/spec/90-build-log.md`（那份只記與規格/ADR 的**偏離**）。
+
+- 檔名 `daily_works_MMDD.md`（例 `daily_works_0728.md`）；同一天量太大可分 `_MMDDb`、`_MMDDc`。
+- 格式：`# 工作日誌 MMDD` 標題 → 一行 `>` 引言（當天性質 + 「經哪些閘門」）→ 數個 `## 主題` 分區，條列。
+  重點：**功能寫「做了什麼＋關鍵決定」、bug 寫「症狀→根因→修法」、附 commit hash**；最後放 `## 待你`（Luffy 要做的事）。
+- **收工前一定要寫**。若中途 push 了很多次，收工時**對照 `git log --since=<今天>` 補齊**——
+  真的發生過：日誌更新 commit 之後又寫了一批（0726 漏了約 30 個 commit：大頭貼/Secret/SSE/語意檢索…），
+  隔天才靠 git log 補回。**日誌更新 commit「之後」的工作最容易漏，收工前務必回頭比對 git log。**
+
+### 待辦 → `docs/todo/todo_list_MMDD.md`
+
+- **`todo_list_0724.md`** 是主待辦（長期累積，`#13` 是 Milestone F 完整進度清單；完成的項目劃線 `~~...~~ ✅`）。
+- 每天開新規劃時可另開 `todo_list_MMDD.md` 專記「當天起的進行中規劃」（如 `todo_list_0728.md`），
+  歷史與外部憑證細節仍指回 0724。
+- 外部/被卡住的項目（憑證、Zeabur、R2、AI 金鑰）集中在 0724。
+
+### 三份文件的分工（別放錯）
+| 文件 | 放什麼 |
+|---|---|
+| `docs/worklog/daily_works_MMDD.md` | 今天做了什麼（進度流水帳，附 commit） |
+| `docs/todo/todo_list_*.md` | 還沒做 / 待你做 / 進行中規劃 |
+| `docs/spec/90-build-log.md` | **只放**與 ADR/規格的偏離（為什麼跟當初決定不一樣） |
