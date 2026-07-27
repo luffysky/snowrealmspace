@@ -1,0 +1,85 @@
+# 問候補充批次 11。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-160
+    text: 早，先讓自己坐起來發個呆。
+  - id: g-morning-161
+    text: 早安，今天有什麼小期待嗎？
+  - id: g-morning-162
+    text: 早，窗打開，讓風進來。
+  - id: g-morning-163
+    text: 天亮了，替植物也澆點水。
+  - id: g-morning-164
+    text: 早安，慢慢把精神找回來。
+  - id: g-morning-165
+    text: 早，先寫下今天想完成的一件事。
+  - id: g-morning-166
+    text: 早安，吸一口清晨的空氣。
+  - id: g-morning-167
+    text: 早，腳踩地板，穩穩起身。
+  - id: g-morning-168
+    text: 早安，不順的話，明天還有機會。
+  - id: g-morning-169
+    text: 早，給今天一個溫柔的開場。
+afternoon:
+  - id: g-afternoon-160
+    text: 午安，睏了就去洗把臉。
+  - id: g-afternoon-161
+    text: 下午了，起身晃到窗邊透透氣。
+  - id: g-afternoon-162
+    text: 午安，難搞的留到有力氣時。
+  - id: g-afternoon-163
+    text: 午後，放首輕快的歌提神。
+  - id: g-afternoon-164
+    text: 午安，別讓水杯空著。
+  - id: g-afternoon-165
+    text: 下午好，做完一件先喘口氣。
+  - id: g-afternoon-166
+    text: 午安，眼睛遠眺放鬆一下。
+  - id: g-afternoon-167
+    text: 午後，轉轉手腕和脖子。
+  - id: g-afternoon-168
+    text: 午安，你比想像中更耐撐。
+  - id: g-afternoon-169
+    text: 下午好，一步步來就好。
+evening:
+  - id: g-evening-160
+    text: 傍晚了，讓今天慢慢落地。
+  - id: g-evening-161
+    text: 晚間好，先把工作收進抽屜。
+  - id: g-evening-162
+    text: 天黑了，點一盞暖色的燈。
+  - id: g-evening-163
+    text: 傍晚好，深吸一口再慢慢吐。
+  - id: g-evening-164
+    text: 晚上好，替自己張羅頓飯。
+  - id: g-evening-165
+    text: 入夜了，把速度整個放慢。
+  - id: g-evening-166
+    text: 傍晚好，看看今天最後的光。
+  - id: g-evening-167
+    text: 晚間好，煩的事明天再理。
+  - id: g-evening-168
+    text: 天暗了，讓心慢慢靜下來。
+  - id: g-evening-169
+    text: 晚上好，你撐完了一整天。
+night:
+  - id: g-night-160
+    text: 夜深了，讓身體慢慢放下重量。
+  - id: g-night-161
+    text: 晚安，把今天好好收個尾。
+  - id: g-night-162
+    text: 夜裡好，聽著海浪聲入眠。
+  - id: g-night-163
+    text: 晚安，抱著枕頭安穩躺著。
+  - id: g-night-164
+    text: 深夜了，讓緊繃一點點鬆開。
+  - id: g-night-165
+    text: 夜安，月亮也在替你守夜。
+  - id: g-night-166
+    text: 晚安，今晚的你可以放心睡。
+  - id: g-night-167
+    text: 夜裡，把牽掛先放在一旁。
+  - id: g-night-168
+    text: 晚安，讓夢輕輕接住你。
+  - id: g-night-169
+    text: 夜深，安心地閉上眼吧。
