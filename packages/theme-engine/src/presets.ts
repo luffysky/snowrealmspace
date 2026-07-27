@@ -609,17 +609,25 @@ function makeDark(name: string, h: number, s: number): ThemeDefinition {
 // 12 個色系 × {淺,深} × {鮮,柔}，名稱依中文色名，分類依色調。
 const HUE_FAMILIES: { h: number; name: string }[] = [
   { h: 2, name: '赤' },
+  { h: 15, name: '緋' },
   { h: 20, name: '朱' },
   { h: 36, name: '琥珀' },
   { h: 52, name: '金' },
   { h: 82, name: '柳' },
+  { h: 100, name: '苔' },
+  { h: 118, name: '草' },
   { h: 135, name: '翠' },
   { h: 162, name: '碧' },
+  { h: 175, name: '蒼' },
   { h: 190, name: '青' },
   { h: 212, name: '湛' },
+  { h: 232, name: '群青' },
   { h: 250, name: '靛' },
+  { h: 266, name: '菫' },
   { h: 282, name: '紫' },
+  { h: 300, name: '洋紅' },
   { h: 320, name: '桃' },
+  { h: 340, name: '玫' },
 ]
 
 const generated: { def: ThemeDefinition; category: string }[] = []
