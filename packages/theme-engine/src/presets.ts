@@ -1,10 +1,16 @@
 import type { ThemeDefinition } from './types.js'
+import { hslToRgb, toHex, relativeLuminance } from './color.js'
 
 /**
  * 內建主題。
  *
  * 每一套都已通過 analyzeTheme 的 AA 檢查 —— 有測試守著。
  * 使用者第一次進來看到的東西不該有無障礙問題。
+ *
+ * 分兩部分：
+ *  - CURATED_THEMES：手工調的招牌主題（粉霧/夜/森…）。
+ *  - 程式生成（generateHueThemes）：固定「AA 安全亮度」、只旋轉色相，
+ *    因此每一套都保證過 AA（對比看亮度，不看色相）。用來把數量鋪到上百套、依色系分類。
  */
 
 const baseTypography = {
@@ -18,7 +24,7 @@ const baseTypography = {
   letterSpacing: 0,
 }
 
-export const PRESET_THEMES: ThemeDefinition[] = [
+const CURATED_THEMES: ThemeDefinition[] = [
   {
     schemaVersion: 1,
     name: '粉霧',
@@ -506,10 +512,8 @@ export const PRESET_THEMES: ThemeDefinition[] = [
   },
 ]
 
-/**
- * 內建主題分類（給 UI 分組）。名稱對應到分類；沒對到的歸「其他」。
- */
-export const PRESET_CATEGORY: Record<string, string> = {
+/** 招牌主題的分類。 */
+const CURATED_CATEGORY: Record<string, string> = {
   粉霧: '淺色柔和',
   櫻: '淺色柔和',
   奶油: '淺色柔和',
@@ -533,7 +537,112 @@ export const PRESET_CATEGORY: Record<string, string> = {
   炭: '深色中性',
 }
 
-export const DEFAULT_THEME: ThemeDefinition = PRESET_THEMES[0]!
+// ── 程式生成的色系主題（AA 保證）──────────────────────────────
+// s、l 以 0–100 傳入，hslToRgb 需要 0–1。
+const hx = (h: number, s: number, l: number): string => toHex(hslToRgb({ h, s: s / 100, l: l / 100 }))
+const lumOf = (h: number, s: number, l: number): number =>
+  relativeLuminance(hslToRgb({ h, s: s / 100, l: l / 100 }))
+
+/** 降低亮度直到「白字在其上對比 ≥ 4.5」（亮度 ≤ ~0.175）。 */
+function darkForWhite(h: number, s: number): string {
+  for (let l = 46; l >= 18; l -= 2) if (lumOf(h, s, l) <= 0.175) return hx(h, s, l)
+  return hx(h, s, 18)
+}
+/** 提高亮度直到「深字(#1a1a1a)在其上對比 ≥ 4.5」（亮度 ≥ ~0.34）。 */
+function lightForDark(h: number, s: number): string {
+  for (let l = 60; l <= 90; l += 2) if (lumOf(h, s, l) >= 0.34) return hx(h, s, l)
+  return hx(h, s, 90)
+}
+
+function makeLight(name: string, h: number, s: number): ThemeDefinition {
+  return {
+    schemaVersion: 1,
+    name,
+    colors: {
+      primary: darkForWhite(h, s),
+      secondary: hx(h, Math.min(58, s), 90),
+      accent: darkForWhite(h, Math.min(72, s + 8)),
+      background: hx(h, Math.max(26, s - 12), 98),
+      surface: 'rgba(255, 255, 255, 0.64)',
+      surfaceAlt: 'rgba(255, 255, 255, 0.38)',
+      textPrimary: hx(h, 22, 15),
+      textSecondary: hx(h, 15, 35),
+      border: 'rgba(20, 20, 20, 0.14)',
+      success: '#2f7d5c',
+      warning: '#8a5a12',
+      danger: '#b03050',
+      focusRing: darkForWhite(h, Math.min(72, s + 8)),
+    },
+    typography: { ...baseTypography },
+    surfaces: { style: 'glass', opacity: 0.64, blur: 18, radius: 22, borderWidth: 1 },
+    effects: { shadow: 'soft', glow: false, noise: false },
+    motion: { preset: 'soft', intensity: 0.6, reduceMotionFallback: true },
+  }
+}
+
+function makeDark(name: string, h: number, s: number): ThemeDefinition {
+  return {
+    schemaVersion: 1,
+    name,
+    colors: {
+      primary: lightForDark(h, s),
+      secondary: hx(h, 30, 22),
+      accent: lightForDark(h, Math.min(70, s + 8)),
+      background: hx(h, 28, 10),
+      surface: 'rgba(255, 255, 255, 0.07)',
+      surfaceAlt: 'rgba(255, 255, 255, 0.04)',
+      textPrimary: hx(h, 14, 93),
+      textSecondary: hx(h, 12, 70),
+      border: 'rgba(255, 255, 255, 0.14)',
+      success: '#6ee7a8',
+      warning: '#f0c674',
+      danger: '#f28b96',
+      focusRing: lightForDark(h, Math.min(70, s + 8)),
+    },
+    typography: { ...baseTypography },
+    surfaces: { style: 'glass', opacity: 0.07, blur: 22, radius: 20, borderWidth: 1 },
+    effects: { shadow: 'dramatic', glow: true, noise: false },
+    motion: { preset: 'float', intensity: 0.6, reduceMotionFallback: true },
+  }
+}
+
+// 12 個色系 × {淺,深} × {鮮,柔}，名稱依中文色名，分類依色調。
+const HUE_FAMILIES: { h: number; name: string }[] = [
+  { h: 2, name: '赤' },
+  { h: 20, name: '朱' },
+  { h: 36, name: '琥珀' },
+  { h: 52, name: '金' },
+  { h: 82, name: '柳' },
+  { h: 135, name: '翠' },
+  { h: 162, name: '碧' },
+  { h: 190, name: '青' },
+  { h: 212, name: '湛' },
+  { h: 250, name: '靛' },
+  { h: 282, name: '紫' },
+  { h: 320, name: '桃' },
+]
+
+const generated: { def: ThemeDefinition; category: string }[] = []
+for (const f of HUE_FAMILIES) {
+  generated.push({ def: makeLight(`${f.name}·淺`, f.h, 62), category: '鮮彩・淺' })
+  generated.push({ def: makeLight(`${f.name}·淺柔`, f.h, 34), category: '柔彩・淺' })
+  generated.push({ def: makeDark(`${f.name}·深`, f.h, 58), category: '鮮彩・深' })
+  generated.push({ def: makeDark(`${f.name}·深柔`, f.h, 32), category: '柔彩・深' })
+}
+// 中性灰階（低彩度）
+generated.push({ def: makeLight('灰·淺', 220, 6), category: '中性' })
+generated.push({ def: makeDark('灰·深', 220, 6), category: '中性' })
+
+/** 全部內建主題：招牌 + 生成。 */
+export const PRESET_THEMES: ThemeDefinition[] = [...CURATED_THEMES, ...generated.map((g) => g.def)]
+
+/** 內建主題分類（給 UI 分組）。名稱對應分類；沒對到的歸「其他」。 */
+export const PRESET_CATEGORY: Record<string, string> = {
+  ...CURATED_CATEGORY,
+  ...Object.fromEntries(generated.map((g) => [g.def.name, g.category])),
+}
+
+export const DEFAULT_THEME: ThemeDefinition = CURATED_THEMES[0]!
 
 /** 使用者按下「還原預設」時用的。 */
 export function defaultThemeDefinition(): ThemeDefinition {

@@ -18,8 +18,20 @@ import { FontPanel } from './FontPanel'
 import { ThemePreview } from './ThemePreview'
 import type { BackgroundState } from '@/components/BackgroundLayer'
 
-/** 內建主題分類顯示順序。 */
-const PRESET_CATEGORY_ORDER = ['淺色柔和', '淺色自然', '淺色中性', '深色', '深色中性', '其他']
+/** 內建主題分類顯示順序（招牌在前，生成的色系在後）。 */
+const PRESET_CATEGORY_ORDER = [
+  '淺色柔和',
+  '淺色自然',
+  '淺色中性',
+  '深色',
+  '深色中性',
+  '鮮彩・淺',
+  '柔彩・淺',
+  '鮮彩・深',
+  '柔彩・深',
+  '中性',
+  '其他',
+]
 
 export type SavedTheme = {
   id: string
