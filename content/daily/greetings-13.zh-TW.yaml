@@ -1,0 +1,85 @@
+# 問候補充批次 13。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-180
+    text: 早，讓自己在被窩裡再賴一下下。
+  - id: g-morning-181
+    text: 早安，今天的目標放小一點也行。
+  - id: g-morning-182
+    text: 早，打開窗聽聽外面。
+  - id: g-morning-183
+    text: 天亮了，先深深吸一口氣。
+  - id: g-morning-184
+    text: 早安，願今天對你溫柔。
+  - id: g-morning-185
+    text: 早，先做最容易的那一件熱身。
+  - id: g-morning-186
+    text: 早安，讓早晨的光叫醒你。
+  - id: g-morning-187
+    text: 早，轉轉手腕活動一下。
+  - id: g-morning-188
+    text: 早安，慢一點開始也很好。
+  - id: g-morning-189
+    text: 早，帶著好心情出發吧。
+afternoon:
+  - id: g-afternoon-180
+    text: 午安，累的話趴一下再繼續。
+  - id: g-afternoon-181
+    text: 下午了，站起來看看窗外綠意。
+  - id: g-afternoon-182
+    text: 午安，棘手的事先擺一邊。
+  - id: g-afternoon-183
+    text: 午後，來點音樂換個節奏。
+  - id: g-afternoon-184
+    text: 午安，別忘了補充水分。
+  - id: g-afternoon-185
+    text: 下午好，慢慢清總會清完。
+  - id: g-afternoon-186
+    text: 午安，讓眼睛望向天空歇歇。
+  - id: g-afternoon-187
+    text: 午後，抬頭挺胸深呼吸。
+  - id: g-afternoon-188
+    text: 午安，走到這裡你很棒。
+  - id: g-afternoon-189
+    text: 下午好，別急，一件件來。
+evening:
+  - id: g-evening-180
+    text: 傍晚了，讓今天慢慢降落。
+  - id: g-evening-181
+    text: 晚間好，先把工作收進一旁。
+  - id: g-evening-182
+    text: 天黑了，替空間添點暖意。
+  - id: g-evening-183
+    text: 傍晚好，鬆開肩膀吐口氣。
+  - id: g-evening-184
+    text: 晚上好，弄頓自己想吃的。
+  - id: g-evening-185
+    text: 入夜了，讓一切慢慢緩下。
+  - id: g-evening-186
+    text: 傍晚好，看看今晚的天色。
+  - id: g-evening-187
+    text: 晚間好，明天的事明天處理。
+  - id: g-evening-188
+    text: 天暗了，讓心也跟著鬆軟。
+  - id: g-evening-189
+    text: 晚上好，今天你努力了。
+night:
+  - id: g-night-180
+    text: 夜深了，讓思緒像羽毛落下。
+  - id: g-night-181
+    text: 晚安，把今天輕輕蓋上。
+  - id: g-night-182
+    text: 夜裡好，配段輕音樂入睡。
+  - id: g-night-183
+    text: 晚安，被子暖暖地裹著。
+  - id: g-night-184
+    text: 深夜了，讓肩頸徹底放鬆。
+  - id: g-night-185
+    text: 夜安，星光靜靜守著你。
+  - id: g-night-186
+    text: 晚安，今晚你可以安心。
+  - id: g-night-187
+    text: 夜裡，把心事先放進口袋。
+  - id: g-night-188
+    text: 晚安，讓睡意輕輕蓋過來。
+  - id: g-night-189
+    text: 夜深，安穩地闔眼歇息。
