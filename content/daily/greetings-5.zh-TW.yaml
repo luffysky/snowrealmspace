@@ -1,0 +1,85 @@
+# 問候補充批次 5。night 不得催促。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-100
+    text: 早，先給自己一個微笑。
+  - id: g-morning-101
+    text: 早安，今天想聽什麼歌？
+  - id: g-morning-102
+    text: 早，被窩很暖，世界也在等你。
+  - id: g-morning-103
+    text: 天亮了，喝口水叫醒身體。
+  - id: g-morning-104
+    text: 早安，先挑一件最想做的。
+  - id: g-morning-105
+    text: 早，慢慢睜開眼，不趕。
+  - id: g-morning-106
+    text: 早安，今天的空氣聞起來如何？
+  - id: g-morning-107
+    text: 早，讓第一縷光曬進房間。
+  - id: g-morning-108
+    text: 早安，昨晚有睡飽嗎？
+  - id: g-morning-109
+    text: 早，這一天怎麼過，隨你。
+afternoon:
+  - id: g-afternoon-100
+    text: 午安，肚子餓了就先吃。
+  - id: g-afternoon-101
+    text: 下午了，動一動筋骨吧。
+  - id: g-afternoon-102
+    text: 午安，做到一半也算數。
+  - id: g-afternoon-103
+    text: 午後，讓眼睛看看綠色。
+  - id: g-afternoon-104
+    text: 午安，泡杯茶再繼續。
+  - id: g-afternoon-105
+    text: 下午好，記得抬頭伸個懶腰。
+  - id: g-afternoon-106
+    text: 午安，一件一件慢慢清。
+  - id: g-afternoon-107
+    text: 午後，給腦袋一點空檔。
+  - id: g-afternoon-108
+    text: 午安，撐不住就先靠一下。
+  - id: g-afternoon-109
+    text: 下午好，其餘交給等一下的你。
+evening:
+  - id: g-evening-100
+    text: 傍晚了，今天想吃點什麼？
+  - id: g-evening-101
+    text: 晚間好，把燈點得暖暖的。
+  - id: g-evening-102
+    text: 天黑了，腳步放輕一點。
+  - id: g-evening-103
+    text: 傍晚好，到這邊剛剛好。
+  - id: g-evening-104
+    text: 晚上好，先深呼吸再收尾。
+  - id: g-evening-105
+    text: 入夜了，替自己留點空白。
+  - id: g-evening-106
+    text: 傍晚好，抬頭看看晚霞。
+  - id: g-evening-107
+    text: 晚間好，工作先擱一邊。
+  - id: g-evening-108
+    text: 天暗了，把心慢慢收回來。
+  - id: g-evening-109
+    text: 晚上好，你今天真的盡力了。
+night:
+  - id: g-night-100
+    text: 夜深了，手機可以先放下。
+  - id: g-night-101
+    text: 晚安，把今天輕輕闔上。
+  - id: g-night-102
+    text: 夜裡好，聽著風聲入睡。
+  - id: g-night-103
+    text: 晚安，願你有個好夢。
+  - id: g-night-104
+    text: 深夜了，眼睛也想歇了。
+  - id: g-night-105
+    text: 夜安，今晚願你睡得沉。
+  - id: g-night-106
+    text: 晚安，謝謝今天陪著自己。
+  - id: g-night-107
+    text: 夜裡，把心事先放門外。
+  - id: g-night-108
+    text: 晚安，讓呼吸慢慢變長。
+  - id: g-night-109
+    text: 夜深，燈調暗，安心躺著。
