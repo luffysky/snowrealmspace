@@ -1,0 +1,81 @@
+# 每日創作提示 — 夢／想像。畫不存在的東西。繁體中文，每一則獨一無二。
+- id: p-dream-001
+  text: 畫一座你夢裡去過的城市。
+  tags: [dream, scene]
+  estimatedMinutes: 20
+- id: p-dream-002
+  text: 畫一種現實中沒有的動物。
+  tags: [dream, character]
+  estimatedMinutes: 15
+- id: p-dream-003
+  text: 想像你會飛，畫下看到的風景。
+  tags: [dream, scene]
+  estimatedMinutes: 15
+- id: p-dream-004
+  text: 畫一扇打開後通往別處的門。
+  tags: [dream, object]
+  estimatedMinutes: 12
+- id: p-dream-005
+  text: 替一個夢，畫下最後的畫面。
+  tags: [dream, mood]
+  estimatedMinutes: 12
+- id: p-dream-006
+  text: 畫一棵會結出奇怪果實的樹。
+  tags: [dream, nature]
+  estimatedMinutes: 15
+- id: p-dream-007
+  text: 想像海在天上，畫這個世界。
+  tags: [dream, scene]
+  estimatedMinutes: 20
+- id: p-dream-008
+  text: 畫一間你想住進去的雲上房子。
+  tags: [dream, scene]
+  estimatedMinutes: 20
+- id: p-dream-009
+  text: 替「時間」畫一個具體的樣子。
+  tags: [dream, abstract]
+  estimatedMinutes: 15
+- id: p-dream-010
+  text: 畫一種能裝下星星的容器。
+  tags: [dream, object]
+  estimatedMinutes: 12
+- id: p-dream-011
+  text: 想像顏色會發出聲音，畫給我看。
+  tags: [dream, abstract]
+  estimatedMinutes: 15
+- id: p-dream-012
+  text: 畫一條會走路的河。
+  tags: [dream, nature]
+  estimatedMinutes: 15
+- id: p-dream-013
+  text: 替一個願望，設計一個守護者。
+  tags: [dream, character]
+  estimatedMinutes: 20
+- id: p-dream-014
+  text: 畫一座只在夜裡出現的橋。
+  tags: [dream, scene]
+  estimatedMinutes: 15
+- id: p-dream-015
+  text: 想像影子有自己的生活，畫它。
+  tags: [dream, character]
+  estimatedMinutes: 15
+- id: p-dream-016
+  text: 畫一顆能種出夢的種子。
+  tags: [dream, object]
+  estimatedMinutes: 12
+- id: p-dream-017
+  text: 替「安靜」畫一個居住的地方。
+  tags: [dream, abstract]
+  estimatedMinutes: 15
+- id: p-dream-018
+  text: 畫一場會開花的雪。
+  tags: [dream, nature]
+  estimatedMinutes: 12
+- id: p-dream-019
+  text: 想像你能縮小，畫桌上的世界。
+  tags: [dream, scene]
+  estimatedMinutes: 20
+- id: p-dream-020
+  text: 畫一盞能照出心情的燈。
+  tags: [dream, object]
+  estimatedMinutes: 12
