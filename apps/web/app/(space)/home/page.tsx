@@ -4,6 +4,8 @@ import { getDb } from '@/lib/supabase/server'
 import { emitEvent } from '@snowrealm/analytics'
 import { WIDGET_REGISTRY, GRID, defaultLayoutItems, getWidgetDefinition } from '@snowrealm/widget-engine'
 import { createAdminClient } from '@snowrealm/db/server'
+import type { FeatureFlagKey } from '@snowrealm/shared-types'
+import { getFlags } from '@/lib/flags'
 import { HomeGrid, type WidgetInstanceRow, type AvailableWidget } from './HomeGrid'
 import BirthdayChain from '@/components/widgets/impl/BirthdayChainWidget'
 import { WelcomeChain } from '@/components/WelcomeChain'
@@ -109,11 +111,19 @@ export default async function HomePage() {
     }
   }
 
-  const available: AvailableWidget[] = Object.values(WIDGET_REGISTRY).map((def) => ({
-    id: def.id,
-    name: def.name,
-    description: def.description,
-  }))
+  /*
+   * 「加入 widget」清單必須依 feature flag 過濾（ADR-018：假關閉不行）。
+   * 有 featureFlag 但該 flag 關閉的 widget，加了也會在它自己的 API 404 → 不該出現在選單。
+   * 沒有 featureFlag 的 widget 一律可選（不受影響）。用 service role 讀 flag（系統設定）。
+   */
+  const flags = await getFlags(space.id)
+  const available: AvailableWidget[] = Object.values(WIDGET_REGISTRY)
+    .filter((def) => !def.featureFlag || flags[def.featureFlag as FeatureFlagKey])
+    .map((def) => ({
+      id: def.id,
+      name: def.name,
+      description: def.description,
+    }))
 
   return (
     <div className="sr-stack">

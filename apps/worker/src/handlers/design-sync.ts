@@ -124,7 +124,7 @@ async function notifyFail(conn: FullConnection, externalId: string, message: str
     spaceId: conn.space_id,
     userId: conn.user_id,
     category: 'sync_failed',
-    title: `${conn.provider === 'figma' ? 'Figma' : 'Canva'} 同步失敗`,
+    title: `${conn.provider === 'figma' ? 'Figma' : conn.provider === 'adobe' ? 'Adobe' : 'Canva'} 同步失敗`,
     body: `檔案 ${externalId} 同步未成功：${message}`,
     link: '/settings/integrations',
   })

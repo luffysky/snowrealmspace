@@ -23,26 +23,58 @@ import {
  *   啟用 Figma 前請對照最新 Figma OAuth 文件確認端點與 scope（此處採目前公開文件值）。
  */
 
-export type ProviderKey = 'figma' | 'canva'
+export type ProviderKey = 'figma' | 'canva' | 'adobe'
 
-export const CONNECTABLE_PROVIDERS: ProviderKey[] = ['figma', 'canva']
+export const CONNECTABLE_PROVIDERS: ProviderKey[] = ['figma', 'canva', 'adobe']
 
 /** 各 provider 對應的 feature flag（ADR-018：flag 關 → 端點 404、不出現在清單）。 */
 export const PROVIDER_FLAG: Record<ProviderKey, FeatureFlagKey> = {
   figma: 'figmaIntegration',
   canva: 'canvaConnect',
+  adobe: 'adobeExpress',
 }
 
-export const PROVIDER_LABEL: Record<ProviderKey, string> = { figma: 'Figma', canva: 'Canva' }
+export const PROVIDER_LABEL: Record<ProviderKey, string> = { figma: 'Figma', canva: 'Canva', adobe: 'Adobe' }
 
 export function isProviderKey(v: string): v is ProviderKey {
-  return v === 'figma' || v === 'canva'
+  return v === 'figma' || v === 'canva' || v === 'adobe'
 }
 
 // ── Figma OAuth 常數 ──────────────────────────────────────
 const FIGMA_AUTHORIZE_URL = 'https://www.figma.com/oauth'
 const FIGMA_TOKEN_URL = 'https://api.figma.com/v1/oauth/token'
+/**
+ * Figma scope 預設值。**純常數，供測試與 fallback 用**，不讀 env。
+ * 執行期實際使用的 scope 由 figmaScopes() 決定（可用 env FIGMA_SCOPES 覆寫），
+ * 讓維運者能對齊 Figma app 後台實際勾選的權限，不必改碼（避免「Invalid scopes for app」）。
+ */
 export const FIGMA_SCOPES = ['files:read'] as const
+
+/**
+ * 執行期 Figma scope：優先讀 env `FIGMA_SCOPES`（空白或逗號分隔），否則回預設 FIGMA_SCOPES。
+ * 例：`FIGMA_SCOPES="files:read file_comments:read"` 或 `FIGMA_SCOPES=files:read,file_dev_resources:read`。
+ */
+export function figmaScopes(): readonly string[] {
+  const raw = process.env.FIGMA_SCOPES?.trim()
+  if (!raw) return FIGMA_SCOPES
+  const parsed = raw.split(/[\s,]+/).filter(Boolean)
+  return parsed.length > 0 ? parsed : FIGMA_SCOPES
+}
+
+// ── Adobe OAuth 常數（TODO(adobe)：Adobe IMS 授權/換 token 端點與 scope 與 Figma/Canva 都不同，
+// 尚未取得憑證實測。啟用前必須對 Adobe IMS / Creative Cloud API 文件校正，勿當作已驗證。）──
+// 授權與換 token 的實作在 buildAuthorize / exchangeCode / refreshToken 的 adobe 分支，
+// 目前一律回明確的「尚未實作」錯誤，不臆造請求。
+/** Adobe scope 預設值（純常數）。執行期可用 env `ADOBE_SCOPES` 覆寫。TODO(adobe): 待校正實際唯讀設計 scope。 */
+export const ADOBE_SCOPES = ['openid'] as const
+
+/** 執行期 Adobe scope：優先讀 env `ADOBE_SCOPES`，否則回預設。TODO(adobe): 校正實際 scope。 */
+export function adobeScopes(): readonly string[] {
+  const raw = process.env.ADOBE_SCOPES?.trim()
+  if (!raw) return ADOBE_SCOPES
+  const parsed = raw.split(/[\s,]+/).filter(Boolean)
+  return parsed.length > 0 ? parsed : ADOBE_SCOPES
+}
 
 export type ProviderConfig = {
   provider: ProviderKey
@@ -55,7 +87,11 @@ export type ProviderConfig = {
 
 export function redirectUriFor(provider: ProviderKey): string {
   const explicit =
-    provider === 'canva' ? process.env.CANVA_REDIRECT_URI?.trim() : process.env.FIGMA_REDIRECT_URI?.trim()
+    provider === 'canva'
+      ? process.env.CANVA_REDIRECT_URI?.trim()
+      : provider === 'adobe'
+        ? process.env.ADOBE_REDIRECT_URI?.trim()
+        : process.env.FIGMA_REDIRECT_URI?.trim()
   return explicit && explicit.length > 0 ? explicit : `${appUrl()}/api/integrations/${provider}/callback`
 }
 
@@ -73,6 +109,22 @@ export function providerConfig(provider: ProviderKey): ProviderConfig | null {
       usesPkce: true,
     }
   }
+  if (provider === 'adobe') {
+    // TODO(adobe): 憑證閘門與 Figma 相同（未設 → null → connectable=false → 顯示「尚未設定」）。
+    // 注意：即使設了憑證，OAuth 流程（buildAuthorize/exchangeCode）仍是 TODO(adobe)、尚未實測，
+    // 會回明確的「尚未實作」錯誤而非假裝成功——啟用前必須先對 Adobe IMS 校正端點與 scope。
+    const clientId = process.env.ADOBE_CLIENT_ID?.trim()
+    const clientSecret = process.env.ADOBE_CLIENT_SECRET?.trim()
+    if (!clientId || !clientSecret) return null
+    return {
+      provider,
+      clientId,
+      clientSecret,
+      redirectUri: redirectUriFor('adobe'),
+      scopes: adobeScopes(),
+      usesPkce: true, // TODO(adobe): 確認 Adobe IMS 是否要求 PKCE
+    }
+  }
   const clientId = process.env.FIGMA_CLIENT_ID?.trim()
   const clientSecret = process.env.FIGMA_CLIENT_SECRET?.trim()
   if (!clientId || !clientSecret) return null
@@ -81,7 +133,7 @@ export function providerConfig(provider: ProviderKey): ProviderConfig | null {
     clientId,
     clientSecret,
     redirectUri: redirectUriFor('figma'),
-    scopes: FIGMA_SCOPES,
+    scopes: figmaScopes(),
     usesPkce: false,
   }
 }
@@ -94,6 +146,11 @@ export function isConnectable(provider: ProviderKey): boolean {
 export type AuthorizeInit = { url: string; verifier: string | null }
 
 export function buildAuthorize(cfg: ProviderConfig, state: string): AuthorizeInit {
+  if (cfg.provider === 'adobe') {
+    // TODO(adobe): Adobe IMS 授權 URL / PKCE / scope 尚未校正實測。不臆造授權請求——
+    // 明確拋錯，避免產生一顆「看起來能連、按下去卻壞」的假按鈕。啟用前先實作此分支。
+    throw new Error('Adobe 連接尚未實作（TODO(adobe)：待對 Adobe IMS OAuth 校正端點/scope 並實測）。')
+  }
   if (cfg.provider === 'canva') {
     const { verifier, challenge } = generatePkce()
     const url = buildCanvaAuthorizeUrl({
@@ -192,6 +249,10 @@ export async function exchangeCode(
   code: string,
   verifier: string | null,
 ): Promise<ProviderExchangeResult> {
+  if (cfg.provider === 'adobe') {
+    // TODO(adobe): Adobe IMS token 端點/參數尚未校正實測。不臆造換 token 請求——回明確錯誤。
+    return { ok: false, status: 501, error: 'Adobe 換 token 尚未實作（TODO(adobe)：待對 Adobe IMS 校正並實測）。' }
+  }
   if (cfg.provider === 'canva') {
     const r = await exchangeCanvaCode(
       { clientId: cfg.clientId, clientSecret: cfg.clientSecret, redirectUri: cfg.redirectUri },
@@ -207,6 +268,10 @@ export async function exchangeCode(
 }
 
 export async function refreshToken(cfg: ProviderConfig, refresh: string): Promise<ProviderExchangeResult> {
+  if (cfg.provider === 'adobe') {
+    // TODO(adobe): Adobe IMS refresh 尚未校正實測。不臆造請求——回明確錯誤。
+    return { ok: false, status: 501, error: 'Adobe token 更新尚未實作（TODO(adobe)：待對 Adobe IMS 校正並實測）。' }
+  }
   if (cfg.provider === 'canva') {
     const r = await refreshCanvaToken(
       { clientId: cfg.clientId, clientSecret: cfg.clientSecret, redirectUri: cfg.redirectUri },

@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import type { ProviderKey } from '@/lib/integrations/providers'
 import { FilePickerDialog } from './FilePickerDialog'
 
 type Item = {
-  provider: 'figma' | 'canva'
+  provider: ProviderKey
   label: string
   connectable: boolean
   connection: { id: string; status: string; lastSyncedAt: string | null; lastError: string | null } | null
@@ -33,7 +34,7 @@ export function IntegrationsClient({ items, isOwner }: { items: Item[]; isOwner:
   const [confirming, setConfirming] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   // 開著檔案選擇器的那條連線（provider + label 供 Figma container 判斷與標題）
-  const [picking, setPicking] = useState<{ connectionId: string; provider: 'figma' | 'canva'; label: string } | null>(null)
+  const [picking, setPicking] = useState<{ connectionId: string; provider: ProviderKey; label: string } | null>(null)
 
   async function connect(provider: string) {
     setBusy(provider)

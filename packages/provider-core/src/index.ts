@@ -7,7 +7,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto'
  * webhook 簽章驗證與冪等 key。OAuth/sync 的實作需要 Figma app 憑證，屆時補上 adapter 方法。
  */
 
-export type ProviderId = 'figma' | 'canva' | 'adobe_express' | 'photoshop' | 'other'
+export type ProviderId = 'figma' | 'canva' | 'adobe' | 'adobe_express' | 'photoshop' | 'other'
 
 /** ProviderCapabilities：宣告這個 provider 實際支援什麼。前端據此顯示，不做不支援的功能。 */
 export type ProviderCapabilities = {
@@ -47,7 +47,29 @@ export const CANVA_CAPABILITIES: ProviderCapabilities = {
   selectiveFiles: true,
 }
 
-export const ALL_PROVIDERS: ProviderCapabilities[] = [FIGMA_CAPABILITIES, CANVA_CAPABILITIES]
+/**
+ * Adobe 的能力宣告（唯讀設計列舉＋分析）。connectable=false 直到設定 Adobe app 憑證。
+ *
+ * TODO(adobe): Adobe 的設計 API 與 Figma/Canva 都不同（Adobe IMS OAuth + Creative Cloud /
+ * Adobe Express / Photoshop API 各有不同 scope、端點、資料形狀），且尚未取得憑證實測。
+ * 這裡只做誠實的能力宣告與 adapter 佔位，不臆造可用的 sync。webhooks 先保守關閉（範圍待確認）。
+ */
+export const ADOBE_CAPABILITIES: ProviderCapabilities = {
+  provider: 'adobe',
+  displayName: 'Adobe',
+  connectable: false, // 需要 ADOBE_CLIENT_ID/SECRET，且 OAuth/sync 待對 Adobe API 校正實測
+  oauth: true,
+  webhooks: false, // Adobe webhook 範圍待確認，先保守關閉
+  fileSync: true,
+  versionHistory: false,
+  selectiveFiles: true,
+}
+
+export const ALL_PROVIDERS: ProviderCapabilities[] = [
+  FIGMA_CAPABILITIES,
+  CANVA_CAPABILITIES,
+  ADOBE_CAPABILITIES,
+]
 
 export function capabilitiesFor(provider: ProviderId): ProviderCapabilities | undefined {
   return ALL_PROVIDERS.find((p) => p.provider === provider)
@@ -318,6 +340,52 @@ type CanvaDesign = {
   thumbnail?: { url?: string }
   urls?: { view_url?: string; edit_url?: string }
   updated_at?: number | string
+}
+
+/**
+ * Adobe adapter（能力宣告佔位；OAuth/sync 待 ADOBE_CLIENT_ID/SECRET 且對 Adobe 實際 API 校正才實作）。
+ *
+ * TODO(adobe): Adobe 的授權（Adobe IMS）、scope、REST 端點與 webhook 形式都與 Figma/Canva 不同，
+ * 且尚未取得憑證實測。在校正並實測前：
+ * - listFiles/fetchFile 一律拋 ProviderApiError（不靜默、不假裝成功、不臆造 REST 呼叫）。
+ * - webhook 驗證一律回 false（不驗＝不信），事件/檔案 id 解析為防禦性佔位。
+ * 這是誠實的「尚未支援」骨架，而非假的可用流程。
+ */
+export class AdobeAdapter implements DesignProviderAdapter {
+  readonly capabilities = ADOBE_CAPABILITIES
+
+  verifyWebhook(_rawBody: string, _signature: string | null, _secret: string): boolean {
+    // TODO(adobe): 確認 Adobe webhook 簽章形式（HMAC? JWS?）。校正前一律不信任。
+    return false
+  }
+
+  externalEventId(payload: unknown): string | null {
+    // TODO(adobe): confirm webhook payload shape (unverified). 防禦性從幾種可能形狀取事件 id。
+    const p = payload as { event_id?: unknown; id?: unknown; xdmEventId?: unknown }
+    for (const c of [p?.event_id, p?.id, p?.xdmEventId]) {
+      if (typeof c === 'string' && c.length > 0) return c
+    }
+    return null
+  }
+
+  affectedFileExternalIds(payload: unknown): string[] {
+    // TODO(adobe): confirm webhook payload shape (unverified). 防禦性從幾種可能形狀取資產 id。
+    const p = payload as { asset?: { id?: unknown }; data?: { asset?: { id?: unknown } }; id?: unknown }
+    for (const c of [p?.asset?.id, p?.data?.asset?.id, p?.id]) {
+      if (typeof c === 'string' && c.length > 0) return [c]
+    }
+    return []
+  }
+
+  // TODO(adobe): Adobe 設計 API 端點/scope 與 Figma/Canva 不同，尚未取得憑證實測。
+  // 在對 Adobe 官方文件校正並實測前，不臆造可用的 REST 呼叫——一律拋 ProviderApiError（不靜默、不假成功）。
+  async listFiles(_accessToken: string, _opts?: ProviderListOptions): Promise<ProviderListResult> {
+    throw new ProviderApiError(501, 'Adobe 檔案列舉尚未實作（TODO(adobe)：待對 Adobe API 校正並取得憑證實測）。')
+  }
+
+  async fetchFile(_accessToken: string, _externalId: string): Promise<FetchedFile> {
+    throw new ProviderApiError(501, 'Adobe 檔案抓取尚未實作（TODO(adobe)：待對 Adobe API 校正並取得憑證實測）。')
+  }
 }
 
 /** Canva 時間戳（多為 unix 秒）→ ISO；已是字串就原樣回傳。 */

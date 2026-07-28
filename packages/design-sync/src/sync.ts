@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
 import {
+  AdobeAdapter,
   CanvaAdapter,
   FigmaAdapter,
   ProviderApiError,
@@ -34,7 +35,15 @@ export type ConnectionRow = {
 }
 
 export function getAdapter(provider: ProviderKey): DesignProviderAdapter {
-  return provider === 'figma' ? new FigmaAdapter() : new CanvaAdapter()
+  switch (provider) {
+    case 'figma':
+      return new FigmaAdapter()
+    case 'canva':
+      return new CanvaAdapter()
+    case 'adobe':
+      // TODO(adobe): AdobeAdapter 的 listFiles/fetchFile 目前一律拋 ProviderApiError（尚未實測）。
+      return new AdobeAdapter()
+  }
 }
 
 export type TokenResult = { ok: true; accessToken: string } | { ok: false; error: string }

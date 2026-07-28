@@ -2,7 +2,7 @@ import { ALL_PROVIDERS } from '@snowrealm/provider-core'
 import { resolveContext } from '@/lib/api/context'
 import { getFlags } from '@/lib/flags'
 import { ok, fail, handler } from '@/lib/api/respond'
-import { PROVIDER_FLAG, isConnectable, isProviderKey } from '@/lib/integrations/providers'
+import { PROVIDER_FLAG, isConnectable, isProviderKey, type ProviderKey } from '@/lib/integrations/providers'
 
 export const dynamic = 'force-dynamic'
 
@@ -29,9 +29,9 @@ export const GET = handler(async () => {
     .eq('space_id', spaceId)
 
   const providers = ALL_PROVIDERS.filter((cap) => isProviderKey(cap.provider))
-    .filter((cap) => flags[PROVIDER_FLAG[cap.provider as 'figma' | 'canva']]) // flag 關 → 不列出
+    .filter((cap) => flags[PROVIDER_FLAG[cap.provider as ProviderKey]]) // flag 關 → 不列出
     .map((cap) => {
-      const provider = cap.provider as 'figma' | 'canva'
+      const provider = cap.provider as ProviderKey
       const conn = conns?.find((c) => c.provider === provider) ?? null
       return {
         ...cap,

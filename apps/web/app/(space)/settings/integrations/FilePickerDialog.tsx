@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
+import type { ProviderKey } from '@/lib/integrations/providers'
 
 /** 對應 GET /api/integrations/{connectionId}/files 的回傳（route.ts 的 IntegrationFile）。 */
 type PickerFile = {
@@ -63,7 +64,7 @@ export function FilePickerDialog({
   onClose,
 }: {
   connectionId: string
-  provider: 'figma' | 'canva'
+  provider: ProviderKey
   label: string
   onClose: () => void
 }) {

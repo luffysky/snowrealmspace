@@ -67,7 +67,7 @@ export default async function IntegrationsSettingsPage({
       </p>
       <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>外部設計工具</h1>
       <p className="sr-muted">
-        連接 Figma 或 Canva，把設計檔帶進這個空間、追蹤版本。授權以加密方式保存，永不外流；隨時可中斷。
+        連接 Figma、Canva 或 Adobe，把設計檔帶進這個空間、追蹤版本。授權以加密方式保存，永不外流；隨時可中斷。
       </p>
 
       {connectedKey && (

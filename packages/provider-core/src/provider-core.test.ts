@@ -2,12 +2,15 @@ import { describe, it, expect } from 'vitest'
 import { createHmac } from 'node:crypto'
 import {
   FIGMA_CAPABILITIES,
+  ADOBE_CAPABILITIES,
   capabilitiesFor,
   verifyHmacSignature,
   verifyFigmaPasscode,
   webhookIdempotencyKey,
   FigmaAdapter,
   CanvaAdapter,
+  AdobeAdapter,
+  ProviderApiError,
 } from './index.js'
 
 describe('capabilities', () => {
@@ -19,11 +22,17 @@ describe('capabilities', () => {
   it('Figma connectable=false（尚未設定憑證，前端不給連接按鈕，禁 Coming Soon）', () => {
     expect(FIGMA_CAPABILITIES.connectable).toBe(false)
   })
-  it('capabilitiesFor 查得到 figma/canva、查不到未實作', () => {
+  it('capabilitiesFor 查得到 figma/canva/adobe、查不到未實作', () => {
     expect(capabilitiesFor('figma')?.displayName).toBe('Figma')
     expect(capabilitiesFor('canva')?.displayName).toBe('Canva')
     expect(capabilitiesFor('canva')?.connectable).toBe(false)
+    expect(capabilitiesFor('adobe')?.displayName).toBe('Adobe')
     expect(capabilitiesFor('photoshop')).toBeUndefined()
+  })
+  it('Adobe connectable=false（尚未設定憑證＋OAuth 待校正，前端不給連接按鈕，禁 Coming Soon）', () => {
+    expect(ADOBE_CAPABILITIES.connectable).toBe(false)
+    expect(ADOBE_CAPABILITIES.webhooks).toBe(false) // 範圍待確認，保守關閉
+    expect(ADOBE_CAPABILITIES.selectiveFiles).toBe(true)
   })
 })
 
@@ -108,5 +117,42 @@ describe('affectedFileExternalIds', () => {
   })
   it('Canva：id 非字串 → []', () => {
     expect(new CanvaAdapter().affectedFileExternalIds({ id: 999 })).toEqual([])
+  })
+
+  it('Adobe：asset.id → [id]', () => {
+    expect(new AdobeAdapter().affectedFileExternalIds({ asset: { id: 'a1' } })).toEqual(['a1'])
+  })
+  it('Adobe：data.asset.id → [id]', () => {
+    expect(new AdobeAdapter().affectedFileExternalIds({ data: { asset: { id: 'a2' } } })).toEqual(['a2'])
+  })
+  it('Adobe：頂層 id → [id]', () => {
+    expect(new AdobeAdapter().affectedFileExternalIds({ id: 'a3' })).toEqual(['a3'])
+  })
+  it('Adobe：都沒有 → []', () => {
+    expect(new AdobeAdapter().affectedFileExternalIds({ foo: 'bar' })).toEqual([])
+  })
+  it('Adobe：id 非字串 → []', () => {
+    expect(new AdobeAdapter().affectedFileExternalIds({ id: 999 })).toEqual([])
+  })
+})
+
+describe('AdobeAdapter（誠實佔位：未校正前不臆造 sync）', () => {
+  it('externalEventId：有 event_id 用它', () => {
+    expect(new AdobeAdapter().externalEventId({ event_id: 'e1' })).toBe('e1')
+  })
+  it('externalEventId：退回 id', () => {
+    expect(new AdobeAdapter().externalEventId({ id: 'e2' })).toBe('e2')
+  })
+  it('externalEventId：都沒有 → null', () => {
+    expect(new AdobeAdapter().externalEventId({ foo: 'bar' })).toBeNull()
+  })
+  it('verifyWebhook：一律 false（TODO(adobe) 未校正 → 不信任）', () => {
+    expect(new AdobeAdapter().verifyWebhook('{}', 'sig', 'secret')).toBe(false)
+  })
+  it('listFiles：拋 ProviderApiError（尚未實作，不假成功）', async () => {
+    await expect(new AdobeAdapter().listFiles('tok')).rejects.toBeInstanceOf(ProviderApiError)
+  })
+  it('fetchFile：拋 ProviderApiError（尚未實作，不假成功）', async () => {
+    await expect(new AdobeAdapter().fetchFile('tok', 'ext')).rejects.toBeInstanceOf(ProviderApiError)
   })
 })
