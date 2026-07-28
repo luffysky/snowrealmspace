@@ -78,6 +78,10 @@
 - [x] ~~**後台使用者上線資訊**（仿 AI 島）~~ ✅ `bba97d5`：`user_sessions`（migration 0059、已套 hosted）、heartbeat、在線 badge、地區/裝置；**只存 ip_hash+地區、不存原始 IP**；外部 IP→地區經 Luffy 選用、已揭露。
 - [ ] **🌐 i18n（之後排）**：全站多語。參考 AI 島用**腳本 + Google 翻譯免費**批次翻。天氣 autocomplete 已先避免寫死中文地名清單。
 - [ ] **型別正式重生**：本機開 Docker 後 `supabase gen types --local` 對齊 user_sessions（現手補、typecheck 綠）。
+- [ ] **🔴 Adobe 整合 — PS/AI/PR/AE（必做，Luffy 0729 定案；延後實作）**：Creative Cloud 桌面系列，走 Adobe IMS OAuth + CC 檔案 API。
+      現為骨架（連接顯示「尚未實作」）。前置＋做法詳見 `todo_list_0724.md` §5c。
+      注意：PR/AE 是影片專案檔（非圖片），AI 分析只能對匯出的預覽/影格；PS/AI 可出圖走既有 rendition 路徑。
+      真正動工前我要補 `design_connections.provider` 加 `adobe` 的 migration。
 
 ## 收工狀態（2026-07-28）
 連接半段 + S1 + S2 已審過並 push；F 到「可連、可選檔同步、worker 背景重試」的程度，

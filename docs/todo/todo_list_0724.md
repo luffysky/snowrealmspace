@@ -460,11 +460,12 @@ FIGMA_REDIRECT_URI=https://snowrealm-space.snowrealm.pet/api/integrations/figma/
 > 原因：Adobe 的認證走 **Adobe IMS**（跟 Figma/Canva 端點完全不同），且「讀你的設計來分析」在 Adobe
 > 沒有像 Canva Connect 那樣現成的 REST。要能用需**兩步**：(A) 你拿憑證；(B) 我用你的憑證實作＋對真 API 實測 IMS flow（現為 `TODO(adobe)`）。
 
-### 先決定：Adobe「哪一個」（scope/API 天差地遠，先選才知接哪支）
-- **Adobe Express**（線上設計，最接近 Canva）——若要「像 Canva 那樣列設計＋預覽」優先考慮這個，但其開放 API 以 add-on/Embed 為主，未必有現成「列我的設計」REST。
-- **Creative Cloud（PS/AI/Lr 產出的檔案）** → Creative Cloud Libraries API。
-- **Photoshop** → 是影像處理 API/外掛，**不是**「列設計」。
-→ **先選一個**告訴我，我才知道要接哪支 API、要哪些 scope。
+### 決定（Luffy 0729）：**Creative Cloud 桌面系列 — PS / AI / PR / AE（必做，延後實作）**
+- 目標：讀取 Photoshop（PS）/ Illustrator（AI）/ Premiere Pro（PR）/ After Effects（AE）產出的檔案來分析。
+- 對應 API 方向：**Adobe IMS OAuth + Creative Cloud（Libraries / 檔案存取）API**（非 Adobe Express add-on）。
+- ⚠️ 誠實提醒：**PR / AE 是影片專案檔（.prproj / .aep），不是圖片**——AI 視覺分析只能分析「匯出的預覽/影格」，
+  無法直接讀專案檔內容。實作時 PS/AI（可出圖）走既有 rendition→assets 路徑；PR/AE 需先有匯出預覽才可分析。
+- 現況：**延後**（Luffy「等之後用」）。真正動工前的前置見上方 (A) 拿憑證 + (B) 我實作 IMS flow + 補 `adobe` provider migration。
 
 ### 拿憑證（你手動，一次性）
 1. **Adobe Developer Console**：<https://developer.adobe.com/console> 用 Adobe 帳號登入 → **Create new project**。
