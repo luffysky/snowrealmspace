@@ -7,7 +7,7 @@ export {
   isAnalyticsOnly,
 } from './events.js'
 export { emit, emitEvent } from './emit.js'
-export { audit, type AuditEntry } from './audit.js'
+export { audit, hashIp, DEFAULT_IP_SALT, type AuditEntry } from './audit.js'
 export {
   PROJECTED,
   isProjectable,

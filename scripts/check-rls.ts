@@ -22,6 +22,9 @@ const REQUIRED_RLS_WITHOUT_SPACE_ID = [
   // 但登入方式只有一組。隔離鍵是 user_id，policy 為 user_id = auth.uid()。
   'user_identities',
   'oauth_transactions',
+  // 站台上線分析：使用者層級（非 space），隔離鍵是 user_id。
+  // RLS = site-admin SELECT、寫入僅 service role。必須啟用 RLS 且有 policy。
+  'user_sessions',
 ]
 
 /**
@@ -66,6 +69,8 @@ const ALLOWLIST_NO_SPACE_ID = new Set([
   'oauth_transactions',
   // 內容池是全站共用的公開參考資料（像 fonts），非租戶資料
   'content_items',
+  // 站台上線分析：使用者層級而非 space，隔離鍵是 user_id（見 REQUIRED_RLS_WITHOUT_SPACE_ID）
+  'user_sessions',
 ])
 
 type Problem = { table: string; issue: string }

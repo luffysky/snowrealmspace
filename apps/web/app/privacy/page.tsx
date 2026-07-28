@@ -78,6 +78,19 @@ export default function PrivacyPage() {
         </section>
 
         <section className="sr-stack">
+          <h2 className="sr-section-title">站台營運分析</h2>
+          <p>
+            為了維運（了解服務被使用的情況、排除問題），管理後台會顯示使用者的<strong>上線資訊</strong>：
+            上線時間、在線時長、使用的<strong>裝置與瀏覽器</strong>、以及<strong>大致地區</strong>。
+          </p>
+          <ul style={{ lineHeight: 1.9 }}>
+            <li>裝置與瀏覽器是從你瀏覽器送出的標準識別字串（User-Agent）判讀，<strong>不</strong>做跨站追蹤、<strong>不</strong>植入廣告 cookie。</li>
+            <li>大致地區是把你的連線來源 IP <strong>當下</strong>傳給地理位置服務（如 ipapi.co）換成「國家／地區」字串後<strong>即丟棄</strong>——我們<strong>只保存換算出的地區字串與 IP 的雜湊值，不保存原始 IP</strong>。</li>
+            <li>這些紀錄只有站台管理員能看，用於維運與安全，不作行銷或對外分享。</li>
+          </ul>
+        </section>
+
+        <section className="sr-stack">
           <h2 className="sr-section-title">Email 通知</h2>
           <p>
             登入信與（<strong>你主動開啟的</strong>）每週回顧 email，透過寄件服務 Resend 寄送；我們只提供寄送所需的收件位址與信件內容，不作行銷用途。
@@ -88,7 +101,8 @@ export default function PrivacyPage() {
           <h2 className="sr-section-title">我們用到的第三方服務</h2>
           <p className="sr-muted">
             這些服務各自有其隱私政策：Supabase（帳號與資料庫）、Cloudflare R2（檔案儲存）、Zeabur（部署）、
-            Resend（寄信）、Open-Meteo（天氣，僅在你開啟時）、你主動連接的 AI 服務商與 Figma／Canva、以及你選用的 Google／LINE 登入。
+            Resend（寄信）、Open-Meteo（天氣，僅在你開啟時）、IP 地理位置服務（ipapi.co／ip-api.com／ipwho.is，僅用於把連線 IP 換成大致地區字串）、
+            你主動連接的 AI 服務商與 Figma／Canva、以及你選用的 Google／LINE 登入。
             我們只在提供對應功能所需的最小範圍內與它們交換資料。
           </p>
         </section>

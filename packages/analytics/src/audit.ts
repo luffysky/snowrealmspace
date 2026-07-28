@@ -20,11 +20,17 @@ export type AuditEntry = {
   userAgent?: string | undefined
 }
 
+/** audit / 站台分析共用的預設鹽。改這裡兩邊的雜湊會一起變。 */
+export const DEFAULT_IP_SALT = 'snowrealm'
+
 /**
  * IP 以雜湊儲存，不存明文。
  * 加鹽讓相同 IP 在不同部署間無法被交叉比對。
+ *
+ * 匯出供站台分析（user_sessions 的 ip_hash）共用同一套雜湊，
+ * 使兩邊的 ip_hash 可比對、且都不落地原始 IP。
  */
-function hashIp(ip: string | undefined, salt: string): string | null {
+export function hashIp(ip: string | undefined | null, salt: string = DEFAULT_IP_SALT): string | null {
   if (!ip) return null
   return createHash('sha256').update(`${salt}:${ip}`).digest('hex').slice(0, 32)
 }

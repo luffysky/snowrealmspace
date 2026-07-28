@@ -8,6 +8,7 @@ import { resolveAvatarUrl } from '@/lib/avatar'
 import { Avatar } from '@/components/Avatar'
 import { UserAdminControls } from './UserAdminControls'
 import { UserNotes, type Note } from './UserNotes'
+import { isOnline, humanDuration, relativeTime, formatRegion, formatDevice } from '@/lib/analytics/format'
 
 export const metadata: Metadata = { title: '使用者詳情 — SnowRealm' }
 export const dynamic = 'force-dynamic'
@@ -41,6 +42,16 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
     .order('created_at', { ascending: false })
     .limit(100)
   const notes = (noteData ?? []) as Note[]
+
+  // 上線資訊：最近 5 個工作階段（新到舊）。第一筆＝最新，供上方摘要。
+  const { data: sessionData } = await admin
+    .from('user_sessions')
+    .select('id, started_at, last_seen_at, total_duration_sec, country, region, city, device_type, browser, os, page_count')
+    .eq('user_id', id)
+    .order('last_seen_at', { ascending: false })
+    .limit(5)
+  const sessions = sessionData ?? []
+  const latestSession = sessions[0] ?? null
 
   const authUser = authRes?.user ?? null
   if (!authUser && !profile) {
@@ -103,6 +114,74 @@ export default async function UserDetailPage({ params }: { params: Promise<{ id:
             isSelf={id === gate.userId}
           />
         </div>
+      </section>
+
+      <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>
+        <h2 className="sr-section-title">
+          上線資訊
+          {latestSession && isOnline(latestSession.last_seen_at, 5) && (
+            <span
+              style={{
+                marginInlineStart: 'var(--sr-space-2)',
+                fontSize: 'var(--sr-text-xs)',
+                fontWeight: 400,
+                color: 'var(--sr-success)',
+              }}
+            >
+              ● 在線
+            </span>
+          )}
+        </h2>
+        {!latestSession ? (
+          <p className="sr-muted" style={{ margin: 0 }}>還沒有上線紀錄。</p>
+        ) : (
+          <>
+            <div className="sr-stack" style={{ gap: 'var(--sr-space-1)', fontSize: 'var(--sr-text-sm)', minWidth: 0 }}>
+              <div style={{ overflowWrap: 'anywhere' }}>
+                <span className="sr-muted">上線時間：</span>
+                {new Date(latestSession.started_at).toLocaleString('zh-TW')}
+              </div>
+              <div><span className="sr-muted">在線時長：</span>{humanDuration(latestSession.total_duration_sec)}</div>
+              <div>
+                <span className="sr-muted">最後上線：</span>
+                {relativeTime(latestSession.last_seen_at)}
+                <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)' }}>
+                  {'　'}（{new Date(latestSession.last_seen_at).toLocaleString('zh-TW')}）
+                </span>
+              </div>
+              <div style={{ overflowWrap: 'anywhere' }}>
+                <span className="sr-muted">地區：</span>
+                {formatRegion(latestSession.country, latestSession.region, latestSession.city)}
+              </div>
+              <div style={{ overflowWrap: 'anywhere' }}>
+                <span className="sr-muted">裝置：</span>
+                {formatDevice(latestSession.device_type, latestSession.browser, latestSession.os)}
+              </div>
+            </div>
+
+            {sessions.length > 1 && (
+              <div style={{ marginTop: 'var(--sr-space-3)', paddingTop: 'var(--sr-space-3)', borderTop: '1px solid var(--sr-border)' }}>
+                <p className="sr-muted" style={{ margin: '0 0 var(--sr-space-2)', fontSize: 'var(--sr-text-xs)' }}>
+                  近期工作階段（最近 {sessions.length}）
+                </p>
+                <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0, gap: 'var(--sr-space-1)', fontSize: 'var(--sr-text-xs)' }}>
+                  {sessions.map((s) => (
+                    <li key={s.id} className="sr-row" style={{ justifyContent: 'space-between', gap: 'var(--sr-space-2)', minWidth: 0 }}>
+                      <span className="sr-muted" style={{ flexShrink: 0 }}>
+                        {new Date(s.last_seen_at).toLocaleString('zh-TW')}
+                      </span>
+                      <span style={{ textAlign: 'right', overflowWrap: 'anywhere', minWidth: 0 }}>
+                        {formatDevice(s.device_type, s.browser, s.os)}
+                        {' · '}
+                        {formatRegion(s.country, s.region, s.city)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
+        )}
       </section>
 
       <section className="sr-card" style={{ marginTop: 'var(--sr-space-4)' }}>

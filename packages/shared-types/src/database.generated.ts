@@ -3045,6 +3045,66 @@ export type Database = {
         }
         Relationships: []
       }
+      user_sessions: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          current_path: string | null
+          device_type: string | null
+          ended_at: string | null
+          id: string
+          ip_hash: string | null
+          last_seen_at: string
+          os: string | null
+          page_count: number
+          region: string | null
+          started_at: string
+          total_duration_sec: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          current_path?: string | null
+          device_type?: string | null
+          ended_at?: string | null
+          id: string
+          ip_hash?: string | null
+          last_seen_at?: string
+          os?: string | null
+          page_count?: number
+          region?: string | null
+          started_at?: string
+          total_duration_sec?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          current_path?: string | null
+          device_type?: string | null
+          ended_at?: string | null
+          id?: string
+          ip_hash?: string | null
+          last_seen_at?: string
+          os?: string | null
+          page_count?: number
+          region?: string | null
+          started_at?: string
+          total_duration_sec?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       widget_definitions: {
         Row: {
           category: string

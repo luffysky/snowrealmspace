@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Avatar } from '@/components/Avatar'
+import { isOnline, relativeTime } from '@/lib/analytics/format'
 
 export type UserRow = {
   id: string
@@ -13,6 +14,7 @@ export type UserRow = {
   siteRole: 'owner' | 'admin' | 'member'
   privileged: boolean
   avatarUrl: string | null
+  lastSeenAt: string | null
 }
 
 const ROLE_LABEL: Record<UserRow['siteRole'], string> = {
@@ -76,6 +78,7 @@ export function UsersAdmin({
           <thead>
             <tr>
               <th style={th}>使用者</th>
+              <th style={th}>在線</th>
               <th style={th}>角色</th>
               <th style={th}>特權</th>
             </tr>
@@ -83,6 +86,7 @@ export function UsersAdmin({
           <tbody>
             {rows.map((r) => {
               const isSelf = r.id === selfId
+              const online = isOnline(r.lastSeenAt, 5)
               return (
                 <tr key={r.id} style={{ borderTop: '1px solid var(--sr-border)' }}>
                   <td style={td}>
@@ -98,6 +102,27 @@ export function UsersAdmin({
                         </span>
                       </div>
                     </div>
+                  </td>
+                  <td style={td}>
+                    {r.lastSeenAt ? (
+                      <span className="sr-row" style={{ alignItems: 'center', gap: 'var(--sr-space-1)' }}>
+                        <span
+                          aria-hidden
+                          style={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: '50%',
+                            flexShrink: 0,
+                            background: online ? 'var(--sr-success)' : 'var(--sr-border)',
+                          }}
+                        />
+                        <span style={{ color: online ? 'var(--sr-success)' : 'var(--sr-fg-muted)' }}>
+                          {online ? '在線' : relativeTime(r.lastSeenAt)}
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="sr-muted">—</span>
+                    )}
                   </td>
                   <td style={td}>
                     {isOwner && !isSelf ? (

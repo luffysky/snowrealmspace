@@ -19,10 +19,22 @@ export default async function AdminUsersPage() {
   if (!gate.ok) redirect(gate.reason === 'unauthenticated' ? `/login?next=${ADMIN_BASE}/users` : '/home')
 
   const admin = createAdminClient()
-  const [{ data: authList }, { data: profileData }] = await Promise.all([
+  const [{ data: authList }, { data: profileData }, { data: sessionData }] = await Promise.all([
     admin.auth.admin.listUsers({ page: 1, perPage: 200 }),
     admin.from('profiles').select('id, display_name, site_role, privileged, avatar_asset_id'),
+    // 每人最近的上線時間：一次撈近期 session（新到舊），下面 reduce 成每 user 的最新一筆，避免 N+1。
+    admin
+      .from('user_sessions')
+      .select('user_id, last_seen_at')
+      .order('last_seen_at', { ascending: false })
+      .limit(1000),
   ])
+
+  // user_id → 最新 last_seen_at（已依 last_seen_at desc 排序，第一次見到即最新）
+  const lastSeenOf = new Map<string, string>()
+  for (const s of sessionData ?? []) {
+    if (s.user_id && !lastSeenOf.has(s.user_id)) lastSeenOf.set(s.user_id, s.last_seen_at)
+  }
 
   const roleOf = new Map(
     (profileData ?? []).map((p) => [
@@ -52,6 +64,7 @@ export default async function AdminUsersPage() {
       siteRole: (p?.role === 'owner' || p?.role === 'admin' ? p.role : 'member') as UserRow['siteRole'],
       privileged: p?.privileged ?? false,
       avatarUrl: p?.avatarAssetId ? (avatarUrls.get(p.avatarAssetId) ?? null) : null,
+      lastSeenAt: lastSeenOf.get(u.id) ?? null,
     }
   })
 

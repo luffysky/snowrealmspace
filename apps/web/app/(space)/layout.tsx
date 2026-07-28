@@ -23,6 +23,7 @@ import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLa
 import { themeGradientBackground } from '@/lib/theme/theme-gradient-bg'
 import { SpaceShell } from '@/components/SpaceShell'
 import { FloatingAgent } from '@/components/FloatingAgent'
+import { SessionHeartbeat } from '@/components/SessionHeartbeat'
 import { DialogProvider } from '@/components/ui/DialogProvider'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
 import { ADMIN_BASE } from '@/lib/admin-path'
@@ -213,6 +214,8 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
       )}
 
       <BackgroundLayer spaceId={space.id} state={resolvedBackground} />
+
+      <SessionHeartbeat />
 
       <DialogProvider>
         <SpaceShell
