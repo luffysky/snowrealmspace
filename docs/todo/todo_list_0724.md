@@ -453,6 +453,46 @@ FIGMA_REDIRECT_URI=https://snowrealm-space.snowrealm.pet/api/integrations/figma/
 4. 程式面：provider-core 已註冊 Canva capabilities（未設憑證前顯示「尚未設定」、不給假按鈕）；
    憑證設好後才實作 OAuth connect/callback 與 `canva.sync`（同 Figma 路徑）。
 
+## 5c. Adobe（設計來源）— 詳解（**現況：骨架，尚不能真的連**）
+
+> ⚠️ 跟 Figma/Canva 不一樣。Figma/Canva 是「憑證設好就能連」；**Adobe 目前只是骨架**——
+> 前台開 flag `adobeExpress` 會顯示 Adobe，但按連接會走到明確的「尚未實作」（誠實擋、非假按鈕）。
+> 原因：Adobe 的認證走 **Adobe IMS**（跟 Figma/Canva 端點完全不同），且「讀你的設計來分析」在 Adobe
+> 沒有像 Canva Connect 那樣現成的 REST。要能用需**兩步**：(A) 你拿憑證；(B) 我用你的憑證實作＋對真 API 實測 IMS flow（現為 `TODO(adobe)`）。
+
+### 先決定：Adobe「哪一個」（scope/API 天差地遠，先選才知接哪支）
+- **Adobe Express**（線上設計，最接近 Canva）——若要「像 Canva 那樣列設計＋預覽」優先考慮這個，但其開放 API 以 add-on/Embed 為主，未必有現成「列我的設計」REST。
+- **Creative Cloud（PS/AI/Lr 產出的檔案）** → Creative Cloud Libraries API。
+- **Photoshop** → 是影像處理 API/外掛，**不是**「列設計」。
+→ **先選一個**告訴我，我才知道要接哪支 API、要哪些 scope。
+
+### 拿憑證（你手動，一次性）
+1. **Adobe Developer Console**：<https://developer.adobe.com/console> 用 Adobe 帳號登入 → **Create new project**。
+2. project 內 **Add API** → 選上面決定的產品 API（用 **OAuth Web App** 憑證）。
+3. 拿 **Client ID（API Key）** 與 **Client Secret**。Secret 是機密：只放 server env、**絕不** `NEXT_PUBLIC_`。
+4. **Redirect URI**（console 的 OAuth 設定填，跟程式一字不差）：
+   - 正式：`https://snowrealm-space.snowrealm.pet/api/integrations/adobe/callback`
+   - 本機：`http://localhost:3000/api/integrations/adobe/callback`
+5. **Adobe 用 IMS 端點（非 Figma/Canva 那套）**：
+   - 授權：`https://ims-na1.adobelogin.com/ims/authorize/v2?client_id=…&redirect_uri=…&scope=…&response_type=code`
+   - 換 token：`POST https://ims-na1.adobelogin.com/ims/token/v3`
+   - scope 依所選 API 而定（如 `openid`,`AdobeID`,`creative_sdk` 或該 API 專屬）——**以 console 該 API 實際列出的為準**。
+
+### env（Zeabur web；程式已預留讀取，含 env 覆寫）
+```
+ADOBE_CLIENT_ID=xxxx
+ADOBE_CLIENT_SECRET=xxxx        # 絕不加 NEXT_PUBLIC_
+ADOBE_REDIRECT_URI=https://snowrealm-space.snowrealm.pet/api/integrations/adobe/callback
+ADOBE_SCOPES=openid,AdobeID     # 依所選 API 調（env 可覆寫預設）
+```
+> 設了這些**連接會出現、但按下去仍是「尚未實作」**，直到 (B) 我把 IMS flow + 該 API 實作＋實測完。
+
+### DB 地雷（真要連前我要先補）
+`design_connections.provider` 的 check 目前是 `figma/canva/adobe_express/photoshop/other`，**沒有 `adobe`**。
+真要連 Adobe 前，我得補一個 migration 把 `adobe` 加進 check（或把 provider key 對應成 `adobe_express`）——這步我做、屆時一起套 hosted。
+
+---
+
 ## 6. 隱私政策 / 使用條款（Google、LINE 審核前置）
 - `/privacy`、`/terms` 頁面已存在；送 Google/LINE 審核前，**確認內容寫實**（資料怎麼用、第三方登入、刪除方式）。
 
