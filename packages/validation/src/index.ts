@@ -209,6 +209,8 @@ export {
   conditionToContentTags,
   weatherCitySchema,
   weatherLookupSchema,
+  weatherSearchSchema,
   type WeatherCondition,
   type WeatherLookupInput,
+  type WeatherSearchInput,
 } from './weather.js'

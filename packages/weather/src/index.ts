@@ -78,6 +78,39 @@ export async function geocodeCity(city: string): Promise<GeoPlace | null> {
   }
 }
 
+/** 一筆城市搜尋建議：GeoPlace 加上預先算好的顯示字串（如「信義區, 臺灣」）。 */
+export type GeoSuggestion = GeoPlace & { displayName: string }
+
+/**
+ * 城市自動完成搜尋：一個查詢字串 → 最多 8 筆建議（mirror geocodeCity 但 count=8）。
+ *
+ * 涵蓋台灣縣市/區、外島（澎湖/金門/馬祖）與任何國外城市，名稱走 language=zh 在地化，
+ * 不需維護巨大的靜態清單。查無結果回空陣列（非錯誤）；上游失敗才 throw。
+ * 少於 2 字直接回空陣列（呼叫端也應 debounce，避免每個按鍵都打上游）。
+ */
+export async function searchCities(query: string): Promise<GeoSuggestion[]> {
+  const q = query.trim()
+  if (q.length < 2) return []
+  const url = `${GEOCODE_URL}?name=${encodeURIComponent(q)}&count=8&language=zh&format=json`
+  const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) })
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '')
+    console.error('[weather] 城市搜尋失敗', res.status, detail.slice(0, 200))
+    throw new Error(`search ${res.status}`)
+  }
+  const body = (await res.json()) as GeoRaw
+  return (body.results ?? []).map((r) => {
+    const place: GeoPlace = {
+      name: r.name,
+      latitude: r.latitude,
+      longitude: r.longitude,
+      ...(r.country ? { country: r.country } : {}),
+      ...(r.admin1 ? { admin1: r.admin1 } : {}),
+    }
+    return { ...place, displayName: displayPlace(place) }
+  })
+}
+
 type ReverseRaw = { city?: string; locality?: string; principalSubdivision?: string; countryName?: string }
 
 /** 座標 → 城市名（供「使用目前位置」把定位換成可儲存的名稱）。找不到回 null。 */

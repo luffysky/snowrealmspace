@@ -144,3 +144,13 @@ export const weatherLookupSchema = z
   })
 
 export type WeatherLookupInput = z.infer<typeof weatherLookupSchema>
+
+/**
+ * POST /api/weather/search 的請求 body：城市自動完成的查詢字串。
+ * 最少 2 字（避免一輸入就打上游、回一堆雜訊）；上限 80 字。查詢字串只進 body、不進 URL。
+ */
+export const weatherSearchSchema = z.object({
+  query: z.string().trim().min(2, '請至少輸入 2 個字。').max(80, '搜尋字串太長了。'),
+})
+
+export type WeatherSearchInput = z.infer<typeof weatherSearchSchema>
