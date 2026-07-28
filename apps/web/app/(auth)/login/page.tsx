@@ -3,6 +3,7 @@ import { LoginForm } from './LoginForm'
 import { PasswordAuth } from './PasswordAuth'
 import { ThirdPartyLogin } from './ThirdPartyLogin'
 import { lineConfig } from '@snowrealm/db/line-oauth'
+import { isEnabled } from '@/lib/flags'
 
 export const metadata: Metadata = { title: '登入 — SnowRealm-Space' }
 
@@ -13,6 +14,8 @@ export default async function LoginPage({
 }) {
   const params = await searchParams
   const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null
+
+  const openRegistration = await isEnabled('openRegistration')
 
   return (
     <main className="sr-center">
@@ -44,6 +47,7 @@ export default async function LoginPage({
         <ThirdPartyLogin
           googleAvailable={Boolean(process.env['GOOGLE_OAUTH_CLIENT_ID'])}
           lineAvailable={lineConfig() !== null}
+          openRegistration={openRegistration}
           next={first(params['next']) ?? '/home'}
         />
       </div>

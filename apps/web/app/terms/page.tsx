@@ -19,7 +19,7 @@ export default function TermsPage() {
 
         <section className="sr-stack">
           <h2 className="sr-section-title">1. 服務性質</h2>
-          <p>本服務目前為<strong>邀請制的封閉測試（Alpha）</strong>，功能可能變動、暫停或重置。我們會盡力維護穩定，但不保證不中斷。</p>
+          <p>本服務目前為<strong>封閉測試（Alpha）</strong>，功能可能變動、暫停或重置。我們會盡力維護穩定，但不保證不中斷。</p>
         </section>
 
         <section className="sr-stack">

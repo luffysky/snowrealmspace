@@ -7,6 +7,7 @@ import { checkInvite, provisionSpaceForUser } from '@snowrealm/db/provisioning'
 import { createAdminClient } from '@snowrealm/db/server'
 import { emitEvent } from '@snowrealm/analytics'
 import { appUrl } from '@/lib/app-url'
+import { isEnabled } from '@/lib/flags'
 
 const emailSchema = z.string().trim().toLowerCase().email('請輸入有效的 email')
 
@@ -54,7 +55,11 @@ export async function sendMagicLink(
     isExistingMember = Boolean(membership)
   }
 
-  if (!isExistingMember) {
+  // openRegistration 開啟時：非成員也不需邀請，直接寄 magic link，
+  // 由 /auth/callback 完成佈建（shouldCreateUser 已為 true）。
+  const openRegistration = await isEnabled('openRegistration')
+
+  if (!isExistingMember && !openRegistration) {
     if (!inviteToken) {
       return {
         status: 'error',

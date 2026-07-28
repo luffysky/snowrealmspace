@@ -22,6 +22,9 @@ export const FEATURE_FLAG_KEYS = [
   'semanticSearch',
   'weeklyRecap',
   'weatherWidget',
+  // 全域旗標：開放自助註冊（Google／LINE／magic link 可直接開新帳號）。
+  // 關閉時退回邀請制。從 admin 可切換，隨時可逆。
+  'openRegistration',
 ] as const
 
 export type FeatureFlagKey = (typeof FEATURE_FLAG_KEYS)[number]

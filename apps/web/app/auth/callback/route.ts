@@ -11,6 +11,7 @@ import { syncFromAuthIdentities } from '@snowrealm/db/identities'
 import { emitEvent, audit } from '@snowrealm/analytics'
 import { toSpaceRole } from '@snowrealm/shared-types'
 import { appUrl } from '@/lib/app-url'
+import { isEnabled } from '@/lib/flags'
 
 /**
  * Magic link 回呼。
@@ -62,6 +63,30 @@ export async function GET(request: NextRequest) {
 
   // 尚無 space → 必須有有效邀請才能繼續。
   if (!inviteToken) {
+    // openRegistration 開啟時：不需邀請，直接為這個 user 佈建新 space。
+    // （code exchange 與既有成員檢查在上面已完成、維持不變。）
+    if (await isEnabled('openRegistration')) {
+      try {
+        const provisioned = await provisionSpaceForUser({
+          userId: user.id,
+          email,
+          displayName: (user.user_metadata?.['display_name'] as string | undefined) ?? null,
+        })
+        // email 身分投影，避免綁 Google 後把自己鎖在外面（同邀請分支的理由）。
+        await syncFromAuthIdentities(user.id).catch(() => {})
+        if (provisioned.created) {
+          await emitEvent('space.created', provisioned.spaceId, user.id, {
+            spaceName: email.split('@')[0] ?? 'space',
+            viaInvite: false,
+          })
+        }
+        return NextResponse.redirect(new URL(next, base))
+      } catch (err: unknown) {
+        console.error('[auth/callback] 自助註冊佈建失敗', err)
+        await db.auth.signOut()
+        return NextResponse.redirect(new URL('/login?error=provisioning_failed', base))
+      }
+    }
     await db.auth.signOut()
     return NextResponse.redirect(new URL('/login?error=invite_required', base))
   }

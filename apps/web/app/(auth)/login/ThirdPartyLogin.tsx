@@ -12,10 +12,13 @@
 export function ThirdPartyLogin({
   googleAvailable,
   lineAvailable,
+  openRegistration,
   next,
 }: {
   googleAvailable: boolean
   lineAvailable: boolean
+  /** openRegistration 開啟時，Google／LINE 也能直接註冊，提示措辭隨之改變。 */
+  openRegistration: boolean
   next: string
 }) {
   if (!googleAvailable && !lineAvailable) return null
@@ -40,7 +43,9 @@ export function ThirdPartyLogin({
       </div>
 
       <p className="sr-muted" style={{ marginTop: 'var(--sr-space-3)', marginBottom: 0 }}>
-        目前為邀請制。Google 與 LINE 只能給已經有帳號、且已在設定頁綁定過的人登入。
+        {openRegistration
+          ? '可用 Google／LINE 直接登入或註冊。'
+          : '目前為邀請制。Google 與 LINE 只能給已經有帳號、且已在設定頁綁定過的人登入。'}
       </p>
     </div>
   )
