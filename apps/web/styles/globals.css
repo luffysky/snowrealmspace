@@ -730,7 +730,7 @@ h3 {
 }
 .sr-asset-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 96px), 1fr));
   gap: var(--sr-space-2);
   max-height: 50vh;
   overflow-y: auto;
@@ -971,21 +971,8 @@ h3 {
   .sr-actions {
     flex: 0 0 auto;
   }
-
-  /*
-   * 手機上鈴鐺會落在 nav-end 左側，若面板沿用「往左展開」會溢出畫面左緣。
-   * 改成貼齊視窗兩側（fixed + inset-inline），保證不破版。
-   */
-  .sr-notif-panel {
-    position: fixed;
-    inset-inline: var(--sr-space-3);
-    top: calc(var(--topbar-h) + var(--sr-space-1));
-    width: auto;
-    /* 防線：.sr-topbar 有 backdrop-filter → 會成為 fixed 的包含塊，若日後 topbar 不是滿版
-       就可能溢出。明確夾住寬度，任何情況都不超過視窗。 */
-    max-width: calc(100vw - 2 * var(--sr-space-3));
-    max-height: 75vh;
-  }
+  /* 註：.sr-notif-panel 的手機覆寫已移到基準規則「之後」（見下方 .sr-notif-panel 區塊），
+     否則 media query 不加 specificity，會被後面的基準規則覆蓋（bugpic/37 破版根因）。 */
 }
 
 /*
@@ -1115,7 +1102,7 @@ body {
 
 .sr-choice-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
   gap: var(--sr-space-2);
 }
 
@@ -1457,7 +1444,7 @@ input[type='range'] {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
   gap: var(--sr-space-4);
 }
 
@@ -1597,7 +1584,7 @@ input[type='range'] {
   padding: 0;
   margin: var(--sr-space-6) 0 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   gap: var(--sr-space-4);
 }
 
@@ -1812,6 +1799,9 @@ input[type='range'] {
   position: fixed;
   width: 340px;
   max-width: calc(100vw - 24px);
+  /* 直式手機上長步驟內容不超出畫面：夾高並可捲（橫式矮螢幕另有覆寫） */
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
   background: var(--sr-surface-opaque);
   color: var(--sr-text-primary);
   border: 1px solid var(--sr-border);
@@ -1906,7 +1896,7 @@ input[type='range'] {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
   gap: var(--sr-space-4);
 }
 
@@ -2013,12 +2003,17 @@ input[type='range'] {
 
 .sr-playlist-item {
   display: grid;
-  grid-template-columns: 2ch 1fr auto;
+  grid-template-columns: 2ch minmax(0, 1fr) auto;
   gap: var(--sr-space-3);
   align-items: center;
   padding: var(--sr-space-2);
   border-radius: 8px;
   background: var(--sr-surface-alt);
+}
+/* 中欄（背景名稱）要能收斂：長字串不撐破 grid track（CLAUDE.md #9） */
+.sr-playlist-item > :nth-child(2) {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* ── Widget 格線 ──────────────────────────────────── */
@@ -2683,6 +2678,7 @@ input[type='range'] {
   flex-direction: column;
   gap: 2px;
   width: 100%;
+  min-width: 0; /* 讓內部長字串能收斂在面板寬度內，不撐破面板 */
   text-align: start;
   border: none;
   background: transparent;
@@ -2699,8 +2695,23 @@ input[type='range'] {
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.sr-notif-title { font-weight: 600; font-size: var(--sr-text-sm); }
-.sr-notif-body { font-size: var(--sr-text-sm); color: var(--sr-text-secondary); line-height: 1.5; }
+.sr-notif-title { font-weight: 600; font-size: var(--sr-text-sm); overflow-wrap: anywhere; }
+.sr-notif-body { font-size: var(--sr-text-sm); color: var(--sr-text-secondary); line-height: 1.5; overflow-wrap: anywhere; }
+
+/* 手機：面板貼齊視窗兩側（fixed + inset-inline），不再沿用桌機「往左展開的定寬 popover」。
+   ⚠️ 這條必須放在上面基準 .sr-notif-panel「之後」—— media query 不加 specificity，
+   放基準之前會被基準覆蓋（曾在手機上破版，bugpic/37 根因）。 */
+@media (max-width: 767px) {
+  .sr-notif-panel {
+    position: fixed;
+    inset-inline: var(--sr-space-3);
+    top: calc(var(--topbar-h) + var(--sr-space-1));
+    width: auto;
+    /* 防線：.sr-topbar 有 backdrop-filter → 會成為 fixed 的包含塊，明確夾住寬度不超過視窗 */
+    max-width: calc(100vw - 2 * var(--sr-space-3));
+    max-height: 75vh;
+  }
+}
 
 /* ── Agent 訊息 widget ──────────────────────────────────── */
 .sr-agent-msg {
@@ -3023,6 +3034,12 @@ input[type='range'] {
 .sr-works-item-active {
   border-color: var(--sr-accent);
   background: var(--sr-surface-alt);
+}
+/* 標題可收斂：長檔名不把縮圖旁的文字撐出清單（flex 子項預設 min-width:auto 不縮） */
+.sr-works-item > span {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
 }
 .sr-works-item img {
   width: 44px;
@@ -3484,7 +3501,7 @@ input[type='range'] {
 /* 版面範本卡 */
 .sr-preset-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
   gap: var(--sr-space-2);
 }
 .sr-preset-card {
@@ -3720,7 +3737,7 @@ input[type='range'] {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
   gap: clamp(12px, 2vw, 20px);
 }
 .sr-public-card {
@@ -3756,7 +3773,7 @@ input[type='range'] {
 /* 背景場景／Lottie 的即時預覽格 */
 .sr-scene-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 92px), 1fr));
   gap: 8px;
   margin-top: 8px;
 }
