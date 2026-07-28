@@ -181,7 +181,9 @@ export function AssetGrid({
     <section className="sr-card">
       <h2 className="sr-section-title">你的檔案</h2>
 
-      {loading ? (
+      {loading && assets.length === 0 ? (
+        // 只有「初次、還沒有任何檔案」時才用整塊「載入中」取代格子；
+        // 已有檔案時的刷新不換掉格子，避免縮圖整批重掛、閃爍。
         <p className="sr-muted" aria-live="polite">
           載入中…
         </p>

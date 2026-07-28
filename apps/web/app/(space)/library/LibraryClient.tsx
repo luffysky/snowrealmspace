@@ -69,15 +69,17 @@ export function LibraryClient({
     return p.toString()
   }, [kind, q, tag, favorite, archived, folderFilter])
 
-  const refresh = useCallback(async () => {
-    setLoading(true)
+  // silent：靜默刷新（不動 loading）。給「縮圖處理中」的背景輪詢用——
+  // 動 loading 會讓整個格子換成「載入中…」再換回來，導致每張縮圖重掛、signed URL 重抓 → 閃爍。
+  const refresh = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true)
     try {
       const res = await fetch(`/api/assets?${buildQuery()}`, { headers })
       if (!res.ok) return
       const body = (await res.json()) as { data: AssetRow[] }
       setAssets(body.data)
     } finally {
-      setLoading(false)
+      if (!silent) setLoading(false)
     }
   }, [buildQuery])
 
@@ -92,11 +94,20 @@ export function LibraryClient({
     return () => clearTimeout(t)
   }, [refresh])
 
-  // 上傳完成、縮圖仍在處理時定期刷新
+  // 上傳完成、縮圖仍在處理時定期刷新——**靜默**（不動 loading，格子不重繪、縮圖不閃）。
+  // 用 ref 累計輪詢次數：最多約 60s，避免某張卡在處理中的圖讓格子永遠背景刷新。
+  const pollCountRef = useRef(0)
   useEffect(() => {
     const waiting = assets.some((a) => a.width === null && a.kind === 'image')
-    if (!waiting) return
-    const timer = setInterval(() => void refresh(), 3000)
+    if (!waiting) {
+      pollCountRef.current = 0
+      return
+    }
+    if (pollCountRef.current > 20) return
+    const timer = setInterval(() => {
+      pollCountRef.current += 1
+      void refresh(true) // 靜默刷新
+    }, 3000)
     return () => clearInterval(timer)
   }, [assets, refresh])
 
