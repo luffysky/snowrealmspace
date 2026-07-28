@@ -3,36 +3,52 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ProceduralScene } from '@/components/ProceduralScene'
-import type { WeatherCondition } from '@snowrealm/validation'
+import { weatherCodeToCondition, type WeatherCondition } from '@snowrealm/validation'
 import type { WidgetProps } from '../types'
 
 /**
- * 天氣小工具（#56）。讀 /api/weather（帶 x-space-id），依 space 儲存的城市顯示目前天氣。
+ * 天氣小工具（#56）。
  *
- * 狀態誠實：未開啟 / 未設城市 / 城市查無 / 連不上 / 載入中都明說，不擺假資料。
+ * 資料流（重要）：伺服器 /api/weather **只回城市名**，天氣本身由**瀏覽器**去查 —— 因為
+ * Zeabur gateway 連 Open-Meteo 不穩會回 502，而瀏覽器連得到（Open-Meteo 公開＋開放 CORS）。
+ * 所以這裡在 client 端依序打兩支公開端點：geocode（城市→座標）→ forecast（座標→天氣）。
+ *
+ * 狀態誠實：未開啟 / 未設城市 / 城市查無 / 查詢失敗 / 載入中都明說，不擺假資料。
  * 動畫用 ProceduralScene overlay（reduced-motion / 省流量已在該元件自動略過）；
  * 有動畫時提供暫停鈕（ADR-019）。不寫死顏色，chrome 一律用 --sr-* token。
  */
 
 type Cfg = { showAnimation?: boolean }
 
-// 後端回傳的聯合狀態
-type Resp =
+// /api/weather 的回傳（只含設定，不含天氣）
+type Meta =
   | { enabled: false }
   | { enabled: true; configured: false }
-  | { enabled: true; configured: true; found: false; city: string }
-  | {
-      enabled: true
-      configured: true
-      found: true
-      place: string
-      tempC: number
-      isDay: boolean
-      condition: WeatherCondition
-      code: number
-    }
+  | { enabled: true; configured: true; city: string }
 
-type State = 'loading' | 'ready' | 'error'
+// client 端查到的天氣
+type Weather = { place: string; tempC: number; isDay: boolean; condition: WeatherCondition }
+
+/**
+ * 目前的畫面狀態（單一 discriminated union，避免多個 boolean 交錯）。
+ *   loading      → 讀 /api/weather 中
+ *   meta-error   → /api/weather 讀取失敗
+ *   disabled     → 沒開天氣
+ *   not-configured → 開了但沒設城市
+ *   wx-loading   → 已拿到城市，瀏覽器查天氣中
+ *   wx-notfound  → geocode 查無此城市
+ *   wx-error     → 瀏覽器查天氣失敗（可讀原因）
+ *   wx-ready     → 有天氣資料
+ */
+type View =
+  | { kind: 'loading' }
+  | { kind: 'meta-error'; msg: string }
+  | { kind: 'disabled' }
+  | { kind: 'not-configured' }
+  | { kind: 'wx-loading' }
+  | { kind: 'wx-notfound'; city: string }
+  | { kind: 'wx-error'; msg: string }
+  | { kind: 'wx-ready'; weather: Weather }
 
 const CONDITION_LABEL: Record<WeatherCondition, string> = {
   clear: '晴',
@@ -43,6 +59,29 @@ const CONDITION_LABEL: Record<WeatherCondition, string> = {
   snow: '雪',
   thunder: '雷雨',
   typhoon: '颱風',
+}
+
+const GEOCODE_URL = 'https://geocoding-api.open-meteo.com/v1/search'
+const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast'
+// 瀏覽器端逾時：不經過任何 gateway，可放寬（6s）。連得到就成功，連不到就顯示可讀原因。
+const CLIENT_TIMEOUT_MS = 6000
+
+type GeoRaw = {
+  results?: { name: string; latitude: number; longitude: number; country?: string; admin1?: string }[]
+}
+type ForecastRaw = {
+  current?: { temperature_2m?: number; weather_code?: number; is_day?: number; wind_speed_10m?: number }
+}
+
+/**
+ * 「台北, 臺灣」這樣的顯示字串（mirror @snowrealm/weather 的 displayPlace，純字串組裝）。
+ * 有行政區就帶上、去重；最多兩段（城市 + 國家/區域），避免塞爆小卡片。
+ */
+function displayPlace(name: string, admin1?: string, country?: string): string {
+  const parts = [name, admin1, country].filter(
+    (x, i, arr): x is string => Boolean(x) && arr.indexOf(x) === i,
+  )
+  return parts.length > 2 ? `${parts[0]}, ${parts[parts.length - 1]}` : parts.join(', ')
 }
 
 /**
@@ -72,36 +111,76 @@ function sceneFor(condition: WeatherCondition, isDay: boolean): { sceneId: strin
   }
 }
 
+/** 瀏覽器端：城市名 → 目前天氣。查無城市回 'notfound'，上游失敗 throw（含可讀原因）。 */
+async function fetchWeatherInBrowser(city: string): Promise<Weather | 'notfound'> {
+  // 1. geocode：城市 → 座標 + 顯示資訊
+  const geoUrl = `${GEOCODE_URL}?name=${encodeURIComponent(city)}&count=1&language=zh&format=json`
+  const geoRes = await fetch(geoUrl, { signal: AbortSignal.timeout(CLIENT_TIMEOUT_MS) })
+  if (!geoRes.ok) throw new Error(`地理編碼 HTTP ${geoRes.status}`)
+  const geo = (await geoRes.json()) as GeoRaw
+  const place = geo.results?.[0]
+  if (!place) return 'notfound'
+
+  // 2. forecast：座標 → 目前天氣
+  const fcUrl =
+    `${FORECAST_URL}?latitude=${place.latitude}&longitude=${place.longitude}` +
+    '&current=temperature_2m,weather_code,is_day,wind_speed_10m&wind_speed_unit=kmh'
+  const fcRes = await fetch(fcUrl, { signal: AbortSignal.timeout(CLIENT_TIMEOUT_MS) })
+  if (!fcRes.ok) throw new Error(`天氣查詢 HTTP ${fcRes.status}`)
+  const fc = (await fcRes.json()) as ForecastRaw
+  const cur = fc.current
+  if (!cur || cur.temperature_2m === undefined || cur.weather_code === undefined) {
+    throw new Error('天氣資料格式不符')
+  }
+
+  return {
+    place: displayPlace(place.name, place.admin1, place.country),
+    tempC: Math.round(cur.temperature_2m),
+    isDay: cur.is_day !== 0,
+    condition: weatherCodeToCondition(cur.weather_code, cur.wind_speed_10m ?? 0),
+  }
+}
+
 export default function WeatherWidget({ spaceId, config }: WidgetProps) {
   const showAnimation = (config as Cfg | null)?.showAnimation ?? true
-  const [state, setState] = useState<State>('loading')
-  const [data, setData] = useState<Resp | null>(null)
+  const [view, setView] = useState<View>({ kind: 'loading' })
   const [paused, setPaused] = useState(false)
-  const [err, setErr] = useState<string | null>(null)
 
   useEffect(() => {
     let alive = true
-    setState('loading')
-    fetch('/api/weather', { headers: { 'x-space-id': spaceId } })
-      .then(async (r) => {
+    setView({ kind: 'loading' })
+
+    void (async () => {
+      // 1. 先向伺服器要城市名（立即回應，不會 502）
+      let meta: Meta
+      try {
+        const r = await fetch('/api/weather', { headers: { 'x-space-id': spaceId } })
         if (!r.ok) {
-          // 把真實原因帶出來（狀態碼 + API 訊息），方便診斷「讀取失敗」到底卡在哪
           const body = (await r.json().catch(() => null)) as { error?: { message?: string } } | null
           throw new Error(body?.error?.message ? `${r.status}：${body.error.message}` : `HTTP ${r.status}`)
         }
-        return (await r.json()) as { data: Resp }
-      })
-      .then((b) => {
+        meta = ((await r.json()) as { data: Meta }).data
+      } catch (e: unknown) {
+        if (alive) setView({ kind: 'meta-error', msg: e instanceof Error ? e.message : '未知錯誤' })
+        return
+      }
+      if (!alive) return
+
+      if (!meta.enabled) return setView({ kind: 'disabled' })
+      if (!meta.configured) return setView({ kind: 'not-configured' })
+
+      // 2. 瀏覽器自己查天氣（Open-Meteo 公開端點）
+      setView({ kind: 'wx-loading' })
+      try {
+        const wx = await fetchWeatherInBrowser(meta.city)
         if (!alive) return
-        setData(b.data)
-        setState('ready')
-      })
-      .catch((e: unknown) => {
-        if (alive) {
-          setErr(e instanceof Error ? e.message : '未知錯誤')
-          setState('error')
-        }
-      })
+        if (wx === 'notfound') setView({ kind: 'wx-notfound', city: meta.city })
+        else setView({ kind: 'wx-ready', weather: wx })
+      } catch (e: unknown) {
+        if (alive) setView({ kind: 'wx-error', msg: e instanceof Error ? e.message : '未知錯誤' })
+      }
+    })()
+
     return () => {
       alive = false
     }
@@ -110,7 +189,8 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
   const cardStyle: React.CSSProperties = { position: 'relative', overflow: 'hidden' }
   const contentStyle: React.CSSProperties = { position: 'relative', zIndex: 1, minWidth: 0 }
 
-  if (state === 'loading') {
+  // ── 非天氣資料的各種狀態（同一張卡片外框）─────────────────────
+  if (view.kind === 'loading' || view.kind === 'wx-loading') {
     return (
       <div className="sr-card sr-widget" style={cardStyle} aria-busy="true">
         <h3 className="sr-widget-title">天氣</h3>
@@ -121,19 +201,18 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
     )
   }
 
-  if (state === 'error' || !data) {
+  if (view.kind === 'meta-error' || view.kind === 'wx-error') {
     return (
       <div className="sr-card sr-widget" style={cardStyle}>
         <h3 className="sr-widget-title">天氣</h3>
         <p className="sr-muted" style={{ margin: 0, color: 'var(--sr-danger)', overflowWrap: 'anywhere' }}>
-          天氣讀取失敗{err ? `：${err}` : ''}
+          天氣讀取失敗：{view.msg}
         </p>
       </div>
     )
   }
 
-  // 未開啟 → 引導去設定
-  if (!data.enabled) {
+  if (view.kind === 'disabled') {
     return (
       <div className="sr-card sr-widget" style={cardStyle}>
         <h3 className="sr-widget-title">天氣</h3>
@@ -148,8 +227,7 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
     )
   }
 
-  // 開了但沒設城市
-  if (!data.configured) {
+  if (view.kind === 'not-configured') {
     return (
       <div className="sr-card sr-widget" style={cardStyle}>
         <h3 className="sr-widget-title">天氣</h3>
@@ -164,13 +242,12 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
     )
   }
 
-  // 城市查無此地
-  if (!data.found) {
+  if (view.kind === 'wx-notfound') {
     return (
       <div className="sr-card sr-widget" style={cardStyle}>
         <h3 className="sr-widget-title">天氣</h3>
         <p className="sr-muted" style={{ margin: 0, overflowWrap: 'anywhere' }}>
-          找不到「{data.city}」這個城市，請到{' '}
+          找不到「{view.city}」這個城市，請到{' '}
           <Link href="/settings" className="sr-link">
             設定
           </Link>{' '}
@@ -180,10 +257,11 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
     )
   }
 
-  // 有天氣資料
-  const { sceneId, density } = sceneFor(data.condition, data.isDay)
+  // ── 有天氣資料 ────────────────────────────────────────────
+  const { weather } = view
+  const { sceneId, density } = sceneFor(weather.condition, weather.isDay)
   const animate = showAnimation && sceneId !== null
-  const motif = data.isDay ? '☀' : '☾'
+  const motif = weather.isDay ? '☀' : '☾'
 
   return (
     <div className="sr-card sr-widget" style={cardStyle}>
@@ -215,17 +293,17 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
           </span>
           <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: 'var(--sr-text-h1)', fontWeight: 700, lineHeight: 1.1 }}>
-              {data.tempC}°C
+              {weather.tempC}°C
             </div>
             <div className="sr-muted" style={{ overflowWrap: 'anywhere' }}>
-              {CONDITION_LABEL[data.condition]}
-              {data.isDay ? '（白天）' : '（夜晚）'}
+              {CONDITION_LABEL[weather.condition]}
+              {weather.isDay ? '（白天）' : '（夜晚）'}
             </div>
           </div>
         </div>
 
         <p className="sr-muted" style={{ margin: 0, overflowWrap: 'anywhere' }}>
-          {data.place}
+          {weather.place}
         </p>
       </div>
     </div>

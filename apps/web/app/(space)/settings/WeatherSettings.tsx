@@ -7,21 +7,44 @@ import { TW_REGIONS } from '@/lib/weather/tw-regions'
 /**
  * 天氣設定（#56）。預設關閉；只填城市「名稱」（不存座標）。
  *
- * 城市欄是**自動完成搜尋**：邊打字（debounce ~300ms、至少 2 字）邊向
- * POST /api/weather/search 要建議清單（Open-Meteo 地理編碼，涵蓋台灣縣市/區、
- * 外島與國外城市，名稱在地化）。選一筆就把 weather_city 設成該城市的正規 name
- * （之後 /api/weather 的 weatherForCity 用得到）。欄位同時**接受自由輸入**：
- * 沒選建議時，Enter / 失焦保留你打的字。
+ * 資料流（重要）：地理編碼一律由**瀏覽器**直接打 Open-Meteo，伺服器不代打 —— 因為
+ * Zeabur gateway 連 Open-Meteo 不穩會 502，而瀏覽器連得到（公開＋開放 CORS）。
  *
- * 「使用目前位置」：向瀏覽器要定位 → POST /api/weather/lookup（座標只在 body）→ 反查城市名填入。
- * 使用者拒絕定位時給提示、不中斷（誠實降級）。
+ * 城市欄是**自動完成搜尋**：邊打字（debounce ~300ms、至少 2 字）邊向 Open-Meteo 的
+ * geocoding 端點要建議清單（涵蓋台灣縣市/區、外島與國外城市，名稱在地化 zh）。選一筆就把
+ * weather_city 設成該城市的正規 name。欄位同時**接受自由輸入**：沒選建議時 Enter / 失焦保留你打的字。
+ *
+ * 「使用目前位置」：向瀏覽器要定位 → 瀏覽器直接打 BigDataCloud 反向地理編碼（免金鑰）換城市名填入。
+ * 座標只在瀏覽器端使用、不送到我們的伺服器，也不儲存。使用者拒絕定位時給提示、不中斷（誠實降級）。
  */
 
-/** 搜尋建議（只含前端要顯示的欄位；座標不外流）。 */
+/** 搜尋建議（只含前端要顯示的欄位；座標不落地）。 */
 type Suggestion = { name: string; admin1?: string; country?: string; displayName: string }
 
 /** 搜尋狀態：誠實呈現搜尋中 / 查無結果 / 錯誤，不靜默失敗。 */
 type SearchStatus = 'idle' | 'searching' | 'done' | 'no-results' | 'error'
+
+// Open-Meteo 地理編碼（公開、開放 CORS、免金鑰）與 BigDataCloud 反向地理編碼（免金鑰）。
+const GEOCODE_URL = 'https://geocoding-api.open-meteo.com/v1/search'
+const REVERSE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client'
+// 瀏覽器端逾時：不經 gateway，可放寬（6s）。
+const CLIENT_TIMEOUT_MS = 6000
+
+type GeoRaw = {
+  results?: { name: string; latitude: number; longitude: number; country?: string; admin1?: string }[]
+}
+type ReverseRaw = { city?: string; locality?: string; principalSubdivision?: string }
+
+/**
+ * 「信義區, 臺灣」這樣的顯示字串（mirror @snowrealm/weather 的 displayPlace，純字串組裝）。
+ * 有行政區就帶上、去重；最多兩段避免過長。
+ */
+function displayPlace(name: string, admin1?: string, country?: string): string {
+  const parts = [name, admin1, country].filter(
+    (x, i, arr): x is string => Boolean(x) && arr.indexOf(x) === i,
+  )
+  return parts.length > 2 ? `${parts[0]}, ${parts[parts.length - 1]}` : parts.join(', ')
+}
 
 export function WeatherSettings({
   spaceId,
@@ -88,23 +111,28 @@ export function WeatherSettings({
   }
 
   async function runSearch(query: string) {
+    // 瀏覽器直接打 Open-Meteo geocoding（不經我們的伺服器 → 不會 502）。
+    // 用 AbortController 取消上一筆（打了新字），另加逾時避免卡住。
     const ctrl = new AbortController()
     abortRef.current = ctrl
+    const signal = AbortSignal.any([ctrl.signal, AbortSignal.timeout(CLIENT_TIMEOUT_MS)])
     try {
-      const res = await fetch('/api/weather/search', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-        body: JSON.stringify({ query }),
-        signal: ctrl.signal,
-      })
-      const body = (await res.json()) as { data?: { suggestions?: Suggestion[] } }
+      const url = `${GEOCODE_URL}?name=${encodeURIComponent(query)}&count=8&language=zh&format=json`
+      const res = await fetch(url, { signal })
       if (!res.ok) {
         setSuggestions([])
         setStatus('error')
         setOpen(true)
         return
       }
-      const list = body.data?.suggestions ?? []
+      const body = (await res.json()) as GeoRaw
+      // 只保留前端要顯示的欄位（座標不落地）；顯示字串比照 widget/provider。
+      const list: Suggestion[] = (body.results ?? []).map((r) => ({
+        name: r.name,
+        ...(r.admin1 ? { admin1: r.admin1 } : {}),
+        ...(r.country ? { country: r.country } : {}),
+        displayName: displayPlace(r.name, r.admin1, r.country),
+      }))
       setSuggestions(list)
       setStatus(list.length === 0 ? 'no-results' : 'done')
       setOpen(true)
@@ -172,14 +200,16 @@ export function WeatherSettings({
       (pos) => {
         void (async () => {
           try {
-            const res = await fetch('/api/weather/lookup', {
-              method: 'POST',
-              headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-              body: JSON.stringify({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-            })
-            const body = (await res.json()) as { data?: { found?: boolean; city?: string } }
-            if (res.ok && body.data?.found && body.data.city) {
-              setCity(body.data.city)
+            // 瀏覽器直接打 BigDataCloud 反向地理編碼（免金鑰）。座標只在瀏覽器端使用，
+            // 不送到我們的伺服器、不儲存 —— 只把換算出的城市名填入欄位。
+            const url =
+              `${REVERSE_URL}?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}` +
+              '&localityLanguage=zh'
+            const res = await fetch(url, { signal: AbortSignal.timeout(CLIENT_TIMEOUT_MS) })
+            const body = (await res.json()) as ReverseRaw
+            const name = body.city || body.locality || body.principalSubdivision || null
+            if (res.ok && name) {
+              setCity(name)
               setHint('已用你目前的位置填入城市，記得按儲存。')
             } else {
               setHint('找不到你所在的城市名稱，請手動輸入。')

@@ -71,8 +71,8 @@ export default function PrivacyPage() {
           </p>
           <ul style={{ lineHeight: 1.9 }}>
             <li>我們只保存你設定的<strong>城市名稱</strong>（粗略位置），<strong>不</strong>保存精確座標。</li>
-            <li>該城市名稱會傳給天氣資料服務（Open-Meteo）以查詢當地天氣；除此之外不作他用。</li>
-            <li>若你選擇用「使用目前位置」，你的座標會傳給地理編碼服務（BigDataCloud）換算成城市名稱後<strong>立即丟棄</strong>——我們<strong>只保存換算出的城市名稱、不保存座標</strong>。你也可以完全不使用定位、直接手動輸入城市（有手動輸入時以手動為準）。</li>
+            <li>天氣是由<strong>你的瀏覽器</strong>直接向天氣資料服務（Open-Meteo）查詢——我們的伺服器只提供你設定的城市名，實際的查詢由你的瀏覽器發出（城市名與你的連線 IP 會由瀏覽器送達 Open-Meteo）。我們自己<strong>只保存城市名稱、永不保存座標</strong>。</li>
+            <li>若你選擇用「使用目前位置」，你的座標<strong>只在你的瀏覽器端</strong>使用：由瀏覽器直接向地理編碼服務（BigDataCloud）換算成城市名稱後<strong>立即丟棄</strong>，座標<strong>不會</strong>送到我們的伺服器、也<strong>不</strong>保存。你也可以完全不使用定位、直接手動輸入城市（有手動輸入時以手動為準）。</li>
             <li>可隨時在「設定 → 隱私」關閉，關閉後即停止查詢並可清除已存的城市。</li>
           </ul>
         </section>
