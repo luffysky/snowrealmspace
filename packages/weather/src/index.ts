@@ -21,9 +21,10 @@ const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast'
 const REVERSE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client'
 
 // 每次上游請求上限。geocode + forecast 是「依序兩次」外呼，故總耗時最壞 ≈ 2×此值。
-// 設得夠短，讓路由一定在平台 gateway 逾時之前回應 —— 否則外呼卡住會被 gateway 判 502
-// （而不是我們自己回可讀的 PROVIDER_ERROR）。Open-Meteo 正常 < 1s，4s 已很寬裕。
-const TIMEOUT_MS = 4000
+// 平台 gateway 逾時偏短（實測 4s×2=8s 仍被判 502），故壓到 2s（總計最壞 ~4s），
+// 保證路由一定在 gateway 逾時前回應：連得到就成功，連不到就回可讀的 PROVIDER_ERROR
+// （widget 會顯示原因），不再出現 gateway 502。Open-Meteo 正常 < 1s，2s 對「連得到」已足夠。
+const TIMEOUT_MS = 2000
 
 export type GeoPlace = {
   name: string
