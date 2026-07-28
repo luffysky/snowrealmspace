@@ -111,14 +111,26 @@ function sceneFor(condition: WeatherCondition, isDay: boolean): { sceneId: strin
   }
 }
 
+type GeoPlace = NonNullable<GeoRaw['results']>[number]
+
+/** 對 Open-Meteo geocode 查一個名字，取第一筆。 */
+async function geocodeOne(name: string): Promise<GeoPlace | undefined> {
+  const url = `${GEOCODE_URL}?name=${encodeURIComponent(name)}&count=1&language=zh&format=json`
+  const res = await fetch(url, { signal: AbortSignal.timeout(CLIENT_TIMEOUT_MS) })
+  if (!res.ok) throw new Error(`地理編碼 HTTP ${res.status}`)
+  const geo = (await res.json()) as GeoRaw
+  return geo.results?.[0]
+}
+
 /** 瀏覽器端：城市名 → 目前天氣。查無城市回 'notfound'，上游失敗 throw（含可讀原因）。 */
 async function fetchWeatherInBrowser(city: string): Promise<Weather | 'notfound'> {
-  // 1. geocode：城市 → 座標 + 顯示資訊
-  const geoUrl = `${GEOCODE_URL}?name=${encodeURIComponent(city)}&count=1&language=zh&format=json`
-  const geoRes = await fetch(geoUrl, { signal: AbortSignal.timeout(CLIENT_TIMEOUT_MS) })
-  if (!geoRes.ok) throw new Error(`地理編碼 HTTP ${geoRes.status}`)
-  const geo = (await geoRes.json()) as GeoRaw
-  const place = geo.results?.[0]
+  // 1. geocode：城市 → 座標。Open-Meteo 對台灣「區」收錄不一（板橋區查得到、鶯歌區查不到
+  //    但「鶯歌」查得到）——照原樣查一次，查無且結尾是行政區後綴（區/鄉/鎮/市）就去後綴再試。
+  let place = await geocodeOne(city)
+  if (!place) {
+    const stripped = city.replace(/[區鄉鎮市]$/u, '').trim()
+    if (stripped && stripped !== city) place = await geocodeOne(stripped)
+  }
   if (!place) return 'notfound'
 
   // 2. forecast：座標 → 目前天氣
