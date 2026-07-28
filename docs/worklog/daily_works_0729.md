@@ -43,9 +43,42 @@
 - 使用條款：新增「第三方服務與整合」節。使用說明：加「外部整合」+「天氣」兩節。Cookie 橫幅：補第三方登入 session cookie、仍無追蹤。
 - README、todo_0724/0728 更新;憑證待辦劃線(Luffy 已設好 AI 金鑰/F 憑證+開 flag/Resend/Google-LINE+隱私頁)。
 
+## 下半場（同日續：作品 AI／Adobe／天氣搜尋／多帳號／後台上線資訊）
+
+### 作品 AI 對話 + 分析歷史 + 長期記憶（`fc2617d`）
+- /works 視覺分析改可對話：WorkChat 沿用 Agent SSE + 多模態（首輪附設計圖，反幻覺要求真的看到圖）+ 空間級長期記憶（pgvector）。
+- 分析不再 ephemeral：寫進 `design_insights` 存歷史，列「時間·來源軟體(provider)·專案·版本·模型」。per-work thread 用 `agent_messages.context_refs` 綁定（免 migration）。
+
+### Adobe 連接骨架 + Figma scope env + 修 picker flag（`2734bdd`）
+- Adobe 加為 provider（flagged adobeExpress、卡憑證、端點 TODO、顯示尚未設定不擺假按鈕，全鏈 16 處補齊；getAdapter 改 switch 修掉 adobe 誤導向 Canva）。
+- Figma scope 改 env `FIGMA_SCOPES` 可覆寫。**Invalid scopes for app 根因＝Figma app 後台沒勾 `files:read`**。
+- 修真 bug：widget picker 沒依 flag 過濾 → flag 關的 widget 仍可加、加了 404（假關閉）→ 依 getFlags 過濾。
+
+### 天氣城市 autocomplete（`a4ae430`）
+- 改 Open-Meteo 地理編碼即時搜尋（縣市/區/外島＋外國城市、在地化名），取代寫死清單、順便解 i18n 疑慮。保留自由輸入與定位。
+
+### 多帳號連接（`ae9f079`）
+- Canva/Figma/Adobe 每 provider 可綁多帳號（schema 本就有 external_account_id + unique、免 migration）。
+- callback 抓帳號身分（Canva /users/me+profile、Figma /v1/me）→ 依帳號 upsert（同帳號更新／舊 NULL 就地升級／新帳號新增），設定頁每帳號一張卡＋「連接另一個帳號」。
+- （Luffy 實測 Canva 連接成功、能抓作品 → connect+sync 整條路真的通。）
+
+### 後台使用者上線資訊 + user_sessions（`bba97d5`）
+- 新表 `user_sessions`（migration 0059、**已套 hosted**、型別手補 generated 對齊；Docker 沒開故 CLI 沒法自動重生，之後本機補跑一次正式對齊）。站台級、RLS 管理員可讀、service-role 寫。
+- **隱私**：只存 ip_hash + 地區字串、**絕不存原始 IP**。heartbeat（登入限定、zod）首次才查 geo/device、時長 clamp[0,300]。
+- geo：邊緣 header 優先 → 外部 fallback（ipapi.co/ip-api.com/ipwho.is、各 3s、24h 快取）——**經 Luffy 明確選用外部 IP→地區**，隱私政策已誠實揭露、第三方清單已列。
+- 後台清單「在線」badge、詳情頁「上線資訊」+近 5 session。
+- **安全註**：系統對 geo 外呼示警（送 IP 給第三方）——已逐檔審確認只送 IP、不存原始 IP、邊緣優先/首次才查/快取/登入限定/已揭露，屬 Luffy 授權範圍，非越界外洩。
+
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。
 - **F 第一次端到端實跑**：連 Canva/Figma → 選檔(S4 picker) → 同步 → 看 `design_snapshots` 出版本。這一步順便**錄真實回應**供 S5 mock、校正 Figma/Canva 端點。
 - 這批 4 commit 已 push(RWD `bc76a2a`／F `cd3fe3a`／天氣 `0b907e3`／docs)，Zeabur 會自動部署；記得**點進網站確認 CSS 有載入**(build 綠≠起得來)。
 - 其餘照舊：JWT secret 換 demo、Q10 手動走查、台北黑體字檔。
 - 內容補量 #50(問候/micro/seasonal/welcome → 4000)還沒動,需調高子代理配額重開 session。
+
+### 下半場相關（Luffy）
+- **Figma 連接「Invalid scopes for app」**：到 Figma app 後台 OAuth 勾 **`files:read`** scope（程式送的 scope 是對的、問題在 app 沒開）。必要時 Zeabur 設 `FIGMA_SCOPES` env 覆寫。
+- **天氣「讀取失敗」**：程式/端點/flag 都驗過沒問題 → 多半是部署還在跑 or 60s flag 快取，等部署+`Ctrl+Shift+R`。還不行就給我 `/api/weather` 的 Network 狀態碼。
+- **後台上線資訊**：部署後到 `/admin/users` 看有沒有「在線」badge、點進使用者看地區/裝置/時長有沒有正確（第一筆真實 session 驗證）。
+- **型別重生**：本機開 Docker 後跑一次 `pnpm exec supabase gen types typescript --local > packages/shared-types/src/database.generated.ts` 正式對齊 user_sessions（現在是手補、typecheck 已綠）。
+- 下半場 commit：作品AI `fc2617d`／Adobe+Figma+picker `2734bdd`／天氣搜尋 `a4ae430`／多帳號 `ae9f079`／後台上線 `bba97d5`（+docs）。

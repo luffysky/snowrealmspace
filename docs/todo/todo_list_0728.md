@@ -67,16 +67,17 @@
 
 ## E. 0729 進行中 / 新規劃
 
-> 這批多為子代理寫、主對話審中，未 commit 前不算完成。
+> 子代理寫、主對話逐檔審 + full test suite + hosted DB 落地後才 commit。
 
-- [ ] **Works AI 對話 + 分析歷史 + 長期記憶**：/works 的 AI 視覺分析改為「可對話」（沿用 Agent SSE + ai-core + 空間級長期記憶 pgvector）；
-      **分析寫進 `design_insights` 存歷史**（原本 ephemeral），歷史列出「時間·來源軟體(provider)·專案·版本·模型」；per-work thread 用 `agent_messages.context_refs` 綁定（免 migration）。
-- [ ] **Adobe 連接骨架**（flagged `adobeExpress`，卡憑證）：provider-core 加 Adobe capability/adapter，connectable 依 `ADOBE_CLIENT_ID/SECRET`，端點 `TODO(adobe)` 未實測、顯示「尚未設定」不擺假按鈕。
-- [ ] **Figma scope env 覆寫**：`FIGMA_SCOPES` env 可調（現況 `files:read`）。**Figma「Invalid scopes for app」＝你 Figma app 後台沒勾 `files:read`**，先去勾。
-- [ ] **修：widget picker 沒依 flag 過濾** → flag 關的 widget 仍出現在「新增小工具」、加了會 404（假關閉）。home page.tsx 依 `getFlags` 過濾。
-- [ ] **天氣城市 autocomplete**：改用 Open-Meteo 地理編碼即時搜尋（涵蓋縣市/區/外島＋外國城市、在地化名稱），取代寫死縣市/區下拉——順便解掉外國人 i18n 疑慮。
-- [ ] **後台使用者上線資訊**：上線時間/多久/何時、地區、裝置（參考 `D:\SnowRealmRebirth\AI\ai_island_v3`）。**scope 中**（可能需 `user_sessions` 表 + IP 只存雜湊/在地化地區、UA 解析裝置）。
+- [x] ~~**Works AI 對話 + 分析歷史 + 長期記憶**~~ ✅ `fc2617d`：可對話（Agent SSE + 多模態 + pgvector 記憶）；分析寫進 `design_insights` 存歷史（列時間·來源軟體·專案·版本·模型）；per-work thread 用 `context_refs` 綁定。
+- [x] ~~**Adobe 連接骨架**（flagged `adobeExpress`，卡憑證）~~ ✅ `2734bdd`：capability/adapter 全鏈補齊、端點 TODO、尚未設定不擺假按鈕。
+- [x] ~~**Figma scope env 覆寫**~~ ✅ `2734bdd`：`FIGMA_SCOPES` env。**Invalid scopes 根因＝Figma app 沒勾 `files:read`**（去後台勾）。
+- [x] ~~**修：widget picker 沒依 flag 過濾**~~ ✅ `2734bdd`：依 `getFlags` 過濾（消除假關閉）。
+- [x] ~~**天氣城市 autocomplete**~~ ✅ `a4ae430`：Open-Meteo 即時搜尋（縣市/區/外島＋外國城市）、免寫死清單、解 i18n 疑慮。
+- [x] ~~**多帳號連接**（Canva/Figma/Adobe 每 provider 多帳號）~~ ✅ `ae9f079`：免 migration（schema 本就支援）；callback 抓帳號依帳號 upsert、設定頁每帳號一張卡。
+- [x] ~~**後台使用者上線資訊**（仿 AI 島）~~ ✅ `bba97d5`：`user_sessions`（migration 0059、已套 hosted）、heartbeat、在線 badge、地區/裝置；**只存 ip_hash+地區、不存原始 IP**；外部 IP→地區經 Luffy 選用、已揭露。
 - [ ] **🌐 i18n（之後排）**：全站多語。參考 AI 島用**腳本 + Google 翻譯免費**批次翻。天氣 autocomplete 已先避免寫死中文地名清單。
+- [ ] **型別正式重生**：本機開 Docker 後 `supabase gen types --local` 對齊 user_sessions（現手補、typecheck 綠）。
 
 ## 收工狀態（2026-07-28）
 連接半段 + S1 + S2 已審過並 push；F 到「可連、可選檔同步、worker 背景重試」的程度，
