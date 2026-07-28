@@ -22,18 +22,20 @@ export default async function AdminUsersPage() {
   const [{ data: authList }, { data: profileData }, { data: sessionData }] = await Promise.all([
     admin.auth.admin.listUsers({ page: 1, perPage: 200 }),
     admin.from('profiles').select('id, display_name, site_role, privileged, avatar_asset_id'),
-    // 每人最近的上線時間：一次撈近期 session（新到舊），下面 reduce 成每 user 的最新一筆，避免 N+1。
+    // 每人最近的上線資訊：一次撈近期 session（新到舊），下面 reduce 成每 user 的最新一筆，避免 N+1。
+    // 一條查詢＋依 last_seen_at desc 排序 → 每個 user_id 第一次出現即最新，Map 去重即可（無 per-user 查詢）。
     admin
       .from('user_sessions')
-      .select('user_id, last_seen_at')
+      .select('user_id, last_seen_at, country, region, city, device_type, browser, os')
       .order('last_seen_at', { ascending: false })
       .limit(1000),
   ])
 
-  // user_id → 最新 last_seen_at（已依 last_seen_at desc 排序，第一次見到即最新）
-  const lastSeenOf = new Map<string, string>()
+  // user_id → 最新一筆 session（已依 last_seen_at desc 排序，第一次見到即最新）
+  type SessionRow = NonNullable<typeof sessionData>[number]
+  const latestSessionOf = new Map<string, SessionRow>()
   for (const s of sessionData ?? []) {
-    if (s.user_id && !lastSeenOf.has(s.user_id)) lastSeenOf.set(s.user_id, s.last_seen_at)
+    if (s.user_id && !latestSessionOf.has(s.user_id)) latestSessionOf.set(s.user_id, s)
   }
 
   const roleOf = new Map(
@@ -56,6 +58,8 @@ export default async function AdminUsersPage() {
 
   const users: UserRow[] = (authList?.users ?? []).map((u) => {
     const p = roleOf.get(u.id)
+    // 每人最新一筆 session（可能為 null：使用者尚未在部署了 heartbeat 的版本上線過 → 地區/裝置留空，前端顯示「—」）
+    const sess = latestSessionOf.get(u.id) ?? null
     return {
       id: u.id,
       email: u.email ?? null,
@@ -64,7 +68,13 @@ export default async function AdminUsersPage() {
       siteRole: (p?.role === 'owner' || p?.role === 'admin' ? p.role : 'member') as UserRow['siteRole'],
       privileged: p?.privileged ?? false,
       avatarUrl: p?.avatarAssetId ? (avatarUrls.get(p.avatarAssetId) ?? null) : null,
-      lastSeenAt: lastSeenOf.get(u.id) ?? null,
+      lastSeenAt: sess?.last_seen_at ?? null,
+      country: sess?.country ?? null,
+      region: sess?.region ?? null,
+      city: sess?.city ?? null,
+      deviceType: sess?.device_type ?? null,
+      browser: sess?.browser ?? null,
+      os: sess?.os ?? null,
     }
   })
 

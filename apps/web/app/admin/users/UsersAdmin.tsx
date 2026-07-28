@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Avatar } from '@/components/Avatar'
-import { isOnline, relativeTime } from '@/lib/analytics/format'
+import { isOnline, relativeTime, formatRegion, formatDevice } from '@/lib/analytics/format'
 
 export type UserRow = {
   id: string
@@ -14,7 +14,15 @@ export type UserRow = {
   siteRole: 'owner' | 'admin' | 'member'
   privileged: boolean
   avatarUrl: string | null
+  // 最新一筆 session 的上線資訊（來自 user_sessions）。
+  // 這些欄位在使用者於「部署了 heartbeat 的版本」上線過之前都會是 null → UI 顯示「—」，屬正常非 bug。
   lastSeenAt: string | null
+  country: string | null
+  region: string | null
+  city: string | null
+  deviceType: string | null
+  browser: string | null
+  os: string | null
 }
 
 const ROLE_LABEL: Record<UserRow['siteRole'], string> = {
@@ -78,7 +86,9 @@ export function UsersAdmin({
           <thead>
             <tr>
               <th style={th}>使用者</th>
-              <th style={th}>在線</th>
+              <th style={th}>上次上線</th>
+              <th style={th}>地區</th>
+              <th style={th}>裝置</th>
               <th style={th}>角色</th>
               <th style={th}>特權</th>
             </tr>
@@ -123,6 +133,24 @@ export function UsersAdmin({
                     ) : (
                       <span className="sr-muted">—</span>
                     )}
+                  </td>
+                  <td style={td}>
+                    {/* 地區：國家 · 省州 · 城市；尚無 session → 「—」。窄螢幕允許換行不撐破。 */}
+                    <span
+                      className={r.country || r.region || r.city ? undefined : 'sr-muted'}
+                      style={{ display: 'block', minWidth: 0, overflowWrap: 'anywhere' }}
+                    >
+                      {formatRegion(r.country, r.region, r.city)}
+                    </span>
+                  </td>
+                  <td style={td}>
+                    {/* 裝置：類型 · 瀏覽器 · 系統；尚無 session → 「—」。 */}
+                    <span
+                      className={r.deviceType || r.browser || r.os ? undefined : 'sr-muted'}
+                      style={{ display: 'block', minWidth: 0, overflowWrap: 'anywhere' }}
+                    >
+                      {formatDevice(r.deviceType, r.browser, r.os)}
+                    </span>
                   </td>
                   <td style={td}>
                     {isOwner && !isSelf ? (
