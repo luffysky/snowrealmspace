@@ -58,6 +58,7 @@ const LABELS: Record<string, string> = {
   view: '檢視',
   projectId: '綁定專案',
   targetProjectId: '存到專案',
+  showAnimation: '顯示天氣動畫',
 }
 
 function labelFor(key: string): string {

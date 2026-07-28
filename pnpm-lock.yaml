@@ -153,6 +153,9 @@ importers:
       '@snowrealm/validation':
         specifier: workspace:*
         version: link:../../packages/validation
+      '@snowrealm/weather':
+        specifier: workspace:*
+        version: link:../../packages/weather
       '@snowrealm/widget-engine':
         specifier: workspace:*
         version: link:../../packages/widget-engine
@@ -360,6 +363,9 @@ importers:
       '@snowrealm/validation':
         specifier: workspace:*
         version: link:../validation
+      '@snowrealm/weather':
+        specifier: workspace:*
+        version: link:../weather
     devDependencies:
       typescript:
         specifier: ^5.7.2
@@ -562,6 +568,19 @@ importers:
       zod:
         specifier: ^3.24.1
         version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)(jsdom@29.1.1(@noble/hashes@1.8.0))
+
+  packages/weather:
+    dependencies:
+      '@snowrealm/validation':
+        specifier: workspace:*
+        version: link:../validation
     devDependencies:
       typescript:
         specifier: ^5.7.2

@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@snowrealm/db": "workspace:*",
-    "@snowrealm/validation": "workspace:*"
+    "@snowrealm/validation": "workspace:*",
+    "@snowrealm/weather": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

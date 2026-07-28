@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { requireActiveSpace, getUser } from '@/lib/auth/session'
 import { getDb } from '@/lib/supabase/server'
-import { updatePrivacySettings } from './actions'
+import { updatePrivacySettings, updateWeatherSettings } from './actions'
+import { isEnabled } from '@/lib/flags'
 import Link from 'next/link'
 import { PrivacyToggles } from './PrivacyToggles'
+import { WeatherSettings } from './WeatherSettings'
 import { BirthdayForm } from './BirthdayForm'
 import { DisplayNameForm } from './DisplayNameForm'
 import { AvatarUpload } from './account/AvatarUpload'
@@ -21,6 +23,8 @@ export const dynamic = 'force-dynamic'
 export default async function SettingsPage() {
   const { space, settings, role } = await requireActiveSpace()
   const user = await getUser()
+  // 天氣是 flag 控制的功能：關閉時連設定區塊都不出現（避免調得動、卻沒地方顯示的假設定）
+  const weatherEnabled = await isEnabled('weatherWidget', space.id)
 
   const db = await getDb()
   const { data: audioAssets } = await db
@@ -124,6 +128,24 @@ export default async function SettingsPage() {
           }}
         />
       </section>
+
+      {weatherEnabled && (
+        <section className="sr-card">
+          <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>天氣</h2>
+          <p className="sr-muted" style={{ marginTop: 0, marginBottom: 'var(--sr-space-4)' }}>
+            想要的話，可以在首頁放一個天氣小工具。預設關閉；只存城市名稱，不會記錄你的座標。
+          </p>
+          <WeatherSettings
+            spaceId={space.id}
+            canEdit={role === 'owner'}
+            initial={{
+              enabled: settings.weather_enabled ?? false,
+              city: settings.weather_city ?? '',
+            }}
+            action={updateWeatherSettings}
+          />
+        </section>
+      )}
 
       <section className="sr-card">
         <h2 style={{ fontSize: 'var(--sr-text-lg)', marginBottom: 'var(--sr-space-2)' }}>個人資料</h2>

@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { weatherCitySchema } from '@snowrealm/validation'
 import { getDb } from '@/lib/supabase/server'
 import { getUser } from '@/lib/auth/session'
 import { emitEvent, audit } from '@snowrealm/analytics'
@@ -156,6 +157,48 @@ export async function updatePrivacySettings(
   }
 
   revalidatePath('/settings')
+  return { status: 'saved', message: '已儲存。' }
+}
+
+const weatherSchema = z
+  .object({
+    spaceId: z.string().uuid(),
+    weatherEnabled: z.boolean(),
+    // .trim().max(80)，空字串 → null（見 @snowrealm/validation weatherCitySchema）
+    weatherCity: weatherCitySchema,
+  })
+  .strict()
+
+/**
+ * 天氣設定（#56）。預設關閉；只存城市「名稱」，不存座標（隱私）。走 RLS：只有 owner 能寫。
+ * 城市可留空（開了但還沒設 → widget 會提示補城市）。
+ */
+export async function updateWeatherSettings(
+  _prev: SettingsActionState,
+  formData: FormData,
+): Promise<SettingsActionState> {
+  const parsed = weatherSchema.safeParse({
+    spaceId: formData.get('spaceId'),
+    weatherEnabled: formData.get('weatherEnabled') === 'on',
+    weatherCity: (formData.get('weatherCity') as string | null) ?? '',
+  })
+  if (!parsed.success) {
+    return { status: 'error', message: parsed.error.issues[0]?.message ?? '輸入格式不正確。' }
+  }
+  const input = parsed.data
+  const user = await getUser()
+  if (!user) return { status: 'error', message: '請先登入。' }
+
+  const db = await getDb()
+  const { error } = await db
+    .from('space_settings')
+    .update({ weather_enabled: input.weatherEnabled, weather_city: input.weatherCity })
+    .eq('space_id', input.spaceId)
+  if (error) return { status: 'error', message: '沒有權限修改，或儲存失敗。' }
+
+  await emitEvent('settings.changed', input.spaceId, user.id, { keys: ['weather'] })
+  revalidatePath('/settings')
+  revalidatePath('/home')
   return { status: 'saved', message: '已儲存。' }
 }
 

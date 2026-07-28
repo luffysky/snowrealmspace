@@ -146,6 +146,11 @@ const goalTrackerConfig = z.object({
   showCompleted: z.boolean().default(false),
 })
 
+const weatherConfig = z.object({
+  // 扁平布林：關掉就只顯示日/夜、氣溫、地區，不跑動畫
+  showAnimation: z.boolean().default(true),
+})
+
 function def<T>(d: WidgetDefinition<T>): WidgetDefinition<T> {
   return d
 }
@@ -344,6 +349,24 @@ export const WIDGET_REGISTRY = {
     defaultConfig: goalTrackerConfig.parse({}),
     permissions: [],
     refreshPolicy: { onMount: true },
+  }),
+
+  weather: def({
+    id: 'weather',
+    name: '天氣',
+    version: '1.0.0',
+    category: 'utility',
+    description: '你所在城市的目前天氣。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 2, h: 2 },
+    maxSize: { w: 5, h: 4 },
+    configSchema: weatherConfig,
+    defaultConfig: weatherConfig.parse({}),
+    // location：城市名由使用者在設定填；network:external：走 Open-Meteo
+    permissions: ['location', 'network:external'],
+    featureFlag: 'weatherWidget',
+    // 每 15 分鐘刷新（後端有 ~10 分鐘快取）
+    refreshPolicy: { onMount: true, intervalSeconds: 900 },
   }),
 }
 

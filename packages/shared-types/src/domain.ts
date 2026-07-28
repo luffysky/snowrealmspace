@@ -21,6 +21,7 @@ export const FEATURE_FLAG_KEYS = [
   'videoBackground',
   'semanticSearch',
   'weeklyRecap',
+  'weatherWidget',
 ] as const
 
 export type FeatureFlagKey = (typeof FEATURE_FLAG_KEYS)[number]

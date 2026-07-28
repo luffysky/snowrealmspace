@@ -100,7 +100,8 @@ describe('getWidgetDefinition', () => {
   })
 
   it('尚未實作的 future widget 也回 null', () => {
-    expect(getWidgetDefinition('weather')).toBeNull()
+    // weather 已於 #56 實作，改用仍未實作的 future widget 驗證
+    expect(getWidgetDefinition('calendar')).toBeNull()
   })
 })
 

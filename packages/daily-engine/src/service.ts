@@ -4,11 +4,13 @@ import {
   pickDailyItem,
   greetingSlotForHour,
   hashToUnit,
+  conditionToContentTags,
   type PoolEntry,
   type RecentItem,
   type SpaceContext,
 } from '@snowrealm/validation'
-import { solarTermFor } from './seasonal.js'
+import { weatherForCity } from '@snowrealm/weather'
+import { solarTermFor, selectSeasonal } from './seasonal.js'
 import { milestoneFor } from './milestone.js'
 import { deriveSpaceState, type StateEvent } from './space-state.js'
 
@@ -101,9 +103,14 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
 
   const state = deriveSpaceState((stateEvents ?? []) as StateEvent[], timeZone, new Date())
 
+  // 天氣 tag（#49）：若該 space 有開啟天氣且設了城市，查目前天氣、轉成既有內容 tag
+  // （sunny/rainy/snowy/cold/hot…）併入脈絡。外部呼叫，失敗一律當「無天氣 tag」，
+  // 絕不阻斷或延遲每日生成（詳見 fetchWeatherTags）。
+  const weatherTags = await fetchWeatherTags(admin, spaceId)
+
   const context: SpaceContext = {
     daysSinceSignup,
-    tags: state.tags,
+    tags: [...state.tags, ...weatherTags],
     recentActivityLevel: state.recentActivityLevel,
   }
 
@@ -143,7 +150,7 @@ export async function getTodayContent(spaceId: string, timeZone: string): Promis
     microAction: actionRow
       ? { id: actionRow.source_ref ?? '', text: actionRow.body, estimatedMinutes: minutesOf(actionRow) }
       : null,
-    seasonal: await pickSeasonal(admin, spaceId, date),
+    seasonal: await pickSeasonal(admin, spaceId, date, weatherTags),
     milestone: await pickMilestone(admin, spaceId, daysSinceSignup),
   }
 }
@@ -177,13 +184,52 @@ async function pickMilestone(
 }
 
 /**
+ * 天氣 tag 查詢（#49）。回傳既有內容 tag（sunny/rainy/snowy/cold/hot…），無則回 []。
+ *
+ * ## 韌性（關鍵）：外部呼叫絕不能拖垮每日生成
+ *
+ * 這個 fetch 在 worker/cron 的每日生成流程裡跑。Open-Meteo 慢/掛、城市查無此地、
+ * DB 讀取失敗 —— 任何錯誤都 try/catch 吞掉、當「無天氣 tag」，讓生成照常進行。
+ * provider 內建 8s timeout（AbortSignal.timeout），故最壞情況也只多等 8s、不會無限 hang。
+ * 靜默失敗是 bug，故失敗有 console.error（給運維看），但不 rethrow。
+ */
+async function fetchWeatherTags(
+  admin: ReturnType<typeof createAdminClient>,
+  spaceId: string,
+): Promise<string[]> {
+  try {
+    const { data: settings } = await admin
+      .from('space_settings')
+      .select('weather_enabled, weather_city')
+      .eq('space_id', spaceId)
+      .maybeSingle()
+    const city = settings?.weather_city?.trim()
+    if (!settings?.weather_enabled || !city) return []
+
+    const now = await weatherForCity(city)
+    if (!now) return []
+    return conditionToContentTags(now.condition, now.tempC)
+  } catch (err) {
+    // 天氣失敗絕不阻斷生成：吞掉、當無天氣 tag，只留 log
+    console.error('[daily] 天氣查詢失敗，略過天氣 tag', err instanceof Error ? err.message : err)
+    return []
+  }
+}
+
+/**
  * 季節·節氣語。依當天落在哪個節氣挑一則（不存 DB，跟日期決定性掛勾）。
- * 先找 tags 含節氣 slug 的，沒有退季節 slug，再沒有用整池。
+ *
+ * 挑選優先序：
+ *   1. 天氣（#49）：若當天有天氣 tag（rainy/snowy/sunny…）且有 tags 相交的內容，優先從中挑。
+ *      這才讓本來只依節氣過濾、長年選不到的 ~1700 則天氣 seasonal 列（tags: [rainy] 等）真的被選中。
+ *   2. 節氣 slug；3. 季節 slug；4. 整池。
+ * 無天氣 tag 或無相交內容時，行為與原本完全相同（純節氣）。決定性：同 (space, date) 同輸出。
  */
 async function pickSeasonal(
   admin: ReturnType<typeof createAdminClient>,
   spaceId: string,
   date: string,
+  weatherTags: readonly string[] = [],
 ): Promise<{ term: string; text: string } | null> {
   const [, m, d] = date.split('-').map(Number)
   const term = solarTermFor(m ?? 1, d ?? 1)
@@ -195,12 +241,9 @@ async function pickSeasonal(
     .eq('enabled', true)
   if (!data || data.length === 0) return null
 
-  const bySlug = data.filter((r) => (r.tags ?? []).includes(term.slug))
-  const bySeason = data.filter((r) => (r.tags ?? []).includes(term.season))
-  const pool = bySlug.length > 0 ? bySlug : bySeason.length > 0 ? bySeason : data
-
-  const idx = Math.floor(hashToUnit(`${spaceId}:seasonal:${date}`) * pool.length)
-  const picked = pool[idx] ?? pool[0]!
+  // 純函式決定選取（含天氣優先），DB 讀取留在這裡；seed 與原本相同（同 space+date 決定性）
+  const picked = selectSeasonal(data, term, weatherTags, `${spaceId}:seasonal:${date}`, hashToUnit)
+  if (!picked) return null
   return { term: term.name, text: picked.text }
 }
 

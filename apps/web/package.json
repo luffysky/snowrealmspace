@@ -22,6 +22,7 @@
     "@snowrealm/storage": "workspace:*",
     "@snowrealm/theme-engine": "workspace:*",
     "@snowrealm/validation": "workspace:*",
+    "@snowrealm/weather": "workspace:*",
     "@snowrealm/widget-engine": "workspace:*",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.47.10",

@@ -58,3 +58,44 @@ export function solarTermFor(month: number, day: number): SolarTerm {
   }
   return { slug: cur.slug, name: cur.name, season: cur.season, seasonName: SEASON_NAME[cur.season] }
 }
+
+export type SeasonalRow = { text: string; tags: string[] | null }
+
+/**
+ * 純函式：從 seasonal 列決定性挑一則（#49 天氣感知）。抽成純函式的理由同 daily-select ——
+ * 選錯在真實環境無法重現，只能靠測試守；DB 讀取留在 service，這裡只做「給定列、節氣、天氣 tag、seed → 選一則」。
+ *
+ * 優先序：
+ *   1. 天氣：tags 與當前天氣 tag（rainy/snowy/sunny/cold/hot…）有交集的列 —— 讓本來只依節氣過濾、
+ *      長年選不到的 ~1700 則天氣 seasonal 內容真的被選中。
+ *   2. 節氣 slug；3. 季節 slug；4. 整池。
+ * 無天氣 tag 或無相交列時，退回與原本相同的純節氣行為。決定性：同 seed 同輸出。
+ */
+export function selectSeasonal(
+  rows: readonly SeasonalRow[],
+  term: SolarTerm,
+  weatherTags: readonly string[],
+  seed: string,
+  hashToUnit: (s: string) => number,
+): { text: string } | null {
+  if (rows.length === 0) return null
+
+  const byWeather =
+    weatherTags.length > 0
+      ? rows.filter((r) => (r.tags ?? []).some((t) => weatherTags.includes(t)))
+      : []
+  const bySlug = rows.filter((r) => (r.tags ?? []).includes(term.slug))
+  const bySeason = rows.filter((r) => (r.tags ?? []).includes(term.season))
+  const pool =
+    byWeather.length > 0
+      ? byWeather
+      : bySlug.length > 0
+        ? bySlug
+        : bySeason.length > 0
+          ? bySeason
+          : rows
+
+  const idx = Math.floor(hashToUnit(seed) * pool.length)
+  const picked = pool[idx] ?? pool[0]!
+  return { text: picked.text }
+}
