@@ -47,8 +47,24 @@ const FIGMA_TOKEN_URL = 'https://api.figma.com/v1/oauth/token'
  * Figma scope 預設值。**純常數，供測試與 fallback 用**，不讀 env。
  * 執行期實際使用的 scope 由 figmaScopes() 決定（可用 env FIGMA_SCOPES 覆寫），
  * 讓維運者能對齊 Figma app 後台實際勾選的權限，不必改碼（避免「Invalid scopes for app」）。
+ *
+ * 註：Figma 2024 後的細分 scope（沒有舊的 `files:read`），這裡對齊本專案 Figma app 後台
+ * 已勾選的權限：讀檔內容/中繼/版本、專案、設計庫、Dev 資源、以及 webhook 讀寫（S3 同步觸發）。
  */
-export const FIGMA_SCOPES = ['files:read'] as const
+export const FIGMA_SCOPES = [
+  'current_user:read',
+  'file_content:read',
+  'file_metadata:read',
+  'file_versions:read',
+  'file_comments:read',
+  'file_dev_resources:read',
+  'library_assets:read',
+  'library_content:read',
+  'project_metadata:read',
+  'projects:read',
+  'webhooks:read',
+  'webhooks:write',
+] as const
 
 /**
  * 執行期 Figma scope：優先讀 env `FIGMA_SCOPES`（空白或逗號分隔），否則回預設 FIGMA_SCOPES。
