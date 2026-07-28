@@ -77,19 +77,30 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
   const [state, setState] = useState<State>('loading')
   const [data, setData] = useState<Resp | null>(null)
   const [paused, setPaused] = useState(false)
+  const [err, setErr] = useState<string | null>(null)
 
   useEffect(() => {
     let alive = true
     setState('loading')
     fetch('/api/weather', { headers: { 'x-space-id': spaceId } })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('http'))))
-      .then((b: { data: Resp }) => {
+      .then(async (r) => {
+        if (!r.ok) {
+          // 把真實原因帶出來（狀態碼 + API 訊息），方便診斷「讀取失敗」到底卡在哪
+          const body = (await r.json().catch(() => null)) as { error?: { message?: string } } | null
+          throw new Error(body?.error?.message ? `${r.status}：${body.error.message}` : `HTTP ${r.status}`)
+        }
+        return (await r.json()) as { data: Resp }
+      })
+      .then((b) => {
         if (!alive) return
         setData(b.data)
         setState('ready')
       })
-      .catch(() => {
-        if (alive) setState('error')
+      .catch((e: unknown) => {
+        if (alive) {
+          setErr(e instanceof Error ? e.message : '未知錯誤')
+          setState('error')
+        }
       })
     return () => {
       alive = false
@@ -114,8 +125,8 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
     return (
       <div className="sr-card sr-widget" style={cardStyle}>
         <h3 className="sr-widget-title">天氣</h3>
-        <p className="sr-muted" style={{ margin: 0, color: 'var(--sr-danger)' }}>
-          天氣讀取失敗，稍後再試。
+        <p className="sr-muted" style={{ margin: 0, color: 'var(--sr-danger)', overflowWrap: 'anywhere' }}>
+          天氣讀取失敗{err ? `：${err}` : ''}
         </p>
       </div>
     )
