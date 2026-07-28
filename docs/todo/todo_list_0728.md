@@ -18,16 +18,19 @@
       handler 主導退避、429 依 Retry-After、連 5 次失敗轉 error+通知）；`POST /sync` 改入列 202。15 retry 測試。
 
 ### 待做
-- [ ] **S3 — webhook 觸發同步**：`/api/webhooks/[provider]` 接上 canva（目前只掛 figma）；provider 事件 → 入列 `design.sync`。
-- [ ] **S4 — UI**：選檔 picker（列 `/files` + 勾選送 `/sync`）；「上次同步時間」接真實 `last_synced_at`；版本比較 UI（compare API 已存在）。
+- [x] ~~**S3 — webhook 觸發同步**：`/api/webhooks/[provider]` 接上 canva；驗簽+非重送才觸發，找受影響 `design_files`（sync_status=active、connection status=active）逐列入列 `design.sync`（與手動同步同契約）。provider-core 加 `affectedFileExternalIds`（Figma=file_key／Canva=design.id 防禦性，掛 TODO）+8 測試。~~ ✅ 0729（子代理寫、主對話逐檔審+schema 核對+四閘門綠）
+- [x] ~~**S4 — UI**：選檔 picker（`FilePickerDialog`，列 `/files`+勾選送 `/sync`、Figma 需專案 ID、無全選、上限 50、誠實狀態、行動安全）；
+      `/files` 每檔標真實 `design_files.last_synced_at`；版本比較沿用 `/works`（其查詢無 provider 濾鏡、同步檔已涵蓋，不重造）。~~ ✅ 0729（子代理寫、主對話逐檔審+四閘門綠+CSS class 全存在）
 - [ ] **S5 — mock**：以**錄製的真實回應**建 provider mock（規格禁手寫理想化 mock）。**卡真憑證+真檔**才錄得到。
 - [ ] **🔴 Figma 端點/scope 實測校正**：provider-core 內 `TODO(figma)` 全部待對最新 Figma 文件實測（2024 改版後 token/scope 有變）。Canva 那側也尚未對真帳號實跑。
 
-### 前置（Luffy 已備 / 待驗）
+### 前置（Luffy 已備）
 - [x] Zeabur web + **worker** 皆設 `CANVA_*`/`FIGMA_*`/`TOKEN_ENCRYPTION_SECRET`（兩服務 TOKEN 同值已確認）。
 - [x] Canva 後台 redirect 設 `…/api/integrations/canva/callback`（app 保持開發狀態、不用送審）。
-- [ ] 後台開 flag `canvaConnect` / `figmaIntegration`（預設關 → 端點 404）。
-- [ ] **第一次端到端試**：開 flag → 設定頁連 Canva → 選檔 → 同步 → 看 `design_snapshots` 出現版本。
+- [x] ~~後台開 flag `canvaConnect` / `figmaIntegration`~~ ✅ 0729（provider 端點啟用）。
+- [x] ~~AI 金鑰（Groq＋Gemini 貼後台）+ `AI_KEY_ENCRYPTION_SECRET`；Resend（`GOTRUE_SMTP_ADMIN_EMAIL`+`RESEND_API_KEY`）；Google/LINE 憑證＋隱私頁~~ ✅ 0729（Luffy 一批設好，見 0724 🅰）。
+- [ ] **第一次端到端試**：設定頁連 Canva/Figma → 選檔（S4 picker）→ 同步 → 看 `design_snapshots` 出版本
+      （順便**錄真實回應**供 S5 mock、校正端點/scope）。
 
 ---
 
@@ -40,11 +43,16 @@
 
 ---
 
-## C. 天氣（#49 / #56，規劃完成、未動工）
+## C. 天氣（#49 / #56，✅ 0729 完成）
 
-- [ ] **#56 頁面天氣動畫區塊**：可 opt-in（預設關）、白天太陽/夜晚月亮、背景透明、顯示地區+氣溫、
-      Lottie 或 WebGL；颱風畫大風大雨。GPS 需使用者授權（隱私 opt-in）。
-- [ ] **#49 天氣感知內容**：接氣象 API + 位置，seasonal 已按天氣 tag（rainy/sunny/cold/hot…）備好內容可對接。
+> Open-Meteo（免金鑰）+ 伺服器 proxy；隱私預設關、只存城市名、座標不落地；flag `weatherWidget` gate（關→404）。
+> 子代理寫、主對話逐檔審 + 全閘門（含 full test suite 抓到並修好 registry.test 的過時斷言）+ hosted DB 落地驗證。
+
+- [x] ~~**#56 頁面天氣動畫區塊**~~ ✅ 0729：`weather` widget（日/夜太陽月亮＋氣溫＋地區＋`ProceduralScene` overlay 動畫、reduced-motion 降級、可暫停）、
+      `/api/weather`＋`/lookup`（RLS、flag→404、位置只進 body 不進 URL）、設定頁 opt-in（城市＋「使用目前位置」→BigDataCloud 反查、隱私政策已誠實揭露）。
+      **DB 已落地**：`sync-widget-defs` 補 `weather` 定義列 + `feature_flags.weatherWidget`（enabled=false，待後台開）。
+- [x] ~~**#49 天氣感知內容**~~ ✅ 0729：抽 `@snowrealm/weather` 套件解分層 → daily-engine 生成時查天氣轉 tag 併入 context、
+      `selectSeasonal` 讓 ~1700 則休眠天氣 seasonal 內容真的被選中；天氣失敗絕不阻斷生成（try/catch→[]、8s timeout）；選取仍決定性。
 
 ---
 

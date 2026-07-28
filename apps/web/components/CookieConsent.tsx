@@ -26,8 +26,8 @@ export function CookieConsent() {
   return (
     <div className="sr-cookie" role="dialog" aria-label="Cookie 說明">
       <p style={{ marginTop: 0 }}>
-        本站只使用<strong>必要的 cookie</strong>（登入、進站閘門、深淺色偏好），沒有第三方廣告或追蹤。
-        詳見{' '}
+        本站只使用<strong>必要的 cookie</strong>（登入工作階段、進站閘門、深淺色偏好；若你用 Google／LINE 登入，也包含該登入所需的工作階段 cookie）。
+        <strong>沒有</strong>第三方廣告或追蹤 cookie。詳見{' '}
         <Link href="/privacy" className="sr-link">
           隱私政策
         </Link>

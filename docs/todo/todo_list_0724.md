@@ -26,9 +26,8 @@
 
 - 🔴🔴 **Zeabur redeploy 抓最新 commit（最優先）** — 註冊 500 修復（R2 optional）、帳密體驗、
       深淺色、E 全部新功能（Insight/通知/主動訊息/驚喜收藏）都要 redeploy 才會上線。
-- 🔴 **Resend 寄件人網域** — SMTP 已連上，但 `Error sending confirmation email` 是因寄件人在沙盒。
-      把 auth 服務的 `GOTRUE_SMTP_ADMIN_EMAIL` 設成 `service@snowrealm.pet`（已驗證網域）→ 重啟 auth。
-      設好後 magic link 登入才對外可用（**帳號密碼登入已可用、不受此影響**）。
+- [x] ~~**Resend 寄件人網域**~~ ✅ 0729（Luffy 設好 `GOTRUE_SMTP_ADMIN_EMAIL` + `RESEND_API_KEY`）—
+      magic link / 週報寄信對外可用。
 - [x] ~~**Cloudflare R2** — env（account/key/bucket）已設好（Luffy「env 跟 r2 都用好了」）~~
 - [x] ~~**R2 bucket CORS** — 已貼 CORS policy，瀏覽器直傳可通~~
 - [x] ~~**部署 worker 服務** — 已啟動（背景圖處理/場景/排程都靠它）~~
@@ -37,17 +36,13 @@
 - 🔴 **Q10 手動走查** — 人實際點過 Milestone B 一輪（主題/背景/字體/版面）。
 - 🔴 **台北黑體字檔** — 沒有穩定下載網址，需人工下載。**下載來源見 `docs/fonts/README.md`**（翰字鑄造 JT Foundry <https://sites.google.com/view/jtfoundry/>）。
       **✅ 0726：不用再跑 CLI** —— 後台 `/admin/fonts`（外觀資源 → 字體管理）可直接上傳字體檔＋OFL 授權即時安裝（子集化在 route 內完成）。
-- 🔴 **AI 金鑰**（Milestone D）— **改為後台管理**（照 ai 島）：
-      - Zeabur web 只需設**一把** `AI_KEY_ENCRYPTION_SECRET`（base64 的 32 bytes，master 加密金鑰）
-      - 各家 provider 金鑰到網站 **`/admin/ai-keys`** 貼上（會先測試才加密存 DB），不放 Zeabur env
-      - 至少 Groq + Gemini 兩把免費（後台有取得連結）；設好 Agent 對話就能運作
-      - 站台管理員身份：email `luffysky00@gmail.com`（或 `OWNER_EMAILS`/`OWNER_USER_IDS` env）
-- 🔴 **Figma app 憑證**（Milestone F）— `FIGMA_CLIENT_ID` / `FIGMA_CLIENT_SECRET` / `FIGMA_WEBHOOK_SECRET`，redirect URI 用正式網域。
-- 🔴 **Google / LINE 登入憑證**（程式碼已完成，只差憑證；沒設按鈕會停用不會壞）— 由 0723 沿用：
-      - Google Cloud Console → OAuth consent screen + Client ID → `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET`（並在 Supabase → Auth → Providers 開啟）
-      - LINE Login channel → `LINE_LOGIN_CHANNEL_ID` / `LINE_LOGIN_CHANNEL_SECRET` / `LINE_LOGIN_REDIRECT_URI`（callback URL 要完全一致）
-      - LINE email 權限申請（需說明用途）
-      - **隱私權政策頁**（Google/LINE 審核前置）
+- [x] ~~**AI 金鑰**（Milestone D）~~ ✅ 0729（Luffy 貼好 Groq＋Gemini 到 `/admin/ai-keys`、Zeabur 設 `AI_KEY_ENCRYPTION_SECRET`）—
+      Agent 對話／主題配色／記憶檢索／洞察應可真的產生回應（建議實跑一次確認）。
+- [x] ~~**F 憑證**（Milestone F）— `CANVA_*`／`FIGMA_*` + `TOKEN_ENCRYPTION_SECRET`（web＋worker 同值）+ webhook secret~~
+      ✅ 0729（Luffy 設好、後台開 flag `canvaConnect`/`figmaIntegration`）—— provider 端點啟用。剩 Figma/Canva 端點對真 API 實測（見 #13b S5）。
+- [x] ~~**Google / LINE 登入憑證** + **隱私權政策頁內容**~~ ✅ 0729（Luffy 設好 Google/LINE 憑證、確認隱私頁內容）—
+      Google（`GOOGLE_OAUTH_*` + Supabase Auth Providers 開啟）、LINE（`LINE_LOGIN_*`，callback 一字不差、email 權限）皆備；
+      建議各實跑一次登入/綁定確認 callback 對得上。
 - 🔴 **內容決定** — Agent 名字/外觀（D 前）；生日鏈第 5 環「一年後」要放什麼（已有 AI 代寫版，可換）；
       **正式產品名稱**（公開發布前，程式碼用 `snowrealm` 前綴、品牌走 i18n）。背景音樂已完成（可選）。
 
@@ -566,18 +561,22 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改
 - [x] ~~`POST /sync` 改為入列 job（202、externalIds 必填非空、無「全部」）~~ ✅
 - 註：worker 不能 import apps/web → S1 邏輯抽成 `@snowrealm/design-sync` 單一來源，web 4 檔改薄 barrel（路徑不變）。
 
-**S3 — webhook → 觸發同步（⬜ 未做）**
-- [ ] `/api/webhooks/[provider]` 接上 canva（目前只掛 figma），事件 → 入列 design.sync
+**S3 — webhook → 觸發同步（✅ 已審 0729）**
+- [x] ~~`/api/webhooks/[provider]` 接上 canva（figma passcode／canva HMAC），驗簽+非重送才觸發，
+      找受影響 `design_files`（sync_status=active + connection status=active）逐列入列 design.sync（同手動契約）。
+      provider-core 加 `affectedFileExternalIds`（Figma file_key／Canva design.id 防禦性，掛 TODO(canva)）+8 測試~~
 
-**S4 — UI（⬜ 未做）**
-- [ ] 選檔 picker UI（列可選檔案、勾選送同步）
-- [ ] 「上次同步時間」顯示接上真實 `last_synced_at`（S1 已會寫入）
-- [ ] 版本比較 UI（compare API 已存在，接同步產出的版本）
+**S4 — UI（✅ 已審 0729）**
+- [x] ~~選檔 picker UI（`FilePickerDialog`：列 `/files`、勾選送 `/sync`、Figma 需專案 ID、無全選、上限 50、誠實 loading/空/錯誤狀態、`.sr-dialog-picker` 行動安全）~~
+- [x] ~~「上次同步時間」接真實 `last_synced_at`（連線層本就有；`/files` 再每檔標 `design_files.last_synced_at`，單一 RLS 查詢）~~
+- [x] ~~版本比較：確認 `/works` 查詢無 provider 濾鏡、同步產出的 design_files/snapshots 已涵蓋 → 沿用既有 compare UI，picker 成功狀態加連結，不重造~~
 
 **S5 — mock（⬜ 卡憑證，等 13c）**
 - [ ] Provider mock 以**錄製的真實回應**建立（規格禁手寫理想化 mock）——需真憑證+真檔才錄得到
 
 ### 13c. 啟用前置（Luffy 操作）
-- [ ] 部署環境設 `CANVA_CLIENT_ID/SECRET`（Figma 要則 `FIGMA_CLIENT_ID/SECRET`）+ 32-byte `TOKEN_ENCRYPTION_SECRET`
-- [ ] provider 後台 redirect URL 設 `https://…/api/integrations/{canva|figma}/callback`
-- [ ] 後台開 flag `canvaConnect` / `figmaIntegration`（預設關 → provider 不出現、端點 404）
+- [x] ~~部署環境設 `CANVA_CLIENT_ID/SECRET`（Figma `FIGMA_CLIENT_ID/SECRET`）+ 32-byte `TOKEN_ENCRYPTION_SECRET`~~ ✅ 0729
+- [x] ~~provider 後台 redirect URL 設 `https://…/api/integrations/{canva|figma}/callback`~~ ✅ 0729（Canva 已設；Figma 同理）
+- [x] ~~後台開 flag `canvaConnect` / `figmaIntegration`~~ ✅ 0729（provider 端點啟用）
+- [ ] **第一次端到端實跑**：設定頁連 Canva/Figma → 選檔（S4 picker）→ 同步 → 看 `design_snapshots` 出版本
+      （此步順便**錄真實回應**供 S5 mock、並校正 Figma/Canva 端點/scope）

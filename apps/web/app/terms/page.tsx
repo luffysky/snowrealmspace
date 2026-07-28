@@ -12,7 +12,7 @@ export default function TermsPage() {
       <article className="sr-card sr-stack" style={{ maxWidth: 760, margin: '0 auto' }}>
         <header>
           <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>使用條款</h1>
-          <p className="sr-muted">最後更新：2026-07-25</p>
+          <p className="sr-muted">最後更新：2026-07-29</p>
         </header>
 
         <p>歡迎使用 SnowRealm-Space。使用本服務即表示你同意以下條款。</p>
@@ -42,12 +42,21 @@ export default function TermsPage() {
         </section>
 
         <section className="sr-stack">
-          <h2 className="sr-section-title">5. 終止與刪除</h2>
+          <h2 className="sr-section-title">5. 第三方服務與整合</h2>
+          <ul style={{ lineHeight: 1.9 }}>
+            <li>你可選擇連接第三方服務（如 Figma／Canva 設計工具、Google／LINE 登入、天氣資料來源）。這些整合皆為<strong>選用</strong>，且受各該服務自己的條款與隱私政策約束。</li>
+            <li>透過整合帶入的內容，你必須擁有合法使用權利。中斷整合時可選擇一併刪除由該工具帶進來的派生資料。</li>
+            <li>我們不對第三方服務的可用性、正確性或其政策變更負責（例如天氣資訊僅供參考、外部平台變更 API）。</li>
+          </ul>
+        </section>
+
+        <section className="sr-stack">
+          <h2 className="sr-section-title">6. 終止與刪除</h2>
           <p>你可隨時刪除空間或帳號。若有嚴重違規，我們保留暫停帳號的權利。</p>
         </section>
 
         <section className="sr-stack">
-          <h2 className="sr-section-title">6. 免責聲明</h2>
+          <h2 className="sr-section-title">7. 免責聲明</h2>
           <p>本服務按「現狀」提供，於法律允許範圍內不負任何明示或默示的擔保責任。請自行為重要資料另做備份。</p>
         </section>
 
