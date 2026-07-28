@@ -13,6 +13,11 @@ export const agentChatSchema = z
     /** 已上傳的圖片 asset id（最多 4 張）。伺服器會驗證屬於本 space 且為 image。 */
     attachmentAssetIds: z.array(z.string().uuid()).max(4).optional(),
     selectedSnapshotId: z.string().uuid().nullable().optional(),
+    /**
+     * 綁定「這個對話屬於哪件作品」。伺服器會寫進 agent_messages.context_refs.designFileId，
+     * /works 才能用它找回同一件作品的對話（不需新 migration，複用既有 jsonb 欄位）。
+     */
+    designFileId: z.string().uuid().optional(),
     route: z.string().max(120).optional(),
   })
   .strict()

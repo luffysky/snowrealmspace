@@ -10,7 +10,7 @@ export default async function WorksPage() {
   const { space } = await requireActiveSpace()
   const db = await getDb()
 
-  const [{ data }, { data: images }] = await Promise.all([
+  const [{ data }, { data: images }, { data: settings }] = await Promise.all([
     db
       .from('design_files')
       .select(
@@ -29,6 +29,7 @@ export default async function WorksPage() {
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
       .limit(200),
+    db.from('space_settings').select('memory_enabled').eq('space_id', space.id).maybeSingle(),
   ])
 
   const assetOptions: AssetOption[] = (images ?? []).map((a) => ({
@@ -49,6 +50,7 @@ export default async function WorksPage() {
         spaceId={space.id}
         initialFiles={(data ?? []) as WorkFile[]}
         assetOptions={assetOptions}
+        memoryEnabled={settings?.memory_enabled ?? false}
       />
     </div>
   )

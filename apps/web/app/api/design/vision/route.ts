@@ -7,6 +7,7 @@ import {
   type AIContentBlock,
 } from '@snowrealm/ai-core'
 import { storage } from '@snowrealm/storage'
+import { createAdminClient } from '@snowrealm/db/server'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
 import { buildCompleteDeps } from '@/lib/ai/deps'
@@ -78,6 +79,27 @@ export const POST = handler(async (request: NextRequest) => {
       },
       deps,
     )
+
+    // 存成「分析歷史」（design_insights, kind='analysis'）。member 對此表無 INSERT policy，
+    // 由 service role 當系統寫入者，範圍以 space_id 綁死。additive —— 存失敗只記 log，不擋回應。
+    try {
+      const bullets = completion.text
+        .split('\n')
+        .map((l) => l.trim())
+        .filter((l) => l.length > 0)
+      const admin = createAdminClient()
+      const { error: insErr } = await admin.from('design_insights').insert({
+        space_id: ctx.spaceId,
+        snapshot_id: parsed.data.snapshotId,
+        kind: 'analysis',
+        statements: { text: completion.text, deep: Boolean(parsed.data.deep), bullets },
+        model_used: completion.model,
+      })
+      if (insErr) console.error('[design.vision] 分析歷史寫入失敗', insErr.message)
+    } catch (persistErr) {
+      console.error('[design.vision] 分析歷史寫入例外', (persistErr as Error).message)
+    }
+
     return ok({
       analysis: completion.text,
       model: completion.model,

@@ -45,6 +45,9 @@ export const POST = handler(async (request: NextRequest) => {
 
   const admin = createAdminClient()
 
+  // 作品綁定：把 designFileId 寫進 context_refs，/works 才找得回這件作品的對話（backward compatible）。
+  const contextRefs = input.designFileId ? { designFileId: input.designFileId } : undefined
+
   // ── 圖片附件（多模態）──────────────────────────────────
   // 走既有 assets 管線：位元組只在 assets（ADR-005）。這裡用受 RLS 約束的 db 讀，
   // 不是成員就查不到；讀出真實位元組轉 base64 塞進 vision 訊息。
@@ -124,6 +127,7 @@ export const POST = handler(async (request: NextRequest) => {
     role: 'user',
     content: input.message,
     blocks: attachmentRefs,
+    ...(contextRefs ? { context_refs: contextRefs } : {}),
   })
 
   // 對話歷史（最近 N 則，時間正序）
@@ -196,6 +200,7 @@ export const POST = handler(async (request: NextRequest) => {
         provider: completion.provider,
         is_free: completion.isFree,
         escalated: completion.escalated,
+        ...(contextRefs ? { context_refs: contextRefs } : {}),
       })
       .select('id')
       .single()

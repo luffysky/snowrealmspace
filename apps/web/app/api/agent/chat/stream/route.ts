@@ -72,6 +72,9 @@ export async function POST(request: NextRequest): Promise<Response> {
 
   const admin = createAdminClient()
 
+  // 作品綁定：把 designFileId 寫進 context_refs，/works 才找得回這件作品的對話（backward compatible）。
+  const contextRefs = input.designFileId ? { designFileId: input.designFileId } : undefined
+
   // 取得或建立 thread
   let threadId = input.threadId ?? null
   let threadSummary: string | null = null
@@ -102,6 +105,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     thread_id: threadId,
     role: 'user',
     content: input.message,
+    ...(contextRefs ? { context_refs: contextRefs } : {}),
   })
 
   const { data: history } = await ctx.db
@@ -221,6 +225,7 @@ export async function POST(request: NextRequest): Promise<Response> {
           thread_id: threadId,
           role: 'assistant',
           content: full,
+          ...(contextRefs ? { context_refs: contextRefs } : {}),
         })
         await admin.from('agent_threads').update({ last_message_at: new Date().toISOString() }).eq('id', threadId)
         // 長對話滾動摘要（超過門檻才跑、免費模型、失敗不擋）

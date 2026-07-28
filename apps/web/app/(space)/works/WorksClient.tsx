@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { FeatureComparison } from '@snowrealm/theme-engine'
 import { useDialog } from '@/components/ui/DialogProvider'
 import { AssetPicker } from '@/components/ui/AssetPicker'
@@ -51,10 +51,12 @@ export function WorksClient({
   spaceId,
   initialFiles,
   assetOptions,
+  memoryEnabled,
 }: {
   spaceId: string
   initialFiles: WorkFile[]
   assetOptions: AssetOption[]
+  memoryEnabled: boolean
 }) {
   const [files, setFiles] = useState<WorkFile[]>(initialFiles)
   const [selectedId, setSelectedId] = useState<string | null>(initialFiles[0]?.id ?? null)
@@ -160,6 +162,7 @@ export function WorksClient({
               key={selected.id}
               spaceId={spaceId}
               file={selected}
+              memoryEnabled={memoryEnabled}
               onAddVersion={() => void addVersion(selected)}
               onDelete={() => void deleteFile(selected)}
             />
@@ -170,14 +173,43 @@ export function WorksClient({
   )
 }
 
+type Insight = {
+  id: string
+  createdAt: string
+  kind: string
+  model: string | null
+  summary: string
+  projectName: string | null
+  provider: string
+  versionLabel: string | null
+}
+
+/** provider → 中文來源軟體。未知值退回「其他」，不硬編色。 */
+function providerLabel(p: string): string {
+  switch (p) {
+    case 'figma':
+      return 'Figma'
+    case 'canva':
+      return 'Canva'
+    case 'adobe':
+      return 'Adobe'
+    case 'upload':
+      return '上傳'
+    default:
+      return '其他'
+  }
+}
+
 function WorkDetail({
   spaceId,
   file,
+  memoryEnabled,
   onAddVersion,
   onDelete,
 }: {
   spaceId: string
   file: WorkFile
+  memoryEnabled: boolean
   onAddVersion: () => void
   onDelete: () => void
 }) {
@@ -193,6 +225,20 @@ function WorkDetail({
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null)
   const [aiBusy, setAiBusy] = useState(false)
   const [aiErr, setAiErr] = useState<string | null>(null)
+  const [insights, setInsights] = useState<Insight[]>([])
+
+  const loadInsights = useCallback(async () => {
+    const res = await fetch(`/api/design/insights?fileId=${file.id}`, {
+      headers: { 'x-space-id': spaceId },
+    })
+    if (!res.ok) return
+    const body = (await res.json()) as { data: Insight[] }
+    setInsights(body.data)
+  }, [spaceId, file.id])
+
+  useEffect(() => {
+    void loadInsights()
+  }, [loadInsights])
 
   async function analyzeDesign(deep: boolean) {
     if (!a) return // a = 目前選的版本 A 的 snapshot id
@@ -211,6 +257,7 @@ function WorkDetail({
         return
       }
       setAiAnalysis((body as { data: { analysis: string } }).data.analysis)
+      void loadInsights() // 分析已存成歷史 → 重載清單
     } catch {
       setAiErr('網路錯誤，請重試。')
     } finally {
@@ -364,6 +411,15 @@ function WorkDetail({
         )}
       </div>
 
+      <AnalysisHistory insights={insights} />
+
+      <WorkChat
+        spaceId={spaceId}
+        fileId={file.id}
+        seedSnapshot={snaps[snaps.length - 1] ?? null}
+        memoryEnabled={memoryEnabled}
+      />
+
       {snaps.length < 2 ? (
         <p className="sr-muted">
           只有一個版本。用同一件作品「新增版本」（換一張圖），就能開始比較。
@@ -457,6 +513,367 @@ function WorkDetail({
         </>
       )}
     </section>
+  )
+}
+
+/** 分析歷史：design_insights 清單。每列時間 · 來源軟體 · 專案 · 版本 · 模型，分析全文可展開。 */
+function AnalysisHistory({ insights }: { insights: Insight[] }) {
+  const [openId, setOpenId] = useState<string | null>(null)
+  return (
+    <div className="sr-stack" style={{ gap: 'var(--sr-space-2)', minWidth: 0 }}>
+      <strong>分析歷史</strong>
+      {insights.length === 0 ? (
+        <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
+          還沒有分析紀錄。按上面的「快速分析」或「深入分析」，結果會存在這裡。
+        </p>
+      ) : (
+        <ul style={{ listStyle: 'none', margin: 0, padding: 0 }} className="sr-stack">
+          {insights.map((it) => {
+            const open = openId === it.id
+            return (
+              <li key={it.id} className="sr-card" style={{ background: 'var(--sr-surface-alt)', minWidth: 0 }}>
+                <button
+                  type="button"
+                  className="sr-linkish"
+                  style={{ textAlign: 'left', width: '100%', minWidth: 0 }}
+                  onClick={() => setOpenId(open ? null : it.id)}
+                  aria-expanded={open}
+                >
+                  <span
+                    className="sr-muted"
+                    style={{ fontSize: 'var(--sr-text-sm)', display: 'block', overflowWrap: 'anywhere' }}
+                  >
+                    {new Date(it.createdAt).toLocaleString('zh-TW')} · {providerLabel(it.provider)}
+                    {it.projectName ? ` · ${it.projectName}` : ''}
+                    {it.versionLabel ? ` · ${it.versionLabel}` : ''}
+                    {it.model ? ` · ${it.model}` : ''}
+                  </span>
+                  <span style={{ overflowWrap: 'anywhere' }}>
+                    {open ? '▾ ' : '▸ '}
+                    {it.summary.split('\n')[0]?.slice(0, 60) || '（無內容）'}
+                    {!open && it.summary.length > 60 ? '…' : ''}
+                  </span>
+                </button>
+                {open && (
+                  <div style={{ marginTop: 'var(--sr-space-2)', minWidth: 0 }}>
+                    {it.summary.split('\n').map((line, i) =>
+                      line.trim() ? (
+                        <p key={i} style={{ margin: '0 0 var(--sr-space-2)', overflowWrap: 'anywhere' }}>
+                          {line}
+                        </p>
+                      ) : null,
+                    )}
+                  </div>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+type ChatMsg = { id: string; role: 'user' | 'assistant'; content: string }
+
+/**
+ * 跟 AI 聊「這件作品」。複用既有 agent 管線（不重建 AI/記憶）：
+ * - 綁定：訊息帶 designFileId → 伺服器寫進 context_refs；開啟時用 /api/design/work-thread 找回。
+ * - 第一輪：走 /api/agent/chat（非串流、多模態），attachmentAssetIds 帶作品圖 → AI 真的「看得到」
+ *   （反幻覺 prompt 禁止描述沒附上的圖，所以必須附圖而不只傳 selectedSnapshotId）。
+ * - 之後：走 /api/agent/chat/stream（逐字串流），帶 selectedSnapshotId + route:'/works'。
+ * - 長期記憶由 buildAgentContext 在 memory_enabled 時自動注入；這裡不建任何記憶，只在關閉時給提示。
+ */
+function WorkChat({
+  spaceId,
+  fileId,
+  seedSnapshot,
+  memoryEnabled,
+}: {
+  spaceId: string
+  fileId: string
+  seedSnapshot: Snapshot | null
+  memoryEnabled: boolean
+}) {
+  const [open, setOpen] = useState(false)
+  const [threadId, setThreadId] = useState<string | null>(null)
+  const [messages, setMessages] = useState<ChatMsg[]>([])
+  const [input, setInput] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [streaming, setStreaming] = useState(false)
+  const [err, setErr] = useState<string | null>(null)
+  const [loaded, setLoaded] = useState(false)
+  const listRef = useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = useCallback(() => {
+    requestAnimationFrame(() => {
+      listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
+    })
+  }, [])
+
+  // 開啟時載入這件作品既有對話（找回 thread → 讀訊息）
+  useEffect(() => {
+    if (!open || loaded) return
+    let alive = true
+    void (async () => {
+      try {
+        const res = await fetch(`/api/design/work-thread?fileId=${fileId}`, {
+          headers: { 'x-space-id': spaceId },
+        })
+        if (!res.ok || !alive) return
+        const { data } = (await res.json()) as { data: { threadId: string | null } }
+        if (!data.threadId || !alive) {
+          setLoaded(true)
+          return
+        }
+        setThreadId(data.threadId)
+        const r2 = await fetch(`/api/agent/threads/${data.threadId}`, { headers: { 'x-space-id': spaceId } })
+        if (!r2.ok || !alive) return
+        const b2 = (await r2.json()) as { data: { messages: ChatMsg[] } }
+        setMessages(b2.data.messages.map((m) => ({ id: m.id, role: m.role, content: m.content })))
+      } finally {
+        if (alive) {
+          setLoaded(true)
+          scrollToBottom()
+        }
+      }
+    })()
+    return () => {
+      alive = false
+    }
+  }, [open, loaded, fileId, spaceId, scrollToBottom])
+
+  async function send() {
+    const text = input.trim()
+    if (!text || busy) return
+    setInput('')
+    setErr(null)
+    setBusy(true)
+    const optimistic: ChatMsg = { id: `u-${Date.now()}`, role: 'user', content: text }
+    setMessages((prev) => [...prev, optimistic])
+    scrollToBottom()
+
+    // 第一輪（還沒有 thread）：非串流 + 附作品圖，讓 AI 真的看得到這件作品。
+    if (!threadId) {
+      try {
+        const res = await fetch('/api/agent/chat', {
+          method: 'POST',
+          headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            designFileId: fileId,
+            route: '/works',
+            ...(seedSnapshot
+              ? { attachmentAssetIds: [seedSnapshot.asset_id], selectedSnapshotId: seedSnapshot.id }
+              : {}),
+          }),
+        })
+        const body: unknown = await res.json().catch(() => null)
+        if (!res.ok) {
+          setErr((body as { error?: { message?: string } } | null)?.error?.message ?? 'AI 暫時無法回應。')
+          setInput(text)
+          setMessages((prev) => prev.filter((m) => m.id !== optimistic.id))
+          return
+        }
+        const data = (body as { data: { threadId: string; reply: string } }).data
+        setThreadId(data.threadId)
+        setMessages((prev) => [...prev, { id: `a-${Date.now()}`, role: 'assistant', content: data.reply }])
+        scrollToBottom()
+      } catch {
+        setErr('網路錯誤，請重試。')
+        setInput(text)
+        setMessages((prev) => prev.filter((m) => m.id !== optimistic.id))
+      } finally {
+        setBusy(false)
+      }
+      return
+    }
+
+    // 之後：串流（逐字吐）
+    const assistantId = `a-${Date.now()}`
+    let full = ''
+    let started = false
+    try {
+      const res = await fetch('/api/agent/chat/stream', {
+        method: 'POST',
+        headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+        body: JSON.stringify({
+          threadId,
+          message: text,
+          designFileId: fileId,
+          route: '/works',
+          ...(seedSnapshot ? { selectedSnapshotId: seedSnapshot.id } : {}),
+        }),
+      })
+      if (!res.ok || !res.body) {
+        const body: unknown = await res.json().catch(() => null)
+        setErr((body as { error?: { message?: string } } | null)?.error?.message ?? 'AI 暫時無法回應。')
+        setInput(text)
+        setMessages((prev) => prev.filter((m) => m.id !== optimistic.id))
+        return
+      }
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+      for (;;) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buffer += decoder.decode(value, { stream: true })
+        const blocks = buffer.split('\n\n')
+        buffer = blocks.pop() ?? ''
+        for (const blk of blocks) {
+          const line = blk.trim()
+          if (!line.startsWith('data:')) continue
+          let obj: { delta?: string; error?: string; done?: boolean }
+          try {
+            obj = JSON.parse(line.slice(5).trim())
+          } catch {
+            continue
+          }
+          if (obj.delta) {
+            full += obj.delta
+            if (!started) {
+              started = true
+              setStreaming(true)
+              setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', content: full }])
+            } else {
+              setMessages((prev) => prev.map((m) => (m.id === assistantId ? { ...m, content: full } : m)))
+            }
+            scrollToBottom()
+          }
+          if (obj.error) setErr(obj.error)
+        }
+      }
+      if (!full) {
+        setInput(text)
+        setMessages((prev) => prev.filter((m) => m.id !== optimistic.id))
+      }
+    } catch {
+      if (!full) {
+        setErr('網路錯誤，請重試。')
+        setInput(text)
+        setMessages((prev) => prev.filter((m) => m.id !== optimistic.id))
+      }
+    } finally {
+      setStreaming(false)
+      setBusy(false)
+    }
+  }
+
+  if (!open) {
+    return (
+      <div className="sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+        <button type="button" className="sr-button sr-button-secondary" onClick={() => setOpen(true)}>
+          💬 跟 AI 聊這個作品
+        </button>
+      </div>
+    )
+  }
+
+  return (
+    <div className="sr-stack" style={{ gap: 'var(--sr-space-2)', minWidth: 0 }}>
+      <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+        <strong>跟 AI 聊這個作品</strong>
+        <button type="button" className="sr-linkish" onClick={() => setOpen(false)}>
+          收合
+        </button>
+      </div>
+
+      {!memoryEnabled && (
+        <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)', overflowWrap: 'anywhere' }}>
+          開啟記憶後，AI 會記得跨對話的重點。{' '}
+          <a href="/settings/memory" className="sr-linkish">
+            前往設定
+          </a>
+        </p>
+      )}
+
+      <div
+        ref={listRef}
+        className="sr-stack"
+        aria-live="polite"
+        style={{
+          gap: 'var(--sr-space-2)',
+          maxHeight: 320,
+          overflowY: 'auto',
+          minWidth: 0,
+          padding: 'var(--sr-space-2)',
+          background: 'var(--sr-surface-alt)',
+          borderRadius: 'var(--sr-radius-md)',
+        }}
+      >
+        {messages.length === 0 ? (
+          <p className="sr-muted" style={{ margin: 0, textAlign: 'center', fontSize: 'var(--sr-text-sm)' }}>
+            問問 AI 對這件作品的看法、想怎麼改，或下一步可以做什麼。
+          </p>
+        ) : (
+          messages.map((m) => (
+            <div
+              key={m.id}
+              className="sr-card"
+              style={{
+                minWidth: 0,
+                overflowWrap: 'anywhere',
+                background: m.role === 'user' ? 'var(--sr-surface)' : 'transparent',
+                alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
+                maxWidth: '92%',
+              }}
+            >
+              <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', display: 'block' }}>
+                {m.role === 'user' ? '你' : 'AI'}
+              </span>
+              {m.content.split('\n').map((line, i) =>
+                line.trim() ? (
+                  <p key={i} style={{ margin: 0, overflowWrap: 'anywhere' }}>
+                    {line}
+                  </p>
+                ) : null,
+              )}
+            </div>
+          ))
+        )}
+        {busy && !streaming && (
+          <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
+            思考中…
+          </p>
+        )}
+      </div>
+
+      {err && (
+        <p className="sr-message sr-message-error" role="alert" style={{ margin: 0 }}>
+          {err}
+        </p>
+      )}
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          void send()
+        }}
+        className="sr-row"
+        style={{ gap: 'var(--sr-space-2)', alignItems: 'flex-end', flexWrap: 'nowrap', minWidth: 0 }}
+      >
+        <textarea
+          className="sr-input"
+          rows={2}
+          value={input}
+          maxLength={4000}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              void send()
+            }
+          }}
+          placeholder="輸入訊息…（Enter 送出）"
+          disabled={busy}
+          style={{ flex: 1, minWidth: 0 }}
+        />
+        <button type="submit" className="sr-button" disabled={busy || !input.trim()}>
+          送出
+        </button>
+      </form>
+    </div>
   )
 }
 
