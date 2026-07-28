@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, afterEach, vi } from 'vitest'
 import { createHmac } from 'node:crypto'
 import {
   FIGMA_CAPABILITIES,
@@ -154,5 +154,70 @@ describe('AdobeAdapter（誠實佔位：未校正前不臆造 sync）', () => {
   })
   it('fetchFile：拋 ProviderApiError（尚未實作，不假成功）', async () => {
     await expect(new AdobeAdapter().fetchFile('tok', 'ext')).rejects.toBeInstanceOf(ProviderApiError)
+  })
+  it('fetchAccount：拋 ProviderApiError（尚未實作，不假成功）', async () => {
+    await expect(new AdobeAdapter().fetchAccount('tok')).rejects.toBeInstanceOf(ProviderApiError)
+  })
+})
+
+describe('fetchAccount（多帳號識別）', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  /** 依序回應每個 URL 的 fetch stub；未預期的 URL → 500。 */
+  function stubFetch(byUrl: Record<string, { status?: number; body: unknown }>) {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) => {
+        const hit = Object.entries(byUrl).find(([u]) => String(url).startsWith(u))
+        if (!hit) return new Response('{}', { status: 500 })
+        const [, r] = hit
+        return new Response(JSON.stringify(r.body), { status: r.status ?? 200 })
+      }),
+    )
+  }
+
+  it('Figma：GET /v1/me → { externalId:id, label:handle }', async () => {
+    stubFetch({ 'https://api.figma.com/v1/me': { body: { id: 'fig-123', handle: 'nami', email: 'n@x.co' } } })
+    expect(await new FigmaAdapter().fetchAccount('tok')).toEqual({ externalId: 'fig-123', label: 'nami' })
+  })
+  it('Figma：無 handle → label 退回 email', async () => {
+    stubFetch({ 'https://api.figma.com/v1/me': { body: { id: 'fig-9', email: 'n@x.co' } } })
+    expect(await new FigmaAdapter().fetchAccount('tok')).toEqual({ externalId: 'fig-9', label: 'n@x.co' })
+  })
+  it('Figma：缺 id → 拋 ProviderApiError（不編造帳號）', async () => {
+    stubFetch({ 'https://api.figma.com/v1/me': { body: { handle: 'x' } } })
+    await expect(new FigmaAdapter().fetchAccount('tok')).rejects.toBeInstanceOf(ProviderApiError)
+  })
+  it('Figma：非 2xx → 拋 ProviderApiError（不靜默）', async () => {
+    stubFetch({ 'https://api.figma.com/v1/me': { status: 401, body: { message: 'bad token' } } })
+    await expect(new FigmaAdapter().fetchAccount('tok')).rejects.toBeInstanceOf(ProviderApiError)
+  })
+
+  it('Canva：/users/me + /users/me/profile → { externalId:user_id, label:display_name }', async () => {
+    stubFetch({
+      'https://api.canva.com/rest/v1/users/me/profile': { body: { profile: { display_name: 'Nami' } } },
+      'https://api.canva.com/rest/v1/users/me': { body: { team_user: { user_id: 'u-1', team_id: 't-1' } } },
+    })
+    expect(await new CanvaAdapter().fetchAccount('tok')).toEqual({ externalId: 'u-1', label: 'Nami' })
+  })
+  it('Canva：profile 端點失敗不致命 → label:null，仍以 user_id 存', async () => {
+    stubFetch({
+      'https://api.canva.com/rest/v1/users/me/profile': { status: 403, body: { message: 'no scope' } },
+      'https://api.canva.com/rest/v1/users/me': { body: { team_user: { user_id: 'u-2' } } },
+    })
+    expect(await new CanvaAdapter().fetchAccount('tok')).toEqual({ externalId: 'u-2', label: null })
+  })
+  it('Canva：缺 user_id 退回 team_id', async () => {
+    stubFetch({
+      'https://api.canva.com/rest/v1/users/me/profile': { body: { profile: {} } },
+      'https://api.canva.com/rest/v1/users/me': { body: { team_user: { team_id: 't-9' } } },
+    })
+    expect(await new CanvaAdapter().fetchAccount('tok')).toEqual({ externalId: 't-9', label: null })
+  })
+  it('Canva：/users/me 非 2xx → 拋 ProviderApiError', async () => {
+    stubFetch({ 'https://api.canva.com/rest/v1/users/me': { status: 401, body: { message: 'nope' } } })
+    await expect(new CanvaAdapter().fetchAccount('tok')).rejects.toBeInstanceOf(ProviderApiError)
   })
 })

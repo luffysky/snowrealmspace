@@ -4,12 +4,19 @@ import { getUser } from '@/lib/auth/session'
 import { appUrl } from '@/lib/app-url'
 import { openTx } from '@/lib/integrations/canva'
 import { encryptToken, exchangeCode, isProviderKey, providerConfig } from '@/lib/integrations/providers'
+import { getAdapter } from '@/lib/integrations/sync'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const CONNECT_COOKIE = 'sr_provider_connect'
 const SETTINGS = '/settings/integrations'
+/**
+ * 取不到 provider 帳號識別（/me 端點暫時失敗等）時的備援 external_account_id。
+ * 用固定 sentinel 而非隨機值：同一 (space, provider) 反覆備援只更新同一列、不堆垃圾。
+ * 之後若成功取得真實帳號 id，會走「新增另一列」而非覆蓋此列。
+ */
+const UNRESOLVED_ACCOUNT_ID = '__unresolved__'
 
 type ConnectTx = { provider: string; spaceId: string; userId: string; state: string; verifier: string | null; exp: number }
 
@@ -91,14 +98,18 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const scopes = exchanged.tokens.scope ? exchanged.tokens.scope.split(/\s+/).filter(Boolean) : [...cfg.scopes]
   const expiresAt = new Date(Date.now() + exchanged.tokens.expiresInSec * 1000).toISOString()
 
-  const db = await getDb()
-  // 一 space 一 provider 一條連線：先查有沒有，有就更新、沒有才新增（owner RLS 保護）。
-  const { data: existing } = await db
-    .from('design_connections')
-    .select('id')
-    .eq('space_id', tx.spaceId)
-    .eq('provider', key)
-    .maybeSingle()
+  // 問 provider「這是誰的帳號」→ 以帳號為 key 存連線，讓同 provider 多帳號並存。
+  // 取不到（/me 暫時失敗）不放棄連接：退回穩定 sentinel 並記 log（不靜默漏掉連接）。
+  let account: { externalId: string; label: string | null }
+  try {
+    account = await getAdapter(key).fetchAccount(exchanged.tokens.accessToken)
+  } catch (err) {
+    console.warn(
+      `[integrations/${key}/callback] 取得帳號識別失敗，改用備援 id（連接仍會保存）`,
+      err instanceof Error ? err.message : err,
+    )
+    account = { externalId: UNRESOLVED_ACCOUNT_ID, label: null }
+  }
 
   const record = {
     access_token_encrypted: accessEnc,
@@ -107,22 +118,62 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     expires_at: expiresAt,
     status: 'active' as const,
     last_error: null,
+    external_account_label: account.label,
   }
 
-  if (existing) {
-    const { error } = await db.from('design_connections').update(record as never).eq('id', existing.id)
+  const db = await getDb()
+  // 以 (space, provider, external_account_id) 為 key：同帳號→更新（重新連接）、不同帳號→新增另一列。
+  const { data: sameAccount } = await db
+    .from('design_connections')
+    .select('id')
+    .eq('space_id', tx.spaceId)
+    .eq('provider', key)
+    .eq('external_account_id', account.externalId)
+    .maybeSingle()
+
+  if (sameAccount) {
+    // 同一帳號重新連接：更新 token/scope/expiry/label/status。
+    const { error } = await db
+      .from('design_connections')
+      .update({ ...record, external_account_id: account.externalId } as never)
+      .eq('id', sameAccount.id)
     if (error) {
       console.error(`[integrations/${key}/callback] 更新連線失敗`, error.message)
       return back(origin, `error=save_failed&provider=${key}`)
     }
-  } else {
+    return back(origin, `connected=${key}`)
+  }
+
+  // 沒有相符帳號 → 先看有沒有本功能之前留下的 external_account_id IS NULL 舊列，
+  // 有就「就地補上帳號識別」（避免把使用者既有的連接變孤兒 / 重複建列）。
+  const { data: legacy } = await db
+    .from('design_connections')
+    .select('id')
+    .eq('space_id', tx.spaceId)
+    .eq('provider', key)
+    .is('external_account_id', null)
+    .limit(1)
+    .maybeSingle()
+
+  if (legacy) {
     const { error } = await db
       .from('design_connections')
-      .insert({ space_id: tx.spaceId, user_id: user.id, provider: key, ...record } as never)
+      .update({ ...record, external_account_id: account.externalId } as never)
+      .eq('id', legacy.id)
     if (error) {
-      console.error(`[integrations/${key}/callback] 建立連線失敗`, error.message)
+      console.error(`[integrations/${key}/callback] 補寫舊連線帳號識別失敗`, error.message)
       return back(origin, `error=save_failed&provider=${key}`)
     }
+    return back(origin, `connected=${key}`)
+  }
+
+  // 全新帳號 → 新增一列（帶 external_account_id / label）。
+  const { error } = await db
+    .from('design_connections')
+    .insert({ space_id: tx.spaceId, user_id: user.id, provider: key, external_account_id: account.externalId, ...record } as never)
+  if (error) {
+    console.error(`[integrations/${key}/callback] 建立連線失敗`, error.message)
+    return back(origin, `error=save_failed&provider=${key}`)
   }
 
   return back(origin, `connected=${key}`)

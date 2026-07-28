@@ -4,11 +4,20 @@ import { useState } from 'react'
 import type { ProviderKey } from '@/lib/integrations/providers'
 import { FilePickerDialog } from './FilePickerDialog'
 
+/** 單一已連接帳號（同 provider 可有多個）。 */
+type Account = {
+  id: string
+  status: string
+  lastSyncedAt: string | null
+  lastError: string | null
+  accountLabel: string | null
+}
+
 type Item = {
   provider: ProviderKey
   label: string
   connectable: boolean
-  connection: { id: string; status: string; lastSyncedAt: string | null; lastError: string | null } | null
+  connections: Account[]
 }
 
 const STATUS_LABEL: Record<string, string> = {
@@ -83,98 +92,127 @@ export function IntegrationsClient({ items, isOwner }: { items: Item[]; isOwner:
       )}
 
       {items.map((it) => {
-        const conn = it.connection
-        const connected = conn !== null && conn.status !== 'revoked'
+        // 只顯示仍有效的帳號（已中斷 revoked 的列保留在 DB 供「同帳號重新連接」比對，但不列出）。
+        const accounts = it.connections.filter((c) => c.status !== 'revoked')
+        const hasAccounts = accounts.length > 0
         return (
-          <section key={it.provider} className="sr-card">
-            <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'baseline' }}>
-              <strong style={{ fontSize: 'var(--sr-text-lg)' }}>{it.label}</strong>
-              <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>
-                {connected ? (STATUS_LABEL[conn.status] ?? conn.status) : it.connectable ? '未連接' : '尚未開放'}
+          <section key={it.provider} className="sr-card" style={{ minWidth: 0 }}>
+            <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'baseline', gap: 'var(--sr-space-2)' }}>
+              <strong style={{ fontSize: 'var(--sr-text-lg)', minWidth: 0, overflowWrap: 'anywhere' }}>{it.label}</strong>
+              <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', flexShrink: 0 }}>
+                {hasAccounts ? `已連接 ${accounts.length} 個帳號` : it.connectable ? '未連接' : '尚未開放'}
               </span>
             </div>
 
-            {connected && (
-              <p className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', margin: 'var(--sr-space-2) 0 0' }}>
-                上次同步：{conn.lastSyncedAt ? new Date(conn.lastSyncedAt).toLocaleString('zh-TW') : '尚未同步'}
-                {conn.lastError ? `．最近錯誤：${conn.lastError}` : ''}
-              </p>
-            )}
-
-            {!it.connectable && !connected && (
+            {!it.connectable && !hasAccounts && (
               <p className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', margin: 'var(--sr-space-2) 0 0' }}>
                 這個工具即將支援（伺服器尚未設定憑證）。
               </p>
             )}
 
-            {isOwner && (
-              <div className="sr-row" style={{ marginTop: 'var(--sr-space-3)', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
-                {connected && conn.status === 'active' && confirming !== conn.id && (
-                  <button
-                    type="button"
-                    className="sr-button"
-                    onClick={() => setPicking({ connectionId: conn.id, provider: it.provider, label: it.label })}
-                    disabled={busy !== null}
-                  >
-                    選擇檔案同步
-                  </button>
-                )}
+            {/* 每個已連接帳號各一列 */}
+            {hasAccounts && (
+              <div style={{ display: 'grid', gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-3)' }}>
+                {accounts.map((conn, idx) => {
+                  const accountName = conn.accountLabel && conn.accountLabel.length > 0 ? conn.accountLabel : `帳號 ${idx + 1}`
+                  return (
+                    <div
+                      key={conn.id}
+                      style={{
+                        minWidth: 0,
+                        padding: 'var(--sr-space-3)',
+                        borderRadius: 'var(--sr-radius-sm)',
+                        border: 'var(--sr-border-width) solid var(--sr-border)',
+                      }}
+                    >
+                      <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'baseline', gap: 'var(--sr-space-2)' }}>
+                        <strong style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{accountName}</strong>
+                        <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', flexShrink: 0 }}>
+                          {STATUS_LABEL[conn.status] ?? conn.status}
+                        </span>
+                      </div>
 
-                {!connected && it.connectable && (
-                  <button
-                    type="button"
-                    className="sr-button"
-                    onClick={() => void connect(it.provider)}
-                    disabled={busy !== null}
-                  >
-                    {busy === it.provider ? '前往授權…' : `連接 ${it.label}`}
-                  </button>
-                )}
+                      <p className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', margin: 'var(--sr-space-2) 0 0', overflowWrap: 'anywhere' }}>
+                        上次同步：{conn.lastSyncedAt ? new Date(conn.lastSyncedAt).toLocaleString('zh-TW') : '尚未同步'}
+                        {conn.lastError ? `．最近錯誤：${conn.lastError}` : ''}
+                      </p>
 
-                {connected && confirming !== conn.id && (
-                  <button
-                    type="button"
-                    className="sr-button-secondary sr-button"
-                    onClick={() => setConfirming(conn.id)}
-                    disabled={busy !== null}
-                  >
-                    中斷連線
-                  </button>
-                )}
+                      {isOwner && (
+                        <div className="sr-row" style={{ marginTop: 'var(--sr-space-3)', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+                          {conn.status === 'active' && confirming !== conn.id && (
+                            <button
+                              type="button"
+                              className="sr-button"
+                              onClick={() => setPicking({ connectionId: conn.id, provider: it.provider, label: it.label })}
+                              disabled={busy !== null}
+                            >
+                              選擇檔案同步
+                            </button>
+                          )}
 
-                {connected && confirming === conn.id && (
-                  <div style={{ display: 'grid', gap: 'var(--sr-space-2)' }}>
-                    <p className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', margin: 0 }}>
-                      中斷後，這個工具帶進來的作品與版本要怎麼處理？
-                    </p>
-                    <div className="sr-row" style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
-                      <button
-                        type="button"
-                        className="sr-button-secondary sr-button"
-                        onClick={() => void disconnect(conn.id, false)}
-                        disabled={busy !== null}
-                      >
-                        保留（標記暫停）
-                      </button>
-                      <button
-                        type="button"
-                        className="sr-button-danger sr-button"
-                        onClick={() => void disconnect(conn.id, true)}
-                        disabled={busy !== null}
-                      >
-                        一併刪除派生資料
-                      </button>
-                      <button
-                        type="button"
-                        className="sr-button-secondary sr-button"
-                        onClick={() => setConfirming(null)}
-                        disabled={busy !== null}
-                      >
-                        取消
-                      </button>
+                          {confirming !== conn.id && (
+                            <button
+                              type="button"
+                              className="sr-button-secondary sr-button"
+                              onClick={() => setConfirming(conn.id)}
+                              disabled={busy !== null}
+                            >
+                              中斷連線
+                            </button>
+                          )}
+
+                          {confirming === conn.id && (
+                            <div style={{ display: 'grid', gap: 'var(--sr-space-2)', minWidth: 0 }}>
+                              <p className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)', margin: 0 }}>
+                                中斷「{accountName}」後，這個帳號帶進來的作品與版本要怎麼處理？
+                              </p>
+                              <div className="sr-row" style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+                                <button
+                                  type="button"
+                                  className="sr-button-secondary sr-button"
+                                  onClick={() => void disconnect(conn.id, false)}
+                                  disabled={busy !== null}
+                                >
+                                  保留（標記暫停）
+                                </button>
+                                <button
+                                  type="button"
+                                  className="sr-button-danger sr-button"
+                                  onClick={() => void disconnect(conn.id, true)}
+                                  disabled={busy !== null}
+                                >
+                                  一併刪除派生資料
+                                </button>
+                                <button
+                                  type="button"
+                                  className="sr-button-secondary sr-button"
+                                  onClick={() => setConfirming(null)}
+                                  disabled={busy !== null}
+                                >
+                                  取消
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                )}
+                  )
+                })}
+              </div>
+            )}
+
+            {/* 連接／連接另一個帳號：即使已有帳號也保留，讓使用者加入更多 Canva/Figma 帳號 */}
+            {isOwner && it.connectable && (
+              <div className="sr-row" style={{ marginTop: 'var(--sr-space-3)', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className={hasAccounts ? 'sr-button-secondary sr-button' : 'sr-button'}
+                  onClick={() => void connect(it.provider)}
+                  disabled={busy !== null}
+                >
+                  {busy === it.provider ? '前往授權…' : hasAccounts ? '＋ 連接另一個帳號' : `連接 ${it.label}`}
+                </button>
               </div>
             )}
           </section>

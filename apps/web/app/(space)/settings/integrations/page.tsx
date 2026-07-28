@@ -37,21 +37,29 @@ export default async function IntegrationsSettingsPage({
   const db = await getDb()
   const { data: conns } = await db
     .from('design_connections')
-    .select('id, provider, status, last_synced_at, last_error')
+    .select('id, provider, status, last_synced_at, last_error, external_account_label, created_at')
     .eq('space_id', space.id)
+    .order('created_at', { ascending: true })
 
   const items = ALL_PROVIDERS.filter((c) => isProviderKey(c.provider))
     .filter((c) => flags[PROVIDER_FLAG[c.provider as ProviderKey]])
     .map((c) => {
       const provider = c.provider as ProviderKey
-      const conn = conns?.find((x) => x.provider === provider) ?? null
+      // 同 provider 可能有多個帳號 → 全帶進去（依連接先後排序），前端每個帳號各一列。
+      const connections = (conns ?? [])
+        .filter((x) => x.provider === provider)
+        .map((x) => ({
+          id: x.id,
+          status: x.status,
+          lastSyncedAt: x.last_synced_at,
+          lastError: x.last_error,
+          accountLabel: x.external_account_label,
+        }))
       return {
         provider,
         label: PROVIDER_LABEL[provider],
         connectable: isConnectable(provider),
-        connection: conn
-          ? { id: conn.id, status: conn.status, lastSyncedAt: conn.last_synced_at, lastError: conn.last_error }
-          : null,
+        connections,
       }
     })
 

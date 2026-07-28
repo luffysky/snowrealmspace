@@ -107,6 +107,17 @@ export type FetchedFile = {
 }
 
 /**
+ * 連接當下「這是誰的帳號」的正規化識別（供多帳號並存用）。
+ * externalId：provider 端穩定的帳號 id（存 design_connections.external_account_id，
+ *   與 (space_id, provider) 一起做 unique → 同 provider 多帳號可並存）。
+ * label：給使用者辨識用的顯示名（存 external_account_label），拿不到就 null。
+ */
+export type ProviderAccount = {
+  externalId: string
+  label: string | null
+}
+
+/**
  * provider REST 呼叫失敗（含 HTTP 狀態）。app 層據此給使用者看得到的錯誤，不吞掉。
  * retryAfterHeader 保留 provider 回的 Retry-After 原字串（429 時），解析交給上層（@snowrealm/design-sync 的 retry）。
  */
@@ -165,6 +176,12 @@ export interface DesignProviderAdapter {
   listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult>
   /** 取單一檔案的中繼與預覽來源（位元組由 app 層下載後存 assets）。 */
   fetchFile(accessToken: string, externalId: string): Promise<FetchedFile>
+  /**
+   * 用剛換到的 access token 問 provider「這是誰的帳號」，回正規化 { externalId, label }。
+   * 供 callback 以帳號為 key 存連線 → 同 provider 多帳號並存。
+   * 非 2xx 一律拋 ProviderApiError（不靜默失敗；備援由 app 層決定，不在此吞掉）。
+   */
+  fetchAccount(accessToken: string): Promise<ProviderAccount>
 }
 
 /**
@@ -265,6 +282,20 @@ export class FigmaAdapter implements DesignProviderAdapter {
       metadata: { lastModified: json.lastModified ?? null },
     }
   }
+
+  // Figma：GET /v1/me → { id, handle, email }（見 https://www.figma.com/developers/api#users-endpoints）。
+  // externalId 用穩定的 id；label 優先 handle，其次 email。
+  async fetchAccount(accessToken: string): Promise<ProviderAccount> {
+    const json = (await providerGetJson('https://api.figma.com/v1/me', accessToken)) as {
+      id?: string
+      handle?: string
+      email?: string
+    }
+    const externalId = typeof json.id === 'string' && json.id.length > 0 ? json.id : null
+    if (!externalId) throw new ProviderApiError(502, 'Figma /v1/me 未回傳帳號 id。')
+    const label = json.handle && json.handle.length > 0 ? json.handle : json.email && json.email.length > 0 ? json.email : null
+    return { externalId, label }
+  }
 }
 
 /** Canva adapter（capability + webhook 佔位；OAuth/sync 待 CANVA_CLIENT_ID/SECRET 才實作）。 */
@@ -332,6 +363,36 @@ export class CanvaAdapter implements DesignProviderAdapter {
       metadata: { thumbnail: d.thumbnail ?? null },
     }
   }
+
+  // Canva Connect：GET /v1/users/me → { team_user: { user_id, team_id } }，
+  // 顯示名另由 GET /v1/users/me/profile → { profile: { display_name } } 取（best-effort，失敗不致命）。
+  // 見 https://www.canva.dev/docs/connect/api-reference/users/。
+  // externalId 用 user_id（辨識不同 Canva 登入帳號）；拿不到才退回 team_id。
+  async fetchAccount(accessToken: string): Promise<ProviderAccount> {
+    const me = (await providerGetJson('https://api.canva.com/rest/v1/users/me', accessToken)) as {
+      team_user?: { user_id?: string; team_id?: string }
+    }
+    const userId = me.team_user?.user_id
+    const teamId = me.team_user?.team_id
+    const externalId =
+      typeof userId === 'string' && userId.length > 0
+        ? userId
+        : typeof teamId === 'string' && teamId.length > 0
+          ? teamId
+          : null
+    if (!externalId) throw new ProviderApiError(502, 'Canva /v1/users/me 未回傳 user_id。')
+    let label: string | null = null
+    try {
+      const prof = (await providerGetJson('https://api.canva.com/rest/v1/users/me/profile', accessToken)) as {
+        profile?: { display_name?: string }
+      }
+      const name = prof.profile?.display_name
+      label = typeof name === 'string' && name.length > 0 ? name : null
+    } catch {
+      // profile 端點失敗（scope 不足等）不影響帳號識別——label 留 null，仍以 user_id 存連線。
+    }
+    return { externalId, label }
+  }
 }
 
 type CanvaDesign = {
@@ -385,6 +446,12 @@ export class AdobeAdapter implements DesignProviderAdapter {
 
   async fetchFile(_accessToken: string, _externalId: string): Promise<FetchedFile> {
     throw new ProviderApiError(501, 'Adobe 檔案抓取尚未實作（TODO(adobe)：待對 Adobe API 校正並取得憑證實測）。')
+  }
+
+  // TODO(adobe): Adobe IMS 的「取得帳號 profile」端點（userinfo）與 scope 尚未校正實測。
+  // 不臆造請求——拋 ProviderApiError。實務上 Adobe 的 exchangeCode 早已回 501、根本走不到這裡。
+  async fetchAccount(_accessToken: string): Promise<ProviderAccount> {
+    throw new ProviderApiError(501, 'Adobe 帳號識別尚未實作（TODO(adobe)：待對 Adobe IMS userinfo 校正並取得憑證實測）。')
   }
 }
 
