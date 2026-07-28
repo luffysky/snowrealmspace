@@ -300,7 +300,11 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
         </div>
 
         <div className="sr-row" style={{ alignItems: 'center', gap: 'var(--sr-space-3)', minWidth: 0 }}>
-          <span aria-hidden="true" style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }}>
+          <span
+            aria-hidden="true"
+            className={weather.isDay ? 'sr-weather-sun' : 'sr-weather-moon'}
+            style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }}
+          >
             {motif}
           </span>
           <div style={{ minWidth: 0 }}>
