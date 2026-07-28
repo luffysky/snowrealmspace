@@ -6,9 +6,14 @@ import { WorksClient, type WorkFile, type AssetOption } from './WorksClient'
 export const metadata: Metadata = { title: '作品 — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
 
-export default async function WorksPage() {
+export default async function WorksPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ work?: string }>
+}) {
   const { space } = await requireActiveSpace()
   const db = await getDb()
+  const { work: initialSelectedId } = await searchParams
 
   const [{ data }, { data: images }, { data: settings }] = await Promise.all([
     db
@@ -51,6 +56,7 @@ export default async function WorksPage() {
         initialFiles={(data ?? []) as WorkFile[]}
         assetOptions={assetOptions}
         memoryEnabled={settings?.memory_enabled ?? false}
+        initialSelectedId={initialSelectedId ?? null}
       />
     </div>
   )

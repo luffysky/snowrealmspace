@@ -52,14 +52,22 @@ export function WorksClient({
   initialFiles,
   assetOptions,
   memoryEnabled,
+  initialSelectedId,
 }: {
   spaceId: string
   initialFiles: WorkFile[]
   assetOptions: AssetOption[]
   memoryEnabled: boolean
+  /** 由 `/works?work=<id>` 帶入的預選作品（例如從「最近作品」widget 點進來）。 */
+  initialSelectedId?: string | null
 }) {
   const [files, setFiles] = useState<WorkFile[]>(initialFiles)
-  const [selectedId, setSelectedId] = useState<string | null>(initialFiles[0]?.id ?? null)
+  // 預選：query 帶的 id 若在清單內就用它，否則退回第一個。
+  const [selectedId, setSelectedId] = useState<string | null>(
+    (initialSelectedId && initialFiles.some((f) => f.id === initialSelectedId) ? initialSelectedId : null) ??
+      initialFiles[0]?.id ??
+      null,
+  )
   const [notice, setNotice] = useState<string | null>(null)
   const [pickerFor, setPickerFor] = useState<WorkFile | null>(null)
   const { confirm } = useDialog()

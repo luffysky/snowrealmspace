@@ -40,7 +40,7 @@ export default function RecentDesignsWidget({ spaceId, config }: WidgetProps) {
         <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0, gap: 'var(--sr-space-1)' }}>
           {items.map((d) => (
             <li key={d.id} className="sr-row" style={{ justifyContent: 'space-between', gap: 'var(--sr-space-2)' }}>
-              <Link href={`/works/${d.id}`} className="sr-link" style={{ fontSize: 'var(--sr-text-sm)' }}>
+              <Link href={`/works?work=${d.id}`} className="sr-link" style={{ fontSize: 'var(--sr-text-sm)' }}>
                 {d.title || '（未命名）'}
               </Link>
               <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)' }}>
