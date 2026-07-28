@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { FilePickerDialog } from './FilePickerDialog'
 
 type Item = {
   provider: 'figma' | 'canva'
@@ -31,6 +32,8 @@ export function IntegrationsClient({ items, isOwner }: { items: Item[]; isOwner:
   const [busy, setBusy] = useState<string | null>(null)
   const [confirming, setConfirming] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  // 開著檔案選擇器的那條連線（provider + label 供 Figma container 判斷與標題）
+  const [picking, setPicking] = useState<{ connectionId: string; provider: 'figma' | 'canva'; label: string } | null>(null)
 
   async function connect(provider: string) {
     setBusy(provider)
@@ -64,6 +67,14 @@ export function IntegrationsClient({ items, isOwner }: { items: Item[]; isOwner:
 
   return (
     <div style={{ marginTop: 'var(--sr-space-4)', display: 'grid', gap: 'var(--sr-space-3)' }}>
+      {picking && (
+        <FilePickerDialog
+          connectionId={picking.connectionId}
+          provider={picking.provider}
+          label={picking.label}
+          onClose={() => setPicking(null)}
+        />
+      )}
       {error && (
         <p className="sr-card" role="alert" style={{ color: 'var(--sr-danger)', borderColor: 'var(--sr-danger)' }}>
           {error}
@@ -96,7 +107,18 @@ export function IntegrationsClient({ items, isOwner }: { items: Item[]; isOwner:
             )}
 
             {isOwner && (
-              <div style={{ marginTop: 'var(--sr-space-3)' }}>
+              <div className="sr-row" style={{ marginTop: 'var(--sr-space-3)', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+                {connected && conn.status === 'active' && confirming !== conn.id && (
+                  <button
+                    type="button"
+                    className="sr-button"
+                    onClick={() => setPicking({ connectionId: conn.id, provider: it.provider, label: it.label })}
+                    disabled={busy !== null}
+                  >
+                    選擇檔案同步
+                  </button>
+                )}
+
                 {!connected && it.connectable && (
                   <button
                     type="button"

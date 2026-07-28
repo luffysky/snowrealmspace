@@ -134,6 +134,11 @@ export interface DesignProviderAdapter {
   verifyWebhook(rawBody: string, signature: string | null, secret: string): boolean
   /** 從 webhook payload 取得去重用的外部事件 id。 */
   externalEventId(payload: unknown): string | null
+  /**
+   * 從 webhook payload 取出「受影響的檔案外部 id」。
+   * 注意：這是**檔案 id**，與 externalEventId（去重用的事件 id）是兩回事。無法判定則回空陣列。
+   */
+  affectedFileExternalIds(payload: unknown): string[]
   /** 列出使用者可選擇同步的檔案（禁預設同步整個 Team——列舉≠同步，同步由使用者明確挑選）。 */
   listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult>
   /** 取單一檔案的中繼與預覽來源（位元組由 app 層下載後存 assets）。 */
@@ -192,6 +197,12 @@ export class FigmaAdapter implements DesignProviderAdapter {
     return null
   }
 
+  affectedFileExternalIds(payload: unknown): string[] {
+    // Figma 事件把變動的檔案放在 file_key（見 webhooks v2）。
+    const fileKey = (payload as { file_key?: unknown })?.file_key
+    return typeof fileKey === 'string' && fileKey.length > 0 ? [fileKey] : []
+  }
+
   // TODO(figma): 以下端點與 scope 仍待對最新 Figma OAuth/REST 文件確認，尚未實測。
   // Figma 2024 改版後 token/scope 有變動；啟用 Figma 前必須實測校正，勿當作已驗證。
   async listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult> {
@@ -247,6 +258,17 @@ export class CanvaAdapter implements DesignProviderAdapter {
     if (typeof p?.event_id === 'string') return p.event_id
     if (typeof p?.id === 'string') return p.id
     return null
+  }
+
+  affectedFileExternalIds(payload: unknown): string[] {
+    // TODO(canva): confirm webhook payload shape against Canva Connect docs (unverified).
+    // 防禦性從幾種可能形狀取設計 id：design.id / data.design.id / id，取第一個非空字串。
+    const p = payload as { design?: { id?: unknown }; data?: { design?: { id?: unknown } }; id?: unknown }
+    const candidates = [p?.design?.id, p?.data?.design?.id, p?.id]
+    for (const c of candidates) {
+      if (typeof c === 'string' && c.length > 0) return [c]
+    }
+    return []
   }
 
   // Canva Connect REST v1（api.canva.com）。列設計、取單一設計；預覽用 design.thumbnail。

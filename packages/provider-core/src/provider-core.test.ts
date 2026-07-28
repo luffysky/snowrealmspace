@@ -7,6 +7,7 @@ import {
   verifyFigmaPasscode,
   webhookIdempotencyKey,
   FigmaAdapter,
+  CanvaAdapter,
 } from './index.js'
 
 describe('capabilities', () => {
@@ -79,5 +80,33 @@ describe('webhook 冪等 + Figma adapter', () => {
   })
   it('FigmaAdapter.externalEventId：都沒有 → null', () => {
     expect(new FigmaAdapter().externalEventId({})).toBeNull()
+  })
+})
+
+describe('affectedFileExternalIds', () => {
+  it('Figma：有 file_key → [file_key]', () => {
+    expect(new FigmaAdapter().affectedFileExternalIds({ file_key: 'fk1' })).toEqual(['fk1'])
+  })
+  it('Figma：無 file_key → []', () => {
+    expect(new FigmaAdapter().affectedFileExternalIds({ event_id: 'e1' })).toEqual([])
+  })
+  it('Figma：file_key 非字串 → []', () => {
+    expect(new FigmaAdapter().affectedFileExternalIds({ file_key: 123 })).toEqual([])
+  })
+
+  it('Canva：design.id → [id]', () => {
+    expect(new CanvaAdapter().affectedFileExternalIds({ design: { id: 'd1' } })).toEqual(['d1'])
+  })
+  it('Canva：data.design.id → [id]', () => {
+    expect(new CanvaAdapter().affectedFileExternalIds({ data: { design: { id: 'd2' } } })).toEqual(['d2'])
+  })
+  it('Canva：頂層 id → [id]', () => {
+    expect(new CanvaAdapter().affectedFileExternalIds({ id: 'd3' })).toEqual(['d3'])
+  })
+  it('Canva：都沒有 → []', () => {
+    expect(new CanvaAdapter().affectedFileExternalIds({ foo: 'bar' })).toEqual([])
+  })
+  it('Canva：id 非字串 → []', () => {
+    expect(new CanvaAdapter().affectedFileExternalIds({ id: 999 })).toEqual([])
   })
 })
