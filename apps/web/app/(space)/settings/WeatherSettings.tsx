@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useRef, useState } from 'react'
 import type { SettingsActionState } from './actions'
+import { TW_REGIONS } from '@/lib/weather/tw-regions'
 
 /**
  * 天氣設定（#56）。預設關閉；只填城市「名稱」（不存座標）。
@@ -37,6 +38,12 @@ export function WeatherSettings({
   const [city, setCity] = useState(initial.city)
   const [locating, setLocating] = useState(false)
   const [hint, setHint] = useState<string | null>(null)
+
+  // 縣市→區 下拉：只管「縣市」選了誰，區清單由它推出。選定區才寫回共用的 city 欄。
+  const [twCity, setTwCity] = useState('')
+  const twDistricts = TW_REGIONS.find((r) => r.city === twCity)?.districts ?? []
+  // 目前 city 若剛好是這個縣市的某個區，讓區下拉回填該選項；否則顯示未選。
+  const twDistrictValue = twDistricts.includes(city) ? city : ''
 
   // 自動完成狀態
   const [suggestions, setSuggestions] = useState<Suggestion[]>([])
@@ -219,8 +226,88 @@ export function WeatherSettings({
         </div>
 
         <div className="sr-field" style={{ marginTop: 'var(--sr-space-2)' }}>
-          <label className="sr-label" htmlFor="weatherCity">
-            城市
+          <span className="sr-label">城市</span>
+
+          {/* 方式一：台灣縣市／區 下拉（純靜態資料、不外呼）。選定區 → 寫回下方的 weather_city。 */}
+          <p
+            className="sr-muted"
+            id="twRegion-desc"
+            style={{ margin: '0 0 var(--sr-space-1)', fontSize: 'var(--sr-text-sm)' }}
+          >
+            用下拉選（台灣縣市／區）
+          </p>
+          <div
+            className="sr-row"
+            style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap', marginBottom: 'var(--sr-space-3)' }}
+          >
+            <div style={{ flex: '1 1 10rem', minWidth: 0 }}>
+              <label className="sr-label" htmlFor="twCity" style={{ fontSize: 'var(--sr-text-sm)' }}>
+                縣市
+              </label>
+              <select
+                id="twCity"
+                className="sr-input"
+                value={twCity}
+                aria-describedby="twRegion-desc"
+                onChange={(e) => {
+                  // 只換縣市、還沒選區：先不動 weather_city，等使用者選到區再寫回。
+                  setTwCity(e.target.value)
+                  closeList()
+                }}
+                style={{ width: '100%', minWidth: 0 }}
+              >
+                <option value="">請選擇縣市…</option>
+                {TW_REGIONS.map((r) => (
+                  <option key={r.city} value={r.city}>
+                    {r.city}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div style={{ flex: '1 1 10rem', minWidth: 0 }}>
+              <label
+                className="sr-label"
+                htmlFor="twDistrict"
+                style={{ fontSize: 'var(--sr-text-sm)' }}
+              >
+                區／鄉／鎮／市
+              </label>
+              <select
+                id="twDistrict"
+                className="sr-input"
+                value={twDistrictValue}
+                disabled={!canEdit || pending || twCity === ''}
+                onChange={(e) => {
+                  const d = e.target.value
+                  if (d) {
+                    // 只存區名（例如「板橋區」）：Open-Meteo geocode 是單一地名比對，
+                    // 附上縣市反而比對不到，故不加縣市字尾。
+                    setCity(d)
+                    setHint(null)
+                    setSuggestions([])
+                    setStatus('idle')
+                    closeList()
+                  }
+                }}
+                style={{ width: '100%', minWidth: 0 }}
+              >
+                <option value="">{twCity ? '請選擇區…' : '先選縣市'}</option>
+                {twDistricts.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* 方式二：自由輸入（含國外城市）＋ 使用目前位置。與下拉共用同一個 weather_city。 */}
+          <label
+            className="sr-label"
+            htmlFor="weatherCity"
+            style={{ fontSize: 'var(--sr-text-sm)' }}
+          >
+            或直接輸入城市（含國外）
           </label>
           <div className="sr-row" style={{ gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
             {/* 相對定位容器：下拉清單絕對定位在輸入框正下方、跟著它的寬度（RWD 安全）。 */}
