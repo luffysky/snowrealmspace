@@ -65,6 +65,19 @@
 
 ---
 
+## E. 0729 進行中 / 新規劃
+
+> 這批多為子代理寫、主對話審中，未 commit 前不算完成。
+
+- [ ] **Works AI 對話 + 分析歷史 + 長期記憶**：/works 的 AI 視覺分析改為「可對話」（沿用 Agent SSE + ai-core + 空間級長期記憶 pgvector）；
+      **分析寫進 `design_insights` 存歷史**（原本 ephemeral），歷史列出「時間·來源軟體(provider)·專案·版本·模型」；per-work thread 用 `agent_messages.context_refs` 綁定（免 migration）。
+- [ ] **Adobe 連接骨架**（flagged `adobeExpress`，卡憑證）：provider-core 加 Adobe capability/adapter，connectable 依 `ADOBE_CLIENT_ID/SECRET`，端點 `TODO(adobe)` 未實測、顯示「尚未設定」不擺假按鈕。
+- [ ] **Figma scope env 覆寫**：`FIGMA_SCOPES` env 可調（現況 `files:read`）。**Figma「Invalid scopes for app」＝你 Figma app 後台沒勾 `files:read`**，先去勾。
+- [ ] **修：widget picker 沒依 flag 過濾** → flag 關的 widget 仍出現在「新增小工具」、加了會 404（假關閉）。home page.tsx 依 `getFlags` 過濾。
+- [ ] **天氣城市 autocomplete**：改用 Open-Meteo 地理編碼即時搜尋（涵蓋縣市/區/外島＋外國城市、在地化名稱），取代寫死縣市/區下拉——順便解掉外國人 i18n 疑慮。
+- [ ] **後台使用者上線資訊**：上線時間/多久/何時、地區、裝置（參考 `D:\SnowRealmRebirth\AI\ai_island_v3`）。**scope 中**（可能需 `user_sessions` 表 + IP 只存雜湊/在地化地區、UA 解析裝置）。
+- [ ] **🌐 i18n（之後排）**：全站多語。參考 AI 島用**腳本 + Google 翻譯免費**批次翻。天氣 autocomplete 已先避免寫死中文地名清單。
+
 ## 收工狀態（2026-07-28）
 連接半段 + S1 + S2 已審過並 push；F 到「可連、可選檔同步、worker 背景重試」的程度，
 差 S3（webhook）、S4（UI）、S5（mock）+ Figma 實測即閉環。內容三池續補待重開高配額 session。
