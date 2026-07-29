@@ -2698,19 +2698,6 @@ input[type='range'] {
 .sr-notif-title { font-weight: 600; font-size: var(--sr-text-sm); overflow-wrap: anywhere; }
 .sr-notif-body { font-size: var(--sr-text-sm); color: var(--sr-text-secondary); line-height: 1.5; overflow-wrap: anywhere; }
 
-/* 天氣 widget 的日/月符號動畫。只用 transform/opacity（不寫死顏色），
-   reduced-motion 時由全域規則自動停用。晴天沒有落物粒子，靠這個讓「太陽會動」。 */
-@keyframes sr-weather-sun {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.16); opacity: 1; }
-}
-@keyframes sr-weather-moon {
-  0%, 100% { transform: translateY(0); opacity: 0.9; }
-  50% { transform: translateY(-3px); opacity: 1; }
-}
-.sr-weather-sun { display: inline-block; transform-origin: center; animation: sr-weather-sun 2.8s ease-in-out infinite; }
-.sr-weather-moon { display: inline-block; animation: sr-weather-moon 4.5s ease-in-out infinite; }
-
 /* 手機：面板貼齊視窗兩側（fixed + inset-inline），不再沿用桌機「往左展開的定寬 popover」。
    ⚠️ 這條必須放在上面基準 .sr-notif-panel「之後」—— media query 不加 specificity，
    放基準之前會被基準覆蓋（曾在手機上破版，bugpic/37 根因）。 */

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ProceduralScene } from '@/components/ProceduralScene'
+import { WeatherLottie } from './WeatherLottie'
 import { weatherCodeToCondition, type WeatherCondition } from '@snowrealm/validation'
 import type { WidgetProps } from '../types'
 
@@ -273,7 +274,6 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
   const { weather } = view
   const { sceneId, density } = sceneFor(weather.condition, weather.isDay)
   const animate = showAnimation && sceneId !== null
-  const motif = weather.isDay ? '☀' : '☾'
 
   return (
     <div className="sr-card sr-widget" style={cardStyle}>
@@ -300,13 +300,7 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
         </div>
 
         <div className="sr-row" style={{ alignItems: 'center', gap: 'var(--sr-space-3)', minWidth: 0 }}>
-          <span
-            aria-hidden="true"
-            className={weather.isDay ? 'sr-weather-sun' : 'sr-weather-moon'}
-            style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }}
-          >
-            {motif}
-          </span>
+          <WeatherLottie condition={weather.condition} isDay={weather.isDay} size={48} />
           <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: 'var(--sr-text-h1)', fontWeight: 700, lineHeight: 1.1 }}>
               {weather.tempC}°C
