@@ -4572,3 +4572,79 @@ input[type='range'] {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ── 天氣圖示後面的半透明「天空」背景（依情境；顏色為天氣美術，非 UI chrome） ── */
+.sr-weather-icon {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.sr-weather-icon-lottie {
+  position: relative;
+  z-index: 1;
+}
+.sr-weather-sky {
+  position: absolute;
+  inset: -24%;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* 晴天：暖色日出/日落光暈 + 一點天空藍，淡淡半透明 */
+.sr-weather-sky-sun {
+  background: radial-gradient(
+    circle,
+    rgba(255, 178, 74, 0.42),
+    rgba(255, 214, 120, 0.22) 42%,
+    rgba(150, 200, 255, 0.12) 66%,
+    transparent 78%
+  );
+}
+/* 夜晚：星空（深藍暈 + 幾顆星，會微微閃爍） */
+.sr-weather-sky-night {
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(48, 62, 116, 0.5),
+    rgba(18, 24, 52, 0.34) 55%,
+    transparent 78%
+  );
+}
+.sr-weather-sky-night::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image:
+    radial-gradient(1.6px 1.6px at 30% 28%, #fff, transparent),
+    radial-gradient(1.4px 1.4px at 70% 38%, #fff, transparent),
+    radial-gradient(1.1px 1.1px at 50% 64%, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 22% 60%, #fff, transparent),
+    radial-gradient(1px 1px at 80% 66%, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 60% 20%, #fff, transparent);
+  opacity: 0.85;
+}
+/* 雨/雷/毛毛雨：大片烏雲（數塊灰色雲團疊合） */
+.sr-weather-sky-storm {
+  background:
+    radial-gradient(50% 42% at 34% 44%, rgba(84, 92, 108, 0.55), transparent 70%),
+    radial-gradient(55% 46% at 68% 52%, rgba(64, 72, 88, 0.5), transparent 72%),
+    radial-gradient(circle, rgba(56, 62, 74, 0.3), transparent 82%);
+}
+/* 其餘（多雲/霧/雪等）：淡淡柔光 */
+.sr-weather-sky-soft {
+  background: radial-gradient(circle, rgba(170, 195, 225, 0.26), transparent 72%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sr-weather-sky-night::after {
+    animation: sr-weather-twinkle 2.6s ease-in-out infinite alternate;
+  }
+}
+@keyframes sr-weather-twinkle {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}

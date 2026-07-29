@@ -57,11 +57,29 @@ export function WeatherLottie({
     }
   }, [name])
 
+  // 圖示後面的半透明「天空」背景（純 CSS，依天氣情境）：
+  // 晴天日＝暖色日出/日落光暈＋天空；夜晚＝星空；雨/雷/毛毛雨＝大片烏雲；其餘＝淡淡柔光。
+  const sky =
+    condition === 'rain' ||
+    condition === 'drizzle' ||
+    condition === 'thunder' ||
+    condition === 'typhoon'
+      ? 'storm'
+      : !isDay
+        ? 'night'
+        : condition === 'clear'
+          ? 'sun'
+          : 'soft'
+
   return (
-    <div
-      ref={containerRef}
-      aria-hidden="true"
-      style={{ width: size, height: size, flexShrink: 0, maxWidth: '100%' }}
-    />
+    <div className="sr-weather-icon" style={{ width: size, height: size }}>
+      <span className={`sr-weather-sky sr-weather-sky-${sky}`} aria-hidden="true" />
+      <div
+        ref={containerRef}
+        aria-hidden="true"
+        className="sr-weather-icon-lottie"
+        style={{ width: size, height: size }}
+      />
+    </div>
   )
 }
