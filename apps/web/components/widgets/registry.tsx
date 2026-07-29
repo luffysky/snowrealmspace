@@ -38,6 +38,12 @@ const COMPONENTS: Record<string, ComponentType<WidgetProps>> = {
   mini_calendar: lazy(() => import('./impl/MiniCalendarWidget')),
   world_clock: lazy(() => import('./impl/WorldClockWidget')),
   daily_words: lazy(() => import('./impl/DailyWordsWidget')),
+  todo_list: lazy(() => import('./impl/TodoListWidget')),
+  habit_tracker: lazy(() => import('./impl/HabitTrackerWidget')),
+  photo_frame: lazy(() => import('./impl/PhotoFrameWidget')),
+  breathing: lazy(() => import('./impl/BreathingWidget')),
+  dice: lazy(() => import('./impl/DiceWidget')),
+  fortune: lazy(() => import('./impl/FortuneWidget')),
 }
 
 export function hasImplementation(definitionId: string): boolean {

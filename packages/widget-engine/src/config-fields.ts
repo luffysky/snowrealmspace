@@ -79,6 +79,16 @@ const LABELS: Record<string, string> = {
   use24h: '24 小時制',
   // 每日情話
   phrases: '句子（一行一句）',
+  // 互動小工具
+  items: '項目',
+  checkins: '打卡紀錄',
+  assetId: '圖片',
+  frame: '相框樣式',
+  caption: '說明文字',
+  pattern: '呼吸節奏',
+  mode: '模式',
+  options: '自訂選項（一行一個）',
+  fortunes: '籤詩（一行一句）',
 }
 
 function labelFor(key: string): string {
@@ -146,6 +156,11 @@ function describeField(key: string, schema: z.ZodTypeAny): ConfigField {
   }
 
   if (typeName === 'ZodString') {
+    // 素材參照（相框 assetId）：用專門的 AssetPicker 挑，不是自由文字框讓人手打 id。
+    // 標為 unsupported → 通用表單跳過，改由 WidgetSettings 的 AssetPicker 處理。
+    if (key === 'assetId') {
+      return { key, label, kind: 'unsupported' }
+    }
     // 日期欄位：鍵名是 sinceDate / targetDate，或以 'date' 結尾（不分大小寫）
     // → 給 <input type="date">，不是自由文字框。
     if (key === 'sinceDate' || key === 'targetDate' || key.toLowerCase().endsWith('date')) {

@@ -144,3 +144,10 @@
 - 新增 **`date` config 欄位型別**(key 為 sinceDate/targetDate/…Date → `<input type="date">`)；`phrases` 用 textarea。
 - **加入區塊清單依 `category` 分組**(每日/個人/創作/專案/工具/系統/Agent 中文標題)；新增 `personal` 分類。
 - 審：AnniversaryWidget date-only+DST 正確、Intl 各處 try/catch、行動安全；已跑 `sync-widget-defs` 建 hosted 定義；typecheck/lint/deps + registry/config-fields 29 測綠。
+
+### Widget 大擴充 Wave 2（6 個，子代理寫、主對話審）
+- 新增 6 個 widget：**待辦清單**(in-widget 增/勾/刪)、**習慣追蹤**(35 天格+連續天數)、**相框**(接媒體庫 signed URL+4 種框)、**呼吸練習**(呼吸圈+階段)、**骰子決定器**、**幸運籤**。分類新增 `fun`/`relax`（0062 已允許）。
+- **狀態寫回**：待辦/習慣在 widget 內編輯 → 樂觀更新 + 防抖 PATCH 自己的 config，**`{...config, items}` 合併**保住背景等鍵（審過）。錯誤有紅字提示不靜默。
+- **相框**：設定面板加 `AssetPicker`（只在 photo_frame 顯示，列 `/api/assets?kind=image`、縮圖走 signed URL）；`assetId` 設為 unsupported 讓 picker 當唯一入口。
+- **呼吸/骰子**：`prefers-reduced-motion` 尊重（減動態時不縮放、只換文字）。
+- 加入清單分類補 `fun:娛樂`/`relax:放鬆` 標題。已 `sync-widget-defs`（hosted 現 26 widget）。typecheck/lint/deps + 29 測綠。

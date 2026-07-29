@@ -45,6 +45,8 @@ const CATEGORY_LABELS: Record<string, string> = {
   system: '系統',
   utility: '工具',
   personal: '個人',
+  fun: '娛樂',
+  relax: '放鬆',
 }
 
 function categoryLabel(category: string): string {
@@ -52,7 +54,7 @@ function categoryLabel(category: string): string {
 }
 
 // 「加入區塊」清單分類的顯示順序；未列出的分類排在最後。
-const CATEGORY_ORDER = ['daily', 'personal', 'creative', 'project', 'utility', 'system', 'agent']
+const CATEGORY_ORDER = ['daily', 'personal', 'creative', 'project', 'utility', 'relax', 'fun', 'system', 'agent']
 
 export type LayoutSummary = { id: string; name: string }
 

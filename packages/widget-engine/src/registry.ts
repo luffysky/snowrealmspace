@@ -38,6 +38,13 @@ export const WIDGET_IDS = [
   'mini_calendar',
   'world_clock',
   'daily_words',
+  // 互動小工具（狀態存在各自 config；純瀏覽器）
+  'todo_list',
+  'habit_tracker',
+  'photo_frame',
+  'breathing',
+  'dice',
+  'fortune',
 ] as const
 
 export type WidgetId = (typeof WIDGET_IDS)[number]
@@ -65,7 +72,7 @@ export type WidgetDefinition<TConfig = unknown> = {
   id: WidgetId
   name: string
   version: string
-  category: 'daily' | 'creative' | 'agent' | 'project' | 'system' | 'utility' | 'personal'
+  category: 'daily' | 'creative' | 'agent' | 'project' | 'system' | 'utility' | 'personal' | 'fun' | 'relax'
   description: string
   defaultSize: { w: number; h: number }
   minSize: { w: number; h: number }
@@ -226,6 +233,48 @@ const worldClockConfig = z.object({
 const dailyWordsConfig = z.object({
   title: z.string().default('每日情話'),
   phrases: z.string().default(''),
+})
+
+// ── 互動小工具（狀態寫回各自 config，合併保留背景鍵）────────────
+// 待辦清單：items 在小工具內編輯（設定面板不處理陣列），title 可在面板改。
+const todoItemSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+  done: z.boolean(),
+})
+
+const todoListConfig = z.object({
+  title: z.string().default('待辦'),
+  items: z.array(todoItemSchema).default([]),
+})
+
+// 習慣追蹤：checkins 是 YYYY-MM-DD 當地日期字串陣列，在小工具內勾選。
+const habitTrackerConfig = z.object({
+  title: z.string().default('習慣'),
+  checkins: z.array(z.string()).default([]),
+})
+
+// 相框：從素材庫選一張圖（assetId 由設定面板的 AssetPicker 挑，不是文字框）。
+const photoFrameConfig = z.object({
+  assetId: z.string().default(''),
+  frame: z.enum(['圓角', '方框', '無邊', '拍立得']).default('圓角'),
+  caption: z.string().default(''),
+})
+
+// 呼吸練習：純動畫，無狀態。依 pattern 決定各階段秒數。
+const breathingConfig = z.object({
+  pattern: z.enum(['箱式 4-4-4-4', '4-7-8 放鬆', '深呼吸 5-5']).default('箱式 4-4-4-4'),
+})
+
+// 骰子決定器：骰子 / 硬幣 / 自訂選項（自訂時一行一個）。
+const diceConfig = z.object({
+  mode: z.enum(['骰子 1-6', '擲硬幣', '自訂選項']).default('骰子 1-6'),
+  options: z.string().default(''),
+})
+
+// 幸運籤：一行一句自訂；留空用內建溫柔籤。
+const fortuneConfig = z.object({
+  fortunes: z.string().default(''),
 })
 
 function def<T>(d: WidgetDefinition<T>): WidgetDefinition<T> {
@@ -534,6 +583,96 @@ export const WIDGET_REGISTRY = {
     maxSize: { w: 6, h: 3 },
     configSchema: dailyWordsConfig,
     defaultConfig: dailyWordsConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  todo_list: def({
+    id: 'todo_list',
+    name: '待辦清單',
+    version: '1.0.0',
+    category: 'utility',
+    description: '勾掉今天要做的事。',
+    defaultSize: { w: 4, h: 4 },
+    minSize: { w: 3, h: 3 },
+    maxSize: { w: 6, h: 8 },
+    configSchema: todoListConfig,
+    defaultConfig: todoListConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  habit_tracker: def({
+    id: 'habit_tracker',
+    name: '習慣追蹤',
+    version: '1.0.0',
+    category: 'personal',
+    description: '每天打卡，看連續幾天。',
+    defaultSize: { w: 4, h: 3 },
+    minSize: { w: 3, h: 2 },
+    maxSize: { w: 6, h: 5 },
+    configSchema: habitTrackerConfig,
+    defaultConfig: habitTrackerConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  photo_frame: def({
+    id: 'photo_frame',
+    name: '相框',
+    version: '1.0.0',
+    category: 'personal',
+    description: '擺一張喜歡的照片。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 2, h: 2 },
+    maxSize: { w: 6, h: 6 },
+    configSchema: photoFrameConfig,
+    defaultConfig: photoFrameConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  breathing: def({
+    id: 'breathing',
+    name: '呼吸練習',
+    version: '1.0.0',
+    category: 'relax',
+    description: '跟著節奏慢慢呼吸。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 3, h: 3 },
+    maxSize: { w: 5, h: 5 },
+    configSchema: breathingConfig,
+    defaultConfig: breathingConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  dice: def({
+    id: 'dice',
+    name: '骰子決定器',
+    version: '1.0.0',
+    category: 'fun',
+    description: '交給運氣決定。',
+    defaultSize: { w: 3, h: 2 },
+    minSize: { w: 2, h: 2 },
+    maxSize: { w: 4, h: 4 },
+    configSchema: diceConfig,
+    defaultConfig: diceConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  fortune: def({
+    id: 'fortune',
+    name: '幸運籤',
+    version: '1.0.0',
+    category: 'fun',
+    description: '抽一支，給今天一句話。',
+    defaultSize: { w: 3, h: 2 },
+    minSize: { w: 2, h: 2 },
+    maxSize: { w: 5, h: 4 },
+    configSchema: fortuneConfig,
+    defaultConfig: fortuneConfig.parse({}),
     permissions: [],
     refreshPolicy: { onMount: true },
   }),

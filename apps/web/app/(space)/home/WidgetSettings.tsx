@@ -131,6 +131,15 @@ export function WidgetSettings({
         </div>
       )}
 
+      {/* ── 相框專屬：從素材庫挑一張圖（存進 config.assetId）── */}
+      {definitionId === 'photo_frame' && (
+        <AssetPicker
+          spaceId={spaceId}
+          value={typeof draft.assetId === 'string' ? draft.assetId : ''}
+          onChange={(id) => set('assetId', id)}
+        />
+      )}
+
       {/* ── 背景（自訂，非 schema 欄位；存進 config.bg）── */}
       <BackgroundPicker
         value={typeof draft.bg === 'string' ? draft.bg : undefined}
@@ -312,6 +321,150 @@ function BackgroundPicker({
   )
 }
 
+/**
+ * 相框圖片挑選器：列出素材庫的圖片，選一張存進 config.assetId。
+ * 非 schema 欄位（assetId 在 config-fields.ts 標為 unsupported，通用表單跳過），
+ * 由這裡專門處理 —— 就像 BackgroundPicker 之於 config.bg。
+ *
+ * private bucket：縮圖走短期 signed URL（/api/assets/:id/url?rendition=thumbnail），
+ * 與 library/AssetGrid 的做法一致。
+ */
+function AssetPicker({
+  spaceId,
+  value,
+  onChange,
+}: {
+  spaceId: string
+  value: string
+  onChange: (id: string) => void
+}) {
+  const [assets, setAssets] = useState<{ id: string; name: string }[]>([])
+  const [state, setState] = useState<'loading' | 'idle' | 'error'>('loading')
+
+  useEffect(() => {
+    let alive = true
+    setState('loading')
+    fetch('/api/assets?kind=image', { headers: { 'x-space-id': spaceId } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((b: { data: { id: string; original_filename: string | null }[] }) => {
+        if (!alive) return
+        setAssets(b.data.map((a) => ({ id: a.id, name: a.original_filename ?? '未命名' })))
+        setState('idle')
+      })
+      .catch(() => {
+        if (alive) setState('error')
+      })
+    return () => {
+      alive = false
+    }
+  }, [spaceId])
+
+  return (
+    <div className="sr-field" style={{ minWidth: 0, maxWidth: '100%' }}>
+      <span className="sr-label">相框圖片</span>
+
+      {state === 'loading' && <p className="sr-muted" style={{ margin: 0 }}>載入中…</p>}
+      {state === 'error' && (
+        <p className="sr-muted" style={{ margin: 0, color: 'var(--sr-danger)' }}>
+          讀不到圖片清單，請重新整理。
+        </p>
+      )}
+      {state === 'idle' && assets.length === 0 && (
+        <p className="sr-muted" style={{ margin: 0 }}>
+          素材庫還沒有圖片。先到「素材庫」上傳一張。
+        </p>
+      )}
+
+      {state === 'idle' && assets.length > 0 && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))',
+            gap: 'var(--sr-space-2)',
+            minWidth: 0,
+          }}
+        >
+          {assets.map((a) => (
+            <AssetThumb
+              key={a.id}
+              spaceId={spaceId}
+              assetId={a.id}
+              name={a.name}
+              selected={value === a.id}
+              onClick={() => onChange(a.id)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/** 單張縮圖：自己取短期 signed URL（thumbnail），點選即設為相框圖片。 */
+function AssetThumb({
+  spaceId,
+  assetId,
+  name,
+  selected,
+  onClick,
+}: {
+  spaceId: string
+  assetId: string
+  name: string
+  selected: boolean
+  onClick: () => void
+}) {
+  const [url, setUrl] = useState<string | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch(`/api/assets/${assetId}/url?rendition=thumbnail`, { headers: { 'x-space-id': spaceId } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((b: { data: { url: string } }) => {
+        if (!cancelled) setUrl(b.data.url)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [spaceId, assetId])
+
+  return (
+    <button
+      type="button"
+      aria-pressed={selected}
+      aria-label={name}
+      title={name}
+      onClick={onClick}
+      style={{
+        minWidth: 0,
+        padding: '2px',
+        borderRadius: 'var(--sr-radius-sm)',
+        border: selected ? '2px solid var(--sr-accent)' : '1px solid var(--sr-border)',
+        background: 'var(--sr-surface-alt)',
+        cursor: 'pointer',
+        aspectRatio: '1 / 1',
+        overflow: 'hidden',
+      }}
+    >
+      {url ? (
+        // signed URL 是動態短期的，不走 next/image 最佳化管線
+        <img
+          src={url}
+          alt=""
+          loading="lazy"
+          draggable={false}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      ) : (
+        <span className="sr-muted" style={{ fontSize: '11px' }} aria-hidden="true">
+          …
+        </span>
+      )}
+    </button>
+  )
+}
+
 function FieldControl({
   field,
   value,
@@ -426,8 +579,9 @@ function FieldControl({
   }
 
   // string
-  // 「一行一句」的欄位（如每日情話 phrases）用多行 textarea，其餘用單行輸入。
-  const multiline = field.key === 'phrases'
+  // 「一行一項」的欄位（每日情話 phrases、幸運籤 fortunes、骰子自訂 options）
+  // 用多行 textarea，其餘用單行輸入。
+  const multiline = field.key === 'phrases' || field.key === 'fortunes' || field.key === 'options'
   return (
     <div className="sr-field-row">
       <label className="sr-label" htmlFor={id}>
