@@ -33,6 +33,7 @@ export const WIDGET_IDS = [
   'shared_messages',
   // 獨立工具（無 Milestone 綁定，直接可用）
   'datetime',
+  'weather_datetime',
   'anniversary',
   'countdown',
   'mini_calendar',
@@ -175,6 +176,28 @@ const datetimeConfig = z.object({
   clockKind: z.enum(['電子', '指針']).default('電子'),
   // 指針鐘面的花色（僅在 clockKind='指針' 時作用）。
   clockSkin: z.enum(['經典', '簡約', '霓虹', '粉彩', '羅馬']).default('經典'),
+  timeStyle: z
+    .enum([
+      '24 時（時:分）',
+      '24 時（時:分:秒）',
+      '12 時（上午/下午 時:分）',
+      '12 時（上午/下午 時:分:秒）',
+    ])
+    .default('24 時（時:分）'),
+  showGregorian: z.boolean().default(true),
+  showWeekday: z.boolean().default(true),
+  showRoc: z.boolean().default(false),
+  showLunar: z.boolean().default(false),
+})
+
+// 天氣＋時間：上半顯示數位時間/日期（同 datetime 的 Intl 邏輯），下半顯示天氣（同 weather 的抓取）。
+// 天氣半段讀同一支 /api/weather；若天氣 flag 關（enabled:false）或未設城市，天氣半段優雅隱藏，
+// 時間半段永遠可用（時間不需要天氣 API）。指針鐘面不在此 widget，只用數位時間。
+const weatherDatetimeConfig = z.object({
+  showWeather: z.boolean().default(true),
+  // 天氣圖示動畫的播放速度（同 weather widget）。
+  animSpeed: z.number().min(0.3).max(3).default(1.4),
+  showTime: z.boolean().default(true),
   timeStyle: z
     .enum([
       '24 時（時:分）',
@@ -516,6 +539,25 @@ export const WIDGET_REGISTRY = {
     permissions: [],
     // 自己每秒 tick，不需伺服器刷新
     refreshPolicy: { onMount: true },
+  }),
+
+  weather_datetime: def({
+    id: 'weather_datetime',
+    name: '天氣＋時間',
+    version: '1.0.0',
+    category: 'utility',
+    description: '一張卡同時看時間日期與目前天氣。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 2, h: 2 },
+    maxSize: { w: 5, h: 5 },
+    configSchema: weatherDatetimeConfig,
+    defaultConfig: weatherDatetimeConfig.parse({}),
+    // location：城市名由使用者在設定填；network:external：走 Open-Meteo（天氣半段）
+    permissions: ['location', 'network:external'],
+    // 無 featureFlag：時間半段永遠可用；天氣半段讀 /api/weather，flag 關時該 API 回 enabled:false，
+    // widget 據此優雅隱藏天氣半段（時間仍在）。
+    // 每 15 分鐘刷新天氣（後端有 ~10 分鐘快取）
+    refreshPolicy: { onMount: true, intervalSeconds: 900 },
   }),
 
   anniversary: def({

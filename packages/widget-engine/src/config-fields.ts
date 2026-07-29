@@ -60,6 +60,7 @@ const LABELS: Record<string, string> = {
   projectId: '綁定專案',
   targetProjectId: '存到專案',
   showAnimation: '顯示天氣動畫',
+  showWeather: '顯示天氣',
   animSpeed: '動畫速度',
   showTime: '顯示時間',
   clockKind: '鐘面樣式',

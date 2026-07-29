@@ -1,6 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import {
+  gregorianText,
+  lunarText,
+  rocText,
+  safeFormat,
+  timeOptions,
+  type TimeStyle,
+} from '@/lib/datetime-format'
 import type { WidgetProps } from '../types'
 
 /**
@@ -19,12 +27,6 @@ import type { WidgetProps } from '../types'
  * 與 overflow-wrap:anywhere，確保任何寬度都不溢出格子（CLAUDE.md #5/#9）。
  * chrome 顏色一律用 --sr-* token。
  */
-
-type TimeStyle =
-  | '24 時（時:分）'
-  | '24 時（時:分:秒）'
-  | '12 時（上午/下午 時:分）'
-  | '12 時（上午/下午 時:分:秒）'
 
 type ClockKind = '電子' | '指針'
 type ClockSkin = '經典' | '簡約' | '霓虹' | '粉彩' | '羅馬'
@@ -276,53 +278,6 @@ function AnalogClock({ now, skin, reduced }: { now: Date; skin: ClockSkin; reduc
   )
 }
 
-/** timeStyle → Intl 時間選項。12 時樣式帶 hour12，秒依樣式決定。 */
-function timeOptions(style: TimeStyle): Intl.DateTimeFormatOptions {
-  const hour12 = style.startsWith('12 時')
-  const withSeconds = style.includes('時:分:秒')
-  return {
-    hour: '2-digit',
-    minute: '2-digit',
-    ...(withSeconds ? { second: '2-digit' } : {}),
-    hour12,
-  }
-}
-
-/** 安全格式化：任一瀏覽器缺該曆別就回 null，讓那一行優雅略過（不崩）。 */
-function safeFormat(locale: string, options: Intl.DateTimeFormatOptions, date: Date): string | null {
-  try {
-    return new Intl.DateTimeFormat(locale, options).format(date)
-  } catch {
-    return null
-  }
-}
-
-// 農曆日的傳統寫法（初一…三十）；Intl 的 chinese 曆只給阿拉伯數字，故自己對應。
-const LUNAR_DAYS = [
-  '',
-  '初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十',
-  '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十',
-  '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十',
-]
-
-/** 農曆「六月十六」：月份用 Intl（含閏月），日改成傳統寫法。缺 chinese 曆回 null。 */
-function lunarText(date: Date): string | null {
-  try {
-    const parts = new Intl.DateTimeFormat('zh-TW-u-ca-chinese', {
-      month: 'long',
-      day: 'numeric',
-    }).formatToParts(date)
-    const month = parts.find((p) => p.type === 'month')?.value ?? ''
-    const dayRaw = parts.find((p) => p.type === 'day')?.value ?? ''
-    const dayNum = Number(dayRaw)
-    const day = LUNAR_DAYS[dayNum] ?? dayRaw
-    if (!month && !day) return null
-    return `農曆${month}${day}`
-  } catch {
-    return null
-  }
-}
-
 export default function DateTimeWidget({ config }: WidgetProps) {
   const cfg = (config as Cfg | null) ?? {}
   const showTime = cfg.showTime ?? true
@@ -376,28 +331,13 @@ export default function DateTimeWidget({ config }: WidgetProps) {
   // 兩者都開 → 合成一行「2026年7月29日 星期三」；只開星期 → 只顯示「星期三」。
   let gregorianLine: string | null = null
   if (showGregorian) {
-    gregorianLine = safeFormat(
-      'zh-TW',
-      {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        ...(showWeekday ? { weekday: 'long' } : {}),
-      },
-      now,
-    )
+    gregorianLine = gregorianText(now, showWeekday)
   } else if (showWeekday) {
     gregorianLine = safeFormat('zh-TW', { weekday: 'long' }, now)
   }
 
-  // ── 民國（roc 曆）──
-  // Intl 一般已含「民國」紀元字樣（如「民國115年7月29日」）；保險起見，
-  // 若輸出未含「民國」則自行補上前綴。
-  let rocLine: string | null = null
-  if (showRoc) {
-    const raw = safeFormat('zh-TW-u-ca-roc', { year: 'numeric', month: 'long', day: 'numeric' }, now)
-    if (raw) rocLine = raw.includes('民國') ? raw : `民國${raw}`
-  }
+  // ── 民國（roc 曆）──「民國115年7月29日」。
+  const rocLine: string | null = showRoc ? rocText(now) : null
 
   // ── 農曆（chinese 曆）──「農曆六月十六」（日用傳統寫法）。
   const lunarLine: string | null = showLunar ? lunarText(now) : null

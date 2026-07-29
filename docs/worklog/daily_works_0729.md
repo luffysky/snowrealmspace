@@ -165,3 +165,7 @@
 ### 點 widget 震動回饋 + 開關（Luffy：選 widget 沒反應像沒按到）
 - 編輯模式點任一 widget → 該 widget **短暫震動**（0.42s shake）當「有點到/選到」回饋。`localStorage sr:widget-shake` 記偏好、預設開；編輯工具列加「點擊震動」勾選。
 - wrapper 複製 `.sr-widget-slot > *` 的 `flex:1` 撐滿，卡片照樣填滿格子；gear 的 stopPropagation 讓點齒輪只開設定、不觸發震動。`prefers-reduced-motion` → 改用外框閃一下（不搖）。純前端、typecheck/lint 綠。
+
+### Wave 3b：天氣＋時間合併 widget + 抽共用（子代理寫、主對話審）
+- 抽 `lib/weather-client.ts`（fetchWeatherInBrowser/geocode/displayPlace/CONDITION_LABEL/types，原封搬出 WeatherWidget）與 `lib/datetime-format.ts`（timeOptions/safeFormat/lunarText/LUNAR_DAYS + 抽出 gregorianText/rocText）。WeatherWidget/DateTimeWidget 改 import、行為不變（29 測+lint 綠、check:deps 無違規）。指針時鐘留在 DateTimeWidget。
+- 新 `weather_datetime`「天氣＋時間」widget（utility）：一張卡上半數位時鐘+日期行、下半天氣（icon cqi 縮放+溫度+地區）。**時間半永遠可用（不碰天氣 API）**；天氣半獨立狀態機，flag 關/未設城市 → 只隱藏天氣半、時間照顯示、不整個報錯。已 sync（hosted 27 widget）。
