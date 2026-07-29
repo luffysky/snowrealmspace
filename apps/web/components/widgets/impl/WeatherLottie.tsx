@@ -19,7 +19,8 @@ export function WeatherLottie({
 }: {
   condition: WeatherCondition
   isDay: boolean
-  size?: number
+  // number → px；string → 任意 CSS 長度（例如 clamp(...cqi...)，讓圖示隨 widget 放大）
+  size?: number | string
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const name = weatherIconName(condition, isDay)

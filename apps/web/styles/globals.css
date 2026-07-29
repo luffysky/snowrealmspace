@@ -4648,3 +4648,8 @@ input[type='range'] {
     opacity: 1;
   }
 }
+
+/* 天氣 widget：容器查詢，讓圖示/溫度隨 widget 尺寸等比縮放（見 WeatherWidget 的 cqi 用法） */
+.sr-weather-scale {
+  container-type: inline-size;
+}

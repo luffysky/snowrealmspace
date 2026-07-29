@@ -276,7 +276,7 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
   const animate = showAnimation && sceneId !== null
 
   return (
-    <div className="sr-card sr-widget" style={cardStyle}>
+    <div className="sr-card sr-widget sr-weather-scale" style={cardStyle}>
       {animate && (
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }} aria-hidden="true">
           <ProceduralScene sceneId={sceneId} density={density} overlay paused={paused} />
@@ -300,9 +300,14 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
         </div>
 
         <div className="sr-row" style={{ alignItems: 'center', gap: 'var(--sr-space-3)', minWidth: 0 }}>
-          <WeatherLottie condition={weather.condition} isDay={weather.isDay} size={72} />
+          {/* 圖示與溫度用容器查詢單位(cqi)，widget 放越大跟著等比放大 */}
+          <WeatherLottie
+            condition={weather.condition}
+            isDay={weather.isDay}
+            size="clamp(56px, 34cqi, 148px)"
+          />
           <div style={{ minWidth: 0 }}>
-            <div style={{ fontSize: 'var(--sr-text-h1)', fontWeight: 700, lineHeight: 1.1 }}>
+            <div style={{ fontSize: 'clamp(1.6rem, 18cqi, 4rem)', fontWeight: 700, lineHeight: 1.1 }}>
               {weather.tempC}°C
             </div>
             <div className="sr-muted" style={{ overflowWrap: 'anywhere' }}>
