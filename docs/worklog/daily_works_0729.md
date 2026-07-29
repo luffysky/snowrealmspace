@@ -75,6 +75,7 @@
 - **修法**：照 Luffy 指定，改用 LottieFiles **jochang** 天氣整套（Lottie Simple License，免費可商用）。瀏覽器自動化查證授權+資訊面板，Luffy 登入後手動下載 13 個 JSON，我收檔整合。
 - **上線前客觀驗證**（無法靠截圖看動→改量資料）：13 檔皆 Lottie v5.1.1／60fps／180 幀（3 秒循環）；keyframe 密度全面提升（雨/驟雨/暴雨 110–140、雪 44、晴天 15＞原 3）；**expr=0**（lottie_light 播得動）、**無外部圖片資產**（離線可打包）。
 - 新增 `rain-day`/`rain-night`（jochang 有日夜兩版，比原本單一 rain 更貼合）；`weatherIconName` rain 分日夜。`LICENSE.md` 換成 jochang/LottieFiles 標註+檔案對應表。typecheck/lint 綠。
+- **後續修（換 jochang 後仍回報「沒動」）**：程式面已驗（jochang 無 expression、autoplay+loop、keyframe 充足），唯一會凍住合法動畫的路徑＝`WeatherLottie` 的 reduced-motion/saveData gate → `goToAndStop(0)`。**判斷**：使用者系統很可能關了動畫效果（prefers-reduced-motion）→ 我們把天氣小圖也一起靜止了。**修法**：天氣圖示（小、opt-in、功能性）改成**一律 autoplay+loop**，不套背景那種減動態靜止（大面積背景動畫仍尊重）。無法自己開瀏覽器實測（擴充一直斷），故以程式推理定因；若部署+硬重整後仍靜止，則屬部署未更新/播放器問題、需再實測。
 
 ### Milestone F — S5 mock harness（子代理寫、主對話審）
 - **背景**：S5＝以「錄製的真實回應」建 provider mock，規格**禁手寫理想化 mock**；真 fixtures 卡首次實跑。故先把**周邊 harness** 全建好，實跑一錄即完成。
@@ -101,6 +102,7 @@
 - **overlay**：`DecorationLayer` 掛在 `(space)/layout.tsx`（FloatingAgent 同層）。**檢視模式整層與每張圖 pointer-events:none，永遠不擋點擊**；`?decorate=1` 進編輯：可拖曳（pointer capture + 防抖 PATCH、放開即落地）、選取後控制面板（大小/旋轉/透明度拉桿 + 漸層 tint 兩色停+角度、可清除回原色）、＋加入裝飾挑選器（81 個分類）、複製/刪除、完成離開。染色＝mask-image 剪影填漸層；透明度一律套用。
 - **審**：pointer-events 檢視零攔截、API session 綁定、picker/panel/toolbar 皆 pointer-events:auto + `max-width:calc(100vw-24px)`+flex-wrap 手機安全、tint span 56×56、touch_updated_at 存在、五閘門綠（typecheck/lint/deps/secrets/**rls 60 表含 space_decorations**）。
 - **無 flag**（沒擺就不顯示、天生 opt-in）。入口：背景頁加「開始擺放裝飾」連到 `/home?decorate=1`。
+- **對齊格線（Luffy 0729 回饋）**：編輯工具列加「對齊格線」開關（預設關＝維持自由擺放）；開啟後顯示參考格、拖曳/新增皆吸附到格點；**格子大小可調**（拉桿改視窗等分數，格線與吸附即時跟著變）。純前端（DecorationLayer + globals.css），無 API/DB 變動；工具列 flex-wrap + max-width 手機安全。
 
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。

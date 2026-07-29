@@ -67,6 +67,14 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [showPicker, setShowPicker] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // 對齊格線：開啟時顯示格線、拖曳吸附到格點（像 widget，但可關掉回純自由擺放）。
+  // gridDiv = 視窗切成幾格（等分數）；數字大＝格子小。用 ref 讓拖曳中的 handler 讀到最新值。
+  const [snap, setSnap] = useState(false)
+  const [gridDiv, setGridDiv] = useState(20)
+  const snapRef = useRef(false)
+  const gridDivRef = useRef(20)
+  snapRef.current = snap
+  gridDivRef.current = gridDiv
 
   const api = useCallback(
     async (path: string, init?: RequestInit): Promise<unknown> => {
@@ -189,8 +197,14 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
       d.moved = true
       const vw = document.documentElement.clientWidth || window.innerWidth
       const vh = document.documentElement.clientHeight || window.innerHeight
-      const x = Math.min(1, Math.max(0, (e.clientX - d.dx) / vw))
-      const y = Math.min(1, Math.max(0, (e.clientY - d.dy) / vh))
+      let x = Math.min(1, Math.max(0, (e.clientX - d.dx) / vw))
+      let y = Math.min(1, Math.max(0, (e.clientY - d.dy) / vh))
+      // 對齊格線：吸附到最近的格點（step = 1/等分數）。
+      if (snapRef.current) {
+        const step = 1 / gridDivRef.current
+        x = Math.min(1, Math.max(0, Math.round(x / step) * step))
+        y = Math.min(1, Math.max(0, Math.round(y / step) * step))
+      }
       applyLocal(d.id, { x, y })
       schedulePatch(d.id, { x, y })
     },
@@ -229,6 +243,12 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
   // ── 加入 / 刪除 / 複製 ──
   const addDecoration = useCallback(
     async (decorationId: string, x = 0.5, y = 0.42) => {
+      // 對齊格線開啟時，新加入的裝飾也落在格點上。
+      if (snapRef.current) {
+        const step = 1 / gridDivRef.current
+        x = Math.min(1, Math.max(0, Math.round(x / step) * step))
+        y = Math.min(1, Math.max(0, Math.round(y / step) * step))
+      }
       try {
         const created = (await api('/api/decorations', {
           method: 'POST',
@@ -309,8 +329,14 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
 
   return (
     <div
-      className={`sr-deco-layer${editMode ? ' sr-deco-layer-edit' : ''}`}
+      className={`sr-deco-layer${editMode ? ' sr-deco-layer-edit' : ''}${editMode && snap ? ' sr-deco-layer-grid' : ''}`}
       // 檢視模式整層不攔截點擊；編輯模式由各互動元素自行開 pointer-events。
+      // 對齊格線開啟時，用 CSS 變數帶入格線間距（＝視窗等分），畫出對齊參考格。
+      style={
+        editMode && snap
+          ? ({ ['--sr-deco-grid']: `${100 / gridDiv}%` } as CSSProperties)
+          : undefined
+      }
       aria-hidden={editMode ? undefined : 'true'}
     >
       {items.map((rec) => (
@@ -330,6 +356,29 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
           <div className="sr-deco-toolbar" role="toolbar" aria-label="裝飾品編輯">
             <span className="sr-deco-toolbar-hint">拖曳擺放 · 點選可調整</span>
             <div className="sr-deco-toolbar-actions">
+              <button
+                type="button"
+                className={`sr-button sr-button-secondary${snap ? ' sr-button-active' : ''}`}
+                aria-pressed={snap}
+                onClick={() => setSnap((s) => !s)}
+                title="開啟後拖曳會吸附到格線"
+              >
+                {snap ? '✓ 對齊格線' : '對齊格線'}
+              </button>
+              {snap && (
+                <label className="sr-deco-grid-size" title="格子大小（往右格子越小）">
+                  <span aria-hidden="true">格</span>
+                  <input
+                    type="range"
+                    min={6}
+                    max={48}
+                    step={2}
+                    value={gridDiv}
+                    aria-label="格子大小，往右格子越小"
+                    onChange={(e) => setGridDiv(Number(e.target.value))}
+                  />
+                </label>
+              )}
               <button type="button" className="sr-button sr-button-secondary" onClick={() => setShowPicker(true)}>
                 ＋ 加入裝飾
               </button>

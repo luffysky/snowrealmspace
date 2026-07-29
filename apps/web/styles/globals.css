@@ -4293,6 +4293,31 @@ input[type='range'] {
 .sr-deco-layer-edit {
   z-index: 60;
 }
+/* 對齊格線：畫出參考格（間距＝視窗等分，由 --sr-deco-grid 帶入）。純視覺、不吃點擊。 */
+.sr-deco-layer-grid {
+  background-image:
+    linear-gradient(to right, var(--sr-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sr-border) 1px, transparent 1px);
+  background-size: var(--sr-deco-grid, 5%) var(--sr-deco-grid, 5%);
+  background-position: 0 0;
+}
+/* 對齊格線開關的作用中狀態 */
+.sr-deco-toolbar .sr-button-active {
+  border-color: var(--sr-accent);
+  box-shadow: inset 0 0 0 1px var(--sr-accent);
+}
+/* 格子大小拉桿 */
+.sr-deco-grid-size {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-secondary);
+}
+.sr-deco-grid-size input[type='range'] {
+  width: clamp(64px, 20vw, 120px);
+}
 .sr-deco-item {
   position: fixed;
   transform-origin: center center;
