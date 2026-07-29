@@ -161,3 +161,7 @@
 - **時間日期 widget** 加 `clockKind`（電子/指針）+ `clockSkin`（經典/簡約/霓虹/粉彩/羅馬）。指針＝100×100 viewBox SVG（隨卡片等比、maxWidth 封頂）；針角度 秒×6°、分×6°+秒×0.1、時×30°+分×0.5；秒針不加 transition（避 59→0 回捲）逐秒 setState；reduced-motion 只去時/分針過渡。霓虹/粉彩用美術常數自帶深/淺底、明暗都可讀（scoped eslint-disable，比照 theme-defaults）。
 - **天氣動畫速度**：`weatherConfig.animSpeed`（0.3~3、預設 1.4）→ `WeatherLottie` `setSpeed(animSpeed)`；`WeatherWidget` 傳入。
 - **number 欄位改滑桿**：`FieldControl` number 只要有 min+max 就渲染 `<input type=range>`+即時數值；animSpeed 因此是「動畫速度」滑桿。labels 補 clockKind/clockSkin/animSpeed。typecheck/lint + 29 測綠。
+
+### 點 widget 震動回饋 + 開關（Luffy：選 widget 沒反應像沒按到）
+- 編輯模式點任一 widget → 該 widget **短暫震動**（0.42s shake）當「有點到/選到」回饋。`localStorage sr:widget-shake` 記偏好、預設開；編輯工具列加「點擊震動」勾選。
+- wrapper 複製 `.sr-widget-slot > *` 的 `flex:1` 撐滿，卡片照樣填滿格子；gear 的 stopPropagation 讓點齒輪只開設定、不觸發震動。`prefers-reduced-motion` → 改用外框閃一下（不搖）。純前端、typecheck/lint 綠。

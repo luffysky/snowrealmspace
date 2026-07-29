@@ -4759,3 +4759,33 @@ input[type='range'] {
 .sr-widget-slot[data-glass='off'] .sr-widget-bg .sr-card {
   background: color-mix(in srgb, var(--sr-surface) 62%, transparent);
 }
+
+/* 點 widget 的震動回饋 —— wrapper 必須複製 .sr-widget-slot > * 的 flex 撐滿，卡片才不會不填滿格子 */
+.sr-widget-shakewrap {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+.sr-widget-shakewrap > .sr-card,
+.sr-widget-shakewrap > * {
+  flex: 1;
+  min-width: 0;
+}
+@keyframes sr-widget-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-4px); }
+  30% { transform: translateX(4px); }
+  45% { transform: translateX(-3px); }
+  60% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+.sr-widget-shake { animation: sr-widget-shake 0.42s ease; }
+/* 減動態：不搖，改用短暫外框閃一下當回饋（仍讓人知道有點到） */
+@media (prefers-reduced-motion: reduce) {
+  .sr-widget-shake { animation: sr-widget-tap-flash 0.42s ease; }
+}
+@keyframes sr-widget-tap-flash {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 0 3px var(--sr-accent); }
+}

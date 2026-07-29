@@ -115,6 +115,35 @@ export function HomeGrid({
   const [notice, setNotice] = useState<string | null>(null)
   // 目前打開設定面板的 widget id
   const [settingsFor, setSettingsFor] = useState<string | null>(null)
+  // 編輯模式點 widget → 短暫震動回饋（讓人知道有點到、選到）。預設開，localStorage 記偏好。
+  const [shakingId, setShakingId] = useState<string | null>(null)
+  const [shakeOn, setShakeOn] = useState(true)
+  const shakeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    setShakeOn(localStorage.getItem('sr:widget-shake') !== 'off')
+    return () => {
+      if (shakeTimer.current) clearTimeout(shakeTimer.current)
+    }
+  }, [])
+
+  const triggerShake = useCallback(
+    (id: string) => {
+      if (!shakeOn) return
+      setShakingId(id)
+      if (shakeTimer.current) clearTimeout(shakeTimer.current)
+      shakeTimer.current = setTimeout(() => setShakingId(null), 450)
+    },
+    [shakeOn],
+  )
+
+  const toggleShake = useCallback(() => {
+    setShakeOn((v) => {
+      const next = !v
+      localStorage.setItem('sr:widget-shake', next ? 'on' : 'off')
+      return next
+    })
+  }, [])
   const router = useRouter()
 
   /**
@@ -385,7 +414,10 @@ export function HomeGrid({
       available.find((a) => a.id === row.widget_definition_id)?.name ??
       row.widget_definition_id
     return (
-      <>
+      <div
+        className={`sr-widget-shakewrap${editing && shakingId === id ? ' sr-widget-shake' : ''}`}
+        onClick={editing ? () => triggerShake(id) : undefined}
+      >
         <WidgetRenderer
           definitionId={row.widget_definition_id}
           spaceId={spaceId}
@@ -418,7 +450,7 @@ export function HomeGrid({
             <span aria-hidden="true">⚙</span> 設定
           </button>
         )}
-      </>
+      </div>
     )
   }
 
@@ -472,6 +504,10 @@ export function HomeGrid({
                 刪除此版面
               </button>
             )}
+            <label className="sr-checkbox" style={{ marginLeft: 'var(--sr-space-2)' }}>
+              <input type="checkbox" checked={shakeOn} onChange={toggleShake} />
+              <span>點擊震動</span>
+            </label>
           </div>
         )}
 
