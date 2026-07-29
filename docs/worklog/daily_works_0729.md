@@ -169,3 +169,8 @@
 ### Wave 3b：天氣＋時間合併 widget + 抽共用（子代理寫、主對話審）
 - 抽 `lib/weather-client.ts`（fetchWeatherInBrowser/geocode/displayPlace/CONDITION_LABEL/types，原封搬出 WeatherWidget）與 `lib/datetime-format.ts`（timeOptions/safeFormat/lunarText/LUNAR_DAYS + 抽出 gregorianText/rocText）。WeatherWidget/DateTimeWidget 改 import、行為不變（29 測+lint 綠、check:deps 無違規）。指針時鐘留在 DateTimeWidget。
 - 新 `weather_datetime`「天氣＋時間」widget（utility）：一張卡上半數位時鐘+日期行、下半天氣（icon cqi 縮放+溫度+地區）。**時間半永遠可用（不碰天氣 API）**；天氣半獨立狀態機，flag 關/未設城市 → 只隱藏天氣半、時間照顯示、不整個報錯。已 sync（hosted 27 widget）。
+
+## 收尾檢查（0729 尾，實跑）
+- **全閘門綠**：typecheck 15/15、**full test suite 914 pass / 2 skip**（S5 待錄 fixtures）、coverage 83.38%、check:rls **61 表全對**、check:deps 無違規、check:secrets 無外洩。
+- API：新面向皆走既有/已審路徑（widget config PATCH `z.record` + 元件端合併保 bg；`/api/decorations` zod+RLS+session spaceId+配額；相框用既有 `/api/assets`+signed URL）。DB：0060/0061/0062 已套 hosted、`sync-widget-defs` 27 widget。UI：全 `--sr-*` token、誠實狀態。PWA：無 SW/manifest 變動。
+- **未機器驗**：RWD 手機實視（新 widget/彈窗/gear 都下了 `min-width:0`/`overflow-wrap`/`max-width` 防溢位，但 E2E/a11y 依 Luffy 指示暫停、未跑 `--project=mobile`）。已標待辦，之後解禁時補跑。

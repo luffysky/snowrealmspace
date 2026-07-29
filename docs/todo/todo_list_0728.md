@@ -99,5 +99,15 @@
 - [x] ~~天氣動畫全套打磨：換 jochang Lottie、雲左右來回(各異速度/幅度/相位)、太陽光暈/月亮/星星脈動(只在無雲時)、半透明天空(日出日落/烏雲/星空)、圖示隨 widget 縮放、動畫速度滑桿~~ ✅
 - [x] ~~**13 個新 widget**：時間日期(電子/指針+花色)、天氣+時間合併、紀念日、倒數、迷你月曆、世界時鐘、每日情話、待辦、習慣、相框、呼吸、骰子、幸運籤（hosted 27 widget）~~ ✅
 - [x] ~~每個 widget 可設背景(場景庫+靜態預設+動不動+透明度)、⚙ 設定彈窗、加入清單分類分組、點擊震動回饋~~ ✅ 0729
-- [ ] **Canva A｜整資料夾/專案匯入**（folders API + picker 全選）、**Canva B｜抓全部頁面**（export job）：**需開一次 Canva 實測 session**（照專案「錄真實回應」原則，不憑空對假 API 形狀寫）。
-- [ ] **#55 Lottie 背景 + 套件化下載**：需開一次 **LottieFiles session**（登入、我操作下載）。
+- [ ] **Canva A｜整資料夾/專案一次匯入**（🔴 需 Luffy 開 Canva session 實測）
+  - 做法：`CanvaAdapter` 加資料夾支援 —— Canva Connect `GET /v1/folders/{folderId}/items`（列資料夾內設計＋子資料夾、分頁 continuation）、`GET /v1/folders/{folderId}`（資料夾資訊）；`listFiles` 加可選 `folderId` 篩選。`FilePickerDialog` 加「選資料夾 / 全選此資料夾」（目前刻意無全選、上限 50 → 改成資料夾為單位、仍設合理上限防爆）。
+  - **為何需你在場**：專案規矩禁對假想 API 形狀寫（S5 那條）。我要用你連的 Canva 帳號、瀏覽器看 `/v1/folders/*` 真實回應 → 照真形狀寫 + 順便錄進 S5 fixtures。
+  - 驗收：picker 選一個資料夾 → 一次把裡面所有設計同步進 `design_snapshots`。
+- [ ] **Canva B｜抓全部頁面（不只封面）**（🔴 需 Luffy 開 Canva session 實測）
+  - 做法：實作 Canva **export job**：`POST /v1/exports`（建立匯出、format=png/pdf）→ 輪詢 `GET /v1/exports/{exportId}`（status in_progress→success）→ 下載每頁圖 → 存成多頁 `asset_renditions` / 多資產。目前只存 `design.thumbnail`（封面）。
+  - **為何需你在場**：export job 是非同步輪詢 + 真檔，只能對真帳號實跑才知道回應形狀與頁數上限；照專案原則錄真實回應。
+  - 驗收：同步一個多頁 Canva 設計 → 媒體庫看得到每一頁、不只封面。
+- [ ] **#55 免費商用 Lottie 背景 + 套件化下載**（🔴 需 Luffy 開 LottieFiles session）
+  - 已完成：程序化場景 300（6 類）。未完成：① 動漫/Lottie 背景（免費商用，走 LottieFiles 登入下載流程，跟抓 jochang 一樣你登入、我操作、逐一挑構圖+keyframe 密度）；② **套件化下載機制**（背景商店的「下載後套用、未下載可預覽」——需設計 pack 目錄 + 下載狀態 + 套用流程）。
+- [ ] **RWD 手機實視補驗**（機器未驗的唯一項）：本批新 widget（13 個）+ 設定彈窗 + gear + 震動 + 背景挑選器都下了防溢位（`min-width:0`/`overflow-wrap`/`max-width:calc(100vw-24px)`），但 E2E/a11y 依 Luffy 指示暫停、未跑 `pnpm test:e2e:mobile`。解禁後補跑 `--project=mobile`（照 CLAUDE.md #5：改 UI 必跑手機）。
+- [ ] **裝飾品擴充**（見上 D 區）：現 81 個太少、太多表情臉 → 大幅增量、減表情、加動物/植物/食物/物件/節慶；另找免費商用 **Lottie 動態裝飾**。
