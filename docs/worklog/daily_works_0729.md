@@ -86,7 +86,13 @@
 - `scenes.ts` 追加 **36 個新程序化場景**（天氣8／星空8／自然8／慶祝6／簡約6），皆資料驅動、背景商店依 `scenesByCategory` 自動分類顯示，未動 UI/型別/helper。
 - 新增 4 個底色常數（DAWN 曦光、TWILIGHT 暮色、MEADOW 草綠、DEEPSEA 深海），沿用既有 const 風格、各至少 1 場景使用。
 - 審：無重複 id（全 ~106 場景）、配色/密度/速度與既有明顯區隔、typecheck/lint 綠。
-- **仍待（#55）**：免費可商用 Lottie 背景（需 LottieFiles 下載流程 + 我逐一看構圖/keyframe 密度挑「真的好看」的）。
+
+### #55 背景商店 — 場景擴充到每類 50（300）+ 新類「城市夜景」（子代理寫、主對話審）
+- 依 Luffy 指示把 5 現有類**各補滿到 50** + 新增第 6 個程序化類 **城市夜景**（霓虹燈點/窗光/霓虹雨/街燈飄升/招牌星，10 個城市夜色底色常數）→ **6 類 × 50 = 300 個程序化場景**（+193）。
+- 新增 `SceneCategory '城市夜景'` + `SCENE_CATEGORIES`；全 repo 無 SceneCategory 窮舉 switch/map 需擴（背景商店 tab 資料驅動、自動長出新類）。
+- 審（獨立重跑）：category 計數各 50、**無重複 id（全 300）**、無畸形 hex/rgb、`SceneCategory` union 正確、typecheck/lint + `scenes.test.ts` 6/6 綠。
+- **第 7 類「動漫」＝插畫/Lottie**（Luffy 選的形式，非程序化）：走之後的免費商用 sourcing（+50）→ 共 350。
+- **仍待（#55）**：免費可商用 Lottie 背景 + 動漫插畫/Lottie（皆需 LottieFiles 下載流程 + 我逐一看構圖/keyframe 密度挑「真的好看」的）。
 
 ### 裝飾品 widget（子代理寫、主對話審 + 我套 migration）
 - **素材**：81 個可愛 Fluent Emoji（Microsoft，MIT）Color SVG 抓進 `public/decorations/`，`lib/decorations/manifest.json`（繁中標籤、6 類：動物/植物/甜點/天空/愛心/可愛）+ `LICENSE.md`。curl 直抓 raw.githubusercontent（Sentence-case 資料夾/snake 檔名），81/81 全中。
