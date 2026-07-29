@@ -31,6 +31,8 @@ export const WIDGET_IDS = [
   'canva_export',
   'creative_streak',
   'shared_messages',
+  // 獨立工具（無 Milestone 綁定，直接可用）
+  'datetime',
 ] as const
 
 export type WidgetId = (typeof WIDGET_IDS)[number]
@@ -149,6 +151,24 @@ const goalTrackerConfig = z.object({
 const weatherConfig = z.object({
   // 扁平布林：關掉就只顯示日/夜、氣溫、地區，不跑動畫
   showAnimation: z.boolean().default(true),
+})
+
+// 時間日期：全部用瀏覽器 Intl（民國 roc、農曆 chinese），不進網路。
+// 顯示哪幾行由勾選決定；時間有幾種樣式。全部帶預設，設定面板才渲染得出來。
+const datetimeConfig = z.object({
+  showTime: z.boolean().default(true),
+  timeStyle: z
+    .enum([
+      '24 時（時:分）',
+      '24 時（時:分:秒）',
+      '12 時（上午/下午 時:分）',
+      '12 時（上午/下午 時:分:秒）',
+    ])
+    .default('24 時（時:分）'),
+  showGregorian: z.boolean().default(true),
+  showWeekday: z.boolean().default(true),
+  showRoc: z.boolean().default(false),
+  showLunar: z.boolean().default(false),
 })
 
 function def<T>(d: WidgetDefinition<T>): WidgetDefinition<T> {
@@ -367,6 +387,23 @@ export const WIDGET_REGISTRY = {
     featureFlag: 'weatherWidget',
     // 每 15 分鐘刷新（後端有 ~10 分鐘快取）
     refreshPolicy: { onMount: true, intervalSeconds: 900 },
+  }),
+
+  datetime: def({
+    id: 'datetime',
+    name: '時間日期',
+    version: '1.0.0',
+    category: 'utility',
+    description: '時鐘 + 西元/民國/農曆日期，可勾選顯示',
+    defaultSize: { w: 3, h: 2 },
+    minSize: { w: 2, h: 1 },
+    maxSize: { w: 5, h: 3 },
+    configSchema: datetimeConfig,
+    defaultConfig: datetimeConfig.parse({}),
+    // 純瀏覽器 Intl，不連網、不取位置
+    permissions: [],
+    // 自己每秒 tick，不需伺服器刷新
+    refreshPolicy: { onMount: true },
   }),
 }
 

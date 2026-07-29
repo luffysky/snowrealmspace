@@ -84,6 +84,14 @@
   6. **圖示後面的半透明「天空」背景（Luffy：日出日落暖光/大片烏雲/星空）**：不動 Lottie（風險高），改在 `WeatherLottie` 圖示後加**純 CSS 半透明背景**、依情境切換：晴天日＝暖色日出/日落光暈+天空藍；夜晚＝星空（深藍暈+幾顆會閃的星）；雨/雷/毛毛雨/颱風＝大片烏雲（數塊灰雲團疊合）；其餘＝淡淡柔光。顏色屬天氣美術（非 UI chrome），星星閃爍套 `prefers-reduced-motion:no-preference`。typecheck/lint 綠。
   7. **圖示/溫度隨 widget 放大（Luffy）**：天氣卡加 `container-type:inline-size`，圖示 `size` 型別放寬成可吃 CSS 長度，改用 **cqi 容器查詢單位**（icon `clamp(56px,34cqi,148px)`、溫度 `clamp(1.6rem,18cqi,4rem)`）→ widget 拉越大、圖示與溫度等比變大，零 JS。
 
+### 時間日期 widget（新 widget，子代理寫、主對話審）
+- 新增獨立 `datetime`「時間日期」widget：即時走針時鐘 + 可**勾選**的日期行（西元年月日／星期／**民國**／**農曆**），時間 4 種樣式（24/12 時 × 含不含秒），裝置本地時區＝當地時間。
+- **農曆/民國全走瀏覽器 `Intl`**（`ca-chinese`／`ca-roc`）**免函式庫、不連網、不取位置**（permissions:[]）。**無 feature flag**（立即可加）。
+- 註冊：`WIDGET_IDS`+`WIDGET_REGISTRY`+`config-fields` 的 `labelFor`（6 個中文標籤）+`COMPONENTS` lazy import。設定面板由 configSchema 自動生成（bool→勾選、enum→下拉）。
+- **SSR/hydration**：`now` 初始 null、只在 client tick 才有值→首幀占位一致，不會 mismatch。
+- **主對話補**：農曆日改**傳統寫法**（Intl 只給阿拉伯數字→自建初一…三十對應，`formatToParts` 取月/日；月份仍用 Intl 含閏月）→「農曆六月十六」。
+- 審：`Intl` 各行 try/catch 缺曆別優雅略過、都沒勾誠實提示、tabular-nums 時鐘不抖、min-width:0/overflow-wrap 不溢格、token 配色；**已跑 `sync-widget-defs` 建 hosted `widget_definitions` row（15 widget）**；typecheck/lint/deps + registry 29 測綠。
+
 ### Milestone F — S5 mock harness（子代理寫、主對話審）
 - **背景**：S5＝以「錄製的真實回應」建 provider mock，規格**禁手寫理想化 mock**；真 fixtures 卡首次實跑。故先把**周邊 harness** 全建好，實跑一錄即完成。
 - **做了什麼**：`provider-core` 抽出可注入 HTTP seam `ProviderHttpGet`（三個 adapter 方法統一走 `this.http`）；`record.ts`（`DESIGN_SYNC_RECORD_DIR` gate、去敏後寫 `recorded/<provider>/<endpoint>.json`）；`replay.ts`（重播真 adapter，缺 fixture 拋 `MissingRecordedFixtureError` **不回假資料**）；`s5-replay.test.ts`（fixtures 缺席→`it.skip` 附原因、**非假通過**）；`__fixtures__/README.md`。

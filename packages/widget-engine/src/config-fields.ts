@@ -59,6 +59,12 @@ const LABELS: Record<string, string> = {
   projectId: '綁定專案',
   targetProjectId: '存到專案',
   showAnimation: '顯示天氣動畫',
+  showTime: '顯示時間',
+  timeStyle: '時間樣式',
+  showGregorian: '西元日期（年月日）',
+  showWeekday: '星期',
+  showRoc: '民國日期',
+  showLunar: '農曆',
 }
 
 function labelFor(key: string): string {

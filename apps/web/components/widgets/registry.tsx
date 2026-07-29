@@ -30,6 +30,7 @@ const COMPONENTS: Record<string, ComponentType<WidgetProps>> = {
   mood_checkin: lazy(() => import('./impl/MoodCheckinWidget')),
   goal_tracker: lazy(() => import('./impl/GoalTrackerWidget')),
   weather: lazy(() => import('./impl/WeatherWidget')),
+  datetime: lazy(() => import('./impl/DateTimeWidget')),
 }
 
 export function hasImplementation(definitionId: string): boolean {
