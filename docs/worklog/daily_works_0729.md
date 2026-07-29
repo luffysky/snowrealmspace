@@ -76,6 +76,12 @@
 - **上線前客觀驗證**（無法靠截圖看動→改量資料）：13 檔皆 Lottie v5.1.1／60fps／180 幀（3 秒循環）；keyframe 密度全面提升（雨/驟雨/暴雨 110–140、雪 44、晴天 15＞原 3）；**expr=0**（lottie_light 播得動）、**無外部圖片資產**（離線可打包）。
 - 新增 `rain-day`/`rain-night`（jochang 有日夜兩版，比原本單一 rain 更貼合）；`weatherIconName` rain 分日夜。`LICENSE.md` 換成 jochang/LottieFiles 標註+檔案對應表。typecheck/lint 綠。
 
+### Milestone F — S5 mock harness（子代理寫、主對話審）
+- **背景**：S5＝以「錄製的真實回應」建 provider mock，規格**禁手寫理想化 mock**；真 fixtures 卡首次實跑。故先把**周邊 harness** 全建好，實跑一錄即完成。
+- **做了什麼**：`provider-core` 抽出可注入 HTTP seam `ProviderHttpGet`（三個 adapter 方法統一走 `this.http`）；`record.ts`（`DESIGN_SYNC_RECORD_DIR` gate、去敏後寫 `recorded/<provider>/<endpoint>.json`）；`replay.ts`（重播真 adapter，缺 fixture 拋 `MissingRecordedFixtureError` **不回假資料**）；`s5-replay.test.ts`（fixtures 缺席→`it.skip` 附原因、**非假通過**）；`__fixtures__/README.md`。
+- **主對話審**（一個寫一個驗）：確認 ①`resolveDefaultHttpGet` 未設 env → 回原 `realProviderHttpGet`、**零行為改變**；②redaction 命中 token/email/帶簽章 URL、且文件標明仍需人眼複查；③replay 缺檔拋錯非靜默；④`provider-core` 只被 route handler／server component 引用（非 client／edge）→ 新增的 `node:fs` 靜態 import 安全；⑤四閘門綠（lint/typecheck/deps/vitest：71 pass、2 skip）。
+- **仍待**：真實 fixtures（首次端到端實跑用 `DESIGN_SYNC_RECORD_DIR` 錄）。
+
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。
 - **F 第一次端到端實跑**：連 Canva/Figma → 選檔(S4 picker) → 同步 → 看 `design_snapshots` 出版本。這一步順便**錄真實回應**供 S5 mock、校正 Figma/Canva 端點。

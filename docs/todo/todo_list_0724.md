@@ -612,8 +612,9 @@ ALTER DATABASE postgres SET "app.settings.jwt_secret" TO '你的secret';  -- 改
 - [x] ~~「上次同步時間」接真實 `last_synced_at`（連線層本就有；`/files` 再每檔標 `design_files.last_synced_at`，單一 RLS 查詢）~~
 - [x] ~~版本比較：確認 `/works` 查詢無 provider 濾鏡、同步產出的 design_files/snapshots 已涵蓋 → 沿用既有 compare UI，picker 成功狀態加連結，不重造~~
 
-**S5 — mock（⬜ 卡憑證，等 13c）**
-- [ ] Provider mock 以**錄製的真實回應**建立（規格禁手寫理想化 mock）——需真憑證+真檔才錄得到
+**S5 — mock（🚧 harness 已建、待實跑錄 fixtures，等 13c）**
+- [x] ~~**錄製/重播 harness**：`provider-core` 加可注入 HTTP seam（`ProviderHttpGet`）+ `record.ts`（`DESIGN_SYNC_RECORD_DIR` gate、去敏後寫 `recorded/<provider>/<endpoint>.json`、off 時零行為改變）+ `replay.ts`（重播真 adapter，缺 fixture 拋 `MissingRecordedFixtureError` 不回假資料）+ skip-gated 測試（fixtures 缺席→明確 `it.skip` 附原因、非假通過）+ `__fixtures__/README.md`~~ ✅ 0729（子代理寫、主對話逐檔審：seam off-by-default 零改變、redaction 有人眼複查警語、provider-core 純伺服器端故 node:fs 安全、四閘門綠）
+- [ ] **真實 fixtures**：仍需首次真憑證+真檔實跑（下方 13c）用 `DESIGN_SYNC_RECORD_DIR` 錄下真回應放進 `recorded/`，S5 測試即自動改跑
 
 ### 13c. 啟用前置（Luffy 操作）
 - [x] ~~部署環境設 `CANVA_CLIENT_ID/SECRET`（Figma `FIGMA_CLIENT_ID/SECRET`）+ 32-byte `TOKEN_ENCRYPTION_SECRET`~~ ✅ 0729

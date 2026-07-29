@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from 'node:crypto'
+import { recordResponse } from './record.js'
 
 /**
  * 設計 provider 抽象（Milestone F）。見 docs/spec/10-acceptance.md「F — Integration」、v1.0 §20/§39。
@@ -132,8 +133,17 @@ export class ProviderApiError extends Error {
   }
 }
 
-/** 共用的 Bearer GET；非 2xx 一律拋 ProviderApiError（不靜默失敗）。 */
-async function providerGetJson(url: string, accessToken: string): Promise<unknown> {
+/**
+ * provider HTTP GET seam（Milestone F sync）。回傳解析後的 JSON body。
+ *
+ * adapter 不直接呼叫 fetch，而是透過這個可注入的 seam——正式執行時是打真 REST 的
+ * realProviderHttpGet；S5 測試時注入 replayHttpGet（重播錄製的真實回應）。
+ * 這是「錄製 / 重播」機制的唯一掛點：換掉它就同時換掉三個 adapter 方法的資料來源。
+ */
+export type ProviderHttpGet = (url: string, accessToken: string) => Promise<unknown>
+
+/** 共用的 Bearer GET；非 2xx 一律拋 ProviderApiError（不靜默失敗）。正式執行時的預設實作。 */
+async function realProviderHttpGet(url: string, accessToken: string): Promise<unknown> {
   let res: Response
   try {
     res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/json' } })
@@ -155,6 +165,26 @@ async function providerGetJson(url: string, accessToken: string): Promise<unknow
     return JSON.parse(text)
   } catch {
     throw new ProviderApiError(res.status, 'provider 回應不是合法 JSON。')
+  }
+}
+
+/**
+ * 解析預設的 ProviderHttpGet。
+ * - 未設 `DESIGN_SYNC_RECORD_DIR` → 直接回 realProviderHttpGet，行為與從前完全相同（零額外副作用）。
+ * - 有設 → 回一層「打真 REST 後把去敏回應寫成 fixture」的錄製包裝（S5 首次實跑用）。
+ *   錄製失敗只 log、絕不影響同步本身（靜默失敗是 bug，所以印出原因）。
+ */
+export function resolveDefaultHttpGet(): ProviderHttpGet {
+  const dir = process.env.DESIGN_SYNC_RECORD_DIR?.trim()
+  if (!dir) return realProviderHttpGet
+  return async (url, accessToken) => {
+    const body = await realProviderHttpGet(url, accessToken)
+    try {
+      await recordResponse(dir, url, body)
+    } catch (err) {
+      console.error('[design-sync record] 寫入 fixture 失敗（不影響同步）：', (err as Error).message)
+    }
+    return body
   }
 }
 
@@ -223,6 +253,12 @@ export function verifyFigmaPasscode(payload: unknown, secret: string): boolean {
 /** Figma adapter（capability + webhook；sync 待憑證）。 */
 export class FigmaAdapter implements DesignProviderAdapter {
   readonly capabilities = FIGMA_CAPABILITIES
+  /** HTTP seam：預設打真 REST（或錄製包裝），S5 測試可注入 replayHttpGet。 */
+  private readonly http: ProviderHttpGet
+
+  constructor(http?: ProviderHttpGet) {
+    this.http = http ?? resolveDefaultHttpGet()
+  }
 
   verifyWebhook(rawBody: string, signature: string | null, secret: string): boolean {
     return verifyHmacSignature(rawBody, signature, secret)
@@ -250,7 +286,7 @@ export class FigmaAdapter implements DesignProviderAdapter {
     if (!opts?.container) {
       throw new ProviderApiError(400, 'Figma 需要指定 project id 才能列出檔案。')
     }
-    const json = (await providerGetJson(
+    const json = (await this.http(
       `https://api.figma.com/v1/projects/${encodeURIComponent(opts.container)}/files`,
       accessToken,
     )) as { files?: Array<{ key?: string; name?: string; thumbnail_url?: string; last_modified?: string }> }
@@ -269,7 +305,7 @@ export class FigmaAdapter implements DesignProviderAdapter {
   }
 
   async fetchFile(accessToken: string, externalId: string): Promise<FetchedFile> {
-    const json = (await providerGetJson(
+    const json = (await this.http(
       `https://api.figma.com/v1/files/${encodeURIComponent(externalId)}`,
       accessToken,
     )) as { name?: string; version?: string; thumbnailUrl?: string; lastModified?: string }
@@ -286,7 +322,7 @@ export class FigmaAdapter implements DesignProviderAdapter {
   // Figma：GET /v1/me → { id, handle, email }（見 https://www.figma.com/developers/api#users-endpoints）。
   // externalId 用穩定的 id；label 優先 handle，其次 email。
   async fetchAccount(accessToken: string): Promise<ProviderAccount> {
-    const json = (await providerGetJson('https://api.figma.com/v1/me', accessToken)) as {
+    const json = (await this.http('https://api.figma.com/v1/me', accessToken)) as {
       id?: string
       handle?: string
       email?: string
@@ -301,6 +337,12 @@ export class FigmaAdapter implements DesignProviderAdapter {
 /** Canva adapter（capability + webhook 佔位；OAuth/sync 待 CANVA_CLIENT_ID/SECRET 才實作）。 */
 export class CanvaAdapter implements DesignProviderAdapter {
   readonly capabilities = CANVA_CAPABILITIES
+  /** HTTP seam：預設打真 REST（或錄製包裝），S5 測試可注入 replayHttpGet。 */
+  private readonly http: ProviderHttpGet
+
+  constructor(http?: ProviderHttpGet) {
+    this.http = http ?? resolveDefaultHttpGet()
+  }
 
   verifyWebhook(rawBody: string, signature: string | null, secret: string): boolean {
     return verifyHmacSignature(rawBody, signature, secret)
@@ -329,7 +371,7 @@ export class CanvaAdapter implements DesignProviderAdapter {
   async listFiles(accessToken: string, opts?: ProviderListOptions): Promise<ProviderListResult> {
     const params = new URLSearchParams({ limit: '50' })
     if (opts?.cursor) params.set('continuation', opts.cursor)
-    const json = (await providerGetJson(
+    const json = (await this.http(
       `https://api.canva.com/rest/v1/designs?${params.toString()}`,
       accessToken,
     )) as { items?: CanvaDesign[]; continuation?: string }
@@ -348,7 +390,7 @@ export class CanvaAdapter implements DesignProviderAdapter {
   }
 
   async fetchFile(accessToken: string, externalId: string): Promise<FetchedFile> {
-    const json = (await providerGetJson(
+    const json = (await this.http(
       `https://api.canva.com/rest/v1/designs/${encodeURIComponent(externalId)}`,
       accessToken,
     )) as { design?: CanvaDesign } & CanvaDesign
@@ -369,7 +411,7 @@ export class CanvaAdapter implements DesignProviderAdapter {
   // 見 https://www.canva.dev/docs/connect/api-reference/users/。
   // externalId 用 user_id（辨識不同 Canva 登入帳號）；拿不到才退回 team_id。
   async fetchAccount(accessToken: string): Promise<ProviderAccount> {
-    const me = (await providerGetJson('https://api.canva.com/rest/v1/users/me', accessToken)) as {
+    const me = (await this.http('https://api.canva.com/rest/v1/users/me', accessToken)) as {
       team_user?: { user_id?: string; team_id?: string }
     }
     const userId = me.team_user?.user_id
@@ -383,7 +425,7 @@ export class CanvaAdapter implements DesignProviderAdapter {
     if (!externalId) throw new ProviderApiError(502, 'Canva /v1/users/me 未回傳 user_id。')
     let label: string | null = null
     try {
-      const prof = (await providerGetJson('https://api.canva.com/rest/v1/users/me/profile', accessToken)) as {
+      const prof = (await this.http('https://api.canva.com/rest/v1/users/me/profile', accessToken)) as {
         profile?: { display_name?: string }
       }
       const name = prof.profile?.display_name
@@ -463,3 +505,9 @@ function canvaTimestampToIso(ts: number | string | undefined): string | null {
   if (Number.isFinite(asNum) && ts.trim() !== '') return new Date(asNum * 1000).toISOString()
   return ts
 }
+
+// ── Milestone F sync S5：provider 回應「錄製 / 重播」機制 ──────────────
+// record：實跑時把去敏後的真實回應寫成 fixture（DESIGN_SYNC_RECORD_DIR gate）。
+// replay：測試時重播 fixture（注入 adapter 的 ProviderHttpGet），測到真 adapter 正規化跑在真實回應上。
+export * from './record.js'
+export * from './replay.js'

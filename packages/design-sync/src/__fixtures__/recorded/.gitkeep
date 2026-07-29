@@ -1,0 +1,2 @@
+# S5 錄製的真實 provider 回應放這裡：<provider>/<endpoint>.json（figma|canva / list|file|account|profile）。
+# 目前刻意留空——fixtures 只能靠首次真憑證＋真檔的端到端實跑錄製，禁手寫。見 ../README.md。

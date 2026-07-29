@@ -21,7 +21,8 @@
 - [x] ~~**S3 — webhook 觸發同步**：`/api/webhooks/[provider]` 接上 canva；驗簽+非重送才觸發，找受影響 `design_files`（sync_status=active、connection status=active）逐列入列 `design.sync`（與手動同步同契約）。provider-core 加 `affectedFileExternalIds`（Figma=file_key／Canva=design.id 防禦性，掛 TODO）+8 測試。~~ ✅ 0729（子代理寫、主對話逐檔審+schema 核對+四閘門綠）
 - [x] ~~**S4 — UI**：選檔 picker（`FilePickerDialog`，列 `/files`+勾選送 `/sync`、Figma 需專案 ID、無全選、上限 50、誠實狀態、行動安全）；
       `/files` 每檔標真實 `design_files.last_synced_at`；版本比較沿用 `/works`（其查詢無 provider 濾鏡、同步檔已涵蓋，不重造）。~~ ✅ 0729（子代理寫、主對話逐檔審+四閘門綠+CSS class 全存在）
-- [ ] **S5 — mock**：以**錄製的真實回應**建 provider mock（規格禁手寫理想化 mock）。**卡真憑證+真檔**才錄得到。
+- [x] ~~**S5 — mock（harness）**：`provider-core` 加可注入 HTTP seam + `record.ts`（env-gated 去敏錄製）+ `replay.ts`（重播真 adapter、缺 fixture 拋錯不回假資料）+ skip-gated 測試（fixtures 缺→`it.skip` 附原因）+ `__fixtures__/README.md`~~ ✅ 0729（子代理寫、主對話審 seam off-by-default／redaction／server-only／四閘門綠）
+- [ ] **S5 — 真實 fixtures**：仍**卡首次真憑證+真檔實跑**，用 `DESIGN_SYNC_RECORD_DIR` 錄真回應放進 `recorded/`，測試自動改跑。
 - [ ] **🔴 Figma 端點/scope 實測校正**：provider-core 內 `TODO(figma)` 全部待對最新 Figma 文件實測（2024 改版後 token/scope 有變）。Canva 那側也尚未對真帳號實跑。
 
 ### 前置（Luffy 已備）
