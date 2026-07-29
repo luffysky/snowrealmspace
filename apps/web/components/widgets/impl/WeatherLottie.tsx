@@ -29,7 +29,7 @@ export function WeatherLottie({
     if (!container) return
 
     let cancelled = false
-    let anim: { destroy(): void } | null = null
+    let anim: { destroy(): void; setSpeed?(speed: number): void } | null = null
 
     void (async () => {
       const [{ default: lottie }, data] = await Promise.all([
@@ -46,6 +46,8 @@ export function WeatherLottie({
         autoplay: true,
         animationData: data as object,
       })
+      // 稍微加速：小尺寸下多雲/晴這類溫和天氣的動態很難察覺，加速後更明顯。
+      anim.setSpeed?.(1.4)
     })()
 
     // 卸載 / condition 變更時清掉動畫實例

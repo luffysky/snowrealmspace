@@ -75,7 +75,10 @@
 - **修法**：照 Luffy 指定，改用 LottieFiles **jochang** 天氣整套（Lottie Simple License，免費可商用）。瀏覽器自動化查證授權+資訊面板，Luffy 登入後手動下載 13 個 JSON，我收檔整合。
 - **上線前客觀驗證**（無法靠截圖看動→改量資料）：13 檔皆 Lottie v5.1.1／60fps／180 幀（3 秒循環）；keyframe 密度全面提升（雨/驟雨/暴雨 110–140、雪 44、晴天 15＞原 3）；**expr=0**（lottie_light 播得動）、**無外部圖片資產**（離線可打包）。
 - 新增 `rain-day`/`rain-night`（jochang 有日夜兩版，比原本單一 rain 更貼合）；`weatherIconName` rain 分日夜。`LICENSE.md` 換成 jochang/LottieFiles 標註+檔案對應表。typecheck/lint 綠。
-- **後續修（換 jochang 後仍回報「沒動」）**：程式面已驗（jochang 無 expression、autoplay+loop、keyframe 充足），唯一會凍住合法動畫的路徑＝`WeatherLottie` 的 reduced-motion/saveData gate → `goToAndStop(0)`。**判斷**：使用者系統很可能關了動畫效果（prefers-reduced-motion）→ 我們把天氣小圖也一起靜止了。**修法**：天氣圖示（小、opt-in、功能性）改成**一律 autoplay+loop**，不套背景那種減動態靜止（大面積背景動畫仍尊重）。無法自己開瀏覽器實測（擴充一直斷），故以程式推理定因；若部署+硬重整後仍靜止，則屬部署未更新/播放器問題、需再實測。
+- **後續修（換 jochang 後仍回報「沒動」）— 兩步定因**：
+  1. 先猜 reduced-motion gate（`WeatherLottie` 唯一會凍住合法動畫的路徑）→ 改天氣圖示**一律 autoplay+loop**（`4d0cdca`）。但 Luffy 回報**動畫效果是開的**（RM=false）→ 這不是主因（RM 關時本來就 autoplay），**猜錯**。
+  2. **改用實測**：瀏覽器自動化進線上站確認 jochang 部署已生效、SVG 有建（48px 容器、10 群組），但我的自動化視窗在背景（`hidden=true`、rAF 暫停）看不到動。**請 Luffy 在自己可見分頁貼一行 console 量** → 回傳 `{found:true, animating:true, hidden:false, reduce:false}`。
+  3. **真因**：它**其實一直有在播**（transform 每秒都在變），只是 **48px 太小、當前多雲/晴這類本來就溫和的圖示**動態難以察覺（Meteocons、jochang 兩套都中同一點）。**修法**：天氣圖示 **48→72px** + `anim.setSpeed(1.4)` 讓動態明顯。**教訓**：破版/動畫「看起來不對」先**量**（照 CLAUDE.md #9），別連續送猜測；擴充連不上時請使用者貼 console 量，比我盲猜可靠。
 
 ### Milestone F — S5 mock harness（子代理寫、主對話審）
 - **背景**：S5＝以「錄製的真實回應」建 provider mock，規格**禁手寫理想化 mock**；真 fixtures 卡首次實跑。故先把**周邊 harness** 全建好，實跑一錄即完成。

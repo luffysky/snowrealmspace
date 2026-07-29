@@ -300,7 +300,7 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
         </div>
 
         <div className="sr-row" style={{ alignItems: 'center', gap: 'var(--sr-space-3)', minWidth: 0 }}>
-          <WeatherLottie condition={weather.condition} isDay={weather.isDay} size={48} />
+          <WeatherLottie condition={weather.condition} isDay={weather.isDay} size={72} />
           <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: 'var(--sr-text-h1)', fontWeight: 700, lineHeight: 1.1 }}>
               {weather.tempC}°C
