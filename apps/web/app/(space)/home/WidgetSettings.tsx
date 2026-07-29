@@ -516,8 +516,17 @@ function FieldControl({
 
   if (field.kind === 'number') {
     const num = typeof value === 'number' ? value : field.default
-    // 有明確 min+max 且範圍不大時用滑桿，否則用數字框
-    const useSlider = field.min !== undefined && field.max !== undefined && field.max - field.min <= 60
+    // 兩端都是有限值就用滑桿（帶即時數值讀出），否則用一般數字框。
+    const useSlider =
+      field.min !== undefined &&
+      field.max !== undefined &&
+      Number.isFinite(field.min) &&
+      Number.isFinite(field.max)
+    // step：schema 帶的 step 優先（整數欄位＝1、小數欄位＝0.1）；
+    // 沒有就取 (max−min)/20 取到小數一位、最小 0.1，讓任意範圍都有合理刻度。
+    const sliderStep =
+      field.step ??
+      (useSlider ? Math.max(0.1, Math.round(((field.max! - field.min!) / 20) * 10) / 10) : 1)
     return (
       <div className="sr-field-row">
         <label className="sr-label" htmlFor={id}>
@@ -531,7 +540,8 @@ function FieldControl({
           value={num}
           {...(field.min !== undefined ? { min: field.min } : {})}
           {...(field.max !== undefined ? { max: field.max } : {})}
-          step={field.step ?? 1}
+          step={sliderStep}
+          {...(useSlider ? { style: { minWidth: 0, maxWidth: '100%' } } : {})}
           onChange={(e) => onChange(Number(e.target.value))}
         />
       </div>

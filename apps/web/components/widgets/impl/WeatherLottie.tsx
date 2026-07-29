@@ -16,11 +16,14 @@ export function WeatherLottie({
   condition,
   isDay,
   size = 44,
+  animSpeed = 1.4,
 }: {
   condition: WeatherCondition
   isDay: boolean
   // number → px；string → 任意 CSS 長度（例如 clamp(...cqi...)，讓圖示隨 widget 放大）
   size?: number | string
+  // 動畫播放速度（1 = 原速）。使用者可在設定用「動畫速度」滑桿調整。
+  animSpeed?: number
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const name = weatherIconName(condition, isDay)
@@ -48,7 +51,8 @@ export function WeatherLottie({
         animationData: data as object,
       })
       // 稍微加速：小尺寸下多雲/晴這類溫和天氣的動態很難察覺，加速後更明顯。
-      anim.setSpeed?.(1.4)
+      // 速度由呼叫端傳入（設定的「動畫速度」滑桿），預設 1.4。
+      anim.setSpeed?.(animSpeed)
     })()
 
     // 卸載 / condition 變更時清掉動畫實例
@@ -56,7 +60,7 @@ export function WeatherLottie({
       cancelled = true
       if (anim) anim.destroy()
     }
-  }, [name])
+  }, [name, animSpeed])
 
   // 圖示後面的半透明「天空」背景（純 CSS，依天氣情境）：
   // 晴天日＝暖色日出/日落光暈＋天空；夜晚＝星空；雨/雷/毛毛雨＝大片烏雲；其餘＝淡淡柔光。

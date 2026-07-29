@@ -163,12 +163,18 @@ const goalTrackerConfig = z.object({
 const weatherConfig = z.object({
   // 扁平布林：關掉就只顯示日/夜、氣溫、地區，不跑動畫
   showAnimation: z.boolean().default(true),
+  // 天氣圖示動畫的播放速度（runtime setSpeed）。小尺寸下溫和天氣動態難察覺，故預設略快 1.4。
+  animSpeed: z.number().min(0.3).max(3).default(1.4),
 })
 
 // 時間日期：全部用瀏覽器 Intl（民國 roc、農曆 chinese），不進網路。
 // 顯示哪幾行由勾選決定；時間有幾種樣式。全部帶預設，設定面板才渲染得出來。
 const datetimeConfig = z.object({
   showTime: z.boolean().default(true),
+  // 鐘面樣式：電子（既有數字時鐘）或指針（SVG 類比時鐘）。
+  clockKind: z.enum(['電子', '指針']).default('電子'),
+  // 指針鐘面的花色（僅在 clockKind='指針' 時作用）。
+  clockSkin: z.enum(['經典', '簡約', '霓虹', '粉彩', '羅馬']).default('經典'),
   timeStyle: z
     .enum([
       '24 時（時:分）',

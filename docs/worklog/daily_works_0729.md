@@ -156,3 +156,8 @@
 - 每個 widget（編輯模式）左上角加 **⚙ 設定** gear；點了開**浮動彈窗**（WidgetSettings）。gear 放左上（右上/右下已被拖曳/縮放把手佔用），`pointerdown` preventDefault+stopPropagation、z-index 高於把手 → 不會誤觸拖曳。
 - 設定改成**彈窗 modal**（backdrop 點擊 / Esc / ✕ 關閉；`width:min(440px,100vw-24px)`、`max-height:85vh` 可捲、手機安全），取代原本底部清單的 inline 展開。
 - 底部「區塊設定」清單保留（隱藏的 widget 沒有格上 gear，清單是它們唯一入口），「設定」鈕改成開同一彈窗。typecheck/lint 綠。
+
+### Wave 3a：指針時鐘 + 花色 + 天氣動畫速度滑桿（子代理寫、主對話審）
+- **時間日期 widget** 加 `clockKind`（電子/指針）+ `clockSkin`（經典/簡約/霓虹/粉彩/羅馬）。指針＝100×100 viewBox SVG（隨卡片等比、maxWidth 封頂）；針角度 秒×6°、分×6°+秒×0.1、時×30°+分×0.5；秒針不加 transition（避 59→0 回捲）逐秒 setState；reduced-motion 只去時/分針過渡。霓虹/粉彩用美術常數自帶深/淺底、明暗都可讀（scoped eslint-disable，比照 theme-defaults）。
+- **天氣動畫速度**：`weatherConfig.animSpeed`（0.3~3、預設 1.4）→ `WeatherLottie` `setSpeed(animSpeed)`；`WeatherWidget` 傳入。
+- **number 欄位改滑桿**：`FieldControl` number 只要有 min+max 就渲染 `<input type=range>`+即時數值；animSpeed 因此是「動畫速度」滑桿。labels 補 clockKind/clockSkin/animSpeed。typecheck/lint + 29 測綠。

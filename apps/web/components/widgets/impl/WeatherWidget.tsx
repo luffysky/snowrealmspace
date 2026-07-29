@@ -19,7 +19,7 @@ import type { WidgetProps } from '../types'
  * 有動畫時提供暫停鈕（ADR-019）。不寫死顏色，chrome 一律用 --sr-* token。
  */
 
-type Cfg = { showAnimation?: boolean }
+type Cfg = { showAnimation?: boolean; animSpeed?: number }
 
 // /api/weather 的回傳（只含設定，不含天氣）
 type Meta =
@@ -155,7 +155,9 @@ async function fetchWeatherInBrowser(city: string): Promise<Weather | 'notfound'
 }
 
 export default function WeatherWidget({ spaceId, config }: WidgetProps) {
-  const showAnimation = (config as Cfg | null)?.showAnimation ?? true
+  const cfg = config as Cfg | null
+  const showAnimation = cfg?.showAnimation ?? true
+  const animSpeed = cfg?.animSpeed ?? 1.4
   const [view, setView] = useState<View>({ kind: 'loading' })
   const [paused, setPaused] = useState(false)
 
@@ -305,6 +307,7 @@ export default function WeatherWidget({ spaceId, config }: WidgetProps) {
             condition={weather.condition}
             isDay={weather.isDay}
             size="clamp(56px, 34cqi, 148px)"
+            animSpeed={animSpeed}
           />
           <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: 'clamp(1.6rem, 18cqi, 4rem)', fontWeight: 700, lineHeight: 1.1 }}>
