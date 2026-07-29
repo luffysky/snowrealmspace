@@ -2311,6 +2311,34 @@ input[type='range'] {
   -webkit-backdrop-filter: none;
 }
 
+/*
+ * ── Widget 背景（可從內建場景庫挑一個場景畫在卡片後方）─────────────
+ * 每個 widget 的 config.bg 存一個場景 id；WidgetRenderer 驗證後把
+ * ProceduralScene 放進 .sr-widget-bg-scene 層，卡片本身改半透明讓場景透出，
+ * 文字仍靠 --sr-surface（明暗兩色皆由 token 處理）維持可讀。
+ */
+.sr-widget-bg {
+  position: relative;
+  height: 100%;
+}
+.sr-widget-bg-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* 與 .sr-card 的圓角一致（.sr-card 用 --sr-radius；此處同 token） */
+  border-radius: var(--sr-radius, 16px);
+  overflow: hidden;
+  pointer-events: none;
+}
+.sr-widget-bg > .sr-card,
+.sr-widget-bg .sr-card {
+  position: relative;
+  z-index: 1;
+  background: color-mix(in srgb, var(--sr-surface) 62%, transparent);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
 /* ── 每日卡片（Milestone E）───────────────────────────── */
 .sr-daily-card {
   display: flex;
@@ -4652,4 +4680,9 @@ input[type='range'] {
 /* 天氣 widget：容器查詢，讓圖示/溫度隨 widget 尺寸等比縮放（見 WeatherWidget 的 cqi 用法） */
 .sr-weather-scale {
   container-type: inline-size;
+}
+
+/* 有設 widget 背景時，即使 glass 被節流成 off，卡片仍保持半透明讓場景透出來（提高特異度贏過 data-glass=off） */
+.sr-widget-slot[data-glass='off'] .sr-widget-bg .sr-card {
+  background: color-mix(in srgb, var(--sr-surface) 62%, transparent);
 }

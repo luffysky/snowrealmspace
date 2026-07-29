@@ -2,6 +2,8 @@
 
 import { lazy, Suspense, type ComponentType } from 'react'
 import { getWidgetDefinition } from '@snowrealm/widget-engine'
+import { getScene } from '@/lib/scenes'
+import { ProceduralScene } from '@/components/ProceduralScene'
 import { WidgetBoundary } from './WidgetBoundary'
 import type { WidgetProps } from './types'
 
@@ -55,6 +57,16 @@ export function WidgetRenderer({
   const definition = getWidgetDefinition(definitionId)
   const Component = COMPONENTS[definitionId]
 
+  // 每個 widget 可從內建場景庫挑一個背景（存在 config.bg，自由 jsonb 鍵，無 schema）。
+  // 只有非空字串且存在於場景庫時才算數；未知/缺省 → 不套背景。
+  // bgAnimate 預設 false（靜態，只顯示底色不跑粒子）；bgOpacity 是透明度滑桿（0.05~1，預設 0.5）。
+  const cfg = config as { bg?: unknown; bgAnimate?: unknown; bgOpacity?: unknown } | null
+  const bg = cfg?.bg
+  const validBg = typeof bg === 'string' && getScene(bg) ? bg : null
+  const bgAnimate = cfg?.bgAnimate === true
+  const bgOpacity =
+    typeof cfg?.bgOpacity === 'number' ? Math.min(1, Math.max(0.05, cfg.bgOpacity)) : 0.5
+
   // 定義存在但元件還沒實作：誠實說明，不留一個空殼（Q6）
   if (!definition || !Component) {
     return (
@@ -82,7 +94,16 @@ export function WidgetRenderer({
           </div>
         }
       >
-        <Component spaceId={spaceId} instanceId={instanceId} config={config} />
+        {validBg ? (
+          <div className="sr-widget-bg">
+            <div className="sr-widget-bg-scene" aria-hidden="true" style={{ opacity: bgOpacity }}>
+              <ProceduralScene sceneId={validBg} paused={!bgAnimate} />
+            </div>
+            <Component spaceId={spaceId} instanceId={instanceId} config={config} />
+          </div>
+        ) : (
+          <Component spaceId={spaceId} instanceId={instanceId} config={config} />
+        )}
       </Suspense>
     </WidgetBoundary>
   )

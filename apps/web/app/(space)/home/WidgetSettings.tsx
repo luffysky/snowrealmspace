@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { editableConfigFields, type ConfigField, type WidgetId } from '@snowrealm/widget-engine'
+import { SCENE_CATEGORIES, scenesByCategory, type SceneCategory } from '@/lib/scenes'
 
 type ProjectOption = { id: string; name: string }
 
@@ -130,18 +131,182 @@ export function WidgetSettings({
         </div>
       )}
 
-      {fields.length > 0 && (
+      {/* ── 背景（自訂，非 schema 欄位；存進 config.bg）── */}
+      <BackgroundPicker
+        value={typeof draft.bg === 'string' ? draft.bg : undefined}
+        onChange={(id) => set('bg', id)}
+        animate={draft.bgAnimate === true}
+        onAnimateChange={(v) => set('bgAnimate', v)}
+        opacity={typeof draft.bgOpacity === 'number' ? draft.bgOpacity : 0.5}
+        onOpacityChange={(v) => set('bgOpacity', v)}
+      />
+
+      <button
+        type="button"
+        className="sr-button"
+        disabled={!dirty}
+        onClick={() => {
+          onSave(draft)
+          setDirty(false)
+        }}
+      >
+        {dirty ? '儲存設定' : '已儲存'}
+      </button>
+    </div>
+  )
+}
+
+/**
+ * 背景挑選器：從內建場景庫（約 300 個程序生成場景）替這個 widget 選一個背景。
+ * 不是 schema 欄位，直接寫進 config 的自由鍵 `bg`。預設「無背景」。
+ * swatch 用場景的 `base`（CSS 漸層）當靜態預覽，不在挑選器裡跑動畫。
+ */
+function BackgroundPicker({
+  value,
+  onChange,
+  animate,
+  onAnimateChange,
+  opacity,
+  onOpacityChange,
+}: {
+  value: string | undefined
+  onChange: (id: string | null) => void
+  animate: boolean
+  onAnimateChange: (v: boolean) => void
+  opacity: number
+  onOpacityChange: (v: number) => void
+}) {
+  const [cat, setCat] = useState<SceneCategory>(SCENE_CATEGORIES[0] ?? '天氣')
+  const scenes = useMemo(() => scenesByCategory(cat), [cat])
+
+  return (
+    <div className="sr-field sr-bg-picker" style={{ minWidth: 0, maxWidth: '100%' }}>
+      <span className="sr-label">背景</span>
+
+      {/* 無背景籤 */}
+      <div className="sr-chip-row">
         <button
           type="button"
-          className="sr-button"
-          disabled={!dirty}
-          onClick={() => {
-            onSave(draft)
-            setDirty(false)
+          className={`sr-chip${value === undefined ? ' sr-chip-active' : ''}`}
+          aria-pressed={value === undefined}
+          onClick={() => onChange(null)}
+        >
+          無背景
+        </button>
+      </div>
+
+      {/* 分類籤 */}
+      <div className="sr-chip-row" role="tablist" aria-label="背景分類">
+        {SCENE_CATEGORIES.map((c) => (
+          <button
+            key={c}
+            type="button"
+            role="tab"
+            aria-selected={c === cat}
+            className={`sr-chip${c === cat ? ' sr-chip-active' : ''}`}
+            onClick={() => setCat(c)}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+
+      {/* 場景 swatch 網格 */}
+      <div
+        className="sr-bg-swatches"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))',
+          gap: 'var(--sr-space-2)',
+          minWidth: 0,
+        }}
+      >
+        {scenes.map((scene) => {
+          const selected = value === scene.id
+          return (
+            <button
+              key={scene.id}
+              type="button"
+              className="sr-bg-swatch"
+              aria-pressed={selected}
+              aria-label={scene.label}
+              title={scene.label}
+              data-selected={selected ? '' : undefined}
+              onClick={() => onChange(scene.id)}
+              style={{
+                minWidth: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2px',
+                padding: '2px',
+                borderRadius: 'var(--sr-radius-sm)',
+                border: selected
+                  ? '2px solid var(--sr-accent)'
+                  : '1px solid var(--sr-border)',
+                background: 'var(--sr-surface-alt)',
+                cursor: 'pointer',
+              }}
+            >
+              <span
+                aria-hidden="true"
+                style={{
+                  display: 'block',
+                  height: '36px',
+                  borderRadius: 'calc(var(--sr-radius-sm) - 2px)',
+                  background: scene.base,
+                }}
+              />
+              <span
+                className="sr-muted"
+                style={{
+                  fontSize: '11px',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {scene.label}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* 選了背景才顯示：會不會動（預設靜態）+ 透明度滑桿 */}
+      {value !== undefined && (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--sr-space-2)',
+            marginTop: 'var(--sr-space-1)',
           }}
         >
-          {dirty ? '儲存設定' : '已儲存'}
-        </button>
+          <label className="sr-checkbox">
+            <input
+              type="checkbox"
+              checked={animate}
+              onChange={(e) => onAnimateChange(e.target.checked)}
+            />
+            <span>背景會動（預設靜態）</span>
+          </label>
+          <label
+            className="sr-label"
+            style={{ display: 'flex', alignItems: 'center', gap: 'var(--sr-space-2)' }}
+          >
+            <span style={{ flexShrink: 0 }}>透明度</span>
+            <input
+              type="range"
+              min={0.05}
+              max={1}
+              step={0.05}
+              value={opacity}
+              onChange={(e) => onOpacityChange(Number(e.target.value))}
+              style={{ flex: 1, minWidth: 0 }}
+              aria-label="背景透明度"
+            />
+          </label>
+        </div>
       )}
     </div>
   )

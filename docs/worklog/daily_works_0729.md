@@ -133,3 +133,8 @@
 - **後台上線資訊**：部署後到 `/admin/users` 看有沒有「在線」badge、點進使用者看地區/裝置/時長有沒有正確（第一筆真實 session 驗證）。
 - **型別重生**：本機開 Docker 後跑一次 `pnpm exec supabase gen types typescript --local > packages/shared-types/src/database.generated.ts` 正式對齊 user_sessions（現在是手補、typecheck 已綠）。
 - 下半場 commit：作品AI `fc2617d`／Adobe+Figma+picker `2734bdd`／天氣搜尋 `a4ae430`／多帳號 `ae9f079`／後台上線 `bba97d5`（+docs）。
+
+### 每個 widget 可設背景（從場景庫，子代理寫、主對話審＋補開關/滑桿）
+- 每個 widget 的設定面板加「背景」：分類籤 + 場景 swatch（用 `scene.base` 漸層當靜態預覽）+「無背景」。存 `config.bg`（自由 jsonb 鍵，免 schema/migration；PATCH 用 `z.record(z.unknown())`）。
+- `WidgetRenderer` 讀 `config.bg` 且經 `getScene` 白名單驗證才渲染；卡片後 `ProceduralScene` + 卡片改 `color-mix` 半透明 + `backdrop-filter` 保持可讀（沿用 `--sr-surface`/`--sr-radius` token）。
+- **主對話補**：`bgAnimate` 開關（**預設 false＝靜態**，傳 `paused` 給場景）+ `bgOpacity` 透明度滑桿（0.05~1，套在場景層）；並修 `data-glass=off` 特異度贏過問題讓場景照樣透出。五閘門綠。
