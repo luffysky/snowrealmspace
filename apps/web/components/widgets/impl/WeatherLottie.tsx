@@ -5,11 +5,12 @@ import type { WeatherCondition } from '@snowrealm/validation'
 import { weatherIconName, loadWeatherIconData } from '@/lib/weather-lottie'
 
 /**
- * 天氣 Meteocons 動畫圖示（取代原本的 ☀/☾ emoji）。
+ * 天氣動畫圖示（jochang Lottie，取代原本的 ☀/☾ emoji）。
  *
  * lottie-web（light 版）與圖示 JSON 都懶載入 —— 不進主 bundle，只有真的顯示才拉。
- * 無障礙/效能：reduced-motion 或省流量 → 只停在第一格（仍看得到圖，不動，不自動播放）。
- * 誠實 fallback：JSON 載入失敗就什麼都不畫（回 null 由呼叫端決定），不讓元件崩掉。
+ * **一律播放**：這是小小的、使用者主動開的功能性圖示，不套用背景那種 reduced-motion 靜止
+ * （否則系統關動畫的人會看到「不會動的天氣」，正是回報的症狀）。大面積背景動畫仍另外尊重
+ * reduced-motion。誠實 fallback：JSON 載入失敗就什麼都不畫（回 null 由呼叫端決定），不讓元件崩掉。
  */
 export function WeatherLottie({
   condition,
@@ -28,16 +29,7 @@ export function WeatherLottie({
     if (!container) return
 
     let cancelled = false
-    let anim: {
-      goToAndStop(v: number, isFrame?: boolean): void
-      destroy(): void
-    } | null = null
-
-    // 與 LottieBackground 相同的判斷：reduced-motion 或省流量 → 靜態第一格
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
-    const saveData =
-      (navigator as { connection?: { saveData?: boolean } }).connection?.saveData === true
-    const staticOnly = reduce || saveData
+    let anim: { destroy(): void } | null = null
 
     void (async () => {
       const [{ default: lottie }, data] = await Promise.all([
@@ -46,14 +38,14 @@ export function WeatherLottie({
       ])
       // 載入失敗（data 為 null）→ 誠實不畫，不崩潰
       if (cancelled || !data || !containerRef.current) return
+      // 天氣圖示一律自動播放並循環（見上方註解：不套用 reduced-motion 靜止）。
       anim = lottie.loadAnimation({
         container: containerRef.current,
         renderer: 'svg',
-        loop: !staticOnly,
-        autoplay: !staticOnly,
+        loop: true,
+        autoplay: true,
         animationData: data as object,
       })
-      if (staticOnly) anim.goToAndStop(0, true)
     })()
 
     // 卸載 / condition 變更時清掉動畫實例
