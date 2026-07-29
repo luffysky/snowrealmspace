@@ -151,3 +151,8 @@
 - **相框**：設定面板加 `AssetPicker`（只在 photo_frame 顯示，列 `/api/assets?kind=image`、縮圖走 signed URL）；`assetId` 設為 unsupported 讓 picker 當唯一入口。
 - **呼吸/骰子**：`prefers-reduced-motion` 尊重（減動態時不縮放、只換文字）。
 - 加入清單分類補 `fun:娛樂`/`relax:放鬆` 標題。已 `sync-widget-defs`（hosted 現 26 widget）。typecheck/lint/deps + 29 測綠。
+
+### 每個 widget 的「⚙ 設定」gear + 彈窗（Luffy：設定按鈕在 widget 直接點）（子代理寫、主對話審）
+- 每個 widget（編輯模式）左上角加 **⚙ 設定** gear；點了開**浮動彈窗**（WidgetSettings）。gear 放左上（右上/右下已被拖曳/縮放把手佔用），`pointerdown` preventDefault+stopPropagation、z-index 高於把手 → 不會誤觸拖曳。
+- 設定改成**彈窗 modal**（backdrop 點擊 / Esc / ✕ 關閉；`width:min(440px,100vw-24px)`、`max-height:85vh` 可捲、手機安全），取代原本底部清單的 inline 展開。
+- 底部「區塊設定」清單保留（隱藏的 widget 沒有格上 gear，清單是它們唯一入口），「設定」鈕改成開同一彈窗。typecheck/lint 綠。

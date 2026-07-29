@@ -2096,6 +2096,35 @@ input[type='range'] {
   touch-action: none;
 }
 
+/*
+ * 每個 widget 的「設定」齒輪（僅編輯模式；開啟浮動設定面板）。
+ * 放左上角，刻意避開右上的拖曳把手（.sr-widget-handle）與右下的縮放把手
+ * （.sr-widget-resize），不擋 widget 自身控制項。pointer-events 明確開啟，
+ * z-index 疊在卡片與把手之上。
+ */
+.sr-widget-gear {
+  position: absolute;
+  top: var(--sr-space-1);
+  left: var(--sr-space-1);
+  z-index: 4;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: var(--sr-text-xs);
+  line-height: 1.2;
+  color: var(--sr-text-secondary);
+  background: var(--sr-surface-opaque);
+  border: 1px solid var(--sr-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.sr-widget-gear:hover {
+  color: var(--sr-text-primary);
+  border-color: var(--sr-accent);
+}
+
 .sr-mobile-stack {
   display: flex;
   flex-direction: column;
@@ -2278,6 +2307,50 @@ input[type='range'] {
 .sr-widget-settings {
   margin-top: var(--sr-space-2);
   background: var(--sr-surface-alt);
+}
+
+/*
+ * 單一 widget 設定的浮動彈跳面板（modal）。
+ * backdrop 蓋滿視窗、置中；面板本身是可捲動的卡片，寬度夾在視窗內避免水平溢位。
+ * 關閉靠 backdrop 點擊 / Esc / 面板內 ✕（三者互補）。
+ */
+.sr-widget-settings-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sr-space-3);
+  background: rgb(0 0 0 / 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.sr-widget-settings-modal {
+  width: min(440px, calc(100vw - 24px));
+  max-height: 85vh;
+  overflow: auto;
+  border-radius: var(--sr-radius);
+  box-shadow: var(--sr-shadow-lg);
+}
+/* 面板裡的設定卡片是它唯一的內容，拿掉清單版才需要的上緣間距。 */
+.sr-widget-settings-modal > .sr-widget-settings {
+  margin-top: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sr-widget-settings-modal {
+    animation: sr-widget-settings-modal-in 0.16s ease-out;
+  }
+}
+@keyframes sr-widget-settings-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .sr-checkbox {
   display: flex;

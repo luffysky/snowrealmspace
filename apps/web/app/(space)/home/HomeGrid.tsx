@@ -215,6 +215,16 @@ export function HomeGrid({
     }
   }
 
+  // 設定面板開啟時，Esc 關閉（backdrop 點擊與面板內 ✕ 之外的第三條關閉路徑）
+  useEffect(() => {
+    if (!settingsFor) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSettingsFor(null)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [settingsFor])
+
   // 依視窗寬度決定斷點
   useEffect(() => {
     const update = () => setBreakpoint(breakpointForWidth(window.innerWidth))
@@ -355,6 +365,14 @@ export function HomeGrid({
 
   const visible = widgets.filter((w) => !w.hidden)
 
+  // 目前要在浮動面板顯示設定的 widget（齒輪或清單「設定」都會設定 settingsFor）。
+  // 找不到（例如剛被移除）就不渲染面板。
+  const settingsWidget = settingsFor ? widgets.find((w) => w.id === settingsFor) ?? null : null
+  const settingsWidgetName = settingsWidget
+    ? available.find((a) => a.id === settingsWidget.widget_definition_id)?.name ??
+      settingsWidget.widget_definition_id
+    : ''
+
   // 毛玻璃數量上限（05-theme-tokens.md §2）。容器內超過預算的 widget
   // 會被降級為 solid，優先保留視窗內的。
   const gridContainerRef = useRef<HTMLDivElement>(null)
@@ -363,14 +381,44 @@ export function HomeGrid({
   const renderWidget = (id: string) => {
     const row = visible.find((w) => w.id === id)
     if (!row) return null
+    const name =
+      available.find((a) => a.id === row.widget_definition_id)?.name ??
+      row.widget_definition_id
     return (
-      <WidgetRenderer
-        definitionId={row.widget_definition_id}
-        spaceId={spaceId}
-        instanceId={row.id}
-        config={row.config}
-        onDisable={() => void removeWidget(row.id)}
-      />
+      <>
+        <WidgetRenderer
+          definitionId={row.widget_definition_id}
+          spaceId={spaceId}
+          instanceId={row.id}
+          config={row.config}
+          onDisable={() => void removeWidget(row.id)}
+        />
+        {/*
+          每個 widget 的「設定」齒輪：只在編輯模式出現（檢視模式保持乾淨）。
+          必須擋掉事件冒泡，否則 pointerdown 會被 WidgetGrid 當成拖曳起手式：
+          preventDefault + stopPropagation（pointer/mouse/click 三個都擋）。
+          放左上角，避開右上／右下的拖曳與縮放把手。
+        */}
+        {editing && (
+          <button
+            type="button"
+            className="sr-widget-gear"
+            aria-label={`${name} 設定`}
+            title="設定"
+            onPointerDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation()
+              setSettingsFor(id)
+            }}
+          >
+            <span aria-hidden="true">⚙</span> 設定
+          </button>
+        )}
+      </>
     )
   }
 
@@ -539,7 +587,6 @@ export function HomeGrid({
               const name =
                 available.find((a) => a.id === w.widget_definition_id)?.name ??
                 w.widget_definition_id
-              const isOpen = settingsFor === w.id
               return (
                 <li key={w.id}>
                   <div className="sr-row" style={{ justifyContent: 'space-between' }}>
@@ -549,13 +596,14 @@ export function HomeGrid({
                       {w.locked && <span className="sr-muted">（已鎖定）</span>}
                     </span>
                     <span className="sr-row">
+                      {/* 設定改為開啟浮動彈跳面板（見下方 modal），不再就地展開。
+                          隱藏的 widget 不在格線上、沒有齒輪，這份清單是它們唯一的入口。 */}
                       <button
                         type="button"
                         className="sr-button sr-button-secondary"
-                        aria-expanded={isOpen}
-                        onClick={() => setSettingsFor(isOpen ? null : w.id)}
+                        onClick={() => setSettingsFor(w.id)}
                       >
-                        {isOpen ? '收起' : '設定'}
+                        設定
                       </button>
                       <button
                         type="button"
@@ -567,26 +615,45 @@ export function HomeGrid({
                       </button>
                     </span>
                   </div>
-
-                  {isOpen && (
-                    <WidgetSettings
-                      spaceId={spaceId}
-                      widgetName={name}
-                      definitionId={w.widget_definition_id}
-                      config={(w.config ?? {}) as Record<string, unknown>}
-                      hidden={w.hidden}
-                      locked={w.locked}
-                      onSave={(config) => void patchWidget(w.id, { config })}
-                      onToggleHidden={(hidden) => void patchWidget(w.id, { hidden })}
-                      onToggleLocked={(locked) => void patchWidget(w.id, { locked })}
-                      onClose={() => setSettingsFor(null)}
-                    />
-                  )}
                 </li>
               )
             })}
           </ul>
         </section>
+      )}
+
+      {/*
+        單一 widget 的設定：浮動彈跳面板（modal）。齒輪或清單「設定」設定 settingsFor。
+        關閉三途：backdrop 點擊、Esc（上方 useEffect）、面板內建 ✕（onClose）。
+        面板內容點擊 stopPropagation，避免冒泡到 backdrop 而誤關。
+      */}
+      {settingsWidget && (
+        <div
+          className="sr-widget-settings-modal-backdrop"
+          role="presentation"
+          onClick={() => setSettingsFor(null)}
+        >
+          <div
+            className="sr-widget-settings-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${settingsWidgetName} 設定`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <WidgetSettings
+              spaceId={spaceId}
+              widgetName={settingsWidgetName}
+              definitionId={settingsWidget.widget_definition_id}
+              config={(settingsWidget.config ?? {}) as Record<string, unknown>}
+              hidden={settingsWidget.hidden}
+              locked={settingsWidget.locked}
+              onSave={(config) => void patchWidget(settingsWidget.id, { config })}
+              onToggleHidden={(hidden) => void patchWidget(settingsWidget.id, { hidden })}
+              onToggleLocked={(locked) => void patchWidget(settingsWidget.id, { locked })}
+              onClose={() => setSettingsFor(null)}
+            />
+          </div>
+        </div>
       )}
 
       <p className="sr-muted">
