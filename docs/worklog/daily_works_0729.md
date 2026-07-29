@@ -69,6 +69,13 @@
 - 後台清單「在線」badge、詳情頁「上線資訊」+近 5 session。
 - **安全註**：系統對 geo 外呼示警（送 IP 給第三方）——已逐檔審確認只送 IP、不存原始 IP、邊緣優先/首次才查/快取/登入限定/已揭露，屬 Luffy 授權範圍，非越界外洩。
 
+### 天氣動畫換 jochang Lottie（`weather-lottie`）
+- **症狀**：天氣圖示「不會動」。用瀏覽器自動化實測診斷——`document.hidden=true`（背景分頁 rAF 暫停）會讓所有 Lottie 凍住，故我在自動化分頁截到的「凍住」不算數；改查**資料本身**才是真因。
+- **根因**：原 Meteocons「fill」的晴天/多雲**動得太細微**（晴天只有太陽 0°→45° 單一旋轉、1 個動畫屬性；多雲雲朵原地微浮，起訖同座標）→ 視覺上像沒動。雨/雪/雷/霧本來就會動。**不是程式凍住、也不是 lottie_light 缺 expression**（原檔本就無 expression）。
+- **修法**：照 Luffy 指定，改用 LottieFiles **jochang** 天氣整套（Lottie Simple License，免費可商用）。瀏覽器自動化查證授權+資訊面板，Luffy 登入後手動下載 13 個 JSON，我收檔整合。
+- **上線前客觀驗證**（無法靠截圖看動→改量資料）：13 檔皆 Lottie v5.1.1／60fps／180 幀（3 秒循環）；keyframe 密度全面提升（雨/驟雨/暴雨 110–140、雪 44、晴天 15＞原 3）；**expr=0**（lottie_light 播得動）、**無外部圖片資產**（離線可打包）。
+- 新增 `rain-day`/`rain-night`（jochang 有日夜兩版，比原本單一 rain 更貼合）；`weatherIconName` rain 分日夜。`LICENSE.md` 換成 jochang/LottieFiles 標註+檔案對應表。typecheck/lint 綠。
+
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。
 - **F 第一次端到端實跑**：連 Canva/Figma → 選檔(S4 picker) → 同步 → 看 `design_snapshots` 出版本。這一步順便**錄真實回應**供 S5 mock、校正 Figma/Canva 端點。
