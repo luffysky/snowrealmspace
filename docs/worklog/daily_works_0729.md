@@ -82,6 +82,12 @@
 - **主對話審**（一個寫一個驗）：確認 ①`resolveDefaultHttpGet` 未設 env → 回原 `realProviderHttpGet`、**零行為改變**；②redaction 命中 token/email/帶簽章 URL、且文件標明仍需人眼複查；③replay 缺檔拋錯非靜默；④`provider-core` 只被 route handler／server component 引用（非 client／edge）→ 新增的 `node:fs` 靜態 import 安全；⑤四閘門綠（lint/typecheck/deps/vitest：71 pass、2 skip）。
 - **仍待**：真實 fixtures（首次端到端實跑用 `DESIGN_SYNC_RECORD_DIR` 錄）。
 
+### #55 背景商店 Slice 2 — 程序化場景擴充（子代理寫、主對話審）
+- `scenes.ts` 追加 **36 個新程序化場景**（天氣8／星空8／自然8／慶祝6／簡約6），皆資料驅動、背景商店依 `scenesByCategory` 自動分類顯示，未動 UI/型別/helper。
+- 新增 4 個底色常數（DAWN 曦光、TWILIGHT 暮色、MEADOW 草綠、DEEPSEA 深海），沿用既有 const 風格、各至少 1 場景使用。
+- 審：無重複 id（全 ~106 場景）、配色/密度/速度與既有明顯區隔、typecheck/lint 綠。
+- **仍待（#55）**：免費可商用 Lottie 背景（需 LottieFiles 下載流程 + 我逐一看構圖/keyframe 密度挑「真的好看」的）。
+
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。
 - **F 第一次端到端實跑**：連 Canva/Figma → 選檔(S4 picker) → 同步 → 看 `design_snapshots` 出版本。這一步順便**錄真實回應**供 S5 mock、校正 Figma/Canva 端點。
