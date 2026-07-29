@@ -2437,6 +2437,59 @@ export type Database = {
           },
         ]
       }
+      space_decorations: {
+        Row: {
+          created_at: string
+          decoration_id: string
+          id: string
+          opacity: number
+          rotation: number
+          scale: number
+          space_id: string
+          tint: Json | null
+          updated_at: string
+          x: number
+          y: number
+          z_index: number
+        }
+        Insert: {
+          created_at?: string
+          decoration_id: string
+          id?: string
+          opacity?: number
+          rotation?: number
+          scale?: number
+          space_id: string
+          tint?: Json | null
+          updated_at?: string
+          x: number
+          y: number
+          z_index?: number
+        }
+        Update: {
+          created_at?: string
+          decoration_id?: string
+          id?: string
+          opacity?: number
+          rotation?: number
+          scale?: number
+          space_id?: string
+          tint?: Json | null
+          updated_at?: string
+          x?: number
+          y?: number
+          z_index?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "space_decorations_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       space_feature_overrides: {
         Row: {
           enabled: boolean

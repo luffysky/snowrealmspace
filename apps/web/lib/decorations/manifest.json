@@ -1,0 +1,488 @@
+[
+  {
+    "id": "baby_chick",
+    "label": "小雞",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "bear",
+    "label": "小熊",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "bird",
+    "label": "小鳥",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "butterfly",
+    "label": "蝴蝶",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "cat",
+    "label": "貓咪",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "dog",
+    "label": "小狗",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "dolphin",
+    "label": "海豚",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "duck",
+    "label": "鴨子",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "fox",
+    "label": "狐狸",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "frog",
+    "label": "青蛙",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "hamster",
+    "label": "倉鼠",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "hedgehog",
+    "label": "刺蝟",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "honeybee",
+    "label": "蜜蜂",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "koala",
+    "label": "無尾熊",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "lady_beetle",
+    "label": "瓢蟲",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "mouse_face",
+    "label": "老鼠",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "owl",
+    "label": "貓頭鷹",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "panda",
+    "label": "熊貓",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "penguin",
+    "label": "企鵝",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "pig_face",
+    "label": "小豬",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "rabbit_face",
+    "label": "兔子",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "tropical_fish",
+    "label": "熱帶魚",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "turtle",
+    "label": "烏龜",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "unicorn",
+    "label": "獨角獸",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "whale",
+    "label": "鯨魚",
+    "category": "動物",
+    "categoryKey": "animal"
+  },
+  {
+    "id": "blossom",
+    "label": "小白花",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "bouquet",
+    "label": "花束",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "cactus",
+    "label": "仙人掌",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "cherry_blossom",
+    "label": "櫻花",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "deciduous_tree",
+    "label": "綠樹",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "fallen_leaf",
+    "label": "落葉",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "four_leaf_clover",
+    "label": "四葉草",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "herb",
+    "label": "香草",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "hibiscus",
+    "label": "扶桑花",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "leaf_fluttering_in_wind",
+    "label": "飄葉",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "maple_leaf",
+    "label": "楓葉",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "mushroom",
+    "label": "蘑菇",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "palm_tree",
+    "label": "棕櫚樹",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "potted_plant",
+    "label": "盆栽",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "rose",
+    "label": "玫瑰",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "seedling",
+    "label": "幼苗",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "shamrock",
+    "label": "三葉草",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "sunflower",
+    "label": "向日葵",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "tulip",
+    "label": "鬱金香",
+    "category": "植物",
+    "categoryKey": "plant"
+  },
+  {
+    "id": "birthday_cake",
+    "label": "生日蛋糕",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "bubble_tea",
+    "label": "珍奶",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "candy",
+    "label": "糖果",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "cookie",
+    "label": "餅乾",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "cupcake",
+    "label": "杯子蛋糕",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "doughnut",
+    "label": "甜甜圈",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "ice_cream",
+    "label": "冰淇淋",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "lollipop",
+    "label": "棒棒糖",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "shortcake",
+    "label": "草莓蛋糕",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "soft_ice_cream",
+    "label": "霜淇淋",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "strawberry",
+    "label": "草莓",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "teacup_without_handle",
+    "label": "茶",
+    "category": "甜點",
+    "categoryKey": "sweet"
+  },
+  {
+    "id": "cloud",
+    "label": "雲朵",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "comet",
+    "label": "彗星",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "crescent_moon",
+    "label": "月牙",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "glowing_star",
+    "label": "亮星",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "rainbow",
+    "label": "彩虹",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "ringed_planet",
+    "label": "土星",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "shooting_star",
+    "label": "流星",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "snowflake",
+    "label": "雪花",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "sparkles",
+    "label": "閃光",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "star",
+    "label": "星星",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "sun",
+    "label": "太陽",
+    "category": "天空",
+    "categoryKey": "sky"
+  },
+  {
+    "id": "balloon",
+    "label": "氣球",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "crown",
+    "label": "皇冠",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "gem_stone",
+    "label": "寶石",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "growing_heart",
+    "label": "放大愛心",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "heart_decoration",
+    "label": "愛心框",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "heart_with_ribbon",
+    "label": "緞帶愛心",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "party_popper",
+    "label": "派對拉炮",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "red_heart",
+    "label": "紅心",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "ribbon",
+    "label": "蝴蝶結",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "sparkling_heart",
+    "label": "閃亮愛心",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "two_hearts",
+    "label": "雙愛心",
+    "category": "愛心",
+    "categoryKey": "heart"
+  },
+  {
+    "id": "smiling_cat_with_heart-eyes",
+    "label": "愛心眼貓",
+    "category": "可愛",
+    "categoryKey": "cute"
+  },
+  {
+    "id": "smiling_face_with_hearts",
+    "label": "愛心臉",
+    "category": "可愛",
+    "categoryKey": "cute"
+  },
+  {
+    "id": "star-struck",
+    "label": "星星眼",
+    "category": "可愛",
+    "categoryKey": "cute"
+  }
+]

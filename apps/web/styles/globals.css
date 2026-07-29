@@ -4277,3 +4277,249 @@ input[type='range'] {
 .sr-rich-view ul[data-type='taskList'] li > label {
   margin-top: 3px;
 }
+
+/* ── 裝飾品 overlay（DecorationLayer）──
+   檢視模式整層 pointer-events:none，永遠不擋任何頁面的點擊/點按；
+   只有編輯模式的圖與控制項才開 pointer-events:auto（見元件內 inline / 以下類別）。
+   overflow:hidden 讓貼近邊緣、放大的裝飾不會撐出水平捲軸（CLAUDE.md #5/#9）。 */
+.sr-deco-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* 編輯模式抬高，讓控制項浮在漂浮夥伴之上、可操作。 */
+.sr-deco-layer-edit {
+  z-index: 60;
+}
+.sr-deco-item {
+  position: fixed;
+  transform-origin: center center;
+  will-change: left, top, transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sr-deco-item {
+    transition: filter 120ms ease;
+  }
+}
+.sr-deco-item-edit {
+  cursor: grab;
+  touch-action: none;
+}
+.sr-deco-item-edit:active {
+  cursor: grabbing;
+}
+.sr-deco-item-selected {
+  outline: 2px dashed var(--sr-accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.sr-deco-visual {
+  display: block;
+  width: 56px;
+  height: 56px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* 染色：把 emoji 當剪影，用漸層填形狀（漸層屬美術內容，顏色由使用者選）。 */
+.sr-deco-tint {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* 編輯工具列（底部置中） */
+.sr-deco-toolbar {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  pointer-events: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sr-space-2);
+  min-width: 0;
+  max-width: calc(100vw - 24px);
+  padding: 8px 12px;
+  background: var(--sr-surface);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: 999px;
+  box-shadow: var(--sr-shadow-lg);
+  color: var(--sr-text-primary);
+}
+.sr-deco-toolbar-hint {
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-secondary);
+}
+.sr-deco-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+  min-width: 0;
+}
+.sr-deco-error {
+  position: fixed;
+  left: 50%;
+  bottom: 74px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  pointer-events: auto;
+  max-width: calc(100vw - 24px);
+  margin: 0;
+}
+
+/* 選取後的控制面板 */
+.sr-deco-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 80px;
+  z-index: 1000;
+  pointer-events: auto;
+  width: min(300px, calc(100vw - 24px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+  padding: var(--sr-space-3);
+  background: var(--sr-surface);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: 14px;
+  box-shadow: var(--sr-shadow-lg);
+  color: var(--sr-text-primary);
+}
+.sr-deco-panel-head,
+.sr-deco-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sr-space-2);
+}
+.sr-deco-panel-title {
+  font-weight: 600;
+}
+.sr-deco-panel-close {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--sr-text-secondary);
+  font-size: var(--sr-text-md);
+  line-height: 1;
+  padding: 4px;
+}
+.sr-deco-field {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+  min-width: 0;
+}
+.sr-deco-field-label {
+  flex: 0 0 3.5em;
+  font-size: var(--sr-text-sm);
+  color: var(--sr-text-secondary);
+}
+.sr-deco-field input[type='range'] {
+  flex: 1;
+  min-width: 0;
+}
+.sr-deco-field-tint {
+  align-items: flex-start;
+}
+.sr-deco-tint-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sr-space-2);
+  min-width: 0;
+}
+.sr-deco-tint-controls input[type='color'] {
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+.sr-deco-tint-controls input[type='range'] {
+  flex: 1;
+  min-width: 80px;
+}
+.sr-deco-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sr-space-2);
+}
+
+/* 挑選器 */
+.sr-deco-picker {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  pointer-events: auto;
+  width: min(520px, calc(100vw - 24px));
+  max-height: min(72vh, 640px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-2);
+  padding: var(--sr-space-3);
+  background: var(--sr-surface);
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: 16px;
+  box-shadow: var(--sr-shadow-lg);
+  color: var(--sr-text-primary);
+  overflow: hidden;
+}
+.sr-deco-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 68px), 1fr));
+  gap: var(--sr-space-2);
+  overflow-y: auto;
+  padding-right: 2px;
+  min-height: 0;
+}
+.sr-deco-picker-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  border: var(--sr-border-width) solid var(--sr-border);
+  border-radius: var(--sr-radius);
+  background: var(--sr-surface-alt);
+  cursor: pointer;
+  min-width: 0;
+  transition: transform 120ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sr-deco-picker-tile {
+    transition: none;
+  }
+}
+.sr-deco-picker-tile:hover {
+  transform: translateY(-2px);
+}
+.sr-deco-picker-tile:focus-visible {
+  outline: 2px solid var(--sr-accent);
+  outline-offset: 2px;
+}
+.sr-deco-picker-tile img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.sr-deco-picker-label {
+  font-size: var(--sr-text-xs, 0.75rem);
+  color: var(--sr-text-secondary);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

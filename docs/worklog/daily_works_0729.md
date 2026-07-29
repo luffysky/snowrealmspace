@@ -88,6 +88,14 @@
 - 審：無重複 id（全 ~106 場景）、配色/密度/速度與既有明顯區隔、typecheck/lint 綠。
 - **仍待（#55）**：免費可商用 Lottie 背景（需 LottieFiles 下載流程 + 我逐一看構圖/keyframe 密度挑「真的好看」的）。
 
+### 裝飾品 widget（子代理寫、主對話審 + 我套 migration）
+- **素材**：81 個可愛 Fluent Emoji（Microsoft，MIT）Color SVG 抓進 `public/decorations/`，`lib/decorations/manifest.json`（繁中標籤、6 類：動物/植物/甜點/天空/愛心/可愛）+ `LICENSE.md`。curl 直抓 raw.githubusercontent（Sentence-case 資料夾/snake 檔名），81/81 全中。
+- **資料**：migration `0060_space_decorations`（x/y 存視窗比例 0..1、scale/rotation/opacity/tint jsonb/z_index；RLS `is_space_member` 抄 background_items；`touch_updated_at` trigger）。**已套 hosted**（dry-run 確認僅 0060 pending → apply OK）。型別手補 generated（Docker 沒開）。
+- **API**：`/api/decorations` GET/POST（zod、`isDecorationId` 白名單、x/y 夾 0..1、每 space 上限 80）、`/[id]` PATCH/DELETE。**space_id 一律取自 session（resolveContext），非 client header**；全走 getDb 受 RLS。
+- **overlay**：`DecorationLayer` 掛在 `(space)/layout.tsx`（FloatingAgent 同層）。**檢視模式整層與每張圖 pointer-events:none，永遠不擋點擊**；`?decorate=1` 進編輯：可拖曳（pointer capture + 防抖 PATCH、放開即落地）、選取後控制面板（大小/旋轉/透明度拉桿 + 漸層 tint 兩色停+角度、可清除回原色）、＋加入裝飾挑選器（81 個分類）、複製/刪除、完成離開。染色＝mask-image 剪影填漸層；透明度一律套用。
+- **審**：pointer-events 檢視零攔截、API session 綁定、picker/panel/toolbar 皆 pointer-events:auto + `max-width:calc(100vw-24px)`+flex-wrap 手機安全、tint span 56×56、touch_updated_at 存在、五閘門綠（typecheck/lint/deps/secrets/**rls 60 表含 space_decorations**）。
+- **無 flag**（沒擺就不顯示、天生 opt-in）。入口：背景頁加「開始擺放裝飾」連到 `/home?decorate=1`。
+
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。
 - **F 第一次端到端實跑**：連 Canva/Figma → 選檔(S4 picker) → 同步 → 看 `design_snapshots` 出版本。這一步順便**錄真實回應**供 S5 mock、校正 Figma/Canva 端點。

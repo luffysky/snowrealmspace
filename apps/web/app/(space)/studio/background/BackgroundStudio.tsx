@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState, type CSSProperties, type ReactNode } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL, type ThemeDefinition } from '@snowrealm/theme-engine'
@@ -347,6 +348,21 @@ export function BackgroundStudio({
         item={editing ?? backgrounds[0] ?? null}
         theme={activeTheme}
       />
+
+      {/* 裝飾品：真正的擺放在 overlay 編輯器（/home?decorate=1），這裡只是入口 */}
+      <section className="sr-card">
+        <h2 className="sr-section-title">裝飾品</h2>
+        <p className="sr-muted" style={{ marginTop: 0 }}>
+          在你的空間頁面上自由擺放可愛小圖（動物、植物、甜點、天空、愛心…），
+          可調大小、旋轉、透明度，還能幫它染上漸層色。裝飾會浮在所有頁面之上，
+          純裝飾、不會擋到任何按鈕。
+        </p>
+        <div className="sr-btn-row" style={{ marginTop: 'var(--sr-space-3)' }}>
+          <Link className="sr-button" href="/home?decorate=1">
+            開始擺放裝飾
+          </Link>
+        </div>
+      </section>
 
       <section className="sr-card" data-tour="bg-add">
         <h2 className="sr-section-title">加入背景</h2>

@@ -23,6 +23,7 @@ import { BackgroundLayer, type BackgroundState } from '@/components/BackgroundLa
 import { themeGradientBackground } from '@/lib/theme/theme-gradient-bg'
 import { SpaceShell } from '@/components/SpaceShell'
 import { FloatingAgent } from '@/components/FloatingAgent'
+import { DecorationLayer } from '@/components/DecorationLayer'
 import { SessionHeartbeat } from '@/components/SessionHeartbeat'
 import { DialogProvider } from '@/components/ui/DialogProvider'
 import { checkSiteAdmin } from '@/lib/auth/site-admin'
@@ -250,6 +251,7 @@ export default async function SpaceLayout({ children }: { children: React.ReactN
           agentName={agentName}
           agentAvatarSrc={agentAvatarSrc}
         />
+        <DecorationLayer spaceId={space.id} />
       </DialogProvider>
     </div>
   )
