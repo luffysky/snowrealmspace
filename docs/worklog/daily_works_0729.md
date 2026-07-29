@@ -79,6 +79,7 @@
   1. 先猜 reduced-motion gate（`WeatherLottie` 唯一會凍住合法動畫的路徑）→ 改天氣圖示**一律 autoplay+loop**（`4d0cdca`）。但 Luffy 回報**動畫效果是開的**（RM=false）→ 這不是主因（RM 關時本來就 autoplay），**猜錯**。
   2. **改用實測**：瀏覽器自動化進線上站確認 jochang 部署已生效、SVG 有建（48px 容器、10 群組），但我的自動化視窗在背景（`hidden=true`、rAF 暫停）看不到動。**請 Luffy 在自己可見分頁貼一行 console 量** → 回傳 `{found:true, animating:true, hidden:false, reduce:false}`。
   3. **真因**：它**其實一直有在播**（transform 每秒都在變），只是 **48px 太小、當前多雲/晴這類本來就溫和的圖示**動態難以察覺（Meteocons、jochang 兩套都中同一點）。**修法**：天氣圖示 **48→72px** + `anim.setSpeed(1.4)` 讓動態明顯。**教訓**：破版/動畫「看起來不對」先**量**（照 CLAUDE.md #9），別連續送猜測；擴充連不上時請使用者貼 console 量，比我盲猜可靠。
+  4. **放大雲的位移（Luffy：雲要左右來回、每片不同速度/幅度、都大一點）**：查 jochang 各雲層原本只左右擺 2~4px（256 viewBox）→ 幾乎看不到。寫腳本把**所有 `cloud` 圖層**的位移改寫成**無縫左右來回振盪**：每片雲不同幅度（16~30）、不同速度（1~2 循環/3s）、不同相位，clamp 在畫布內。11 個含雲圖示全改（晴天日/夜無雲）。純資料改、13 檔皆過 JSON 驗證。無法自看動畫→數值上驗證幅度已放大（多雲三片雲 swing 30/16.8/19.2）。
 
 ### Milestone F — S5 mock harness（子代理寫、主對話審）
 - **背景**：S5＝以「錄製的真實回應」建 provider mock，規格**禁手寫理想化 mock**；真 fixtures 卡首次實跑。故先把**周邊 harness** 全建好，實跑一錄即完成。
@@ -106,6 +107,7 @@
 - **審**：pointer-events 檢視零攔截、API session 綁定、picker/panel/toolbar 皆 pointer-events:auto + `max-width:calc(100vw-24px)`+flex-wrap 手機安全、tint span 56×56、touch_updated_at 存在、五閘門綠（typecheck/lint/deps/secrets/**rls 60 表含 space_decorations**）。
 - **無 flag**（沒擺就不顯示、天生 opt-in）。入口：背景頁加「開始擺放裝飾」連到 `/home?decorate=1`。
 - **對齊格線（Luffy 0729 回饋）**：編輯工具列加「對齊格線」開關（預設關＝維持自由擺放）；開啟後顯示參考格、拖曳/新增皆吸附到格點；**格子大小可調**（拉桿改視窗等分數，格線與吸附即時跟著變）。純前端（DecorationLayer + globals.css），無 API/DB 變動；工具列 flex-wrap + max-width 手機安全。
+- **跟著捲動 + 釘選 + 說明（Luffy 0729：裝飾沒跟畫面上下捲）**（子代理寫、主對話審）：查清整站 shell 是 `100dvh overflow:hidden`、真正在捲的是 `.sr-content`。改成**兩套座標系**（值域都 0..1、差在參考誰）：**未釘選（預設）**＝相對 `.sr-content`、`createPortal` 進去、`top=y*scrollHeight`px → **跟著頁面內容上下捲動**；**釘選**＝相對視窗 `fixed` → 固定畫面不捲。每個裝飾控制面板加「釘選/取消釘選」，切換時換算螢幕位置→原地不跳。migration `0061` 加 `pinned`（**已套 hosted**）、型別手補、API POST/PATCH 收 `pinned`。編輯加「說明」面板。**審**：pinned/portal 兩路檢視都 `pointer-events:none` 不擋點擊、`.sr-content` 設 `position:relative`、scrollHeight 用 ResizeObserver 追、五閘門綠；**我補修**子代理漏掉的拖曳「抓取偏移」（原本會跳到指標中心 → 改回抓哪拖哪，兩座標系都算偏移）。
 
 ## 待你(Luffy)
 - **後台開 flag `weatherWidget`** → 天氣才會出現(現在 def 與 flag row 都在、但 flag=off)。開了到「設定→天氣」勾選+填城市 → 首頁加天氣 widget。

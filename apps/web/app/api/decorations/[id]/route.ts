@@ -24,6 +24,8 @@ const patchSchema = z.object({
   opacity: z.number().min(0.1).max(1).optional(),
   tint: tintSchema.optional(),
   zIndex: z.number().int().min(-999).max(999).optional(),
+  // 釘選：切換時前端會連同轉換後的 x/y 一起送，維持裝飾在畫面上原位。
+  pinned: z.boolean().optional(),
 })
 
 // camelCase 輸入 → snake_case 欄位。tint 直接當 jsonb 存。
@@ -35,6 +37,7 @@ const FIELD_MAP: Record<string, string> = {
   opacity: 'opacity',
   tint: 'tint',
   zIndex: 'z_index',
+  pinned: 'pinned',
 }
 
 export const PATCH = handler(

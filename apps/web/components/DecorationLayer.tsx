@@ -10,6 +10,7 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from 'react'
+import { createPortal } from 'react-dom'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { NEUTRAL } from '@snowrealm/theme-engine'
 import {
@@ -30,8 +31,15 @@ import {
  * - 編輯（網址帶 ?decorate=1）：圖變成可拖曳，選取後出現控制面板；「＋ 加入裝飾」
  *   開挑選器，「完成」移除查詢參數離開編輯。
  *
- * 位置以視窗比例（0..1）存，換裝置也擺得對。染色時把 emoji 當剪影填漸層
+ * 位置以比例（0..1）存，換裝置也擺得對。染色時把 emoji 當剪影填漸層
  * （mask-image + linear-gradient）；沒染色就顯示原圖。透明度一律套用。
+ *
+ * 兩套座標系（差別只在「參考誰」，值域都是 0..1）：
+ * - pinned=true（釘選）：相對視窗。position:fixed，left:x*100vw / top:y*100vh，
+ *   隨畫面固定不捲動。渲染在固定 overlay 層（本層）。
+ * - pinned=false（預設）：相對捲動容器 .sr-content。position:absolute，
+ *   left:x*100% / top:y*scrollHeight px，跟著頁面內容上下捲動。透過 createPortal
+ *   掛進 .sr-content，anchor 到它（globals.css 已把 .sr-content 設 position:relative）。
  */
 
 type Tint = { from: string; to: string; angle: number }
@@ -46,7 +54,11 @@ type DecoRecord = {
   opacity: number
   tint: Tint | null
   z_index: number
+  pinned: boolean
 }
+
+/** 夾回 0..1（座標永遠是比例）。 */
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v))
 
 export function DecorationLayer({ spaceId }: { spaceId: string }) {
   // useSearchParams 需要 Suspense 邊界，否則會把整頁降級成 client render。
@@ -75,6 +87,44 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
   const gridDivRef = useRef(20)
   snapRef.current = snap
   gridDivRef.current = gridDiv
+  // 編輯說明（釘選/捲動/格線）的展開狀態。
+  const [showHelp, setShowHelp] = useState(false)
+
+  // ── 捲動容器（.sr-content）：未釘選裝飾 portal 進去，並跟著它的內容高度走 ──
+  // node 用 state（決定 portal 目標）；同時鏡射到 ref 供拖曳/釘選 handler 讀最新值。
+  const [contentNode, setContentNode] = useState<HTMLElement | null>(null)
+  const [scrollH, setScrollH] = useState(0)
+  const contentRef = useRef<HTMLElement | null>(null)
+  contentRef.current = contentNode
+
+  // 查詢 .sr-content；若尚未掛載（首個 render）則下一幀重試，直到拿到。
+  useEffect(() => {
+    let raf = 0
+    const find = () => {
+      const node = document.querySelector('.sr-content')
+      if (node instanceof HTMLElement) setContentNode(node)
+      else raf = requestAnimationFrame(find)
+    }
+    find()
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  // 追蹤內容的 scrollHeight：內容長高（ResizeObserver 觀察容器與其第一個子元素）
+  // 或視窗改變（resize）時重算，讓未釘選裝飾的 top 跟著內容成長。
+  useEffect(() => {
+    if (!contentNode) return
+    const measure = () => setScrollH(contentNode.scrollHeight)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(contentNode)
+    const child = contentNode.firstElementChild
+    if (child) ro.observe(child)
+    window.addEventListener('resize', measure)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', measure)
+    }
+  }, [contentNode])
 
   const api = useCallback(
     async (path: string, init?: RequestInit): Promise<unknown> => {
@@ -169,22 +219,37 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
   }, [])
 
   // ── 拖曳 ──
-  const dragRef = useRef<{ id: string; dx: number; dy: number; moved: boolean } | null>(null)
+  // 記住被拖的 id、座標系（pinned 決定用視窗還是內容當參考），與「抓取點相對中心的偏移」，
+  // 這樣抓哪裡就從哪裡拖、圖不會跳到指標中心。offX/offY 存在對應座標系的比例空間。
+  const dragRef = useRef<{
+    id: string
+    pinned: boolean
+    moved: boolean
+    offX: number
+    offY: number
+  } | null>(null)
 
   const onItemPointerDown = useCallback(
     (e: ReactPointerEvent, rec: DecoRecord) => {
       if (!editMode) return
       e.stopPropagation()
       setSelectedId(rec.id)
-      const vw = document.documentElement.clientWidth || window.innerWidth
-      const vh = document.documentElement.clientHeight || window.innerHeight
-      // 記錄指標與中心的偏移，拖曳時不跳動。
-      dragRef.current = {
-        id: rec.id,
-        dx: e.clientX - rec.x * vw,
-        dy: e.clientY - rec.y * vh,
-        moved: false,
+      let offX = 0
+      let offY = 0
+      if (rec.pinned) {
+        const vw = document.documentElement.clientWidth || window.innerWidth
+        const vh = document.documentElement.clientHeight || window.innerHeight
+        offX = e.clientX / vw - rec.x
+        offY = e.clientY / vh - rec.y
+      } else {
+        const content = contentRef.current
+        if (content) {
+          const r = content.getBoundingClientRect()
+          offX = (e.clientX - r.left) / content.clientWidth - rec.x
+          offY = (content.scrollTop + e.clientY - r.top) / content.scrollHeight - rec.y
+        }
       }
+      dragRef.current = { id: rec.id, pinned: rec.pinned, moved: false, offX, offY }
       ;(e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId)
     },
     [editMode],
@@ -195,15 +260,27 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
       const d = dragRef.current
       if (!d) return
       d.moved = true
-      const vw = document.documentElement.clientWidth || window.innerWidth
-      const vh = document.documentElement.clientHeight || window.innerHeight
-      let x = Math.min(1, Math.max(0, (e.clientX - d.dx) / vw))
-      let y = Math.min(1, Math.max(0, (e.clientY - d.dy) / vh))
+      let x: number
+      let y: number
+      if (d.pinned) {
+        // 釘選：相對視窗（扣掉抓取偏移）。
+        const vw = document.documentElement.clientWidth || window.innerWidth
+        const vh = document.documentElement.clientHeight || window.innerHeight
+        x = clamp01(e.clientX / vw - d.offX)
+        y = clamp01(e.clientY / vh - d.offY)
+      } else {
+        // 未釘選：相對捲動容器（含目前 scrollTop → 落在正確的內容位置；扣掉抓取偏移）。
+        const content = contentRef.current
+        if (!content) return
+        const r = content.getBoundingClientRect()
+        x = clamp01((e.clientX - r.left) / content.clientWidth - d.offX)
+        y = clamp01((content.scrollTop + e.clientY - r.top) / content.scrollHeight - d.offY)
+      }
       // 對齊格線：吸附到最近的格點（step = 1/等分數）。
       if (snapRef.current) {
         const step = 1 / gridDivRef.current
-        x = Math.min(1, Math.max(0, Math.round(x / step) * step))
-        y = Math.min(1, Math.max(0, Math.round(y / step) * step))
+        x = clamp01(Math.round(x / step) * step)
+        y = clamp01(Math.round(y / step) * step)
       }
       applyLocal(d.id, { x, y })
       schedulePatch(d.id, { x, y })
@@ -286,7 +363,7 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
         const ny = Math.min(1, rec.y + 0.04)
         const created = (await api('/api/decorations', {
           method: 'POST',
-          body: JSON.stringify({ decorationId: rec.decoration_id, x: nx, y: ny }),
+          body: JSON.stringify({ decorationId: rec.decoration_id, x: nx, y: ny, pinned: rec.pinned }),
         })) as DecoRecord
         // 沿用外觀（大小/旋轉/透明度/染色）
         await api(`/api/decorations/${created.id}`, {
@@ -313,6 +390,40 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
     [api],
   )
 
+  // ── 釘選切換 ──
+  // 切換時把裝飾的「目前螢幕位置」換算到目標座標系，連同 pinned 一起 PATCH，
+  // 讓它在畫面上原地不動、只改變是否跟著捲動。內容節點暫時取不到時保留 x/y 不變。
+  const togglePin = useCallback(
+    (rec: DecoRecord) => {
+      const nextPinned = !rec.pinned
+      const vw = document.documentElement.clientWidth || window.innerWidth
+      const vh = document.documentElement.clientHeight || window.innerHeight
+      const content = contentRef.current
+      let x = rec.x
+      let y = rec.y
+      if (content) {
+        const r = content.getBoundingClientRect()
+        if (nextPinned) {
+          // 未釘選 → 釘選：內容座標 → 螢幕 → 視窗比例。
+          const screenX = r.left + rec.x * content.clientWidth
+          const screenY = r.top + rec.y * content.scrollHeight - content.scrollTop
+          x = clamp01(screenX / vw)
+          y = clamp01(screenY / vh)
+        } else {
+          // 釘選 → 未釘選：視窗比例 → 螢幕 → 內容座標。
+          const screenX = rec.x * vw
+          const screenY = rec.y * vh
+          x = clamp01((screenX - r.left) / content.clientWidth)
+          y = clamp01((content.scrollTop + screenY - r.top) / content.scrollHeight)
+        }
+      }
+      applyLocal(rec.id, { pinned: nextPinned, x, y })
+      schedulePatch(rec.id, { pinned: nextPinned, x, y })
+      flushImmediate(rec.id)
+    },
+    [applyLocal, schedulePatch, flushImmediate],
+  )
+
   const exitEdit = useCallback(() => {
     setSelectedId(null)
     setShowPicker(false)
@@ -323,6 +434,10 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
     () => (selectedId ? (items?.find((d) => d.id === selectedId) ?? null) : null),
     [selectedId, items],
   )
+
+  // 依座標系分流：釘選的畫在固定 overlay 層；未釘選的 portal 進捲動容器。
+  const pinnedItems = useMemo(() => (items ?? []).filter((d) => d.pinned), [items])
+  const unpinnedItems = useMemo(() => (items ?? []).filter((d) => !d.pinned), [items])
 
   // 載入中：什麼都不畫（誠實，不擺假圖）。
   if (!items) return null
@@ -339,17 +454,52 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
       }
       aria-hidden={editMode ? undefined : 'true'}
     >
-      {items.map((rec) => (
+      {/* 釘選的裝飾：固定於視窗（本固定層內）。 */}
+      {pinnedItems.map((rec) => (
         <DecoVisual
           key={rec.id}
           rec={rec}
           editMode={editMode}
           selected={editMode && rec.id === selectedId}
+          scrollH={scrollH}
           onPointerDown={onItemPointerDown}
           onPointerMove={onItemPointerMove}
           onPointerUp={onItemPointerUp}
         />
       ))}
+
+      {/* 未釘選的裝飾：portal 進 .sr-content，跟著頁面內容捲動。 */}
+      {/* wrapper 為 absolute/inset:0/pointer-events:none：不改動版面、不吃點擊、不增加捲動高度。 */}
+      {contentNode &&
+        createPortal(
+          <div
+            className="sr-deco-portal"
+            aria-hidden={editMode ? undefined : 'true'}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              overflow: 'visible',
+              // 浮在頁面卡片之上、但在固定編輯 chrome（z:1000）之下。
+              zIndex: 40,
+              // 檢視模式整層不吃點擊；編輯模式由各裝飾自行開 pointer-events。
+              pointerEvents: 'none',
+            }}
+          >
+            {unpinnedItems.map((rec) => (
+              <DecoVisual
+                key={rec.id}
+                rec={rec}
+                editMode={editMode}
+                selected={editMode && rec.id === selectedId}
+                scrollH={scrollH}
+                onPointerDown={onItemPointerDown}
+                onPointerMove={onItemPointerMove}
+                onPointerUp={onItemPointerUp}
+              />
+            ))}
+          </div>,
+          contentNode,
+        )}
 
       {editMode && (
         <>
@@ -382,11 +532,27 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
               <button type="button" className="sr-button sr-button-secondary" onClick={() => setShowPicker(true)}>
                 ＋ 加入裝飾
               </button>
+              <button
+                type="button"
+                className={`sr-button sr-button-secondary${showHelp ? ' sr-button-active' : ''}`}
+                aria-pressed={showHelp}
+                aria-expanded={showHelp}
+                onClick={() => setShowHelp((s) => !s)}
+                title="擺放與釘選說明"
+              >
+                說明
+              </button>
               <button type="button" className="sr-button" onClick={exitEdit}>
                 完成
               </button>
             </div>
           </div>
+
+          {showHelp && (
+            <p className="sr-deco-help" role="note">
+              拖曳擺放。裝飾預設會跟著頁面上下捲動；點某個裝飾的「釘選」讓它固定在畫面上不捲動。開「對齊格線」可吸附、格子大小可調。
+            </p>
+          )}
 
           {error && (
             <p className="sr-deco-error sr-message sr-message-error" role="alert">
@@ -399,6 +565,7 @@ function DecorationLayerInner({ spaceId }: { spaceId: string }) {
               rec={selected}
               onChange={updateField}
               onCommit={flushImmediate}
+              onTogglePin={() => togglePin(selected)}
               onDelete={() => void removeDecoration(selected.id)}
               onDuplicate={() => void duplicateDecoration(selected)}
               onClose={() => setSelectedId(null)}
@@ -419,6 +586,7 @@ function DecoVisual({
   rec,
   editMode,
   selected,
+  scrollH,
   onPointerDown,
   onPointerMove,
   onPointerUp,
@@ -426,18 +594,24 @@ function DecoVisual({
   rec: DecoRecord
   editMode: boolean
   selected: boolean
+  // 未釘選裝飾的 top 以「內容 scrollHeight × y」換算成 px；釘選裝飾用不到。
+  scrollH: number
   onPointerDown: (e: ReactPointerEvent, rec: DecoRecord) => void
   onPointerMove: (e: ReactPointerEvent) => void
   onPointerUp: (e: ReactPointerEvent) => void
 }) {
   const src = decorationSrc(rec.decoration_id)
+  // 兩套座標系：釘選＝相對視窗（fixed, vw/vh）；未釘選＝相對捲動內容（absolute, %/px）。
+  const position: CSSProperties = rec.pinned
+    ? { position: 'fixed', left: `${rec.x * 100}vw`, top: `${rec.y * 100}vh` }
+    : { position: 'absolute', left: `${rec.x * 100}%`, top: `${rec.y * scrollH}px` }
   const style: CSSProperties = {
-    left: `${rec.x * 100}vw`,
-    top: `${rec.y * 100}vh`,
+    ...position,
     transform: `translate(-50%, -50%) rotate(${rec.rotation}deg) scale(${rec.scale})`,
     opacity: rec.opacity,
     zIndex: rec.z_index,
     // 關鍵：檢視模式一律 none，永遠不擋點擊；編輯模式才可互動。
+    // （釘選與未釘選的裝飾都套這條 —— 未釘選者外層 portal wrapper 也是 none。）
     pointerEvents: editMode ? 'auto' : 'none',
   }
 
@@ -471,6 +645,7 @@ function DecorationPanel({
   rec,
   onChange,
   onCommit,
+  onTogglePin,
   onDelete,
   onDuplicate,
   onClose,
@@ -482,6 +657,7 @@ function DecorationPanel({
     apiPatch: Record<string, unknown>,
   ) => void
   onCommit: (id: string) => void
+  onTogglePin: () => void
   onDelete: () => void
   onDuplicate: () => void
   onClose: () => void
@@ -582,6 +758,19 @@ function DecorationPanel({
             加上顏色
           </button>
         )}
+      </div>
+
+      <div className="sr-deco-field">
+        <span className="sr-deco-field-label">釘選</span>
+        <button
+          type="button"
+          className={`sr-chip${rec.pinned ? ' sr-chip-active' : ''}`}
+          aria-pressed={rec.pinned}
+          onClick={onTogglePin}
+          title={rec.pinned ? '固定在畫面上，不隨頁面捲動' : '讓它跟著頁面內容捲動'}
+        >
+          {rec.pinned ? '✓ 已釘選（固定畫面）' : '釘選（固定畫面）'}
+        </button>
       </div>
 
       <div className="sr-deco-panel-actions">

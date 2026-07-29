@@ -2443,6 +2443,7 @@ export type Database = {
           decoration_id: string
           id: string
           opacity: number
+          pinned: boolean
           rotation: number
           scale: number
           space_id: string
@@ -2457,6 +2458,7 @@ export type Database = {
           decoration_id: string
           id?: string
           opacity?: number
+          pinned?: boolean
           rotation?: number
           scale?: number
           space_id: string
@@ -2471,6 +2473,7 @@ export type Database = {
           decoration_id?: string
           id?: string
           opacity?: number
+          pinned?: boolean
           rotation?: number
           scale?: number
           space_id?: string

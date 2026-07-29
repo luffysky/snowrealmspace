@@ -15,6 +15,8 @@ const createSchema = z.object({
   decorationId: z.string().refine(isDecorationId, '未知的裝飾品。'),
   x: z.number().min(0).max(1),
   y: z.number().min(0).max(1),
+  // 釘選旗標：預設 false＝跟著頁面內容捲動；true＝固定於視窗。
+  pinned: z.boolean().optional().default(false),
 })
 
 export const GET = handler(async () => {
@@ -73,6 +75,7 @@ export const POST = handler(async (request: NextRequest) => {
       decoration_id: input.decorationId,
       x: input.x,
       y: input.y,
+      pinned: input.pinned,
     })
     .select('*')
     .single()
