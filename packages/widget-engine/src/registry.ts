@@ -33,6 +33,11 @@ export const WIDGET_IDS = [
   'shared_messages',
   // 獨立工具（無 Milestone 綁定，直接可用）
   'datetime',
+  'anniversary',
+  'countdown',
+  'mini_calendar',
+  'world_clock',
+  'daily_words',
 ] as const
 
 export type WidgetId = (typeof WIDGET_IDS)[number]
@@ -60,7 +65,7 @@ export type WidgetDefinition<TConfig = unknown> = {
   id: WidgetId
   name: string
   version: string
-  category: 'daily' | 'creative' | 'agent' | 'project' | 'system' | 'utility'
+  category: 'daily' | 'creative' | 'agent' | 'project' | 'system' | 'utility' | 'personal'
   description: string
   defaultSize: { w: number; h: number }
   minSize: { w: number; h: number }
@@ -169,6 +174,58 @@ const datetimeConfig = z.object({
   showWeekday: z.boolean().default(true),
   showRoc: z.boolean().default(false),
   showLunar: z.boolean().default(false),
+})
+
+// ── 個人 / 工具類新 widget（純瀏覽器，不連網、不取位置）────────────
+// 紀念日：從某一天算到今天已經幾天（日期只算到「日」，忽略時間）。
+const anniversaryConfig = z.object({
+  title: z.string().default('紀念日'),
+  sinceDate: z.string().default(''),
+  showDays: z.boolean().default(true),
+})
+
+// 倒數計時：距離某個目標日還有幾天（可選顯示時分，逐秒走針）。
+const countdownConfig = z.object({
+  title: z.string().default('倒數'),
+  targetDate: z.string().default(''),
+  showTime: z.boolean().default(false),
+})
+
+// 迷你月曆：顯示本月，今天高亮。可選顯示今天的農曆。
+const miniCalendarConfig = z.object({
+  showLunar: z.boolean().default(false),
+})
+
+// 世界時鐘：最多四個時區，各以可讀標籤選擇，逐分走針。
+// enum 值是「可讀標籤」，元件內用 ZONES 對照到 IANA 時區。
+const WORLD_CLOCK_ZONES = [
+  '台北',
+  '東京',
+  '首爾',
+  '上海',
+  '曼谷',
+  '新加坡',
+  '倫敦',
+  '巴黎',
+  '紐約',
+  '洛杉磯',
+  '雪梨',
+  '杜拜',
+  '—（不顯示）',
+] as const
+
+const worldClockConfig = z.object({
+  zone1: z.enum(WORLD_CLOCK_ZONES).default('台北'),
+  zone2: z.enum(WORLD_CLOCK_ZONES).default('—（不顯示）'),
+  zone3: z.enum(WORLD_CLOCK_ZONES).default('—（不顯示）'),
+  zone4: z.enum(WORLD_CLOCK_ZONES).default('—（不顯示）'),
+  use24h: z.boolean().default(true),
+})
+
+// 每日情話：一行一句，依日期挑一句（同一天穩定、換天才變）。
+const dailyWordsConfig = z.object({
+  title: z.string().default('每日情話'),
+  phrases: z.string().default(''),
 })
 
 function def<T>(d: WidgetDefinition<T>): WidgetDefinition<T> {
@@ -403,6 +460,81 @@ export const WIDGET_REGISTRY = {
     // 純瀏覽器 Intl，不連網、不取位置
     permissions: [],
     // 自己每秒 tick，不需伺服器刷新
+    refreshPolicy: { onMount: true },
+  }),
+
+  anniversary: def({
+    id: 'anniversary',
+    name: '紀念日',
+    version: '1.0.0',
+    category: 'personal',
+    description: '從某一天算到今天已經幾天。',
+    defaultSize: { w: 3, h: 2 },
+    minSize: { w: 2, h: 1 },
+    maxSize: { w: 5, h: 3 },
+    configSchema: anniversaryConfig,
+    defaultConfig: anniversaryConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  countdown: def({
+    id: 'countdown',
+    name: '倒數計時',
+    version: '1.0.0',
+    category: 'personal',
+    description: '距離某個日子還有幾天。',
+    defaultSize: { w: 3, h: 2 },
+    minSize: { w: 2, h: 1 },
+    maxSize: { w: 5, h: 3 },
+    configSchema: countdownConfig,
+    defaultConfig: countdownConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  mini_calendar: def({
+    id: 'mini_calendar',
+    name: '迷你月曆',
+    version: '1.0.0',
+    category: 'utility',
+    description: '本月月曆，今天高亮。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 3, h: 3 },
+    maxSize: { w: 5, h: 5 },
+    configSchema: miniCalendarConfig,
+    defaultConfig: miniCalendarConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  world_clock: def({
+    id: 'world_clock',
+    name: '世界時鐘',
+    version: '1.0.0',
+    category: 'utility',
+    description: '同時看幾個城市的現在時間。',
+    defaultSize: { w: 3, h: 3 },
+    minSize: { w: 2, h: 2 },
+    maxSize: { w: 5, h: 5 },
+    configSchema: worldClockConfig,
+    defaultConfig: worldClockConfig.parse({}),
+    permissions: [],
+    refreshPolicy: { onMount: true },
+  }),
+
+  daily_words: def({
+    id: 'daily_words',
+    name: '每日情話',
+    version: '1.0.0',
+    category: 'personal',
+    description: '每天換一句，一行一句自己寫。',
+    defaultSize: { w: 4, h: 2 },
+    minSize: { w: 3, h: 1 },
+    maxSize: { w: 6, h: 3 },
+    configSchema: dailyWordsConfig,
+    defaultConfig: dailyWordsConfig.parse({}),
+    permissions: [],
     refreshPolicy: { onMount: true },
   }),
 }

@@ -123,6 +123,7 @@ export default async function HomePage() {
       id: def.id,
       name: def.name,
       description: def.description,
+      category: def.category,
     }))
 
   return (

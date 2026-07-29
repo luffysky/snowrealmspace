@@ -33,6 +33,7 @@ export type ConfigField =
     }
   | { key: string; label: string; kind: 'enum'; default: string; options: string[] }
   | { key: string; label: string; kind: 'string'; default: string; maxLength?: number }
+  | { key: string; label: string; kind: 'date'; default: string }
   | { key: string; label: string; kind: 'project'; default: string | null }
   | { key: string; label: string; kind: 'unsupported' }
 
@@ -65,6 +66,19 @@ const LABELS: Record<string, string> = {
   showWeekday: '星期',
   showRoc: '民國日期',
   showLunar: '農曆',
+  // 紀念日 / 倒數
+  title: '標題',
+  sinceDate: '起算日',
+  showDays: '顯示天數',
+  targetDate: '目標日期',
+  // 世界時鐘
+  zone1: '時區一',
+  zone2: '時區二',
+  zone3: '時區三',
+  zone4: '時區四',
+  use24h: '24 小時制',
+  // 每日情話
+  phrases: '句子（一行一句）',
 }
 
 function labelFor(key: string): string {
@@ -132,6 +146,11 @@ function describeField(key: string, schema: z.ZodTypeAny): ConfigField {
   }
 
   if (typeName === 'ZodString') {
+    // 日期欄位：鍵名是 sinceDate / targetDate，或以 'date' 結尾（不分大小寫）
+    // → 給 <input type="date">，不是自由文字框。
+    if (key === 'sinceDate' || key === 'targetDate' || key.toLowerCase().endsWith('date')) {
+      return { key, label, kind: 'date', default: typeof def === 'string' ? def : '' }
+    }
     const checks = (inner._def as { checks?: { kind: string; value: number }[] }).checks ?? []
     // uuid / url / email 這類「有格式」的字串不是自由文字 ——
     // projectId 要用專門的選擇器，不能給一個純文字框讓人手打 uuid。

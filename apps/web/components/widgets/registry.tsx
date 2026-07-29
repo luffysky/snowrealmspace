@@ -33,6 +33,11 @@ const COMPONENTS: Record<string, ComponentType<WidgetProps>> = {
   goal_tracker: lazy(() => import('./impl/GoalTrackerWidget')),
   weather: lazy(() => import('./impl/WeatherWidget')),
   datetime: lazy(() => import('./impl/DateTimeWidget')),
+  anniversary: lazy(() => import('./impl/AnniversaryWidget')),
+  countdown: lazy(() => import('./impl/CountdownWidget')),
+  mini_calendar: lazy(() => import('./impl/MiniCalendarWidget')),
+  world_clock: lazy(() => import('./impl/WorldClockWidget')),
+  daily_words: lazy(() => import('./impl/DailyWordsWidget')),
 }
 
 export function hasImplementation(definitionId: string): boolean {

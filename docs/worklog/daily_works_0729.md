@@ -138,3 +138,9 @@
 - 每個 widget 的設定面板加「背景」：分類籤 + 場景 swatch（用 `scene.base` 漸層當靜態預覽）+「無背景」。存 `config.bg`（自由 jsonb 鍵，免 schema/migration；PATCH 用 `z.record(z.unknown())`）。
 - `WidgetRenderer` 讀 `config.bg` 且經 `getScene` 白名單驗證才渲染；卡片後 `ProceduralScene` + 卡片改 `color-mix` 半透明 + `backdrop-filter` 保持可讀（沿用 `--sr-surface`/`--sr-radius` token）。
 - **主對話補**：`bgAnimate` 開關（**預設 false＝靜態**，傳 `paused` 給場景）+ `bgOpacity` 透明度滑桿（0.05~1，套在場景層）；並修 `data-glass=off` 特異度贏過問題讓場景照樣透出。五閘門綠。
+
+### Widget 大擴充 Wave 1（5 個 + 日期欄位 + 分類清單，子代理寫、主對話審）
+- 新增 5 個 widget：**紀念日**(D+N，date-only 算天、避 UTC 陷阱、DST round)、**倒數計時**(可含時分)、**迷你月曆**(今日高亮、可農曆)、**世界時鐘**(4 時區、Intl timeZone)、**每日情話**(依日決定、可自訂句庫)。皆 SSR-safe(now/today null→client tick)、config-jsonb 存、無 flag。
+- 新增 **`date` config 欄位型別**(key 為 sinceDate/targetDate/…Date → `<input type="date">`)；`phrases` 用 textarea。
+- **加入區塊清單依 `category` 分組**(每日/個人/創作/專案/工具/系統/Agent 中文標題)；新增 `personal` 分類。
+- 審：AnniversaryWidget date-only+DST 正確、Intl 各處 try/catch、行動安全；已跑 `sync-widget-defs` 建 hosted 定義；typecheck/lint/deps + registry/config-fields 29 測綠。

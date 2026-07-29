@@ -33,9 +33,50 @@ export type AvailableWidget = {
   id: string
   name: string
   description: string
+  category: string
 }
 
+/** widget 分類 → 中文標題。未知分類退回「其他」。 */
+const CATEGORY_LABELS: Record<string, string> = {
+  daily: '每日',
+  creative: '創作',
+  agent: 'Agent',
+  project: '專案',
+  system: '系統',
+  utility: '工具',
+  personal: '個人',
+}
+
+function categoryLabel(category: string): string {
+  return CATEGORY_LABELS[category] ?? '其他'
+}
+
+// 「加入區塊」清單分類的顯示順序；未列出的分類排在最後。
+const CATEGORY_ORDER = ['daily', 'personal', 'creative', 'project', 'utility', 'system', 'agent']
+
 export type LayoutSummary = { id: string; name: string }
+
+/**
+ * 把可加入的 widget 依 category 分組，供「加入區塊」清單分區顯示。
+ * 分類順序照 CATEGORY_ORDER，未列出的排在最後；每組內維持原本順序。
+ */
+function groupByCategory(
+  available: AvailableWidget[],
+): { category: string; widgets: AvailableWidget[] }[] {
+  const groups = new Map<string, AvailableWidget[]>()
+  for (const w of available) {
+    const list = groups.get(w.category)
+    if (list) list.push(w)
+    else groups.set(w.category, [w])
+  }
+  return [...groups.keys()]
+    .sort((a, b) => {
+      const ia = CATEGORY_ORDER.indexOf(a)
+      const ib = CATEGORY_ORDER.indexOf(b)
+      return (ia === -1 ? Number.MAX_SAFE_INTEGER : ia) - (ib === -1 ? Number.MAX_SAFE_INTEGER : ib)
+    })
+    .map((category) => ({ category, widgets: groups.get(category)! }))
+}
 
 function toGridItems(
   rows: WidgetInstanceRow[],
@@ -426,18 +467,27 @@ export function HomeGrid({
           {available.length === 0 ? (
             <p className="sr-muted">目前沒有可加入的區塊。</p>
           ) : (
-            <div className="sr-row">
-              {available.map((w) => (
-                <button
-                  key={w.id}
-                  type="button"
-                  className="sr-button sr-button-secondary"
-                  onClick={() => void addWidget(w.id)}
-                  disabled={!hasImplementation(w.id)}
-                  title={hasImplementation(w.id) ? w.description : '這個區塊還沒做好'}
-                >
-                  {w.name}
-                </button>
+            <div className="sr-stack">
+              {groupByCategory(available).map(({ category, widgets }) => (
+                <div key={category} style={{ minWidth: 0 }}>
+                  <p className="sr-label" style={{ margin: '0 0 var(--sr-space-2)' }}>
+                    {categoryLabel(category)}
+                  </p>
+                  <div className="sr-row" style={{ flexWrap: 'wrap' }}>
+                    {widgets.map((w) => (
+                      <button
+                        key={w.id}
+                        type="button"
+                        className="sr-button sr-button-secondary"
+                        onClick={() => void addWidget(w.id)}
+                        disabled={!hasImplementation(w.id)}
+                        title={hasImplementation(w.id) ? w.description : '這個區塊還沒做好'}
+                      >
+                        {w.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           )}

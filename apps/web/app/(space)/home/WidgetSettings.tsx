@@ -385,6 +385,24 @@ function FieldControl({
     )
   }
 
+  if (field.kind === 'date') {
+    return (
+      <div className="sr-field-row">
+        <label className="sr-label" htmlFor={id}>
+          {field.label}
+        </label>
+        <input
+          id={id}
+          type="date"
+          className="sr-input"
+          value={typeof value === 'string' ? value : field.default}
+          onChange={(e) => onChange(e.target.value)}
+          style={{ minWidth: 0, maxWidth: '100%' }}
+        />
+      </div>
+    )
+  }
+
   if (field.kind === 'enum') {
     return (
       <div className="sr-field-row">
@@ -408,19 +426,33 @@ function FieldControl({
   }
 
   // string
+  // 「一行一句」的欄位（如每日情話 phrases）用多行 textarea，其餘用單行輸入。
+  const multiline = field.key === 'phrases'
   return (
     <div className="sr-field-row">
       <label className="sr-label" htmlFor={id}>
         {field.label}
       </label>
-      <input
-        id={id}
-        type="text"
-        className="sr-input"
-        value={typeof value === 'string' ? value : field.default}
-        {...(field.maxLength !== undefined ? { maxLength: field.maxLength } : {})}
-        onChange={(e) => onChange(e.target.value)}
-      />
+      {multiline ? (
+        <textarea
+          id={id}
+          className="sr-input"
+          rows={4}
+          value={typeof value === 'string' ? value : field.default}
+          {...(field.maxLength !== undefined ? { maxLength: field.maxLength } : {})}
+          onChange={(e) => onChange(e.target.value)}
+          style={{ minWidth: 0, maxWidth: '100%', resize: 'vertical' }}
+        />
+      ) : (
+        <input
+          id={id}
+          type="text"
+          className="sr-input"
+          value={typeof value === 'string' ? value : field.default}
+          {...(field.maxLength !== undefined ? { maxLength: field.maxLength } : {})}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      )}
     </div>
   )
 }
