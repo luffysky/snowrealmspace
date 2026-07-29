@@ -2,30 +2,35 @@
   {
     "id": "soft-aurora",
     "label": "柔和極光",
+    "category": "星空宇宙",
     "bg": "#12162a",
     "mood": "大色塊緩慢漂移、明暗呼吸"
   },
   {
     "id": "rising-bubbles",
     "label": "上升氣泡",
+    "category": "自然",
     "bg": "#0e1422",
     "mood": "小圓由下往上、邊升邊淡"
   },
   {
     "id": "pulse-rings",
     "label": "脈動光環",
+    "category": "簡約",
     "bg": "#10121e",
     "mood": "同心圓向外放大並淡出"
   },
   {
     "id": "drifting-petals",
     "label": "飄落花瓣",
+    "category": "自然",
     "bg": "#1c141e",
     "mood": "花瓣下落、左右擺、旋轉"
   },
   {
     "id": "starfield-twinkle",
     "label": "星塵閃爍",
+    "category": "星空宇宙",
     "bg": "#080a16",
     "mood": "星點錯相位明暗"
   }

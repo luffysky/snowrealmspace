@@ -8,11 +8,14 @@
  * loader 用靜態 import 對映（動態模板字串 import 無法被 webpack 靜態分析）。
  */
 
+import type { SceneCategory } from './scenes'
 import manifest from './lottie/manifest.json'
 
 export type LottieSceneDef = {
   id: string
   label: string
+  /** 商店分類（與 scenes.ts 共用同一組詞彙）。 */
+  category: SceneCategory
   /** 建議搭配的底色（動畫本身透明，鋪在這色上最好看）。屬動畫內容，來源 manifest.json。 */
   bg: string
   mood: string

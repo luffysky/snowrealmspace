@@ -1,10 +1,10 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL, type ThemeDefinition } from '@snowrealm/theme-engine'
-import { DYNAMIC_SCENES, STATIC_SCENES, getScene } from '@/lib/scenes'
+import { SCENES, SCENE_CATEGORIES, scenesByCategory, getScene, type SceneCategory } from '@/lib/scenes'
 import { LOTTIE_SCENES, getLottieScene } from '@/lib/lottie-scenes'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { gradientCss } from '@/components/BackgroundLayer'
@@ -21,6 +21,75 @@ export type AssetOption = {
 }
 
 type Status = { kind: 'idle' } | { kind: 'ok'; message: string } | { kind: 'error'; message: string }
+
+// 背景商店的分頁：全部 → 各分類 → Lottie（動畫另成一頁，因為它是不同渲染器）。
+type GalleryTab = '全部' | SceneCategory | 'Lottie'
+const GALLERY_TABS: readonly GalleryTab[] = ['全部', ...SCENE_CATEGORIES, 'Lottie']
+
+// 卡片上的「＋ 加入我的空間」明確招喚——用 --sr-* token，不寫死顏色。
+const adoptAffordanceStyle: CSSProperties = {
+  padding: '5px 6px',
+  fontSize: 'var(--sr-text-sm)',
+  fontWeight: 600,
+  textAlign: 'center',
+  background: 'var(--sr-accent)',
+  color: 'var(--sr-on-accent, #fff)',
+}
+// 角落「預覽中」小標——低調、不攔截點擊。
+const previewBadgeStyle: CSSProperties = {
+  position: 'absolute',
+  top: '4px',
+  left: '4px',
+  padding: '1px 6px',
+  borderRadius: '999px',
+  fontSize: '10px',
+  lineHeight: 1.5,
+  background: 'var(--sr-surface)',
+  color: 'var(--sr-text-secondary)',
+  opacity: 0.85,
+  pointerEvents: 'none',
+}
+
+/**
+ * 商店卡片：整張可點＝「採用」（建立 background_item），同時顯示明確的
+ * 「＋ 加入我的空間」招喚與「預覽中」小標。媒體是即時預覽（children）。
+ * label 用 min-width:0 / overflow-wrap 保證窄卡不撐破 grid。
+ */
+function AdoptTile({
+  label,
+  hint,
+  onAdopt,
+  children,
+}: {
+  label: string
+  hint: string
+  onAdopt: () => void
+  children: ReactNode
+}) {
+  return (
+    <button
+      type="button"
+      role="listitem"
+      className="sr-scene-tile"
+      title={hint}
+      aria-label={hint}
+      onClick={onAdopt}
+    >
+      <span className="sr-scene-tile-media">
+        {children}
+        <span aria-hidden="true" style={previewBadgeStyle}>
+          預覽中
+        </span>
+      </span>
+      <span className="sr-scene-tile-label" style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
+        {label}
+      </span>
+      <span aria-hidden="true" style={adoptAffordanceStyle}>
+        ＋ 加入我的空間
+      </span>
+    </button>
+  )
+}
 
 export function BackgroundStudio({
   spaceId,
@@ -47,6 +116,8 @@ export function BackgroundStudio({
   // 深/淺色模式各自指定的背景 id
   const [bgLightId, setBgLightId] = useState(initialBgLightId)
   const [bgDarkId, setBgDarkId] = useState(initialBgDarkId)
+  // 背景商店的分頁：'全部' / 各分類 / 'Lottie'
+  const [galleryTab, setGalleryTab] = useState<GalleryTab>('全部')
 
   // 色調分類（淺/深）：新增時系統先猜，這裡讓使用者手動改。分類供你「淺色從淺色選」。
   async function flipTone(bg: BackgroundItem) {
@@ -140,7 +211,7 @@ export function BackgroundStudio({
       })) as BackgroundItem
       setBackgrounds((prev) => [created, ...prev])
       setEditing(created)
-      setStatus({ kind: 'ok', message: `已加入動態背景「${scene?.label ?? ''}」。` })
+      setStatus({ kind: 'ok', message: `已加入動態背景「${scene?.label ?? ''}」到你的空間。到下方「你的背景」可指定套用或標深淺色。` })
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
     }
@@ -155,7 +226,7 @@ export function BackgroundStudio({
       })) as BackgroundItem
       setBackgrounds((prev) => [created, ...prev])
       setEditing(created)
-      setStatus({ kind: 'ok', message: `已加入 Lottie 背景「${scene?.label ?? ''}」。` })
+      setStatus({ kind: 'ok', message: `已加入 Lottie 背景「${scene?.label ?? ''}」到你的空間。到下方「你的背景」可指定套用或標深淺色。` })
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : '加入失敗。' })
     }
@@ -246,6 +317,18 @@ export function BackgroundStudio({
     }
   }
 
+  // 目前分頁要顯示哪些場景卡 / 是否顯示 Lottie 卡
+  const galleryScenes =
+    galleryTab === 'Lottie' ? [] : galleryTab === '全部' ? SCENES : scenesByCategory(galleryTab)
+  const showLottie = galleryTab === '全部' || galleryTab === 'Lottie'
+
+  // 分頁上的數量標示
+  const tabCount = (tab: GalleryTab): number => {
+    if (tab === 'Lottie') return LOTTIE_SCENES.length
+    if (tab === '全部') return SCENES.length + LOTTIE_SCENES.length
+    return scenesByCategory(tab).length
+  }
+
   return (
     <div className="sr-stack">
       {status.kind === 'error' && (
@@ -318,79 +401,63 @@ export function BackgroundStudio({
           </button>
         </div>
 
-        {/* 內建動態背景（場景） */}
+        {/* ── 背景商店：依分類瀏覽內建場景與 Lottie 動畫 ── */}
         <p className="sr-label" style={{ marginTop: 'var(--sr-space-4)' }}>
-          內建動態背景（雪／雨／櫻花…）
-        </p>
-        <div className="sr-scene-grid" role="list" aria-label="動態場景">
-          {DYNAMIC_SCENES.map((sc) => (
-            <button
-              key={sc.id}
-              type="button"
-              role="listitem"
-              className="sr-scene-tile"
-              title={`加入「${sc.label}」`}
-              onClick={() => void addScene(sc.id)}
-            >
-              <span className="sr-scene-tile-media">
-                <ProceduralScene sceneId={sc.id} />
-              </span>
-              <span className="sr-scene-tile-label">{sc.label}</span>
-            </button>
-          ))}
-        </div>
-        {STATIC_SCENES.length > 0 && (
-          <>
-            <p className="sr-label" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
-              靜態
-            </p>
-            <div className="sr-scene-grid" role="list" aria-label="靜態場景">
-              {STATIC_SCENES.map((sc) => (
-                <button
-                  key={sc.id}
-                  type="button"
-                  role="listitem"
-                  className="sr-scene-tile"
-                  title={`加入「${sc.label}」`}
-                  onClick={() => void addScene(sc.id)}
-                >
-                  <span className="sr-scene-tile-media">
-                    <ProceduralScene sceneId={sc.id} />
-                  </span>
-                  <span className="sr-scene-tile-label">{sc.label}</span>
-                </button>
-              ))}
-            </div>
-          </>
-        )}
-        <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
-          點一個就加入。場景也可以「疊」在你的圖片/漸層背景上——到下方調整面板的「疊加場景」選。
+          背景商店（挑一個分類，點卡片即可加入）
         </p>
 
-        {/* 內建 Lottie 向量動畫背景 */}
-        <p className="sr-label" style={{ marginTop: 'var(--sr-space-4)' }}>
-          內建 Lottie 動畫背景（向量、平滑）
-        </p>
-        <div className="sr-scene-grid" role="list" aria-label="Lottie 背景">
-          {LOTTIE_SCENES.map((sc) => (
+        {/* 分類分頁：全部 → 各分類 → Lottie。會換行、不橫向溢位。 */}
+        <div className="sr-chip-row" role="tablist" aria-label="背景分類">
+          {GALLERY_TABS.map((tab) => (
             <button
-              key={sc.id}
+              key={tab}
               type="button"
-              role="listitem"
-              className="sr-scene-tile"
-              title={`加入「${sc.label}」（${sc.mood}）`}
-              onClick={() => void addLottie(sc.id)}
+              role="tab"
+              aria-selected={galleryTab === tab}
+              className={`sr-chip${galleryTab === tab ? ' sr-chip-active' : ''}`}
+              onClick={() => setGalleryTab(tab)}
             >
-              <span className="sr-scene-tile-media">
-                <LottieBackground lottieId={sc.id} />
-              </span>
-              <span className="sr-scene-tile-label">{sc.label}</span>
+              {tab}（{tabCount(tab)}）
             </button>
           ))}
         </div>
-        <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
-          點一個就加入。本專案自製、可自由使用（CC0）。省流量或減少動態偏好時只顯示靜態第一格。
+
+        <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
+          以下每張都是<b>即時預覽</b>（角落標「預覽中」）——套用前先看效果，點「＋ 加入我的空間」就會加到下方「你的背景」。
+          場景也能「疊」在你的圖片/漸層上（到調整面板的「疊加場景」選）；Lottie 為本專案自製、可自由使用（CC0）。
         </p>
+
+        {/* 場景卡（含靜態）：ProceduralScene 同時處理 dynamic 與 static */}
+        {galleryScenes.length > 0 && (
+          <div className="sr-scene-grid" role="list" aria-label={`${galleryTab} 場景`}>
+            {galleryScenes.map((sc) => (
+              <AdoptTile
+                key={sc.id}
+                label={sc.label}
+                hint={`加入「${sc.label}」到我的空間`}
+                onAdopt={() => void addScene(sc.id)}
+              >
+                <ProceduralScene sceneId={sc.id} />
+              </AdoptTile>
+            ))}
+          </div>
+        )}
+
+        {/* Lottie 卡：全部 / Lottie 分頁時顯示 */}
+        {showLottie && (
+          <div className="sr-scene-grid" role="list" aria-label="Lottie 背景" style={{ marginTop: 'var(--sr-space-2)' }}>
+            {LOTTIE_SCENES.map((sc) => (
+              <AdoptTile
+                key={sc.id}
+                label={sc.label}
+                hint={`加入「${sc.label}」（${sc.mood}）到我的空間`}
+                onAdopt={() => void addLottie(sc.id)}
+              >
+                <LottieBackground lottieId={sc.id} />
+              </AdoptTile>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="sr-card">
