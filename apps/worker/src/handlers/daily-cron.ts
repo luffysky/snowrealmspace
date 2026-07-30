@@ -20,6 +20,28 @@ const BIRTHDAY_HOUR = 9
 const WEEKLY_WEEKDAY = 'Mon'
 
 type SpaceRow = { id: string; timezone: string; owner_id: string }
+
+/**
+ * 讀取某個 feature flag 的閘門狀態：全域預設 + per-space 覆寫。
+ * worker 沒有 web 的 flags 快取層，直接用 admin client 查（flag 是系統設定，非使用者資料）。
+ */
+async function loadFlagGate(
+  admin: ReturnType<typeof createAdminClient>,
+  key: string,
+): Promise<{ global: boolean; overrides: Map<string, boolean> }> {
+  const { data: globalRow } = await admin
+    .from('feature_flags')
+    .select('enabled')
+    .eq('key', key)
+    .maybeSingle()
+  const { data: overrideRows } = await admin
+    .from('space_feature_overrides')
+    .select('space_id, enabled')
+    .eq('key', key)
+  const overrides = new Map<string, boolean>()
+  for (const r of overrideRows ?? []) overrides.set(r.space_id, r.enabled)
+  return { global: globalRow?.enabled ?? false, overrides }
+}
 type SpaceWithBirthday = SpaceRow & {
   space_settings: {
     birthday_month: number | null
@@ -112,7 +134,12 @@ export async function handleInsightWeekly(_jobs: Job<unknown>[]): Promise<void> 
   const now = new Date()
   let done = 0
 
+  // weeklyRecap flag gate（ADR-018）：全域預設 + per-space 覆寫。關閉就整個略過，
+  // 不再對所有 space 無條件跑 —— 這樣後台切這個 flag 才真的有作用。
+  const weekly = await loadFlagGate(admin, 'weeklyRecap')
+
   for (const s of (spaces ?? []) as SpaceRow[]) {
+    if (!(weekly.overrides.get(s.id) ?? weekly.global)) continue
     const { hour, weekday } = localParts(s.timezone, now)
     if (hour !== WEEKLY_HOUR || weekday !== WEEKLY_WEEKDAY) continue
     try {

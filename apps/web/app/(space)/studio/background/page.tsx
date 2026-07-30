@@ -9,6 +9,7 @@ import {
 import { BackgroundStudio, type AssetOption } from './BackgroundStudio'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import type { Playlist } from './PlaylistPanel'
+import { isEnabled } from '@/lib/flags'
 
 export const metadata: Metadata = { title: 'Background Studio — SnowRealm-Space' }
 export const dynamic = 'force-dynamic'
@@ -16,6 +17,10 @@ export const dynamic = 'force-dynamic'
 export default async function BackgroundStudioPage() {
   const { space } = await requireActiveSpace()
   const db = await getDb()
+
+  // videoBackground flag 關閉時：不列出影片素材、也不提供影片背景（與後端端點一致）
+  const videoEnabled = await isEnabled('videoBackground', space.id)
+  const assetKinds = videoEnabled ? ['image', 'video'] : ['image']
 
   const [{ data: backgrounds }, { data: playlists }, { data: assets }] = await Promise.all([
     db
@@ -35,7 +40,7 @@ export default async function BackgroundStudioPage() {
       .from('assets')
       .select('id, kind, original_filename')
       .eq('space_id', space.id)
-      .in('kind', ['image', 'video'])
+      .in('kind', assetKinds)
       .eq('status', 'ready')
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
@@ -65,7 +70,7 @@ export default async function BackgroundStudioPage() {
       <section>
         <h1 style={{ fontSize: 'var(--sr-text-h1)' }}>Background Studio</h1>
         <p className="sr-muted">
-          把圖片或影片變成背景，調整它的樣子、加霧面玻璃、裁切，再組成會自動輪播的幻燈片。
+          把{videoEnabled ? '圖片或影片' : '圖片'}變成背景，調整它的樣子、加霧面玻璃、裁切，再組成會自動輪播的幻燈片。
         </p>
       </section>
 

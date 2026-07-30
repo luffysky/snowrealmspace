@@ -4,6 +4,7 @@ import { emitEvent } from '@snowrealm/analytics'
 import { parseColor, relativeLuminance } from '@snowrealm/theme-engine'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, failValidation, handler } from '@/lib/api/respond'
+import { isEnabled } from '@/lib/flags'
 
 export const dynamic = 'force-dynamic'
 
@@ -63,6 +64,12 @@ export const POST = handler(async (request: NextRequest) => {
   const parsed = backgroundCreateSchema.safeParse(body)
   if (!parsed.success) return failValidation(parsed.error)
   const input = parsed.data
+
+  // 影片背景受 videoBackground flag 控制（ADR-018）：關閉時不能建立影片背景。
+  // 不是假關閉 —— UI 也會隱藏影片選項，這裡是端點層的實際把關。
+  if (input.type === 'video' && !(await isEnabled('videoBackground', ctx.spaceId))) {
+    return fail('NOT_FOUND', '影片背景目前未啟用。')
+  }
 
   // 引用的 asset 必須屬於同一個 space（RLS 會擋，但錯誤訊息要說得清楚）
   let derivedName: string | null = null
