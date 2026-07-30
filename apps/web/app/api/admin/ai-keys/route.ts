@@ -37,6 +37,8 @@ export const GET = handler(async () => {
       enabled: row?.enabled ?? false,
       lastOkAt: row?.last_ok_at ?? null,
       lastError: row?.last_error ?? null,
+      monthlyBudgetUsd: row?.monthly_budget_usd ?? null,
+      usedThisMonthUsd: row?.used_this_month_usd ?? 0,
     }
   })
 

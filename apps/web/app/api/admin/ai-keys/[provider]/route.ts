@@ -81,6 +81,54 @@ export const PUT = handler(
   },
 )
 
+const patchSchema = z
+  .object({
+    enabled: z.boolean().optional(),
+    monthlyBudgetUsd: z.number().min(0).nullable().optional(),
+  })
+  .strict()
+  .refine((v) => Object.keys(v).length > 0, { message: '沒有要更新的欄位' })
+
+/**
+ * 更新既有金鑰的啟用狀態 / 每月預算 —— 不需重新貼金鑰。
+ * PUT 是「換金鑰」（要求 key），這裡是「改設定」。找不到既有列就 404。
+ */
+export const PATCH = handler(
+  async (request: NextRequest, { params }: { params: Promise<{ provider: string }> }) => {
+    const g = await gate()
+    if (!g.ok) return g.res
+    const { provider } = await params
+    if (!KNOWN.has(provider as ProviderId)) return fail('NOT_FOUND', '不支援的 provider。')
+
+    const body: unknown = await request.json().catch(() => null)
+    const parsed = patchSchema.safeParse(body)
+    if (!parsed.success) return failValidation(parsed.error)
+
+    const admin = createAdminClient()
+    const { data: existing } = await admin
+      .from('ai_provider_keys')
+      .select('provider')
+      .eq('provider', provider)
+      .maybeSingle()
+    if (!existing) return fail('NOT_FOUND', '這個 provider 還沒有金鑰。')
+
+    const patch: { enabled?: boolean; monthly_budget_usd?: number | null } = {}
+    if (parsed.data.enabled !== undefined) patch.enabled = parsed.data.enabled
+    if (parsed.data.monthlyBudgetUsd !== undefined)
+      patch.monthly_budget_usd = parsed.data.monthlyBudgetUsd
+
+    const { error } = await admin
+      .from('ai_provider_keys')
+      .update(patch)
+      .eq('provider', provider)
+    if (error) {
+      console.error('[admin.ai-keys] 更新失敗', error.message)
+      return fail('INTERNAL', '無法更新。')
+    }
+    return ok({ provider, updated: true })
+  },
+)
+
 /** 移除某 provider 的金鑰。 */
 export const DELETE = handler(
   async (_req: NextRequest, { params }: { params: Promise<{ provider: string }> }) => {

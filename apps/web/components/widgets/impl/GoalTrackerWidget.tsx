@@ -22,6 +22,7 @@ export default function GoalTrackerWidget({ spaceId, config }: WidgetProps) {
   const [goals, setGoals] = useState<Goal[]>([])
   const [title, setTitle] = useState('')
   const [target, setTarget] = useState('1')
+  const [unit, setUnit] = useState('')
   const [adding, setAdding] = useState(false)
   const [err, setErr] = useState<string | null>(null)
 
@@ -53,13 +54,14 @@ export default function GoalTrackerWidget({ spaceId, config }: WidgetProps) {
       const res = await fetch('/api/goals', {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-        body: JSON.stringify({ title: t, target: n }),
+        body: JSON.stringify({ title: t, target: n, unit: unit.trim() }),
       })
       if (!res.ok) throw new Error()
       const body = (await res.json()) as { data: Goal }
       setGoals((prev) => [body.data, ...prev])
       setTitle('')
       setTarget('1')
+      setUnit('')
     } catch {
       setErr('新增失敗，請再試一次。')
     } finally {
@@ -168,6 +170,18 @@ export default function GoalTrackerWidget({ spaceId, config }: WidgetProps) {
               value={target}
               onChange={(e) => setTarget(e.target.value)}
               aria-label="目標數量"
+            />
+            <input
+              className="sr-input"
+              style={{ width: 60 }}
+              placeholder="單位"
+              value={unit}
+              maxLength={20}
+              onChange={(e) => setUnit(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') void addGoal()
+              }}
+              aria-label="單位（例如 次、頁、公里）"
             />
             <button type="button" className="sr-button" onClick={() => void addGoal()} disabled={adding || !title.trim()}>
               加

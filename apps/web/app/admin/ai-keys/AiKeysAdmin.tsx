@@ -14,6 +14,8 @@ type ProviderRow = {
   enabled: boolean
   lastOkAt: string | null
   lastError: string | null
+  monthlyBudgetUsd: number | null
+  usedThisMonthUsd: number
 }
 
 export function AiKeysAdmin() {
@@ -21,6 +23,7 @@ export function AiKeysAdmin() {
   const [rows, setRows] = useState<ProviderRow[]>([])
   const [loading, setLoading] = useState(true)
   const [drafts, setDrafts] = useState<Record<string, string>>({})
+  const [budgetDrafts, setBudgetDrafts] = useState<Record<string, string>>({})
   const [busy, setBusy] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
 
@@ -33,6 +36,12 @@ export function AiKeysAdmin() {
     }
     const body = (await res.json()) as { data: { providers: ProviderRow[] } }
     setRows(body.data.providers)
+    // 預算輸入框帶入目前值（null → 空字串＝不限額）
+    setBudgetDrafts(
+      Object.fromEntries(
+        body.data.providers.map((p) => [p.provider, p.monthlyBudgetUsd != null ? String(p.monthlyBudgetUsd) : '']),
+      ),
+    )
     setLoading(false)
   }
 
@@ -74,6 +83,39 @@ export function AiKeysAdmin() {
     } finally {
       setBusy(null)
     }
+  }
+
+  /** 改啟用狀態 / 每月預算 —— 不必重貼金鑰（走 PATCH）。 */
+  async function patchProvider(provider: string, patch: { enabled?: boolean; monthlyBudgetUsd?: number | null }) {
+    setBusy(provider)
+    setNotice(null)
+    try {
+      const res = await fetch(`/api/admin/ai-keys/${provider}`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(patch),
+      })
+      const body: unknown = await res.json().catch(() => null)
+      if (!res.ok) {
+        setNotice(`✕ ${(body as { error?: { message?: string } } | null)?.error?.message ?? '更新失敗。'}`)
+        return
+      }
+      await load()
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  async function saveBudget(provider: string) {
+    const raw = (budgetDrafts[provider] ?? '').trim()
+    // 空字串 → 清掉預算（null，不限額）；否則存成數字
+    const value = raw === '' ? null : Number(raw)
+    if (value !== null && (!Number.isFinite(value) || value < 0)) {
+      setNotice('✕ 預算要是 0 以上的數字。')
+      return
+    }
+    await patchProvider(provider, { monthlyBudgetUsd: value })
+    setNotice('✓ 已更新每月預算。')
   }
 
   if (loading) return <p className="sr-muted">載入中…</p>
@@ -118,6 +160,36 @@ export function AiKeysAdmin() {
             </a>
           </p>
 
+          {/* 有金鑰時：每月預算（美元）+ 已用量。空白＝不限額。 */}
+          {r.hasKey && (
+            <div className="sr-form-cols" style={{ alignItems: 'end' }}>
+              <label className="sr-field">
+                <span>每月預算（USD，留空＝不限額）</span>
+                <input
+                  className="sr-input"
+                  type="number"
+                  min={0}
+                  step="0.01"
+                  placeholder="不限額"
+                  value={budgetDrafts[r.provider] ?? ''}
+                  onChange={(e) => setBudgetDrafts((d) => ({ ...d, [r.provider]: e.target.value }))}
+                />
+              </label>
+              <button
+                type="button"
+                className="sr-button sr-button-secondary"
+                disabled={busy === r.provider}
+                onClick={() => void saveBudget(r.provider)}
+              >
+                儲存預算
+              </button>
+              <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm, 0.85rem)' }}>
+                本月已用 ${r.usedThisMonthUsd.toFixed(2)}
+                {r.monthlyBudgetUsd != null ? ` / $${r.monthlyBudgetUsd.toFixed(2)}` : ''}
+              </span>
+            </div>
+          )}
+
           <div className="sr-btn-row">
             <button
               type="button"
@@ -127,6 +199,16 @@ export function AiKeysAdmin() {
             >
               {busy === r.provider ? '測試並儲存中…' : '測試並儲存'}
             </button>
+            {r.hasKey && (
+              <button
+                type="button"
+                className="sr-button sr-button-secondary"
+                disabled={busy === r.provider}
+                onClick={() => void patchProvider(r.provider, { enabled: !r.enabled })}
+              >
+                {r.enabled ? '停用' : '啟用'}
+              </button>
+            )}
             {r.hasKey && (
               <button
                 type="button"

@@ -73,6 +73,12 @@ function hashPrompt(usageKey: string, spaceId: string, prompt: string): string {
   return createHash('sha256').update(`${usageKey}|${spaceId}|${normalizeQuestion(prompt)}`).digest('hex')
 }
 
+/** 兩個 YYYY-MM-DD 日期是否落在同一個年月（每月預算重置用）。 */
+function sameMonth(a: string | null | undefined, b: string): boolean {
+  if (!a) return false
+  return a.slice(0, 7) === b.slice(0, 7)
+}
+
 export async function buildCompleteDeps(
   spaceId: string,
   localDate: string,
@@ -90,10 +96,19 @@ export async function buildCompleteDeps(
     fetchEncrypted: async (provider: ProviderId) => {
       const { data } = await admin
         .from('ai_provider_keys')
-        .select('api_key_encrypted, enabled')
+        .select('api_key_encrypted, enabled, monthly_budget_usd, used_this_month_usd, budget_reset_at')
         .eq('provider', provider)
         .maybeSingle()
-      return data?.enabled ? data.api_key_encrypted : null
+      if (!data?.enabled) return null
+      // 每月預算閘門：超過就當作「沒有可用金鑰」，候選鏈自動跳過這個 provider，
+      // 改走免費 / 其他 provider（而不是硬失敗）。跨月則視為已重置（used 當 0）。
+      if (data.monthly_budget_usd != null) {
+        const used = sameMonth(data.budget_reset_at, localDate)
+          ? Number(data.used_this_month_usd ?? 0)
+          : 0
+        if (used >= Number(data.monthly_budget_usd)) return null
+      }
+      return data.api_key_encrypted
     },
   })
 
@@ -180,6 +195,27 @@ export async function buildCompleteDeps(
         p_local_date: localDate,
         p_is_free: e.isFree,
       })
+
+      // 累計 provider 每月花費（付費呼叫才計）—— 給後台每月預算顯示與把關。
+      // 跨月自動重置：budget_reset_at 不在本月就從 0 起算並把日期設成今天。
+      if (cost > 0 && !e.isFree) {
+        const { data: cur } = await admin
+          .from('ai_provider_keys')
+          .select('used_this_month_usd, budget_reset_at')
+          .eq('provider', e.provider)
+          .maybeSingle()
+        if (cur) {
+          const inMonth = sameMonth(cur.budget_reset_at, localDate)
+          const base = inMonth ? Number(cur.used_this_month_usd ?? 0) : 0
+          await admin
+            .from('ai_provider_keys')
+            .update({
+              used_this_month_usd: base + cost,
+              ...(inMonth ? {} : { budget_reset_at: localDate }),
+            })
+            .eq('provider', e.provider)
+        }
+      }
     },
 
     cacheGet: async (usageKey, space, prompt) => {
