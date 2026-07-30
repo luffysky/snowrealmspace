@@ -173,6 +173,7 @@ export function WorksClient({
               memoryEnabled={memoryEnabled}
               onAddVersion={() => void addVersion(selected)}
               onDelete={() => void deleteFile(selected)}
+              onUpdated={() => void reload()}
             />
           )}
         </div>
@@ -214,12 +215,14 @@ function WorkDetail({
   memoryEnabled,
   onAddVersion,
   onDelete,
+  onUpdated,
 }: {
   spaceId: string
   file: WorkFile
   memoryEnabled: boolean
   onAddVersion: () => void
   onDelete: () => void
+  onUpdated: () => void
 }) {
   const snaps = [...file.snapshots].sort((a, b) => a.created_at.localeCompare(b.created_at))
   const [a, setA] = useState<string | null>(snaps[0]?.id ?? null)
@@ -230,6 +233,41 @@ function WorkDetail({
   const [visibility, setVisibility] = useState(file.visibility)
   const [visSaving, setVisSaving] = useState(false)
   const [visErr, setVisErr] = useState<string | null>(null)
+  // 作品資料編輯（標題/描述/標籤）—— 建立後一直沒有入口可改
+  const [editing, setEditing] = useState(false)
+  const [editTitle, setEditTitle] = useState(file.title)
+  const [editDesc, setEditDesc] = useState(file.description ?? '')
+  const [editTags, setEditTags] = useState((file.tags ?? []).join(', '))
+  const [editSaving, setEditSaving] = useState(false)
+  const [editErr, setEditErr] = useState<string | null>(null)
+
+  async function saveEdit() {
+    const title = editTitle.trim()
+    if (!title) {
+      setEditErr('標題不能空白。')
+      return
+    }
+    setEditSaving(true)
+    setEditErr(null)
+    try {
+      const tags = editTags
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean)
+      const res = await fetch(`/api/design/files/${file.id}`, {
+        method: 'PATCH',
+        headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+        body: JSON.stringify({ title, description: editDesc.trim() || null, tags }),
+      })
+      if (!res.ok) throw new Error()
+      setEditing(false)
+      onUpdated()
+    } catch {
+      setEditErr('存不了，請再試一次。')
+    } finally {
+      setEditSaving(false)
+    }
+  }
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null)
   const [aiBusy, setAiBusy] = useState(false)
   const [aiErr, setAiErr] = useState<string | null>(null)
@@ -324,6 +362,9 @@ function WorkDetail({
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
         <h2 style={{ fontSize: 'var(--sr-text-lg)', minWidth: 0, overflowWrap: 'anywhere' }}>{file.title}</h2>
         <div className="sr-btn-row">
+          <button className="sr-button sr-button-secondary" type="button" onClick={() => setEditing((v) => !v)} aria-expanded={editing}>
+            {editing ? '取消編輯' : '編輯資料'}
+          </button>
           <button className="sr-button sr-button-secondary" type="button" onClick={onAddVersion}>
             新增版本
           </button>
@@ -332,6 +373,29 @@ function WorkDetail({
           </button>
         </div>
       </div>
+
+      {editing && (
+        <div className="sr-card sr-stack" style={{ gap: 'var(--sr-space-2)' }}>
+          <label className="sr-field" style={{ margin: 0 }}>
+            <span>標題</span>
+            <input className="sr-input" value={editTitle} maxLength={120} onChange={(e) => setEditTitle(e.target.value)} />
+          </label>
+          <label className="sr-field" style={{ margin: 0 }}>
+            <span>描述</span>
+            <textarea className="sr-input" rows={2} value={editDesc} maxLength={2000} onChange={(e) => setEditDesc(e.target.value)} placeholder="這個作品是關於…" />
+          </label>
+          <label className="sr-field" style={{ margin: 0 }}>
+            <span>標籤（用逗號分隔）</span>
+            <input className="sr-input" value={editTags} onChange={(e) => setEditTags(e.target.value)} placeholder="海報, 插畫, 品牌" />
+          </label>
+          {editErr && <p className="sr-message sr-message-error" style={{ margin: 0 }}>{editErr}</p>}
+          <div className="sr-btn-row">
+            <button className="sr-button" type="button" onClick={() => void saveEdit()} disabled={editSaving || !editTitle.trim()}>
+              {editSaving ? '儲存中…' : '儲存'}
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center', flexWrap: 'wrap' }}>
         <label className="sr-field" style={{ margin: 0 }}>

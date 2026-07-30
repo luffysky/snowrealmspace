@@ -7,7 +7,7 @@ import { Uploader } from './Uploader'
 import { AssetGrid, type AssetRow, type AssetActions } from './AssetGrid'
 import { ThemeFromImage } from './ThemeFromImage'
 
-type KindFilter = 'all' | 'image' | 'video' | 'pdf'
+type KindFilter = 'all' | 'image' | 'video' | 'pdf' | 'audio'
 type ArchivedFilter = 'exclude' | 'only'
 type Folder = { id: string; name: string; count: number }
 /** 'all' 全部、'none' 未分類、或某個 folder id。 */
@@ -18,6 +18,7 @@ const KIND_LABEL: Record<KindFilter, string> = {
   image: '圖片',
   video: '影片',
   pdf: 'PDF',
+  audio: '音訊',
 }
 
 export function LibraryClient({
@@ -33,6 +34,9 @@ export function LibraryClient({
   const [selected, setSelected] = useState<AssetRow | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  // 分頁：後端一頁 60 筆並回 nextCursor，之前前端從不翻頁 → 超過 60 筆的素材看不到
+  const [nextCursor, setNextCursor] = useState<string | null>(null)
+  const [loadingMore, setLoadingMore] = useState(false)
 
   // 篩選狀態
   const [kind, setKind] = useState<KindFilter>('all')
@@ -76,12 +80,45 @@ export function LibraryClient({
     try {
       const res = await fetch(`/api/assets?${buildQuery()}`, { headers })
       if (!res.ok) return
-      const body = (await res.json()) as { data: AssetRow[] }
+      const body = (await res.json()) as {
+        data: AssetRow[]
+        meta?: { page?: { hasMore: boolean; nextCursor: string | null } }
+      }
       setAssets(body.data)
+      setNextCursor(body.meta?.page?.hasMore ? (body.meta.page.nextCursor ?? null) : null)
     } finally {
       if (!silent) setLoading(false)
     }
   }, [buildQuery])
+
+  /** 載入下一頁並附加（cursor 分頁）。 */
+  const loadMore = useCallback(async () => {
+    if (!nextCursor || loadingMore) return
+    setLoadingMore(true)
+    try {
+      const res = await fetch(`/api/assets?${buildQuery()}&cursor=${encodeURIComponent(nextCursor)}`, {
+        headers,
+      })
+      if (!res.ok) return
+      const body = (await res.json()) as {
+        data: AssetRow[]
+        meta?: { page?: { hasMore: boolean; nextCursor: string | null } }
+      }
+      setAssets((prev) => [...prev, ...body.data])
+      setNextCursor(body.meta?.page?.hasMore ? (body.meta.page.nextCursor ?? null) : null)
+    } finally {
+      setLoadingMore(false)
+    }
+  }, [nextCursor, loadingMore, buildQuery])
+
+  // SSR 初次帶 60 筆但沒帶 cursor；若剛好是一整頁（可能還有更多），
+  // 靜默取一次 cursor 讓「載入更多」出得來。只在掛載時做一次。
+  const cursorPrimed = useRef(false)
+  useEffect(() => {
+    if (cursorPrimed.current) return
+    cursorPrimed.current = true
+    if (initialAssets.length >= 60) void refresh(true)
+  }, [initialAssets.length, refresh])
 
   // 篩選改變 → 重新查詢（搜尋框做 300ms debounce）
   const firstRun = useRef(true)
@@ -502,6 +539,19 @@ export function LibraryClient({
         selectedId={selected?.id ?? null}
         loading={loading}
       />
+
+      {nextCursor && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--sr-space-3)' }}>
+          <button
+            type="button"
+            className="sr-button sr-button-secondary"
+            onClick={() => void loadMore()}
+            disabled={loadingMore}
+          >
+            {loadingMore ? '載入中…' : '載入更多'}
+          </button>
+        </div>
+      )}
     </div>
   )
 }
