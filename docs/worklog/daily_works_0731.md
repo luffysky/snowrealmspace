@@ -36,9 +36,28 @@
 
 **未接（非破損、刻意）**：projects/design-files 伺服器篩選（前端 client-side 篩選本就可用）、GET /api/memories（頁面走 SSR 冗餘）、DB dead schema（多為 migration 標延後）。
 
+## #55 內建背景擴充 + 套件化下載（完成）
+
+- **+35 場景**（scenes.ts 302→335，六分類；去掉 13 個撞名近似項）。
+- **套件化下載**：新 `apps/web/lib/scene-packs.ts`（6 分類 + Lottie = 7 套件）；BackgroundStudio 加 per-space「已取得」狀態（localStorage）、未取得可預覽（🔒）、取得後可套用、分頁/卡片鎖標 + 取得橫幅。honest「收進你的空間」模型，非假網路下載；既有已套用背景不受影響。commit ae54b98 / f213fab。
+
+## #50 內容補量（大批，已 seed 上 hosted）
+
+- **greeting 4019**：268→4019。4 輪各時段 4 子代理，自寫組裝器 `scratchpad/assemble_greetings.py`（全池近似去重 + FORBIDDEN + night 不催促 + 長度）過 check:content。中途改子代理直寫檔案（只回 done）省 token。batch 20–24。
+- **milestone 205 / surprise 999**：里程碑各節點+generic 適度擴充；驚喜盒各 rarity 續號（label+text+tags）。通用組裝器 `assemble_pool.py`（全池去重 + 保留 tags/label）。**坑**：surprise id 我先誤用 entry 數當最大號 → 撞號，改依各 rarity 真實最大號（common 311+/uncommon 273+…）續號才過。commit d38bc29。
+- **三池 round1**：micro/seasonal/welcome 各 +~800（1955/1932/1940→2752/2731/2736），6 子代理直寫 + assemble_pool，`-x1-` 批次 infix 免撞號。commit 347f771。續朝 4000 各差 ~1250。
+- 全程 `pnpm seed:content` 灌 hosted（Zeabur，upsert 冪等，22572 則）。
+
+## 待辦全稽核（子代理，對照實際程式）
+
+- 確認一堆 backlog/0724 標「未做」其實**早做了**（對話歷史摘要、富文本、textZoneLuminance、公開作品集/分享、Email 週報、#55 套件化）。
+- 真正沒做又沒卡的只剩：**裝飾品擴充**（81 SVG 多表情臉、0729 提過）、協作、i18n、經濟層(Trust/AI Dot)、型別重生(S)、output:standalone(S)。
+- 校正後的權威狀態寫進 `docs/todo/todo_list_0731.md`。
+
 ## 待你
 
 - **重要**：redeploy 後若要用**影片背景 / 每週回顧**，到 **後台 → Feature Flags 開 `videoBackground` / `weeklyRecap`**（部署後預設關）。
 - 手機實機確認 widget ↑↓ 排序、圓齒輪不擋內容。
-- 有空實測這批新入口（主題版本/最愛、作品編輯、AI 金鑰預算、素材翻頁、捕捉還原、agent 動作確認）。
-- Canva A/B、#55 仍等你開一次 live session（見 `todo_list_0728.md` §E）。
+- 有空實測這批新入口（主題版本/最愛、作品編輯、AI 金鑰預算、素材翻頁、捕捉還原、agent 動作確認、背景商店套件取得）。
+- 三池續補到 4000（產線成熟，說「繼續」即可）；下一個純程式建議做**裝飾品擴充**。
+- Canva A/B、Lottie 素材、#55 第7類 仍等你開 live session（見 `todo_list_0731.md`）。
