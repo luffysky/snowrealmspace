@@ -351,6 +351,34 @@ export function HomeGrid({
     [api, breakpoint, layoutId, initialWidgets],
   )
 
+  /**
+   * 行動版重新排序。桌機/平板是拖曳格線，手機是單欄，沒有格線可拖 ——
+   * 改用每個區塊的 ↑ ↓ 上移／下移。順序存在 position.mobile.order，
+   * 走 bulk API（breakpoint: 'mobile'，只帶 id + order）。
+   * 樂觀更新：先改本地順序，失敗回滾並說明。
+   */
+  const commitMobileOrder = useCallback(
+    (orderedIds: string[]) => {
+      const items = orderedIds.map((id, index) => ({ id, order: index }))
+      setWidgets((prev) =>
+        prev.map((w) => {
+          const idx = orderedIds.indexOf(w.id)
+          return idx === -1
+            ? w
+            : { ...w, position: { ...w.position, mobile: { order: idx } } }
+        }),
+      )
+      void api(`/api/layouts/${layoutId}/widgets/bulk`, {
+        method: 'PATCH',
+        body: JSON.stringify({ breakpoint: 'mobile', items }),
+      }).catch((err: unknown) => {
+        setNotice(err instanceof Error ? err.message : '順序沒有存起來。')
+        setWidgets(initialWidgets)
+      })
+    },
+    [api, layoutId, initialWidgets],
+  )
+
   async function addWidget(definitionId: string) {
     try {
       const created = (await api(`/api/layouts/${layoutId}/widgets`, {
@@ -541,6 +569,12 @@ export function HomeGrid({
         </p>
       )}
 
+      {editing && breakpoint === 'mobile' && (
+        <p className="sr-muted" style={{ margin: 0 }}>
+          手機是單欄排列。用每個區塊左上角的 ↑ ↓ 調整順序，這個順序只影響手機。
+        </p>
+      )}
+
       {notice && (
         <p className="sr-message sr-message-error" role="alert">
           ✕ {notice}
@@ -589,16 +623,55 @@ export function HomeGrid({
           </section>
         ) : breakpoint === 'mobile' ? (
           // 行動版是單欄排序，不使用格線（06-widget-contract.md §1）。
+          // 沒有格線可拖曳，改用每個區塊的 ↑ ↓ 上移／下移調整順序（只在編輯模式）。
           // 外層仍用 .sr-widget-slot，毛玻璃預算的偵測才涵蓋得到行動版。
-          <div className="sr-mobile-stack">
-            {[...visible]
-              .sort((a, b) => (a.position?.mobile?.order ?? 0) - (b.position?.mobile?.order ?? 0))
-              .map((w) => (
-                <div key={w.id} className="sr-widget-slot">
-                  {renderWidget(w.id)}
-                </div>
-              ))}
-          </div>
+          (() => {
+            const ordered = [...visible].sort(
+              (a, b) => (a.position?.mobile?.order ?? 0) - (b.position?.mobile?.order ?? 0),
+            )
+            const orderedIds = ordered.map((w) => w.id)
+            const move = (index: number, dir: -1 | 1) => {
+              const next = index + dir
+              if (next < 0 || next >= orderedIds.length) return
+              const reordered = [...orderedIds]
+              const [moved] = reordered.splice(index, 1)
+              reordered.splice(next, 0, moved!)
+              commitMobileOrder(reordered)
+            }
+            return (
+              <div className="sr-mobile-stack">
+                {ordered.map((w, i) => (
+                  <div key={w.id} className="sr-widget-slot">
+                    {editing && (
+                      <div className="sr-mobile-reorder" aria-hidden={false}>
+                        <button
+                          type="button"
+                          className="sr-mobile-reorder-btn"
+                          onClick={() => move(i, -1)}
+                          disabled={i === 0}
+                          aria-label="上移"
+                          title="上移"
+                        >
+                          ↑
+                        </button>
+                        <button
+                          type="button"
+                          className="sr-mobile-reorder-btn"
+                          onClick={() => move(i, 1)}
+                          disabled={i === ordered.length - 1}
+                          aria-label="下移"
+                          title="下移"
+                        >
+                          ↓
+                        </button>
+                      </div>
+                    )}
+                    {renderWidget(w.id)}
+                  </div>
+                ))}
+              </div>
+            )
+          })()
         ) : (
           <WidgetGrid
             items={toGridItems(visible, breakpoint)}
