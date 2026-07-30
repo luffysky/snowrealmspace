@@ -6,16 +6,17 @@ import { sanitizeRichHtml } from '@/lib/rich-html'
 
 export const dynamic = 'force-dynamic'
 
-/** inbox 清單（未處理的最近在前）。 */
-export const GET = handler(async () => {
+/** inbox 清單（未處理的最近在前）。?status=archived 可看已收起、供還原。 */
+export const GET = handler(async (request: NextRequest) => {
   const result = await resolveContext()
   if (!result.ok) return fail(result.reason === 'unauthenticated' ? 'UNAUTHENTICATED' : 'FORBIDDEN', '沒有存取權。')
   const { ctx } = result
+  const status = new URL(request.url).searchParams.get('status') === 'archived' ? 'archived' : 'inbox'
   const { data, error } = await ctx.db
     .from('capture_inbox')
     .select('id, body, source, status, created_at')
     .eq('space_id', ctx.spaceId)
-    .eq('status', 'inbox')
+    .eq('status', status)
     .order('created_at', { ascending: false })
     .limit(200)
   if (error) return fail('INTERNAL', '載入 inbox 失敗。')

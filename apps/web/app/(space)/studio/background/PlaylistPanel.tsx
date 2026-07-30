@@ -344,6 +344,22 @@ export function PlaylistPanel({
               </div>
             )}
 
+            {/* 切換動畫時長：後端與解析器早就吃 transition_ms，只差這個控制項 */}
+            <div className="sr-field">
+              <label className="sr-label" htmlFor={`transition-${playlist.id}`}>
+                切換淡入淡出 {(playlist.transition_ms / 1000).toFixed(1)} 秒
+              </label>
+              <input
+                type="range"
+                id={`transition-${playlist.id}`}
+                min={0}
+                max={3000}
+                step={100}
+                value={playlist.transition_ms}
+                onChange={(e) => void patch(playlist.id, { transitionMs: Number(e.target.value) })}
+              />
+            </div>
+
             {playlist.play_mode === 'time_of_day' && (
               <div className="sr-field">
                 <ScheduleEditor

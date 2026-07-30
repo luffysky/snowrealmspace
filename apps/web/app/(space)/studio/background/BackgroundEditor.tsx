@@ -143,6 +143,15 @@ export function BackgroundEditor({
             onChange={(v) => set({ saturation: v }, { saturation: v })}
           />
           <Slider
+            id="bg-contrast"
+            label="對比"
+            min={0.2}
+            max={2}
+            step={0.05}
+            value={local.contrast}
+            onChange={(v) => set({ contrast: v }, { contrast: v })}
+          />
+          <Slider
             id="bg-overlay"
             label="疊色濃度"
             min={0}

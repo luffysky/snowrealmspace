@@ -22,9 +22,11 @@ function isEmptyHtml(html: string): boolean {
 export function NotesManager({ spaceId, initial }: { spaceId: string; initial: Note[] }) {
   const [notes, setNotes] = useState<Note[]>(initial)
   const [draft, setDraft] = useState('')
+  const [draftTitle, setDraftTitle] = useState('')
   const [busy, setBusy] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editBody, setEditBody] = useState('')
+  const [editTitle, setEditTitle] = useState('')
   const [err, setErr] = useState<string | null>(null)
 
   async function add() {
@@ -33,15 +35,17 @@ export function NotesManager({ spaceId, initial }: { spaceId: string; initial: N
     setBusy(true)
     setErr(null)
     try {
+      const title = draftTitle.trim()
       const res = await fetch('/api/notes', {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-        body: JSON.stringify({ body }),
+        body: JSON.stringify(title ? { title, body } : { body }),
       })
       if (!res.ok) throw new Error()
       const b = (await res.json()) as { data: Note }
       setNotes((prev) => [b.data, ...prev])
       setDraft('')
+      setDraftTitle('')
     } catch {
       setErr('新增失敗，請再試一次。')
     } finally {
@@ -53,14 +57,15 @@ export function NotesManager({ spaceId, initial }: { spaceId: string; initial: N
     const body = editBody
     if (isEmptyHtml(editBody)) return
     setErr(null)
+    const title = editTitle.trim() || null
     const prev = notes
-    setNotes((p) => p.map((n) => (n.id === id ? { ...n, body } : n)))
+    setNotes((p) => p.map((n) => (n.id === id ? { ...n, body, title } : n)))
     setEditingId(null)
     try {
       const res = await fetch(`/api/notes/${id}`, {
         method: 'PATCH',
         headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-        body: JSON.stringify({ body }),
+        body: JSON.stringify({ body, title }),
       })
       if (!res.ok) throw new Error()
       const b = (await res.json()) as { data: Note }
@@ -88,6 +93,14 @@ export function NotesManager({ spaceId, initial }: { spaceId: string; initial: N
     <div className="sr-stack">
       <section className="sr-card">
         <label className="sr-visually-hidden">新筆記</label>
+        <input
+          className="sr-input"
+          value={draftTitle}
+          maxLength={120}
+          placeholder="標題（可留白）"
+          onChange={(e) => setDraftTitle(e.target.value)}
+          style={{ marginBottom: 'var(--sr-space-2)' }}
+        />
         <RichEditor value={draft} onChange={setDraft} placeholder="寫點什麼…（可加粗體、表情、GIF）" />
         <div className="sr-row" style={{ justifyContent: 'flex-end', marginTop: 'var(--sr-space-2)' }}>
           <button type="button" className="sr-button" onClick={() => void add()} disabled={busy || isEmptyHtml(draft)}>
@@ -107,6 +120,14 @@ export function NotesManager({ spaceId, initial }: { spaceId: string; initial: N
               <li key={n.id} className="sr-card" style={{ padding: 'var(--sr-space-3)' }}>
                 {editingId === n.id ? (
                   <>
+                    <input
+                      className="sr-input"
+                      value={editTitle}
+                      maxLength={120}
+                      placeholder="標題（可留白）"
+                      onChange={(e) => setEditTitle(e.target.value)}
+                      style={{ marginBottom: 'var(--sr-space-2)' }}
+                    />
                     <RichEditor value={editBody} onChange={setEditBody} />
                     <div className="sr-row" style={{ gap: '4px', marginTop: '4px', justifyContent: 'flex-end' }}>
                       <button type="button" className="sr-button" style={{ padding: '2px 10px' }} onClick={() => void saveEdit(n.id)}>儲存</button>
@@ -115,10 +136,11 @@ export function NotesManager({ spaceId, initial }: { spaceId: string; initial: N
                   </>
                 ) : (
                   <>
+                    {n.title && <h3 style={{ margin: '0 0 var(--sr-space-1)', fontSize: 'var(--sr-text-lg)' }}>{n.title}</h3>}
                     <RichHtml html={n.body} />
                     <div className="sr-row" style={{ gap: '4px', marginTop: 'var(--sr-space-2)', alignItems: 'center' }}>
                       <span className="sr-muted" style={{ fontSize: 'var(--sr-text-sm)' }}>{n.updated_at.slice(0, 10)}</span>
-                      <button type="button" className="sr-button sr-button-secondary" style={{ padding: '2px 10px', marginLeft: 'auto' }} onClick={() => { setEditingId(n.id); setEditBody(n.body) }}>編輯</button>
+                      <button type="button" className="sr-button sr-button-secondary" style={{ padding: '2px 10px', marginLeft: 'auto' }} onClick={() => { setEditingId(n.id); setEditBody(n.body); setEditTitle(n.title ?? '') }}>編輯</button>
                       <button type="button" className="sr-button sr-button-secondary" style={{ padding: '2px 10px' }} onClick={() => void remove(n.id)} aria-label="刪除">✕</button>
                     </div>
                   </>

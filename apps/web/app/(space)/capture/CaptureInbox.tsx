@@ -29,6 +29,43 @@ export function CaptureInbox({ spaceId, initial }: { spaceId: string; initial: C
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // 已封存清單（可還原回 inbox）。之前 restore 端點做好卻沒有地方看已封存的念頭。
+  const [showArchived, setShowArchived] = useState(false)
+  const [archived, setArchived] = useState<CaptureRow[] | null>(null)
+
+  async function toggleArchived() {
+    const next = !showArchived
+    setShowArchived(next)
+    if (next && archived === null) {
+      try {
+        const res = await fetch('/api/capture?status=archived', { headers: { 'x-space-id': spaceId } })
+        const b = (await res.json()) as { data: CaptureRow[] }
+        setArchived(res.ok ? b.data : [])
+      } catch {
+        setArchived([])
+      }
+    }
+  }
+
+  async function restore(id: string) {
+    setError(null)
+    const prev = archived ?? []
+    const item = prev.find((i) => i.id === id)
+    setArchived(prev.filter((i) => i.id !== id))
+    try {
+      const res = await fetch(`/api/capture/${id}`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
+        body: JSON.stringify({ action: 'restore' }),
+      })
+      if (!res.ok) throw new Error()
+      if (item) setItems((p) => [{ ...item, status: 'inbox' }, ...p])
+      setError('已放回 Inbox。')
+    } catch {
+      setArchived(prev)
+      setError('還原失敗，請重試。')
+    }
+  }
 
   async function add() {
     const body = draft
@@ -128,6 +165,38 @@ export function CaptureInbox({ spaceId, initial }: { spaceId: string; initial: C
               </li>
             ))}
           </ul>
+        )}
+      </section>
+
+      <section className="sr-card">
+        <button
+          type="button"
+          className="sr-button sr-button-secondary"
+          onClick={() => void toggleArchived()}
+          aria-expanded={showArchived}
+        >
+          {showArchived ? '收起已封存' : '看已封存的念頭'}
+        </button>
+
+        {showArchived && (
+          archived === null ? (
+            <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0' }}>載入中…</p>
+          ) : archived.length === 0 ? (
+            <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0' }}>沒有已封存的念頭。</p>
+          ) : (
+            <ul className="sr-stack" style={{ listStyle: 'none', margin: 'var(--sr-space-2) 0 0', padding: 0, gap: 'var(--sr-space-2)' }}>
+              {archived.map((it) => (
+                <li key={it.id} className="sr-card" style={{ padding: 'var(--sr-space-3)' }}>
+                  <RichHtml html={it.body} />
+                  <div className="sr-row" style={{ gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-2)', alignItems: 'center' }}>
+                    <button type="button" className="sr-button sr-button-secondary" style={{ padding: '2px 10px', marginLeft: 'auto' }} onClick={() => void restore(it.id)}>
+                      放回 Inbox
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )
         )}
       </section>
     </div>
