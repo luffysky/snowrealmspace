@@ -59,6 +59,23 @@
 
 ---
 
+## 📌 明天(0801)要寫的 spec —— Coco 經濟 × 能力鏈（跨專案：Platform / AI島 分身島）
+
+**目標**：把「文字 track 的 3 階能力鏈 + Coco 帳本 schema + 洗錢防呆規則」寫成一份可執行 spec。
+> 背景：0731 晚上與 Luffy(＋GPT)腦力激盪的「共用 Agent 腦 / 真 skill 商店 / Coco 貨幣」三合一 RPG 經濟。
+> 前提已查證：AI島 skill 商店是**真的**(~82% REAL、MCP 外部 skill 可接、有 skill-synthesis)；已有 `z_coin`(使用者幣)，但**無 agent 經濟層**。Coco = 軟幣、不可換回真錢、可單向 z_coin→Coco。
+
+spec 要涵蓋：
+1. **文字 track 3 階能力鏈**：copy-writer(已 REAL)為 T1；T2/T3 解鎖條件 = `XP 門檻 AND Coco 花費 AND 前置 skill`。兩軸分開：**XP＝實戰(每完成真任務得經驗)**、**Coco＝入場券/加速**。骨架手刻、葉子交給 skill-synthesis＋MCP＋社群長。
+2. **Coco 帳本 schema**：`agent_wallets(agent_id, coco)` + `coco_transactions`(append-only、冪等、單一帳本 —— 與 z_coin / AI Dot 同一個 Economy 服務，**不開第 4 套 fork**)。source＝使用者發薪/任務賞金；sink＝解鎖 skill / 算力 / 外包 / 打賞。
+3. **洗錢/濫用防呆(必寫)**：
+   - **faucet 只在使用者側**(agent↔agent 是零和重分配)；新分身出廠帶「能跟使用者賺錢」的 REAL skill。
+   - **XP 洗澡防呆**：peer(agent 出錢)任務給的 XP 打折/設上限，user(使用者出錢)任務給全額 → 互刷賺不到有效經驗。
+   - **花錢動作要授權可見**：分身外包/解鎖走**使用者給的自主額度**(呼應 Space 鐵則 #8：agent 對外/花費動作可見可控)。額度內＝驚喜、無邊界＝驚嚇。
+   - sink 要好花、faucet 要費力/付費 → 防通膨與死池。
+4. **V1 最小迴圈**：只做文字 track、使用者出賞金、解鎖花 Coco、一個「外包」動作綁可見額度、一張分享卡(賺了 X/學會 Y/接了 Z 案)。先跑通迴圈再長樹。
+5. 放哪：屬 Platform/AI島 範疇(種子＝ai_island_v3 的 orchestrator+tools+MCP+skill-synthesis)；spec 可放 `docs/spec/` 或 platform 規劃夾，並回連 `SnowRealm-Platform-Planning.md` 的 Economy 段。
+
 ## 待你
 - **重要**：要用**影片背景 / 每週回顧**，到 後台 → Feature Flags 開 `videoBackground` / `weeklyRecap`（部署後預設關）。
 - 三池（micro/seasonal/welcome）續補到 4000：產線已成熟（`scratchpad/assemble_pool.py` + 6 子代理/round），說「繼續」即可再跑；每 round 各 +~800。
