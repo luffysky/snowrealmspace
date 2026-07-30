@@ -1,0 +1,2389 @@
+# 歡迎鏈補充批次 x1（自動組裝、全池去重）。tags 為 tone。
+  - id: wl-x1a-0001
+    text: 歡迎回來，這裡一直都在。
+    tags: [warm]
+  - id: wl-x1a-0002
+    text: 你回來了，這裡沒有變。
+    tags: [cozy]
+  - id: wl-x1a-0003
+    text: 回來就好，一切都好好的。
+    tags: [gentle]
+  - id: wl-x1a-0004
+    text: 又見到你了，時間在這裡走得很慢。
+    tags: [quiet]
+  - id: wl-x1a-0005
+    text: 你來啦，你可以慢慢來。
+    tags: [soft]
+  - id: wl-x1a-0006
+    text: 回家了呢，沒有人在催你。
+    tags: [hello]
+  - id: wl-x1a-0007
+    text: 歡迎回到這裡，想待多久都可以。
+    tags: [home]
+  - id: wl-x1a-0008
+    text: 你終於回來了，這裡是你的地方。
+    tags: [companion]
+  - id: wl-x1a-0009
+    text: 很高興你回來，這片雪地還在等你。
+    tags: [buddy]
+  - id: wl-x1a-0010
+    text: 回來坐坐吧，光還亮著。
+    tags: [poem]
+  - id: wl-x1a-0011
+    text: 進來吧，窩還是暖的。
+    tags: [warm]
+  - id: wl-x1a-0012
+    text: 慢慢走進來，一切都為你留著。
+    tags: [cozy]
+  - id: wl-x1a-0013
+    text: 把外套放下吧，我哪裡都沒去。
+    tags: [gentle]
+  - id: wl-x1a-0014
+    text: 先坐一會兒，這裡很安靜。
+    tags: [quiet]
+  - id: wl-x1a-0015
+    text: 把今天放下吧，可以什麼都不做。
+    tags: [soft]
+  - id: wl-x1a-0016
+    text: 深呼吸一下，坐著發呆也很好。
+    tags: [hello]
+  - id: wl-x1a-0017
+    text: 不用急，這裡只屬於你。
+    tags: [home]
+  - id: wl-x1a-0018
+    text: 你辛苦了，你不需要準備好才進來。
+    tags: [companion]
+  - id: wl-x1a-0019
+    text: 歡迎回到你的小空間，來了就是休息。
+    tags: [buddy]
+  - id: wl-x1a-0020
+    text: 抱抱，歡迎回來，這裡很柔軟。
+    tags: [poem]
+  - id: wl-x1a-0021
+    text: 嘿，你回來了，風雪都被關在門外了。
+    tags: [warm]
+  - id: wl-x1a-0022
+    text: 悄悄跟你說聲歡迎回來，世界的吵鬧先留在外面。
+    tags: [cozy]
+  - id: wl-x1a-0023
+    text: 看到你回來真好，這裡收得下你的疲憊。
+    tags: [gentle]
+  - id: wl-x1a-0024
+    text: 一路辛苦了，你只要在就好。
+    tags: [quiet]
+  - id: wl-x1a-0025
+    text: 把鞋子脫了吧，不必說話也沒關係。
+    tags: [soft]
+  - id: wl-x1a-0026
+    text: 先喝口熱的，慢一點也沒關係。
+    tags: [hello]
+  - id: wl-x1a-0027
+    text: 讓自己軟下來吧，這份安靜為你留著。
+    tags: [home]
+  - id: wl-x1a-0028
+    text: 你可以待著，這裡等你很久了。
+    tags: [companion]
+  - id: wl-x1a-0029
+    text: 這一刻先屬於你，你被好好接住了。
+    tags: [buddy]
+  - id: wl-x1a-0030
+    text: 慢慢來就好，這裡一直為你亮著燈。
+    tags: [poem]
+  - id: wl-x1a-0031
+    text: 歡迎回來，這裡沒有變。
+    tags: [warm]
+  - id: wl-x1a-0032
+    text: 你回來了，一切都好好的。
+    tags: [cozy]
+  - id: wl-x1a-0033
+    text: 回來就好，時間在這裡走得很慢。
+    tags: [gentle]
+  - id: wl-x1a-0034
+    text: 又見到你了，你可以慢慢來。
+    tags: [quiet]
+  - id: wl-x1a-0035
+    text: 你來啦，沒有人在催你。
+    tags: [soft]
+  - id: wl-x1a-0036
+    text: 回家了呢，想待多久都可以。
+    tags: [hello]
+  - id: wl-x1a-0037
+    text: 歡迎回到這裡，這裡是你的地方。
+    tags: [home]
+  - id: wl-x1a-0038
+    text: 你終於回來了，這片雪地還在等你。
+    tags: [companion]
+  - id: wl-x1a-0039
+    text: 很高興你回來，光還亮著。
+    tags: [buddy]
+  - id: wl-x1a-0040
+    text: 回來坐坐吧，窩還是暖的。
+    tags: [poem]
+  - id: wl-x1a-0041
+    text: 進來吧，一切都為你留著。
+    tags: [warm]
+  - id: wl-x1a-0042
+    text: 慢慢走進來，我哪裡都沒去。
+    tags: [cozy]
+  - id: wl-x1a-0043
+    text: 把外套放下吧，這裡很安靜。
+    tags: [gentle]
+  - id: wl-x1a-0044
+    text: 先坐一會兒，可以什麼都不做。
+    tags: [quiet]
+  - id: wl-x1a-0045
+    text: 把今天放下吧，坐著發呆也很好。
+    tags: [soft]
+  - id: wl-x1a-0046
+    text: 深呼吸一下，這裡只屬於你。
+    tags: [hello]
+  - id: wl-x1a-0047
+    text: 不用急，你不需要準備好才進來。
+    tags: [home]
+  - id: wl-x1a-0048
+    text: 你辛苦了，來了就是休息。
+    tags: [companion]
+  - id: wl-x1a-0049
+    text: 歡迎回到你的小空間，這裡很柔軟。
+    tags: [buddy]
+  - id: wl-x1a-0050
+    text: 抱抱，歡迎回來，風雪都被關在門外了。
+    tags: [poem]
+  - id: wl-x1a-0051
+    text: 嘿，你回來了，世界的吵鬧先留在外面。
+    tags: [warm]
+  - id: wl-x1a-0052
+    text: 悄悄跟你說聲歡迎回來，這裡收得下你的疲憊。
+    tags: [cozy]
+  - id: wl-x1a-0053
+    text: 看到你回來真好，你只要在就好。
+    tags: [gentle]
+  - id: wl-x1a-0054
+    text: 一路辛苦了，不必說話也沒關係。
+    tags: [quiet]
+  - id: wl-x1a-0055
+    text: 把鞋子脫了吧，慢一點也沒關係。
+    tags: [soft]
+  - id: wl-x1a-0056
+    text: 先喝口熱的，這份安靜為你留著。
+    tags: [hello]
+  - id: wl-x1a-0057
+    text: 讓自己軟下來吧，這裡等你很久了。
+    tags: [home]
+  - id: wl-x1a-0058
+    text: 你可以待著，你被好好接住了。
+    tags: [companion]
+  - id: wl-x1a-0059
+    text: 這一刻先屬於你，這裡一直為你亮著燈。
+    tags: [buddy]
+  - id: wl-x1a-0060
+    text: 慢慢來就好，這裡一直都在。
+    tags: [poem]
+  - id: wl-x1a-0061
+    text: 歡迎回來，一切都好好的。
+    tags: [warm]
+  - id: wl-x1a-0062
+    text: 你回來了，時間在這裡走得很慢。
+    tags: [cozy]
+  - id: wl-x1a-0063
+    text: 回來就好，你可以慢慢來。
+    tags: [gentle]
+  - id: wl-x1a-0064
+    text: 又見到你了，沒有人在催你。
+    tags: [quiet]
+  - id: wl-x1a-0065
+    text: 你來啦，想待多久都可以。
+    tags: [soft]
+  - id: wl-x1a-0066
+    text: 回家了呢，這裡是你的地方。
+    tags: [hello]
+  - id: wl-x1a-0067
+    text: 歡迎回到這裡，這片雪地還在等你。
+    tags: [home]
+  - id: wl-x1a-0068
+    text: 你終於回來了，光還亮著。
+    tags: [companion]
+  - id: wl-x1a-0069
+    text: 很高興你回來，窩還是暖的。
+    tags: [buddy]
+  - id: wl-x1a-0070
+    text: 回來坐坐吧，一切都為你留著。
+    tags: [poem]
+  - id: wl-x1a-0071
+    text: 進來吧，我哪裡都沒去。
+    tags: [warm]
+  - id: wl-x1a-0072
+    text: 慢慢走進來，這裡很安靜。
+    tags: [cozy]
+  - id: wl-x1a-0073
+    text: 把外套放下吧，可以什麼都不做。
+    tags: [gentle]
+  - id: wl-x1a-0074
+    text: 先坐一會兒，坐著發呆也很好。
+    tags: [quiet]
+  - id: wl-x1a-0075
+    text: 把今天放下吧，這裡只屬於你。
+    tags: [soft]
+  - id: wl-x1a-0076
+    text: 深呼吸一下，你不需要準備好才進來。
+    tags: [hello]
+  - id: wl-x1a-0077
+    text: 不用急，來了就是休息。
+    tags: [home]
+  - id: wl-x1a-0078
+    text: 你辛苦了，這裡很柔軟。
+    tags: [companion]
+  - id: wl-x1a-0079
+    text: 歡迎回到你的小空間，風雪都被關在門外了。
+    tags: [buddy]
+  - id: wl-x1a-0080
+    text: 抱抱，歡迎回來，世界的吵鬧先留在外面。
+    tags: [poem]
+  - id: wl-x1a-0081
+    text: 嘿，你回來了，這裡收得下你的疲憊。
+    tags: [warm]
+  - id: wl-x1a-0082
+    text: 悄悄跟你說聲歡迎回來，你只要在就好。
+    tags: [cozy]
+  - id: wl-x1a-0083
+    text: 看到你回來真好，不必說話也沒關係。
+    tags: [gentle]
+  - id: wl-x1a-0084
+    text: 一路辛苦了，慢一點也沒關係。
+    tags: [quiet]
+  - id: wl-x1a-0085
+    text: 把鞋子脫了吧，這份安靜為你留著。
+    tags: [soft]
+  - id: wl-x1a-0086
+    text: 先喝口熱的，這裡等你很久了。
+    tags: [hello]
+  - id: wl-x1a-0087
+    text: 讓自己軟下來吧，你被好好接住了。
+    tags: [home]
+  - id: wl-x1a-0088
+    text: 你可以待著，這裡一直為你亮著燈。
+    tags: [companion]
+  - id: wl-x1a-0089
+    text: 這一刻先屬於你，這裡一直都在。
+    tags: [buddy]
+  - id: wl-x1a-0090
+    text: 慢慢來就好，這裡沒有變。
+    tags: [poem]
+  - id: wl-x1a-0091
+    text: 歡迎回來，時間在這裡走得很慢。
+    tags: [warm]
+  - id: wl-x1a-0092
+    text: 你回來了，你可以慢慢來。
+    tags: [cozy]
+  - id: wl-x1a-0093
+    text: 回來就好，沒有人在催你。
+    tags: [gentle]
+  - id: wl-x1a-0094
+    text: 又見到你了，想待多久都可以。
+    tags: [quiet]
+  - id: wl-x1a-0095
+    text: 你來啦，這裡是你的地方。
+    tags: [soft]
+  - id: wl-x1a-0096
+    text: 回家了呢，這片雪地還在等你。
+    tags: [hello]
+  - id: wl-x1a-0097
+    text: 歡迎回到這裡，光還亮著。
+    tags: [home]
+  - id: wl-x1a-0098
+    text: 你終於回來了，窩還是暖的。
+    tags: [companion]
+  - id: wl-x1a-0099
+    text: 很高興你回來，一切都為你留著。
+    tags: [buddy]
+  - id: wl-x1a-0100
+    text: 回來坐坐吧，我哪裡都沒去。
+    tags: [poem]
+  - id: wl-x1a-0101
+    text: 進來吧，這裡很安靜。
+    tags: [warm]
+  - id: wl-x1a-0102
+    text: 慢慢走進來，可以什麼都不做。
+    tags: [cozy]
+  - id: wl-x1a-0103
+    text: 把外套放下吧，坐著發呆也很好。
+    tags: [gentle]
+  - id: wl-x1a-0104
+    text: 先坐一會兒，這裡只屬於你。
+    tags: [quiet]
+  - id: wl-x1a-0105
+    text: 把今天放下吧，你不需要準備好才進來。
+    tags: [soft]
+  - id: wl-x1a-0106
+    text: 深呼吸一下，來了就是休息。
+    tags: [hello]
+  - id: wl-x1a-0107
+    text: 不用急，這裡很柔軟。
+    tags: [home]
+  - id: wl-x1a-0108
+    text: 你辛苦了，風雪都被關在門外了。
+    tags: [companion]
+  - id: wl-x1a-0109
+    text: 歡迎回到你的小空間，世界的吵鬧先留在外面。
+    tags: [buddy]
+  - id: wl-x1a-0110
+    text: 抱抱，歡迎回來，這裡收得下你的疲憊。
+    tags: [poem]
+  - id: wl-x1a-0111
+    text: 嘿，你回來了，你只要在就好。
+    tags: [warm]
+  - id: wl-x1a-0112
+    text: 悄悄跟你說聲歡迎回來，不必說話也沒關係。
+    tags: [cozy]
+  - id: wl-x1a-0113
+    text: 看到你回來真好，慢一點也沒關係。
+    tags: [gentle]
+  - id: wl-x1a-0114
+    text: 一路辛苦了，這份安靜為你留著。
+    tags: [quiet]
+  - id: wl-x1a-0115
+    text: 把鞋子脫了吧，這裡等你很久了。
+    tags: [soft]
+  - id: wl-x1a-0116
+    text: 先喝口熱的，你被好好接住了。
+    tags: [hello]
+  - id: wl-x1a-0117
+    text: 讓自己軟下來吧，這裡一直為你亮著燈。
+    tags: [home]
+  - id: wl-x1a-0118
+    text: 你可以待著，這裡一直都在。
+    tags: [companion]
+  - id: wl-x1a-0119
+    text: 這一刻先屬於你，這裡沒有變。
+    tags: [buddy]
+  - id: wl-x1a-0120
+    text: 慢慢來就好，一切都好好的。
+    tags: [poem]
+  - id: wl-x1a-0121
+    text: 歡迎回來，你可以慢慢來。
+    tags: [warm]
+  - id: wl-x1a-0122
+    text: 你回來了，沒有人在催你。
+    tags: [cozy]
+  - id: wl-x1a-0123
+    text: 回來就好，想待多久都可以。
+    tags: [gentle]
+  - id: wl-x1a-0124
+    text: 又見到你了，這裡是你的地方。
+    tags: [quiet]
+  - id: wl-x1a-0125
+    text: 你來啦，這片雪地還在等你。
+    tags: [soft]
+  - id: wl-x1a-0126
+    text: 回家了呢，光還亮著。
+    tags: [hello]
+  - id: wl-x1a-0127
+    text: 歡迎回到這裡，窩還是暖的。
+    tags: [home]
+  - id: wl-x1a-0128
+    text: 你終於回來了，一切都為你留著。
+    tags: [companion]
+  - id: wl-x1a-0129
+    text: 很高興你回來，我哪裡都沒去。
+    tags: [buddy]
+  - id: wl-x1a-0130
+    text: 回來坐坐吧，這裡很安靜。
+    tags: [poem]
+  - id: wl-x1a-0131
+    text: 進來吧，可以什麼都不做。
+    tags: [warm]
+  - id: wl-x1a-0132
+    text: 慢慢走進來，坐著發呆也很好。
+    tags: [cozy]
+  - id: wl-x1a-0133
+    text: 把外套放下吧，這裡只屬於你。
+    tags: [gentle]
+  - id: wl-x1a-0134
+    text: 先坐一會兒，你不需要準備好才進來。
+    tags: [quiet]
+  - id: wl-x1a-0135
+    text: 把今天放下吧，來了就是休息。
+    tags: [soft]
+  - id: wl-x1a-0136
+    text: 深呼吸一下，這裡很柔軟。
+    tags: [hello]
+  - id: wl-x1a-0137
+    text: 不用急，風雪都被關在門外了。
+    tags: [home]
+  - id: wl-x1a-0138
+    text: 你辛苦了，世界的吵鬧先留在外面。
+    tags: [companion]
+  - id: wl-x1a-0139
+    text: 歡迎回到你的小空間，這裡收得下你的疲憊。
+    tags: [buddy]
+  - id: wl-x1a-0140
+    text: 抱抱，歡迎回來，你只要在就好。
+    tags: [poem]
+  - id: wl-x1a-0141
+    text: 嘿，你回來了，不必說話也沒關係。
+    tags: [warm]
+  - id: wl-x1a-0142
+    text: 悄悄跟你說聲歡迎回來，慢一點也沒關係。
+    tags: [cozy]
+  - id: wl-x1a-0143
+    text: 看到你回來真好，這份安靜為你留著。
+    tags: [gentle]
+  - id: wl-x1a-0144
+    text: 一路辛苦了，這裡等你很久了。
+    tags: [quiet]
+  - id: wl-x1a-0145
+    text: 把鞋子脫了吧，你被好好接住了。
+    tags: [soft]
+  - id: wl-x1a-0146
+    text: 先喝口熱的，這裡一直為你亮著燈。
+    tags: [hello]
+  - id: wl-x1a-0147
+    text: 讓自己軟下來吧，這裡一直都在。
+    tags: [home]
+  - id: wl-x1a-0148
+    text: 你可以待著，這裡沒有變。
+    tags: [companion]
+  - id: wl-x1a-0149
+    text: 這一刻先屬於你，一切都好好的。
+    tags: [buddy]
+  - id: wl-x1a-0150
+    text: 慢慢來就好，時間在這裡走得很慢。
+    tags: [poem]
+  - id: wl-x1a-0151
+    text: 歡迎回來，沒有人在催你。
+    tags: [warm]
+  - id: wl-x1a-0152
+    text: 你回來了，想待多久都可以。
+    tags: [cozy]
+  - id: wl-x1a-0153
+    text: 回來就好，這裡是你的地方。
+    tags: [gentle]
+  - id: wl-x1a-0154
+    text: 又見到你了，這片雪地還在等你。
+    tags: [quiet]
+  - id: wl-x1a-0155
+    text: 你來啦，光還亮著。
+    tags: [soft]
+  - id: wl-x1a-0156
+    text: 回家了呢，窩還是暖的。
+    tags: [hello]
+  - id: wl-x1a-0157
+    text: 歡迎回到這裡，一切都為你留著。
+    tags: [home]
+  - id: wl-x1a-0158
+    text: 你終於回來了，我哪裡都沒去。
+    tags: [companion]
+  - id: wl-x1a-0159
+    text: 很高興你回來，這裡很安靜。
+    tags: [buddy]
+  - id: wl-x1a-0160
+    text: 回來坐坐吧，可以什麼都不做。
+    tags: [poem]
+  - id: wl-x1a-0161
+    text: 進來吧，坐著發呆也很好。
+    tags: [warm]
+  - id: wl-x1a-0162
+    text: 慢慢走進來，這裡只屬於你。
+    tags: [cozy]
+  - id: wl-x1a-0163
+    text: 把外套放下吧，你不需要準備好才進來。
+    tags: [gentle]
+  - id: wl-x1a-0164
+    text: 先坐一會兒，來了就是休息。
+    tags: [quiet]
+  - id: wl-x1a-0165
+    text: 把今天放下吧，這裡很柔軟。
+    tags: [soft]
+  - id: wl-x1a-0166
+    text: 深呼吸一下，風雪都被關在門外了。
+    tags: [hello]
+  - id: wl-x1a-0167
+    text: 不用急，世界的吵鬧先留在外面。
+    tags: [home]
+  - id: wl-x1a-0168
+    text: 你辛苦了，這裡收得下你的疲憊。
+    tags: [companion]
+  - id: wl-x1a-0169
+    text: 歡迎回到你的小空間，你只要在就好。
+    tags: [buddy]
+  - id: wl-x1a-0170
+    text: 抱抱，歡迎回來，不必說話也沒關係。
+    tags: [poem]
+  - id: wl-x1a-0171
+    text: 嘿，你回來了，慢一點也沒關係。
+    tags: [warm]
+  - id: wl-x1a-0172
+    text: 悄悄跟你說聲歡迎回來，這份安靜為你留著。
+    tags: [cozy]
+  - id: wl-x1a-0173
+    text: 看到你回來真好，這裡等你很久了。
+    tags: [gentle]
+  - id: wl-x1a-0174
+    text: 一路辛苦了，你被好好接住了。
+    tags: [quiet]
+  - id: wl-x1a-0175
+    text: 把鞋子脫了吧，這裡一直為你亮著燈。
+    tags: [soft]
+  - id: wl-x1a-0176
+    text: 先喝口熱的，這裡一直都在。
+    tags: [hello]
+  - id: wl-x1a-0177
+    text: 讓自己軟下來吧，這裡沒有變。
+    tags: [home]
+  - id: wl-x1a-0178
+    text: 你可以待著，一切都好好的。
+    tags: [companion]
+  - id: wl-x1a-0179
+    text: 這一刻先屬於你，時間在這裡走得很慢。
+    tags: [buddy]
+  - id: wl-x1a-0180
+    text: 慢慢來就好，你可以慢慢來。
+    tags: [poem]
+  - id: wl-x1a-0181
+    text: 歡迎回來，想待多久都可以。
+    tags: [warm]
+  - id: wl-x1a-0182
+    text: 你回來了，這裡是你的地方。
+    tags: [cozy]
+  - id: wl-x1a-0183
+    text: 回來就好，這片雪地還在等你。
+    tags: [gentle]
+  - id: wl-x1a-0184
+    text: 又見到你了，光還亮著。
+    tags: [quiet]
+  - id: wl-x1a-0185
+    text: 你來啦，窩還是暖的。
+    tags: [soft]
+  - id: wl-x1a-0186
+    text: 回家了呢，一切都為你留著。
+    tags: [hello]
+  - id: wl-x1a-0187
+    text: 歡迎回到這裡，我哪裡都沒去。
+    tags: [home]
+  - id: wl-x1a-0188
+    text: 你終於回來了，這裡很安靜。
+    tags: [companion]
+  - id: wl-x1a-0189
+    text: 很高興你回來，可以什麼都不做。
+    tags: [buddy]
+  - id: wl-x1a-0190
+    text: 回來坐坐吧，坐著發呆也很好。
+    tags: [poem]
+  - id: wl-x1a-0191
+    text: 進來吧，這裡只屬於你。
+    tags: [warm]
+  - id: wl-x1a-0192
+    text: 慢慢走進來，你不需要準備好才進來。
+    tags: [cozy]
+  - id: wl-x1a-0193
+    text: 把外套放下吧，來了就是休息。
+    tags: [gentle]
+  - id: wl-x1a-0194
+    text: 先坐一會兒，這裡很柔軟。
+    tags: [quiet]
+  - id: wl-x1a-0195
+    text: 把今天放下吧，風雪都被關在門外了。
+    tags: [soft]
+  - id: wl-x1a-0196
+    text: 深呼吸一下，世界的吵鬧先留在外面。
+    tags: [hello]
+  - id: wl-x1a-0197
+    text: 不用急，這裡收得下你的疲憊。
+    tags: [home]
+  - id: wl-x1a-0198
+    text: 你辛苦了，你只要在就好。
+    tags: [companion]
+  - id: wl-x1a-0199
+    text: 歡迎回到你的小空間，不必說話也沒關係。
+    tags: [buddy]
+  - id: wl-x1a-0200
+    text: 抱抱，歡迎回來，慢一點也沒關係。
+    tags: [poem]
+  - id: wl-x1a-0201
+    text: 嘿，你回來了，這份安靜為你留著。
+    tags: [warm]
+  - id: wl-x1a-0202
+    text: 悄悄跟你說聲歡迎回來，這裡等你很久了。
+    tags: [cozy]
+  - id: wl-x1a-0203
+    text: 看到你回來真好，你被好好接住了。
+    tags: [gentle]
+  - id: wl-x1a-0204
+    text: 一路辛苦了，這裡一直為你亮著燈。
+    tags: [quiet]
+  - id: wl-x1a-0205
+    text: 把鞋子脫了吧，這裡一直都在。
+    tags: [soft]
+  - id: wl-x1a-0206
+    text: 先喝口熱的，這裡沒有變。
+    tags: [hello]
+  - id: wl-x1a-0207
+    text: 讓自己軟下來吧，一切都好好的。
+    tags: [home]
+  - id: wl-x1a-0208
+    text: 你可以待著，時間在這裡走得很慢。
+    tags: [companion]
+  - id: wl-x1a-0209
+    text: 這一刻先屬於你，你可以慢慢來。
+    tags: [buddy]
+  - id: wl-x1a-0210
+    text: 慢慢來就好，沒有人在催你。
+    tags: [poem]
+  - id: wl-x1a-0211
+    text: 歡迎回來，這裡是你的地方。
+    tags: [warm]
+  - id: wl-x1a-0212
+    text: 你回來了，這片雪地還在等你。
+    tags: [cozy]
+  - id: wl-x1a-0213
+    text: 回來就好，光還亮著。
+    tags: [gentle]
+  - id: wl-x1a-0214
+    text: 又見到你了，窩還是暖的。
+    tags: [quiet]
+  - id: wl-x1a-0215
+    text: 你來啦，一切都為你留著。
+    tags: [soft]
+  - id: wl-x1a-0216
+    text: 回家了呢，我哪裡都沒去。
+    tags: [hello]
+  - id: wl-x1a-0217
+    text: 歡迎回到這裡，這裡很安靜。
+    tags: [home]
+  - id: wl-x1a-0218
+    text: 你終於回來了，可以什麼都不做。
+    tags: [companion]
+  - id: wl-x1a-0219
+    text: 很高興你回來，坐著發呆也很好。
+    tags: [buddy]
+  - id: wl-x1a-0220
+    text: 回來坐坐吧，這裡只屬於你。
+    tags: [poem]
+  - id: wl-x1a-0221
+    text: 進來吧，你不需要準備好才進來。
+    tags: [warm]
+  - id: wl-x1a-0222
+    text: 慢慢走進來，來了就是休息。
+    tags: [cozy]
+  - id: wl-x1a-0223
+    text: 把外套放下吧，這裡很柔軟。
+    tags: [gentle]
+  - id: wl-x1a-0224
+    text: 先坐一會兒，風雪都被關在門外了。
+    tags: [quiet]
+  - id: wl-x1a-0225
+    text: 把今天放下吧，世界的吵鬧先留在外面。
+    tags: [soft]
+  - id: wl-x1a-0226
+    text: 深呼吸一下，這裡收得下你的疲憊。
+    tags: [hello]
+  - id: wl-x1a-0227
+    text: 不用急，你只要在就好。
+    tags: [home]
+  - id: wl-x1a-0228
+    text: 你辛苦了，不必說話也沒關係。
+    tags: [companion]
+  - id: wl-x1a-0229
+    text: 歡迎回到你的小空間，慢一點也沒關係。
+    tags: [buddy]
+  - id: wl-x1a-0230
+    text: 抱抱，歡迎回來，這份安靜為你留著。
+    tags: [poem]
+  - id: wl-x1a-0231
+    text: 嘿，你回來了，這裡等你很久了。
+    tags: [warm]
+  - id: wl-x1a-0232
+    text: 悄悄跟你說聲歡迎回來，你被好好接住了。
+    tags: [cozy]
+  - id: wl-x1a-0233
+    text: 看到你回來真好，這裡一直為你亮著燈。
+    tags: [gentle]
+  - id: wl-x1a-0234
+    text: 一路辛苦了，這裡一直都在。
+    tags: [quiet]
+  - id: wl-x1a-0235
+    text: 把鞋子脫了吧，這裡沒有變。
+    tags: [soft]
+  - id: wl-x1a-0236
+    text: 先喝口熱的，一切都好好的。
+    tags: [hello]
+  - id: wl-x1a-0237
+    text: 讓自己軟下來吧，時間在這裡走得很慢。
+    tags: [home]
+  - id: wl-x1a-0238
+    text: 你可以待著，你可以慢慢來。
+    tags: [companion]
+  - id: wl-x1a-0239
+    text: 這一刻先屬於你，沒有人在催你。
+    tags: [buddy]
+  - id: wl-x1a-0240
+    text: 慢慢來就好，想待多久都可以。
+    tags: [poem]
+  - id: wl-x1a-0241
+    text: 歡迎回來，這片雪地還在等你。
+    tags: [warm]
+  - id: wl-x1a-0242
+    text: 你回來了，光還亮著。
+    tags: [cozy]
+  - id: wl-x1a-0243
+    text: 回來就好，窩還是暖的。
+    tags: [gentle]
+  - id: wl-x1a-0244
+    text: 又見到你了，一切都為你留著。
+    tags: [quiet]
+  - id: wl-x1a-0245
+    text: 你來啦，我哪裡都沒去。
+    tags: [soft]
+  - id: wl-x1a-0246
+    text: 回家了呢，這裡很安靜。
+    tags: [hello]
+  - id: wl-x1a-0247
+    text: 歡迎回到這裡，可以什麼都不做。
+    tags: [home]
+  - id: wl-x1a-0248
+    text: 你終於回來了，坐著發呆也很好。
+    tags: [companion]
+  - id: wl-x1a-0249
+    text: 很高興你回來，這裡只屬於你。
+    tags: [buddy]
+  - id: wl-x1a-0250
+    text: 回來坐坐吧，你不需要準備好才進來。
+    tags: [poem]
+  - id: wl-x1a-0251
+    text: 進來吧，來了就是休息。
+    tags: [warm]
+  - id: wl-x1a-0252
+    text: 慢慢走進來，這裡很柔軟。
+    tags: [cozy]
+  - id: wl-x1a-0253
+    text: 把外套放下吧，風雪都被關在門外了。
+    tags: [gentle]
+  - id: wl-x1a-0254
+    text: 先坐一會兒，世界的吵鬧先留在外面。
+    tags: [quiet]
+  - id: wl-x1a-0255
+    text: 把今天放下吧，這裡收得下你的疲憊。
+    tags: [soft]
+  - id: wl-x1a-0256
+    text: 深呼吸一下，你只要在就好。
+    tags: [hello]
+  - id: wl-x1a-0257
+    text: 不用急，不必說話也沒關係。
+    tags: [home]
+  - id: wl-x1a-0258
+    text: 你辛苦了，慢一點也沒關係。
+    tags: [companion]
+  - id: wl-x1a-0259
+    text: 歡迎回到你的小空間，這份安靜為你留著。
+    tags: [buddy]
+  - id: wl-x1a-0260
+    text: 抱抱，歡迎回來，這裡等你很久了。
+    tags: [poem]
+  - id: wl-x1a-0261
+    text: 嘿，你回來了，你被好好接住了。
+    tags: [warm]
+  - id: wl-x1a-0262
+    text: 悄悄跟你說聲歡迎回來，這裡一直為你亮著燈。
+    tags: [cozy]
+  - id: wl-x1a-0263
+    text: 看到你回來真好，這裡一直都在。
+    tags: [gentle]
+  - id: wl-x1a-0264
+    text: 一路辛苦了，這裡沒有變。
+    tags: [quiet]
+  - id: wl-x1a-0265
+    text: 把鞋子脫了吧，一切都好好的。
+    tags: [soft]
+  - id: wl-x1a-0266
+    text: 先喝口熱的，時間在這裡走得很慢。
+    tags: [hello]
+  - id: wl-x1a-0267
+    text: 讓自己軟下來吧，你可以慢慢來。
+    tags: [home]
+  - id: wl-x1a-0268
+    text: 你可以待著，沒有人在催你。
+    tags: [companion]
+  - id: wl-x1a-0269
+    text: 這一刻先屬於你，想待多久都可以。
+    tags: [buddy]
+  - id: wl-x1a-0270
+    text: 慢慢來就好，這裡是你的地方。
+    tags: [poem]
+  - id: wl-x1a-0271
+    text: 歡迎回來，光還亮著。
+    tags: [warm]
+  - id: wl-x1a-0272
+    text: 你回來了，窩還是暖的。
+    tags: [cozy]
+  - id: wl-x1a-0273
+    text: 回來就好，一切都為你留著。
+    tags: [gentle]
+  - id: wl-x1a-0274
+    text: 又見到你了，我哪裡都沒去。
+    tags: [quiet]
+  - id: wl-x1a-0275
+    text: 你來啦，這裡很安靜。
+    tags: [soft]
+  - id: wl-x1a-0276
+    text: 回家了呢，可以什麼都不做。
+    tags: [hello]
+  - id: wl-x1a-0277
+    text: 歡迎回到這裡，坐著發呆也很好。
+    tags: [home]
+  - id: wl-x1a-0278
+    text: 你終於回來了，這裡只屬於你。
+    tags: [companion]
+  - id: wl-x1a-0279
+    text: 很高興你回來，你不需要準備好才進來。
+    tags: [buddy]
+  - id: wl-x1a-0280
+    text: 回來坐坐吧，來了就是休息。
+    tags: [poem]
+  - id: wl-x1a-0281
+    text: 進來吧，這裡很柔軟。
+    tags: [warm]
+  - id: wl-x1a-0282
+    text: 慢慢走進來，風雪都被關在門外了。
+    tags: [cozy]
+  - id: wl-x1a-0283
+    text: 把外套放下吧，世界的吵鬧先留在外面。
+    tags: [gentle]
+  - id: wl-x1a-0284
+    text: 先坐一會兒，這裡收得下你的疲憊。
+    tags: [quiet]
+  - id: wl-x1a-0285
+    text: 把今天放下吧，你只要在就好。
+    tags: [soft]
+  - id: wl-x1a-0286
+    text: 深呼吸一下，不必說話也沒關係。
+    tags: [hello]
+  - id: wl-x1a-0287
+    text: 不用急，慢一點也沒關係。
+    tags: [home]
+  - id: wl-x1a-0288
+    text: 你辛苦了，這份安靜為你留著。
+    tags: [companion]
+  - id: wl-x1a-0289
+    text: 歡迎回到你的小空間，這裡等你很久了。
+    tags: [buddy]
+  - id: wl-x1a-0290
+    text: 抱抱，歡迎回來，你被好好接住了。
+    tags: [poem]
+  - id: wl-x1a-0291
+    text: 嘿，你回來了，這裡一直為你亮著燈。
+    tags: [warm]
+  - id: wl-x1a-0292
+    text: 悄悄跟你說聲歡迎回來，這裡一直都在。
+    tags: [cozy]
+  - id: wl-x1a-0293
+    text: 看到你回來真好，這裡沒有變。
+    tags: [gentle]
+  - id: wl-x1a-0294
+    text: 一路辛苦了，一切都好好的。
+    tags: [quiet]
+  - id: wl-x1a-0295
+    text: 把鞋子脫了吧，時間在這裡走得很慢。
+    tags: [soft]
+  - id: wl-x1a-0296
+    text: 先喝口熱的，你可以慢慢來。
+    tags: [hello]
+  - id: wl-x1a-0297
+    text: 讓自己軟下來吧，沒有人在催你。
+    tags: [home]
+  - id: wl-x1a-0298
+    text: 你可以待著，想待多久都可以。
+    tags: [companion]
+  - id: wl-x1a-0299
+    text: 這一刻先屬於你，這裡是你的地方。
+    tags: [buddy]
+  - id: wl-x1a-0300
+    text: 慢慢來就好，這片雪地還在等你。
+    tags: [poem]
+  - id: wl-x1a-0301
+    text: 歡迎回來，窩還是暖的。
+    tags: [warm]
+  - id: wl-x1a-0302
+    text: 你回來了，一切都為你留著。
+    tags: [cozy]
+  - id: wl-x1a-0303
+    text: 回來就好，我哪裡都沒去。
+    tags: [gentle]
+  - id: wl-x1a-0304
+    text: 又見到你了，這裡很安靜。
+    tags: [quiet]
+  - id: wl-x1a-0305
+    text: 你來啦，可以什麼都不做。
+    tags: [soft]
+  - id: wl-x1a-0306
+    text: 回家了呢，坐著發呆也很好。
+    tags: [hello]
+  - id: wl-x1a-0307
+    text: 歡迎回到這裡，這裡只屬於你。
+    tags: [home]
+  - id: wl-x1a-0308
+    text: 你終於回來了，你不需要準備好才進來。
+    tags: [companion]
+  - id: wl-x1a-0309
+    text: 很高興你回來，來了就是休息。
+    tags: [buddy]
+  - id: wl-x1a-0310
+    text: 回來坐坐吧，這裡很柔軟。
+    tags: [poem]
+  - id: wl-x1a-0311
+    text: 進來吧，風雪都被關在門外了。
+    tags: [warm]
+  - id: wl-x1a-0312
+    text: 慢慢走進來，世界的吵鬧先留在外面。
+    tags: [cozy]
+  - id: wl-x1a-0313
+    text: 把外套放下吧，這裡收得下你的疲憊。
+    tags: [gentle]
+  - id: wl-x1a-0314
+    text: 先坐一會兒，你只要在就好。
+    tags: [quiet]
+  - id: wl-x1a-0315
+    text: 把今天放下吧，不必說話也沒關係。
+    tags: [soft]
+  - id: wl-x1a-0316
+    text: 深呼吸一下，慢一點也沒關係。
+    tags: [hello]
+  - id: wl-x1a-0317
+    text: 不用急，這份安靜為你留著。
+    tags: [home]
+  - id: wl-x1a-0318
+    text: 你辛苦了，這裡等你很久了。
+    tags: [companion]
+  - id: wl-x1a-0319
+    text: 歡迎回到你的小空間，你被好好接住了。
+    tags: [buddy]
+  - id: wl-x1a-0320
+    text: 抱抱，歡迎回來，這裡一直為你亮著燈。
+    tags: [poem]
+  - id: wl-x1a-0321
+    text: 嘿，你回來了，這裡一直都在。
+    tags: [warm]
+  - id: wl-x1a-0322
+    text: 悄悄跟你說聲歡迎回來，這裡沒有變。
+    tags: [cozy]
+  - id: wl-x1a-0323
+    text: 看到你回來真好，一切都好好的。
+    tags: [gentle]
+  - id: wl-x1a-0324
+    text: 一路辛苦了，時間在這裡走得很慢。
+    tags: [quiet]
+  - id: wl-x1a-0325
+    text: 把鞋子脫了吧，你可以慢慢來。
+    tags: [soft]
+  - id: wl-x1a-0326
+    text: 先喝口熱的，沒有人在催你。
+    tags: [hello]
+  - id: wl-x1a-0327
+    text: 讓自己軟下來吧，想待多久都可以。
+    tags: [home]
+  - id: wl-x1a-0328
+    text: 你可以待著，這裡是你的地方。
+    tags: [companion]
+  - id: wl-x1a-0329
+    text: 這一刻先屬於你，這片雪地還在等你。
+    tags: [buddy]
+  - id: wl-x1a-0330
+    text: 慢慢來就好，光還亮著。
+    tags: [poem]
+  - id: wl-x1a-0331
+    text: 歡迎回來，一切都為你留著。
+    tags: [warm]
+  - id: wl-x1a-0332
+    text: 你回來了，我哪裡都沒去。
+    tags: [cozy]
+  - id: wl-x1a-0333
+    text: 回來就好，這裡很安靜。
+    tags: [gentle]
+  - id: wl-x1a-0334
+    text: 又見到你了，可以什麼都不做。
+    tags: [quiet]
+  - id: wl-x1a-0335
+    text: 你來啦，坐著發呆也很好。
+    tags: [soft]
+  - id: wl-x1a-0336
+    text: 回家了呢，這裡只屬於你。
+    tags: [hello]
+  - id: wl-x1a-0337
+    text: 歡迎回到這裡，你不需要準備好才進來。
+    tags: [home]
+  - id: wl-x1a-0338
+    text: 你終於回來了，來了就是休息。
+    tags: [companion]
+  - id: wl-x1a-0339
+    text: 很高興你回來，這裡很柔軟。
+    tags: [buddy]
+  - id: wl-x1a-0340
+    text: 回來坐坐吧，風雪都被關在門外了。
+    tags: [poem]
+  - id: wl-x1a-0341
+    text: 進來吧，世界的吵鬧先留在外面。
+    tags: [warm]
+  - id: wl-x1a-0342
+    text: 慢慢走進來，這裡收得下你的疲憊。
+    tags: [cozy]
+  - id: wl-x1a-0343
+    text: 把外套放下吧，你只要在就好。
+    tags: [gentle]
+  - id: wl-x1a-0344
+    text: 先坐一會兒，不必說話也沒關係。
+    tags: [quiet]
+  - id: wl-x1a-0345
+    text: 把今天放下吧，慢一點也沒關係。
+    tags: [soft]
+  - id: wl-x1a-0346
+    text: 深呼吸一下，這份安靜為你留著。
+    tags: [hello]
+  - id: wl-x1a-0347
+    text: 不用急，這裡等你很久了。
+    tags: [home]
+  - id: wl-x1a-0348
+    text: 你辛苦了，你被好好接住了。
+    tags: [companion]
+  - id: wl-x1a-0349
+    text: 歡迎回到你的小空間，這裡一直為你亮著燈。
+    tags: [buddy]
+  - id: wl-x1a-0350
+    text: 抱抱，歡迎回來，這裡一直都在。
+    tags: [poem]
+  - id: wl-x1a-0351
+    text: 嘿，你回來了，這裡沒有變。
+    tags: [warm]
+  - id: wl-x1a-0352
+    text: 悄悄跟你說聲歡迎回來，一切都好好的。
+    tags: [cozy]
+  - id: wl-x1a-0353
+    text: 看到你回來真好，時間在這裡走得很慢。
+    tags: [gentle]
+  - id: wl-x1a-0354
+    text: 一路辛苦了，你可以慢慢來。
+    tags: [quiet]
+  - id: wl-x1a-0355
+    text: 把鞋子脫了吧，沒有人在催你。
+    tags: [soft]
+  - id: wl-x1a-0356
+    text: 先喝口熱的，想待多久都可以。
+    tags: [hello]
+  - id: wl-x1a-0357
+    text: 讓自己軟下來吧，這裡是你的地方。
+    tags: [home]
+  - id: wl-x1a-0358
+    text: 你可以待著，這片雪地還在等你。
+    tags: [companion]
+  - id: wl-x1a-0359
+    text: 這一刻先屬於你，光還亮著。
+    tags: [buddy]
+  - id: wl-x1a-0360
+    text: 慢慢來就好，窩還是暖的。
+    tags: [poem]
+  - id: wl-x1a-0361
+    text: 歡迎回來，我哪裡都沒去。
+    tags: [warm]
+  - id: wl-x1a-0362
+    text: 你回來了，這裡很安靜。
+    tags: [cozy]
+  - id: wl-x1a-0363
+    text: 回來就好，可以什麼都不做。
+    tags: [gentle]
+  - id: wl-x1a-0364
+    text: 又見到你了，坐著發呆也很好。
+    tags: [quiet]
+  - id: wl-x1a-0365
+    text: 你來啦，這裡只屬於你。
+    tags: [soft]
+  - id: wl-x1a-0366
+    text: 回家了呢，你不需要準備好才進來。
+    tags: [hello]
+  - id: wl-x1a-0367
+    text: 歡迎回到這裡，來了就是休息。
+    tags: [home]
+  - id: wl-x1a-0368
+    text: 你終於回來了，這裡很柔軟。
+    tags: [companion]
+  - id: wl-x1a-0369
+    text: 很高興你回來，風雪都被關在門外了。
+    tags: [buddy]
+  - id: wl-x1a-0370
+    text: 回來坐坐吧，世界的吵鬧先留在外面。
+    tags: [poem]
+  - id: wl-x1a-0371
+    text: 進來吧，這裡收得下你的疲憊。
+    tags: [warm]
+  - id: wl-x1a-0372
+    text: 慢慢走進來，你只要在就好。
+    tags: [cozy]
+  - id: wl-x1a-0373
+    text: 把外套放下吧，不必說話也沒關係。
+    tags: [gentle]
+  - id: wl-x1a-0374
+    text: 先坐一會兒，慢一點也沒關係。
+    tags: [quiet]
+  - id: wl-x1a-0375
+    text: 把今天放下吧，這份安靜為你留著。
+    tags: [soft]
+  - id: wl-x1a-0376
+    text: 深呼吸一下，這裡等你很久了。
+    tags: [hello]
+  - id: wl-x1a-0377
+    text: 不用急，你被好好接住了。
+    tags: [home]
+  - id: wl-x1a-0378
+    text: 你辛苦了，這裡一直為你亮著燈。
+    tags: [companion]
+  - id: wl-x1a-0379
+    text: 歡迎回到你的小空間，這裡一直都在。
+    tags: [buddy]
+  - id: wl-x1a-0380
+    text: 抱抱，歡迎回來，這裡沒有變。
+    tags: [poem]
+  - id: wl-x1a-0381
+    text: 嘿，你回來了，一切都好好的。
+    tags: [warm]
+  - id: wl-x1a-0382
+    text: 悄悄跟你說聲歡迎回來，時間在這裡走得很慢。
+    tags: [cozy]
+  - id: wl-x1a-0383
+    text: 看到你回來真好，你可以慢慢來。
+    tags: [gentle]
+  - id: wl-x1a-0384
+    text: 一路辛苦了，沒有人在催你。
+    tags: [quiet]
+  - id: wl-x1a-0385
+    text: 把鞋子脫了吧，想待多久都可以。
+    tags: [soft]
+  - id: wl-x1a-0386
+    text: 先喝口熱的，這裡是你的地方。
+    tags: [hello]
+  - id: wl-x1a-0387
+    text: 讓自己軟下來吧，這片雪地還在等你。
+    tags: [home]
+  - id: wl-x1a-0388
+    text: 你可以待著，光還亮著。
+    tags: [companion]
+  - id: wl-x1a-0389
+    text: 這一刻先屬於你，窩還是暖的。
+    tags: [buddy]
+  - id: wl-x1a-0390
+    text: 慢慢來就好，一切都為你留著。
+    tags: [poem]
+  - id: wl-x1a-0391
+    text: 歡迎回來，這裡很安靜。
+    tags: [warm]
+  - id: wl-x1a-0392
+    text: 你回來了，可以什麼都不做。
+    tags: [cozy]
+  - id: wl-x1a-0393
+    text: 回來就好，坐著發呆也很好。
+    tags: [gentle]
+  - id: wl-x1a-0394
+    text: 又見到你了，這裡只屬於你。
+    tags: [quiet]
+  - id: wl-x1a-0395
+    text: 你來啦，你不需要準備好才進來。
+    tags: [soft]
+  - id: wl-x1a-0396
+    text: 回家了呢，來了就是休息。
+    tags: [hello]
+  - id: wl-x1a-0397
+    text: 歡迎回到這裡，這裡很柔軟。
+    tags: [home]
+  - id: wl-x1a-0398
+    text: 你終於回來了，風雪都被關在門外了。
+    tags: [companion]
+  - id: wl-x1a-0399
+    text: 很高興你回來，世界的吵鬧先留在外面。
+    tags: [buddy]
+  - id: wl-x1a-0400
+    text: 回來坐坐吧，這裡收得下你的疲憊。
+    tags: [poem]
+  - id: wl-x1b-0001
+    text: 早安，這裡的光還替你留著。
+    tags: [morning]
+  - id: wl-x1b-0002
+    text: 晚安前，先回到這裡歇一會兒。
+    tags: [evening]
+  - id: wl-x1b-0003
+    text: 熟悉的味道還在，你一聞就認得。
+    tags: [sense]
+  - id: wl-x1b-0004
+    text: 累了就回來，這裡不必逞強。
+    tags: [tired]
+  - id: wl-x1b-0005
+    text: 節日裡回來，這裡也替你點了燈。
+    tags: [festive]
+  - id: wl-x1b-0006
+    text: 週末了，這裡陪你慢慢過。
+    tags: [weekend]
+  - id: wl-x1b-0007
+    text: 好久沒來了，這裡一直沒變。
+    tags: [longtime]
+  - id: wl-x1b-0008
+    text: 踏進來，先站穩，這裡很實在。
+    tags: [ground]
+  - id: wl-x1b-0009
+    text: 你回來了，今天也好好過完了。
+    tags: [daily]
+  - id: wl-x1b-0010
+    text: 你回來了。
+    tags: [brief]
+  - id: wl-x1b-0011
+    text: 你回來了，這裡替你藏了點好玩的。
+    tags: [play]
+  - id: wl-x1b-0012
+    text: 你回來了，晨光也剛好醒著。
+    tags: [morning]
+  - id: wl-x1b-0013
+    text: 夜色來了，這裡的燈替你亮著。
+    tags: [evening]
+  - id: wl-x1b-0014
+    text: 這裡的溫度，剛好是你記得的樣子。
+    tags: [sense]
+  - id: wl-x1b-0015
+    text: 辛苦了，先把包袱放在門口。
+    tags: [tired]
+  - id: wl-x1b-0016
+    text: 今天很特別，這裡陪你一起過。
+    tags: [festive]
+  - id: wl-x1b-0017
+    text: 放假的日子，回這裡懶一下吧。
+    tags: [weekend]
+  - id: wl-x1b-0018
+    text: 隔了一陣子，你的位置還在。
+    tags: [longtime]
+  - id: wl-x1b-0019
+    text: 這裡的地板很穩，你可以放心踩著。
+    tags: [ground]
+  - id: wl-x1b-0020
+    text: 每天回到這裡，就是一種安穩。
+    tags: [daily]
+  - id: wl-x1b-0021
+    text: 這裡一直在。
+    tags: [brief]
+  - id: wl-x1b-0022
+    text: 回家啦，來這裡輕鬆一下吧。
+    tags: [play]
+  - id: wl-x1b-0023
+    text: 新的一天，這個角落先幫你暖好了。
+    tags: [morning]
+  - id: wl-x1b-0024
+    text: 你回來了，剛好趕上今晚的安靜。
+    tags: [evening]
+  - id: wl-x1b-0025
+    text: 腳步聲一響，這裡就知道是你。
+    tags: [sense]
+  - id: wl-x1b-0026
+    text: 你撐了一整天，這裡接住你。
+    tags: [tired]
+  - id: wl-x1b-0027
+    text: 過節了，這個角落也熱鬧了起來。
+    tags: [festive]
+  - id: wl-x1b-0028
+    text: 週末回家，時間可以走得很慢。
+    tags: [weekend]
+  - id: wl-x1b-0029
+    text: 多久沒回都沒關係，門一直開著。
+    tags: [longtime]
+  - id: wl-x1b-0030
+    text: 回來就好，這裡替你把腳步穩住。
+    tags: [ground]
+  - id: wl-x1b-0031
+    text: 你來了，這一天就有了收尾的地方。
+    tags: [daily]
+  - id: wl-x1b-0032
+    text: 歡迎回家。
+    tags: [brief]
+  - id: wl-x1b-0033
+    text: 你來了，這裡想陪你玩一會兒。
+    tags: [play]
+  - id: wl-x1b-0034
+    text: 早起的你，這裡也早就在等這一刻。
+    tags: [morning]
+  - id: wl-x1b-0035
+    text: 忙完了嗎，回這裡把肩膀放下來。
+    tags: [evening]
+  - id: wl-x1b-0036
+    text: 你一進門，空氣就柔了下來。
+    tags: [sense]
+  - id: wl-x1b-0037
+    text: 累的時候回來就好，什麼都不用說。
+    tags: [tired]
+  - id: wl-x1b-0038
+    text: 你回來了，這裡的節日才算開始。
+    tags: [festive]
+  - id: wl-x1b-0039
+    text: 你來了，週末就有了鬆懈的理由。
+    tags: [weekend]
+  - id: wl-x1b-0040
+    text: 你回來了，這裡替你把時間停在原地。
+    tags: [longtime]
+  - id: wl-x1b-0041
+    text: 你來了，先把重心放回自己身上。
+    tags: [ground]
+  - id: wl-x1b-0042
+    text: 日子照樣過，這裡照樣等你。
+    tags: [daily]
+  - id: wl-x1b-0043
+    text: 你來了，真好。
+    tags: [brief]
+  - id: wl-x1b-0044
+    text: 回來坐坐，這裡有點小樂子等你。
+    tags: [play]
+  - id: wl-x1b-0045
+    text: 清晨的第一縷光，落在你熟悉的位置。
+    tags: [morning]
+  - id: wl-x1b-0046
+    text: 入夜了，這個角落還為你溫著。
+    tags: [evening]
+  - id: wl-x1b-0047
+    text: 這裡的光很輕，落在身上像被摸了摸。
+    tags: [sense]
+  - id: wl-x1b-0048
+    text: 這裡替你留了一個可以攤著的位置。
+    tags: [tired]
+  - id: wl-x1b-0049
+    text: 佳節裡，這裡替你留了一份溫暖。
+    tags: [festive]
+  - id: wl-x1b-0050
+    text: 假日的這裡，什麼都不必趕。
+    tags: [weekend]
+  - id: wl-x1b-0051
+    text: 久違了，這裡還是你記得的樣子。
+    tags: [longtime]
+  - id: wl-x1b-0052
+    text: 這裡很扎實，夠你靠一整天。
+    tags: [ground]
+  - id: wl-x1b-0053
+    text: 回來坐坐，今天的事就翻篇了。
+    tags: [daily]
+  - id: wl-x1b-0054
+    text: 回來就好。
+    tags: [brief]
+  - id: wl-x1b-0055
+    text: 你回到這裡，來點好玩的怎麼樣。
+    tags: [play]
+  - id: wl-x1b-0056
+    text: 你來了，早晨就有了理由變柔軟。
+    tags: [morning]
+  - id: wl-x1b-0057
+    text: 你來了，夜晚就有了停下來的地方。
+    tags: [evening]
+  - id: wl-x1b-0058
+    text: 你熟悉的角落，連灰塵都乖乖的。
+    tags: [sense]
+  - id: wl-x1b-0059
+    text: 你回來了，肩膀可以先放下來。
+    tags: [tired]
+  - id: wl-x1b-0060
+    text: 今天值得慶祝，你回來得剛好。
+    tags: [festive]
+  - id: wl-x1b-0061
+    text: 週末的光很懶，剛好配你的節奏。
+    tags: [weekend]
+  - id: wl-x1b-0062
+    text: 隔了好些天，這裡照樣認得你。
+    tags: [longtime]
+  - id: wl-x1b-0063
+    text: 回家的意思，是重新站回穩的地方。
+    tags: [ground]
+  - id: wl-x1b-0064
+    text: 你回到這裡，平常的一天也變柔軟。
+    tags: [daily]
+  - id: wl-x1b-0065
+    text: 門一直開著。
+    tags: [brief]
+  - id: wl-x1b-0066
+    text: 回家的路上辛苦，來這裡逗自己笑一下。
+    tags: [play]
+  - id: wl-x1b-0067
+    text: 睜開眼就想到這裡，真好。
+    tags: [morning]
+  - id: wl-x1b-0068
+    text: 晚上好，這裡一直沒關門等你。
+    tags: [evening]
+  - id: wl-x1b-0069
+    text: 推開門的那一下，心就安了。
+    tags: [sense]
+  - id: wl-x1b-0070
+    text: 疲憊沒關係，這裡替你擋一擋。
+    tags: [tired]
+  - id: wl-x1b-0071
+    text: 節日的光很暖，正照著你的位置。
+    tags: [festive]
+  - id: wl-x1b-0072
+    text: 放假回來，先什麼都不做也行。
+    tags: [weekend]
+  - id: wl-x1b-0073
+    text: 回來就好，這裡從沒把你當外人。
+    tags: [longtime]
+  - id: wl-x1b-0074
+    text: 你踏進來，地就替你穩了。
+    tags: [ground]
+  - id: wl-x1b-0075
+    text: 每天這一刻，這裡都替你留著。
+    tags: [daily]
+  - id: wl-x1b-0076
+    text: 這裡等著你。
+    tags: [brief]
+  - id: wl-x1b-0077
+    text: 你來了，這裡替你留了一份輕鬆。
+    tags: [play]
+  - id: wl-x1b-0078
+    text: 早安，慢慢來，這裡不趕時間。
+    tags: [morning]
+  - id: wl-x1b-0079
+    text: 夜深一點也沒關係，這裡都在。
+    tags: [evening]
+  - id: wl-x1b-0080
+    text: 這裡的安靜，是你聽得懂的那種。
+    tags: [sense]
+  - id: wl-x1b-0081
+    text: 累壞了吧，先在這裡喘口氣。
+    tags: [tired]
+  - id: wl-x1b-0082
+    text: 你來了，這裡也想跟你說聲節日快樂。
+    tags: [festive]
+  - id: wl-x1b-0083
+    text: 你回來了，週末才算真的開始。
+    tags: [weekend]
+  - id: wl-x1b-0084
+    text: 你久沒來，這裡也一直好好的。
+    tags: [longtime]
+  - id: wl-x1b-0085
+    text: 這裡不搖不晃，你可以安心站著。
+    tags: [ground]
+  - id: wl-x1b-0086
+    text: 你來了，尋常的日子也發著光。
+    tags: [daily]
+  - id: wl-x1b-0087
+    text: 你回來，就對了。
+    tags: [brief]
+  - id: wl-x1b-0088
+    text: 回來吧，這裡陪你把心情調亮。
+    tags: [play]
+  - id: wl-x1b-0089
+    text: 一早回到這裡，像喝了一口溫水。
+    tags: [morning]
+  - id: wl-x1b-0090
+    text: 你回到這裡，這一天就算圓滿了。
+    tags: [evening]
+  - id: wl-x1b-0091
+    text: 你回來，連牆角都跟著暖起來。
+    tags: [sense]
+  - id: wl-x1b-0092
+    text: 你不必一直堅強，這裡懂。
+    tags: [tired]
+  - id: wl-x1b-0093
+    text: 過節不孤單，這裡一直陪著你。
+    tags: [festive]
+  - id: wl-x1b-0094
+    text: 週末的這裡，替你把鬧鐘關掉了。
+    tags: [weekend]
+  - id: wl-x1b-0095
+    text: 多久不見都行，這裡替你留著位置。
+    tags: [longtime]
+  - id: wl-x1b-0096
+    text: 回來吧，這裡替你把地基守好。
+    tags: [ground]
+  - id: wl-x1b-0097
+    text: 回家的日常，簡單卻很暖。
+    tags: [daily]
+  - id: wl-x1b-0099
+    text: 你回到這裡，來玩玩看有什麼新鮮。
+    tags: [play]
+  - id: wl-x1b-0100
+    text: 晨風輕輕的，這裡也替你留了座位。
+    tags: [morning]
+  - id: wl-x1b-0101
+    text: 晚風涼了，這裡替你留著暖意。
+    tags: [evening]
+  - id: wl-x1b-0102
+    text: 熟悉的位置，坐下就像沒離開過。
+    tags: [sense]
+  - id: wl-x1b-0103
+    text: 回來了就好，累意先寄放在這裡。
+    tags: [tired]
+  - id: wl-x1b-0104
+    text: 今天的這裡，比平常多了點喜氣。
+    tags: [festive]
+  - id: wl-x1b-0105
+    text: 假日回家，把腳步放到最慢。
+    tags: [weekend]
+  - id: wl-x1b-0106
+    text: 久違的你，一坐下就像沒離開。
+    tags: [longtime]
+  - id: wl-x1b-0107
+    text: 你來了，腳下就有了踏實的感覺。
+    tags: [ground]
+  - id: wl-x1b-0108
+    text: 你回來了，今天就有了句點。
+    tags: [daily]
+  - id: wl-x1b-0109
+    text: 這裡有你。
+    tags: [brief]
+  - id: wl-x1b-0110
+    text: 回家啦，這裡替你備了點小驚喜。
+    tags: [play]
+  - id: wl-x1b-0111
+    text: 你來的時候，天剛亮成溫柔的樣子。
+    tags: [morning]
+  - id: wl-x1b-0112
+    text: 今晚回家，把心事先放這裡吧。
+    tags: [evening]
+  - id: wl-x1b-0113
+    text: 這裡有你留下的味道，一直沒散。
+    tags: [sense]
+  - id: wl-x1b-0114
+    text: 這裡不問你今天多難，只讓你歇著。
+    tags: [tired]
+  - id: wl-x1b-0115
+    text: 佳節回家，先在這裡笑一個吧。
+    tags: [festive]
+  - id: wl-x1b-0116
+    text: 週末不必有計畫，來這裡發呆也好。
+    tags: [weekend]
+  - id: wl-x1b-0117
+    text: 隔了一段日子，這裡的燈還亮著。
+    tags: [longtime]
+  - id: wl-x1b-0118
+    text: 這裡很穩，慌的時候回來就好。
+    tags: [ground]
+  - id: wl-x1b-0119
+    text: 每天回到這裡，是最踏實的習慣。
+    tags: [daily]
+  - id: wl-x1b-0120
+    text: 你來了。
+    tags: [brief]
+  - id: wl-x1b-0121
+    text: 你來了，就讓這裡逗你開心一下。
+    tags: [play]
+  - id: wl-x1b-0122
+    text: 早安，這一天先從安靜的這裡開始。
+    tags: [morning]
+  - id: wl-x1b-0123
+    text: 你來的時候，夜色也變得溫柔。
+    tags: [evening]
+  - id: wl-x1b-0124
+    text: 你一坐下，時間就慢了下來。
+    tags: [sense]
+  - id: wl-x1b-0125
+    text: 你撐得很辛苦，這裡都看見了。
+    tags: [tired]
+  - id: wl-x1b-0126
+    text: 你回來的節日，連空氣都甜了。
+    tags: [festive]
+  - id: wl-x1b-0127
+    text: 你來了，這個週末就有了去處。
+    tags: [weekend]
+  - id: wl-x1b-0128
+    text: 你回來了，這裡替你把日子接了回來。
+    tags: [longtime]
+  - id: wl-x1b-0129
+    text: 回到這裡，先讓自己落地。
+    tags: [ground]
+  - id: wl-x1b-0130
+    text: 你來坐坐，日子就有了節奏。
+    tags: [daily]
+  - id: wl-x1b-0131
+    text: 回家了呀。
+    tags: [brief]
+  - id: wl-x1b-0132
+    text: 回來坐坐，這裡有好玩的在等你。
+    tags: [play]
+  - id: wl-x1b-0133
+    text: 窗外剛亮，你就回來了，很剛好。
+    tags: [morning]
+  - id: wl-x1b-0134
+    text: 燈下的位置，一直是你的。
+    tags: [evening]
+  - id: wl-x1b-0135
+    text: 這裡的每個聲音，你都認得。
+    tags: [sense]
+  - id: wl-x1b-0136
+    text: 累了就靠著，這裡夠穩。
+    tags: [tired]
+  - id: wl-x1b-0137
+    text: 節日裡，這裡替你把熱鬧收在心口。
+    tags: [festive]
+  - id: wl-x1b-0138
+    text: 放假的日子，這裡替你留著懶散。
+    tags: [weekend]
+  - id: wl-x1b-0139
+    text: 好一陣子沒見，這裡替你守著原樣。
+    tags: [longtime]
+  - id: wl-x1b-0140
+    text: 你站在這裡，就不會被風吹走。
+    tags: [ground]
+  - id: wl-x1b-0141
+    text: 回到這裡，平凡的一天也剛好。
+    tags: [daily]
+  - id: wl-x1b-0142
+    text: 這裡還在。
+    tags: [brief]
+  - id: wl-x1b-0143
+    text: 你回到這裡，先讓自己笑出來吧。
+    tags: [play]
+  - id: wl-x1b-0144
+    text: 早晨好，這裡一直是你可以先來的地方。
+    tags: [morning]
+  - id: wl-x1b-0145
+    text: 晚安之前，先在這裡待一下。
+    tags: [evening]
+  - id: wl-x1b-0146
+    text: 門把的觸感，還是你記得的溫。
+    tags: [sense]
+  - id: wl-x1b-0147
+    text: 回家的第一件事，是把累放下。
+    tags: [tired]
+  - id: wl-x1b-0148
+    text: 今天特別，這裡也替你妝點了一下。
+    tags: [festive]
+  - id: wl-x1b-0149
+    text: 週末回這裡，時間是你自己的。
+    tags: [weekend]
+  - id: wl-x1b-0150
+    text: 久沒回家，這裡沒有半句怪你。
+    tags: [longtime]
+  - id: wl-x1b-0151
+    text: 這裡的地很實，接得住你的重量。
+    tags: [ground]
+  - id: wl-x1b-0152
+    text: 你回來了，今天過得算數了。
+    tags: [daily]
+  - id: wl-x1b-0153
+    text: 你回來啦。
+    tags: [brief]
+  - id: wl-x1b-0154
+    text: 回家的感覺，也可以是輕快的。
+    tags: [play]
+  - id: wl-x1b-0155
+    text: 你踏進來的瞬間，早晨就完整了。
+    tags: [morning]
+  - id: wl-x1b-0156
+    text: 夜裡回來，這裡陪你慢慢卸下白天。
+    tags: [evening]
+  - id: wl-x1b-0157
+    text: 你回來了，連影子都找到位置。
+    tags: [sense]
+  - id: wl-x1b-0158
+    text: 你回來了，緊繃可以先鬆開。
+    tags: [tired]
+  - id: wl-x1b-0159
+    text: 過節了，回這裡一起亮一盞燈。
+    tags: [festive]
+  - id: wl-x1b-0160
+    text: 假日的午後，這裡陪你曬曬安靜。
+    tags: [weekend]
+  - id: wl-x1b-0161
+    text: 你出現的時候，這裡什麼都沒變。
+    tags: [longtime]
+  - id: wl-x1b-0162
+    text: 回來就好，這裡替你把慌張踩實。
+    tags: [ground]
+  - id: wl-x1b-0163
+    text: 每天這裡都在，像從不缺席的朋友。
+    tags: [daily]
+  - id: wl-x1b-0164
+    text: 燈替你亮著。
+    tags: [brief]
+  - id: wl-x1b-0165
+    text: 你來了，這裡想陪你玩點什麼。
+    tags: [play]
+  - id: wl-x1b-0166
+    text: 清早回家，連空氣都認得你。
+    tags: [morning]
+  - id: wl-x1b-0167
+    text: 你出現的夜晚，安靜得剛剛好。
+    tags: [evening]
+  - id: wl-x1b-0168
+    text: 這裡的空氣認得你，不必打招呼。
+    tags: [sense]
+  - id: wl-x1b-0169
+    text: 這裡替你把白天的重量卸一半。
+    tags: [tired]
+  - id: wl-x1b-0170
+    text: 你來了，節日就有了溫度。
+    tags: [festive]
+  - id: wl-x1b-0171
+    text: 你回來了，週末的空氣都變甜了。
+    tags: [weekend]
+  - id: wl-x1b-0172
+    text: 隔得再久，這裡都替你留著門。
+    tags: [longtime]
+  - id: wl-x1b-0173
+    text: 你來了，這裡替你把根扎回來。
+    tags: [ground]
+  - id: wl-x1b-0174
+    text: 你來了，日常就有了溫度。
+    tags: [daily]
+  - id: wl-x1b-0175
+    text: 位置給你留著。
+    tags: [brief]
+  - id: wl-x1b-0176
+    text: 回來吧，這裡替你把嚴肅收起來。
+    tags: [play]
+  - id: wl-x1b-0177
+    text: 新的早晨，這裡替你留著昨天的溫度。
+    tags: [morning]
+  - id: wl-x1b-0178
+    text: 入夜的門開著，就等你走進來。
+    tags: [evening]
+  - id: wl-x1b-0179
+    text: 熟悉的燈光，替你把眼睛放鬆。
+    tags: [sense]
+  - id: wl-x1b-0180
+    text: 累的時候，這裡是你可以爛一下的地方。
+    tags: [tired]
+  - id: wl-x1b-0181
+    text: 佳節的夜，這裡替你留著位置。
+    tags: [festive]
+  - id: wl-x1b-0182
+    text: 週末就該這樣，回這裡什麼都放慢。
+    tags: [weekend]
+  - id: wl-x1b-0183
+    text: 久違了，先坐下，慢慢把日子接上。
+    tags: [longtime]
+  - id: wl-x1b-0184
+    text: 這裡穩穩的，你可以卸下防備。
+    tags: [ground]
+  - id: wl-x1b-0185
+    text: 回家的感覺，藏在每個平常的傍晚。
+    tags: [daily]
+  - id: wl-x1b-0186
+    text: 你來得剛好。
+    tags: [brief]
+  - id: wl-x1b-0187
+    text: 你回到這裡，來場輕鬆的探險吧。
+    tags: [play]
+  - id: wl-x1b-0188
+    text: 早安，這裡的燈昨晚沒關，就為了你。
+    tags: [morning]
+  - id: wl-x1b-0189
+    text: 晚上好，這裡把喧囂都關在外面了。
+    tags: [evening]
+  - id: wl-x1b-0190
+    text: 你踏進來，地板都輕輕應了一聲。
+    tags: [sense]
+  - id: wl-x1b-0191
+    text: 你辛苦了，先什麼都別想。
+    tags: [tired]
+  - id: wl-x1b-0192
+    text: 今天想跟你一起慶祝，就在這裡。
+    tags: [festive]
+  - id: wl-x1b-0193
+    text: 放假回家，先攤在這裡再說。
+    tags: [weekend]
+  - id: wl-x1b-0194
+    text: 你回來就好，中間的空白不必解釋。
+    tags: [longtime]
+  - id: wl-x1b-0195
+    text: 回家的第一步，是踩到熟悉的地。
+    tags: [ground]
+  - id: wl-x1b-0196
+    text: 你回到這裡，今天就落地了。
+    tags: [daily]
+  - id: wl-x1b-0198
+    text: 回家啦，這裡有點小趣味留給你。
+    tags: [play]
+  - id: wl-x1b-0199
+    text: 你回來了，早晨的光正好落在門口。
+    tags: [morning]
+  - id: wl-x1b-0200
+    text: 你回來了，夜就不必一個人過。
+    tags: [evening]
+  - id: wl-x1b-0201
+    text: 這裡的味道像一句沒說完的歡迎。
+    tags: [sense]
+  - id: wl-x1b-0202
+    text: 回來歇著吧，這裡不趕你。
+    tags: [tired]
+  - id: wl-x1b-0203
+    text: 節日回家，把好心情帶進來吧。
+    tags: [festive]
+  - id: wl-x1b-0204
+    text: 週末的這裡，替你收起所有待辦。
+    tags: [weekend]
+  - id: wl-x1b-0205
+    text: 多久沒來，這裡的溫度都替你留著。
+    tags: [longtime]
+  - id: wl-x1b-0206
+    text: 你踏進來，這裡就替你穩住了世界。
+    tags: [ground]
+  - id: wl-x1b-0207
+    text: 每天回來一趟，心就不會太亂。
+    tags: [daily]
+  - id: wl-x1b-0208
+    text: 回來坐坐。
+    tags: [brief]
+  - id: wl-x1b-0209
+    text: 你來了，這裡替你把無聊趕跑。
+    tags: [play]
+  - id: wl-x1b-0210
+    text: 一大早想起這裡，就先過來坐坐吧。
+    tags: [morning]
+  - id: wl-x1b-0211
+    text: 今晚辛苦了，回這裡歇一口氣。
+    tags: [evening]
+  - id: wl-x1b-0212
+    text: 你一來，這裡的稜角都圓了。
+    tags: [sense]
+  - id: wl-x1b-0213
+    text: 疲憊的你，這裡照樣歡迎。
+    tags: [tired]
+  - id: wl-x1b-0214
+    text: 你回來的日子剛好是值得記住的一天。
+    tags: [festive]
+  - id: wl-x1b-0215
+    text: 你來了，假日就有了偷懶的許可。
+    tags: [weekend]
+  - id: wl-x1b-0216
+    text: 久沒見的你，這裡照樣替你亮燈。
+    tags: [longtime]
+  - id: wl-x1b-0217
+    text: 這裡不會塌，你盡管靠過來。
+    tags: [ground]
+  - id: wl-x1b-0218
+    text: 你來了，這一天就被好好收著。
+    tags: [daily]
+  - id: wl-x1b-0220
+    text: 回來坐坐，讓好玩的把疲憊沖淡。
+    tags: [play]
+  - id: wl-x1b-0221
+    text: 晨光很淡，你的位置卻很清楚。
+    tags: [morning]
+  - id: wl-x1b-0222
+    text: 夜色很深，你的座位很清楚。
+    tags: [evening]
+  - id: wl-x1b-0223
+    text: 熟悉的窗，還照著你習慣的角度。
+    tags: [sense]
+  - id: wl-x1b-0224
+    text: 你撐到現在，已經很了不起了。
+    tags: [tired]
+  - id: wl-x1b-0225
+    text: 過節的這裡，燈比平常亮一點。
+    tags: [festive]
+  - id: wl-x1b-0226
+    text: 週末回來坐坐，讓日子鬆一鬆。
+    tags: [weekend]
+  - id: wl-x1b-0227
+    text: 隔了些時候，你的座位一塵不染地等著。
+    tags: [longtime]
+  - id: wl-x1b-0228
+    text: 回來吧，先把飄著的心放回地上。
+    tags: [ground]
+  - id: wl-x1b-0229
+    text: 回到這裡，日子照著它的樣子走。
+    tags: [daily]
+  - id: wl-x1b-0230
+    text: 這裡是你的。
+    tags: [brief]
+  - id: wl-x1b-0231
+    text: 你回到這裡，來玩一下再走也不遲。
+    tags: [play]
+  - id: wl-x1b-0232
+    text: 早安，先在這裡把心放平再出發。
+    tags: [morning]
+  - id: wl-x1b-0233
+    text: 晚安，先讓這裡替你收好今天。
+    tags: [evening]
+  - id: wl-x1b-0234
+    text: 這裡的靜，剛好接得住你的呼吸。
+    tags: [sense]
+  - id: wl-x1b-0235
+    text: 累就攤著，這裡不會嫌你沒用。
+    tags: [tired]
+  - id: wl-x1b-0236
+    text: 今天很好，因為你回到這裡了。
+    tags: [festive]
+  - id: wl-x1b-0237
+    text: 假日的光很長，夠你在這裡發呆。
+    tags: [weekend]
+  - id: wl-x1b-0238
+    text: 你回來了，這裡把時間替你按了暫停。
+    tags: [longtime]
+  - id: wl-x1b-0239
+    text: 你來了，這裡替你把地踩得結實。
+    tags: [ground]
+  - id: wl-x1b-0240
+    text: 你回來了，今天也算圓滿了。
+    tags: [daily]
+  - id: wl-x1b-0241
+    text: 歡迎你回來。
+    tags: [brief]
+  - id: wl-x1b-0242
+    text: 回家的這裡，也藏著一點頑皮。
+    tags: [play]
+  - id: wl-x1b-0243
+    text: 天亮了你就回來，這裡很喜歡這樣。
+    tags: [morning]
+  - id: wl-x1b-0244
+    text: 你來了，這一夜就有了落腳的地方。
+    tags: [evening]
+  - id: wl-x1b-0245
+    text: 你回來，連時鐘都走得溫柔了。
+    tags: [sense]
+  - id: wl-x1b-0246
+    text: 回來了，這裡替你把力氣慢慢還你。
+    tags: [tired]
+  - id: wl-x1b-0247
+    text: 佳節裡的你，笑起來最好看。
+    tags: [festive]
+  - id: wl-x1b-0248
+    text: 週末回家，連呼吸都可以慢半拍。
+    tags: [weekend]
+  - id: wl-x1b-0249
+    text: 好久不見，這裡還記得你的樣子。
+    tags: [longtime]
+  - id: wl-x1b-0250
+    text: 這裡很牢靠，慌了就回這裡站著。
+    tags: [ground]
+  - id: wl-x1b-0251
+    text: 每天的這一格，都替你空著。
+    tags: [daily]
+  - id: wl-x1b-0252
+    text: 你回來了呢。
+    tags: [brief]
+  - id: wl-x1b-0253
+    text: 你來了，這裡陪你把心情玩鬆。
+    tags: [play]
+  - id: wl-x1b-0254
+    text: 早晨的你，還帶著一點睡意也沒關係。
+    tags: [morning]
+  - id: wl-x1b-0255
+    text: 夜裡的光很小，卻剛好夠你回家。
+    tags: [evening]
+  - id: wl-x1b-0256
+    text: 這裡的觸感，你閉著眼也認得。
+    tags: [sense]
+  - id: wl-x1b-0257
+    text: 你不必假裝沒事，這裡都接得住。
+    tags: [tired]
+  - id: wl-x1b-0258
+    text: 節日的溫暖，這裡替你收了一整份。
+    tags: [festive]
+  - id: wl-x1b-0259
+    text: 你回來了，這個週末就不必忙了。
+    tags: [weekend]
+  - id: wl-x1b-0260
+    text: 久沒回這裡，它一點都沒嫌棄你。
+    tags: [longtime]
+  - id: wl-x1b-0261
+    text: 回到這裡，腳步自然就穩了。
+    tags: [ground]
+  - id: wl-x1b-0262
+    text: 你來坐坐，尋常也能很安心。
+    tags: [daily]
+  - id: wl-x1b-0263
+    text: 門後就是家。
+    tags: [brief]
+  - id: wl-x1b-0264
+    text: 回來吧，這裡替你準備了一點樂子。
+    tags: [play]
+  - id: wl-x1b-0265
+    text: 你來得剛好，早晨還沒完全展開。
+    tags: [morning]
+  - id: wl-x1b-0266
+    text: 晚上回到這裡，像鬆開了一整天。
+    tags: [evening]
+  - id: wl-x1b-0267
+    text: 你一進門，光就往你身上靠。
+    tags: [sense]
+  - id: wl-x1b-0268
+    text: 累的時候回家，是最對的選擇。
+    tags: [tired]
+  - id: wl-x1b-0269
+    text: 你來了，這一天就有了慶祝的理由。
+    tags: [festive]
+  - id: wl-x1b-0270
+    text: 放假的這裡，時間對你特別溫柔。
+    tags: [weekend]
+  - id: wl-x1b-0271
+    text: 隔了很久，門後的溫暖還是原來那份。
+    tags: [longtime]
+  - id: wl-x1b-0272
+    text: 你站在這裡，什麼都晃不倒你。
+    tags: [ground]
+  - id: wl-x1b-0273
+    text: 回家的日常，是最不起眼的幸福。
+    tags: [daily]
+  - id: wl-x1b-0274
+    text: 這裡替你守著。
+    tags: [brief]
+  - id: wl-x1b-0275
+    text: 你回到這裡，笑一個再開始吧。
+    tags: [play]
+  - id: wl-x1b-0276
+    text: 清晨的門開著，只為等你走進來。
+    tags: [morning]
+  - id: wl-x1b-0277
+    text: 你回來的夜，連呼吸都放慢了。
+    tags: [evening]
+  - id: wl-x1b-0278
+    text: 熟悉的座椅，還記得你的重量。
+    tags: [sense]
+  - id: wl-x1b-0279
+    text: 這裡替你留著一整片安靜給你倒下。
+    tags: [tired]
+  - id: wl-x1b-0280
+    text: 過節時回家，這裡替你熱好了氣氛。
+    tags: [festive]
+  - id: wl-x1b-0281
+    text: 週末回這裡，把自己還給自己。
+    tags: [weekend]
+  - id: wl-x1b-0282
+    text: 你久違地回來，這裡輕輕鬆了口氣。
+    tags: [longtime]
+  - id: wl-x1b-0283
+    text: 這裡是你的地，踩上去就安心。
+    tags: [ground]
+  - id: wl-x1b-0284
+    text: 你回到這裡，今天就有了歸處。
+    tags: [daily]
+  - id: wl-x1b-0286
+    text: 回家啦，來這裡找點輕快的東西。
+    tags: [play]
+  - id: wl-x1b-0287
+    text: 早安，這一格時間先留給你自己。
+    tags: [morning]
+  - id: wl-x1b-0288
+    text: 入夜後想起這裡，就過來坐坐。
+    tags: [evening]
+  - id: wl-x1b-0289
+    text: 這裡的氣味，是回家兩個字的形狀。
+    tags: [sense]
+  - id: wl-x1b-0290
+    text: 你辛苦一天，這裡替你關掉噪音。
+    tags: [tired]
+  - id: wl-x1b-0291
+    text: 今天特別溫柔，正好配你的回來。
+    tags: [festive]
+  - id: wl-x1b-0292
+    text: 假日回家，先泡在安靜裡一會兒。
+    tags: [weekend]
+  - id: wl-x1b-0293
+    text: 多久沒踏進來都行，這裡一直在。
+    tags: [longtime]
+  - id: wl-x1b-0294
+    text: 回來就好，這裡替你把重心接住。
+    tags: [ground]
+  - id: wl-x1b-0295
+    text: 每天回來，這裡都替你亮一盞燈。
+    tags: [daily]
+  - id: wl-x1b-0296
+    text: 回家真好。
+    tags: [brief]
+  - id: wl-x1b-0297
+    text: 你來了，這裡想跟你玩個小遊戲。
+    tags: [play]
+  - id: wl-x1b-0298
+    text: 你回來的早晨，連影子都放鬆了。
+    tags: [morning]
+  - id: wl-x1b-0299
+    text: 晚安前的這一刻，先留給自己。
+    tags: [evening]
+  - id: wl-x1b-0300
+    text: 你來了，這裡的每寸都醒了過來。
+    tags: [sense]
+  - id: wl-x1b-0301
+    text: 回來吧，累意在這裡會慢慢變輕。
+    tags: [tired]
+  - id: wl-x1b-0302
+    text: 佳節快樂，這裡陪你把日子過亮。
+    tags: [festive]
+  - id: wl-x1b-0303
+    text: 你來了，週末的節奏就對了。
+    tags: [weekend]
+  - id: wl-x1b-0304
+    text: 久違的腳步，這裡一聽就認出來了。
+    tags: [longtime]
+  - id: wl-x1b-0305
+    text: 你踏進來的每一步，這裡都替你穩著。
+    tags: [ground]
+  - id: wl-x1b-0306
+    text: 你來了，平常的日子也被接住了。
+    tags: [daily]
+  - id: wl-x1b-0307
+    text: 這裡陪你。
+    tags: [brief]
+  - id: wl-x1b-0308
+    text: 回來坐坐，這裡替你把嘴角勾起來。
+    tags: [play]
+  - id: wl-x1b-0309
+    text: 新的一天亮起來，你也回到這裡了。
+    tags: [morning]
+  - id: wl-x1b-0310
+    text: 夜很長，這裡陪你把它過得柔軟。
+    tags: [evening]
+  - id: wl-x1b-0311
+    text: 熟悉的一切，都在等你重新坐下。
+    tags: [sense]
+  - id: wl-x1b-0312
+    text: 你撐著的那口氣，現在可以吐出來了。
+    tags: [tired]
+  - id: wl-x1b-0313
+    text: 節日裡回來坐坐，讓開心多留一會。
+    tags: [festive]
+  - id: wl-x1b-0314
+    text: 週末的這裡，什麼都能等等再說。
+    tags: [weekend]
+  - id: wl-x1b-0315
+    text: 你回來了，這裡替你把空白填成安心。
+    tags: [longtime]
+  - id: wl-x1b-0316
+    text: 這裡的地很沉，夠你放心扎根。
+    tags: [ground]
+  - id: wl-x1b-0317
+    text: 回到這裡，今天的忙都可以放下了。
+    tags: [daily]
+  - id: wl-x1b-0318
+    text: 你回來啦，坐。
+    tags: [brief]
+  - id: wl-x1b-0319
+    text: 你回到這裡，來一點好玩的解解悶。
+    tags: [play]
+  - id: wl-x1b-0320
+    text: 早安，這裡陪你把眼睛慢慢睜開。
+    tags: [morning]
+  - id: wl-x1b-0321
+    text: 你來了，今晚就不必再撐著了。
+    tags: [evening]
+  - id: wl-x1b-0322
+    text: 這裡的溫度沒變，等的就是你。
+    tags: [sense]
+  - id: wl-x1b-0323
+    text: 這裡不催你振作，只陪你緩緩。
+    tags: [tired]
+  - id: wl-x1b-0324
+    text: 你回到這裡，節日就完整了。
+    tags: [festive]
+  - id: wl-x1b-0325
+    text: 放假回來，這裡替你留了一整天的閒。
+    tags: [weekend]
+  - id: wl-x1b-0326
+    text: 隔了好久，這裡的光還是替你留的。
+    tags: [longtime]
+  - id: wl-x1b-0327
+    text: 回家的感覺，就是腳終於落地了。
+    tags: [ground]
+  - id: wl-x1b-0328
+    text: 你回來了，日常就有了柔軟的角。
+    tags: [daily]
+  - id: wl-x1b-0329
+    text: 安心，你到家了。
+    tags: [brief]
+  - id: wl-x1b-0330
+    text: 回家的感覺，今天想陪你玩一玩。
+    tags: [play]
+  - id: wl-x1b-0331
+    text: 晨光穿過窗，剛好照亮你的座位。
+    tags: [morning]
+  - id: wl-x1b-0332
+    text: 燈還亮著，因為知道你會回來。
+    tags: [evening]
+  - id: wl-x1b-0333
+    text: 你回來，連空氣都嘆了口安心的氣。
+    tags: [sense]
+  - id: wl-x1b-0334
+    text: 累了就回這裡，什麼都能等等再說。
+    tags: [tired]
+  - id: wl-x1b-0335
+    text: 今天的這裡，替你藏了一點小驚喜。
+    tags: [festive]
+  - id: wl-x1b-0336
+    text: 週末回家的感覺，鬆得剛剛好。
+    tags: [weekend]
+  - id: wl-x1b-0337
+    text: 久沒見面，這裡替你把家守得好好的。
+    tags: [longtime]
+  - id: wl-x1b-0338
+    text: 你來了，這裡替你把地面守得平穩。
+    tags: [ground]
+  - id: wl-x1b-0339
+    text: 每天這一趟回家，值得。
+    tags: [daily]
+  - id: wl-x1b-0340
+    text: 這裡替你亮著。
+    tags: [brief]
+  - id: wl-x1b-0341
+    text: 你來了，這裡替你留了一格快樂。
+    tags: [play]
+  - id: wl-x1b-0342
+    text: 你來了，早晨也跟著安穩下來。
+    tags: [morning]
+  - id: wl-x1b-0343
+    text: 晚上好，這裡把一天的疲憊接住了。
+    tags: [evening]
+  - id: wl-x1b-0344
+    text: 這裡的光和影，都記得你的樣子。
+    tags: [sense]
+  - id: wl-x1b-0345
+    text: 你回來了，這裡替你把疲憊收好。
+    tags: [tired]
+  - id: wl-x1b-0346
+    text: 過節了，別忘了回這裡歇口氣。
+    tags: [festive]
+  - id: wl-x1b-0347
+    text: 你回來了，假日就有了柔軟的形狀。
+    tags: [weekend]
+  - id: wl-x1b-0348
+    text: 你回來就好，這裡從不計較久不久。
+    tags: [longtime]
+  - id: wl-x1b-0349
+    text: 這裡很實在，飄久了就回來踩踩。
+    tags: [ground]
+  - id: wl-x1b-0350
+    text: 你來坐坐，這一天就完整了。
+    tags: [daily]
+  - id: wl-x1b-0351
+    text: 你來了，坐下吧。
+    tags: [brief]
+  - id: wl-x1b-0352
+    text: 回來吧，讓這裡把你逗得輕鬆些。
+    tags: [play]
+  - id: wl-x1b-0353
+    text: 一早回到這裡，什麼都還來得及。
+    tags: [morning]
+  - id: wl-x1b-0354
+    text: 夜色落下時，你剛好回到這裡。
+    tags: [evening]
+  - id: wl-x1b-0355
+    text: 你踏進來，熟悉感就把你接住了。
+    tags: [sense]
+  - id: wl-x1b-0356
+    text: 辛苦的你，先在這裡把眼睛閉一下。
+    tags: [tired]
+  - id: wl-x1b-0357
+    text: 佳節的燈，一盞是替你留的。
+    tags: [festive]
+  - id: wl-x1b-0358
+    text: 週末在這裡待著，什麼都不欠誰。
+    tags: [weekend]
+  - id: wl-x1b-0359
+    text: 多久不回都沒關係，這裡等得起。
+    tags: [longtime]
+  - id: wl-x1b-0360
+    text: 回到這裡，你就有了站穩的底氣。
+    tags: [ground]
+  - id: wl-x1b-0361
+    text: 回家的感覺，就在這個平常的當下。
+    tags: [daily]
+  - id: wl-x1b-0362
+    text: 回來了，很好。
+    tags: [brief]
+  - id: wl-x1b-0363
+    text: 你回到這裡，玩一會兒也很好。
+    tags: [play]
+  - id: wl-x1b-0364
+    text: 早安，這裡替你把慌張擋在門外。
+    tags: [morning]
+  - id: wl-x1b-0365
+    text: 今晚回家慢一點，這裡不催你。
+    tags: [evening]
+  - id: wl-x1b-0366
+    text: 這裡的安靜有你的形狀，剛剛好。
+    tags: [sense]
+  - id: wl-x1b-0367
+    text: 回家的意思，就是可以不用撐了。
+    tags: [tired]
+  - id: wl-x1b-0368
+    text: 你來了，這裡也跟著喜氣洋洋。
+    tags: [festive]
+  - id: wl-x1b-0369
+    text: 放假的日子，回這裡把心放空。
+    tags: [weekend]
+  - id: wl-x1b-0370
+    text: 久違的你，這裡替你把位置擦得乾淨。
+    tags: [longtime]
+  - id: wl-x1b-0371
+    text: 你站在這裡，這片地一直挺著你。
+    tags: [ground]
+  - id: wl-x1b-0372
+    text: 你回到這裡，今天終於可以歇了。
+    tags: [daily]
+  - id: wl-x1b-0373
+    text: 這裡一直沒關。
+    tags: [brief]
+  - id: wl-x1b-0374
+    text: 回家啦，這裡有小驚喜想給你。
+    tags: [play]
+  - id: wl-x1b-0375
+    text: 清晨回家，先深呼吸一口再說。
+    tags: [morning]
+  - id: wl-x1b-0376
+    text: 你出現在夜裡，像一句安穩的晚安。
+    tags: [evening]
+  - id: wl-x1b-0377
+    text: 你一來，連影子都認得回家的路。
+    tags: [sense]
+  - id: wl-x1b-0378
+    text: 你累到這裡，剛好可以放心軟下來。
+    tags: [tired]
+  - id: wl-x1b-0379
+    text: 節日回家，先把祝福放進口袋。
+    tags: [festive]
+  - id: wl-x1b-0380
+    text: 週末回來，這裡替你把忙碌關在門外。
+    tags: [weekend]
+  - id: wl-x1b-0381
+    text: 隔了一陣，你一進門就什麼都對了。
+    tags: [longtime]
+  - id: wl-x1b-0382
+    text: 這裡穩得像從沒動過，你放心回來。
+    tags: [ground]
+  - id: wl-x1b-0383
+    text: 每天回來一次，日子就穩了。
+    tags: [daily]
+  - id: wl-x1b-0384
+    text: 你到家了呀。
+    tags: [brief]
+  - id: wl-x1b-0385
+    text: 你來了，這裡陪你把日子過得俏皮。
+    tags: [play]
+  - id: wl-x1b-0386
+    text: 你出現的早晨，時間都慢了半拍。
+    tags: [morning]
+  - id: wl-x1b-0387
+    text: 入夜了，這裡替你把世界調小聲。
+    tags: [evening]
+  - id: wl-x1b-0388
+    text: 熟悉的味道飄過來，你就到家了。
+    tags: [sense]
+  - id: wl-x1b-0389
+    text: 這裡替你把今天的重擔輕輕接下。
+    tags: [tired]
+  - id: wl-x1b-0390
+    text: 今天值得記住，因為你回來了。
+    tags: [festive]
+  - id: wl-x1b-0391
+    text: 你來了，假日的光也跟著懶了下來。
+    tags: [weekend]
+  - id: wl-x1b-0392
+    text: 你回來了，時間對這裡好像沒動過。
+    tags: [longtime]
+  - id: wl-x1b-0393
+    text: 回來吧，把飄浮的自己放回地面。
+    tags: [ground]
+  - id: wl-x1b-0394
+    text: 你來了，尋常的這一刻也閃著光。
+    tags: [daily]
+  - id: wl-x1b-0395
+    text: 歡迎，坐一會。
+    tags: [brief]
+  - id: wl-x1b-0396
+    text: 回來坐坐，讓輕鬆先把你接住。
+    tags: [play]
+  - id: wl-x1b-0397
+    text: 早安，這裡替你把新的一天鋪得平整。
+    tags: [morning]
+  - id: wl-x1b-0398
+    text: 晚安，你回來了，今晚就有依靠。
+    tags: [evening]
+  - id: wl-x1b-0399
+    text: 晨光剛好，你也剛好回到這裡。
+    tags: [morning]
+  - id: wl-x1b-0400
+    text: 夜裡的這裡，替你把白天輕輕收攏。
+    tags: [evening]

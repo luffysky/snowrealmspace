@@ -1,0 +1,2392 @@
+# 微行動 補充批次 x1（自動組裝、全池去重）。tags 為主題。
+  - id: ma-x1a-0001
+    text: 輕輕轉動脖子，畫三個小圓圈。
+    tags: [body]
+  - id: ma-x1a-0002
+    text: 把肩膀往耳朵方向聳起，再放鬆。
+    tags: [body]
+  - id: ma-x1a-0003
+    text: 甩一甩雙手，讓手腕放鬆。
+    tags: [body]
+  - id: ma-x1a-0004
+    text: 原地輕輕踮腳尖十下。
+    tags: [body]
+  - id: ma-x1a-0005
+    text: 雙手互相搓熱，敷在臉上。
+    tags: [body]
+  - id: ma-x1a-0006
+    text: 動一動腳趾，感覺它們醒過來。
+    tags: [body]
+  - id: ma-x1a-0007
+    text: 輕輕拍打大腿，喚醒雙腿。
+    tags: [body]
+  - id: ma-x1a-0008
+    text: 張開手掌用力再握拳，重複五次。
+    tags: [body]
+  - id: ma-x1a-0009
+    text: 左右輕輕擺動臀部，鬆一鬆腰。
+    tags: [body]
+  - id: ma-x1a-0010
+    text: 用指腹按壓太陽穴繞小圈。
+    tags: [body]
+  - id: ma-x1a-0011
+    text: 輕輕扭動手腕，兩個方向各轉幾圈。
+    tags: [body]
+  - id: ma-x1a-0012
+    text: 把下巴往內收，感覺後頸拉長。
+    tags: [body]
+  - id: ma-x1a-0013
+    text: 聳肩深吸氣，吐氣時把肩膀放下。
+    tags: [body]
+  - id: ma-x1a-0014
+    text: 輕捏耳垂，慢慢往下拉揉。
+    tags: [body]
+  - id: ma-x1a-0015
+    text: 原地小小跳動幾下，讓身體暖起來。
+    tags: [body]
+  - id: ma-x1a-0016
+    text: 雙腳交替提起膝蓋，像慢慢踏步。
+    tags: [body]
+  - id: ma-x1a-0017
+    text: 用手掌輕輕按摩後頸兩側。
+    tags: [body]
+  - id: ma-x1a-0018
+    text: 張大嘴巴打個大哈欠，放鬆下顎。
+    tags: [body]
+  - id: ma-x1a-0019
+    text: 輕輕搖晃全身，把僵硬甩掉。
+    tags: [body]
+  - id: ma-x1a-0020
+    text: 把雙腳踩實地面，感受站穩的感覺。
+    tags: [body]
+  - id: ma-x1a-0021
+    text: 交替聳起左右肩，像小小的波浪。
+    tags: [body]
+  - id: ma-x1a-0022
+    text: 用手指梳一梳頭皮，放鬆一下。
+    tags: [body]
+  - id: ma-x1a-0023
+    text: 輕輕按壓眉心，停留幾秒。
+    tags: [body]
+  - id: ma-x1a-0024
+    text: 動一動下巴，左右輕輕移動。
+    tags: [body]
+  - id: ma-x1a-0025
+    text: 把手臂前後小幅擺動幾下。
+    tags: [body]
+  - id: ma-x1a-0026
+    text: 輕輕敲一敲肩膀，鬆開緊繃。
+    tags: [body]
+  - id: ma-x1a-0027
+    text: 讓臉部肌肉放鬆，眉頭鬆開。
+    tags: [body]
+  - id: ma-x1a-0028
+    text: 輕輕轉動腳踝，兩邊各繞幾圈。
+    tags: [body]
+  - id: ma-x1a-0029
+    text: 雙手抱住自己，給自己一個擁抱。
+    tags: [body]
+  - id: ma-x1a-0030
+    text: 輕輕拍拍臉頰，讓自己清醒些。
+    tags: [body]
+  - id: ma-x1a-0031
+    text: 把手指張開再合起，活動關節。
+    tags: [body]
+  - id: ma-x1a-0032
+    text: 慢慢聳肩繞一圈，前後各一次。
+    tags: [body]
+  - id: ma-x1a-0033
+    text: 輕揉一下緊繃的肩頸交界處。
+    tags: [body]
+  - id: ma-x1a-0034
+    text: 動動嘴角，做個放鬆的微笑。
+    tags: [body]
+  - id: ma-x1a-0035
+    text: 輕輕晃動雙腿，坐著也能鬆一鬆。
+    tags: [body]
+  - id: ma-x1a-0036
+    text: 把雙手放在膝上，感受手心溫度。
+    tags: [body]
+  - id: ma-x1a-0037
+    text: 輕輕扭一扭上半身，左右各一次。
+    tags: [body]
+  - id: ma-x1a-0038
+    text: 用手掌溫暖一下冰涼的雙手。
+    tags: [body]
+  - id: ma-x1a-0039
+    text: 把頭輕輕往左右倒，鬆開頸側。
+    tags: [body]
+  - id: ma-x1a-0040
+    text: 輕輕活動一下手肘，屈伸幾次。
+    tags: [body]
+  - id: ma-x1a-0041
+    text: 站起來，把雙手往上伸展十秒。
+    tags: [stretch]
+  - id: ma-x1a-0042
+    text: 十指交扣，手心朝外往前推。
+    tags: [stretch]
+  - id: ma-x1a-0043
+    text: 雙手在背後交握，輕輕往後拉開胸口。
+    tags: [stretch]
+  - id: ma-x1a-0044
+    text: 舉起右手往左側彎，伸展身體側邊。
+    tags: [stretch]
+  - id: ma-x1a-0045
+    text: 舉起左手往右側彎，拉開另一側。
+    tags: [stretch]
+  - id: ma-x1a-0046
+    text: 坐著把一腳伸直，身體前傾碰腳尖。
+    tags: [stretch]
+  - id: ma-x1a-0047
+    text: 雙手抱膝往胸口靠，伸展下背。
+    tags: [stretch]
+  - id: ma-x1a-0048
+    text: 把手臂橫過胸前，用另一手輕壓伸展。
+    tags: [stretch]
+  - id: ma-x1a-0049
+    text: 手肘彎起繞到頭後，伸展上臂後側。
+    tags: [stretch]
+  - id: ma-x1a-0050
+    text: 扶著桌子，把小腿往後拉伸。
+    tags: [stretch]
+  - id: ma-x1a-0051
+    text: 站著把腳跟往上抬，伸展小腿肌肉。
+    tags: [stretch]
+  - id: ma-x1a-0052
+    text: 坐正，慢慢把身體往前彎，垂下雙手。
+    tags: [stretch]
+  - id: ma-x1a-0053
+    text: 雙手插腰，上身輕輕往後仰伸展。
+    tags: [stretch]
+  - id: ma-x1a-0054
+    text: 把一腳交叉，身體轉向後方伸展腰部。
+    tags: [stretch]
+  - id: ma-x1a-0055
+    text: 手臂高舉，像要摘星星一樣往上延伸。
+    tags: [stretch]
+  - id: ma-x1a-0056
+    text: 十指交握往上翻掌，拉長整條手臂。
+    tags: [stretch]
+  - id: ma-x1a-0057
+    text: 坐著把腳踝放到另一腿上，輕壓伸展臀部。
+    tags: [stretch]
+  - id: ma-x1a-0058
+    text: 靠牆把手掌貼平，伸展胸口與肩膀。
+    tags: [stretch]
+  - id: ma-x1a-0059
+    text: 雙手撐在下背，慢慢往後延展脊椎。
+    tags: [stretch]
+  - id: ma-x1a-0060
+    text: 把頭往一側傾，用手輕輕加深伸展。
+    tags: [stretch]
+  - id: ma-x1a-0061
+    text: 伸出雙臂往兩側打開，擴展胸腔。
+    tags: [stretch]
+  - id: ma-x1a-0062
+    text: 站著彎腰，讓上半身像布娃娃垂下。
+    tags: [stretch]
+  - id: ma-x1a-0063
+    text: 一腳往前踏成弓步，伸展後腿。
+    tags: [stretch]
+  - id: ma-x1a-0064
+    text: 把雙手往身後延伸，打開肩胛骨。
+    tags: [stretch]
+  - id: ma-x1a-0065
+    text: 坐著轉身，扶著椅背伸展背部。
+    tags: [stretch]
+  - id: ma-x1a-0066
+    text: 手指張開貼牆，慢慢伸展手腕內側。
+    tags: [stretch]
+  - id: ma-x1a-0067
+    text: 抬起一膝抱住，伸展大腿後側。
+    tags: [stretch]
+  - id: ma-x1a-0068
+    text: 把雙臂繞到背後互扣，拉開肩膀。
+    tags: [stretch]
+  - id: ma-x1a-0069
+    text: 站直後緩緩側彎，感覺腰間拉長。
+    tags: [stretch]
+  - id: ma-x1a-0070
+    text: 手臂伸直交疊，往前推伸展上背。
+    tags: [stretch]
+  - id: ma-x1a-0071
+    text: 坐著把雙腳打開，身體往中間前傾。
+    tags: [stretch]
+  - id: ma-x1a-0072
+    text: 抬起腳把腳尖往上勾，伸展腳背與小腿。
+    tags: [stretch]
+  - id: ma-x1a-0073
+    text: 雙手抱後腦，手肘往兩側打開伸展。
+    tags: [stretch]
+  - id: ma-x1a-0074
+    text: 站著把一手貼牆，身體轉開伸展胸肌。
+    tags: [stretch]
+  - id: ma-x1a-0075
+    text: 慢慢把頸部往前伸，再收回。
+    tags: [stretch]
+  - id: ma-x1a-0076
+    text: 屈膝坐下，把身體往前趴伸展後背。
+    tags: [stretch]
+  - id: ma-x1a-0077
+    text: 把腳踝繞圈後往前伸直，拉長腿部。
+    tags: [stretch]
+  - id: ma-x1a-0078
+    text: 雙手向上再向兩側畫大圈伸展。
+    tags: [stretch]
+  - id: ma-x1a-0079
+    text: 抬起手臂往斜上方延伸，換邊再做。
+    tags: [stretch]
+  - id: ma-x1a-0080
+    text: 坐正把肩膀往後轉開，伸展前胸。
+    tags: [stretch]
+  - id: ma-x1a-0081
+    text: 起身走到窗邊，再走回來。
+    tags: [walk]
+  - id: ma-x1a-0082
+    text: 到廚房幫自己倒杯水，順便走幾步。
+    tags: [walk]
+  - id: ma-x1a-0083
+    text: 沿著房間邊緣慢慢走一圈。
+    tags: [walk]
+  - id: ma-x1a-0084
+    text: 走去陽台，站一會兒再回來。
+    tags: [walk]
+  - id: ma-x1a-0085
+    text: 起身走到門口，深吸一口氣。
+    tags: [walk]
+  - id: ma-x1a-0086
+    text: 慢慢走到走廊盡頭再折返。
+    tags: [walk]
+  - id: ma-x1a-0087
+    text: 起來走去洗個手，動一動雙腿。
+    tags: [walk]
+  - id: ma-x1a-0088
+    text: 到另一個房間繞一圈再回座位。
+    tags: [walk]
+  - id: ma-x1a-0089
+    text: 站起來原地踏步走三十秒。
+    tags: [walk]
+  - id: ma-x1a-0090
+    text: 走去看看窗外，再散步回來。
+    tags: [walk]
+  - id: ma-x1a-0091
+    text: 慢慢走下再走上幾階樓梯。
+    tags: [walk]
+  - id: ma-x1a-0092
+    text: 起身在屋裡輕鬆地來回走動。
+    tags: [walk]
+  - id: ma-x1a-0093
+    text: 走到最近的一扇窗前望一望。
+    tags: [walk]
+  - id: ma-x1a-0094
+    text: 到門邊走一走，讓血液流動。
+    tags: [walk]
+  - id: ma-x1a-0095
+    text: 起來走去拿件小東西，動動身體。
+    tags: [walk]
+  - id: ma-x1a-0096
+    text: 沿著桌子慢慢繞兩圈。
+    tags: [walk]
+  - id: ma-x1a-0097
+    text: 走出房門，在外面站一下再回來。
+    tags: [walk]
+  - id: ma-x1a-0098
+    text: 起身走幾步去伸展一下腿。
+    tags: [walk]
+  - id: ma-x1a-0099
+    text: 慢慢走到冰箱前，喝口水再走回。
+    tags: [walk]
+  - id: ma-x1a-0100
+    text: 到走道上輕鬆散步一分鐘。
+    tags: [walk]
+  - id: ma-x1a-0101
+    text: 起來走到牆邊，靠一下再繼續。
+    tags: [walk]
+  - id: ma-x1a-0102
+    text: 走去把窗戶打開，透透氣再回來。
+    tags: [walk]
+  - id: ma-x1a-0103
+    text: 起身走一小段，甩甩手臂。
+    tags: [walk]
+  - id: ma-x1a-0104
+    text: 慢慢走去洗手間，路上放鬆肩膀。
+    tags: [walk]
+  - id: ma-x1a-0105
+    text: 到客廳走一圈，換個空間。
+    tags: [walk]
+  - id: ma-x1a-0106
+    text: 起來在原地慢慢踏步暖身。
+    tags: [walk]
+  - id: ma-x1a-0107
+    text: 走去陽台看看天空再回座。
+    tags: [walk]
+  - id: ma-x1a-0108
+    text: 沿著房間對角線來回走幾趟。
+    tags: [walk]
+  - id: ma-x1a-0109
+    text: 起身走去拿杯茶，動動雙腳。
+    tags: [walk]
+  - id: ma-x1a-0110
+    text: 慢慢走到門外呼吸新鮮空氣。
+    tags: [walk]
+  - id: ma-x1a-0111
+    text: 到樓梯口上下走動一小段。
+    tags: [walk]
+  - id: ma-x1a-0112
+    text: 起來繞著椅子輕鬆走幾圈。
+    tags: [walk]
+  - id: ma-x1a-0113
+    text: 走去把植物看一看，順便活動腿。
+    tags: [walk]
+  - id: ma-x1a-0114
+    text: 起身踱步幾分鐘，讓思緒鬆一下。
+    tags: [walk]
+  - id: ma-x1a-0115
+    text: 慢慢走去廚房，回來時走慢一點。
+    tags: [walk]
+  - id: ma-x1a-0116
+    text: 到最遠的房間走一趟再回來。
+    tags: [walk]
+  - id: ma-x1a-0117
+    text: 起來輕快地走一小段路。
+    tags: [walk]
+  - id: ma-x1a-0118
+    text: 走到窗前踏踏步，看看外面。
+    tags: [walk]
+  - id: ma-x1a-0119
+    text: 起身沿牆走一圈，放鬆步伐。
+    tags: [walk]
+  - id: ma-x1a-0120
+    text: 慢慢走去門口，再悠閒走回來。
+    tags: [walk]
+  - id: ma-x1a-0121
+    text: 閉上眼睛，讓眼球休息二十秒。
+    tags: [eyes]
+  - id: ma-x1a-0122
+    text: 望向最遠的窗外，讓眼睛放鬆。
+    tags: [eyes]
+  - id: ma-x1a-0123
+    text: 看看六公尺外的物體，停留一會兒。
+    tags: [eyes]
+  - id: ma-x1a-0124
+    text: 用手掌搓熱後，輕輕蓋住雙眼。
+    tags: [eyes]
+  - id: ma-x1a-0125
+    text: 眨眨眼十下，讓眼睛濕潤。
+    tags: [eyes]
+  - id: ma-x1a-0126
+    text: 把視線從螢幕移開，看看綠色植物。
+    tags: [eyes]
+  - id: ma-x1a-0127
+    text: 眼睛慢慢往上看，再往下看。
+    tags: [eyes]
+  - id: ma-x1a-0128
+    text: 讓眼球往左右兩邊各看幾秒。
+    tags: [eyes]
+  - id: ma-x1a-0129
+    text: 閉眼深吸一口氣，再慢慢睜開。
+    tags: [eyes]
+  - id: ma-x1a-0130
+    text: 看向遠方的天空，讓眼睛放空。
+    tags: [eyes]
+  - id: ma-x1a-0131
+    text: 用眼睛畫一個大圓圈，繞兩次。
+    tags: [eyes]
+  - id: ma-x1a-0132
+    text: 望向房間最遠的角落，放鬆焦距。
+    tags: [eyes]
+  - id: ma-x1a-0133
+    text: 閉上眼，輕輕按壓眼周幾秒。
+    tags: [eyes]
+  - id: ma-x1a-0134
+    text: 交替看近處與遠處的東西幾次。
+    tags: [eyes]
+  - id: ma-x1a-0135
+    text: 眨眼放慢，一下一下慢慢眨。
+    tags: [eyes]
+  - id: ma-x1a-0136
+    text: 把眼睛閉起來，聽聽周圍的聲音。
+    tags: [eyes]
+  - id: ma-x1a-0137
+    text: 看看窗外遠處的建築或樹木。
+    tags: [eyes]
+  - id: ma-x1a-0138
+    text: 讓雙眼往斜上方與斜下方移動。
+    tags: [eyes]
+  - id: ma-x1a-0139
+    text: 閉眼休息，想像一片藍色海洋。
+    tags: [eyes]
+  - id: ma-x1a-0140
+    text: 用指腹輕輕按摩眼下的位置。
+    tags: [eyes]
+  - id: ma-x1a-0141
+    text: 把視線投向最亮的窗口再收回。
+    tags: [eyes]
+  - id: ma-x1a-0142
+    text: 睜大眼睛再輕輕閉上，重複幾次。
+    tags: [eyes]
+  - id: ma-x1a-0143
+    text: 望向遠處放鬆眼睛，數到二十。
+    tags: [eyes]
+  - id: ma-x1a-0144
+    text: 看看手邊的物件，再看向遠方。
+    tags: [eyes]
+  - id: ma-x1a-0145
+    text: 閉眼讓眼睛在黑暗裡休息片刻。
+    tags: [eyes]
+  - id: ma-x1a-0146
+    text: 眼球順時針轉一圈，再逆時針。
+    tags: [eyes]
+  - id: ma-x1a-0147
+    text: 把螢幕調暗一點，讓眼睛舒服些。
+    tags: [eyes]
+  - id: ma-x1a-0148
+    text: 遠眺窗外的雲，讓眼睛跟著飄。
+    tags: [eyes]
+  - id: ma-x1a-0149
+    text: 用溫熱的手掌暖一暖疲勞的眼睛。
+    tags: [eyes]
+  - id: ma-x1a-0150
+    text: 閉上眼，輕輕轉動眼球放鬆。
+    tags: [eyes]
+  - id: ma-x1a-0151
+    text: 看向房間另一端，讓焦距拉遠。
+    tags: [eyes]
+  - id: ma-x1a-0152
+    text: 慢慢眨眼幾次，幫眼睛補水。
+    tags: [eyes]
+  - id: ma-x1a-0153
+    text: 望向窗外最遠的一點，停十秒。
+    tags: [eyes]
+  - id: ma-x1a-0154
+    text: 閉眼默數十下，再看看四周。
+    tags: [eyes]
+  - id: ma-x1a-0155
+    text: 讓眼睛離開文字，看看空白牆面。
+    tags: [eyes]
+  - id: ma-x1a-0156
+    text: 眼睛往四個角落各看一下放鬆。
+    tags: [eyes]
+  - id: ma-x1a-0157
+    text: 閉眼把眼球輕輕上下移動。
+    tags: [eyes]
+  - id: ma-x1a-0158
+    text: 看看遠方，再把焦點慢慢拉回。
+    tags: [eyes]
+  - id: ma-x1a-0159
+    text: 用掌心蓋住眼睛，感受一片溫暖黑暗。
+    tags: [eyes]
+  - id: ma-x1a-0160
+    text: 讓視線隨意飄向窗外的遠景。
+    tags: [eyes]
+  - id: ma-x1a-0161
+    text: 深吸一口氣，數到四再慢慢吐。
+    tags: [breath]
+  - id: ma-x1a-0162
+    text: 用鼻子慢慢吸氣，感覺肚子鼓起。
+    tags: [breath]
+  - id: ma-x1a-0163
+    text: 吐氣時把肩膀完全放下。
+    tags: [breath]
+  - id: ma-x1a-0164
+    text: 吸氣四秒，屏住四秒，吐氣四秒。
+    tags: [breath]
+  - id: ma-x1a-0165
+    text: 把手放在肚子上，感受呼吸起伏。
+    tags: [breath]
+  - id: ma-x1a-0166
+    text: 慢慢吐一口長氣，像吹熄蠟燭。
+    tags: [breath]
+  - id: ma-x1a-0167
+    text: 深呼吸三次，每次都比上一次慢。
+    tags: [breath]
+  - id: ma-x1a-0168
+    text: 用鼻子吸氣，用嘴巴輕輕吐出。
+    tags: [breath]
+  - id: ma-x1a-0169
+    text: 吸氣時挺起胸口，吐氣時放鬆。
+    tags: [breath]
+  - id: ma-x1a-0170
+    text: 閉眼專注在呼吸上，數五個回合。
+    tags: [breath]
+  - id: ma-x1a-0171
+    text: 慢慢吸滿一口氣，再緩緩全部放掉。
+    tags: [breath]
+  - id: ma-x1a-0172
+    text: 想像吸進平靜，吐出緊張。
+    tags: [breath]
+  - id: ma-x1a-0173
+    text: 做一次深長的腹式呼吸。
+    tags: [breath]
+  - id: ma-x1a-0174
+    text: 吸氣默數三下，吐氣默數六下。
+    tags: [breath]
+  - id: ma-x1a-0175
+    text: 讓呼吸慢下來，像海浪一進一退。
+    tags: [breath]
+  - id: ma-x1a-0176
+    text: 深吸一口氣把胸腔打開，再放鬆。
+    tags: [breath]
+  - id: ma-x1a-0177
+    text: 吐氣拉長，讓身體慢慢鬆下來。
+    tags: [breath]
+  - id: ma-x1a-0178
+    text: 專心感受空氣進出鼻尖的溫度。
+    tags: [breath]
+  - id: ma-x1a-0179
+    text: 用四拍吸氣，八拍吐氣，重複三次。
+    tags: [breath]
+  - id: ma-x1a-0180
+    text: 深呼吸一次，把注意力帶回當下。
+    tags: [breath]
+  - id: ma-x1a-0181
+    text: 慢慢吸氣填滿肺部，停一秒再吐。
+    tags: [breath]
+  - id: ma-x1a-0182
+    text: 把每一口吐氣都吐得比吸氣長。
+    tags: [breath]
+  - id: ma-x1a-0183
+    text: 閉上嘴用鼻子做幾次緩慢呼吸。
+    tags: [breath]
+  - id: ma-x1a-0184
+    text: 吸氣時抬手，吐氣時放下手。
+    tags: [breath]
+  - id: ma-x1a-0185
+    text: 感覺一口氣從胸口沉到腹部。
+    tags: [breath]
+  - id: ma-x1a-0186
+    text: 做三次深呼吸，讓心跳慢下來。
+    tags: [breath]
+  - id: ma-x1a-0187
+    text: 吐氣時默念放鬆兩個字。
+    tags: [breath]
+  - id: ma-x1a-0188
+    text: 吸氣讓肋骨往兩側撐開。
+    tags: [breath]
+  - id: ma-x1a-0189
+    text: 慢慢呼吸，數自己的十次吐氣。
+    tags: [breath]
+  - id: ma-x1a-0190
+    text: 深吸一口氣，暫停，再輕輕嘆出來。
+    tags: [breath]
+  - id: ma-x1a-0191
+    text: 把呼吸放到最慢，感受身體平靜。
+    tags: [breath]
+  - id: ma-x1a-0192
+    text: 吸氣提起精神，吐氣卸下疲累。
+    tags: [breath]
+  - id: ma-x1a-0193
+    text: 用一次長吐氣，把煩躁送走。
+    tags: [breath]
+  - id: ma-x1a-0194
+    text: 專注呼吸，讓思緒像雲慢慢飄過。
+    tags: [breath]
+  - id: ma-x1a-0195
+    text: 吸氣默數四，吐氣默數四，做四回。
+    tags: [breath]
+  - id: ma-x1a-0196
+    text: 感受呼吸讓肚子輕輕上下。
+    tags: [breath]
+  - id: ma-x1a-0197
+    text: 深呼吸，把肩頸的緊繃隨氣吐出。
+    tags: [breath]
+  - id: ma-x1a-0198
+    text: 慢慢吸一口新鮮空氣再全部放掉。
+    tags: [breath]
+  - id: ma-x1a-0199
+    text: 做一次深呼吸，對自己說沒關係。
+    tags: [breath]
+  - id: ma-x1a-0200
+    text: 讓下一口呼吸，比現在更慢更深。
+    tags: [breath]
+  - id: ma-x1a-0201
+    text: 幫自己倒一杯溫水，慢慢喝。
+    tags: [hydrate]
+  - id: ma-x1a-0202
+    text: 喝一小口水，感受它滑進喉嚨。
+    tags: [hydrate]
+  - id: ma-x1a-0203
+    text: 把水杯裝滿，放在手邊隨時喝。
+    tags: [hydrate]
+  - id: ma-x1a-0204
+    text: 喝幾口水，讓身體補充水分。
+    tags: [hydrate]
+  - id: ma-x1a-0205
+    text: 泡一杯溫熱的茶，慢慢啜飲。
+    tags: [hydrate]
+  - id: ma-x1a-0206
+    text: 喝一杯常溫水，別喝太快。
+    tags: [hydrate]
+  - id: ma-x1a-0207
+    text: 給自己倒杯水，趁溫熱時喝下。
+    tags: [hydrate]
+  - id: ma-x1a-0208
+    text: 小口小口把一杯水喝完。
+    tags: [hydrate]
+  - id: ma-x1a-0209
+    text: 喝一口水後，深吸一口氣。
+    tags: [hydrate]
+  - id: ma-x1a-0210
+    text: 幫水杯加點溫水，暖一暖身體。
+    tags: [hydrate]
+  - id: ma-x1a-0211
+    text: 喝一杯水，想像身體被滋潤。
+    tags: [hydrate]
+  - id: ma-x1a-0212
+    text: 停下來喝口水，讓喉嚨舒服些。
+    tags: [hydrate]
+  - id: ma-x1a-0213
+    text: 倒一杯白開水，安靜地喝完。
+    tags: [hydrate]
+  - id: ma-x1a-0214
+    text: 喝點溫水，讓胃暖起來。
+    tags: [hydrate]
+  - id: ma-x1a-0215
+    text: 把水瓶帶到身邊，提醒自己多喝。
+    tags: [hydrate]
+  - id: ma-x1a-0216
+    text: 慢慢喝半杯水，剩下等會再喝。
+    tags: [hydrate]
+  - id: ma-x1a-0217
+    text: 泡杯無咖啡因的花草茶暖手。
+    tags: [hydrate]
+  - id: ma-x1a-0218
+    text: 喝一口水，順便伸展一下背。
+    tags: [hydrate]
+  - id: ma-x1a-0219
+    text: 給自己一杯溫開水，慢慢享受。
+    tags: [hydrate]
+  - id: ma-x1a-0220
+    text: 喝水前先聞一聞茶的香氣。
+    tags: [hydrate]
+  - id: ma-x1a-0221
+    text: 補充一杯水，讓自己清爽一點。
+    tags: [hydrate]
+  - id: ma-x1a-0222
+    text: 喝口水，同時看看窗外放鬆。
+    tags: [hydrate]
+  - id: ma-x1a-0223
+    text: 把冷水換成溫水，對身體溫柔些。
+    tags: [hydrate]
+  - id: ma-x1a-0224
+    text: 倒杯水，配著幾次深呼吸慢慢喝。
+    tags: [hydrate]
+  - id: ma-x1a-0225
+    text: 喝一杯水，感謝身體的辛苦。
+    tags: [hydrate]
+  - id: ma-x1a-0226
+    text: 慢慢喝下一整杯溫水補水。
+    tags: [hydrate]
+  - id: ma-x1a-0227
+    text: 停手喝口水，讓大腦也醒一醒。
+    tags: [hydrate]
+  - id: ma-x1a-0228
+    text: 泡一杯熱飲，捧著暖暖手心。
+    tags: [hydrate]
+  - id: ma-x1a-0229
+    text: 喝點水，把疲憊稍微沖淡。
+    tags: [hydrate]
+  - id: ma-x1a-0230
+    text: 幫自己準備一壺水放在桌上。
+    tags: [hydrate]
+  - id: ma-x1a-0231
+    text: 喝一小口水潤潤乾燥的嘴唇。
+    tags: [hydrate]
+  - id: ma-x1a-0232
+    text: 倒杯溫水，一口一口慢慢喝。
+    tags: [hydrate]
+  - id: ma-x1a-0233
+    text: 喝水時把注意力放在當下。
+    tags: [hydrate]
+  - id: ma-x1a-0234
+    text: 給自己一杯水，當作小小的照顧。
+    tags: [hydrate]
+  - id: ma-x1a-0235
+    text: 喝點溫熱的水，讓身體放鬆下來。
+    tags: [hydrate]
+  - id: ma-x1a-0236
+    text: 把手邊的水喝掉一半，補補水分。
+    tags: [hydrate]
+  - id: ma-x1a-0237
+    text: 泡一杯淡淡的茶，靜靜喝完。
+    tags: [hydrate]
+  - id: ma-x1a-0238
+    text: 喝口水，提醒自己好好休息。
+    tags: [hydrate]
+  - id: ma-x1a-0239
+    text: 慢慢喝水，感受清涼流過身體。
+    tags: [hydrate]
+  - id: ma-x1a-0240
+    text: 補一杯水，讓乾渴的身體舒緩。
+    tags: [hydrate]
+  - id: ma-x1a-0241
+    text: 靠在椅背上，閉眼休息一分鐘。
+    tags: [rest]
+  - id: ma-x1a-0242
+    text: 把頭輕輕靠著牆，歇一會兒。
+    tags: [rest]
+  - id: ma-x1a-0243
+    text: 找個舒服的姿勢，安靜坐一下。
+    tags: [rest]
+  - id: ma-x1a-0244
+    text: 放下手邊的事，讓自己發個呆。
+    tags: [rest]
+  - id: ma-x1a-0245
+    text: 靠著沙發，什麼都不做地歇著。
+    tags: [rest]
+  - id: ma-x1a-0246
+    text: 閉上眼睛，讓大腦空白幾分鐘。
+    tags: [rest]
+  - id: ma-x1a-0247
+    text: 把腳抬高一點，讓雙腿休息。
+    tags: [rest]
+  - id: ma-x1a-0248
+    text: 躺平一小會兒，讓背部放鬆。
+    tags: [rest]
+  - id: ma-x1a-0249
+    text: 坐下來，什麼也不想地歇口氣。
+    tags: [rest]
+  - id: ma-x1a-0250
+    text: 把身體交給椅子，完全放鬆下來。
+    tags: [rest]
+  - id: ma-x1a-0251
+    text: 找個角落安靜地坐著休息。
+    tags: [rest]
+  - id: ma-x1a-0252
+    text: 閉眼靠著椅背，讓自己喘口氣。
+    tags: [rest]
+  - id: ma-x1a-0253
+    text: 停下所有動作，靜靜休息片刻。
+    tags: [rest]
+  - id: ma-x1a-0254
+    text: 讓自己躺著，感受身體的重量。
+    tags: [rest]
+  - id: ma-x1a-0255
+    text: 把手機放遠，安靜休息一下。
+    tags: [rest]
+  - id: ma-x1a-0256
+    text: 靠著窗邊，讓陽光曬著休息。
+    tags: [rest]
+  - id: ma-x1a-0257
+    text: 閉眼休息，聽自己的呼吸聲。
+    tags: [rest]
+  - id: ma-x1a-0258
+    text: 坐著讓肩頸鬆下來，歇一會兒。
+    tags: [rest]
+  - id: ma-x1a-0259
+    text: 給自己五分鐘什麼都不做。
+    tags: [rest]
+  - id: ma-x1a-0260
+    text: 靠在枕頭上，讓頭和頸放鬆。
+    tags: [rest]
+  - id: ma-x1a-0261
+    text: 停下來歇息，讓身心都慢下來。
+    tags: [rest]
+  - id: ma-x1a-0262
+    text: 把工作暫時放下，安靜歇著。
+    tags: [rest]
+  - id: ma-x1a-0263
+    text: 找張椅子坐好，好好休息一下。
+    tags: [rest]
+  - id: ma-x1a-0264
+    text: 閉眼靠著，讓緊繃慢慢消散。
+    tags: [rest]
+  - id: ma-x1a-0265
+    text: 讓自己趴在桌上小憩一會兒。
+    tags: [rest]
+  - id: ma-x1a-0266
+    text: 放鬆全身，像融化在椅子裡。
+    tags: [rest]
+  - id: ma-x1a-0267
+    text: 坐下深呼吸，給自己一段休息。
+    tags: [rest]
+  - id: ma-x1a-0268
+    text: 把眼睛閉上，讓思緒安靜下來。
+    tags: [rest]
+  - id: ma-x1a-0269
+    text: 靠著椅背，感受身體被支撐。
+    tags: [rest]
+  - id: ma-x1a-0270
+    text: 停一停，讓疲累的身體歇口氣。
+    tags: [rest]
+  - id: ma-x1a-0271
+    text: 找個安靜處，閉眼休息幾分鐘。
+    tags: [rest]
+  - id: ma-x1a-0272
+    text: 讓身體完全靠著，卸下所有力氣。
+    tags: [rest]
+  - id: ma-x1a-0273
+    text: 坐下來，什麼都不追趕地休息。
+    tags: [rest]
+  - id: ma-x1a-0274
+    text: 把雙腿伸直，靠著休息一下。
+    tags: [rest]
+  - id: ma-x1a-0275
+    text: 閉眼靠一靠，讓大腦短暫關機。
+    tags: [rest]
+  - id: ma-x1a-0276
+    text: 給自己一小段安靜的休息時光。
+    tags: [rest]
+  - id: ma-x1a-0277
+    text: 讓自己好好坐著，不必急著動。
+    tags: [rest]
+  - id: ma-x1a-0278
+    text: 靠著休息，感覺呼吸慢慢平穩。
+    tags: [rest]
+  - id: ma-x1a-0279
+    text: 停手歇一下，讓眼睛也一起休息。
+    tags: [rest]
+  - id: ma-x1a-0280
+    text: 安靜地坐著，讓身心恢復一點力氣。
+    tags: [rest]
+  - id: ma-x1a-0281
+    text: 放鬆眉頭，讓臉部柔和下來。
+    tags: [relax]
+  - id: ma-x1a-0282
+    text: 鬆開緊咬的牙關，讓下巴放鬆。
+    tags: [relax]
+  - id: ma-x1a-0283
+    text: 讓雙肩自然垂下，卸下緊繃。
+    tags: [relax]
+  - id: ma-x1a-0284
+    text: 攤開緊握的雙手，把力氣放掉。
+    tags: [relax]
+  - id: ma-x1a-0285
+    text: 想一件讓自己微笑的小事。
+    tags: [relax]
+  - id: ma-x1a-0286
+    text: 放一首喜歡的歌，跟著放鬆。
+    tags: [relax]
+  - id: ma-x1a-0287
+    text: 慢慢鬆開全身肌肉，從頭到腳。
+    tags: [relax]
+  - id: ma-x1a-0288
+    text: 讓肩膀離開耳朵，放鬆頸部。
+    tags: [relax]
+  - id: ma-x1a-0289
+    text: 閉眼想像自己在一片草地上。
+    tags: [relax]
+  - id: ma-x1a-0290
+    text: 對自己說一句溫柔的話。
+    tags: [relax]
+  - id: ma-x1a-0291
+    text: 放鬆手指，讓它們自然張開。
+    tags: [relax]
+  - id: ma-x1a-0292
+    text: 想像溫暖的陽光灑在身上。
+    tags: [relax]
+  - id: ma-x1a-0293
+    text: 讓緊繃的腹部慢慢鬆軟下來。
+    tags: [relax]
+  - id: ma-x1a-0294
+    text: 鬆開皺著的眉，讓表情舒展。
+    tags: [relax]
+  - id: ma-x1a-0295
+    text: 深吸一口喜歡的香味放鬆心情。
+    tags: [relax]
+  - id: ma-x1a-0296
+    text: 讓身體像棉花一樣柔軟下來。
+    tags: [relax]
+  - id: ma-x1a-0297
+    text: 放下肩上的重擔，輕鬆一下。
+    tags: [relax]
+  - id: ma-x1a-0298
+    text: 想一個安心的地方，讓心放鬆。
+    tags: [relax]
+  - id: ma-x1a-0299
+    text: 慢慢放鬆臉、肩、手，一處一處來。
+    tags: [relax]
+  - id: ma-x1a-0300
+    text: 讓自己微笑一下，鬆開緊繃的臉。
+    tags: [relax]
+  - id: ma-x1a-0301
+    text: 把注意力放在放鬆的感覺上。
+    tags: [relax]
+  - id: ma-x1a-0302
+    text: 想像緊張像水一樣從指尖流走。
+    tags: [relax]
+  - id: ma-x1a-0303
+    text: 放鬆喉嚨，輕輕嘆一口氣。
+    tags: [relax]
+  - id: ma-x1a-0304
+    text: 讓後背貼著椅子，鬆開脊椎。
+    tags: [relax]
+  - id: ma-x1a-0305
+    text: 聽一段輕柔的聲音，讓心平靜。
+    tags: [relax]
+  - id: ma-x1a-0306
+    text: 放鬆雙腳，讓腳趾自然舒展。
+    tags: [relax]
+  - id: ma-x1a-0307
+    text: 想一個溫暖的回憶，讓自己安心。
+    tags: [relax]
+  - id: ma-x1a-0308
+    text: 讓整張臉放鬆，連舌頭都鬆開。
+    tags: [relax]
+  - id: ma-x1a-0309
+    text: 慢慢鬆開肩、手臂、到手掌。
+    tags: [relax]
+  - id: ma-x1a-0310
+    text: 給自己一個溫柔的自我擁抱。
+    tags: [relax]
+  - id: ma-x1a-0311
+    text: 讓呼吸帶著全身一起放鬆。
+    tags: [relax]
+  - id: ma-x1a-0312
+    text: 想像煩惱被風輕輕吹遠。
+    tags: [relax]
+  - id: ma-x1a-0313
+    text: 放鬆眼睛周圍的小肌肉。
+    tags: [relax]
+  - id: ma-x1a-0314
+    text: 讓身體沉下來，交給地心引力。
+    tags: [relax]
+  - id: ma-x1a-0315
+    text: 對自己說現在可以放輕鬆了。
+    tags: [relax]
+  - id: ma-x1a-0316
+    text: 放鬆頸後，讓頭輕輕落下。
+    tags: [relax]
+  - id: ma-x1a-0317
+    text: 想像自己泡在溫暖的水裡。
+    tags: [relax]
+  - id: ma-x1a-0318
+    text: 讓緊繃的心，隨吐氣慢慢鬆開。
+    tags: [relax]
+  - id: ma-x1a-0319
+    text: 放鬆全身，感受一陣輕盈。
+    tags: [relax]
+  - id: ma-x1a-0320
+    text: 讓自己安靜下來，享受片刻寧靜。
+    tags: [relax]
+  - id: ma-x1a-0321
+    text: 停下手邊的事，只是靜靜坐著。
+    tags: [pause]
+  - id: ma-x1a-0322
+    text: 暫停一下，感受此刻的自己。
+    tags: [pause]
+  - id: ma-x1a-0323
+    text: 放下正在做的事，休息三十秒。
+    tags: [pause]
+  - id: ma-x1a-0324
+    text: 停一停，問問自己現在感覺如何。
+    tags: [pause]
+  - id: ma-x1a-0325
+    text: 按下暫停鍵，讓大腦喘口氣。
+    tags: [pause]
+  - id: ma-x1a-0326
+    text: 停下來，聽聽周圍有什麼聲音。
+    tags: [pause]
+  - id: ma-x1a-0327
+    text: 暫時什麼都不做，只是呼吸。
+    tags: [pause]
+  - id: ma-x1a-0328
+    text: 讓自己停頓片刻，不必急。
+    tags: [pause]
+  - id: ma-x1a-0329
+    text: 停一下手，看看窗外再繼續。
+    tags: [pause]
+  - id: ma-x1a-0330
+    text: 暫停正在滑的螢幕，抬起頭。
+    tags: [pause]
+  - id: ma-x1a-0331
+    text: 停下腳步，感受雙腳踩在地上。
+    tags: [pause]
+  - id: ma-x1a-0332
+    text: 給自己三十秒，什麼都不決定。
+    tags: [pause]
+  - id: ma-x1a-0333
+    text: 暫停一切，只專注在當下這一刻。
+    tags: [pause]
+  - id: ma-x1a-0334
+    text: 停下來喝口水，再重新出發。
+    tags: [pause]
+  - id: ma-x1a-0335
+    text: 讓忙碌暫停，安靜地待一會兒。
+    tags: [pause]
+  - id: ma-x1a-0336
+    text: 停一停，深深地伸個懶腰。
+    tags: [pause]
+  - id: ma-x1a-0337
+    text: 按下心裡的暫停，慢下來一點。
+    tags: [pause]
+  - id: ma-x1a-0338
+    text: 暫時擱下手機，看看四周。
+    tags: [pause]
+  - id: ma-x1a-0339
+    text: 停下思緒，讓腦袋清空幾秒。
+    tags: [pause]
+  - id: ma-x1a-0340
+    text: 給正在趕路的自己一個小停頓。
+    tags: [pause]
+  - id: ma-x1a-0341
+    text: 暫停手上的忙碌，望一望遠方。
+    tags: [pause]
+  - id: ma-x1a-0342
+    text: 停一下，感受呼吸的一進一出。
+    tags: [pause]
+  - id: ma-x1a-0343
+    text: 讓自己按兵不動，靜靜歇口氣。
+    tags: [pause]
+  - id: ma-x1a-0344
+    text: 停下來，注意此刻身體的感覺。
+    tags: [pause]
+  - id: ma-x1a-0345
+    text: 暫停片刻，讓心慢慢安定。
+    tags: [pause]
+  - id: ma-x1a-0346
+    text: 停手歇一秒，別對自己太急。
+    tags: [pause]
+  - id: ma-x1a-0347
+    text: 讓一切先暫停，深吸一口氣。
+    tags: [pause]
+  - id: ma-x1a-0348
+    text: 停下來，給自己一個空白的片刻。
+    tags: [pause]
+  - id: ma-x1a-0349
+    text: 暫時放下待辦，讓自己喘息。
+    tags: [pause]
+  - id: ma-x1a-0350
+    text: 停一停，允許自己什麼都不做。
+    tags: [pause]
+  - id: ma-x1a-0351
+    text: 按下暫停，回到自己的呼吸上。
+    tags: [pause]
+  - id: ma-x1a-0352
+    text: 停下手邊動作，觀察一朵雲。
+    tags: [pause]
+  - id: ma-x1a-0353
+    text: 給自己一個安靜的小暫停。
+    tags: [pause]
+  - id: ma-x1a-0354
+    text: 暫停忙亂，讓思緒沉澱一下。
+    tags: [pause]
+  - id: ma-x1a-0355
+    text: 停下來，慢慢感受這一刻的平靜。
+    tags: [pause]
+  - id: ma-x1a-0356
+    text: 讓腳步和思緒都先停一停。
+    tags: [pause]
+  - id: ma-x1a-0357
+    text: 暫停一下，對自己溫柔一點。
+    tags: [pause]
+  - id: ma-x1a-0358
+    text: 停手，深呼吸後再繼續也不遲。
+    tags: [pause]
+  - id: ma-x1a-0359
+    text: 讓自己停在這裡，享受片刻安靜。
+    tags: [pause]
+  - id: ma-x1a-0360
+    text: 按下暫停，把注意力交還給自己。
+    tags: [pause]
+  - id: ma-x1a-0361
+    text: 坐直身體，把肩膀往後打開。
+    tags: [posture]
+  - id: ma-x1a-0362
+    text: 調整椅子，讓雙腳平放在地面。
+    tags: [posture]
+  - id: ma-x1a-0363
+    text: 把螢幕調到與視線平齊的高度。
+    tags: [posture]
+  - id: ma-x1a-0364
+    text: 收起下巴，讓頭回到脊椎正上方。
+    tags: [posture]
+  - id: ma-x1a-0365
+    text: 挺直背部，想像頭頂有線往上拉。
+    tags: [posture]
+  - id: ma-x1a-0366
+    text: 把骨盆坐正，別讓腰往後塌。
+    tags: [posture]
+  - id: ma-x1a-0367
+    text: 放鬆並放下聳起的雙肩。
+    tags: [posture]
+  - id: ma-x1a-0368
+    text: 檢查一下姿勢，別再駝著背。
+    tags: [posture]
+  - id: ma-x1a-0369
+    text: 把雙腳踩穩，重心平均落在兩側。
+    tags: [posture]
+  - id: ma-x1a-0370
+    text: 坐正後，讓耳朵對齊肩膀。
+    tags: [posture]
+  - id: ma-x1a-0371
+    text: 調整坐姿，讓後背輕靠椅背。
+    tags: [posture]
+  - id: ma-x1a-0372
+    text: 把電腦往正前方擺，別扭著身子。
+    tags: [posture]
+  - id: ma-x1a-0373
+    text: 讓脊椎自然延伸，坐得挺一些。
+    tags: [posture]
+  - id: ma-x1a-0374
+    text: 收下巴、挺胸，回到端正的坐姿。
+    tags: [posture]
+  - id: ma-x1a-0375
+    text: 檢查雙肩是否等高，調正身體。
+    tags: [posture]
+  - id: ma-x1a-0376
+    text: 把手肘放到舒服的高度，別懸空。
+    tags: [posture]
+  - id: ma-x1a-0377
+    text: 坐直，讓呼吸能順暢地進出。
+    tags: [posture]
+  - id: ma-x1a-0378
+    text: 調整螢幕距離，別把脖子往前伸。
+    tags: [posture]
+  - id: ma-x1a-0379
+    text: 把腰輕輕挺起，離開癱軟的姿勢。
+    tags: [posture]
+  - id: ma-x1a-0380
+    text: 讓頭別再往前傾，收回到肩膀上方。
+    tags: [posture]
+  - id: ma-x1a-0381
+    text: 坐正身子，感覺脊椎一節節疊好。
+    tags: [posture]
+  - id: ma-x1a-0382
+    text: 把雙腳分開與肩同寬，站得穩些。
+    tags: [posture]
+  - id: ma-x1a-0383
+    text: 站直，讓重心落在腳掌中央。
+    tags: [posture]
+  - id: ma-x1a-0384
+    text: 調整站姿，別把重量壓在單腳。
+    tags: [posture]
+  - id: ma-x1a-0385
+    text: 挺起胸膛，讓上半身舒展開來。
+    tags: [posture]
+  - id: ma-x1a-0386
+    text: 把手機拿高一點，別低頭盯著看。
+    tags: [posture]
+  - id: ma-x1a-0387
+    text: 坐正，讓膝蓋與臀部差不多同高。
+    tags: [posture]
+  - id: ma-x1a-0388
+    text: 放鬆下背，讓腰椎回到自然弧度。
+    tags: [posture]
+  - id: ma-x1a-0389
+    text: 收緊核心一點，幫身體坐得更直。
+    tags: [posture]
+  - id: ma-x1a-0390
+    text: 把肩胛骨輕輕往下沉，打開胸口。
+    tags: [posture]
+  - id: ma-x1a-0391
+    text: 檢查一下，別再翹著腳久坐。
+    tags: [posture]
+  - id: ma-x1a-0392
+    text: 讓脖子放鬆地立在肩膀正中央。
+    tags: [posture]
+  - id: ma-x1a-0393
+    text: 坐直後深吸一口氣，穩住身形。
+    tags: [posture]
+  - id: ma-x1a-0394
+    text: 把頭、肩、臀調成一條直線坐好。
+    tags: [posture]
+  - id: ma-x1a-0395
+    text: 站起來抖一抖，再端正地坐下。
+    tags: [posture]
+  - id: ma-x1a-0396
+    text: 調整姿勢，讓兩邊肩膀一樣放鬆。
+    tags: [posture]
+  - id: ma-x1a-0397
+    text: 把背挺直，遠離彎腰駝背的習慣。
+    tags: [posture]
+  - id: ma-x1a-0398
+    text: 讓雙腳穩穩踏地，坐姿更安定。
+    tags: [posture]
+  - id: ma-x1a-0399
+    text: 收下巴、鬆肩膀，回到中正的坐姿。
+    tags: [posture]
+  - id: ma-x1a-0400
+    text: 坐正，給脊椎一個舒服的支撐。
+    tags: [posture]
+  - id: ma-x1b-0001
+    text: 把桌上三樣東西歸位。
+    tags: [tidy]
+  - id: ma-x1b-0002
+    text: 撿起地上一件衣服放回衣櫃。
+    tags: [tidy]
+  - id: ma-x1b-0003
+    text: 把散落的筆收進筆筒。
+    tags: [tidy]
+  - id: ma-x1b-0004
+    text: 整理一個抽屜的最上層。
+    tags: [tidy]
+  - id: ma-x1b-0005
+    text: 把包包裡的發票全部拿出來丟掉。
+    tags: [tidy]
+  - id: ma-x1b-0007
+    text: 把充電線繞好收起來。
+    tags: [tidy]
+  - id: ma-x1b-0008
+    text: 清空一個口袋裡的雜物。
+    tags: [tidy]
+  - id: ma-x1b-0009
+    text: 把床上的枕頭擺整齊。
+    tags: [tidy]
+  - id: ma-x1b-0010
+    text: 收好散在沙發上的遙控器。
+    tags: [tidy]
+  - id: ma-x1b-0011
+    text: 把鞋子在門口排成一列。
+    tags: [tidy]
+  - id: ma-x1b-0012
+    text: 整理錢包裡過期的收據。
+    tags: [tidy]
+  - id: ma-x1b-0013
+    text: 把桌角那疊紙分成兩堆。
+    tags: [tidy]
+  - id: ma-x1b-0014
+    text: 收起昨天用過的杯子。
+    tags: [tidy]
+  - id: ma-x1b-0015
+    text: 把地上的電線靠牆理順。
+    tags: [tidy]
+  - id: ma-x1b-0016
+    text: 折起攤開的毯子放回原位。
+    tags: [tidy]
+  - id: ma-x1b-0017
+    text: 把書桌上的零食包裝丟進垃圾桶。
+    tags: [tidy]
+  - id: ma-x1b-0018
+    text: 整理一格書架上的雜物。
+    tags: [tidy]
+  - id: ma-x1b-0019
+    text: 把散在桌面的硬幣集中到小盒。
+    tags: [tidy]
+  - id: ma-x1b-0020
+    text: 收好剛拆封的快遞紙箱。
+    tags: [tidy]
+  - id: ma-x1b-0021
+    text: 把用完的購物袋摺小收起。
+    tags: [tidy]
+  - id: ma-x1b-0022
+    text: 整理化妝台上的瓶罐排成一排。
+    tags: [tidy]
+  - id: ma-x1b-0023
+    text: 把掛在椅背的外套掛回衣架。
+    tags: [tidy]
+  - id: ma-x1b-0024
+    text: 清掉桌面上一張過期便條。
+    tags: [tidy]
+  - id: ma-x1b-0025
+    text: 把耳機線解開纏好。
+    tags: [tidy]
+  - id: ma-x1b-0026
+    text: 整理床頭櫃上的小物。
+    tags: [tidy]
+  - id: ma-x1b-0027
+    text: 把亂放的鑰匙掛回鑰匙勾。
+    tags: [tidy]
+  - id: ma-x1b-0028
+    text: 收好攤在地上的購物清單。
+    tags: [tidy]
+  - id: ma-x1b-0029
+    text: 把玄關的傘收進傘桶。
+    tags: [tidy]
+  - id: ma-x1b-0030
+    text: 整理背包裡的一個夾層。
+    tags: [tidy]
+  - id: ma-x1b-0031
+    text: 把桌面的資料夾疊整齊。
+    tags: [tidy]
+  - id: ma-x1b-0032
+    text: 收起用過的餐巾紙。
+    tags: [tidy]
+  - id: ma-x1b-0033
+    text: 把亂放的隨身碟收進盒子。
+    tags: [tidy]
+  - id: ma-x1b-0034
+    text: 整理藥盒裡今天要吃的份。
+    tags: [tidy]
+  - id: ma-x1b-0035
+    text: 把桌上多餘的杯墊收起一個。
+    tags: [tidy]
+  - id: ma-x1b-0036
+    text: 清掉螢幕旁的一堆便利貼。
+    tags: [tidy]
+  - id: ma-x1b-0037
+    text: 把散開的撲克牌收回盒子。
+    tags: [tidy]
+  - id: ma-x1b-0038
+    text: 整理一角常放雜物的檯面。
+    tags: [tidy]
+  - id: ma-x1b-0039
+    text: 把地墊擺正對齊門口。
+    tags: [tidy]
+  - id: ma-x1b-0040
+    text: 收好剛換下的襪子丟進洗衣籃。
+    tags: [tidy]
+  - id: ma-x1b-0041
+    text: 擦一遍你的鍵盤。
+    tags: [desk]
+  - id: ma-x1b-0042
+    text: 把螢幕上的指紋擦乾淨。
+    tags: [desk]
+  - id: ma-x1b-0043
+    text: 調整椅子到最舒服的高度。
+    tags: [desk]
+  - id: ma-x1b-0044
+    text: 把桌燈角度轉向書本。
+    tags: [desk]
+  - id: ma-x1b-0045
+    text: 清空電腦桌面上三個檔案圖示。
+    tags: [desk]
+  - id: ma-x1b-0046
+    text: 把滑鼠墊擺正。
+    tags: [desk]
+  - id: ma-x1b-0047
+    text: 幫桌上的植物澆一小口水。
+    tags: [desk]
+  - id: ma-x1b-0048
+    text: 把待辦寫在便條貼在螢幕邊。
+    tags: [desk]
+  - id: ma-x1b-0049
+    text: 拔掉一條沒在用的線。
+    tags: [desk]
+  - id: ma-x1b-0050
+    text: 把桌面文件依日期排一次。
+    tags: [desk]
+  - id: ma-x1b-0051
+    text: 幫手機找個固定的充電位置。
+    tags: [desk]
+  - id: ma-x1b-0052
+    text: 把桌上的水杯裝滿。
+    tags: [desk]
+  - id: ma-x1b-0053
+    text: 擦一下桌面留下的水痕。
+    tags: [desk]
+  - id: ma-x1b-0054
+    text: 整理一格文件抽屜。
+    tags: [desk]
+  - id: ma-x1b-0055
+    text: 把常用的筆放到手邊。
+    tags: [desk]
+  - id: ma-x1b-0056
+    text: 收起桌上不需要的說明書。
+    tags: [desk]
+  - id: ma-x1b-0057
+    text: 把螢幕亮度調到護眼的程度。
+    tags: [desk]
+  - id: ma-x1b-0058
+    text: 幫桌角貼一張喜歡的小貼紙。
+    tags: [desk]
+  - id: ma-x1b-0059
+    text: 把耳機掛到桌邊掛勾。
+    tags: [desk]
+  - id: ma-x1b-0060
+    text: 清掉鍵盤縫裡的一點碎屑。
+    tags: [desk]
+  - id: ma-x1b-0061
+    text: 把桌上的便條依顏色分類。
+    tags: [desk]
+  - id: ma-x1b-0062
+    text: 幫桌燈換一個溫暖的角度。
+    tags: [desk]
+  - id: ma-x1b-0063
+    text: 把桌面上的資料掃描一頁存檔。
+    tags: [desk]
+  - id: ma-x1b-0064
+    text: 調整螢幕到與視線齊平。
+    tags: [desk]
+  - id: ma-x1b-0065
+    text: 把桌下的線材用束帶綁一綁。
+    tags: [desk]
+  - id: ma-x1b-0066
+    text: 擦亮桌上的金屬筆筒。
+    tags: [desk]
+  - id: ma-x1b-0067
+    text: 把一支沒水的筆丟掉。
+    tags: [desk]
+  - id: ma-x1b-0068
+    text: 幫桌面留出一塊空白工作區。
+    tags: [desk]
+  - id: ma-x1b-0069
+    text: 把便利貼撕掉一張已完成的。
+    tags: [desk]
+  - id: ma-x1b-0070
+    text: 整理桌上待回的一封信。
+    tags: [desk]
+  - id: ma-x1b-0071
+    text: 把桌墊下的紙張抽出來整理。
+    tags: [desk]
+  - id: ma-x1b-0072
+    text: 幫桌角擺一個小擺飾。
+    tags: [desk]
+  - id: ma-x1b-0073
+    text: 把電腦的下載資料夾清三個檔。
+    tags: [desk]
+  - id: ma-x1b-0074
+    text: 調整鍵盤到肩膀放鬆的位置。
+    tags: [desk]
+  - id: ma-x1b-0075
+    text: 把桌上的訂書機補滿針。
+    tags: [desk]
+  - id: ma-x1b-0076
+    text: 幫桌面擦一次消毒濕巾。
+    tags: [desk]
+  - id: ma-x1b-0077
+    text: 把桌上的名片收進名片盒。
+    tags: [desk]
+  - id: ma-x1b-0078
+    text: 整理電腦書籤列的一個資料夾。
+    tags: [desk]
+  - id: ma-x1b-0079
+    text: 把桌邊的垃圾桶清空。
+    tags: [desk]
+  - id: ma-x1b-0080
+    text: 幫桌上的檯曆翻到今天。
+    tags: [desk]
+  - id: ma-x1b-0081
+    text: 把流理台擦乾淨一遍。
+    tags: [kitchen]
+  - id: ma-x1b-0082
+    text: 洗好水槽裡的一個碗。
+    tags: [kitchen]
+  - id: ma-x1b-0083
+    text: 把調味料罐排成一列。
+    tags: [kitchen]
+  - id: ma-x1b-0084
+    text: 擦乾剛洗好的一只杯子。
+    tags: [kitchen]
+  - id: ma-x1b-0085
+    text: 把冰箱裡過期的一樣東西丟掉。
+    tags: [kitchen]
+  - id: ma-x1b-0086
+    text: 幫刀具歸位到刀架。
+    tags: [kitchen]
+  - id: ma-x1b-0087
+    text: 把桌上的水果放進果盤。
+    tags: [kitchen]
+  - id: ma-x1b-0088
+    text: 擦一下瓦斯爐台面。
+    tags: [kitchen]
+  - id: ma-x1b-0089
+    text: 把用完的保鮮盒疊起收好。
+    tags: [kitchen]
+  - id: ma-x1b-0090
+    text: 幫水壺裝滿水煮開。
+    tags: [kitchen]
+  - id: ma-x1b-0091
+    text: 把餐具依大小排進抽屜。
+    tags: [kitchen]
+  - id: ma-x1b-0092
+    text: 擦亮水龍頭上的水漬。
+    tags: [kitchen]
+  - id: ma-x1b-0093
+    text: 把砧板立起來晾乾。
+    tags: [kitchen]
+  - id: ma-x1b-0094
+    text: 收好晾在架上的餐盤。
+    tags: [kitchen]
+  - id: ma-x1b-0095
+    text: 幫廚房垃圾袋打結換新。
+    tags: [kitchen]
+  - id: ma-x1b-0096
+    text: 把茶包收進密封罐。
+    tags: [kitchen]
+  - id: ma-x1b-0097
+    text: 擦一遍微波爐內壁。
+    tags: [kitchen]
+  - id: ma-x1b-0098
+    text: 把香料架上的瓶子轉正標籤。
+    tags: [kitchen]
+  - id: ma-x1b-0099
+    text: 幫抹布洗淨掛起來晾。
+    tags: [kitchen]
+  - id: ma-x1b-0100
+    text: 把櫥櫃裡的罐頭排整齊。
+    tags: [kitchen]
+  - id: ma-x1b-0101
+    text: 擦乾洗手台旁的水花。
+    tags: [kitchen]
+  - id: ma-x1b-0102
+    text: 把泡好的一杯茶端到桌上。
+    tags: [kitchen]
+  - id: ma-x1b-0103
+    text: 幫廚房檯面收走一件雜物。
+    tags: [kitchen]
+  - id: ma-x1b-0104
+    text: 把餐墊擦乾淨鋪好。
+    tags: [kitchen]
+  - id: ma-x1b-0105
+    text: 洗一顆水果切好放盤。
+    tags: [kitchen]
+  - id: ma-x1b-0106
+    text: 把咖啡渣清出濾杯。
+    tags: [kitchen]
+  - id: ma-x1b-0107
+    text: 幫冰箱門把手擦一下。
+    tags: [kitchen]
+  - id: ma-x1b-0108
+    text: 把袋裝零食夾好夾子。
+    tags: [kitchen]
+  - id: ma-x1b-0109
+    text: 擦一遍餐桌桌面。
+    tags: [kitchen]
+  - id: ma-x1b-0110
+    text: 把碗盤瀝乾架上的水倒掉。
+    tags: [kitchen]
+  - id: ma-x1b-0111
+    text: 幫廚房小垃圾桶擦邊緣。
+    tags: [kitchen]
+  - id: ma-x1b-0112
+    text: 把調味料補一次鹽罐。
+    tags: [kitchen]
+  - id: ma-x1b-0113
+    text: 收好散在檯面的購物食材。
+    tags: [kitchen]
+  - id: ma-x1b-0114
+    text: 把保溫瓶洗淨晾乾。
+    tags: [kitchen]
+  - id: ma-x1b-0115
+    text: 幫鍋子擦乾外壁掛起。
+    tags: [kitchen]
+  - id: ma-x1b-0116
+    text: 把餐巾摺好放進餐巾盒。
+    tags: [kitchen]
+  - id: ma-x1b-0117
+    text: 擦一下電鍋外殼。
+    tags: [kitchen]
+  - id: ma-x1b-0118
+    text: 把廚房窗台的小盆栽轉個方向。
+    tags: [kitchen]
+  - id: ma-x1b-0119
+    text: 幫水杯換上乾淨的水。
+    tags: [kitchen]
+  - id: ma-x1b-0120
+    text: 把濾水壺加滿水放回冰箱。
+    tags: [kitchen]
+  - id: ma-x1b-0121
+    text: 拉開窗簾讓陽光進來。
+    tags: [window]
+  - id: ma-x1b-0122
+    text: 打開窗戶深呼吸三次。
+    tags: [window]
+  - id: ma-x1b-0123
+    text: 擦一小塊窗玻璃看看外面。
+    tags: [window]
+  - id: ma-x1b-0124
+    text: 把窗台上的灰塵擦掉。
+    tags: [window]
+  - id: ma-x1b-0125
+    text: 幫窗邊的植物轉向陽光。
+    tags: [window]
+  - id: ma-x1b-0126
+    text: 站到窗前看一分鐘天空。
+    tags: [window]
+  - id: ma-x1b-0127
+    text: 把紗窗上的落葉撥掉。
+    tags: [window]
+  - id: ma-x1b-0128
+    text: 調整百葉窗到剛好的角度。
+    tags: [window]
+  - id: ma-x1b-0129
+    text: 打開窗讓空氣流動兩分鐘。
+    tags: [window]
+  - id: ma-x1b-0130
+    text: 把窗簾綁帶重新綁好。
+    tags: [window]
+  - id: ma-x1b-0131
+    text: 擦亮窗框上的一道水痕。
+    tags: [window]
+  - id: ma-x1b-0132
+    text: 站在窗邊找一朵雲的形狀。
+    tags: [window]
+  - id: ma-x1b-0133
+    text: 把窗台擺一盆小綠植。
+    tags: [window]
+  - id: ma-x1b-0134
+    text: 打開窗聽一分鐘外面的聲音。
+    tags: [window]
+  - id: ma-x1b-0135
+    text: 幫窗簾拉到一半留點光。
+    tags: [window]
+  - id: ma-x1b-0136
+    text: 看窗外最遠的一棟建築。
+    tags: [window]
+  - id: ma-x1b-0137
+    text: 把窗邊的小飾品擺正。
+    tags: [window]
+  - id: ma-x1b-0138
+    text: 擦掉窗角的一小片霧氣。
+    tags: [window]
+  - id: ma-x1b-0139
+    text: 打開氣窗換一下空氣。
+    tags: [window]
+  - id: ma-x1b-0140
+    text: 找窗外一棵樹看它的葉子。
+    tags: [window]
+  - id: ma-x1b-0141
+    text: 把窗簾勾扣重新掛好。
+    tags: [window]
+  - id: ma-x1b-0142
+    text: 站到窗前伸個懶腰。
+    tags: [window]
+  - id: ma-x1b-0143
+    text: 幫窗台的杯子接一點陽光。
+    tags: [window]
+  - id: ma-x1b-0144
+    text: 看窗外有沒有鳥飛過。
+    tags: [window]
+  - id: ma-x1b-0145
+    text: 把窗簾抖一抖去掉灰。
+    tags: [window]
+  - id: ma-x1b-0146
+    text: 打開窗讓風吹過臉頰。
+    tags: [window]
+  - id: ma-x1b-0147
+    text: 擦一下窗把手。
+    tags: [window]
+  - id: ma-x1b-0148
+    text: 看窗外今天的雲多不多。
+    tags: [window]
+  - id: ma-x1b-0149
+    text: 把窗邊椅子擺到採光處。
+    tags: [window]
+  - id: ma-x1b-0150
+    text: 幫窗台鋪一塊乾淨的布。
+    tags: [window]
+  - id: ma-x1b-0151
+    text: 打開窗看看今天的光線顏色。
+    tags: [window]
+  - id: ma-x1b-0152
+    text: 把窗簾換到另一側綁起。
+    tags: [window]
+  - id: ma-x1b-0153
+    text: 站窗邊看樓下有沒有人經過。
+    tags: [window]
+  - id: ma-x1b-0154
+    text: 擦亮窗玻璃下緣一條線。
+    tags: [window]
+  - id: ma-x1b-0155
+    text: 把窗台上的水杯移到有光的地方。
+    tags: [window]
+  - id: ma-x1b-0156
+    text: 打開窗數十下呼吸。
+    tags: [window]
+  - id: ma-x1b-0157
+    text: 看窗外遠方的地平線。
+    tags: [window]
+  - id: ma-x1b-0158
+    text: 把窗邊的書挪到陽光下。
+    tags: [window]
+  - id: ma-x1b-0159
+    text: 幫窗簾整理出漂亮的皺褶。
+    tags: [window]
+  - id: ma-x1b-0160
+    text: 打開窗和外面說聲早安。
+    tags: [window]
+  - id: ma-x1b-0161
+    text: 隨手畫一個圓在紙上。
+    tags: [create]
+  - id: ma-x1b-0162
+    text: 在便條上塗兩筆顏色。
+    tags: [create]
+  - id: ma-x1b-0163
+    text: 用手機拍一張此刻的桌面。
+    tags: [create]
+  - id: ma-x1b-0164
+    text: 折一個小紙鶴。
+    tags: [create]
+  - id: ma-x1b-0165
+    text: 寫下一個突然想到的點子。
+    tags: [create]
+  - id: ma-x1b-0166
+    text: 幫一個舊物想一個新用途。
+    tags: [create]
+  - id: ma-x1b-0167
+    text: 用三個詞形容現在的心情。
+    tags: [create]
+  - id: ma-x1b-0168
+    text: 在紙上畫一條隨意的線。
+    tags: [create]
+  - id: ma-x1b-0169
+    text: 捏一個小小的黏土球。
+    tags: [create]
+  - id: ma-x1b-0171
+    text: 用貼紙拼一個小圖案。
+    tags: [create]
+  - id: ma-x1b-0172
+    text: 隨手寫一句押韻的話。
+    tags: [create]
+  - id: ma-x1b-0173
+    text: 畫一個你看到的杯子。
+    tags: [create]
+  - id: ma-x1b-0174
+    text: 把一段旋律哼出來錄下。
+    tags: [create]
+  - id: ma-x1b-0175
+    text: 用色鉛筆塗一個角落。
+    tags: [create]
+  - id: ma-x1b-0176
+    text: 剪一個簡單的紙片形狀。
+    tags: [create]
+  - id: ma-x1b-0177
+    text: 幫窗外的景色配一句話。
+    tags: [create]
+  - id: ma-x1b-0178
+    text: 在筆記本畫四格漫畫的第一格。
+    tags: [create]
+  - id: ma-x1b-0179
+    text: 想一個明天可以做的小實驗。
+    tags: [create]
+  - id: ma-x1b-0180
+    text: 用便利貼拼一個字。
+    tags: [create]
+  - id: ma-x1b-0181
+    text: 畫一顆你心中的星星。
+    tags: [create]
+  - id: ma-x1b-0182
+    text: 幫一首歌想一句新歌詞。
+    tags: [create]
+  - id: ma-x1b-0183
+    text: 用手邊的東西排一個圖形。
+    tags: [create]
+  - id: ma-x1b-0184
+    text: 塗鴉一個表情在紙上。
+    tags: [create]
+  - id: ma-x1b-0185
+    text: 寫下一個故事的開頭一句。
+    tags: [create]
+  - id: ma-x1b-0186
+    text: 折一個紙飛機。
+    tags: [create]
+  - id: ma-x1b-0187
+    text: 畫一朵簡單的花。
+    tags: [create]
+  - id: ma-x1b-0188
+    text: 幫今天的天氣畫一個符號。
+    tags: [create]
+  - id: ma-x1b-0189
+    text: 用三筆畫一隻貓。
+    tags: [create]
+  - id: ma-x1b-0190
+    text: 隨手設計一個小圖標。
+    tags: [create]
+  - id: ma-x1b-0191
+    text: 在紙上寫一個大大的字。
+    tags: [create]
+  - id: ma-x1b-0192
+    text: 拍一張光影有趣的照片。
+    tags: [create]
+  - id: ma-x1b-0193
+    text: 把一個想法畫成流程圖的第一步。
+    tags: [create]
+  - id: ma-x1b-0194
+    text: 用顏色標記筆記的一個重點。
+    tags: [create]
+  - id: ma-x1b-0195
+    text: 幫一個空罐子貼上手繪標籤。
+    tags: [create]
+  - id: ma-x1b-0196
+    text: 畫一條蜿蜒的小路。
+    tags: [create]
+  - id: ma-x1b-0197
+    text: 想一個給朋友的小驚喜點子。
+    tags: [create]
+  - id: ma-x1b-0198
+    text: 用紙折一個小盒子。
+    tags: [create]
+  - id: ma-x1b-0199
+    text: 在紙角畫一個小太陽。
+    tags: [create]
+  - id: ma-x1b-0200
+    text: 隨手寫一句給自己的標語。
+    tags: [create]
+  - id: ma-x1b-0201
+    text: 寫下今天想感謝的一件事。
+    tags: [note]
+  - id: ma-x1b-0202
+    text: 記下剛剛冒出的一個念頭。
+    tags: [note]
+  - id: ma-x1b-0203
+    text: 在筆記本寫下此刻的時間和心情。
+    tags: [note]
+  - id: ma-x1b-0204
+    text: 列出今天要做的前三件事。
+    tags: [note]
+  - id: ma-x1b-0205
+    text: 記錄一句今天聽到的好話。
+    tags: [note]
+  - id: ma-x1b-0206
+    text: 寫下一個明天想問的問題。
+    tags: [note]
+  - id: ma-x1b-0207
+    text: 把一個待辦劃掉打勾。
+    tags: [note]
+  - id: ma-x1b-0208
+    text: 記下這週想完成的一件小事。
+    tags: [note]
+  - id: ma-x1b-0209
+    text: 寫一句給未來自己的話。
+    tags: [note]
+  - id: ma-x1b-0210
+    text: 記錄現在窗外的天氣。
+    tags: [note]
+  - id: ma-x1b-0211
+    text: 寫下今天學到的一個新詞。
+    tags: [note]
+  - id: ma-x1b-0212
+    text: 把腦中的雜念寫成一行清單。
+    tags: [note]
+  - id: ma-x1b-0213
+    text: 記下一本想讀的書名。
+    tags: [note]
+  - id: ma-x1b-0214
+    text: 寫下今天最開心的一個瞬間。
+    tags: [note]
+  - id: ma-x1b-0215
+    text: 記一個突然想去的地方。
+    tags: [note]
+  - id: ma-x1b-0216
+    text: 在便條寫下明天的第一件事。
+    tags: [note]
+  - id: ma-x1b-0217
+    text: 記錄今天喝了幾杯水。
+    tags: [note]
+  - id: ma-x1b-0218
+    text: 寫下一個想改掉的小習慣。
+    tags: [note]
+  - id: ma-x1b-0219
+    text: 把一個靈感關鍵字記在手機。
+    tags: [note]
+  - id: ma-x1b-0220
+    text: 寫下今天遇到的一個小幸運。
+    tags: [note]
+  - id: ma-x1b-0221
+    text: 記一句想對某人說的話。
+    tags: [note]
+  - id: ma-x1b-0222
+    text: 列出冰箱裡還剩的三樣食材。
+    tags: [note]
+  - id: ma-x1b-0223
+    text: 寫下這個月想省下的一筆花費。
+    tags: [note]
+  - id: ma-x1b-0224
+    text: 記錄現在身體最放鬆的部位。
+    tags: [note]
+  - id: ma-x1b-0225
+    text: 寫一個今天的小目標。
+    tags: [note]
+  - id: ma-x1b-0226
+    text: 記下一首想再聽的歌名。
+    tags: [note]
+  - id: ma-x1b-0227
+    text: 把一個煩惱寫下來放一邊。
+    tags: [note]
+  - id: ma-x1b-0228
+    text: 寫下今天走了大概幾步路。
+    tags: [note]
+  - id: ma-x1b-0229
+    text: 記一個想學的新技能。
+    tags: [note]
+  - id: ma-x1b-0230
+    text: 寫下讓你微笑的一件小事。
+    tags: [note]
+  - id: ma-x1b-0231
+    text: 記錄現在的呼吸節奏。
+    tags: [note]
+  - id: ma-x1b-0232
+    text: 寫下一個想嘗試的食譜名。
+    tags: [note]
+  - id: ma-x1b-0233
+    text: 把今天的花費記一筆。
+    tags: [note]
+  - id: ma-x1b-0234
+    text: 寫下這週想聯絡的一個人。
+    tags: [note]
+  - id: ma-x1b-0235
+    text: 記一句剛看到的句子。
+    tags: [note]
+  - id: ma-x1b-0236
+    text: 寫下明早起床想做的第一件事。
+    tags: [note]
+  - id: ma-x1b-0237
+    text: 記錄今天的天空是什麼顏色。
+    tags: [note]
+  - id: ma-x1b-0238
+    text: 寫一個給自己的小提醒。
+    tags: [note]
+  - id: ma-x1b-0239
+    text: 記下一個想查的問題。
+    tags: [note]
+  - id: ma-x1b-0240
+    text: 寫下此刻最想吃的東西。
+    tags: [note]
+  - id: ma-x1b-0241
+    text: 傳一則訊息給好久沒聊的朋友。
+    tags: [connect]
+  - id: ma-x1b-0242
+    text: 對家人說一句謝謝。
+    tags: [connect]
+  - id: ma-x1b-0243
+    text: 回覆一封還沒回的訊息。
+    tags: [connect]
+  - id: ma-x1b-0244
+    text: 傳一張照片給想分享的人。
+    tags: [connect]
+  - id: ma-x1b-0245
+    text: 打一通問候的電話。
+    tags: [connect]
+  - id: ma-x1b-0246
+    text: 對同事說一句早安。
+    tags: [connect]
+  - id: ma-x1b-0247
+    text: 傳一個貼圖給讓你想笑的人。
+    tags: [connect]
+  - id: ma-x1b-0248
+    text: 問候一位長輩今天過得如何。
+    tags: [connect]
+  - id: ma-x1b-0249
+    text: 幫朋友的貼文按讚並留一句話。
+    tags: [connect]
+  - id: ma-x1b-0250
+    text: 傳一首歌給喜歡的人。
+    tags: [connect]
+  - id: ma-x1b-0251
+    text: 對身邊的人說一句辛苦了。
+    tags: [connect]
+  - id: ma-x1b-0252
+    text: 回覆一則被遺漏的留言。
+    tags: [connect]
+  - id: ma-x1b-0253
+    text: 傳訊息約朋友一起吃飯。
+    tags: [connect]
+  - id: ma-x1b-0254
+    text: 對家人分享今天的一件小事。
+    tags: [connect]
+  - id: ma-x1b-0255
+    text: 傳一張今天拍的照片給媽媽。
+    tags: [connect]
+  - id: ma-x1b-0256
+    text: 給老朋友寫一句掛念的話。
+    tags: [connect]
+  - id: ma-x1b-0257
+    text: 問一個朋友最近好不好。
+    tags: [connect]
+  - id: ma-x1b-0258
+    text: 對幫過你的人道一次謝。
+    tags: [connect]
+  - id: ma-x1b-0259
+    text: 傳一個溫暖的表情給朋友。
+    tags: [connect]
+  - id: ma-x1b-0260
+    text: 分享一則好消息給在意的人。
+    tags: [connect]
+  - id: ma-x1b-0261
+    text: 回一通未接來電。
+    tags: [connect]
+  - id: ma-x1b-0262
+    text: 對鄰居打個招呼。
+    tags: [connect]
+  - id: ma-x1b-0263
+    text: 傳訊息祝朋友今天順利。
+    tags: [connect]
+  - id: ma-x1b-0264
+    text: 給家人留一張小紙條。
+    tags: [connect]
+  - id: ma-x1b-0265
+    text: 對某人說一句你做得很好。
+    tags: [connect]
+  - id: ma-x1b-0266
+    text: 傳一個笑話給需要放鬆的人。
+    tags: [connect]
+  - id: ma-x1b-0267
+    text: 問朋友要不要一起散步。
+    tags: [connect]
+  - id: ma-x1b-0268
+    text: 對伴侶說一句我很珍惜你。
+    tags: [connect]
+  - id: ma-x1b-0269
+    text: 傳一張風景照給遠方的人。
+    tags: [connect]
+  - id: ma-x1b-0270
+    text: 給許久沒見的同學留言。
+    tags: [connect]
+  - id: ma-x1b-0271
+    text: 對店員說一聲謝謝。
+    tags: [connect]
+  - id: ma-x1b-0272
+    text: 傳訊息關心生病的朋友。
+    tags: [connect]
+  - id: ma-x1b-0273
+    text: 分享一本好書給愛看書的人。
+    tags: [connect]
+  - id: ma-x1b-0274
+    text: 對家人說一句晚安。
+    tags: [connect]
+  - id: ma-x1b-0275
+    text: 傳一段鼓勵的話給努力中的人。
+    tags: [connect]
+  - id: ma-x1b-0276
+    text: 回覆群組裡的一則訊息。
+    tags: [connect]
+  - id: ma-x1b-0277
+    text: 對朋友的成就說一句恭喜。
+    tags: [connect]
+  - id: ma-x1b-0278
+    text: 傳一個想見面的邀約。
+    tags: [connect]
+  - id: ma-x1b-0279
+    text: 給爸爸傳一句問候。
+    tags: [connect]
+  - id: ma-x1b-0280
+    text: 對某人說出一句藏在心裡的感謝。
+    tags: [connect]
+  - id: ma-x1b-0281
+    text: 起身伸展手臂十秒。
+    tags: [play]
+  - id: ma-x1b-0282
+    text: 原地跳十下。
+    tags: [play]
+  - id: ma-x1b-0283
+    text: 做三個深呼吸放鬆肩膀。
+    tags: [play]
+  - id: ma-x1b-0285
+    text: 對著鏡子做一個鬼臉。
+    tags: [play]
+  - id: ma-x1b-0286
+    text: 玩一分鐘手邊的小玩具。
+    tags: [play]
+  - id: ma-x1b-0287
+    text: 踮腳站立數到十。
+    tags: [play]
+  - id: ma-x1b-0288
+    text: 隨著節奏晃動身體十秒。
+    tags: [play]
+  - id: ma-x1b-0289
+    text: 找一個東西轉在手上。
+    tags: [play]
+  - id: ma-x1b-0290
+    text: 做一個大大的伸懶腰。
+    tags: [play]
+  - id: ma-x1b-0291
+    text: 閉上眼睛放空半分鐘。
+    tags: [play]
+  - id: ma-x1b-0292
+    text: 轉一轉脖子放鬆一下。
+    tags: [play]
+  - id: ma-x1b-0293
+    text: 玩一局最短的小遊戲。
+    tags: [play]
+  - id: ma-x1b-0294
+    text: 學一個動物的動作走幾步。
+    tags: [play]
+  - id: ma-x1b-0295
+    text: 拍拍手活絡一下精神。
+    tags: [play]
+  - id: ma-x1b-0296
+    text: 對窗外揮揮手。
+    tags: [play]
+  - id: ma-x1b-0297
+    text: 做十次擴胸運動。
+    tags: [play]
+  - id: ma-x1b-0298
+    text: 用手指玩一個小把戲。
+    tags: [play]
+  - id: ma-x1b-0299
+    text: 原地踏步二十下。
+    tags: [play]
+  - id: ma-x1b-0300
+    text: 甩一甩雙手放鬆手腕。
+    tags: [play]
+  - id: ma-x1b-0301
+    text: 做一個開合跳。
+    tags: [play]
+  - id: ma-x1b-0302
+    text: 把一顆球在手上拋接三次。
+    tags: [play]
+  - id: ma-x1b-0303
+    text: 扭一扭腰放鬆背部。
+    tags: [play]
+  - id: ma-x1b-0304
+    text: 對自己比一個讚。
+    tags: [play]
+  - id: ma-x1b-0305
+    text: 哼一段輕快的曲子搖擺。
+    tags: [play]
+  - id: ma-x1b-0306
+    text: 做一個瑜伽的貓式伸展。
+    tags: [play]
+  - id: ma-x1b-0307
+    text: 用腳畫一個圓。
+    tags: [play]
+  - id: ma-x1b-0308
+    text: 玩一分鐘的拼圖。
+    tags: [play]
+  - id: ma-x1b-0309
+    text: 站起來抖抖腿。
+    tags: [play]
+  - id: ma-x1b-0310
+    text: 做三下深蹲。
+    tags: [play]
+  - id: ma-x1b-0311
+    text: 把肩膀往後繞十圈。
+    tags: [play]
+  - id: ma-x1b-0312
+    text: 對著手機自拍一張搞怪照。
+    tags: [play]
+  - id: ma-x1b-0313
+    text: 玩一次翻花繩。
+    tags: [play]
+  - id: ma-x1b-0314
+    text: 學一個舞步跳兩下。
+    tags: [play]
+  - id: ma-x1b-0315
+    text: 做一個大幅度的側彎。
+    tags: [play]
+  - id: ma-x1b-0316
+    text: 用手比幾個影子造型。
+    tags: [play]
+  - id: ma-x1b-0317
+    text: 原地小跑步半分鐘。
+    tags: [play]
+  - id: ma-x1b-0318
+    text: 玩一次紙上的圈圈叉叉。
+    tags: [play]
+  - id: ma-x1b-0319
+    text: 伸長手臂夠一夠天花板。
+    tags: [play]
+  - id: ma-x1b-0320
+    text: 做一個放鬆的微笑深呼吸。
+    tags: [play]
+  - id: ma-x1b-0321
+    text: 翻開一本書讀一頁。
+    tags: [read]
+  - id: ma-x1b-0322
+    text: 讀完一段落再放下書。
+    tags: [read]
+  - id: ma-x1b-0323
+    text: 看一篇短文的開頭三句。
+    tags: [read]
+  - id: ma-x1b-0324
+    text: 讀一則今天的新聞標題。
+    tags: [read]
+  - id: ma-x1b-0325
+    text: 翻到書籤的地方繼續讀。
+    tags: [read]
+  - id: ma-x1b-0326
+    text: 讀一首短詩。
+    tags: [read]
+  - id: ma-x1b-0327
+    text: 看一頁漫畫。
+    tags: [read]
+  - id: ma-x1b-0328
+    text: 讀一段喜歡作者的句子。
+    tags: [read]
+  - id: ma-x1b-0329
+    text: 翻一本雜誌的目錄。
+    tags: [read]
+  - id: ma-x1b-0330
+    text: 讀一則名人的一句話。
+    tags: [read]
+  - id: ma-x1b-0331
+    text: 看一篇文章的結論。
+    tags: [read]
+  - id: ma-x1b-0332
+    text: 讀出聲一段喜歡的文字。
+    tags: [read]
+  - id: ma-x1b-0333
+    text: 翻開字典查一個字。
+    tags: [read]
+  - id: ma-x1b-0334
+    text: 讀一頁食譜的步驟。
+    tags: [read]
+  - id: ma-x1b-0335
+    text: 看一段旅遊介紹。
+    tags: [read]
+  - id: ma-x1b-0336
+    text: 讀一封老信件。
+    tags: [read]
+  - id: ma-x1b-0337
+    text: 翻閱一本相簿看兩頁。
+    tags: [read]
+  - id: ma-x1b-0338
+    text: 讀一段歷史小故事。
+    tags: [read]
+  - id: ma-x1b-0339
+    text: 看一則勵志短語。
+    tags: [read]
+  - id: ma-x1b-0340
+    text: 讀一頁筆記本裡的舊紀錄。
+    tags: [read]
+  - id: ma-x1b-0341
+    text: 翻到書的最後一頁看結局。
+    tags: [read]
+  - id: ma-x1b-0342
+    text: 讀一段散文的段落。
+    tags: [read]
+  - id: ma-x1b-0343
+    text: 看一篇短篇故事的第一段。
+    tags: [read]
+  - id: ma-x1b-0344
+    text: 讀一則有趣的冷知識。
+    tags: [read]
+  - id: ma-x1b-0345
+    text: 翻一本童書讀一頁。
+    tags: [read]
+  - id: ma-x1b-0346
+    text: 讀一段對話的台詞。
+    tags: [read]
+  - id: ma-x1b-0347
+    text: 看一篇科普小知識。
+    tags: [read]
+  - id: ma-x1b-0348
+    text: 讀一句今天的日曆格言。
+    tags: [read]
+  - id: ma-x1b-0349
+    text: 翻閱菜單挑一道想吃的。
+    tags: [read]
+  - id: ma-x1b-0350
+    text: 讀一段書評。
+    tags: [read]
+  - id: ma-x1b-0351
+    text: 看一頁地圖找一個地名。
+    tags: [read]
+  - id: ma-x1b-0352
+    text: 讀一則謎語試著猜答案。
+    tags: [read]
+  - id: ma-x1b-0353
+    text: 翻開筆記讀昨天寫的一句。
+    tags: [read]
+  - id: ma-x1b-0354
+    text: 讀一段電影的簡介。
+    tags: [read]
+  - id: ma-x1b-0355
+    text: 看一篇短短的專欄。
+    tags: [read]
+  - id: ma-x1b-0356
+    text: 讀一句外文並理解意思。
+    tags: [read]
+  - id: ma-x1b-0357
+    text: 翻一頁畫冊欣賞一幅圖。
+    tags: [read]
+  - id: ma-x1b-0358
+    text: 讀一段給孩子的故事。
+    tags: [read]
+  - id: ma-x1b-0359
+    text: 看一則生活小撇步。
+    tags: [read]
+  - id: ma-x1b-0360
+    text: 讀一句能鼓勵自己的話。
+    tags: [read]
+  - id: ma-x1b-0361
+    text: 放一首你最喜歡的歌。
+    tags: [music]
+  - id: ma-x1b-0362
+    text: 閉眼聽完一整首歌。
+    tags: [music]
+  - id: ma-x1b-0363
+    text: 哼唱一段熟悉的旋律。
+    tags: [music]
+  - id: ma-x1b-0364
+    text: 換上一首輕快的背景音樂。
+    tags: [music]
+  - id: ma-x1b-0365
+    text: 聽一首從沒聽過的新歌。
+    tags: [music]
+  - id: ma-x1b-0366
+    text: 跟著節拍點頭十秒。
+    tags: [music]
+  - id: ma-x1b-0367
+    text: 放一段自然的白噪音。
+    tags: [music]
+  - id: ma-x1b-0368
+    text: 聽一首舊歌回憶一下。
+    tags: [music]
+  - id: ma-x1b-0369
+    text: 用手指在桌上打一段節拍。
+    tags: [music]
+  - id: ma-x1b-0370
+    text: 放一首讓你放鬆的鋼琴曲。
+    tags: [music]
+  - id: ma-x1b-0371
+    text: 聽一段海浪或雨聲。
+    tags: [music]
+  - id: ma-x1b-0372
+    text: 跟著歌詞小聲唱一句。
+    tags: [music]
+  - id: ma-x1b-0373
+    text: 換一張喜歡的專輯播放。
+    tags: [music]
+  - id: ma-x1b-0374
+    text: 聽一首適合現在心情的歌。
+    tags: [music]
+  - id: ma-x1b-0375
+    text: 放一段振奮精神的音樂。
+    tags: [music]
+  - id: ma-x1b-0376
+    text: 哼出一段廣告的旋律。
+    tags: [music]
+  - id: ma-x1b-0377
+    text: 聽完一首歌的間奏。
+    tags: [music]
+  - id: ma-x1b-0378
+    text: 放一首朋友推薦的歌。
+    tags: [music]
+  - id: ma-x1b-0379
+    text: 隨著音樂晃動肩膀。
+    tags: [music]
+  - id: ma-x1b-0380
+    text: 聽一段古典樂的開頭。
+    tags: [music]
+  - id: ma-x1b-0381
+    text: 放一首適合工作的純音樂。
+    tags: [music]
+  - id: ma-x1b-0382
+    text: 用嘴巴打一段節奏。
+    tags: [music]
+  - id: ma-x1b-0383
+    text: 聽一首不同語言的歌。
+    tags: [music]
+  - id: ma-x1b-0384
+    text: 放一段助眠的輕音樂。
+    tags: [music]
+  - id: ma-x1b-0385
+    text: 跟著旋律拍手一段。
+    tags: [music]
+  - id: ma-x1b-0386
+    text: 聽一首歌並找出最喜歡的一句。
+    tags: [music]
+  - id: ma-x1b-0387
+    text: 放一段森林的鳥鳴聲。
+    tags: [music]
+  - id: ma-x1b-0388
+    text: 哼一首童年的兒歌。
+    tags: [music]
+  - id: ma-x1b-0389
+    text: 聽一首能提振心情的歌。
+    tags: [music]
+  - id: ma-x1b-0390
+    text: 放一段爵士樂放鬆。
+    tags: [music]
+  - id: ma-x1b-0391
+    text: 用手打拍子跟一首歌。
+    tags: [music]
+  - id: ma-x1b-0392
+    text: 聽一段咖啡廳風格的音樂。
+    tags: [music]
+  - id: ma-x1b-0393
+    text: 放一首讓你想跳舞的歌。
+    tags: [music]
+  - id: ma-x1b-0394
+    text: 聽一首歌的副歌部分。
+    tags: [music]
+  - id: ma-x1b-0395
+    text: 放一段溫柔的搖籃曲。
+    tags: [music]
+  - id: ma-x1b-0396
+    text: 跟著節奏踏腳十下。
+    tags: [music]
+  - id: ma-x1b-0397
+    text: 聽一首慢歌深呼吸。
+    tags: [music]
+  - id: ma-x1b-0398
+    text: 放一段電影配樂。
+    tags: [music]
+  - id: ma-x1b-0399
+    text: 哼一段自己編的調子。
+    tags: [music]
+  - id: ma-x1b-0400
+    text: 聽一首歌並閉眼想像畫面。
+    tags: [music]
