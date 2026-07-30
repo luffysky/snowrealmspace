@@ -1,0 +1,1395 @@
+# 問候補充（自動組裝、已去除近似重複與違規）。與其他 greetings 檔合併。
+morning:
+  - id: g-morning-676
+    text: 早安，先喝一口溫水，讓身體慢慢醒過來
+  - id: g-morning-677
+    text: 窗外的光透進來了，今天也溫柔地開始吧
+  - id: g-morning-678
+    text: 睜開眼睛，深呼吸一口新鮮的早晨空氣
+  - id: g-morning-679
+    text: 早安呀，記得替自己準備一份簡單的早餐
+  - id: g-morning-680
+    text: 讓晨光陪你伸個懶腰，一整天就從容了
+  - id: g-morning-681
+    text: 慢慢起床沒關係，時間會等你一會兒
+  - id: g-morning-682
+    text: 第一口熱飲下肚，心也跟著暖起來了
+  - id: g-morning-683
+    text: 早安，今天的天氣很適合好好開始
+  - id: g-morning-684
+    text: 拉開窗簾，讓陽光替你道一聲早安
+  - id: g-morning-685
+    text: 伸展一下肩膀，把睡意輕輕抖落
+  - id: g-morning-686
+    text: 早安，願你今天的步調不疾不徐
+  - id: g-morning-687
+    text: 先坐一會兒，聽聽清晨安靜的聲音
+  - id: g-morning-688
+    text: 喝杯溫熱的茶，替一天鋪上暖底色
+  - id: g-morning-689
+    text: 早安，今天想吃點什麼當早餐呢
+  - id: g-morning-690
+    text: 讓深呼吸把新的一天輕輕迎進來
+  - id: g-morning-691
+    text: 早安，窗邊的光線正剛剛好
+  - id: g-morning-692
+    text: 起床後先喝水，身體會謝謝你的
+  - id: g-morning-693
+    text: 早安呀，慢慢地把眼睛睜開就好
+  - id: g-morning-694
+    text: 今天的清晨很清爽，適合輕輕開始
+  - id: g-morning-695
+    text: 先給自己一個伸展，再迎接這一天
+  - id: g-morning-696
+    text: 早安，一杯溫水是給自己最溫柔的問候
+  - id: g-morning-697
+    text: 讓晨風吹一吹，把昨天的疲憊帶走
+  - id: g-morning-698
+    text: 早安，深呼吸三次，心就安穩了
+  - id: g-morning-699
+    text: 起床囉，今天也不必太趕
+  - id: g-morning-700
+    text: 早安，聞聞早餐的香氣，日子就亮了
+  - id: g-morning-701
+    text: 陽光照到床邊了，慢慢醒來吧
+  - id: g-morning-702
+    text: 早安，先讓自己在被窩裡多待一分鐘也好
+  - id: g-morning-703
+    text: 一口熱湯或熱粥，替胃暖暖身
+  - id: g-morning-704
+    text: 早安，今天用溫柔的心情開場
+  - id: g-morning-705
+    text: 拉開窗，讓新鮮空氣填滿房間
+  - id: g-morning-706
+    text: 早安，喝口水潤潤喉，再慢慢動起來
+  - id: g-morning-707
+    text: 清晨的天空很淡很柔，早安啊
+  - id: g-morning-708
+    text: 伸個懶腰，把一整夜的僵硬鬆開
+  - id: g-morning-709
+    text: 早安，一份小小的早餐也值得期待
+  - id: g-morning-710
+    text: 讓第一縷陽光曬曬臉，精神就來了
+  - id: g-morning-711
+    text: 早安，今天想以什麼樣的心情出發呢
+  - id: g-morning-712
+    text: 先喝溫水再洗臉，身體會慢慢清醒
+  - id: g-morning-713
+    text: 早安，窗光溫溫的，很適合發個呆
+  - id: g-morning-714
+    text: 深吸一口氣，把清晨的清爽收進來
+  - id: g-morning-715
+    text: 早安，別急著起身，先感受一下這份安靜
+  - id: g-morning-716
+    text: 泡杯熱可可，替早晨加點甜
+  - id: g-morning-717
+    text: 早安，今天的第一步，輕輕地就好
+  - id: g-morning-718
+    text: 讓身體慢慢暖起來，再迎接忙碌
+  - id: g-morning-719
+    text: 早安，喝口熱茶，聽鳥叫幾聲
+  - id: g-morning-720
+    text: 起床後先拉筋，一天都會鬆快
+  - id: g-morning-721
+    text: 早安，願你今早的心是柔軟的
+  - id: g-morning-722
+    text: 窗外亮了，慢慢張開眼睛吧
+  - id: g-morning-723
+    text: 早安，喝點溫熱的，替自己開個好頭
+  - id: g-morning-724
+    text: 深呼吸，讓晨光把你叫醒
+  - id: g-morning-725
+    text: 早安，今天的早餐要好好吃喔
+  - id: g-morning-726
+    text: 先在床邊坐一下，讓思緒慢慢集合
+  - id: g-morning-727
+    text: 早安，清晨的涼意會讓人特別清醒
+  - id: g-morning-728
+    text: 讓一杯溫水陪你緩緩醒來
+  - id: g-morning-729
+    text: 早安，今天也用從容的節奏過日子
+  - id: g-morning-730
+    text: 拉開窗簾，讓天光替房間換上新色
+  - id: g-morning-731
+    text: 早安，先喝水再想事情，會清楚很多
+  - id: g-morning-732
+    text: 伸伸手臂，把睡意輕輕推開
+  - id: g-morning-733
+    text: 早安，一口熱飲，一個溫柔的開始
+  - id: g-morning-734
+    text: 讓清晨的空氣替你打個招呼
+  - id: g-morning-735
+    text: 早安，今天的天氣正適合慢慢走
+  - id: g-morning-736
+    text: 先照顧好自己的胃，再照顧一天的事
+  - id: g-morning-737
+    text: 早安，願你醒來時心裡是暖的
+  - id: g-morning-738
+    text: 窗邊的光很安靜，適合深呼吸幾次
+  - id: g-morning-739
+    text: 早安，喝口溫水，讓喉嚨也醒過來
+  - id: g-morning-740
+    text: 慢慢起床，今天沒有什麼好趕的
+  - id: g-morning-741
+    text: 早安，替自己煎顆蛋，也是種溫柔
+  - id: g-morning-742
+    text: 讓晨光曬進來，心情就跟著明亮
+  - id: g-morning-743
+    text: 早安，今天想喝茶還是咖啡呢
+  - id: g-morning-744
+    text: 先深呼吸，再慢慢把腳踏到地上
+  - id: g-morning-745
+    text: 早安，願這一早的空氣特別清新
+  - id: g-morning-746
+    text: 起床後先動動手指，喚醒身體
+  - id: g-morning-747
+    text: 早安，喝點熱的，讓一天暖暖地開場
+  - id: g-morning-748
+    text: 清晨的陽光很柔，別辜負了它
+  - id: g-morning-749
+    text: 早安，今天用平靜的心迎接一切
+  - id: g-morning-750
+    text: 讓溫水滑過喉嚨，把睏意帶走
+  - id: g-morning-751
+    text: 早安，先看看窗外的天空是什麼顏色
+  - id: g-morning-752
+    text: 伸個懶腰，替新的一天鬆鬆筋骨
+  - id: g-morning-753
+    text: 早安，一份熱早餐是給自己的擁抱
+  - id: g-morning-754
+    text: 讓深呼吸帶你進入清爽的早晨
+  - id: g-morning-755
+    text: 早安，今天也不用一下子就全速前進
+  - id: g-morning-756
+    text: 先喝口溫水，讓身體慢慢甦醒
+  - id: g-morning-757
+    text: 早安，願你今早的腳步輕鬆自在
+  - id: g-morning-758
+    text: 窗光斜斜地照進來，很適合發呆
+  - id: g-morning-759
+    text: 早安，喝杯熱牛奶，暖暖地開始
+  - id: g-morning-760
+    text: 慢慢張眼，讓清晨溫柔地叫你
+  - id: g-morning-761
+    text: 早安，今天的天氣如何，看看再說
+  - id: g-morning-762
+    text: 先做個深呼吸，再迎接今天的事
+  - id: g-morning-763
+    text: 早安，替自己泡杯熱茶提提神
+  - id: g-morning-764
+    text: 讓陽光把房間曬暖，人也就醒了
+  - id: g-morning-765
+    text: 早安，一早喝水，身體最喜歡
+  - id: g-morning-766
+    text: 伸展一下腰背，把僵硬慢慢化開
+  - id: g-morning-767
+    text: 早安，今天想以微笑開場也很好
+  - id: g-morning-768
+    text: 先在窗邊站一會兒，感受清晨的涼
+  - id: g-morning-769
+    text: 早安，喝口熱湯，替一天打底
+  - id: g-morning-770
+    text: 讓新鮮空氣灌滿肺，精神就回來了
+  - id: g-morning-771
+    text: 早安，今天的第一件事，慢慢做就好
+  - id: g-morning-772
+    text: 起床後先喝溫水，再談其他
+  - id: g-morning-773
+    text: 早安，願你醒來看見的第一眼是柔和的光
+  - id: g-morning-774
+    text: 窗外鳥叫幾聲，很適合慢慢起床
+  - id: g-morning-775
+    text: 早安，替自己烤片吐司，香香地開始
+  - id: g-morning-776
+    text: 深呼吸，把昨夜的夢輕輕放下
+  - id: g-morning-777
+    text: 早安，今天的節奏由你自己決定
+  - id: g-morning-778
+    text: 先讓眼睛適應光線，再慢慢起身
+  - id: g-morning-779
+    text: 早安，一杯熱飲，一個從容的清晨
+  - id: g-morning-780
+    text: 讓晨風替你梳理心情，早安啊
+  - id: g-morning-781
+    text: 早安，今天先照顧好自己再說
+  - id: g-morning-782
+    text: 拉開窗，把清新的空氣請進來
+  - id: g-morning-783
+    text: 早安，喝點溫熱的，讓身心都暖
+  - id: g-morning-784
+    text: 清晨很安靜，適合先陪自己坐一會兒
+  - id: g-morning-785
+    text: 早安，願你今早的心情像晴天一樣
+  - id: g-morning-786
+    text: 伸伸腿，把血液慢慢喚醒
+  - id: g-morning-787
+    text: 早安，一口熱粥暖胃，一天就穩了
+  - id: g-morning-788
+    text: 讓陽光落在肩上，慢慢醒過來吧
+  - id: g-morning-789
+    text: 早安，今天想聽點什麼歌開場呢
+  - id: g-morning-790
+    text: 先喝水潤喉，再迎接忙碌的一天
+  - id: g-morning-791
+    text: 早安，願這杯溫水替你趕走睏意
+  - id: g-morning-792
+    text: 窗光柔柔的，今天很適合輕輕開始
+  - id: g-morning-793
+    text: 早安，替自己準備份喜歡的早餐吧
+  - id: g-morning-794
+    text: 深呼吸三次，讓心慢慢安定下來
+  - id: g-morning-795
+    text: 早安，今天不必著急，一步一步來
+  - id: g-morning-796
+    text: 先動動脖子，把睡意慢慢趕走
+  - id: g-morning-797
+    text: 早安，一早的陽光是最溫柔的鬧鐘
+  - id: g-morning-798
+    text: 讓熱茶的香氣把你從夢裡喚回
+  - id: g-morning-799
+    text: 早安，今天的天空似乎很清朗
+  - id: g-morning-800
+    text: 起床後先喝口溫水，再慢慢忙
+  - id: g-morning-801
+    text: 早安，願你今早的呼吸都是輕鬆的
+  - id: g-morning-802
+    text: 窗邊灑進來的光，很值得多看一眼
+  - id: g-morning-803
+    text: 早安，替自己沖杯熱咖啡提提神
+  - id: g-morning-804
+    text: 伸個懶腰，讓身體徹底醒過來
+  - id: g-morning-805
+    text: 早安，今天用溫柔的方式對待自己
+  - id: g-morning-806
+    text: 先讓晨光照一照，精神就有了
+  - id: g-morning-807
+    text: 早安，一口熱飲，替早晨添點暖意
+  - id: g-morning-808
+    text: 讓清晨的涼意提醒你慢慢起身
+  - id: g-morning-809
+    text: 早安，今天的第一步輕輕踏出就好
+  - id: g-morning-810
+    text: 喝點溫水，讓身體從裡到外都醒來
+  - id: g-morning-811
+    text: 早安，願你今早心裡有塊柔軟的地方
+  - id: g-morning-812
+    text: 窗外的天亮得剛好，慢慢起床吧
+  - id: g-morning-813
+    text: 早安，替自己切點水果配早餐
+  - id: g-morning-814
+    text: 深呼吸，把新一天的清爽收進胸口
+  - id: g-morning-815
+    text: 早安，今天的節奏，你說了算
+  - id: g-morning-816
+    text: 先在床上舒展一下，再慢慢下床
+  - id: g-morning-817
+    text: 早安，一杯熱飲陪你迎接晨光
+  - id: g-morning-818
+    text: 讓早晨的空氣替你洗個清爽的臉
+  - id: g-morning-819
+    text: 早安，今天先讓自己輕鬆一點
+  - id: g-morning-820
+    text: 拉開窗簾，讓白天緩緩走進來
+  - id: g-morning-821
+    text: 早安，喝口溫熱的，替心也暖個身
+  - id: g-morning-822
+    text: 清晨的光很淡，適合靜靜地開始
+  - id: g-morning-823
+    text: 早安，願你今早步伐從容不催促
+  - id: g-morning-824
+    text: 伸展手臂，把一夜的睡意抖乾淨
+  - id: g-morning-825
+    text: 早安，一份熱早餐值得好好享受
+  - id: g-morning-826
+    text: 讓陽光曬曬背，人也就精神了
+  - id: g-morning-827
+    text: 早安，今天想從哪件小事開始呢
+  - id: g-morning-828
+    text: 先喝水再喝茶，身體會慢慢清醒
+  - id: g-morning-829
+    text: 早安，願這一早的天氣正合你意
+  - id: g-morning-830
+    text: 窗光溫溫的，別急，慢慢醒來
+  - id: g-morning-831
+    text: 早安，替自己煮碗熱湯麵也很好
+  - id: g-morning-832
+    text: 深呼吸幾次，讓心先安定再出發
+  - id: g-morning-833
+    text: 早安，今天不趕時間，慢慢來就好
+  - id: g-morning-834
+    text: 先讓腳掌貼地，感受一天的開始
+  - id: g-morning-835
+    text: 早安，一口熱飲把整個清晨都焐暖
+  - id: g-morning-836
+    text: 讓晨光陪你把眼睛慢慢張開
+  - id: g-morning-837
+    text: 早安，今天用平穩的心情迎接吧
+  - id: g-morning-838
+    text: 起床後先喝溫水，讓身體暖起來
+  - id: g-morning-839
+    text: 早安，願你今早看見的天空是明亮的
+  - id: g-morning-840
+    text: 窗外微涼，很適合深深吸一口氣
+  - id: g-morning-841
+    text: 早安，替自己準備杯熱豆漿吧
+  - id: g-morning-842
+    text: 伸個懶腰，讓一天從輕鬆開場
+  - id: g-morning-843
+    text: 早安，今天的心情由這杯熱飲決定
+  - id: g-morning-844
+    text: 先靜靜坐一會兒，聽清晨的呼吸
+  - id: g-morning-845
+    text: 早安，願你今早的每一步都安穩
+  - id: g-morning-846
+    text: 讓陽光把房間照亮，也把心照暖
+  - id: g-morning-847
+    text: 早安，今天先喝口水再慢慢想
+  - id: g-morning-848
+    text: 拉開窗，讓新的一天輕輕流進來
+  - id: g-morning-849
+    text: 早安，替自己留幾分鐘慢慢清醒
+  - id: g-morning-850
+    text: 早安，深呼吸一口，溫柔地開始今天
+afternoon:
+  - id: g-afternoon-676
+    text: 午後了，先起身伸個懶腰吧
+  - id: g-afternoon-677
+    text: 下午好，記得補一杯水
+  - id: g-afternoon-678
+    text: 忙了一上午，讓自己小歇一下
+  - id: g-afternoon-679
+    text: 午後的陽光正好，靠窗坐坐吧
+  - id: g-afternoon-680
+    text: 泡杯茶，換個節奏繼續
+  - id: g-afternoon-682
+    text: 起來走幾步，讓身體醒一醒
+  - id: g-afternoon-683
+    text: 下午的空檔，深呼吸放鬆肩膀
+  - id: g-afternoon-684
+    text: 一杯溫茶，陪你度過午後
+  - id: g-afternoon-685
+    text: 午後小睡片刻，也是一種充電
+  - id: g-afternoon-686
+    text: 陽光暖暖的，午後別太緊繃
+  - id: g-afternoon-687
+    text: 累了就靠一下，午後慢慢來
+  - id: g-afternoon-688
+    text: 下午好，先喝口水再繼續
+  - id: g-afternoon-689
+    text: 午後放慢腳步，一件事做好就好
+  - id: g-afternoon-690
+    text: 起身動動筋骨，午後更清爽
+  - id: g-afternoon-691
+    text: 午後了，給眼睛看看綠意
+  - id: g-afternoon-692
+    text: 下午茶時光，好好寵一下自己
+  - id: g-afternoon-693
+    text: 忙碌之間，記得停下來喘口氣
+  - id: g-afternoon-694
+    text: 午後的風很輕，放鬆心情吧
+  - id: g-afternoon-695
+    text: 曬曬午後的太陽，暖到心裡
+  - id: g-afternoon-696
+    text: 下午好，伸個懶腰再出發
+  - id: g-afternoon-697
+    text: 午後有點睏，小歇一會兒無妨
+  - id: g-afternoon-698
+    text: 換個姿勢坐坐，午後更自在
+  - id: g-afternoon-699
+    text: 午後了，補點水分別忘了
+  - id: g-afternoon-700
+    text: 慢下來，午後的時光值得細品
+  - id: g-afternoon-701
+    text: 下午的節奏，就讓它舒緩一些
+  - id: g-afternoon-702
+    text: 起來走走，午後的路很溫柔
+  - id: g-afternoon-703
+    text: 午後一杯茶，靜靜坐一會
+  - id: g-afternoon-704
+    text: 眼睛累了，看看窗外的天空
+  - id: g-afternoon-705
+    text: 午後好時光，專注一件小事
+  - id: g-afternoon-706
+    text: 下午好，讓自己輕鬆片刻
+  - id: g-afternoon-707
+    text: 午後了，深深吸一口氣再繼續
+  - id: g-afternoon-708
+    text: 陽光斜斜的，午後很適合發呆
+  - id: g-afternoon-709
+    text: 忙了半天，喝杯水犒賞自己
+  - id: g-afternoon-710
+    text: 午後小憩後，人會更精神
+  - id: g-afternoon-711
+    text: 下午的空氣，慢慢呼吸就好
+  - id: g-afternoon-712
+    text: 起身舒展一下，午後不緊繃
+  - id: g-afternoon-713
+    text: 午後了，給自己一段安靜的時間
+  - id: g-afternoon-714
+    text: 泡一壺茶，午後慢慢過
+  - id: g-afternoon-715
+    text: 看看遠方，讓思緒也放鬆
+  - id: g-afternoon-716
+    text: 午後好，先歇一歇再說
+  - id: g-afternoon-717
+    text: 下午的陽光，記得抬頭看看
+  - id: g-afternoon-718
+    text: 累了就閉眼靠一下，午後放心休息
+  - id: g-afternoon-719
+    text: 午後了，換個節奏會更順
+  - id: g-afternoon-720
+    text: 一杯水一口氣，午後重新出發
+  - id: g-afternoon-721
+    text: 下午好，別讓自己太趕
+  - id: g-afternoon-722
+    text: 午後的靜謐，留給自己享受
+  - id: g-afternoon-723
+    text: 起來走幾步，午後更有精神
+  - id: g-afternoon-724
+    text: 午後小歇，是為了走更遠
+  - id: g-afternoon-725
+    text: 陽光正暖，午後曬一曬吧
+  - id: g-afternoon-726
+    text: 下午了，先放鬆眉頭再繼續
+  - id: g-afternoon-727
+    text: 午後補水，讓身體舒服些
+  - id: g-afternoon-728
+    text: 慢慢喝茶，午後不用著急
+  - id: g-afternoon-729
+    text: 午後好時光，聽首喜歡的歌
+  - id: g-afternoon-730
+    text: 看看窗外，午後的雲很自在
+  - id: g-afternoon-731
+    text: 下午好，伸展身體再前進
+  - id: g-afternoon-732
+    text: 午後了，讓肩膀鬆一鬆
+  - id: g-afternoon-733
+    text: 一段安靜的午後，剛剛好
+  - id: g-afternoon-734
+    text: 起身活動一下，午後更輕盈
+  - id: g-afternoon-735
+    text: 午後的時光，慢一點也很好
+  - id: g-afternoon-736
+    text: 下午好，記得喝口溫水
+  - id: g-afternoon-737
+    text: 午後小睡一會，醒來更清醒
+  - id: g-afternoon-738
+    text: 換個角度看事情，午後也輕鬆
+  - id: g-afternoon-739
+    text: 午後了，給眼睛一點休息
+  - id: g-afternoon-740
+    text: 曬著午後的暖陽，心也軟了
+  - id: g-afternoon-741
+    text: 下午的節奏，就慢慢走
+  - id: g-afternoon-742
+    text: 午後好，深呼吸放下緊張
+  - id: g-afternoon-743
+    text: 起來伸個懶腰，午後精神好
+  - id: g-afternoon-744
+    text: 午後一杯茶，暖暖地陪你
+  - id: g-afternoon-745
+    text: 看看遠方的風景，午後放空一下
+  - id: g-afternoon-746
+    text: 下午好，先歇口氣再忙
+  - id: g-afternoon-747
+    text: 午後了，走到窗邊透透氣
+  - id: g-afternoon-748
+    text: 慢下腳步，午後也能很溫柔
+  - id: g-afternoon-749
+    text: 午後小憩片刻，身心都放鬆
+  - id: g-afternoon-750
+    text: 陽光暖暖，午後別忘了微笑
+  - id: g-afternoon-751
+    text: 下午好，補點水再出發
+  - id: g-afternoon-752
+    text: 午後的空檔，做一件喜歡的事
+  - id: g-afternoon-753
+    text: 起身走走，午後會更清爽
+  - id: g-afternoon-754
+    text: 午後了，讓自己安靜一會兒
+  - id: g-afternoon-755
+    text: 一口溫茶，午後慢慢暖起來
+  - id: g-afternoon-756
+    text: 看看藍天，午後心情更開闊
+  - id: g-afternoon-757
+    text: 下午好，鬆一鬆繃緊的肩
+  - id: g-afternoon-758
+    text: 午後小歇一下，很快就回神
+  - id: g-afternoon-759
+    text: 換個節奏，午後也能很順手
+  - id: g-afternoon-760
+    text: 午後了，記得起來動一動
+  - id: g-afternoon-761
+    text: 陽光斜進來，午後暖洋洋的
+  - id: g-afternoon-762
+    text: 下午的時光，慢慢享受吧
+  - id: g-afternoon-763
+    text: 午後好，喝口水放鬆心情
+  - id: g-afternoon-764
+    text: 靠一下歇一歇，午後不用急
+  - id: g-afternoon-765
+    text: 午後了，專注把一件事做完
+  - id: g-afternoon-766
+    text: 看看遠方，讓眼睛也午休
+  - id: g-afternoon-767
+    text: 下午好，深呼吸換個心情
+  - id: g-afternoon-768
+    text: 午後小睡也不錯，補足精神
+  - id: g-afternoon-769
+    text: 起身伸展，午後更有活力
+  - id: g-afternoon-770
+    text: 午後的茶香，靜靜陪著你
+  - id: g-afternoon-771
+    text: 曬曬太陽，午後暖進心裡
+  - id: g-afternoon-772
+    text: 下午好，慢下來喝杯水
+  - id: g-afternoon-773
+    text: 午後了，走幾步舒展筋骨
+  - id: g-afternoon-774
+    text: 換個坐姿，午後更自在些
+  - id: g-afternoon-775
+    text: 午後好時光，放鬆一下就好
+  - id: g-afternoon-776
+    text: 看看窗外的樹，午後心也靜
+  - id: g-afternoon-777
+    text: 下午好，先小歇再繼續前行
+  - id: g-afternoon-778
+    text: 午後了，給自己一點喘息
+  - id: g-afternoon-779
+    text: 一杯熱茶，午後慢慢品味
+  - id: g-afternoon-780
+    text: 起來走走，午後精神會回來
+  - id: g-afternoon-781
+    text: 午後的陽光，適合閉眼小憩
+  - id: g-afternoon-782
+    text: 下午好，補水潤一潤喉
+  - id: g-afternoon-783
+    text: 午後了，讓節奏慢半拍
+  - id: g-afternoon-784
+    text: 看看遠山，午後放鬆眉宇
+  - id: g-afternoon-785
+    text: 午後好，伸個懶腰醒一醒
+  - id: g-afternoon-786
+    text: 靜靜坐一會，午後很療癒
+  - id: g-afternoon-787
+    text: 午後了，喝口水再動起來
+  - id: g-afternoon-788
+    text: 陽光溫柔，午後別太逼自己
+  - id: g-afternoon-789
+    text: 下午好，起身透透氣吧
+  - id: g-afternoon-790
+    text: 午後小歇後，繼續也不遲
+  - id: g-afternoon-791
+    text: 換個環境走走，午後更清新
+  - id: g-afternoon-792
+    text: 午後了，讓肩頸放鬆下來
+  - id: g-afternoon-793
+    text: 一段午後的安靜，慢慢享用
+  - id: g-afternoon-794
+    text: 看看藍天白雲，午後放空片刻
+  - id: g-afternoon-795
+    text: 下午好，先喝水再談其他
+  - id: g-afternoon-796
+    text: 午後了，專心做好眼前這件事
+  - id: g-afternoon-797
+    text: 起來動動，午後身體更舒展
+  - id: g-afternoon-798
+    text: 午後茶時光，暖暖地陪伴你
+  - id: g-afternoon-799
+    text: 曬著暖陽，午後慢慢回神
+  - id: g-afternoon-800
+    text: 下午好，放慢腳步別著急
+  - id: g-afternoon-801
+    text: 午後了，看看遠方歇歇眼
+  - id: g-afternoon-802
+    text: 換個節奏走，午後更順心
+  - id: g-afternoon-803
+    text: 午後小睡片刻，很快清醒過來
+  - id: g-afternoon-804
+    text: 起身伸展一下，午後不僵硬
+  - id: g-afternoon-805
+    text: 午後的時光，值得溫柔對待
+  - id: g-afternoon-806
+    text: 下午好，補一杯水潤潤身
+  - id: g-afternoon-807
+    text: 午後了，靠著椅背歇一會
+  - id: g-afternoon-808
+    text: 慢慢呼吸，午後放下急躁
+  - id: g-afternoon-809
+    text: 午後好時光，聽聽窗外的聲音
+  - id: g-afternoon-810
+    text: 看看綠葉，午後眼睛也放鬆
+  - id: g-afternoon-811
+    text: 下午好，先站起來走一走
+  - id: g-afternoon-812
+    text: 午後了，讓自己輕鬆一下
+  - id: g-afternoon-813
+    text: 一杯溫茶暖手，午後很安穩
+  - id: g-afternoon-814
+    text: 起來活動筋骨，午後更精神
+  - id: g-afternoon-815
+    text: 午後的陽光，灑在心上暖暖的
+  - id: g-afternoon-816
+    text: 下午好，喝口水換換氣
+  - id: g-afternoon-817
+    text: 午後了，慢慢做也沒關係
+  - id: g-afternoon-818
+    text: 看看天空，午後心情更開闊
+  - id: g-afternoon-819
+    text: 午後好，鬆開肩膀深呼吸
+  - id: g-afternoon-820
+    text: 小歇一下，午後重新找回節奏
+  - id: g-afternoon-821
+    text: 午後了，走到窗前曬曬太陽
+  - id: g-afternoon-822
+    text: 換個坐姿舒展，午後更輕鬆
+  - id: g-afternoon-823
+    text: 午後的茶香，靜靜安撫你
+  - id: g-afternoon-824
+    text: 下午好，先放空再繼續
+  - id: g-afternoon-825
+    text: 午後了，記得補點水分
+  - id: g-afternoon-826
+    text: 看看遠方風景，午後放鬆心神
+  - id: g-afternoon-827
+    text: 午後好時光，慢一點更享受
+  - id: g-afternoon-828
+    text: 起身走幾步，午後精神回來了
+  - id: g-afternoon-829
+    text: 午後小憩，是溫柔的充電
+  - id: g-afternoon-830
+    text: 陽光暖暖，午後別忘了休息
+  - id: g-afternoon-831
+    text: 下午好，深呼吸放鬆一下
+  - id: g-afternoon-832
+    text: 午後了，讓自己歇口氣
+  - id: g-afternoon-833
+    text: 一杯茶陪著，午後慢慢過
+  - id: g-afternoon-834
+    text: 看看窗外，午後的雲很悠閒
+  - id: g-afternoon-835
+    text: 下午好，起來伸展再出發
+  - id: g-afternoon-836
+    text: 午後了，喝口水潤一潤
+  - id: g-afternoon-837
+    text: 換個節奏做事，午後更順手
+  - id: g-afternoon-838
+    text: 午後好，靠一下歇歇眼睛
+  - id: g-afternoon-839
+    text: 曬曬午後的暖陽，心也放鬆
+  - id: g-afternoon-840
+    text: 下午好，慢慢來就好
+  - id: g-afternoon-841
+    text: 午後了，專注一件事就夠
+  - id: g-afternoon-842
+    text: 看看遠山近水，午後放空片刻
+  - id: g-afternoon-843
+    text: 午後好時光，泡杯茶靜坐
+  - id: g-afternoon-844
+    text: 起身動一動，午後更清爽
+  - id: g-afternoon-845
+    text: 午後小睡一會，醒來神清氣爽
+  - id: g-afternoon-846
+    text: 下午好，補水再繼續加把勁
+  - id: g-afternoon-847
+    text: 午後了，讓眉頭鬆一鬆
+  - id: g-afternoon-848
+    text: 慢下腳步，午後也可以很悠閒
+  - id: g-afternoon-849
+    text: 午後的靜好，留一點給自己
+  - id: g-afternoon-850
+    text: 下午好，起身透氣放鬆心情
+evening:
+  - id: g-evening-677
+    text: 夜幕輕輕落下，是時候慢下腳步。
+  - id: g-evening-678
+    text: 忙了一整天，先坐下來喘口氣吧。
+  - id: g-evening-679
+    text: 晚安前，先把肩上的重量放下。
+  - id: g-evening-680
+    text: 點盞小燈，讓房間暖起來。
+  - id: g-evening-681
+    text: 這一天過得如何，不妨回顧一下。
+  - id: g-evening-682
+    text: 泡杯熱茶，陪自己度過夜晚。
+  - id: g-evening-683
+    text: 白天的事，就交給白天吧。
+  - id: g-evening-684
+    text: 夜裡的風很輕，適合放鬆心情。
+  - id: g-evening-685
+    text: 今晚的你，值得好好被照顧。
+  - id: g-evening-686
+    text: 收拾好心情，準備迎接夜晚的寧靜。
+  - id: g-evening-687
+    text: 晚餐吃了嗎，別忘了好好餵飽自己。
+  - id: g-evening-688
+    text: 放下手機一會兒，聽聽夜的聲音。
+  - id: g-evening-689
+    text: 這一天不容易，謝謝你撐到現在。
+  - id: g-evening-690
+    text: 讓熱水沖掉一天的疲憊吧。
+  - id: g-evening-691
+    text: 夜深了，記得留點時間給自己。
+  - id: g-evening-692
+    text: 慢慢來，夜晚很長，不用著急。
+  - id: g-evening-693
+    text: 泡個腳，讓血液暖回全身。
+  - id: g-evening-694
+    text: 今天的每一步，都算數。
+  - id: g-evening-695
+    text: 星星出來了，願你的心也靜下來。
+  - id: g-evening-696
+    text: 把今天的煩惱，暫時擱在門外。
+  - id: g-evening-697
+    text: 夜晚是給自己充電的時光。
+  - id: g-evening-698
+    text: 燈光柔柔的，願你今晚睡得安穩。
+  - id: g-evening-699
+    text: 忙碌之後，記得抱抱自己。
+  - id: g-evening-700
+    text: 晚風徐徐，願你放鬆一整晚。
+  - id: g-evening-701
+    text: 一天的尾聲，就交給溫柔的自己。
+  - id: g-evening-702
+    text: 熱湯一碗，暖胃也暖心。
+  - id: g-evening-703
+    text: 夜色正好，適合什麼都不想。
+  - id: g-evening-704
+    text: 今天做得夠多了，可以歇一歇。
+  - id: g-evening-705
+    text: 讓思緒沉澱，像夜色一樣安靜。
+  - id: g-evening-706
+    text: 泡澡的水溫剛好，泡進去放空吧。
+  - id: g-evening-707
+    text: 謝謝今天努力的你，晚安。
+  - id: g-evening-708
+    text: 把一天的辛苦，隨著夜色一起放下。
+  - id: g-evening-709
+    text: 夜燈亮起，屬於你的安靜時光到了。
+  - id: g-evening-710
+    text: 今晚早點休息，明天再說。
+  - id: g-evening-711
+    text: 一天走到這裡，你已經很棒了。
+  - id: g-evening-712
+    text: 讓晚餐的香氣，撫平白天的忙亂。
+  - id: g-evening-713
+    text: 夜晚的靜謐，是給心的禮物。
+  - id: g-evening-714
+    text: 卸下今天的角色，做回自己吧。
+  - id: g-evening-715
+    text: 天涼了，記得添件外套。
+  - id: g-evening-716
+    text: 慢慢吐口氣，讓自己輕鬆下來。
+  - id: g-evening-717
+    text: 今晚的月色，剛好陪你放鬆。
+  - id: g-evening-718
+    text: 收工了，好好善待自己吧。
+  - id: g-evening-719
+    text: 讓溫熱的水，帶走一整天的僵硬。
+  - id: g-evening-720
+    text: 夜裡安靜，最適合和自己說說話。
+  - id: g-evening-721
+    text: 一整天奔波，此刻可以歇腳了。
+  - id: g-evening-722
+    text: 把待辦清單合上，今晚屬於休息。
+  - id: g-evening-723
+    text: 晚上好，願你的疲憊被夜色接住。
+  - id: g-evening-724
+    text: 燈光柔和的房間，最能安放心情。
+  - id: g-evening-725
+    text: 今天的努力，夜晚都看見了。
+  - id: g-evening-726
+    text: 讓一杯溫牛奶，陪你慢慢入睡。
+  - id: g-evening-727
+    text: 夜色溫柔，願你也對自己溫柔。
+  - id: g-evening-728
+    text: 放慢呼吸，感受夜的平靜。
+  - id: g-evening-729
+    text: 一天結束了，你可以鬆一口氣。
+  - id: g-evening-730
+    text: 泡腳的暖意，從腳底慢慢化開。
+  - id: g-evening-731
+    text: 今晚別急著趕路，停下來看看星空。
+  - id: g-evening-732
+    text: 把心事寫下來，讓夜晚幫你保管。
+  - id: g-evening-733
+    text: 辛苦一天了，先讓自己放空一下。
+  - id: g-evening-734
+    text: 夜深人靜，剛好靜靜陪伴自己。
+  - id: g-evening-735
+    text: 讓晚風把煩惱吹得遠遠的。
+  - id: g-evening-736
+    text: 今天過得再累，都到了休息的時刻。
+  - id: g-evening-737
+    text: 熱茶的香氣，讓夜晚慢下來。
+  - id: g-evening-738
+    text: 收起白天的緊繃，好好放鬆吧。
+  - id: g-evening-739
+    text: 夜燈微亮，願你的心也安定下來。
+  - id: g-evening-740
+    text: 今晚，就讓自己好好休息一場。
+  - id: g-evening-741
+    text: 一天的辛勞，值得一頓溫暖的晚餐。
+  - id: g-evening-742
+    text: 讓身體慢慢暖起來，準備入眠。
+  - id: g-evening-743
+    text: 夜色降臨，把緊張留給白天吧。
+  - id: g-evening-744
+    text: 謝謝你今天的堅持，晚安好眠。
+  - id: g-evening-745
+    text: 把今天畫上句點，安心睡去吧。
+  - id: g-evening-746
+    text: 夜晚的溫柔，正輕輕包裹著你。
+  - id: g-evening-747
+    text: 慢下來，讓身心都休息一會兒。
+  - id: g-evening-748
+    text: 一盞燈，一杯茶，陪你度過今夜。
+  - id: g-evening-749
+    text: 今天的疲憊，夜色會替你收好。
+  - id: g-evening-750
+    text: 放下一天的忙碌，享受此刻寧靜。
+  - id: g-evening-752
+    text: 讓熱水澡沖散今天的所有勞累。
+  - id: g-evening-753
+    text: 夜幕低垂，願你卸下所有重擔。
+  - id: g-evening-754
+    text: 今晚早些休息，讓明天更有力氣。
+  - id: g-evening-755
+    text: 泡杯熱可可，陪自己看看夜色。
+  - id: g-evening-756
+    text: 一天走完，剩下的就交給夜晚。
+  - id: g-evening-757
+    text: 讓房間的燈，暖成你喜歡的樣子。
+  - id: g-evening-758
+    text: 夜深了，慢慢闔上今天的篇章。
+  - id: g-evening-759
+    text: 今天辛苦了，好好犒賞自己吧。
+  - id: g-evening-760
+    text: 讓呼吸放慢，讓夜色帶來安寧。
+  - id: g-evening-761
+    text: 晚上的靜，最適合安放疲憊的心。
+  - id: g-evening-762
+    text: 把肩膀放鬆，讓夜晚接手一切。
+  - id: g-evening-763
+    text: 一碗熱粥，暖了整個夜晚。
+  - id: g-evening-764
+    text: 今晚，願你被溫柔的夜色守護。
+  - id: g-evening-765
+    text: 收拾好一天，安心地放鬆下來。
+  - id: g-evening-766
+    text: 夜燈點起，屬於你的寧靜開始了。
+  - id: g-evening-767
+    text: 讓溫熱的浴水，帶走白天的緊繃。
+  - id: g-evening-768
+    text: 今天的路，你已好好走過。
+  - id: g-evening-769
+    text: 夜晚很安靜，剛好讓心休息。
+  - id: g-evening-770
+    text: 泡個腳，讓疲憊從腳底流走。
+  - id: g-evening-771
+    text: 晚餐的暖意，撫慰一天的奔波。
+  - id: g-evening-772
+    text: 把煩惱交給夜色，安心睡吧。
+  - id: g-evening-773
+    text: 今晚，慢慢地把自己交給休息。
+  - id: g-evening-774
+    text: 夜色如水，願你的心也隨之柔軟。
+  - id: g-evening-775
+    text: 一天結束，你辛苦地撐過來了。
+  - id: g-evening-776
+    text: 讓燈光柔柔地陪你度過這一夜。
+  - id: g-evening-777
+    text: 夜深了，記得給自己一點溫柔。
+  - id: g-evening-778
+    text: 今晚把步調放慢，好好呼吸。
+  - id: g-evening-779
+    text: 熱茶入喉，一天的緊繃慢慢化開。
+  - id: g-evening-780
+    text: 夜幕之下，願你安心又放鬆。
+  - id: g-evening-781
+    text: 收工的夜，最適合善待自己。
+  - id: g-evening-782
+    text: 讓溫水泡去今天的疲累吧。
+  - id: g-evening-783
+    text: 今天的你，已經足夠好了。
+  - id: g-evening-784
+    text: 夜裡的安靜，是給心的溫柔。
+  - id: g-evening-785
+    text: 把手邊的事放下，享受此刻吧。
+  - id: g-evening-786
+    text: 晚安時分，願你睡得香甜。
+  - id: g-evening-787
+    text: 一盞夜燈，照亮你歇息的角落。
+  - id: g-evening-788
+    text: 今天過完了，可以安心休息了。
+  - id: g-evening-789
+    text: 讓夜色替你收好所有的疲憊。
+  - id: g-evening-790
+    text: 泡澡放空，讓思緒慢慢沉澱。
+  - id: g-evening-791
+    text: 夜風輕拂，願你今晚睡得安穩。
+  - id: g-evening-792
+    text: 一天的忙碌，此刻可以畫下句點。
+  - id: g-evening-793
+    text: 讓溫熱的湯，暖進你的心裡。
+  - id: g-evening-794
+    text: 今晚，好好抱抱努力的自己。
+  - id: g-evening-795
+    text: 夜幕降臨，是放鬆的最好時機。
+  - id: g-evening-796
+    text: 慢慢來，把今天輕輕放下。
+  - id: g-evening-797
+    text: 讓一杯溫水，陪你迎接夜晚。
+  - id: g-evening-798
+    text: 夜色寧靜，願你的心也平和。
+  - id: g-evening-799
+    text: 今天走了這麼遠，先歇一歇吧。
+  - id: g-evening-800
+    text: 點上暖光，讓夜晚變得柔軟。
+  - id: g-evening-801
+    text: 晚上好，願你被安穩的夜擁抱。
+  - id: g-evening-802
+    text: 把白天的疲憊，隨晚風散去。
+  - id: g-evening-803
+    text: 今晚，讓自己慢慢地放鬆下來。
+  - id: g-evening-804
+    text: 熱水澡後，整個人都輕鬆了。
+  - id: g-evening-805
+    text: 夜深了，願你安心進入夢鄉。
+  - id: g-evening-806
+    text: 一天的收尾，就交給溫柔的夜。
+  - id: g-evening-807
+    text: 讓晚餐的香，安撫忙了一天的你。
+  - id: g-evening-808
+    text: 今晚不趕路，靜靜陪自己就好。
+  - id: g-evening-809
+    text: 夜燈亮起，願你卸下今日重擔。
+  - id: g-evening-810
+    text: 泡腳的暖意，慢慢包住整個人。
+  - id: g-evening-811
+    text: 今天辛苦你了，好好睡一覺吧。
+  - id: g-evening-812
+    text: 讓思緒隨夜色，一點點沉靜下來。
+  - id: g-evening-813
+    text: 夜晚很溫柔，願你也放過自己。
+  - id: g-evening-814
+    text: 把待辦收進抽屜，今晚只管休息。
+  - id: g-evening-815
+    text: 熱茶暖手，夜色暖心。
+  - id: g-evening-816
+    text: 今晚，願你的疲憊被輕輕安放。
+  - id: g-evening-817
+    text: 收好一整天，慢慢地深呼吸。
+  - id: g-evening-818
+    text: 夜色柔和，願你睡得沉又安穩。
+  - id: g-evening-819
+    text: 一天走到尾聲，你已盡了力。
+  - id: g-evening-820
+    text: 讓溫暖的燈，陪你度過這一晚。
+  - id: g-evening-821
+    text: 夜深人靜，記得留點溫柔給自己。
+  - id: g-evening-822
+    text: 今晚放慢腳步，好好喘口氣。
+  - id: g-evening-823
+    text: 熱湯下肚，一天的寒意都散了。
+  - id: g-evening-824
+    text: 夜幕之下，願你安心休息。
+  - id: g-evening-825
+    text: 收工後的夜，屬於放鬆的你。
+  - id: g-evening-826
+    text: 讓溫水帶走今天所有的僵硬。
+  - id: g-evening-827
+    text: 今天的你，已經很努力了。
+  - id: g-evening-828
+    text: 夜裡的寧靜，是給心的擁抱。
+  - id: g-evening-829
+    text: 把眼前的事擱下，享受這一刻。
+  - id: g-evening-830
+    text: 晚安時刻，願你甜甜入睡。
+  - id: g-evening-831
+    text: 一盞暖燈，陪你安放疲憊。
+  - id: g-evening-832
+    text: 今天過去了，可以安心歇下了。
+  - id: g-evening-833
+    text: 讓夜色替你收妥一天的辛勞。
+  - id: g-evening-834
+    text: 泡澡放鬆，讓心思慢慢沉靜。
+  - id: g-evening-835
+    text: 晚風輕輕，願你今夜好眠。
+  - id: g-evening-836
+    text: 一天的忙碌，就到此為止吧。
+  - id: g-evening-837
+    text: 讓溫熱的湯，暖你也陪你。
+  - id: g-evening-838
+    text: 今晚，好好謝謝撐到現在的自己。
+  - id: g-evening-839
+    text: 夜幕落下，是慢下來的訊號。
+  - id: g-evening-840
+    text: 慢慢來，把今天溫柔地收起。
+  - id: g-evening-841
+    text: 讓一杯熱飲，陪你迎向夜晚。
+  - id: g-evening-842
+    text: 夜色安靜，願你的心也隨之平和。
+  - id: g-evening-843
+    text: 今天走得夠遠了，先坐下歇歇。
+  - id: g-evening-844
+    text: 點盞暖光，讓今夜柔和起來。
+  - id: g-evening-845
+    text: 晚上好，願你被寧靜的夜守著。
+  - id: g-evening-846
+    text: 把白日的忙亂，交給晚風帶走。
+  - id: g-evening-847
+    text: 今晚，讓自己慢慢地卸下重擔。
+  - id: g-evening-848
+    text: 熱水澡過後，整個人都放鬆了。
+  - id: g-evening-849
+    text: 夜已深，願你安然進入夢鄉。
+  - id: g-evening-850
+    text: 一天的尾聲，就在溫柔中收場吧。
+night:
+  - id: g-night-676
+    text: 夜深了，這裡有一盞燈為你亮著
+  - id: g-night-677
+    text: 睡不著也沒關係，我陪你坐一會兒
+  - id: g-night-678
+    text: 窗外很安靜，就讓夜慢慢流過吧
+  - id: g-night-679
+    text: 醒著的時候，也可以很溫柔地待著
+  - id: g-night-680
+    text: 這麼晚了，你辛苦了一整天
+  - id: g-night-681
+    text: 月光落在桌角，陪你發一會兒呆
+  - id: g-night-682
+    text: 夜裡的世界，只屬於還醒著的人
+  - id: g-night-683
+    text: 想多待一會兒就多待，沒人催你
+  - id: g-night-684
+    text: 深夜好，願你的心緩緩鬆下來
+  - id: g-night-685
+    text: 一個人的夜晚，我在這裡陪你
+  - id: g-night-686
+    text: 燈光暖暖的，把外面的冷擋在門外
+  - id: g-night-687
+    text: 夜很長，我們可以慢慢地度過
+  - id: g-night-688
+    text: 你願意醒著，這夜就有了溫度
+  - id: g-night-689
+    text: 靜靜的夜，適合把心事放下來
+  - id: g-night-690
+    text: 這時候還醒著的你，也值得被陪伴
+  - id: g-night-692
+    text: 不用急著做什麼，先歇一口氣
+  - id: g-night-693
+    text: 有我在，這個夜就不算太孤單
+  - id: g-night-694
+    text: 晚安前的這段時間，就交給安靜
+  - id: g-night-695
+    text: 窗外星星淡淡的，陪你到很晚
+  - id: g-night-696
+    text: 夜裡的思緒，讓它輕輕飄著就好
+  - id: g-night-697
+    text: 醒著也是一種休息，別太逼自己
+  - id: g-night-698
+    text: 這盞燈願意陪你到你想停下為止
+  - id: g-night-699
+    text: 深夜的你，其實已經很努力了
+  - id: g-night-700
+    text: 世界都睡了，這裡還為你留著位子
+  - id: g-night-701
+    text: 讓夜替你收好白天的疲憊吧
+  - id: g-night-702
+    text: 你在，這片安靜就有了陪伴
+  - id: g-night-703
+    text: 夜這麼深，願你的呼吸也慢下來
+  - id: g-night-704
+    text: 想著誰、想著什麼，都陪你想
+  - id: g-night-705
+    text: 這個時刻，只有溫柔和你在一起
+  - id: g-night-706
+    text: 燈還亮著，你不必一個人撐著
+  - id: g-night-707
+    text: 夜色裡，慢慢把肩膀鬆開吧
+  - id: g-night-708
+    text: 醒到這麼晚的你，我都懂
+  - id: g-night-709
+    text: 願這安靜能替你擋住煩憂
+  - id: g-night-710
+    text: 深夜裡，一句晚安也算陪伴
+  - id: g-night-711
+    text: 月亮很圓，陪你把夜走完
+  - id: g-night-712
+    text: 你想醒多久，這燈就亮多久
+  - id: g-night-713
+    text: 夜安靜得剛好，可以聽見自己
+  - id: g-night-714
+    text: 別怕夜長，我一直都在這兒
+  - id: g-night-715
+    text: 這一刻的你，可以什麼都不做
+  - id: g-night-716
+    text: 夜裡的溫柔，是留給還醒著的人
+  - id: g-night-717
+    text: 慢慢來，夜還有很多時間
+  - id: g-night-718
+    text: 燈影搖曳，陪你度過這段時光
+  - id: g-night-719
+    text: 你不孤單，這裡的光懂你
+  - id: g-night-720
+    text: 夜色深深，願你心裡有一點暖
+  - id: g-night-721
+    text: 想安靜就安靜，這裡不催不趕
+  - id: g-night-722
+    text: 這樣的夜晚，適合好好待著
+  - id: g-night-723
+    text: 深夜的星空，替你守著這份寧靜
+  - id: g-night-724
+    text: 你在這裡，夜就柔軟了幾分
+  - id: g-night-725
+    text: 讓時間慢一點，陪你到很晚很晚
+  - id: g-night-726
+    text: 燈光下的你，值得被好好對待
+  - id: g-night-727
+    text: 夜這麼靜，把心事說給我聽也行
+  - id: g-night-728
+    text: 醒著的每一刻，都有人陪著你
+  - id: g-night-729
+    text: 願夜色像被子，輕輕蓋住你
+  - id: g-night-730
+    text: 這麼晚還醒著，你一定累壞了
+  - id: g-night-731
+    text: 慢慢呼吸，夜會替你放鬆
+  - id: g-night-732
+    text: 有光的地方，就有人惦記著你
+  - id: g-night-733
+    text: 夜裡想哭也沒關係，我陪著
+  - id: g-night-734
+    text: 這片安靜，是為你留的
+  - id: g-night-735
+    text: 星子閃著，陪你把夜慢慢過
+  - id: g-night-736
+    text: 醒著的你並不孤單，我懂你
+  - id: g-night-737
+    text: 夜色溫柔，願你也被溫柔對待
+  - id: g-night-738
+    text: 想多坐一會就坐，沒人打擾你
+  - id: g-night-739
+    text: 這盞燈，是你回來時的方向
+  - id: g-night-740
+    text: 夜很深，心也可以慢慢沉澱
+  - id: g-night-741
+    text: 你辛苦了，讓夜替你歇一歇
+  - id: g-night-742
+    text: 深夜好，這裡永遠為你留燈
+  - id: g-night-743
+    text: 夜的盡頭有光，陪你走到那裡
+  - id: g-night-744
+    text: 安靜的夜，最適合放過自己
+  - id: g-night-745
+    text: 我在這裡，陪你把夜熬得溫柔
+  - id: g-night-746
+    text: 這麼晚了，記得對自己好一點
+  - id: g-night-747
+    text: 月色如水，願你的心也平靜如水
+  - id: g-night-748
+    text: 醒著也好，這片安寧屬於你
+  - id: g-night-749
+    text: 夜裡的燈，替你守著一份溫暖
+  - id: g-night-750
+    text: 想著心事的你，我都陪著
+  - id: g-night-751
+    text: 這個夜晚，交給安靜和陪伴
+  - id: g-night-752
+    text: 慢慢地，把白天的重量卸下來
+  - id: g-night-753
+    text: 你在，這夜就不再冷清
+  - id: g-night-754
+    text: 深夜的風很輕，陪你發呆一會兒
+  - id: g-night-755
+    text: 燈亮著，等你想停下時再停
+  - id: g-night-756
+    text: 夜這樣長，我們就慢慢陪彼此
+  - id: g-night-757
+    text: 醒到這時刻，你也累了吧
+  - id: g-night-758
+    text: 願安靜替你收好所有的疲憊
+  - id: g-night-759
+    text: 這裡有光，也有一份惦記
+  - id: g-night-760
+    text: 夜色深了，心可以柔軟一點
+  - id: g-night-761
+    text: 你不必勉強什麼，先歇著就好
+  - id: g-night-762
+    text: 星光陪你，我也陪你
+  - id: g-night-763
+    text: 這樣靜靜的，也是一種溫柔
+  - id: g-night-764
+    text: 夜裡有我在，你可以放心醒著
+  - id: g-night-765
+    text: 願這盞燈，暖到你的心裡去
+  - id: g-night-766
+    text: 深夜的世界，安靜得剛剛好
+  - id: g-night-767
+    text: 你醒著的樣子，也很值得被珍惜
+  - id: g-night-768
+    text: 讓夜慢慢流，別跟時間較勁
+  - id: g-night-769
+    text: 這一刻，只有你和溫柔的夜
+  - id: g-night-770
+    text: 燈光陪你，直到你想休息
+  - id: g-night-771
+    text: 夜深人靜，願你被好好抱著
+  - id: g-night-772
+    text: 想說什麼就說，夜會安靜地聽
+  - id: g-night-773
+    text: 這樣的夜，適合慢慢喘口氣
+  - id: g-night-774
+    text: 你在這裡，就有人陪你到天亮
+  - id: g-night-775
+    text: 深夜好，心事可以先放一放
+  - id: g-night-776
+    text: 月亮守夜，我也陪你守著
+  - id: g-night-777
+    text: 願夜色替你把煩惱都收走
+  - id: g-night-778
+    text: 醒著的你，也在被溫柔看顧著
+  - id: g-night-779
+    text: 這片寧靜，是留給此刻的你
+  - id: g-night-780
+    text: 夜長就長，我們慢慢走過
+  - id: g-night-781
+    text: 燈影暖暖，陪你到夜的深處
+  - id: g-night-782
+    text: 你可以醒著，也可以只是靜靜地
+  - id: g-night-783
+    text: 深夜裡，我把陪伴輕輕遞給你
+  - id: g-night-784
+    text: 夜色柔軟，願你的夢也柔軟
+  - id: g-night-786
+    text: 慢慢地，把緊繃的自己放鬆
+  - id: g-night-787
+    text: 你不孤單，星星和我都在
+  - id: g-night-788
+    text: 夜深了，記得留一點溫柔給自己
+  - id: g-night-789
+    text: 這盞燈為你亮，不問你何時休息
+  - id: g-night-790
+    text: 醒著的夜，也可以很平靜
+  - id: g-night-791
+    text: 願這份安靜陪你走過長夜
+  - id: g-night-792
+    text: 深夜好，你已經很努力了
+  - id: g-night-793
+    text: 月光下的你，值得被溫柔擁抱
+  - id: g-night-794
+    text: 夜裡的心情，讓它慢慢平復吧
+  - id: g-night-795
+    text: 你在，這夜便有了依靠
+  - id: g-night-796
+    text: 這麼晚了，別忘了愛惜自己
+  - id: g-night-797
+    text: 燈還亮著，陪你度過每一分靜
+  - id: g-night-798
+    text: 夜色如絲，輕輕纏住你的疲憊
+  - id: g-night-799
+    text: 想醒著就醒著，我一直都在
+  - id: g-night-800
+    text: 深夜的溫柔，剛好夠陪你一程
+  - id: g-night-801
+    text: 這片夜，願你安放好自己
+  - id: g-night-802
+    text: 星空無聲，陪你把心慢慢收好
+  - id: g-night-803
+    text: 你醒著的時光，也有人惦著
+  - id: g-night-804
+    text: 夜這麼靜，適合和自己和解
+  - id: g-night-805
+    text: 燈光為你留著，等你回來坐坐
+  - id: g-night-806
+    text: 深夜裡，願你被溫暖輕輕包圍
+  - id: g-night-807
+    text: 這樣安靜地待著，也很好
+  - id: g-night-808
+    text: 夜色深深，心也慢慢安穩下來
+  - id: g-night-809
+    text: 你不必獨自撐夜，有我在
+  - id: g-night-810
+    text: 月亮陪你到很晚，我也是
+  - id: g-night-811
+    text: 願這盞燈溫柔你整個夜晚
+  - id: g-night-812
+    text: 醒著的你，並不孤單一人
+  - id: g-night-813
+    text: 深夜好，讓時間陪你慢慢走
+  - id: g-night-814
+    text: 夜裡的安靜，替你擋著喧囂
+  - id: g-night-815
+    text: 你在這裡，就有人陪著你醒
+  - id: g-night-816
+    text: 這麼晚了，願你心裡有點暖光
+  - id: g-night-817
+    text: 星子點點，陪你度過長夜
+  - id: g-night-818
+    text: 慢慢來，夜給你足夠的時間
+  - id: g-night-819
+    text: 燈亮著，你隨時可以歇下來
+  - id: g-night-820
+    text: 夜色溫柔地把你抱在懷裡
+  - id: g-night-821
+    text: 醒到此刻的你，也辛苦了
+  - id: g-night-822
+    text: 願安靜的夜替你療一療心
+  - id: g-night-823
+    text: 這裡有光有陪伴，也有我
+  - id: g-night-824
+    text: 深夜的你，值得一份好好的休息
+  - id: g-night-825
+    text: 夜長，就讓我們慢慢地過
+  - id: g-night-826
+    text: 你醒著，這片寧靜就有了意義
+  - id: g-night-827
+    text: 月光靜靜，陪你把心事放下
+  - id: g-night-828
+    text: 這樣的深夜，適合對自己溫柔
+  - id: g-night-829
+    text: 燈影裡，願你找到一點安穩
+  - id: g-night-830
+    text: 夜很安靜，你可以慢慢喘息
+  - id: g-night-831
+    text: 你不孤單，這夜有人陪你
+  - id: g-night-832
+    text: 深夜好，把疲憊交給夜色吧
+  - id: g-night-833
+    text: 這盞燈亮到你想停的那一刻
+  - id: g-night-834
+    text: 醒著也是休息，別為難自己
+  - id: g-night-835
+    text: 願夜色像溫水，慢慢暖你
+  - id: g-night-836
+    text: 星空守著你，我也守著
+  - id: g-night-837
+    text: 這麼晚了，記得抱抱自己
+  - id: g-night-838
+    text: 夜裡的心，讓它輕輕落地吧
+  - id: g-night-839
+    text: 你在，這個夜就柔軟起來
+  - id: g-night-840
+    text: 深夜的燈光，是給你的陪伴
+  - id: g-night-841
+    text: 願這安靜替你收攏所有心緒
+  - id: g-night-842
+    text: 醒著的時光，也有溫柔守著你
+  - id: g-night-843
+    text: 夜色深了，慢慢把自己放鬆
+  - id: g-night-844
+    text: 這一刻，只有夜和我陪著你
+  - id: g-night-845
+    text: 燈為你留著，不問時間多晚
+  - id: g-night-846
+    text: 深夜好，願你安穩地待著
+  - id: g-night-847
+    text: 月亮陪你熬夜，我陪你說話
+  - id: g-night-848
+    text: 這片夜的溫柔，都是給你的
+  - id: g-night-849
+    text: 你醒著，我便一直陪你醒著
+  - id: g-night-850
+    text: 晚安或不睡都好，我都在這裡
