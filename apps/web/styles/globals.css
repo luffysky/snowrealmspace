@@ -2102,18 +2102,19 @@ input[type='range'] {
  * （.sr-widget-resize），不擋 widget 自身控制項。pointer-events 明確開啟，
  * z-index 疊在卡片與把手之上。
  */
+/* 圓形圖示鈕（只有 ⚙，44×44 合 WCAG target size），與行動版 ↑↓ 重排鈕一致 */
 .sr-widget-gear {
   position: absolute;
   top: var(--sr-space-1);
   left: var(--sr-space-1);
   z-index: 4;
   pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  font-size: var(--sr-text-xs);
-  line-height: 1.2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: var(--sr-text-lg);
+  line-height: 1;
   color: var(--sr-text-secondary);
   background: var(--sr-surface-opaque);
   border: 1px solid var(--sr-border);

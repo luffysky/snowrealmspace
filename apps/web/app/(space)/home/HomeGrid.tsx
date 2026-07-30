@@ -475,7 +475,7 @@ export function HomeGrid({
               setSettingsFor(id)
             }}
           >
-            <span aria-hidden="true">⚙</span> 設定
+            <span aria-hidden="true">⚙</span>
           </button>
         )}
       </div>
