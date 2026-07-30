@@ -421,6 +421,55 @@ export const SCENES: SceneDef[] = [
   { id: 'waves', label: '波紋', kind: 'static', category: '自然', base: 'repeating-linear-gradient(180deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px), linear-gradient(180deg,#12233a,#0a1420)' },
   { id: 'nebula', label: '星雲', kind: 'static', category: '星空宇宙', base: 'radial-gradient(50% 40% at 25% 30%,rgba(200,120,255,.35),transparent 70%), radial-gradient(45% 40% at 75% 60%,rgba(120,180,255,.30),transparent 70%), radial-gradient(40% 40% at 50% 85%,rgba(255,140,200,.25),transparent 70%), #0a0714' },
   { id: 'sky-day', label: '晴空', kind: 'static', category: '天氣', base: 'radial-gradient(circle at 50% 120%,rgba(255,255,255,.35),transparent 45%), linear-gradient(180deg,#7fb4e8,#cfe6f7)' },
+
+  // ════════ #55 內建背景擴充批次（各分類 +8，動態＋靜態）════════
+
+  // ── 天氣 +8 ──
+  s({ id: 'mist-drift', label: '流霧', kind: 'dynamic', category: '天氣', base: 'linear-gradient(180deg,#2c333c,#191d24)', behavior: 'wander', shape: 'circle', colors: ['210,220,230'], density: 1.8, speed: 0.25, sizeMin: 2, sizeMax: 5 }),
+  { id: 'rainbow-mist', label: '虹霧', kind: 'static', category: '天氣', base: 'linear-gradient(180deg,rgba(255,120,140,.25),rgba(255,220,130,.22),rgba(140,220,160,.22),rgba(130,180,255,.24)), linear-gradient(180deg,#20242e,#141821)' },
+  { id: 'cloud-soft', label: '軟雲', kind: 'static', category: '天氣', base: 'radial-gradient(60% 40% at 30% 65%,rgba(255,255,255,.5),transparent 70%), radial-gradient(55% 40% at 70% 72%,rgba(255,255,255,.42),transparent 72%), linear-gradient(180deg,#9cc3e8,#d9ebf7)' },
+
+  // ── 星空宇宙 +8 ──
+  s({ id: 'comet-blue', label: '藍彗', kind: 'dynamic', category: '星空宇宙', base: 'radial-gradient(circle at 50% 20%,#111d3a,#04060e)', behavior: 'fall', shape: 'streak', colors: ['150,200,255'], density: 0.4, speed: 2, sizeMin: 10, sizeMax: 20 }),
+  s({ id: 'starfall-gold', label: '金星墜', kind: 'dynamic', category: '星空宇宙', base: NIGHT, behavior: 'fall', shape: 'star', colors: ['255,235,170'], density: 0.8, speed: 1.1, sizeMin: 1.5, sizeMax: 3.4 }),
+  { id: 'aurora-green', label: '綠極光', kind: 'static', category: '星空宇宙', base: 'linear-gradient(180deg,#04101a,#04101a), radial-gradient(60% 45% at 35% 35%,rgba(80,230,160,.4),transparent 70%), radial-gradient(55% 45% at 70% 45%,rgba(120,220,140,.3),transparent 70%)' },
+
+  // ── 自然 +8 ──
+  s({ id: 'dandelion', label: '蒲公英', kind: 'dynamic', category: '自然', base: 'linear-gradient(180deg,#cbe0c0,#e8f2e0)', behavior: 'rise', shape: 'circle', colors: ['255,255,255'], density: 0.9, speed: 0.5, sizeMin: 1.5, sizeMax: 3.2 }),
+  s({ id: 'petals-rose', label: '玫瑰瓣', kind: 'dynamic', category: '自然', base: 'linear-gradient(180deg,#3a1a24,#1c0d12)', behavior: 'petal', shape: 'petal', colors: ['235,90,120', '255,140,160'], density: 1.1, speed: 0.9, sizeMin: 4, sizeMax: 9 }),
+  s({ id: 'ocean-foam', label: '浪沫', kind: 'dynamic', category: '自然', base: DEEPSEA, behavior: 'rise', shape: 'circle', colors: ['200,235,255', '255,255,255'], density: 1.3, speed: 0.6, sizeMin: 1.5, sizeMax: 4 }),
+  s({ id: 'snow-blossom', label: '雪花瓣', kind: 'dynamic', category: '自然', base: 'linear-gradient(180deg,#20303a,#0e161c)', behavior: 'petal', shape: 'petal', colors: ['235,245,255'], density: 1.2, speed: 0.7, sizeMin: 4, sizeMax: 8 }),
+  s({ id: 'spore-glow', label: '孢光', kind: 'dynamic', category: '自然', base: 'linear-gradient(180deg,#10231c,#06120d)', behavior: 'wander', shape: 'circle', colors: ['160,255,210'], density: 0.9, speed: 0.5, sizeMin: 1.2, sizeMax: 2.8 }),
+  { id: 'moss', label: '苔綠', kind: 'static', category: '自然', base: 'radial-gradient(rgba(120,180,90,.18) 2px,transparent 2.4px) 0 0/16px 16px, linear-gradient(180deg,#1a2c16,#0e180b)' },
+  { id: 'hills', label: '遠山', kind: 'static', category: '自然', base: 'radial-gradient(120% 60% at 50% 120%,rgba(90,140,90,.5),transparent 60%), radial-gradient(120% 50% at 20% 130%,rgba(60,110,70,.5),transparent 60%), linear-gradient(180deg,#bcd8e0,#e6f2ee)' },
+
+  // ── 慶祝 +8 ──
+  s({ id: 'confetti-rise', label: '彩紙升', kind: 'dynamic', category: '慶祝', base: 'linear-gradient(180deg,#241a2e,#120c18)', behavior: 'rise', shape: 'square', colors: ['255,120,160', '120,220,255', '255,225,120', '160,255,180'], density: 1.6, speed: 1, sizeMin: 3, sizeMax: 6 }),
+  s({ id: 'streamers-cyan', label: '青彩帶', kind: 'dynamic', category: '慶祝', base: 'linear-gradient(180deg,#0e2630,#061318)', behavior: 'fall', shape: 'streak', colors: ['120,235,255', '160,255,220'], density: 1.4, speed: 1.1, sizeMin: 6, sizeMax: 14 }),
+  s({ id: 'sparkle-pink', label: '桃花火', kind: 'dynamic', category: '慶祝', base: 'linear-gradient(180deg,#2e1226,#160812)', behavior: 'twinkle', shape: 'star', colors: ['255,150,210', '255,190,230'], density: 1.8, sizeMin: 1.5, sizeMax: 3.6 }),
+  s({ id: 'balloon-drift', label: '氣球飄', kind: 'dynamic', category: '慶祝', base: 'linear-gradient(180deg,#1c2440,#0c1020)', behavior: 'rise', shape: 'circle', colors: ['255,140,160', '150,200,255', '255,220,140'], density: 0.6, speed: 0.4, sizeMin: 4, sizeMax: 9 }),
+  { id: 'fireworks-still', label: '花火', kind: 'static', category: '慶祝', base: 'radial-gradient(circle at 30% 30%,rgba(255,180,120,.4),transparent 12%), radial-gradient(circle at 70% 35%,rgba(150,200,255,.4),transparent 12%), radial-gradient(circle at 50% 60%,rgba(255,140,200,.4),transparent 12%), linear-gradient(180deg,#0c0a1a,#050409)' },
+  { id: 'ribbon-glow', label: '緞帶光', kind: 'static', category: '慶祝', base: 'repeating-linear-gradient(45deg,rgba(255,180,120,.14) 0 8px,transparent 8px 18px), repeating-linear-gradient(-45deg,rgba(150,200,255,.12) 0 8px,transparent 8px 18px), linear-gradient(180deg,#1a1426,#0c0814)' },
+
+  // ── 簡約 +8 ──
+  s({ id: 'dust-slow', label: '慢塵', kind: 'dynamic', category: '簡約', base: 'linear-gradient(180deg,#242832,#16191f)', behavior: 'wander', shape: 'circle', colors: ['255,255,255'], density: 1.2, speed: 0.2, sizeMin: 0.8, sizeMax: 1.8 }),
+  s({ id: 'rise-mono', label: '素氣泡', kind: 'dynamic', category: '簡約', base: 'linear-gradient(180deg,#1e222b,#12151b)', behavior: 'rise', shape: 'ring', colors: ['255,255,255'], density: 1, speed: 0.5, sizeMin: 2, sizeMax: 5 }),
+  { id: 'linen', label: '亞麻', kind: 'static', category: '簡約', base: 'repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 2px,transparent 2px 4px), repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 2px,transparent 2px 4px), linear-gradient(180deg,#242732,#191c24)' },
+  { id: 'halftone', label: '半調', kind: 'static', category: '簡約', base: 'radial-gradient(rgba(255,255,255,.12) 2.4px,transparent 2.6px) 0 0/16px 16px, linear-gradient(135deg,#232733,#161a22)' },
+  { id: 'gradient-peach', label: '蜜桃', kind: 'static', category: '簡約', base: 'linear-gradient(160deg,#ffd9c4,#ffb9cf,#e7b8ff)' },
+  { id: 'gradient-mint', label: '薄荷', kind: 'static', category: '簡約', base: 'linear-gradient(160deg,#c6f2e0,#b9e0f0,#d2d6ff)' },
+  { id: 'concentric', label: '同心', kind: 'static', category: '簡約', base: 'repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.06) 0 10px,transparent 10px 20px), linear-gradient(180deg,#1f232d,#141821)' },
+  { id: 'soft-blur', label: '柔暈', kind: 'static', category: '簡約', base: 'radial-gradient(50% 50% at 35% 30%,rgba(180,200,255,.28),transparent 70%), radial-gradient(50% 50% at 70% 70%,rgba(255,200,220,.24),transparent 70%), #14171f' },
+
+  // ── 城市夜景 +8 ──
+  s({ id: 'rain-window', label: '雨窗', kind: 'dynamic', category: '城市夜景', base: CITY_HAZE, behavior: 'rain', shape: 'streak', colors: ['160,200,235', '255,200,150'], density: 1.6, speed: 1.2, sizeMin: 6, sizeMax: 14 }),
+  s({ id: 'neon-rise', label: '霓虹升', kind: 'dynamic', category: '城市夜景', base: CITY_INDIGO, behavior: 'rise', shape: 'circle', colors: ['120,235,255', '255,120,200'], density: 1.2, speed: 0.6, sizeMin: 1.5, sizeMax: 3.6 }),
+  s({ id: 'lantern-rise', label: '天燈', kind: 'dynamic', category: '城市夜景', base: CITY_ROSE_GLOW, behavior: 'rise', shape: 'square', colors: ['255,190,120', '255,150,100'], density: 0.7, speed: 0.4, sizeMin: 3, sizeMax: 6 }),
+  s({ id: 'traffic-streak', label: '車流', kind: 'dynamic', category: '城市夜景', base: CITY_INK, behavior: 'rain', shape: 'streak', colors: ['255,120,90', '255,225,150'], density: 1.3, speed: 1.6, sizeMin: 8, sizeMax: 18 }),
+  s({ id: 'star-city', label: '城市星', kind: 'dynamic', category: '城市夜景', base: CITY_GLOW, behavior: 'twinkle', shape: 'circle', colors: ['255,230,180', '200,220,255'], density: 1.6, sizeMin: 0.8, sizeMax: 2 }),
+  s({ id: 'glow-pulse', label: '光暈脈', kind: 'dynamic', category: '城市夜景', base: CITY_TEAL_GLOW, behavior: 'twinkle', shape: 'ring', colors: ['120,235,255'], density: 0.8, sizeMin: 2, sizeMax: 5 }),
+  { id: 'skyline', label: '天際線', kind: 'static', category: '城市夜景', base: 'linear-gradient(180deg,transparent 55%,rgba(10,14,30,.9) 56%), radial-gradient(circle at 20% 60%,rgba(255,220,150,.5),transparent 6%), radial-gradient(circle at 60% 62%,rgba(150,200,255,.45),transparent 6%), linear-gradient(180deg,#12204a,#070a18)' },
+  { id: 'fog-city', label: '都會霧', kind: 'static', category: '城市夜景', base: 'linear-gradient(180deg,rgba(120,140,180,.25),transparent 60%), radial-gradient(60% 40% at 50% 90%,rgba(255,210,150,.3),transparent 70%), linear-gradient(180deg,#141a2a,#080b14)' },
 ]
 
 export function getScene(id: string | null | undefined): SceneDef | null {
