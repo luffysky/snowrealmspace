@@ -132,9 +132,9 @@ const themeSwitcherConfig = z.object({
 
 const backgroundControlConfig = z.object({
   showPlaylistName: z.boolean().default(true),
-  allowSkip: z.boolean().default(true),
-  // ADR-019：影片必須可暫停（WCAG Pause, Stop, Hide）
-  allowPause: z.boolean().default(true),
+  // 註：allowSkip / allowPause 已移除 —— 背景輪播是依時間決定性解析（無伺服器端
+  //     快進/暫停狀態），播放暫停由 BackgroundLayer 依 ADR-019 自帶控制，widget
+  //     層再放一組沒有控制通道的開關等於假設定，故不提供。
 })
 
 const timelinePreviewConfig = z.object({

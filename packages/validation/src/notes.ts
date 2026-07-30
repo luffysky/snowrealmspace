@@ -6,6 +6,8 @@ export const noteCreateSchema = z
   .object({
     title: z.string().trim().max(120).nullable().optional(),
     body: z.string().trim().min(1, '請輸入內容').max(10000),
+    // 可把筆記歸到某個專案（notes.project_id，隨手記 widget 的 targetProjectId）
+    projectId: z.string().uuid().nullable().optional(),
   })
   .strict()
 
@@ -13,6 +15,7 @@ export const notePatchSchema = z
   .object({
     title: z.string().trim().max(120).nullable().optional(),
     body: z.string().trim().min(1).max(10000).optional(),
+    projectId: z.string().uuid().nullable().optional(),
   })
   .strict()
   .refine((v) => Object.keys(v).length > 0, { message: '沒有要更新的欄位' })

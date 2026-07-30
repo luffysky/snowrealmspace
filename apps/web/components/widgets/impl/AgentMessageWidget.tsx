@@ -1,36 +1,46 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import type { WidgetProps } from '../types'
 
 /**
  * Agent 訊息（Milestone E）。
  *
- * 進 Home 時打 /api/agent/message：若條件允許就產生今天的主動訊息
- * （頻率上限、Quiet hours、安全過濾都在後端把關），並顯示最新一則。
- * 目前內容來自內容池與里程碑模板；Milestone D 有 Agent 後會換成真正的對話。
+ * 進 Home 時打 /api/agent/message：顯示最新 N 則主動訊息
+ * （產生由 worker cron 冪等處理，這裡只讀）。
+ * 設定：showAvatar（頭像 ✦）、maxMessages（1–5 則）、allowQuickReply（回覆入口）。
  */
 
+type Msg = { title: string; body: string }
 type View =
   | { state: 'loading' }
   | { state: 'empty' }
-  | { state: 'message'; title: string; body: string }
+  | { state: 'message'; messages: Msg[] }
 
-export default function AgentMessageWidget(_props: WidgetProps) {
+export default function AgentMessageWidget({ config }: WidgetProps) {
+  const cfg = config as
+    | { showAvatar?: boolean; maxMessages?: number; allowQuickReply?: boolean }
+    | null
+  const showAvatar = cfg?.showAvatar ?? true
+  const maxMessages = Math.min(5, Math.max(1, cfg?.maxMessages ?? 1))
+  const allowQuickReply = cfg?.allowQuickReply ?? true
+
   const [view, setView] = useState<View>({ state: 'loading' })
 
   useEffect(() => {
     let alive = true
     ;(async () => {
       try {
-        const res = await fetch('/api/agent/message')
-        const json = (await res.json()) as { data: { title: string; body: string | null } | null }
-        if (!alive) return
-        if (json.data?.body) {
-          setView({ state: 'message', title: json.data.title, body: json.data.body })
-        } else {
-          setView({ state: 'empty' })
+        const res = await fetch(`/api/agent/message?limit=${maxMessages}`)
+        const json = (await res.json()) as {
+          messages?: { title: string; body: string | null }[]
         }
+        if (!alive) return
+        const msgs = (json.messages ?? [])
+          .filter((m): m is Msg => Boolean(m.body))
+          .map((m) => ({ title: m.title, body: m.body }))
+        setView(msgs.length ? { state: 'message', messages: msgs } : { state: 'empty' })
       } catch {
         if (alive) setView({ state: 'empty' })
       }
@@ -38,7 +48,7 @@ export default function AgentMessageWidget(_props: WidgetProps) {
     return () => {
       alive = false
     }
-  }, [])
+  }, [maxMessages])
 
   if (view.state === 'loading') {
     return (
@@ -51,9 +61,11 @@ export default function AgentMessageWidget(_props: WidgetProps) {
   if (view.state === 'empty') {
     return (
       <div className="sr-card sr-agent-msg">
-        <span className="sr-agent-avatar" aria-hidden="true">
-          ✦
-        </span>
+        {showAvatar && (
+          <span className="sr-agent-avatar" aria-hidden="true">
+            ✦
+          </span>
+        )}
         <p className="sr-muted" style={{ margin: 0 }}>
           今天還沒有想說的話。等你多用一點，我會慢慢認識你。
         </p>
@@ -63,12 +75,26 @@ export default function AgentMessageWidget(_props: WidgetProps) {
 
   return (
     <div className="sr-card sr-agent-msg">
-      <span className="sr-agent-avatar" aria-hidden="true">
-        ✦
-      </span>
-      <div>
-        <p className="sr-agent-title">{view.title}</p>
-        <p className="sr-agent-body">{view.body}</p>
+      {showAvatar && (
+        <span className="sr-agent-avatar" aria-hidden="true">
+          ✦
+        </span>
+      )}
+      <div style={{ minWidth: 0 }}>
+        {view.messages.map((m, i) => (
+          <div
+            key={i}
+            style={{ marginBottom: i < view.messages.length - 1 ? 'var(--sr-space-2)' : 0 }}
+          >
+            <p className="sr-agent-title">{m.title}</p>
+            <p className="sr-agent-body">{m.body}</p>
+          </div>
+        ))}
+        {allowQuickReply && (
+          <Link href="/agent" className="sr-link" style={{ fontSize: 'var(--sr-text-sm)' }}>
+            回覆 →
+          </Link>
+        )}
       </div>
     </div>
   )

@@ -31,6 +31,17 @@ export const POST = handler(async (request: NextRequest) => {
   const parsed = noteCreateSchema.safeParse(body)
   if (!parsed.success) return failValidation(parsed.error)
 
+  // 指定專案時，確認該專案屬於這個 space（避免掛到別的 space 的專案）
+  if (parsed.data.projectId) {
+    const { data: proj } = await ctx.db
+      .from('projects')
+      .select('id')
+      .eq('id', parsed.data.projectId)
+      .eq('space_id', ctx.spaceId)
+      .maybeSingle()
+    if (!proj) return fail('NOT_FOUND', '找不到這個專案。')
+  }
+
   const { data, error } = await ctx.db
     .from('notes')
     .insert({
@@ -38,8 +49,9 @@ export const POST = handler(async (request: NextRequest) => {
       created_by: ctx.userId,
       title: parsed.data.title ?? null,
       body: sanitizeRichHtml(parsed.data.body),
+      project_id: parsed.data.projectId ?? null,
     })
-    .select('id, title, body, created_at, updated_at')
+    .select('id, title, body, project_id, created_at, updated_at')
     .single()
   if (error || !data) return fail('INTERNAL', '新增筆記失敗。')
   return ok(data)

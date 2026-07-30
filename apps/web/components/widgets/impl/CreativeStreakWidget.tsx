@@ -5,17 +5,24 @@ import type { WidgetProps } from '../types'
 
 /** 創作連續：讀 /api/streak（由 activity_events 算，不另存表）。唯讀。 */
 
-type Data = { streak: number; activeToday: boolean; activeDays30: number }
+type Data = {
+  streak: number
+  activeToday: boolean
+  windowDays: number
+  activeDaysWindow: number
+  activeDays30: number
+}
 type State = 'loading' | 'idle' | 'error'
 
-export default function CreativeStreakWidget({ spaceId }: WidgetProps) {
+export default function CreativeStreakWidget({ spaceId, config }: WidgetProps) {
+  const windowDays = (config as { windowDays?: number } | null)?.windowDays ?? 30
   const [state, setState] = useState<State>('loading')
   const [data, setData] = useState<Data | null>(null)
 
   useEffect(() => {
     let alive = true
     setState('loading')
-    fetch('/api/streak', { headers: { 'x-space-id': spaceId } })
+    fetch(`/api/streak?days=${windowDays}`, { headers: { 'x-space-id': spaceId } })
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((b: { data: Data }) => {
         if (!alive) return
@@ -28,7 +35,7 @@ export default function CreativeStreakWidget({ spaceId }: WidgetProps) {
     return () => {
       alive = false
     }
-  }, [spaceId])
+  }, [spaceId, windowDays])
 
   return (
     <div className="sr-card sr-widget" style={{ textAlign: 'center' }}>
@@ -51,7 +58,7 @@ export default function CreativeStreakWidget({ spaceId }: WidgetProps) {
                 : '昨天有動；今天再來一下就接上了。'}
           </p>
           <p className="sr-muted" style={{ margin: '4px 0 0', fontSize: 'var(--sr-text-sm)' }}>
-            近 30 天有 {data.activeDays30} 天在創作
+            近 {data.windowDays ?? windowDays} 天有 {data.activeDaysWindow ?? data.activeDays30} 天在創作
           </p>
         </>
       ) : null}

@@ -15,17 +15,31 @@ type State = 'loading' | 'idle' | 'load-error'
 
 const RECENT = 5
 
-export default function QuickNoteWidget({ spaceId, config }: WidgetProps) {
-  const placeholder = (config as { placeholder?: string } | null)?.placeholder ?? '隨手記下…'
+export default function QuickNoteWidget({ spaceId, instanceId, config }: WidgetProps) {
+  const cfg = config as
+    | { placeholder?: string; autoSaveSeconds?: number; targetProjectId?: string | null }
+    | null
+  const placeholder = cfg?.placeholder ?? '隨手記下…'
+  const autoSaveSeconds = cfg?.autoSaveSeconds ?? 5
+  const targetProjectId = cfg?.targetProjectId ?? null
+  const draftKey = `sr:quicknote-draft:${instanceId}`
   const [state, setState] = useState<State>('loading')
   const [notes, setNotes] = useState<Note[]>([])
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState<string | null>(null)
+  const [savedDraft, setSavedDraft] = useState(false)
 
   useEffect(() => {
     let alive = true
     setState('loading')
+    // 還原上次沒送出的草稿（autoSave 把草稿存在 localStorage，換裝置/重整不會白打）
+    try {
+      const saved = localStorage.getItem(draftKey)
+      if (saved) setDraft(saved)
+    } catch {
+      /* localStorage 不可用時略過 */
+    }
     fetch('/api/notes', { headers: { 'x-space-id': spaceId } })
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((b: { data: Note[] }) => {
@@ -39,7 +53,26 @@ export default function QuickNoteWidget({ spaceId, config }: WidgetProps) {
     return () => {
       alive = false
     }
-  }, [spaceId])
+  }, [spaceId, draftKey])
+
+  // 草稿自動存：停止打字 autoSaveSeconds 秒後把草稿寫進 localStorage
+  useEffect(() => {
+    if (state === 'loading') return
+    setSavedDraft(false)
+    const t = setTimeout(() => {
+      try {
+        if (draft.trim()) {
+          localStorage.setItem(draftKey, draft)
+          setSavedDraft(true)
+        } else {
+          localStorage.removeItem(draftKey)
+        }
+      } catch {
+        /* 略過 */
+      }
+    }, Math.max(2, autoSaveSeconds) * 1000)
+    return () => clearTimeout(t)
+  }, [draft, autoSaveSeconds, draftKey, state])
 
   async function add() {
     const body = draft.trim()
@@ -50,12 +83,18 @@ export default function QuickNoteWidget({ spaceId, config }: WidgetProps) {
       const res = await fetch('/api/notes', {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-space-id': spaceId },
-        body: JSON.stringify({ body }),
+        body: JSON.stringify(targetProjectId ? { body, projectId: targetProjectId } : { body }),
       })
       if (!res.ok) throw new Error()
       const b = (await res.json()) as { data: Note }
       setNotes((prev) => [b.data, ...prev])
       setDraft('')
+      setSavedDraft(false)
+      try {
+        localStorage.removeItem(draftKey)
+      } catch {
+        /* 略過 */
+      }
     } catch {
       setErr('存不了，請再試一次。')
     } finally {
@@ -101,9 +140,16 @@ export default function QuickNoteWidget({ spaceId, config }: WidgetProps) {
             }}
           />
           <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
-            <Link href="/notes" className="sr-link" style={{ fontSize: 'var(--sr-text-sm)' }}>
-              看全部 / 編輯
-            </Link>
+            <span className="sr-row" style={{ gap: 'var(--sr-space-2)', alignItems: 'center' }}>
+              <Link href="/notes" className="sr-link" style={{ fontSize: 'var(--sr-text-sm)' }}>
+                看全部 / 編輯
+              </Link>
+              {savedDraft && (
+                <span className="sr-muted" style={{ fontSize: 'var(--sr-text-xs)' }} aria-live="polite">
+                  已存草稿
+                </span>
+              )}
+            </span>
             <button type="button" className="sr-button" style={{ padding: '2px 12px' }} onClick={() => void add()} disabled={busy || !draft.trim()}>
               新增
             </button>

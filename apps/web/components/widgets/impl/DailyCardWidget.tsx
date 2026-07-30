@@ -22,7 +22,9 @@ type Today = {
 }
 
 export default function DailyCardWidget({ config }: WidgetProps) {
-  const compact = (config as { compact?: boolean } | null)?.compact ?? false
+  const cfg = config as { compact?: boolean; showArchiveLink?: boolean } | null
+  const compact = cfg?.compact ?? false
+  const showArchiveLink = cfg?.showArchiveLink ?? true
 
   const [today, setToday] = useState<Today | null>(null)
   const [error, setError] = useState(false)
@@ -141,6 +143,12 @@ export default function DailyCardWidget({ config }: WidgetProps) {
           </span>
           <p style={{ margin: 0 }}>{today.microAction.text}</p>
         </div>
+      )}
+
+      {showArchiveLink && (
+        <a href="/daily" className="sr-link" style={{ fontSize: 'var(--sr-text-sm)', alignSelf: 'flex-start' }}>
+          看更多每日內容 →
+        </a>
       )}
     </div>
   )

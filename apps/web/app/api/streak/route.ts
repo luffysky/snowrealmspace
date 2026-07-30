@@ -1,3 +1,4 @@
+import type { NextRequest } from 'next/server'
 import { resolveContext } from '@/lib/api/context'
 import { ok, fail, handler } from '@/lib/api/respond'
 import type { Db } from '@snowrealm/db/server'
@@ -25,11 +26,15 @@ async function tzOf(db: Db, spaceId: string): Promise<string> {
   return data?.timezone ?? 'Asia/Taipei'
 }
 
-export const GET = handler(async () => {
+export const GET = handler(async (request: NextRequest) => {
   const result = await resolveContext()
   if (!result.ok) return fail(result.reason === 'unauthenticated' ? 'UNAUTHENTICATED' : 'FORBIDDEN', '沒有存取權。')
   const { ctx } = result
   const tz = await tzOf(ctx.db, ctx.spaceId)
+
+  // 統計視窗天數（creative_streak widget 的 windowDays 設定）：7–90，預設 30。
+  const rawDays = Number(new URL(request.url).searchParams.get('days'))
+  const windowDays = Number.isFinite(rawDays) ? Math.min(90, Math.max(7, Math.round(rawDays))) : 30
 
   // 取最近 120 天的使用者活動，足以涵蓋任何合理連續天數。
   const since = new Date(Date.now() - 120 * 24 * 3600 * 1000).toISOString()
@@ -61,6 +66,9 @@ export const GET = handler(async () => {
   return ok({
     streak,
     activeToday: days.has(today),
+    windowDays,
+    activeDaysWindow: Array.from(days).filter((d) => d > addDays(today, -windowDays)).length,
+    // 保留 activeDays30 給既有呼叫者相容
     activeDays30: Array.from(days).filter((d) => d > addDays(today, -30)).length,
   })
 })

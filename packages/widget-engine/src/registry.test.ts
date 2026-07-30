@@ -86,11 +86,18 @@ describe('WIDGET_REGISTRY', () => {
     }
   })
 
-  /** ADR-019：影片背景必須可暫停（WCAG Pause, Stop, Hide）。 */
-  it('背景控制的暫停功能預設開啟', () => {
+  /**
+   * ADR-019（影片背景必須可暫停）的真正保證在 BackgroundLayer 的 PausePortal，
+   * 不在這個 widget 的 config —— background_control 的 allowPause 曾是假設定
+   * （面板生得出、播放層卻不讀），已移除。真實暫停控制的測試見
+   * apps/web/lib/theme/background-pause-adr019.test.ts。
+   */
+  it('background_control 不再帶假的播放控制設定', () => {
     const def = getWidgetDefinition('background_control')!
-    const config = def.configSchema.parse({}) as { allowPause: boolean }
-    expect(config.allowPause).toBe(true)
+    const config = def.configSchema.parse({}) as Record<string, unknown>
+    expect(config.allowPause).toBeUndefined()
+    expect(config.allowSkip).toBeUndefined()
+    expect(config.showPlaylistName).toBe(true)
   })
 })
 

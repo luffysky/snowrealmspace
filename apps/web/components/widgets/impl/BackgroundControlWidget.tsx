@@ -9,7 +9,8 @@ type Current = {
 }
 
 /** 顯示目前背景，並提供前往設定的入口。 */
-export default function BackgroundControlWidget({ spaceId }: WidgetProps) {
+export default function BackgroundControlWidget({ spaceId, config }: WidgetProps) {
+  const showPlaylistName = (config as { showPlaylistName?: boolean } | null)?.showPlaylistName ?? true
   const [state, setState] = useState<Current | null>(null)
 
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function BackgroundControlWidget({ spaceId }: WidgetProps) {
 
       {state?.current && (
         <p className="sr-muted">
-          正在顯示：{state.current.name ?? (state.current.type === 'gradient' ? '漸層' : '圖片')}
+          {showPlaylistName
+            ? `正在顯示：${state.current.name ?? (state.current.type === 'gradient' ? '漸層' : '圖片')}`
+            : '目前有背景在顯示。'}
         </p>
       )}
 

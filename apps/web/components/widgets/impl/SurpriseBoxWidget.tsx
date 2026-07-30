@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { WidgetProps } from '../types'
 
 /**
@@ -26,10 +26,16 @@ const RARITY_LABEL: Record<Rarity, string> = {
   anniversary: '週年',
 }
 
-export default function SurpriseBoxWidget(_props: WidgetProps) {
+export default function SurpriseBoxWidget({ config }: WidgetProps) {
+  const cfg = config as { showRarityLabel?: boolean; autoOpenOnLogin?: boolean } | null
+  const showRarityLabel = cfg?.showRarityLabel ?? true
+  const autoOpenOnLogin = cfg?.autoOpenOnLogin ?? false
+
   const [view, setView] = useState<View>({ state: 'loading' })
   const [opening, setOpening] = useState(false)
   const [justOpened, setJustOpened] = useState(false)
+  // autoOpenOnLogin：每個 space 每天只自動開一次（存 localStorage，避免每次進頁都自動開）
+  const autoOpenedRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
@@ -44,6 +50,19 @@ export default function SurpriseBoxWidget(_props: WidgetProps) {
       cancelled = true
     }
   }, [])
+
+  // 開啟「登入自動打開」時：今天還沒開過就自動開一次
+  useEffect(() => {
+    if (!autoOpenOnLogin || autoOpenedRef.current) return
+    if (view.state !== 'available') return
+    const today = new Intl.DateTimeFormat('en-CA').format(new Date())
+    const key = 'sr:surprise-autoopen'
+    if (localStorage.getItem(key) === today) return
+    autoOpenedRef.current = true
+    localStorage.setItem(key, today)
+    void open()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpenOnLogin, view.state])
 
   async function open() {
     setOpening(true)
@@ -105,9 +124,11 @@ export default function SurpriseBoxWidget(_props: WidgetProps) {
       data-rarity={view.rarity}
     >
       <div className="sr-surprise-glow" aria-hidden="true" />
-      <span className="sr-surprise-rarity" data-rarity={view.rarity}>
-        {RARITY_LABEL[view.rarity]}
-      </span>
+      {showRarityLabel && (
+        <span className="sr-surprise-rarity" data-rarity={view.rarity}>
+          {RARITY_LABEL[view.rarity]}
+        </span>
+      )}
       <p className="sr-surprise-label">{view.label}</p>
       <blockquote className="sr-surprise-text">{view.text}</blockquote>
       <a href="/surprises" className="sr-surprise-archive-link">
