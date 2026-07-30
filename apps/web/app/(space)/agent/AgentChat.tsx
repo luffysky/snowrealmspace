@@ -79,6 +79,14 @@ function AssetMedia({ assetId, kind, name, spaceId }: { assetId: string; kind?: 
   return <ChatMedia url={url} kind={kind || 'file'} name={name} />
 }
 
+/** Agent 動作（工具呼叫結果）。pending_confirmation 需使用者確認才生效。 */
+export type AgentAction = {
+  tool: string
+  status: 'executed' | 'pending_confirmation' | 'rejected' | 'confirmed' | 'undone'
+  actionId?: string
+  reason?: string
+}
+
 export type ChatMessage = {
   id: string
   role: 'user' | 'assistant'
@@ -88,6 +96,22 @@ export type ChatMessage = {
   images?: string[]
   /** 從歷史載入的附件參照（需向伺服器換短期 URL）。 */
   attachments?: Attachment[]
+  /** 這則回覆觸發的 Agent 動作（apply_theme / tag_asset 等會需要確認）。 */
+  actions?: AgentAction[]
+}
+
+/** 工具名 → 人看得懂的動作說明。 */
+const TOOL_LABEL: Record<string, string> = {
+  apply_theme: '套用主題',
+  tag_asset: '為素材加標籤',
+  create_note: '建立筆記',
+  create_project: '建立專案',
+  create_theme_draft: '建立主題草稿',
+  create_palette: '建立配色',
+  add_background: '加入背景',
+  compare_design_versions: '比較版本',
+  create_daily_card: '建立每日卡片',
+  save_memory_proposal: '記住一件事',
 }
 
 export type ThreadSummary = { id: string; title: string | null; last_message_at: string }
@@ -460,12 +484,20 @@ export function AgentChat({
           setMessages((prev) => prev.filter((m) => m.id !== optimisticUser.id))
           return
         }
-        const data = (body as { data: { threadId: string; reply: string; escalated: boolean } }).data
+        const data = (body as {
+          data: { threadId: string; reply: string; escalated: boolean; actions?: AgentAction[] }
+        }).data
         const wasNew = threadId === null
         setThreadId(data.threadId)
         setMessages((prev) => [
           ...prev,
-          { id: `a-${Date.now()}`, role: 'assistant', content: data.reply, escalated: data.escalated },
+          {
+            id: `a-${Date.now()}`,
+            role: 'assistant',
+            content: data.reply,
+            escalated: data.escalated,
+            ...(data.actions?.length ? { actions: data.actions } : {}),
+          },
         ])
         emitAgentMood(moodFromText(data.reply))
         if (wasNew) void refreshThreads()
@@ -560,6 +592,41 @@ export function AgentChat({
     }
   }
 
+  // 對某個 agent action 執行 confirm / reject / undo，並把結果反映到那則訊息的動作卡片上。
+  const [actionBusy, setActionBusy] = useState<string | null>(null)
+  async function runActionOp(messageId: string, actionId: string, op: 'confirm' | 'reject' | 'undo') {
+    setActionBusy(actionId)
+    setError(null)
+    try {
+      const res = await fetch(`/api/agent/actions/${actionId}`, {
+        method: 'POST',
+        headers: { 'x-space-id': spaceId, 'content-type': 'application/json' },
+        body: JSON.stringify({ op }),
+      })
+      const body: unknown = await res.json().catch(() => null)
+      if (!res.ok) {
+        setError((body as { error?: { message?: string } } | null)?.error?.message ?? '動作沒有完成。')
+        return
+      }
+      const nextStatus: AgentAction['status'] =
+        op === 'confirm' ? 'confirmed' : op === 'undo' ? 'undone' : 'rejected'
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === messageId && m.actions
+            ? {
+                ...m,
+                actions: m.actions.map((a) => (a.actionId === actionId ? { ...a, status: nextStatus } : a)),
+              }
+            : m,
+        ),
+      )
+    } catch {
+      setError('網路錯誤，請重試。')
+    } finally {
+      setActionBusy(null)
+    }
+  }
+
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     const text = input.trim()
@@ -641,6 +708,60 @@ export function AgentChat({
                       深入分析
                     </span>
                   )}
+                </div>
+              )}
+              {m.role === 'assistant' && m.actions && m.actions.length > 0 && (
+                <div className="sr-agent-actions">
+                  {m.actions.map((a, i) => {
+                    const label = TOOL_LABEL[a.tool] ?? a.tool
+                    const busy = actionBusy === a.actionId
+                    return (
+                      <div key={a.actionId ?? i} className="sr-agent-action">
+                        <span className="sr-agent-action-label">
+                          {label}
+                          {a.status === 'executed' && '：已完成'}
+                          {a.status === 'confirmed' && '：已確認'}
+                          {a.status === 'undone' && '：已復原'}
+                          {a.status === 'rejected' && '：已取消'}
+                          {a.status === 'pending_confirmation' && '：等你確認'}
+                          {a.reason ? `（${a.reason}）` : ''}
+                        </span>
+                        {a.status === 'pending_confirmation' && a.actionId && (
+                          <span className="sr-btn-row">
+                            <button
+                              type="button"
+                              className="sr-button"
+                              style={{ padding: '2px 12px' }}
+                              disabled={busy}
+                              onClick={() => void runActionOp(m.id, a.actionId!, 'confirm')}
+                            >
+                              {busy ? '…' : '確認'}
+                            </button>
+                            <button
+                              type="button"
+                              className="sr-button sr-button-secondary"
+                              style={{ padding: '2px 12px' }}
+                              disabled={busy}
+                              onClick={() => void runActionOp(m.id, a.actionId!, 'reject')}
+                            >
+                              拒絕
+                            </button>
+                          </span>
+                        )}
+                        {(a.status === 'executed' || a.status === 'confirmed') && a.actionId && (
+                          <button
+                            type="button"
+                            className="sr-button sr-button-secondary"
+                            style={{ padding: '2px 12px' }}
+                            disabled={busy}
+                            onClick={() => void runActionOp(m.id, a.actionId!, 'undo')}
+                          >
+                            {busy ? '…' : '復原'}
+                          </button>
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </div>

@@ -2223,6 +2223,29 @@ input[type='range'] {
   border-color: var(--sr-accent);
 }
 
+/* Agent 動作卡片（apply_theme / tag_asset 等需確認的動作） */
+.sr-agent-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sr-space-1);
+  margin-top: var(--sr-space-2);
+}
+.sr-agent-action {
+  display: flex;
+  align-items: center;
+  gap: var(--sr-space-2);
+  flex-wrap: wrap;
+  padding: var(--sr-space-2);
+  background: var(--sr-surface-opaque);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-sm);
+  font-size: var(--sr-text-sm);
+}
+.sr-agent-action-label {
+  flex: 1;
+  min-width: 0;
+}
+
 .sr-widget-note {
   flex: 1;
   min-height: 80px;
