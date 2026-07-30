@@ -1,0 +1,997 @@
+# 驚喜盒補充：common + uncommon（自動組裝、全池去重）。
+  - id: s-common-311
+    label: 一杯溫水
+    text: 記得幫自己倒杯溫水，喉嚨會謝謝你的照顧。
+    tags: [warm, gentle]
+  - id: s-common-312
+    label: 窗邊的位置
+    text: 靠窗坐一會兒吧，光會慢慢爬到你的手背上。
+    tags: [warm, small_joy]
+  - id: s-common-313
+    label: 慢一點也好
+    text: 今天不必趕，慢下來的腳步也能走到想去的地方。
+    tags: [gentle, reflection]
+  - id: s-common-314
+    label: 微小的整齊
+    text: 把桌上一樣東西擺正，心也會跟著鬆一格。
+    tags: [gentle, small_joy]
+  - id: s-common-315
+    label: 深呼吸一次
+    text: 現在吸一口氣，數到四，再慢慢放掉，就這樣。
+    tags: [gentle, reflection]
+  - id: s-common-316
+    label: 你來了
+    text: 這個小空間今天因為你打開它，多亮了一點點。
+    tags: [warm, discovery]
+  - id: s-common-317
+    label: 一朵雲
+    text: 抬頭看看，天上正好有一朵形狀剛剛好的雲。
+    tags: [curious, small_joy]
+  - id: s-common-318
+    label: 手心的溫度
+    text: 把兩隻手搓一搓，暖起來的地方就是現在的你。
+    tags: [warm, gentle]
+  - id: s-common-319
+    label: 一句好聽的話
+    text: 你其實比自己以為的還要耐心，這件事值得被說出來。
+    tags: [warm, reflection]
+  - id: s-common-320
+    label: 桌角的灰塵
+    text: 順手擦掉一點灰，小小的乾淨也是一種善待自己。
+    tags: [gentle, small_joy]
+  - id: s-common-321
+    label: 沒關係的
+    text: 如果今天做得不多，那也是好好活過的一天。
+    tags: [gentle, reflection]
+  - id: s-common-322
+    label: 光的角度
+    text: 同一盞燈，換個角度看，影子會變得柔軟許多。
+    tags: [curious, discovery]
+  - id: s-common-323
+    label: 一段安靜
+    text: 讓耳朵休息一下，安靜裡也藏著細細的聲音。
+    tags: [gentle, reflection]
+  - id: s-common-324
+    label: 腳踏實地
+    text: 感覺一下腳底踩著的地面，它一直穩穩地接住你。
+    tags: [warm, gentle]
+  - id: s-common-325
+    label: 一個小停頓
+    text: 在忙的中間留一個逗號，句子才不會喘不過氣。
+    tags: [gentle, reflection]
+  - id: s-common-326
+    label: 你的節奏
+    text: 每個人走路的速度不一樣，你的剛好適合你。
+    tags: [warm, reflection]
+  - id: s-common-327
+    label: 一片葉子
+    text: 窗外那片葉子今天又長大了一些，只是你沒注意到。
+    tags: [curious, discovery]
+  - id: s-common-328
+    label: 肩膀放下
+    text: 讓肩膀離開耳朵一點，它們今天扛得夠多了。
+    tags: [gentle, warm]
+  - id: s-common-329
+    label: 一顆小石頭
+    text: 口袋裡若有一顆喜歡的小東西，就是隨身的安心。
+    tags: [warm, small_joy]
+  - id: s-common-330
+    label: 剛好的溫度
+    text: 這個時刻的空氣，不冷不熱，剛好適合待著。
+    tags: [gentle, small_joy]
+  - id: s-common-331
+    label: 你做到了
+    text: 光是把今天過完，就已經需要不少勇氣了。
+    tags: [warm, reflection]
+  - id: s-common-332
+    label: 一個微笑
+    text: 對鏡子裡的自己笑一下，那個人整天都陪著你。
+    tags: [warm, gentle]
+  - id: s-common-333
+    label: 慢慢來的花
+    text: 有些花開得慢，不是遲到，是還在準備。
+    tags: [gentle, reflection]
+  - id: s-common-334
+    label: 一杯茶的時間
+    text: 泡杯茶，等它變溫的這段時間，都屬於你自己。
+    tags: [warm, small_joy]
+  - id: s-common-335
+    label: 窗縫的風
+    text: 有一陣風正從窗縫溜進來，替房間換了口新鮮氣。
+    tags: [curious, small_joy]
+  - id: s-common-336
+    label: 你辛苦了
+    text: 這句話不常聽見，但你今天確實辛苦了，真的。
+    tags: [warm, gentle]
+  - id: s-common-337
+    label: 一格陽光
+    text: 地板上有一格移動的陽光，站進去試試看暖不暖。
+    tags: [warm, small_joy]
+  - id: s-common-338
+    label: 收起來的事
+    text: 有些事今天做不完，把它輕輕收好，明天再拿出來。
+    tags: [gentle, reflection]
+  - id: s-common-339
+    label: 一雙好鞋
+    text: 讓腳休息一下吧，脫掉鞋子，地板涼涼的很舒服。
+    tags: [gentle, small_joy]
+  - id: s-common-340
+    label: 剛醒的心情
+    text: 早晨的心還沒完全醒，給它多幾分鐘慢慢睜眼。
+    tags: [gentle, warm]
+  - id: s-common-341
+    label: 一頁書
+    text: 只讀一頁也算讀了，故事不會怪你走得慢。
+    tags: [gentle, small_joy]
+  - id: s-common-342
+    label: 你的名字
+    text: 在心裡輕輕喊一次自己的名字，那是最熟的聲音。
+    tags: [warm, reflection]
+  - id: s-common-343
+    label: 桌上的水杯
+    text: 水位又低了一點，代表你今天有好好喝水，很好。
+    tags: [gentle, small_joy]
+  - id: s-common-344
+    label: 一次伸懶腰
+    text: 把手舉高高，讓身體往上長一節，再慢慢收回來。
+    tags: [playful, gentle]
+  - id: s-common-345
+    label: 沒說出口的
+    text: 有些溫柔還沒說出口，但它一直在你心裡發亮。
+    tags: [warm, reflection]
+  - id: s-common-346
+    label: 一段回家的路
+    text: 回家的路走過千遍，今天試著看看沒看過的那扇窗。
+    tags: [curious, discovery]
+  - id: s-common-347
+    label: 你在這裡
+    text: 此刻你就在這裡，不在昨天也不在明天，這樣就好。
+    tags: [gentle, reflection]
+  - id: s-common-348
+    label: 一點點餓
+    text: 如果有點餓了，那也是身體在好好照顧自己的訊號。
+    tags: [gentle, warm]
+  - id: s-common-349
+    label: 燈下的字
+    text: 燈光把字照得清楚，也把安靜照得更安靜了。
+    tags: [gentle, discovery]
+  - id: s-common-350
+    label: 一次眨眼
+    text: 讓眼睛閉三秒，睜開後世界會清爽一點點。
+    tags: [gentle, small_joy]
+  - id: s-common-351
+    label: 你選的顏色
+    text: 你今天挑的顏色，藏著一點只有你懂的心情。
+    tags: [curious, reflection]
+  - id: s-common-352
+    label: 一張舊照片
+    text: 若翻到一張舊照片，笑一下，那也曾是你的今天。
+    tags: [warm, reflection]
+  - id: s-common-353
+    label: 微涼的早晨
+    text: 早上的空氣微微涼，像有人替你把窗擦乾淨了。
+    tags: [gentle, small_joy]
+  - id: s-common-354
+    label: 一小塊巧克力
+    text: 嘴裡含一小塊甜的，讓它慢慢化開，別急著吞。
+    tags: [playful, small_joy]
+  - id: s-common-355
+    label: 你的呼吸
+    text: 此刻你的呼吸一直在，不用刻意，它自己就會來。
+    tags: [gentle, reflection]
+  - id: s-common-356
+    label: 一扇半開的門
+    text: 有扇門半開著，光從縫裡漏出來，像在等你經過。
+    tags: [curious, discovery]
+  - id: s-common-357
+    label: 手邊的溫柔
+    text: 找一樣手感好的東西摸一摸，觸感也是一種安慰。
+    tags: [warm, small_joy]
+  - id: s-common-358
+    label: 一次原地站好
+    text: 站直，感覺頭頂被一條線輕輕往上提，整個人清醒。
+    tags: [gentle, playful]
+  - id: s-common-359
+    label: 你笑的樣子
+    text: 你笑起來的時候，眼角會有一小道彎彎的光。
+    tags: [warm, discovery]
+  - id: s-common-360
+    label: 一杯剛好的甜
+    text: 今天不必太克制，一點甜也是給自己的小獎勵。
+    tags: [playful, small_joy]
+  - id: s-common-361
+    label: 窗台的塵光
+    text: 逆光時空氣裡有細細的塵在飄，像小小的星星。
+    tags: [curious, discovery]
+  - id: s-common-362
+    label: 你的手寫字
+    text: 隨手寫幾個字吧，你的字跡只有這個世界有一份。
+    tags: [warm, reflection]
+  - id: s-common-363
+    label: 一段散步
+    text: 不為到哪裡，只是走走，腳步也能替腦袋鬆綁。
+    tags: [gentle, small_joy]
+  - id: s-common-364
+    label: 剛好的距離
+    text: 和喜歡的事保持剛好的距離，才不會把它累壞。
+    tags: [reflection, gentle]
+  - id: s-common-365
+    label: 一顆果子
+    text: 洗一顆水果，咬下去那聲脆響，是今天的小獎品。
+    tags: [playful, small_joy]
+  - id: s-common-366
+    label: 你的耐心
+    text: 你願意等一件事慢慢好，這份耐心本身就很珍貴。
+    tags: [warm, reflection]
+  - id: s-common-367
+    label: 一盞夜燈
+    text: 睡前留一盞小燈，暗裡有一點暖就不怕黑了。
+    tags: [gentle, warm]
+  - id: s-common-368
+    label: 桌面的空白
+    text: 讓桌面留一塊空的地方，心也需要一點餘白。
+    tags: [reflection, gentle]
+  - id: s-common-369
+    label: 一次抬頭
+    text: 低頭久了就抬一下頭，看看比螢幕遠一點的地方。
+    tags: [gentle, curious]
+  - id: s-common-370
+    label: 你聞到的味道
+    text: 深吸一口，這一刻的空氣裡有什麼你沒注意的香。
+    tags: [curious, discovery]
+  - id: s-common-371
+    label: 一雙暖襪
+    text: 腳暖了，整個人都會跟著安定下來，試試看。
+    tags: [warm, small_joy]
+  - id: s-common-372
+    label: 今天的雲色
+    text: 傍晚的雲被染成了淡淡的橘，只出現這一次。
+    tags: [curious, discovery]
+  - id: s-common-373
+    label: 你走過的路
+    text: 回頭看看走過的路，你比出發時多知道了一些事。
+    tags: [reflection, warm]
+  - id: s-common-374
+    label: 一次小整理
+    text: 整理一個小抽屜，就像把心裡也擦亮了一角。
+    tags: [gentle, small_joy]
+  - id: s-common-375
+    label: 剛好的安靜
+    text: 這個時刻沒有人打擾你，安靜得剛剛好，留著它。
+    tags: [gentle, reflection]
+  - id: s-common-376
+    label: 你的一天
+    text: 今天無論怎麼過，都是只屬於你的一天，不會重來。
+    tags: [warm, reflection]
+  - id: s-common-377
+    label: 一張便利貼
+    text: 給明天的自己寫張小紙條，會是溫柔的提醒。
+    tags: [gentle, gift]
+  - id: s-common-378
+    label: 窗外的鳥
+    text: 有隻鳥停在對面的線上，歪著頭好像在看你這邊。
+    tags: [curious, playful]
+  - id: s-common-379
+    label: 你的一雙手
+    text: 這雙手今天做了好多事，值得被好好放鬆一下。
+    tags: [warm, gentle]
+  - id: s-common-380
+    label: 一杯熱可可
+    text: 冷的時候捧著一杯熱的，暖是從手心開始的。
+    tags: [warm, small_joy]
+  - id: s-common-381
+    label: 微風的方向
+    text: 感覺一下風往哪邊吹，你就知道天氣正打算做什麼。
+    tags: [curious, discovery]
+  - id: s-common-382
+    label: 你的心跳
+    text: 把手放胸口，那個一直跳著的節拍，是你的背景音樂。
+    tags: [gentle, reflection]
+  - id: s-common-383
+    label: 一頁空白
+    text: 拿張白紙隨便畫一條線，它不會問你畫得好不好。
+    tags: [playful, small_joy]
+  - id: s-common-384
+    label: 剛剛好的忙
+    text: 今天要是有點忙也沒關係，那代表你正被需要著。
+    tags: [reflection, warm]
+  - id: s-common-385
+    label: 你的休息
+    text: 休息不是偷懶，是身體在幫你把明天的力氣存起來。
+    tags: [gentle, reflection]
+  - id: s-common-386
+    label: 一朵開了的花
+    text: 有朵花今天悄悄開了，沒等人看，也開得很認真。
+    tags: [curious, discovery]
+  - id: s-common-387
+    label: 你的一句話
+    text: 你不經意說的一句話，可能剛好接住了某個人。
+    tags: [warm, reflection]
+  - id: s-common-388
+    label: 一次抬腳
+    text: 把腳抬高一點靠著牆，血液會謝謝你這幾分鐘。
+    tags: [gentle, playful]
+  - id: s-common-389
+    label: 桌邊的綠色
+    text: 放一盆小小的綠在視線裡，眼睛看了會鬆一口氣。
+    tags: [gentle, small_joy]
+  - id: s-common-390
+    label: 你的今天夠好
+    text: 不必比昨天更好，今天有它自己剛剛好的樣子。
+    tags: [warm, reflection]
+  - id: s-common-391
+    label: 一段哼歌
+    text: 隨口哼幾句吧，走音也沒關係，那是你的私人演唱。
+    tags: [playful, small_joy]
+  - id: s-common-392
+    label: 剛好的光線
+    text: 現在的光線很適合發呆，別浪費了這麼溫柔的一刻。
+    tags: [gentle, small_joy]
+  - id: s-common-393
+    label: 你的耐性
+    text: 你能重複做一件小事到現在，這份穩定很了不起。
+    tags: [warm, reflection]
+  - id: s-common-394
+    label: 一杯白開水
+    text: 最平凡的一杯水，也是身體最想要的那一口。
+    tags: [gentle, small_joy]
+  - id: s-common-395
+    label: 窗上的雨痕
+    text: 雨停後玻璃上留下彎彎的痕，像誰畫的地圖。
+    tags: [curious, discovery]
+  - id: s-common-396
+    label: 你的想法
+    text: 你腦中剛閃過的那個念頭，其實比你以為的更聰明。
+    tags: [reflection, curious]
+  - id: s-common-397
+    label: 一次慢嚼
+    text: 吃飯時多嚼幾下，讓味道有時間好好跟你打招呼。
+    tags: [gentle, small_joy]
+  - id: s-common-398
+    label: 剛好的溫暖
+    text: 這個空間現在的溫度，剛好適合你待著不想走。
+    tags: [warm, gentle]
+  - id: s-common-399
+    label: 你留下的痕跡
+    text: 你來過的地方都會留一點你，這個角落也記得你。
+    tags: [warm, discovery]
+  - id: s-common-400
+    label: 一把小傘
+    text: 出門前看一眼天，帶把傘，是替未來的自己撐腰。
+    tags: [gentle, gift]
+  - id: s-common-401
+    label: 窗外的樹梢
+    text: 樹梢晃了一下，是風先到了，替你報了天氣。
+    tags: [curious, discovery]
+  - id: s-common-402
+    label: 你的專注
+    text: 剛剛你認真的樣子很好看，那是投入才有的光。
+    tags: [warm, reflection]
+  - id: s-common-403
+    label: 一小段午睡
+    text: 閉眼十分鐘也算休息，醒來世界會清楚一點。
+    tags: [gentle, small_joy]
+  - id: s-common-404
+    label: 剛好的心情
+    text: 今天的心情不用很好，只要能陪自己就已經夠了。
+    tags: [gentle, reflection]
+  - id: s-common-405
+    label: 你的雙眼
+    text: 這雙眼睛替你看了整天的世界，讓它們也歇一會兒。
+    tags: [warm, gentle]
+  - id: s-common-406
+    label: 一顆按鈕
+    text: 有時人生只需要按下一個小按鈕，就往前挪了一步。
+    tags: [playful, reflection]
+  - id: s-common-407
+    label: 桌角的光斑
+    text: 午後桌角有一塊晃動的光，它會慢慢挪到別處去。
+    tags: [curious, discovery]
+  - id: s-common-408
+    label: 你的堅持
+    text: 你還在做的那件小事，正在悄悄長成了不起的樣子。
+    tags: [warm, reflection]
+  - id: s-common-409
+    label: 一次深眠
+    text: 今晚願你睡得沉一點，讓夜好好替你收拾疲憊。
+    tags: [gentle, warm]
+  - id: s-common-410
+    label: 剛好的距離感
+    text: 離螢幕遠一個手臂，眼睛和肩膀都會跟你道謝。
+    tags: [gentle, small_joy]
+  - id: s-common-411
+    label: 你的好奇心
+    text: 你剛剛想多知道一點的那件事，代表你還在生長。
+    tags: [curious, reflection]
+  - id: s-common-412
+    label: 一片橘子
+    text: 剝一片橘子，指尖的香氣會先替你嚐到甜。
+    tags: [playful, small_joy]
+  - id: s-common-413
+    label: 窗邊的貓
+    text: 若有隻貓在窗邊瞇眼曬太陽，牠正示範什麼叫自在。
+    tags: [curious, playful]
+  - id: s-common-414
+    label: 你的溫柔
+    text: 你對別人的體貼，也記得分一點回來給自己。
+    tags: [warm, gentle]
+  - id: s-common-415
+    label: 一杯剛好的溫度
+    text: 不燙不涼的那口，是最容易被忽略的剛剛好。
+    tags: [gentle, small_joy]
+  - id: s-common-416
+    label: 早晨的第一口氣
+    text: 今天第一次深呼吸的時候，肺會覺得世界很新。
+    tags: [gentle, discovery]
+  - id: s-common-417
+    label: 你寫下的字
+    text: 你今天記下的一句話，某天翻到會覺得溫暖。
+    tags: [warm, reflection]
+  - id: s-common-418
+    label: 一次伸展
+    text: 轉一轉手腕和脖子，讓卡住的地方鬆一鬆。
+    tags: [gentle, playful]
+  - id: s-common-419
+    label: 桌面的秩序
+    text: 把筆都朝同一個方向放好，小小的整齊很療癒。
+    tags: [gentle, small_joy]
+  - id: s-common-420
+    label: 你走的每一步
+    text: 每一步不用很大，走著走著就把遠方走近了。
+    tags: [reflection, warm]
+  - id: s-common-421
+    label: 一縷香
+    text: 若聞到一縷不知從哪來的香，那是這一刻的禮物。
+    tags: [curious, discovery]
+  - id: s-common-422
+    label: 你的一次選擇
+    text: 你今天做的每個小決定，都在悄悄替未來鋪路。
+    tags: [reflection, warm]
+  - id: s-common-423
+    label: 一張暖被
+    text: 冷的時候把被子拉高一點，暖是可以自己給自己的。
+    tags: [warm, gentle]
+  - id: s-common-424
+    label: 剛好的沉默
+    text: 不必每個空檔都填滿，沉默有時也是一種陪伴。
+    tags: [gentle, reflection]
+  - id: s-common-425
+    label: 你的一雙腳
+    text: 這雙腳今天帶你去了不少地方，替它們揉一揉吧。
+    tags: [warm, gentle]
+  - id: s-common-426
+    label: 一片天空
+    text: 抬頭那一秒，天空正好是只有現在才有的顏色。
+    tags: [curious, discovery]
+  - id: s-common-427
+    label: 你的一點進展
+    text: 就算只前進了一小格，那也不是原地，是往前了。
+    tags: [warm, reflection]
+  - id: s-common-428
+    label: 一杯半滿的水
+    text: 半滿也很好，代表你已經喝了一半，剩下慢慢來。
+    tags: [gentle, small_joy]
+  - id: s-common-429
+    label: 窗外的燈
+    text: 對面亮起一盞燈，那裡也有人正在好好過生活。
+    tags: [warm, discovery]
+  - id: s-common-430
+    label: 你的一次休止
+    text: 停下來不代表停止，只是換口氣再繼續，這樣剛好。
+    tags: [gentle, reflection]
+  - id: s-common-431
+    label: 一顆軟糖
+    text: 含一顆軟糖，讓甜慢慢化開，替嘴巴放個小假。
+    tags: [playful, small_joy]
+  - id: s-common-432
+    label: 剛好的一陣睏
+    text: 想睡了就是身體在說謝謝，別跟它硬撐。
+    tags: [gentle, warm]
+  - id: s-common-433
+    label: 你的一份專心
+    text: 你能為一件事安靜下來，這樣的定力很難得。
+    tags: [warm, reflection]
+  - id: s-common-434
+    label: 一扇打開的窗
+    text: 開窗換口氣，房間裡的舊空氣會找到出口離開。
+    tags: [gentle, small_joy]
+  - id: s-common-435
+    label: 桌上的一枝筆
+    text: 這枝筆陪你寫過很多東西，也算是老朋友了。
+    tags: [warm, discovery]
+  - id: s-common-436
+    label: 你的一次抬眼
+    text: 抬眼那一瞬看見的東西，是今天送給你的畫面。
+    tags: [curious, discovery]
+  - id: s-common-437
+    label: 一小口熱湯
+    text: 喝一口熱湯，暖從喉嚨一路滑到胃，很療癒。
+    tags: [warm, small_joy]
+  - id: s-common-438
+    label: 剛好的一點空
+    text: 行程裡留一點空白，那是給意外驚喜的位置。
+    tags: [reflection, surprise]
+  - id: s-common-439
+    label: 你的一句安慰
+    text: 對自己說一句沒關係，這句話你也值得聽見。
+    tags: [warm, gentle]
+  - id: s-common-440
+    label: 一縷晨光
+    text: 早上第一道光爬上牆的樣子，只演給早起的人看。
+    tags: [curious, discovery]
+  - id: s-common-441
+    label: 你的一次放手
+    text: 有些東西握太久會累，鬆開手，你會輕一點。
+    tags: [gentle, reflection]
+  - id: s-common-442
+    label: 一杯溫牛奶
+    text: 睡前一杯溫的，讓身體知道今天可以安心結束了。
+    tags: [warm, gentle]
+  - id: s-common-443
+    label: 剛好的一點餘裕
+    text: 今天若有多出來的幾分鐘，那就痛快地發個呆。
+    tags: [playful, small_joy]
+  - id: s-common-444
+    label: 你的一份好意
+    text: 你今天對誰好了一點，那份善意也會繞回你身上。
+    tags: [warm, reflection]
+  - id: s-common-445
+    label: 一片落葉
+    text: 一片葉子飄下來的路線，這一生只走這一次。
+    tags: [curious, discovery]
+  - id: s-common-446
+    label: 你的一次微調
+    text: 把椅子挪半吋，坐得舒服一點，身體會記得你的貼心。
+    tags: [gentle, small_joy]
+  - id: s-common-447
+    label: 一盞暖黃燈
+    text: 換成暖黃色的光，整個房間就像被輕輕擁抱了。
+    tags: [warm, gentle]
+  - id: s-common-448
+    label: 剛好的一段路
+    text: 從這裡到那裡的短短距離，也能走出一點心情。
+    tags: [reflection, small_joy]
+  - id: s-common-449
+    label: 你的一次呼吸
+    text: 現在這口氣吸得比剛才深，你已經替自己鬆了一點。
+    tags: [gentle, reflection]
+  - id: s-common-450
+    label: 一顆星
+    text: 若今晚看見一顆亮的星，它其實很久以前就出發了。
+    tags: [curious, discovery]
+  - id: s-common-451
+    label: 你的一份誠實
+    text: 你願意對自己說真話，這比什麼都難得，也更勇敢。
+    tags: [warm, reflection]
+  - id: s-common-452
+    label: 一塊乾淨的桌面
+    text: 清空一角桌面，就像替腦袋也騰出一塊空地。
+    tags: [gentle, small_joy]
+  - id: s-common-453
+    label: 剛好的一次停頓
+    text: 在句子中間停一下，換口氣，話才說得穩。
+    tags: [gentle, reflection]
+  - id: s-common-454
+    label: 你的一雙耳朵
+    text: 這雙耳朵今天聽了很多，也聽聽自己心裡的聲音吧。
+    tags: [warm, gentle]
+  - id: s-common-455
+    label: 一杯剛沖的咖啡
+    text: 咖啡剛沖好的那陣香，是早晨最先醒來的訊號。
+    tags: [curious, small_joy]
+  - id: s-common-456
+    label: 你的一次微笑
+    text: 就算沒人看見，你剛剛的微笑也讓空氣柔了一點。
+    tags: [warm, gentle]
+  - id: s-common-457
+    label: 一格天光
+    text: 雲縫裡漏下一格光，剛好落在某個等它的地方。
+    tags: [curious, discovery]
+  - id: s-common-458
+    label: 你的一份用心
+    text: 你把一件小事做得仔細，那份心意其實很閃亮。
+    tags: [warm, reflection]
+  - id: s-common-459
+    label: 剛好的一夜
+    text: 願今晚的夜色剛好，接住你一整天的疲累與心事。
+    tags: [gentle, warm]
+  - id: s-uncommon-273
+    label: 一枚舊鑰匙
+    text: 這裡有把不知道開哪扇門的舊鑰匙，也許答案還在路上。
+    tags: [curious, surprise]
+  - id: s-uncommon-274
+    label: 藏在角落的燈
+    text: 你發現了一盞平常沒亮的燈，它好像只為你這一刻點著。
+    tags: [discovery, surprise]
+  - id: s-uncommon-275
+    label: 一張手繪地圖
+    text: 有人在紙上畫了條通往哪裡的路線，終點寫著「你會知道」。
+    tags: [curious, playful]
+  - id: s-uncommon-276
+    label: 會轉的小陀螺
+    text: 桌上出現一顆小陀螺，轉起來的時候時間好像慢了一拍。
+    tags: [playful, surprise]
+  - id: s-uncommon-277
+    label: 一片會發光的貝殼
+    text: 有片貝殼在暗處微微發亮，像把某個夏天的海留了下來。
+    tags: [discovery, curious]
+  - id: s-uncommon-278
+    label: 摺好的紙船
+    text: 一艘小紙船停在這裡，等一場還沒下的雨帶它去遠方。
+    tags: [playful, curious]
+  - id: s-uncommon-279
+    label: 一顆會回聲的石頭
+    text: 對著這顆石頭說句話，它會把你剛才的心情輕輕彈回來。
+    tags: [surprise, reflection]
+  - id: s-uncommon-280
+    label: 藏詩的信封
+    text: 信封裡有半句詩，另外半句要你今天自己去把它補完。
+    tags: [curious, gift]
+  - id: s-uncommon-281
+    label: 一扇迷你窗
+    text: 這裡開了一扇小到只夠看一朵雲的窗，剛好夠用。
+    tags: [discovery, playful]
+  - id: s-uncommon-282
+    label: 會走的小時鐘
+    text: 一只小時鐘的指針走得特別慢，像在替你多爭取一點時間。
+    tags: [surprise, gentle]
+  - id: s-uncommon-283
+    label: 一撮星塵
+    text: 掌心裡多了一撮閃閃的東西，據說是夜裡掉下來的星屑。
+    tags: [surprise, discovery]
+  - id: s-uncommon-284
+    label: 藏話的瓶子
+    text: 瓶子裡卷著一張紙，上面寫著一句你剛好需要的話。
+    tags: [gift, surprise]
+  - id: s-uncommon-285
+    label: 一朵不會謝的花
+    text: 這朵花是用某個好心情做的，據說永遠不會凋。
+    tags: [gift, warm]
+  - id: s-uncommon-286
+    label: 會唱歌的水杯
+    text: 用指尖繞著杯口轉，它會發出一聲細細的、只給你的歌。
+    tags: [playful, surprise]
+  - id: s-uncommon-287
+    label: 一枚幸運銅板
+    text: 撿到一枚正面朝上的銅板，把它留著，當作今天的暗號。
+    tags: [surprise, playful]
+  - id: s-uncommon-288
+    label: 藏在書裡的花瓣
+    text: 翻書時掉出一片壓乾的花瓣，是很久以前某人夾進去的。
+    tags: [discovery, reflection]
+  - id: s-uncommon-289
+    label: 一支會變色的筆
+    text: 這支筆寫出來的字會隨心情變色，今天你會寫成什麼顏色。
+    tags: [playful, question]
+  - id: s-uncommon-290
+    label: 迷路的一縷風
+    text: 有一縷風繞進來又找不到出口，就先陪你坐一會兒吧。
+    tags: [curious, gentle]
+  - id: s-uncommon-291
+    label: 一顆種在心裡的種子
+    text: 有顆看不見的種子被種下了，澆它水的方式是對自己溫柔。
+    tags: [reflection, warm]
+  - id: s-uncommon-292
+    label: 會發亮的墨水
+    text: 這瓶墨水在暗處會微微發光，寫下的秘密晚上還看得見。
+    tags: [surprise, curious]
+  - id: s-uncommon-293
+    label: 一張過期的車票
+    text: 撿到一張早該作廢的車票，票根上寫著「其實你已經到了」。
+    tags: [reflection, surprise]
+  - id: s-uncommon-294
+    label: 藏音的貝殼
+    text: 把這片貝殼貼近耳朵，聽見的不是海，是很遠的一聲問好。
+    tags: [surprise, discovery]
+  - id: s-uncommon-295
+    label: 一盒收集的聲音
+    text: 這個小盒子裝著雨聲、翻書聲和一次輕笑，打開就會放。
+    tags: [playful, gift]
+  - id: s-uncommon-296
+    label: 會結霜的窗花
+    text: 窗上長出一朵只有這種冷才畫得出來的冰花，明天就沒了。
+    tags: [discovery, curious]
+  - id: s-uncommon-297
+    label: 一枚倒著走的沙漏
+    text: 這個沙漏翻過來也往同個方向流，好像想留住這段時光。
+    tags: [surprise, playful]
+  - id: s-uncommon-298
+    label: 藏在雲裡的小梯子
+    text: 傍晚的雲下垂出一截像梯子的形狀，通往一個溫柔的問句。
+    tags: [curious, question]
+  - id: s-uncommon-299
+    label: 一顆能許願的鈕扣
+    text: 這顆掉下來的鈕扣據說能收一個願望，你想寄放什麼。
+    tags: [question, gift]
+  - id: s-uncommon-300
+    label: 會回話的鏡子
+    text: 對鏡子說今天有點累，它不會回話，但你會聽見自己被聽見。
+    tags: [reflection, gentle]
+  - id: s-uncommon-301
+    label: 一張半透明的葉脈
+    text: 陽光把葉子照成半透明，脈絡像一張只印一次的地圖。
+    tags: [discovery, curious]
+  - id: s-uncommon-302
+    label: 藏在口袋的暖石
+    text: 口袋裡多了一顆一直溫溫的石頭，像有人替你先把冷擋住。
+    tags: [warm, surprise]
+  - id: s-uncommon-303
+    label: 一支迷你望遠鏡
+    text: 拿這支小望遠鏡看近處，會發現平常沒注意的細節在發光。
+    tags: [curious, playful]
+  - id: s-uncommon-304
+    label: 會轉彎的光
+    text: 有一束光今天特別調皮，繞過牆角來找你打了個招呼。
+    tags: [playful, surprise]
+  - id: s-uncommon-305
+    label: 一封來自明天的信
+    text: 信上只有一句：今天的你做得比想像中好，明天的我作證。
+    tags: [warm, gift]
+  - id: s-uncommon-306
+    label: 藏起來的第二顆糖
+    text: 口袋深處還有一顆你忘了的糖，是過去的自己留給現在的。
+    tags: [surprise, small_joy]
+  - id: s-uncommon-307
+    label: 一片會走的雲影
+    text: 地上有片雲影慢慢挪過來，蓋住你的腳一秒又放你走了。
+    tags: [playful, discovery]
+  - id: s-uncommon-308
+    label: 會發芽的鉛筆頭
+    text: 這截短鉛筆的尾巴據說種下去會長出一句話，你想種什麼。
+    tags: [question, playful]
+  - id: s-uncommon-309
+    label: 一顆裝夜色的珠子
+    text: 這顆深藍的珠子裡，好像鎖著某個安靜到發亮的夜晚。
+    tags: [discovery, reflection]
+  - id: s-uncommon-310
+    label: 藏在牆縫的小花
+    text: 水泥縫裡竟然開了一朵小花，它沒問能不能，就開了。
+    tags: [discovery, warm]
+  - id: s-uncommon-311
+    label: 一張會發熱的明信片
+    text: 這張明信片握久了會微微暖，像是從一個晴天寄來的。
+    tags: [warm, surprise]
+  - id: s-uncommon-312
+    label: 會眨眼的路燈
+    text: 有盞路燈今晚多閃了一下，像對經過的你使了個眼色。
+    tags: [playful, surprise]
+  - id: s-uncommon-313
+    label: 一枚會轉向的指南針
+    text: 這個指南針不指北，它指向你最近一次真心笑的地方。
+    tags: [curious, reflection]
+  - id: s-uncommon-314
+    label: 藏在抽屜的紙鶴
+    text: 打開抽屜有隻褪色的紙鶴，翅膀上寫著誰替你許過的願。
+    tags: [discovery, gift]
+  - id: s-uncommon-315
+    label: 一顆吸光的黑石
+    text: 這顆石頭白天吸飽了光，到了晚上會慢慢還你一點亮。
+    tags: [curious, gift]
+  - id: s-uncommon-316
+    label: 會顯字的窗玻璃
+    text: 對著冷玻璃呵一口氣，會浮出一句只給你看的悄悄話。
+    tags: [surprise, playful]
+  - id: s-uncommon-317
+    label: 一串收集的晴天
+    text: 這條線上串著好幾個晴天的碎片，陰天時可以拿一顆出來。
+    tags: [gift, warm]
+  - id: s-uncommon-318
+    label: 藏在傘裡的彩虹
+    text: 收傘時抖出一小道彩虹，是剛才那場雨偷偷塞給你的。
+    tags: [surprise, small_joy]
+  - id: s-uncommon-319
+    label: 一枚會計時的花瓣
+    text: 這片花瓣落地前的幾秒，剛好夠你想清楚一件小事。
+    tags: [reflection, curious]
+  - id: s-uncommon-320
+    label: 會發光的腳印
+    text: 你回頭一看，剛走過的地方留下幾個淡淡發亮的腳印。
+    tags: [discovery, surprise]
+  - id: s-uncommon-321
+    label: 一顆迷你的太陽
+    text: 掌心裡有顆暖暖的小太陽，冷的時候可以借一點它的光。
+    tags: [warm, gift]
+  - id: s-uncommon-322
+    label: 藏話的松果
+    text: 撿到一顆松果，鱗片間夾著一句話：慢慢張開也沒關係。
+    tags: [discovery, gentle]
+  - id: s-uncommon-323
+    label: 一支調頻的口哨
+    text: 吹這支口哨會招來一陣剛好的風，替悶住的午後換氣。
+    tags: [playful, surprise]
+  - id: s-uncommon-324
+    label: 會結果的問句
+    text: 這裡有個問題像顆種子：你今天替自己做了哪件小好事。
+    tags: [question, reflection]
+  - id: s-uncommon-325
+    label: 一片撿到的月光
+    text: 地上有一小塊涼涼的月光，據說踩上去會做個好夢。
+    tags: [surprise, gentle]
+  - id: s-uncommon-326
+    label: 藏在襪子裡的驚喜
+    text: 早上穿襪子摸到一張小紙條，是昨晚的自己藏的鼓勵。
+    tags: [surprise, warm]
+  - id: s-uncommon-327
+    label: 一枚會浮的石頭
+    text: 這顆石頭放在水上竟然不沉，像在說有些重也能被托住。
+    tags: [surprise, reflection]
+  - id: s-uncommon-328
+    label: 會收心事的樹洞
+    text: 這裡有個小樹洞，你可以把一句不想帶著走的話留給它。
+    tags: [gentle, gift]
+  - id: s-uncommon-329
+    label: 一盞會跟路的燈籠
+    text: 這盞小燈籠會慢慢飄在你前面半步，替暗一點的路照亮。
+    tags: [warm, surprise]
+  - id: s-uncommon-330
+    label: 藏在雨裡的音符
+    text: 這場雨打在不同東西上，湊成了一段只演一次的曲子。
+    tags: [discovery, curious]
+  - id: s-uncommon-331
+    label: 一顆會發芽的問題
+    text: 有個問題埋在心裡了：如果不趕時間，你最想去哪裡。
+    tags: [question, curious]
+  - id: s-uncommon-332
+    label: 會摺出小鳥的紙
+    text: 這張紙好像天生想變成一隻鳥，你的手一摺它就飛了。
+    tags: [playful, surprise]
+  - id: s-uncommon-333
+    label: 一片會回暖的雪
+    text: 這片雪落在手上不化反而變暖，像冬天偷藏的一點善意。
+    tags: [warm, surprise]
+  - id: s-uncommon-334
+    label: 藏在琴縫的一顆音
+    text: 有顆走失的音符躲在角落，等一雙手把它輕輕彈回歌裡。
+    tags: [curious, playful]
+  - id: s-uncommon-335
+    label: 一支寫願望的蠟燭
+    text: 這根小蠟燭不是拿來吹的，是拿來看它安安靜靜替你亮著。
+    tags: [gentle, reflection]
+  - id: s-uncommon-336
+    label: 會發亮的腳踏墊
+    text: 半夜起身時，腳踏墊會微微亮一下，像替你墊了一步溫柔。
+    tags: [warm, surprise]
+  - id: s-uncommon-337
+    label: 一顆倒映天空的水珠
+    text: 葉尖那顆水珠裡裝著一整片天，晃一下整個天空都在搖。
+    tags: [discovery, curious]
+  - id: s-uncommon-338
+    label: 藏在口袋的四葉草
+    text: 手一伸摸到一株四葉草，它不保證什麼，只想陪你一天。
+    tags: [surprise, gift]
+  - id: s-uncommon-339
+    label: 一張會長大的畫
+    text: 這幅畫每次看都多一個小細節，像它也在陪你慢慢長。
+    tags: [curious, playful]
+  - id: s-uncommon-340
+    label: 會存溫度的毛線球
+    text: 這顆毛線球記得你上次握它的暖，今天再握還是熱的。
+    tags: [warm, surprise]
+  - id: s-uncommon-341
+    label: 一枚聽得懂的貝殼
+    text: 你對貝殼說了一件煩心事，它沒回答，卻讓你輕了一點。
+    tags: [reflection, gentle]
+  - id: s-uncommon-342
+    label: 藏在葉背的露珠
+    text: 翻開一片葉子，背面藏著一顆昨夜留下的、剔透的露。
+    tags: [discovery, curious]
+  - id: s-uncommon-343
+    label: 一張會亮的地圖
+    text: 這張地圖上唯一發光的點，是你此刻正好站著的地方。
+    tags: [reflection, surprise]
+  - id: s-uncommon-344
+    label: 會招來雲的口哨
+    text: 對天空吹一聲，一朵路過的雲就慢下來看了你一眼。
+    tags: [playful, curious]
+  - id: s-uncommon-345
+    label: 一顆裝笑聲的鈴鐺
+    text: 這個小鈴鐺搖起來的聲音，很像某個你想念的人的笑。
+    tags: [warm, reflection]
+  - id: s-uncommon-346
+    label: 藏在冬天的暖爐
+    text: 這裡有個看不見的小暖爐，冷的時候它會先替你熱起來。
+    tags: [warm, gift]
+  - id: s-uncommon-347
+    label: 一支會指心情的溫度計
+    text: 這支溫度計量的不是氣溫，是你今天願不願意對自己好。
+    tags: [reflection, question]
+  - id: s-uncommon-348
+    label: 會發芽的舊鞋帶
+    text: 這條舊鞋帶好像想長出點什麼，也許是明天想走的路。
+    tags: [curious, playful]
+  - id: s-uncommon-349
+    label: 一片會唱歌的樹葉
+    text: 把葉子貼在唇邊輕吹，它會發出一聲細細的、綠色的音。
+    tags: [playful, surprise]
+  - id: s-uncommon-350
+    label: 藏在星圖的名字
+    text: 有人在星星之間偷偷連出一個形狀，像你今天需要的字。
+    tags: [discovery, gift]
+  - id: s-uncommon-351
+    label: 一顆會呼吸的石頭
+    text: 這顆石頭握久了會隨你的呼吸微微起伏，像有個小心跳。
+    tags: [gentle, surprise]
+  - id: s-uncommon-352
+    label: 會顯影的紙
+    text: 這張空白的紙泡進水裡，才浮出一句藏了很久的祝福。
+    tags: [surprise, gift]
+  - id: s-uncommon-353
+    label: 一枚裝早晨的鈴
+    text: 搖一下這個鈴，會流出一點早晨剛醒的清新空氣。
+    tags: [playful, discovery]
+  - id: s-uncommon-354
+    label: 藏在雨後的味道
+    text: 雨停後空氣裡有種泥土的香，那是大地剛洗完澡的味道。
+    tags: [discovery, curious]
+  - id: s-uncommon-355
+    label: 一張會回溫的椅子
+    text: 你離開又回來，這張椅子還留著你剛才坐過的那點暖。
+    tags: [warm, gentle]
+  - id: s-uncommon-356
+    label: 會發亮的問號
+    text: 這裡浮著一個發亮的問號：最近有什麼小事讓你偷偷開心。
+    tags: [question, curious]
+  - id: s-uncommon-357
+    label: 一顆收黃昏的琥珀
+    text: 這塊琥珀裡封著一段黃昏，光轉一轉就會流動起來。
+    tags: [discovery, reflection]
+  - id: s-uncommon-358
+    label: 藏在手心的種子
+    text: 攤開手多了一顆種子，它不催你，只等你哪天想種它。
+    tags: [gentle, gift]
+  - id: s-uncommon-359
+    label: 一支能延長的午後
+    text: 這支小沙漏一翻，午後好像就多賴著你半個小時不走。
+    tags: [playful, surprise]
+  - id: s-uncommon-360
+    label: 會回信的信箱
+    text: 這個小信箱你放進去一句心事，隔天會多一句溫柔回你。
+    tags: [gift, warm]
+  - id: s-uncommon-361
+    label: 一片透光的糖紙
+    text: 透過這張糖紙看世界，連陰天都被染上了一點甜的顏色。
+    tags: [playful, curious]
+  - id: s-uncommon-362
+    label: 藏在夜裡的一盞
+    text: 這裡有一盞不刺眼的小燈，替所有睡不著的夜留一點伴。
+    tags: [warm, gentle]
+  - id: s-uncommon-363
+    label: 一顆會走的珠子
+    text: 這顆珠子放在桌上會慢慢滾向你，像在找一個可靠的手心。
+    tags: [playful, surprise]
+  - id: s-uncommon-364
+    label: 會結霜又開花的枝
+    text: 這根枝條先結了霜，過一會兒霜化了，竟像開出一朵花。
+    tags: [discovery, curious]
+  - id: s-uncommon-365
+    label: 一張畫著你的紙
+    text: 有張隨手的塗鴉，怎麼看都有點像認真生活的你。
+    tags: [warm, discovery]
+  - id: s-uncommon-366
+    label: 藏在袖口的暖
+    text: 冷天把手縮進袖子，袖口裡好像先替你藏了一點溫度。
+    tags: [warm, small_joy]
+  - id: s-uncommon-367
+    label: 一枚會亮的問候
+    text: 這裡有句在暗處會發光的問候：今天有記得好好吃飯嗎。
+    tags: [question, warm]
+  - id: s-uncommon-368
+    label: 會收雨的小碗
+    text: 這只小碗接了一點雨，晴天時拿它照照天，很清很亮。
+    tags: [discovery, playful]
+  - id: s-uncommon-369
+    label: 一段捲起來的彩虹
+    text: 雨後有人把一小段彩虹捲好收著，說留給下次的陰天用。
+    tags: [gift, surprise]
+  - id: s-uncommon-370
+    label: 藏在鞋盒的舊夢
+    text: 打開一個舊鞋盒，裡面裝著你以為忘了、其實還在的夢。
+    tags: [discovery, reflection]
+  - id: s-uncommon-371
+    label: 一顆會發光的問句
+    text: 黑暗裡浮出一句：如果今天能寵自己一次，你想怎麼寵。
+    tags: [question, playful]
+  - id: s-uncommon-372
+    label: 會替你收尾的夜
+    text: 這片夜色會慢慢替你把一天的線頭收好，安心交給明天。
+    tags: [gentle, warm]

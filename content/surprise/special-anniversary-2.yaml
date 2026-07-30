@@ -1,0 +1,181 @@
+# 驚喜盒補充：special + anniversary（自動組裝、全池去重）。
+  - id: s-special-63
+    label: 特別的一則
+    text: 這一則不常出現。想告訴你：你把這個空間照顧得很好，也請這樣照顧自己。
+    tags: [gift, warm]
+  - id: s-special-64
+    label: 給你的小禮物
+    text: 今天想偷偷塞給你一份禮物：一整段不必做任何事、只屬於你的安靜時間。
+    tags: [gift, gentle]
+  - id: s-special-65
+    label: 藏了很久的話
+    text: 有些話我一直放在心裡，今天終於遇到你了——謝謝你，願意讓這裡成為你的角落。
+    tags: [warm, reflection]
+  - id: s-special-66
+    label: 難得的相遇
+    text: 你剛好在這個時刻打開了這裡，這樣的巧合並不多。想把這份難得，好好留給你。
+    tags: [surprise, warm]
+  - id: s-special-67
+    label: 一顆小星星
+    text: 送你一顆小星星，收進口袋裡。它不會發亮，但會在你需要的時候，提醒你也曾照亮別人。
+    tags: [gift, gentle]
+  - id: s-special-68
+    label: 只給你看的
+    text: 這一頁我只留給你。不必分享，不必解釋，就讓它安安靜靜地陪你一會兒。
+    tags: [warm, small_joy]
+  - id: s-special-69
+    label: 特別想說謝謝
+    text: 謝謝你把心事放進來，也謝謝你願意再回來。你的存在，讓這個空間有了溫度。
+    tags: [warm, reflection]
+  - id: s-special-70
+    label: 一個溫柔的擁抱
+    text: 隔著螢幕，還是想給你一個很輕很輕的擁抱。你今天已經很努力了，這樣就夠了。
+    tags: [warm, gentle]
+  - id: s-special-71
+    label: 珍貴的一刻
+    text: 有些時刻值得被鄭重對待。此刻你在這裡，就是其中一個。我把它記下來了。
+    tags: [reflection, warm]
+  - id: s-special-72
+    label: 悄悄準備的
+    text: 這份小驚喜是悄悄替你準備的。沒有理由，只是覺得你值得在平凡的一天被溫柔對待。
+    tags: [surprise, gift]
+  - id: s-special-73
+    label: 為你留的位子
+    text: 這裡永遠有一個位子是你的。不管你多久才回來，它都不會被收走。
+    tags: [warm, gentle]
+  - id: s-special-74
+    label: 一句真心話
+    text: 說句真心話：你比自己以為的還要溫柔、還要堅強。今天想讓你確實地知道這件事。
+    tags: [warm, reflection]
+  - id: s-special-75
+    label: 稀有的祝福
+    text: 這則祝福藏得很深，很少被翻出來。既然被你遇到了，就當作是專屬於你的好運吧。
+    tags: [surprise, warm]
+  - id: s-special-76
+    label: 給你的一朵花
+    text: 送你一朵開在心裡的花。它不會枯，會在你想起自己也很好的時候，靜靜地盛開。
+    tags: [gift, gentle]
+  - id: s-special-77
+    label: 悄悄替你收著
+    text: 你留下的每個小小心情，我都悄悄替你收著。今天想讓你知道，它們沒有被弄丟。
+    tags: [warm, reflection]
+  - id: s-special-78
+    label: 一份心意
+    text: 沒有包裝、沒有緞帶，只有一份很純粹的心意：希望你被好好對待，先從你自己開始。
+    tags: [gift, warm]
+  - id: s-special-79
+    label: 這一刻屬於你
+    text: 把手邊的事放下三秒鐘。這一刻，什麼都不必想，就單純地屬於你自己。
+    tags: [gentle, small_joy]
+  - id: s-special-80
+    label: 偷偷的驚喜
+    text: 噓，這是個小小的驚喜。它不吵不鬧，只想在你經過的時候，讓你的嘴角微微上揚。
+    tags: [surprise, playful]
+  - id: s-special-81
+    label: 想給你更多
+    text: 如果可以，真想給你更多——更多的安心、更多的柔軟。今天先給你這一則，慢慢來。
+    tags: [warm, gift]
+  - id: s-special-82
+    label: 留一盞燈
+    text: 我替你留了一盞燈。不亮得刺眼，只是暖暖的，讓你知道回到這裡時，總有光在。
+    tags: [warm, gentle]
+  - id: s-special-83
+    label: 難得說出口
+    text: 這句話難得說出口：能陪在你的日常裡，是一件很幸運的事。謝謝你選了這個地方。
+    tags: [warm, reflection]
+  - id: s-special-84
+    label: 一顆糖
+    text: 遞給你一顆想像中的糖，含在嘴裡慢慢化。累的時候，甜一點，也是善待自己的方式。
+    tags: [gift, small_joy]
+  - id: s-special-85
+    label: 很想被你看見
+    text: 這一則躲了好久，很想剛好在你需要的時候被你看見。如果是現在，那真是太好了。
+    tags: [surprise, warm]
+  - id: s-special-86
+    label: 替你許的願
+    text: 今天替你偷偷許了一個願：願你被溫柔包圍，也願你捨得對自己溫柔一點。
+    tags: [gift, gentle]
+  - id: s-special-87
+    label: 最柔軟的一則
+    text: 這是我藏得最柔軟的一則。給此刻的你：你已經做得很好了，剩下的，慢慢來就好。
+    tags: [warm, gentle]
+  - id: s-anniversary-63
+    label: 陪你走了這麼久
+    text: 不知不覺，我們已經一起走了好長一段路。回頭看看，你留下的每一步都算數。
+    tags: [warm, reflection]
+  - id: s-anniversary-64
+    label: 又一個小紀念
+    text: 今天想替我們慶祝一個小小的紀念日：你願意一次次回到這裡，就值得被好好記得。
+    tags: [warm, small_joy]
+  - id: s-anniversary-65
+    label: 時間悄悄走過
+    text: 時間安安靜靜地走過，我們卻積攢了不少共度的片刻。這些片刻，都被溫柔地收著。
+    tags: [reflection, gentle]
+  - id: s-anniversary-66
+    label: 一路上的你
+    text: 一路上的你，有時明亮有時疲憊，我都記得。謝謝你讓我陪著這一段起起伏伏。
+    tags: [warm, reflection]
+  - id: s-anniversary-67
+    label: 我們的日子
+    text: 這些日子不長不短，卻真真實實是我們一起過的。想輕輕地說一聲：真好。
+    tags: [warm, gentle]
+  - id: s-anniversary-68
+    label: 值得慶祝的
+    text: 有些成長不張揚，卻很值得慶祝。你走到今天，本身就是一件了不起的事。
+    tags: [warm, reflection]
+  - id: s-anniversary-69
+    label: 走過的每一天
+    text: 走過的每一天像串起來的小燈，一盞一盞。今天想陪你回頭，看看它們有多暖。
+    tags: [reflection, warm]
+  - id: s-anniversary-70
+    label: 又長大了一點
+    text: 從你第一次來到現在，這個空間跟著你長大了一點點。謝謝你一路把它帶到這裡。
+    tags: [warm, small_joy]
+  - id: s-anniversary-71
+    label: 慢慢累積的
+    text: 我們之間沒有轟轟烈烈，只有慢慢累積的日常。而這樣的累積，最經得起時間。
+    tags: [reflection, gentle]
+  - id: s-anniversary-72
+    label: 一起看過的風景
+    text: 想起我們一起看過的那些心情風景，晴的雨的都有。謝謝你願意讓我一路同行。
+    tags: [warm, reflection]
+  - id: s-anniversary-73
+    label: 給我們的乾杯
+    text: 舉起想像中的杯子，為我們一起走過的時光乾杯。不必盛大，這份心意剛剛好。
+    tags: [warm, playful]
+  - id: s-anniversary-74
+    label: 這段路的紀念
+    text: 送你一枚看不見的紀念章，記錄這段一起走過的路。它會靜靜地留在你心裡。
+    tags: [gift, warm]
+  - id: s-anniversary-75
+    label: 時光的禮物
+    text: 時光偷偷給了我們一份禮物：越來越自在的相處。今天想和你一起拆開它。
+    tags: [gift, gentle]
+  - id: s-anniversary-76
+    label: 回頭看看
+    text: 回頭看看你走過的痕跡，會發現你比想像中更勇敢。這一路，你都在慢慢往前。
+    tags: [reflection, warm]
+  - id: s-anniversary-77
+    label: 又一圈了
+    text: 日子繞著繞著，又走了一圈。能在同一個地方再次遇見你，是我最喜歡的重逢。
+    tags: [warm, small_joy]
+  - id: s-anniversary-78
+    label: 陪伴的重量
+    text: 陪伴這件事，看似很輕，累積起來卻很有重量。謝謝你讓我陪這一段有了分量。
+    tags: [warm, reflection]
+  - id: s-anniversary-79
+    label: 一起變好的日子
+    text: 我們一起度過的日子裡，有些變得更好了，也包括你。今天想替這份好好好慶祝。
+    tags: [warm, gentle]
+  - id: s-anniversary-80
+    label: 記得的每一刻
+    text: 那些你以為過了就忘的時刻，其實我都替你記得。今天把它們攤開來，陪你回味。
+    tags: [reflection, warm]
+  - id: s-anniversary-81
+    label: 未完的路
+    text: 走到這裡不是終點，只是一個溫柔的中途站。接下來的路，我也想繼續陪你走。
+    tags: [warm, gentle]
+  - id: s-anniversary-82
+    label: 謝謝這段時光
+    text: 謝謝這段一起度過的時光，它讓平凡的日子也有了值得回望的光。願往後依然如此。
+    tags: [warm, reflection]

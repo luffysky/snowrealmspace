@@ -1,0 +1,241 @@
+# 驚喜盒補充：rare（自動組裝、全池去重）。
+  - id: s-rare-131
+    label: 一個少見的角落
+    text: 這一則，是留給偶爾停下來的你。願你今天，比昨天多疼自己一點。
+    tags: [gift, reflection]
+  - id: s-rare-132
+    label: 藏在深處的一句話
+    text: 有些溫柔，是要慢慢走到這裡才會遇見的。你願意停下來，本身就很珍貴。
+    tags: [gift, gentle]
+  - id: s-rare-133
+    label: 給你的一小片安靜
+    text: 願這一刻的安靜，能替你把肩上的重量，輕輕卸下一些些。
+    tags: [gift, gentle]
+  - id: s-rare-134
+    label: 罕見的一份心意
+    text: 不是每一次都會遇到這格。既然遇上了，就收下這份專屬於你的祝福吧。
+    tags: [gift, warm]
+  - id: s-rare-135
+    label: 一顆被珍藏的星
+    text: 就算沒有人看見，你在黑夜裡的努力，也一直在悄悄發光。
+    tags: [gift, reflection]
+  - id: s-rare-136
+    label: 為你留的位置
+    text: 這個世界很大，但總有一個角落，是為現在的你好好留著的。
+    tags: [warm, gift]
+  - id: s-rare-137
+    label: 一份慢下來的邀請
+    text: 慢一點沒關係。願你允許自己，用最舒服的速度活過今天。
+    tags: [gentle, reflection]
+  - id: s-rare-138
+    label: 稀有的溫柔
+    text: 你對別人那麼溫柔，這一次，換這份溫柔留給你自己。
+    tags: [gift, gentle]
+  - id: s-rare-139
+    label: 藏著的一份光
+    text: 每個平凡的日子裡，都藏著一點只屬於你的光。願你今天恰好瞥見它。
+    tags: [discovery, gift]
+  - id: s-rare-140
+    label: 給你的悄悄話
+    text: 你已經走了好遠。回頭看看，那些以為過不去的，都被你走過來了。
+    tags: [reflection, warm]
+  - id: s-rare-141
+    label: 一份難得的靜
+    text: 願你此刻的心，像清晨無風的湖面，映得下天空，也裝得下自己。
+    tags: [gentle, reflection]
+  - id: s-rare-142
+    label: 珍稀的一朵花
+    text: 有些花只在少數人願意等待時綻放。你的耐心，配得上它的盛開。
+    tags: [gift, discovery]
+  - id: s-rare-143
+    label: 留給你的小禮
+    text: 這一則不常出現，就像好事總在不經意時降臨。願今天有份意外的小驚喜等你。
+    tags: [gift, surprise]
+  - id: s-rare-144
+    label: 一段被記得的路
+    text: 你走過的每一步，都算數。就算腳印被風吹散，路還在你腳下延伸。
+    tags: [reflection, warm]
+  - id: s-rare-145
+    label: 給你的一盞燈
+    text: 願你累的時候記得，家的方向永遠亮著一盞燈，而那盞燈也可以是你自己。
+    tags: [warm, gift]
+  - id: s-rare-146
+    label: 難得的一份輕
+    text: 把「應該」放下一會兒吧。此刻你不必成為誰，只要好好當你自己。
+    tags: [gentle, reflection]
+  - id: s-rare-147
+    label: 藏在角落的祝福
+    text: 願你今天遇到的人，都對你溫柔；而你，也記得對自己溫柔。
+    tags: [gift, gentle]
+  - id: s-rare-148
+    label: 一顆罕見的糖
+    text: 這是留給努力生活的你的一顆糖，甜甜的，慢慢含著，不必急著吞下。
+    tags: [gift, small_joy]
+  - id: s-rare-149
+    label: 為你寫的一行
+    text: 如果沒有人今天對你說過真心話，那就讓這一行來說：你，很好。
+    tags: [warm, gift]
+  - id: s-rare-150
+    label: 少有的一次停留
+    text: 你願意在這裡多留一會兒，這份對自己的耐心，值得被好好記住。
+    tags: [reflection, gentle]
+  - id: s-rare-151
+    label: 一份靜靜的陪伴
+    text: 不必說話也沒關係。此刻有一份安靜，願意就這樣陪你坐一會兒。
+    tags: [gentle, warm]
+  - id: s-rare-152
+    label: 給你的一顆種子
+    text: 今天你埋下的小小善意，也許很久以後，才會在別處長成一片綠蔭。
+    tags: [gift, reflection]
+  - id: s-rare-153
+    label: 稀客才見的風景
+    text: 有些風景，只留給願意繞遠路的人。你的好奇心，帶你來到了這裡。
+    tags: [discovery, curious]
+  - id: s-rare-154
+    label: 一份被聽見的心
+    text: 你心裡那些沒說出口的，其實都很重要。願有一天，它們被溫柔地聽見。
+    tags: [reflection, gentle]
+  - id: s-rare-155
+    label: 留給你的餘白
+    text: 生活不必填滿。願你為自己留一塊空白，讓呼吸和想像都有地方去。
+    tags: [gentle, reflection]
+  - id: s-rare-156
+    label: 一份難得的相遇
+    text: 在無數個格子裡遇見這一則，就像人海中遇見懂你的人，稀有而值得。
+    tags: [surprise, gift]
+  - id: s-rare-157
+    label: 給疲憊的你
+    text: 累了就靠一下吧。休息不是偷懶，是為了走更遠的路而積蓄力氣。
+    tags: [gentle, warm]
+  - id: s-rare-158
+    label: 藏起來的溫度
+    text: 願你手心的溫度，不只暖了握著的杯，也悄悄暖回了你自己的心。
+    tags: [warm, gentle]
+  - id: s-rare-159
+    label: 一則慢遞的信
+    text: 這封信走了很久才到你面前。內容只有一句：謝謝你，一直都在努力。
+    tags: [gift, warm]
+  - id: s-rare-160
+    label: 珍藏版的一天
+    text: 願你把今天過成一個值得收藏的日子，哪怕只是因為一杯剛好的溫水。
+    tags: [small_joy, gift]
+  - id: s-rare-161
+    label: 給你的一片雲
+    text: 抬頭看看吧，天上的雲從不趕路。願你也能像它一樣，悠悠地飄過今天。
+    tags: [gentle, reflection]
+  - id: s-rare-162
+    label: 少見的一句真心
+    text: 你值得被好好對待，這不是條件交換來的，而是你本來就配得上的。
+    tags: [warm, reflection]
+  - id: s-rare-163
+    label: 一份罕見的餘裕
+    text: 願你今天多出一點餘裕，足夠泡一杯茶，也足夠好好發一會兒呆。
+    tags: [gentle, small_joy]
+  - id: s-rare-164
+    label: 為你藏的一顆貝
+    text: 有些珍珠，是砂礫磨了很久才成的。你經歷過的一切，也在悄悄成珠。
+    tags: [reflection, gift]
+  - id: s-rare-165
+    label: 一段安穩的時光
+    text: 願此刻的你安穩如落地的葉，不再被風追趕，只是靜靜地待著就好。
+    tags: [gentle, warm]
+  - id: s-rare-166
+    label: 給你留的甜
+    text: 這一格藏著一點甜，不多不少，剛好夠你在平淡的一天裡微微一笑。
+    tags: [small_joy, gift]
+  - id: s-rare-167
+    label: 稀有的一次回望
+    text: 停下來回望走過的路，你會發現，原來自己比想像中更勇敢。
+    tags: [reflection, warm]
+  - id: s-rare-168
+    label: 一份輕輕的托住
+    text: 就算今天有點搖晃，也有一雙看不見的手，正輕輕在下面托著你。
+    tags: [gentle, warm]
+  - id: s-rare-169
+    label: 給你的一扇窗
+    text: 願你心裡永遠留一扇窗，讓光進得來，也讓悶住的空氣，慢慢流出去。
+    tags: [reflection, gentle]
+  - id: s-rare-170
+    label: 難得一遇的暖
+    text: 這份暖不常出現，就像冬日午後那束斜斜的陽光，遇上了就好好曬一曬。
+    tags: [warm, gift]
+  - id: s-rare-171
+    label: 一則收藏的祝願
+    text: 願你所到之處都有善意，願你所盼之事都慢慢成真，願你被好好愛著。
+    tags: [gift, warm]
+  - id: s-rare-172
+    label: 為你留的一顆果
+    text: 樹上最後一顆果，是留給懂得等待的人。你的認真，值得這份甜。
+    tags: [gift, reflection]
+  - id: s-rare-173
+    label: 少有的一份坦然
+    text: 願你能坦然接住自己的不完美，那些缺口，正是光照進來的地方。
+    tags: [reflection, gentle]
+  - id: s-rare-174
+    label: 一段悄悄的守護
+    text: 有些在乎，不必說出口，就像月亮不喧嘩，卻整夜替你亮著。
+    tags: [warm, gentle]
+  - id: s-rare-175
+    label: 給你的一本空白
+    text: 未來還是一本空白的書，願你有勇氣提筆，也有耐心慢慢寫。
+    tags: [reflection, gift]
+  - id: s-rare-176
+    label: 罕見的一刻清明
+    text: 願你在紛亂裡偶爾遇見這樣一刻：心忽然靜下來，什麼都看得清楚了。
+    tags: [reflection, discovery]
+  - id: s-rare-177
+    label: 一份藏好的期待
+    text: 願你心裡一直藏著一件小小期待的事，讓平常的日子，也有了盼頭。
+    tags: [warm, small_joy]
+  - id: s-rare-178
+    label: 給你的一口深呼吸
+    text: 現在，慢慢吸一口氣，再輕輕吐出去。這一口氣，是專門留給你自己的。
+    tags: [gentle, gift]
+  - id: s-rare-179
+    label: 稀有的一份被懂
+    text: 被理解是很難得的事。願你身邊，總有一個人願意讀懂你的沉默。
+    tags: [warm, reflection]
+  - id: s-rare-180
+    label: 一枚珍藏的硬幣
+    text: 若手裡有枚硬幣，就把它當成好運吧。願接下來的路，多一點順遂。
+    tags: [gift, small_joy]
+  - id: s-rare-181
+    label: 為你亮的一盞夜燈
+    text: 願夜深時，你不必獨自面對黑。總有一盞燈，替你守到天亮。
+    tags: [warm, gentle]
+  - id: s-rare-182
+    label: 一份少見的從容
+    text: 願你走路時腳步從容，說話時語氣溫和，對自己時，也一樣寬厚。
+    tags: [gentle, reflection]
+  - id: s-rare-183
+    label: 給你的一朵慢花
+    text: 開得慢的花，不是落後，只是它在等一個更好的時機盛開。你也是。
+    tags: [reflection, gift]
+  - id: s-rare-184
+    label: 藏得很深的一句
+    text: 找了很久才翻到這裡吧？那就把這句話收好：你的存在，本身就是禮物。
+    tags: [discovery, gift]
+  - id: s-rare-185
+    label: 一份稀罕的靜好
+    text: 願你今天有一段時光，安靜得能聽見自己的心跳，踏實得像回到了家。
+    tags: [gentle, warm]
+  - id: s-rare-186
+    label: 給你的一縷風
+    text: 願有一縷剛好的風經過你，替你吹散悶熱，也帶走一點藏在心底的沉。
+    tags: [gentle, small_joy]
+  - id: s-rare-187
+    label: 少有的一次被選中
+    text: 這一則很少被翻到，而它偏偏來到你面前。願今天，好運也這樣選中你。
+    tags: [surprise, gift]
+  - id: s-rare-188
+    label: 一段留白的溫柔
+    text: 不必急著把心事想明白。有些答案，會在你放下它之後，自己浮上來。
+    tags: [reflection, gentle]
+  - id: s-rare-189
+    label: 給你的一顆定心丸
+    text: 就算前路還看不清，也請相信：你已經具備了走下去所需要的一切。
+    tags: [warm, reflection]
+  - id: s-rare-190
+    label: 一份珍重的收尾
+    text: 願這一則，像一次溫柔的道別：謝謝你來過，也願你被世界，好好珍重。
+    tags: [gift, warm]

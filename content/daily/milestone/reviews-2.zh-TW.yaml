@@ -1,34 +1,559 @@
-# 里程碑回顧補充（對應 milestone.ts 新增的節點）。tags 用 day_N / year_N。
-- id: mi-day-21
-  text: 三週了，這裡越來越像你會回來的地方。
-  tags: [day_21]
-- id: mi-day-50
-  text: 五十天。不知不覺，累積成了習慣。
-  tags: [day_50]
-- id: mi-day-150
-  text: 一百五十天，走了好長一段安靜的路。
-  tags: [day_150]
-- id: mi-day-250
-  text: 兩百五十天。回頭看，起點已經有點遠了。
-  tags: [day_250]
-- id: mi-day-400
-  text: 四百天了，超過一年，你還在。
-  tags: [day_400]
-- id: mi-day-600
-  text: 六百天。這裡裝的，是好多個你。
-  tags: [day_600]
-- id: mi-day-800
-  text: 八百天，快兩年半，慢慢長成一片天地。
-  tags: [day_800]
-- id: mi-day-1500
-  text: 一千五百天。時間很輕，累積很重。
-  tags: [day_1500]
-- id: mi-day-2500
-  text: 兩千五百天。這麼久，謝謝你一直沒走遠。
-  tags: [day_2500]
-- id: mi-year-4
-  text: 四年了。這裡陪你走過的，比你記得的多。
-  tags: [year_4]
-- id: mi-year-5
-  text: 五年。半個十年，你和它都變了很多。
-  tags: [year_5]
+# 里程碑回顧補充批次（自動組裝、全池去重）。tags 用節點 key 或 generic。
+  - id: mi-day7-11
+    text: 一週了，這個空間開始有點你的樣子。
+    tags: [day_7]
+  - id: mi-day7-12
+    text: 七天過去，你留下的痕跡正慢慢連成一條路。
+    tags: [day_7]
+  - id: mi-day7-13
+    text: 第一週剛好走完，謝謝你願意來這裡待著。
+    tags: [day_7]
+  - id: mi-day7-14
+    text: 一週的時間不長，卻夠讓一個角落變得熟悉。
+    tags: [day_7]
+  - id: mi-day7-15
+    text: 走過七天，這裡多了一些只屬於你的溫度。
+    tags: [day_7]
+  - id: mi-day7-16
+    text: 第一個星期到了，慢慢來就好，這裡都在。
+    tags: [day_7]
+  - id: mi-day14-11
+    text: 兩週了，習慣正在悄悄成形，不急。
+    tags: [day_14]
+  - id: mi-day14-12
+    text: 十四天過去，這個空間開始記得你的節奏。
+    tags: [day_14]
+  - id: mi-day14-13
+    text: 第二週走到底了，你留下的東西越來越像家。
+    tags: [day_14]
+  - id: mi-day14-14
+    text: 兩個星期，說長不長，卻已經有故事了。
+    tags: [day_14]
+  - id: mi-day14-15
+    text: 走到兩週，謝謝你一次又一次回到這裡。
+    tags: [day_14]
+  - id: mi-day14-16
+    text: 十四天的相處，讓這個角落慢慢有了呼吸。
+    tags: [day_14]
+  - id: mi-day21-11
+    text: 三週了，這裡漸漸成了你可以放鬆的地方。
+    tags: [day_21]
+  - id: mi-day21-12
+    text: 二十一天過去，你和這個空間都更自在了。
+    tags: [day_21]
+  - id: mi-day21-13
+    text: 第三週走完，一點一滴都在往你的方向長。
+    tags: [day_21]
+  - id: mi-day21-14
+    text: 三個星期，這裡開始懂得怎麼陪你。
+    tags: [day_21]
+  - id: mi-day21-15
+    text: 走過三週，你的痕跡已經連成一片小小的風景。
+    tags: [day_21]
+  - id: mi-day21-16
+    text: 二十一天，慢慢累積的東西最耐看。
+    tags: [day_21]
+  - id: mi-day30-11
+    text: 一個月了，這個空間有了你才有的樣子。
+    tags: [day_30]
+  - id: mi-day30-12
+    text: 三十天過去，回頭看看，走了不短的一段。
+    tags: [day_30]
+  - id: mi-day30-13
+    text: 滿一個月，謝謝你讓這裡有了溫度與重量。
+    tags: [day_30]
+  - id: mi-day30-14
+    text: 第一個月到了，這裡因為你而慢慢完整。
+    tags: [day_30]
+  - id: mi-day30-15
+    text: 一個月的陪伴，這個角落已經記得你的喜好。
+    tags: [day_30]
+  - id: mi-day30-16
+    text: 走過三十天，你種下的東西正安靜地長著。
+    tags: [day_30]
+  - id: mi-day50-11
+    text: 五十天了，這裡多了很多只有你懂的細節。
+    tags: [day_50]
+  - id: mi-day50-12
+    text: 走過五十天，這個空間越來越像你的樣子。
+    tags: [day_50]
+  - id: mi-day50-13
+    text: 第五十天，累積的痕跡開始有了厚度。
+    tags: [day_50]
+  - id: mi-day50-14
+    text: 五十天過去，謝謝你把這裡當成一個去處。
+    tags: [day_50]
+  - id: mi-day50-15
+    text: 五十天，說多不多，卻夠讓熟悉變成安心。
+    tags: [day_50]
+  - id: mi-day50-16
+    text: 走到這裡，五十天的時光都溫柔地留下了。
+    tags: [day_50]
+  - id: mi-day60-11
+    text: 兩個月了，這個空間陪你走過了不少日子。
+    tags: [day_60]
+  - id: mi-day60-12
+    text: 六十天過去，你和這裡都更了解彼此了。
+    tags: [day_60]
+  - id: mi-day60-13
+    text: 滿兩個月，慢慢長出來的東西最踏實。
+    tags: [day_60]
+  - id: mi-day60-14
+    text: 第二個月到了，這裡因你而越來越有味道。
+    tags: [day_60]
+  - id: mi-day60-15
+    text: 走過兩個月，謝謝你願意讓這裡陪著你。
+    tags: [day_60]
+  - id: mi-day60-16
+    text: 六十天的相處，這個角落已經很懂你了。
+    tags: [day_60]
+  - id: mi-day100-11
+    text: 一百天了，這是一段值得回頭看看的路。
+    tags: [day_100]
+  - id: mi-day100-12
+    text: 百天過去，這個空間裝著你許多安靜的時刻。
+    tags: [day_100]
+  - id: mi-day100-13
+    text: 走到第一百天，謝謝你一路把這裡放在心上。
+    tags: [day_100]
+  - id: mi-day100-14
+    text: 滿百天，累積的一切都成了你的風景。
+    tags: [day_100]
+  - id: mi-day100-15
+    text: 一百天的陪伴，這裡早已有了你的溫度。
+    tags: [day_100]
+  - id: mi-day100-16
+    text: 百天不是終點，只是又一個溫柔的節點。
+    tags: [day_100]
+  - id: mi-day150-11
+    text: 一百五十天了，這裡的一切都更貼近你了。
+    tags: [day_150]
+  - id: mi-day150-12
+    text: 走過一百五十天，慢慢累積的東西自成一片。
+    tags: [day_150]
+  - id: mi-day150-13
+    text: 第一百五十天，謝謝你讓這個角落一直亮著。
+    tags: [day_150]
+  - id: mi-day150-14
+    text: 一百五十天過去，這裡越來越像你的家。
+    tags: [day_150]
+  - id: mi-day150-15
+    text: 走到這裡，一百五十天的時光都好好留下了。
+    tags: [day_150]
+  - id: mi-day150-16
+    text: 一百五十天，這個空間因你而更有深度。
+    tags: [day_150]
+  - id: mi-day200-11
+    text: 兩百天了，回頭看看，走了好長一段路。
+    tags: [day_200]
+  - id: mi-day200-12
+    text: 走過兩百天，這裡裝滿了你的日常與心情。
+    tags: [day_200]
+  - id: mi-day200-13
+    text: 第兩百天，謝謝你讓這個空間一直陪著你。
+    tags: [day_200]
+  - id: mi-day200-14
+    text: 兩百天過去，累積的一切都成了你的模樣。
+    tags: [day_200]
+  - id: mi-day200-15
+    text: 走到兩百天，這個角落已經很懂得陪你。
+    tags: [day_200]
+  - id: mi-day200-16
+    text: 兩百天，慢慢走過的時光最有份量。
+    tags: [day_200]
+  - id: mi-day250-11
+    text: 兩百五十天了，這裡的每個角落都有你的痕跡。
+    tags: [day_250]
+  - id: mi-day250-12
+    text: 走過兩百五十天，這個空間越來越懂你了。
+    tags: [day_250]
+  - id: mi-day250-13
+    text: 第兩百五十天，謝謝你一直願意回到這裡。
+    tags: [day_250]
+  - id: mi-day250-14
+    text: 兩百五十天過去，累積的東西自成一片天地。
+    tags: [day_250]
+  - id: mi-day250-15
+    text: 走到這裡，兩百五十天的時光都溫柔地在。
+    tags: [day_250]
+  - id: mi-day250-16
+    text: 兩百五十天，這個角落早已有了你的味道。
+    tags: [day_250]
+  - id: mi-day300-11
+    text: 三百天了，這是一段安靜而扎實的路。
+    tags: [day_300]
+  - id: mi-day300-12
+    text: 走過三百天，這裡陪你度過了許多日子。
+    tags: [day_300]
+  - id: mi-day300-13
+    text: 第三百天，謝謝你讓這個空間一直有光。
+    tags: [day_300]
+  - id: mi-day300-14
+    text: 三百天過去，累積的一切都成了你的樣子。
+    tags: [day_300]
+  - id: mi-day300-15
+    text: 走到三百天，這個角落早已與你相熟。
+    tags: [day_300]
+  - id: mi-day300-16
+    text: 三百天，慢慢長出來的東西最耐久。
+    tags: [day_300]
+  - id: mi-day400-11
+    text: 四百天了，這個空間裝著你很長一段時光。
+    tags: [day_400]
+  - id: mi-day400-12
+    text: 走過四百天，這裡的一切都更貼近你了。
+    tags: [day_400]
+  - id: mi-day400-13
+    text: 第四百天，謝謝你把這裡一直放在心上。
+    tags: [day_400]
+  - id: mi-day400-14
+    text: 四百天過去，累積的痕跡自成一片風景。
+    tags: [day_400]
+  - id: mi-day400-15
+    text: 走到四百天，這個角落早已是你的一部分。
+    tags: [day_400]
+  - id: mi-day400-16
+    text: 四百天，這段路慢慢走來，格外踏實。
+    tags: [day_400]
+  - id: mi-day500-11
+    text: 五百天了，這是一段值得慢慢回味的路。
+    tags: [day_500]
+  - id: mi-day500-12
+    text: 走過五百天，這裡承載了你許多安靜的日子。
+    tags: [day_500]
+  - id: mi-day500-13
+    text: 第五百天，謝謝你讓這個空間一直陪著你。
+    tags: [day_500]
+  - id: mi-day500-14
+    text: 五百天過去，累積的一切都成了你的模樣。
+    tags: [day_500]
+  - id: mi-day500-15
+    text: 走到五百天，這個角落早已懂得如何陪你。
+    tags: [day_500]
+  - id: mi-day500-16
+    text: 五百天，時光慢慢堆疊，成了你的天地。
+    tags: [day_500]
+  - id: mi-day600-11
+    text: 六百天了，回頭看看，走了好遠一段路。
+    tags: [day_600]
+  - id: mi-day600-12
+    text: 走過六百天，這裡裝滿了你的日常與心情。
+    tags: [day_600]
+  - id: mi-day600-13
+    text: 第六百天，謝謝你一路把這個空間放在心上。
+    tags: [day_600]
+  - id: mi-day600-14
+    text: 六百天過去，累積的一切都自成一片風景。
+    tags: [day_600]
+  - id: mi-day600-15
+    text: 走到六百天，這個角落早已與你相依。
+    tags: [day_600]
+  - id: mi-day600-16
+    text: 六百天，慢慢走過的時光最有溫度。
+    tags: [day_600]
+  - id: mi-day800-11
+    text: 八百天了，這個空間陪你走過了長長一段。
+    tags: [day_800]
+  - id: mi-day800-12
+    text: 走過八百天，這裡的一切都有了你的印記。
+    tags: [day_800]
+  - id: mi-day800-13
+    text: 第八百天，謝謝你讓這個角落一直亮著。
+    tags: [day_800]
+  - id: mi-day800-14
+    text: 八百天過去，累積的東西成了你的一部分。
+    tags: [day_800]
+  - id: mi-day800-15
+    text: 走到八百天，這個空間早已很懂你了。
+    tags: [day_800]
+  - id: mi-day800-16
+    text: 八百天，這段路安靜而漫長，也格外珍貴。
+    tags: [day_800]
+  - id: mi-day1000-11
+    text: 一千天了，這是一段很長很長的陪伴。
+    tags: [day_1000]
+  - id: mi-day1000-12
+    text: 走過千天，這裡承載了你數不清的時刻。
+    tags: [day_1000]
+  - id: mi-day1000-13
+    text: 第一千天，謝謝你讓這個空間走到這裡。
+    tags: [day_1000]
+  - id: mi-day1000-14
+    text: 千天過去，累積的一切都成了你的天地。
+    tags: [day_1000]
+  - id: mi-day1000-15
+    text: 走到一千天，這個角落早已與你密不可分。
+    tags: [day_1000]
+  - id: mi-day1000-16
+    text: 千天不是句點，只是又一個溫柔的節點。
+    tags: [day_1000]
+  - id: mi-day1500-11
+    text: 一千五百天了，這段路長得像一整片風景。
+    tags: [day_1500]
+  - id: mi-day1500-12
+    text: 走過一千五百天，這裡裝著你好多好多時光。
+    tags: [day_1500]
+  - id: mi-day1500-13
+    text: 第一千五百天，謝謝你一直陪這個空間走著。
+    tags: [day_1500]
+  - id: mi-day1500-14
+    text: 一千五百天過去，累積的一切都自成天地。
+    tags: [day_1500]
+  - id: mi-day1500-15
+    text: 走到一千五百天，這裡早已刻進你的日常。
+    tags: [day_1500]
+  - id: mi-day1500-16
+    text: 一千五百天，慢慢走過的時光最有份量。
+    tags: [day_1500]
+  - id: mi-day2000-11
+    text: 兩千天了，這是一段很深很深的陪伴。
+    tags: [day_2000]
+  - id: mi-day2000-12
+    text: 走過兩千天，這裡承載了你數不盡的日子。
+    tags: [day_2000]
+  - id: mi-day2000-13
+    text: 第兩千天，謝謝你讓這個空間陪你這麼久。
+    tags: [day_2000]
+  - id: mi-day2000-14
+    text: 兩千天過去，累積的一切都成了你的模樣。
+    tags: [day_2000]
+  - id: mi-day2000-15
+    text: 走到兩千天，這個角落早已是你的一部分。
+    tags: [day_2000]
+  - id: mi-day2000-16
+    text: 兩千天，這段路走得長，也走得溫柔。
+    tags: [day_2000]
+  - id: mi-day2500-11
+    text: 兩千五百天了，回頭看，是好長的一段時光。
+    tags: [day_2500]
+  - id: mi-day2500-12
+    text: 走過兩千五百天，這裡裝滿了你的歲月。
+    tags: [day_2500]
+  - id: mi-day2500-13
+    text: 第兩千五百天，謝謝你一路把這裡放在心上。
+    tags: [day_2500]
+  - id: mi-day2500-14
+    text: 兩千五百天過去，累積的一切自成一片天地。
+    tags: [day_2500]
+  - id: mi-day2500-15
+    text: 走到兩千五百天，這個角落早已很懂你。
+    tags: [day_2500]
+  - id: mi-day2500-16
+    text: 兩千五百天，慢慢堆疊的時光最耐看。
+    tags: [day_2500]
+  - id: mi-day3000-11
+    text: 三千天了，這是一段悠長而深厚的陪伴。
+    tags: [day_3000]
+  - id: mi-day3000-12
+    text: 走過三千天，這裡承載了你好長一段人生。
+    tags: [day_3000]
+  - id: mi-day3000-13
+    text: 第三千天，謝謝你讓這個空間走了這麼遠。
+    tags: [day_3000]
+  - id: mi-day3000-14
+    text: 三千天過去，累積的一切都成了你的天地。
+    tags: [day_3000]
+  - id: mi-day3000-15
+    text: 走到三千天，這個角落早已刻進你的生活。
+    tags: [day_3000]
+  - id: mi-day3000-16
+    text: 三千天，這段路走得長，也走得安穩。
+    tags: [day_3000]
+  - id: mi-day3650-11
+    text: 十年了，這是一段很難得的長長陪伴。
+    tags: [day_3650]
+  - id: mi-day3650-12
+    text: 走過十年，這裡承載了你一整段的時光。
+    tags: [day_3650]
+  - id: mi-day3650-13
+    text: 第十個年頭，謝謝你讓這個空間一路走來。
+    tags: [day_3650]
+  - id: mi-day3650-14
+    text: 十年過去，累積的一切都成了你的天地。
+    tags: [day_3650]
+  - id: mi-day3650-15
+    text: 走到十年，這個角落早已與你的歲月交織。
+    tags: [day_3650]
+  - id: mi-day3650-16
+    text: 十年，這段路悠長而溫柔，值得慢慢回味。
+    tags: [day_3650]
+  - id: mi-year1-11
+    text: 一年了，這個空間陪你走過了完整的四季。
+    tags: [year_1]
+  - id: mi-year1-12
+    text: 走過一整年，回頭看看，累積了好多時刻。
+    tags: [year_1]
+  - id: mi-year1-13
+    text: 第一年到了，謝謝你讓這裡有了你的溫度。
+    tags: [year_1]
+  - id: mi-year1-14
+    text: 滿一年，這個角落早已是你熟悉的地方。
+    tags: [year_1]
+  - id: mi-year1-15
+    text: 一年的陪伴，這裡裝著你許多安靜的日子。
+    tags: [year_1]
+  - id: mi-year1-16
+    text: 一年不是終點，只是又一段路的開始。
+    tags: [year_1]
+  - id: mi-year2-11
+    text: 兩年了，這個空間陪你走過了兩個四季。
+    tags: [year_2]
+  - id: mi-year2-12
+    text: 走過兩年，這裡承載了你越來越多的故事。
+    tags: [year_2]
+  - id: mi-year2-13
+    text: 第二年到了，謝謝你一直讓這裡有光。
+    tags: [year_2]
+  - id: mi-year2-14
+    text: 滿兩年，這個角落早已與你相熟相依。
+    tags: [year_2]
+  - id: mi-year2-15
+    text: 兩年的陪伴，累積的一切都成了你的樣子。
+    tags: [year_2]
+  - id: mi-year2-16
+    text: 兩年過去，慢慢走來的時光格外踏實。
+    tags: [year_2]
+  - id: mi-year3-11
+    text: 三年了，這是一段安靜而深厚的陪伴。
+    tags: [year_3]
+  - id: mi-year3-12
+    text: 走過三年，這裡裝著你好長一段時光。
+    tags: [year_3]
+  - id: mi-year3-13
+    text: 第三年到了，謝謝你讓這個空間一直陪你。
+    tags: [year_3]
+  - id: mi-year3-14
+    text: 滿三年，這個角落早已刻進你的日常。
+    tags: [year_3]
+  - id: mi-year3-15
+    text: 三年的陪伴，累積的一切自成一片天地。
+    tags: [year_3]
+  - id: mi-year3-16
+    text: 三年過去，這段路走得長，也走得溫柔。
+    tags: [year_3]
+  - id: mi-year4-11
+    text: 四年了，這個空間陪你走過了很多個季節。
+    tags: [year_4]
+  - id: mi-year4-12
+    text: 走過四年，這裡承載了你數不清的時刻。
+    tags: [year_4]
+  - id: mi-year4-13
+    text: 第四年到了，謝謝你讓這裡一直亮著。
+    tags: [year_4]
+  - id: mi-year4-14
+    text: 滿四年，這個角落早已是你的一部分。
+    tags: [year_4]
+  - id: mi-year4-15
+    text: 四年的陪伴，累積的一切都成了你的天地。
+    tags: [year_4]
+  - id: mi-year4-16
+    text: 四年過去，慢慢堆疊的時光最有份量。
+    tags: [year_4]
+  - id: mi-year5-11
+    text: 五年了，這是一段很難得的長長陪伴。
+    tags: [year_5]
+  - id: mi-year5-12
+    text: 走過五年，這裡承載了你一整段的歲月。
+    tags: [year_5]
+  - id: mi-year5-13
+    text: 第五年到了，謝謝你讓這個空間走了這麼遠。
+    tags: [year_5]
+  - id: mi-year5-14
+    text: 滿五年，這個角落早已與你的生活交織。
+    tags: [year_5]
+  - id: mi-year5-15
+    text: 五年的陪伴，累積的一切都成了你的天地。
+    tags: [year_5]
+  - id: mi-year5-16
+    text: 五年，這段路悠長而安穩，值得慢慢回味。
+    tags: [year_5]
+  - id: mi-generic-11
+    text: 又到了一個小小的節點，慢慢走就好。
+    tags: [generic]
+  - id: mi-generic-12
+    text: 時間悄悄走著，這裡一直都在。
+    tags: [generic]
+  - id: mi-generic-13
+    text: 又是一段路走過，謝謝你還在這裡。
+    tags: [generic]
+  - id: mi-generic-14
+    text: 這個空間記得你來過的每一天。
+    tags: [generic]
+  - id: mi-generic-15
+    text: 累積的東西正安靜地長著，不必著急。
+    tags: [generic]
+  - id: mi-generic-16
+    text: 又一個節點到了，你的節奏就是最好的節奏。
+    tags: [generic]
+  - id: mi-generic-17
+    text: 這裡因為你而慢慢有了樣子。
+    tags: [generic]
+  - id: mi-generic-18
+    text: 走到這裡，回頭看看也挺好。
+    tags: [generic]
+  - id: mi-generic-19
+    text: 每一次回來，這個角落都更懂你一點。
+    tags: [generic]
+  - id: mi-generic-20
+    text: 時光慢慢堆疊，成了只屬於你的風景。
+    tags: [generic]
+  - id: mi-generic-21
+    text: 又一個小節點，願你在這裡覺得自在。
+    tags: [generic]
+  - id: mi-generic-22
+    text: 這個空間陪著你，一天算一天，都好。
+    tags: [generic]
+  - id: mi-generic-23
+    text: 你留下的痕跡，正一點一滴連成路。
+    tags: [generic]
+  - id: mi-generic-24
+    text: 不管走到哪一步，這裡都為你留著。
+    tags: [generic]
+  - id: mi-generic-25
+    text: 又一段時光過去，謝謝你願意來坐坐。
+    tags: [generic]
+  - id: mi-generic-26
+    text: 這裡的溫度，是你一次次帶進來的。
+    tags: [generic]
+  - id: mi-generic-27
+    text: 小小的節點也值得停下來看一眼。
+    tags: [generic]
+  - id: mi-generic-28
+    text: 你的每一天，都讓這個角落更完整。
+    tags: [generic]
+  - id: mi-generic-29
+    text: 走著走著，這裡就成了你熟悉的地方。
+    tags: [generic]
+  - id: mi-generic-30
+    text: 又到一個節點，慢慢來，這裡不趕人。
+    tags: [generic]
+  - id: mi-generic-31
+    text: 累積的日子，正靜靜陪著你往前。
+    tags: [generic]
+  - id: mi-generic-32
+    text: 這個空間，因你的到來而有了呼吸。
+    tags: [generic]
+  - id: mi-generic-33
+    text: 又一段路走完，前面還有很多天可以慢慢過。
+    tags: [generic]
+  - id: mi-generic-34
+    text: 你來過的痕跡，這裡都好好收著。
+    tags: [generic]
+  - id: mi-generic-35
+    text: 又一個溫柔的節點，願你今天也安好。
+    tags: [generic]
+  - id: mi-generic-36
+    text: 這裡不比較、不催促，只是靜靜陪你。
+    tags: [generic]
+  - id: mi-generic-37
+    text: 走到這一步，你已經累積了不少。
+    tags: [generic]
+  - id: mi-generic-38
+    text: 每個節點都是你走出來的，值得珍惜。
+    tags: [generic]
+  - id: mi-generic-39
+    text: 時間往前，這個角落一直在你身邊。
+    tags: [generic]
+  - id: mi-generic-40
+    text: 又是一個小節點，願這裡讓你覺得安心。
+    tags: [generic]
