@@ -306,16 +306,19 @@ pnpm tsx scripts/queue-ping.ts          # queue 往返（需 worker 執行中）
 | Milestone | 狀態 |
 |---|---|
 | A — Foundation | ✅ 完成。閉環 24/24，全閘門綠 |
-| B — Visual Personalization | 🚧 約 75%（Font System 卡在字體檔） |
-| C — Creative Core | 未開始 |
-| D — AI Core | 未開始 |
-| E — Daily Loop | 未開始 |
-| F — Integration | 未開始 |
+| B — Visual Personalization | ✅ 約 98%（背景/主題/場景 335+套件化/字體系統；剩手動走查與一個字體檔） |
+| C — Creative Core | ✅ 大致完成（Projects／作品版本＋編輯／Library＋翻頁／Timeline／隱私刪除） |
+| D — AI Core | ✅ 大致完成（路由／Agent＋審批 UI／多模態／SSE／記憶＋語意檢索／視覺分析／對話摘要／金鑰預算） |
+| E — Daily Loop | ✅ 完成（cron 掃時區、週報、主動訊息、生日卡、依近況/天氣給內容） |
+| F — Integration | 🚧 程式面完成（連接／S1–S4／webhook）；剩 S5 mock 錄製與 Figma/Canva 真憑證端到端實測（卡真實連線） |
 
 依 ADR-001，未通過驗收不得開始下一個 Milestone。
 
-**完整剩餘工作盤點見 `docs/spec/91-backlog.md`** —— 回答「還差多少」。
-**被外部資源卡住的項目見 `docs/todo/todo_list_0724.md`**（字體檔、Zeabur、R2、git remote、AI 金鑰）。
+**校正過的權威待辦狀態見 `docs/todo/todo_list_0731.md`**（對照實際程式，取代 91-backlog / 0728 的過時「未做」標記）。
+**被外部資源卡住的項目見 `docs/todo/todo_list_0724.md`**（字體檔、Zeabur、R2、AI 金鑰、Figma/Canva 真憑證）。
+
+### 內容池補量產線（多批馬拉松）
+`content/**` 各池補到 10 年份量：子代理各批**直寫** scratch 檔（只回 done，省 token）→ `scratchpad/assemble_pool.py`（或 greetings 專用版）做**全池近似去重 + FORBIDDEN_PATTERNS + 長度/night 不催促過濾**→ `pnpm check:content`（近乎必過）→ commit → `pnpm seed:content` 灌 hosted（upsert 冪等）。**坑**：check 去重是全池（會撞別池）；id 續號要用各檔真實最大號或批次 infix（`-x1-`）免撞。
 
 部署平台為 **Zeabur**（ADR-008）：web、worker、Supabase 同一平台，R2 仍用 Cloudflare。
 

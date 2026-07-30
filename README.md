@@ -13,8 +13,8 @@
   背景可加漸層（線性／放射／多點網狀）、霧面玻璃、非破壞性裁切、亮度/飽和度/**對比**微調、
   排程輪播幻燈片（每張停留＋**切換淡入淡出時長**可調）；
   主題工作室即時預覽（顏色／字體／質感）、一鍵「儲存並套用」、**版本歷史/還原**、**設為最愛**、刪除主題
-- **內建動態場景** — 約 300 個 canvas 粒子場景，分 6 類（天氣／星空宇宙／自然／慶祝／簡約／城市夜景），
-  背景商店分頁瀏覽、可疊加在任何背景上、密度可調，配合 reduced-motion 降級
+- **內建動態場景** — 335+ 個 canvas 粒子場景，分 6 類（天氣／星空宇宙／自然／慶祝／簡約／城市夜景），
+  **背景商店依「套件」分組**（未取得可即時預覽、取得後才可套用，per space 慢慢蒐集）、可疊加在任何背景上、密度可調，配合 reduced-motion 降級
 - **Lottie 動畫背景** — 5 個自製向量動畫（CC0），lottie-web 懶載入、省流量/減動態時降級
 - **裝飾品** — 81 個可愛小圖（Fluent Emoji，MIT）自由拖曳擺放在頁面角落，可調大小／旋轉／透明度＋漸層染色；
   檢視時不擋任何點擊，`?decorate=1` 進編輯（每 space 持久化、沒擺就不顯示）
@@ -166,12 +166,12 @@ pnpm test:a11y           # 無障礙（axe-core）
 |---|---|
 | A — Foundation | ✅ 完成 |
 | B — Visual Personalization | ✅ 約 98%（剩手動走查與一個字體檔） |
-| C — Creative Core | ✅ 大致完成（Projects／作品版本／Library／Timeline／隱私刪除；剩本地分析擴充） |
+| C — Creative Core | ✅ 大致完成（Projects／作品版本＋建立後可編輯／Library＋分頁／Timeline／隱私刪除） |
 | D — AI Core | ✅ 大致完成（路由／Agent／多模態／SSE 串流／記憶＋語意檢索／視覺分析／深入回顧／對話歷史摘要；剩金鑰額度調校） |
 | E — Daily Loop | ✅ 完成（cron 掃時區、週報、主動訊息、生日卡、依近況給內容） |
 | F — Integration | 🚧 程式面完成（**納入 Canva**）：連接 ✅、S1 選檔同步 ✅、S2 worker job ✅、S3 webhook 觸發 ✅、S4 選檔 picker＋真實 last-synced ✅；剩 S5 mock 錄製與 Figma/Canva 真憑證端到端實測（卡真實連線） |
 
-完整盤點見 [`docs/spec/91-backlog.md`](docs/spec/91-backlog.md)。
+校正過的權威待辦狀態見 [`docs/todo/todo_list_0731.md`](docs/todo/todo_list_0731.md)（對照實際程式；91-backlog 部分過時）。
 
 > **平台方向**：SnowRealm Space 是未來 SnowRealm 平台（`snowrealm.pet`）底下的一個產品；
 > 平台身份、經濟、AI Router 的整合規劃見 [`docs/platform.md`](docs/platform.md) 與
