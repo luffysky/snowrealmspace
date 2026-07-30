@@ -17,6 +17,7 @@ import { A11yPanel } from './A11yPanel'
 import { FontPanel } from './FontPanel'
 import { ThemePreview } from './ThemePreview'
 import type { BackgroundState } from '@/components/BackgroundLayer'
+import { useDialog } from '@/components/ui/DialogProvider'
 
 /** 內建主題分類顯示順序（招牌在前，生成的色系在後）。 */
 const PRESET_CATEGORY_ORDER = [
@@ -70,6 +71,7 @@ export function ThemeStudio({
   activeThemeId: string | null
   background: BackgroundState | null
 }) {
+  const { confirm } = useDialog()
   const [themes, setThemes] = useState<SavedTheme[]>(initialThemes)
   const [editingId, setEditingId] = useState<string | null>(activeThemeId)
   const [draft, setDraft] = useState<ThemeDefinition>(
@@ -88,6 +90,12 @@ export function ThemeStudio({
     [],
   )
   const [activeCat, setActiveCat] = useState<string>(themeCats[0] ?? '')
+
+  // 版本歷史（theme_versions）：快照 / 列出 / 還原。後端早就有，只差入口。
+  type ThemeVersion = { id: string; version: number; label: string | null; created_at: string }
+  const [versions, setVersions] = useState<ThemeVersion[]>([])
+  const [versionsOpen, setVersionsOpen] = useState(false)
+  const [versionBusy, setVersionBusy] = useState(false)
 
   const report: A11yReport = useMemo(() => analyzeTheme(draft), [draft])
 
@@ -223,6 +231,79 @@ export function ThemeStudio({
       URL.revokeObjectURL(url)
     } catch {
       setStatus({ kind: 'error', message: '匯出失敗，請稍後再試。' })
+    }
+  }
+
+  /** 展開版本歷史並載入清單。 */
+  async function toggleVersions() {
+    const next = !versionsOpen
+    setVersionsOpen(next)
+    if (next && editingId) {
+      try {
+        const list = (await api(`/api/themes/${editingId}/versions`)) as ThemeVersion[]
+        setVersions(list)
+      } catch {
+        setVersions([])
+      }
+    }
+  }
+
+  /** 把目前內容拍一份版本快照（先存草稿，快照才會反映當下編輯）。 */
+  async function snapshotVersion() {
+    if (!editingId) return
+    setVersionBusy(true)
+    try {
+      // 版本快照取的是「已儲存」的定義；先存一次草稿，快照才涵蓋目前的編輯。
+      if (dirty) {
+        const saved = await handleSave(false)
+        if (!saved) return
+      }
+      await api(`/api/themes/${editingId}/versions`, { method: 'POST', body: JSON.stringify({}) })
+      const list = (await api(`/api/themes/${editingId}/versions`)) as ThemeVersion[]
+      setVersions(list)
+      setStatus({ kind: 'saved', message: '已存為一個版本。' })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '存版本失敗。' })
+    } finally {
+      setVersionBusy(false)
+    }
+  }
+
+  /** 還原到某個版本：會先自動快照目前內容，再把該版本載入草稿。 */
+  async function restoreVersion(version: number) {
+    if (!editingId) return
+    setVersionBusy(true)
+    try {
+      const restored = (await api(`/api/themes/${editingId}/versions/${version}/restore`, {
+        method: 'POST',
+      })) as SavedTheme
+      setDraft(structuredClone(restored.definition))
+      setName(restored.name)
+      setThemes((prev) => prev.map((t) => (t.id === editingId ? { ...t, ...restored } : t)))
+      const list = (await api(`/api/themes/${editingId}/versions`)) as ThemeVersion[]
+      setVersions(list)
+      setDirty(false)
+      setStatus({ kind: 'saved', message: `已還原到版本 ${version}。` })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '還原失敗。' })
+    } finally {
+      setVersionBusy(false)
+    }
+  }
+
+  /** 刪除目前這個主題（軟刪除）。 */
+  async function deleteTheme() {
+    if (!editingId) return
+    if (!(await confirm({ title: '刪除主題', message: `確定刪除主題「${name}」嗎？`, danger: true, confirmText: '刪除' }))) return
+    try {
+      await api(`/api/themes/${editingId}`, { method: 'DELETE' })
+      setThemes((prev) => prev.filter((t) => t.id !== editingId))
+      setEditingId(null)
+      setVersions([])
+      setVersionsOpen(false)
+      setStatus({ kind: 'saved', message: '已刪除主題。' })
+    } catch (err) {
+      setStatus({ kind: 'error', message: err instanceof Error ? err.message : '刪除失敗。' })
     }
   }
 
@@ -576,7 +657,49 @@ export function ThemeStudio({
                 }}
               />
             </label>
+            {editingId && (
+              <button className="sr-button sr-button-secondary" type="button" onClick={() => void toggleVersions()}>
+                版本歷史
+              </button>
+            )}
+            {editingId && (
+              <button className="sr-button sr-button-danger" type="button" onClick={() => void deleteTheme()}>
+                刪除主題
+              </button>
+            )}
           </div>
+
+          {/* 版本歷史面板 */}
+          {editingId && versionsOpen && (
+            <div className="sr-card sr-stack" style={{ marginTop: 'var(--sr-space-3)', gap: 'var(--sr-space-2)' }}>
+              <div className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                <strong>版本歷史</strong>
+                <button className="sr-button sr-button-secondary" type="button" style={{ padding: '2px 12px' }} disabled={versionBusy} onClick={() => void snapshotVersion()}>
+                  {versionBusy ? '…' : '存為版本'}
+                </button>
+              </div>
+              {versions.length === 0 ? (
+                <p className="sr-muted" style={{ margin: 0, fontSize: 'var(--sr-text-sm)' }}>
+                  還沒有版本。按「存為版本」把目前內容存一份，之後就能還原。
+                </p>
+              ) : (
+                <ul className="sr-stack" style={{ listStyle: 'none', margin: 0, padding: 0, gap: '4px' }}>
+                  {versions.map((v) => (
+                    <li key={v.id} className="sr-row" style={{ justifyContent: 'space-between', alignItems: 'center', gap: 'var(--sr-space-2)' }}>
+                      <span style={{ fontSize: 'var(--sr-text-sm)', minWidth: 0 }}>
+                        版本 {v.version}
+                        {v.label ? `· ${v.label}` : ''}
+                        <span className="sr-muted"> · {new Date(v.created_at).toLocaleString('zh-TW')}</span>
+                      </span>
+                      <button className="sr-button sr-button-secondary" type="button" style={{ padding: '2px 12px' }} disabled={versionBusy} onClick={() => void restoreVersion(v.version)}>
+                        還原
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </section>
       </div>
 
