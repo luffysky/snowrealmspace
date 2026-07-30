@@ -2195,6 +2195,34 @@ input[type='range'] {
   gap: var(--sr-space-2);
 }
 
+/* 主題 chip + 最愛心：一列裡 chip 佔滿、心固定在右 */
+.sr-theme-chip-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--sr-space-1);
+  min-width: 0;
+}
+.sr-theme-chip-row > .sr-theme-chip {
+  flex: 1;
+  min-width: 0;
+}
+.sr-theme-fav {
+  flex: 0 0 auto;
+  width: 36px;
+  display: grid;
+  place-items: center;
+  font-size: var(--sr-text-lg);
+  line-height: 1;
+  color: var(--sr-accent);
+  background: var(--sr-surface-opaque);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+}
+.sr-theme-fav:hover {
+  border-color: var(--sr-accent);
+}
+
 .sr-widget-note {
   flex: 1;
   min-height: 80px;
