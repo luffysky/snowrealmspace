@@ -7,6 +7,14 @@ import { ALPHA_TRANSITIONS } from '@snowrealm/validation'
 import { NEUTRAL, type ThemeDefinition } from '@snowrealm/theme-engine'
 import { SCENES, SCENE_CATEGORIES, scenesByCategory, getScene, type SceneCategory } from '@/lib/scenes'
 import { LOTTIE_SCENES, getLottieScene } from '@/lib/lottie-scenes'
+import {
+  SCENE_PACKS,
+  DEFAULT_OBTAINED,
+  packForTab,
+  getPack,
+  packSize,
+  packsStorageKey,
+} from '@/lib/scene-packs'
 import type { BackgroundItem } from '@/components/BackgroundLayer'
 import { gradientCss } from '@/components/BackgroundLayer'
 import { ProceduralScene } from '@/components/ProceduralScene'
@@ -60,11 +68,14 @@ function AdoptTile({
   label,
   hint,
   onAdopt,
+  locked = false,
   children,
 }: {
   label: string
   hint: string
   onAdopt: () => void
+  /** 套件未取得：可預覽，但點擊＝取得套件（而非直接套用）。 */
+  locked?: boolean
   children: ReactNode
 }) {
   return (
@@ -72,21 +83,21 @@ function AdoptTile({
       type="button"
       role="listitem"
       className="sr-scene-tile"
-      title={hint}
-      aria-label={hint}
+      title={locked ? `未取得套件 —— 先預覽「${label}」` : hint}
+      aria-label={locked ? `未取得套件，先預覽「${label}」，點擊取得整個套件` : hint}
       onClick={onAdopt}
     >
       <span className="sr-scene-tile-media">
         {children}
         <span aria-hidden="true" style={previewBadgeStyle}>
-          預覽中
+          {locked ? '🔒 預覽' : '預覽中'}
         </span>
       </span>
       <span className="sr-scene-tile-label" style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
         {label}
       </span>
       <span aria-hidden="true" style={adoptAffordanceStyle}>
-        ＋ 加入我的空間
+        {locked ? '🔒 取得套件後可用' : '＋ 加入我的空間'}
       </span>
     </button>
   )
@@ -119,6 +130,37 @@ export function BackgroundStudio({
   const [bgDarkId, setBgDarkId] = useState(initialBgDarkId)
   // 背景商店的分頁：'全部' / 各分類 / 'Lottie'
   const [galleryTab, setGalleryTab] = useState<GalleryTab>('全部')
+
+  // #55 已取得的背景套件（per space，存 localStorage）。未取得可預覽、不能套用。
+  const [obtained, setObtained] = useState<string[]>(DEFAULT_OBTAINED)
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(packsStorageKey(spaceId))
+      if (raw) {
+        const saved = JSON.parse(raw) as unknown
+        if (Array.isArray(saved)) setObtained(saved.filter((x): x is string => typeof x === 'string'))
+      }
+    } catch {
+      /* localStorage 不可用時用預設 */
+    }
+  }, [spaceId])
+
+  const isObtained = useCallback((packId: string | null) => packId === null || obtained.includes(packId), [obtained])
+
+  function obtainPack(packId: string) {
+    setObtained((prev) => {
+      if (prev.includes(packId)) return prev
+      const next = [...prev, packId]
+      try {
+        localStorage.setItem(packsStorageKey(spaceId), JSON.stringify(next))
+      } catch {
+        /* 略過 */
+      }
+      return next
+    })
+    const pack = getPack(packId)
+    setStatus({ kind: 'ok', message: `已取得「${pack?.label ?? ''}」套件，現在可以套用裡面的背景了。` })
+  }
 
   // 色調分類（淺/深）：新增時系統先猜，這裡讓使用者手動改。分類供你「淺色從淺色選」。
   async function flipTone(bg: BackgroundItem) {
@@ -318,10 +360,19 @@ export function BackgroundStudio({
     }
   }
 
+  // 目前分頁對應的套件與取得狀態
+  const currentPack = packForTab(galleryTab)
+  const currentObtained = isObtained(currentPack)
+
   // 目前分頁要顯示哪些場景卡 / 是否顯示 Lottie 卡
+  // 「全部」只列已取得套件的背景；單一分類頁不論取得與否都顯示（未取得＝可預覽）。
   const galleryScenes =
-    galleryTab === 'Lottie' ? [] : galleryTab === '全部' ? SCENES : scenesByCategory(galleryTab)
-  const showLottie = galleryTab === '全部' || galleryTab === 'Lottie'
+    galleryTab === 'Lottie'
+      ? []
+      : galleryTab === '全部'
+        ? SCENES.filter((s) => isObtained(packForTab(s.category)))
+        : scenesByCategory(galleryTab)
+  const showLottie = (galleryTab === '全部' && isObtained('lottie')) || galleryTab === 'Lottie'
 
   // 分頁上的數量標示
   const tabCount = (tab: GalleryTab): number => {
@@ -417,9 +468,9 @@ export function BackgroundStudio({
           </button>
         </div>
 
-        {/* ── 背景商店：依分類瀏覽內建場景與 Lottie 動畫 ── */}
+        {/* ── 背景商店：套件化瀏覽（未取得可預覽、取得後可套用）── */}
         <p className="sr-label" style={{ marginTop: 'var(--sr-space-4)' }}>
-          背景商店（挑一個分類，點卡片即可加入）
+          背景商店 · 套件（已取得 {obtained.length}/{SCENE_PACKS.length}）
         </p>
 
         {/* 分類分頁：全部 → 各分類 → Lottie。會換行、不橫向溢位。 */}
@@ -433,46 +484,80 @@ export function BackgroundStudio({
               className={`sr-chip${galleryTab === tab ? ' sr-chip-active' : ''}`}
               onClick={() => setGalleryTab(tab)}
             >
+              {isObtained(packForTab(tab)) ? '' : '🔒 '}
               {tab}（{tabCount(tab)}）
             </button>
           ))}
         </div>
 
         <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
-          以下每張都是<b>即時預覽</b>（角落標「預覽中」）——套用前先看效果，點「＋ 加入我的空間」就會加到下方「你的背景」。
-          場景也能「疊」在你的圖片/漸層上（到調整面板的「疊加場景」選）；Lottie 為本專案自製、可自由使用（CC0）。
+          背景依<b>套件</b>分組（上方分類）。<b>未取得的套件可先預覽</b>每張效果，<b>取得後才能套用</b>。
+          每張都是即時預覽（角落標「預覽中」）；場景也能「疊」在你的圖片/漸層上（到調整面板的「疊加場景」選）；Lottie 為本專案自製、可自由使用（CC0）。
         </p>
+
+        {/* 未取得套件：取得橫幅（未下載可預覽 → 取得後套用） */}
+        {currentPack && !currentObtained && (
+          <div
+            className="sr-card sr-row"
+            style={{ justifyContent: 'space-between', alignItems: 'center', gap: 'var(--sr-space-2)', marginTop: 'var(--sr-space-2)', flexWrap: 'wrap' }}
+          >
+            <span style={{ minWidth: 0 }}>
+              <b>「{getPack(currentPack)?.label}」套件尚未取得</b>
+              <span className="sr-muted">（{packSize(getPack(currentPack)!)} 個背景）—— 下方可先預覽，取得後即可套用。</span>
+            </span>
+            <button type="button" className="sr-button" onClick={() => obtainPack(currentPack)}>
+              取得此套件
+            </button>
+          </div>
+        )}
 
         {/* 場景卡（含靜態）：ProceduralScene 同時處理 dynamic 與 static */}
         {galleryScenes.length > 0 && (
           <div className="sr-scene-grid" role="list" aria-label={`${galleryTab} 場景`}>
-            {galleryScenes.map((sc) => (
-              <AdoptTile
-                key={sc.id}
-                label={sc.label}
-                hint={`加入「${sc.label}」到我的空間`}
-                onAdopt={() => void addScene(sc.id)}
-              >
-                <ProceduralScene sceneId={sc.id} />
-              </AdoptTile>
-            ))}
+            {galleryScenes.map((sc) => {
+              const locked = !isObtained(packForTab(sc.category))
+              return (
+                <AdoptTile
+                  key={sc.id}
+                  label={sc.label}
+                  hint={`加入「${sc.label}」到我的空間`}
+                  locked={locked}
+                  onAdopt={() =>
+                    locked ? obtainPack(packForTab(sc.category)!) : void addScene(sc.id)
+                  }
+                >
+                  <ProceduralScene sceneId={sc.id} />
+                </AdoptTile>
+              )
+            })}
           </div>
         )}
 
-        {/* Lottie 卡：全部 / Lottie 分頁時顯示 */}
+        {/* Lottie 卡：全部（已取得時）/ Lottie 分頁時顯示 */}
         {showLottie && (
           <div className="sr-scene-grid" role="list" aria-label="Lottie 背景" style={{ marginTop: 'var(--sr-space-2)' }}>
-            {LOTTIE_SCENES.map((sc) => (
-              <AdoptTile
-                key={sc.id}
-                label={sc.label}
-                hint={`加入「${sc.label}」（${sc.mood}）到我的空間`}
-                onAdopt={() => void addLottie(sc.id)}
-              >
-                <LottieBackground lottieId={sc.id} />
-              </AdoptTile>
-            ))}
+            {LOTTIE_SCENES.map((sc) => {
+              const locked = !isObtained('lottie')
+              return (
+                <AdoptTile
+                  key={sc.id}
+                  label={sc.label}
+                  hint={`加入「${sc.label}」（${sc.mood}）到我的空間`}
+                  locked={locked}
+                  onAdopt={() => (locked ? obtainPack('lottie') : void addLottie(sc.id))}
+                >
+                  <LottieBackground lottieId={sc.id} />
+                </AdoptTile>
+              )
+            })}
           </div>
+        )}
+
+        {/* 全部頁：提示還有未取得套件 */}
+        {galleryTab === '全部' && obtained.length < SCENE_PACKS.length && (
+          <p className="sr-muted" style={{ margin: 'var(--sr-space-2) 0 0', fontSize: 'var(--sr-text-sm)' }}>
+            還有 {SCENE_PACKS.length - obtained.length} 個套件未取得 —— 點上方分類即可預覽並取得。
+          </p>
         )}
       </section>
 
