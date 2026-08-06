@@ -37,6 +37,19 @@ function lunarText(date: Date): string | null {
   }
 }
 
+/** 每格農曆：農曆初一顯示月名（例：七月）、其餘顯示日（初二…）；缺曆別回 ''。 */
+function lunarCell(date: Date): string {
+  try {
+    const parts = new Intl.DateTimeFormat('zh-TW-u-ca-chinese', { month: 'long', day: 'numeric' }).formatToParts(date)
+    const dayRaw = parts.find((p) => p.type === 'day')?.value ?? ''
+    const n = Number(dayRaw)
+    if (n === 1) return parts.find((p) => p.type === 'month')?.value ?? ''
+    return LUNAR_DAYS[n] ?? dayRaw
+  } catch {
+    return ''
+  }
+}
+
 export default function MiniCalendarWidget({ config }: WidgetProps) {
   const showLunar = (config as Cfg | null)?.showLunar ?? false
 
@@ -68,11 +81,15 @@ export default function MiniCalendarWidget({ config }: WidgetProps) {
   for (let d = 1; d <= daysInMonth; d++) cells.push(d)
 
   const monthLabel = `${year} 年 ${month + 1} 月`
+  const rocYear = year - 1911 // 民國年 = 西元 - 1911
   const lunar = showLunar ? lunarText(today) : null
 
   return (
     <div className="sr-card sr-widget" style={{ minWidth: 0 }}>
-      <h3 className="sr-widget-title">{monthLabel}</h3>
+      <h3 className="sr-widget-title" style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--sr-space-2)', flexWrap: 'wrap' }}>
+        <span>西元 {monthLabel}</span>
+        <span className="sr-muted" style={{ fontSize: '0.8em', fontWeight: 400 }}>民國 {rocYear} 年</span>
+      </h3>
 
       <div
         role="grid"
@@ -93,19 +110,24 @@ export default function MiniCalendarWidget({ config }: WidgetProps) {
         ))}
         {cells.map((d, i) => {
           const isToday = d === todayDate
+          const lu = d === null ? '' : lunarCell(new Date(year, month, d))
           return (
             <div
               key={d === null ? `blank-${i}` : `d-${d}`}
               style={{
-                padding: '3px 0',
+                padding: '2px 0',
                 borderRadius: 'var(--sr-radius-sm)',
                 fontVariantNumeric: 'tabular-nums',
+                lineHeight: 1.1,
                 ...(isToday
                   ? { background: 'var(--sr-accent)', color: 'var(--sr-on-accent, #fff)', fontWeight: 700 }
                   : {}),
               }}
             >
-              {d ?? ''}
+              <div>{d ?? ''}</div>
+              {d !== null && lu && (
+                <div style={{ fontSize: '0.62em', opacity: isToday ? 0.9 : 0.55, marginTop: '1px' }}>{lu}</div>
+              )}
             </div>
           )
         })}
