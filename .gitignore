@@ -23,3 +23,5 @@ supabase/.branches/
 assets/fonts/
 assets/fonts-build/
 docs/errlog.md
+
+.vercel

@@ -1,0 +1,32 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/queue",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/run/event-project",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/run/daily-generate",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/run/insight-weekly",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/run/queue-health",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/run/storage-gc",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/run/space-purge",
+      "schedule": "30 3 * * *"
+    }
+  ]
+}

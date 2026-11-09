@@ -9,14 +9,20 @@ import { serverEnv } from '@snowrealm/shared-types'
  */
 
 let boss: PgBoss | null = null
+let started: Promise<PgBoss> | null = null
 
 export function getBoss(): PgBoss {
   if (boss) return boss
   const env = serverEnv()
 
+  // Vercel 上由 Cron 觸發：排程改由 vercel.json，連線數也要壓低（維護迴圈保留，start 時會跑一輪）
+  const serverless = !!process.env.VERCEL
+
   boss = new PgBoss({
     connectionString: env.DATABASE_URL,
     schema: 'pgboss',
+    schedule: !serverless,
+    ...(serverless ? { max: 2 } : {}),
     retryLimit: 3,
     retryDelay: 30,
     retryBackoff: true,
@@ -33,16 +39,24 @@ export function getBoss(): PgBoss {
   return boss
 }
 
-export async function startBoss(): Promise<PgBoss> {
-  const b = getBoss()
-  await b.start()
-  return b
+/** 冪等：serverless 同一實例會被多個請求共用，只能 start 一次。 */
+export function startBoss(): Promise<PgBoss> {
+  started ??= (async () => {
+    const b = getBoss()
+    await b.start()
+    return b
+  })().catch((err: unknown) => {
+    started = null
+    throw err
+  })
+  return started
 }
 
 export async function stopBoss(): Promise<void> {
   if (!boss) return
   await boss.stop({ graceful: true, timeout: 30_000 })
   boss = null
+  started = null
 }
 
 /** Milestone A 的 job 型別。之後每個 Milestone 會擴充。 */

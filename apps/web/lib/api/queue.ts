@@ -4,8 +4,7 @@ import { serverEnv } from '@snowrealm/shared-types'
 /**
  * 從 web 端入列 job。
  *
- * 這裡只負責 send，實際執行在 apps/worker（ADR-008：worker 是長駐服務，
- * 影片轉碼與 Vision 分析會超過 serverless 的時間上限）。
+ * 這裡只負責 send，實際由 Vercel Cron（/api/cron/queue，每分鐘）取出執行。
  *
  * 連線是 lazy 且共用的 —— 每次請求都開新連線會很快耗盡 Postgres 的連線數。
  */
@@ -19,6 +18,7 @@ async function getBoss(): Promise<PgBoss> {
       schema: 'pgboss',
       // web 端只送不收，不需要維護 worker 相關的背景程序
       supervise: false,
+      schedule: false,
       max: 2,
     })
     boss.on('error', (err) => console.error('[queue] 錯誤', err))

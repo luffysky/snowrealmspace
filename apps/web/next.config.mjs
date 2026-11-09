@@ -12,7 +12,7 @@ const nextConfig = {
   // 若讓 webpack 打包它，那個 .wasm 不會被搬進 build 產物 → production
   // （next build + next start）會找不到 wasm 而壞掉。標成 external，
   // 讓 Next 在執行期直接從 node_modules require（wasm 就在 index.js 旁邊）。
-  serverExternalPackages: ['subset-font'],
+  serverExternalPackages: ['subset-font', 'sharp', 'pg-boss'],
 
   // E2E 用獨立的 build 目錄。沒有這個隔離，`next build` 會覆寫
   // 正在執行的 dev server 的 .next，導致 CSS chunk 變成 404
@@ -27,6 +27,7 @@ const nextConfig = {
     '@snowrealm/storage',
     '@snowrealm/validation',
     '@snowrealm/rich-editor',
+    '@snowrealm/worker',
   ],
 
   webpack: (webpackConfig) => {
