@@ -320,7 +320,7 @@ pnpm tsx scripts/queue-ping.ts          # queue 往返（需 worker 執行中）
 ### 內容池補量產線（多批馬拉松）
 `content/**` 各池補到 10 年份量：子代理各批**直寫** scratch 檔（只回 done，省 token）→ `scratchpad/assemble_pool.py`（或 greetings 專用版）做**全池近似去重 + FORBIDDEN_PATTERNS + 長度/night 不催促過濾**→ `pnpm check:content`（近乎必過）→ commit → `pnpm seed:content` 灌 hosted（upsert 冪等）。**坑**：check 去重是全池（會撞別池）；id 續號要用各檔真實最大號或批次 infix（`-x1-`）免撞。
 
-部署平台為 **Zeabur**（ADR-008）：web、worker、Supabase 同一平台，R2 仍用 Cloudflare。
+部署平台為 **Vercel**（2026-11-09 從 Zeabur 遷移）：web 在 Vercel（Root Directory `apps/web`），背景工作由 Vercel Cron 觸發（排程見 `apps/web/vercel.json`，入口 `apps/worker/src/jobs.ts`），Supabase 用 Vercel Marketplace 版，R2 仍用 Cloudflare。
 
 ---
 
